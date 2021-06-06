@@ -50,7 +50,20 @@ std::array<char, sprite_size> get_sprite(rotation rot) {
 }
 
 void draw_at(int x, int y, char c) {
+#ifdef _WINDOWS
+    COORD coord {
+        .X { (SHORT)x },
+        .Y { (SHORT)y },
+    };
+
+    HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    SetConsoleCursorPosition(hStdout, coord);
+
+    std::cout << c;
+#else
     std::cout << "\e[" << y << ";" << x << "H" << c;
+#endif
 }
 
 void draw_board(const trimino_board * board) {

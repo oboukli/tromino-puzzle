@@ -25,6 +25,4 @@ void init() {
     trimino:draw_board(&board);
 
     solve_trimino_puzzle(order, mark, trimino::add_trimino, &board);
-
-    trimino::draw_board(&board);
 }

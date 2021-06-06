@@ -12,6 +12,12 @@
 #include <memory>
 #include <thread>
 
+#ifdef _WINDOWS
+#define WIN32_LEAN_AND_MEAN
+
+#include <Windows.h>
+#endif // _WINDOWS
+
 #include "trimino.h"
 #include "trmn_graph.h"
 
@@ -19,6 +25,16 @@ namespace trimino {
 
 constexpr char neutral = 'N';
 constexpr char empty = ' ';
+
+#ifdef _WINDOWS
+constexpr char mark = '\xFE';
+constexpr char horizontal = '\xCD';
+constexpr char vertical = '\xBA';
+constexpr char top_left = '\xC9';
+constexpr char top_right = '\xBB';
+constexpr char bottom_left = '\xC8';
+constexpr char bottom_right = '\xBC';
+#else
 constexpr char mark = 'X';
 constexpr char horizontal = '-';
 constexpr char vertical = '|';
@@ -26,6 +42,7 @@ constexpr char top_left = '+';
 constexpr char top_right = '+';
 constexpr char bottom_left = '+';
 constexpr char bottom_right = '+';
+#endif
 
 constexpr auto sprite_size = 4;
 
