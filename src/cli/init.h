@@ -5,9 +5,16 @@
 #ifndef init_h
 #define init_h
 
+#include <cassert>
+
 #include "trimino.h"
 #include "trmn_graph.h"
+#include "trmn_graph_vt.h"
+
+#ifdef _WINDOWS
+#include "trmn_graph_windows.h"
+#endif // _WINDOWS
 
 void init();
 
-#endif /* init_h */
+#endif // init_h
