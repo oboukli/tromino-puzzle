@@ -18,10 +18,10 @@ namespace trimino::windows {
                 break;
 
             case 1:
-                // 1, -1
-                // | X
-                // + -
-                return { vertical, neutral, bottom_left, horizontal };
+                // -1, 1
+                // - +
+                // X |
+                return { horizontal, top_right, neutral, vertical };
                 break;
             };
             break;
@@ -29,10 +29,10 @@ namespace trimino::windows {
         case 1:
             switch (rot.y) {
             case -1:
-                // -1, 1
-                // - +
-                // X |
-                return { horizontal, top_right, neutral, vertical };
+                // 1, -1
+                // | X
+                // + -
+                return { vertical, neutral, bottom_left, horizontal };
                 break;
 
             case 1:
@@ -88,12 +88,11 @@ namespace trimino::windows {
                     continue;
                 }
 
-                assert((board_matrix[calc_index(abspos.y + j, abspos.x + i, order)] == empty) && "Error: Invalid placement.");
+                assert((board_matrix[calc_index(abspos.x + j, abspos.y + i, order)] == empty) && "Error: Invalid placement.");
 
-                board_matrix[calc_index(abspos.y + j, abspos.x + i, order)] = px;
+                board_matrix[calc_index(abspos.x + j, abspos.y + i, order)] = px;
 
-                draw_at(abspos.y + j, abspos.x + i, px, s->hOutput);
-
+                draw_at(abspos.x + j, abspos.y + i, px, s->hOutput);
             }
         }
 
