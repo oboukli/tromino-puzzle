@@ -58,13 +58,12 @@ void use_windows_console(int order, position mark, trimino::board* trimino_board
 }
 #endif // _WINDOWS
 
-void init() {
-    constexpr int order = 8; // TODO:
+void init(int order, int x, int y) {
     int size = order * order;
 
-    position mark{ // TODO:
-        .x = 0,
-        .y = 0
+    position mark{
+        .x = x,
+        .y = y
     };
 
     trimino::board trimino_board{

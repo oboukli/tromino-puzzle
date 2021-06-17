@@ -15,6 +15,6 @@
 #include "trmn_graph_windows.h"
 #endif // _WINDOWS
 
-void init();
+void init(int size, int x, int y);
 
 #endif // init_h
