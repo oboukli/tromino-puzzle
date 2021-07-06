@@ -31,7 +31,7 @@ namespace trimino {
         position mark;
     };
 
-    struct graph_state {
+    struct graph_state_t {
         board* board; // TODO: Use smart pointer?
 #ifdef _WINDOWS
         HANDLE hOutput;

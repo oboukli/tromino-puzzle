@@ -4,41 +4,6 @@
 
 #include "init.h"
 
-void use_vt(int order, position mark, trimino::board * trimino_board_ptr) {
-#ifdef _WINDOWS
-    HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
-
-    DWORD dwConsoleOriginalMode = 0;
-    DWORD dwConsoleModifiedMode;
-    GetConsoleMode(hStdout, &dwConsoleOriginalMode);
-
-    dwConsoleModifiedMode = dwConsoleOriginalMode
-        | ENABLE_PROCESSED_OUTPUT
-        | ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-    SetConsoleMode(hStdout, dwConsoleModifiedMode);
-#endif // _WINDOWS
-
-    trimino::graph_state graph_state{
-        .board = trimino_board_ptr,
-// #ifdef _WINDOWS // TODO: && win console
-//         .hOutput = hStdout,
-// #endif // _WINDOWS
-    };
-
-    trimino::vt::init_board(trimino_board_ptr);
-
-    trimino::vt::draw_board(trimino_board_ptr);
-
-    solve_trimino_puzzle(order, mark, trimino::vt::add_trimino, &graph_state);
-
-    trimino::vt::draw_board(trimino_board_ptr);
-
-#ifdef _WINDOWS
-    assert(0 != dwConsoleOriginalMode);
-    SetConsoleMode(hStdout, dwConsoleOriginalMode);
-#endif // _WINDOWS
-}
-
 #ifdef _WINDOWS // TODO: Refactor out
 void use_windows_console(int order, position mark, trimino::board* trimino_board_ptr) {
     HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -75,7 +40,7 @@ void init(int order, int x, int y) {
 
     bool emulate_vt = true; // TODO:
     if (emulate_vt) {
-        use_vt(order, mark, &trimino_board);
+        trimino::vt::use_vt(order, mark, &trimino_board);
     }
 
 #ifdef _WINDOWS
