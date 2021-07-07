@@ -4,7 +4,3 @@
 
 #include "trimino.h"
 #include "trmn_graph.h"
-
-namespace trimino {
-    // TODO:
-} // namespace trimino

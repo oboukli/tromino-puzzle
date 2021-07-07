@@ -7,6 +7,9 @@
 namespace trimino::windows {
 
     std::array<char, sprite_size> get_sprite(rotation rot) {
+        assert(-1 == rot.x || 1 == rot.x);
+        assert(-1 == rot.y || 1 == rot.y);
+
         switch (rot.x) {
         case -1:
             switch (rot.y) {
@@ -45,7 +48,7 @@ namespace trimino::windows {
             break;
         };
 
-        return { neutral, neutral, neutral, neutral };
+        return { mark, mark, mark, mark };
     }
 
     inline void draw_at(int x, int y, char c) {
@@ -75,8 +78,8 @@ namespace trimino::windows {
     }
 
     void add_trimino(position abspos, rotation rot, void* state) {
-        graph_state* s = static_cast<graph_state*>(state); // TODO: Rename
-        board* board = s->board;
+        graph_state_t* graph_state = static_cast<graph_state_t*>(state);
+        board* board = graph_state->board;
         char* board_matrix = board->board_matrix.get();
         int order = board->order;
         auto sprite = get_sprite(rot);
@@ -88,11 +91,12 @@ namespace trimino::windows {
                     continue;
                 }
 
-                assert((board_matrix[calc_index(abspos.x + j, abspos.y + i, order)] == empty) && "Error: Invalid placement.");
+                assert((board_matrix[calc_index(abspos.x + j, abspos.y + i, order)] == empty)
+                    && "Error: Invalid placement.");
 
                 board_matrix[calc_index(abspos.x + j, abspos.y + i, order)] = px;
 
-                draw_at(abspos.x + j, abspos.y + i, px, s->hOutput);
+                draw_at(abspos.x + j, abspos.y + i, px, graph_state->hOutput);
             }
         }
 
@@ -100,10 +104,58 @@ namespace trimino::windows {
             .X = (SHORT)order - 1,
             .Y = (SHORT)order - 1,
         };
-        SetConsoleCursorPosition(s->hOutput, coord);
+        SetConsoleCursorPosition(graph_state->hOutput, coord);
 
         std::cout << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(250)); // TODO: Add options to state
+    }
+
+    static void ensure_success(BOOL is_success, const std::string& msg) {
+        if (!is_success) {
+            auto error = GetLastError();
+            std::cerr
+                << "Windows API error: " << error
+                << "Message: " << msg
+                << std::endl;
+
+            ExitProcess(EXIT_FAILURE);
+        }
+    }
+
+    void use_wch(int order, position mark, trimino::board* trimino_board_ptr) {
+        SetConsoleTitle(TEXT("Trimino Puzzle")); // TODO:
+
+        HANDLE hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+        trimino::graph_state_t graph_state{
+            .board = trimino_board_ptr,
+            .hOutput = hConsoleOutput,
+        };
+        trimino::windows::init_board(trimino_board_ptr);
+
+        CONSOLE_SCREEN_BUFFER_INFO originalConsoleScreenBufferInfo;
+        GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &originalConsoleScreenBufferInfo);
+
+        SetConsoleTextAttribute(hConsoleOutput, FOREGROUND_BLUE);
+        trimino::windows::draw_board(trimino_board_ptr);
+
+        SetConsoleTextAttribute(hConsoleOutput,
+            FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
+        );
+        COORD coordMark = {
+            .X = (short)mark.x,
+            .Y = (short)mark.y
+        };
+        SetConsoleCursorPosition(hConsoleOutput, coordMark);
+        std::cout << trimino::windows::mark;
+
+        SetConsoleTextAttribute(hConsoleOutput,
+            FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
+            | BACKGROUND_BLUE | BACKGROUND_INTENSITY
+        );
+
+        solve_trimino_puzzle(order, mark, trimino::windows::add_trimino, &graph_state);
+
+        SetConsoleTextAttribute(hConsoleOutput, originalConsoleScreenBufferInfo.wAttributes);
     }
 
 } // namespace trimino::windows

@@ -8,6 +8,10 @@
 #include "init.h"
 
 int main(int argc, const char* argv[]) {
+    // TODO: Add mode option (WCH, VT) always default to VT
+    // TODO: CONFIG VALS
+    // TODO: App name
+    // TODO: Refactor out of main
     constexpr auto REQUIRED_ARG_COUNT = 4;
 
     if (REQUIRED_ARG_COUNT != argc) {

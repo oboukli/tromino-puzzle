@@ -21,7 +21,7 @@
 namespace trimino::windows {
 
     constexpr char neutral = 'N';
-    constexpr char empty = ' ';
+    constexpr char empty = '\xB0';
 
     constexpr char mark = '\xFE';
     constexpr char horizontal = '\xCD';
@@ -46,6 +46,8 @@ namespace trimino::windows {
 
         board->board_matrix[calc_index(board->mark.x, board->mark.y, board->order)] = mark;
     }
+
+    void use_wch(int order, position mark, trimino::board* trimino_board_ptr);
 
 } // namespace trimino::windows
 #endif // trmn_graph_windows_h
