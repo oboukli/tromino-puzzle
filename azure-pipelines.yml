@@ -1,0 +1,43 @@
+trigger:
+  - master
+  - develop
+
+jobs:
+  - job: macOS
+    displayName: 'Build for macOS'
+    pool:
+      vmImage: 'macOS-latest'
+    variables:
+      configuration: Release
+      scheme: 'TriminoPuzzle.Cli'
+      sdk: macosx
+    steps:
+      - task: Xcode@5
+        displayName: 'Build'
+        inputs:
+          actions: 'build'
+          scheme: '$(scheme)'
+          configuration: '$(configuration)'
+          xcodeVersion: '12'
+          destinationPlatformOption: 'macOS'
+          packageApp: false
+  - job: Windows
+    displayName: 'Build for Windows'
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+      - task: VSBuild@1
+        displayName: 'Build'
+        inputs:
+          solution: 'msbuild/TriminoPuzzle.sln'
+          platform: 'x64'
+          configuration: 'release'
+          maximumCpuCount: true
+          msbuildArchitecture: 'x64'
+  - job: Linux
+    displayName: 'Build for Linux'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+      - script: echo hello from Linux
+        displayName: 'Dummy Linux step'

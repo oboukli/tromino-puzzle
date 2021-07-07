@@ -1,5 +1,7 @@
 # Trimino Puzzle
 
+[![Azure Pipelines build status](https://dev.azure.com/omarboukli/trimino-puzzle/_apis/build/status/oboukli.trimino-puzzle?branchName=develop)](https://dev.azure.com/omarboukli/trimino-puzzle/_build/latest?definitionId=2&branchName=develop)
+
 ## Build options
 
 For basic ASCII drawing, useful for writing to text files, define `TRIMINO_USE_ASCII`.
