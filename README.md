@@ -1,5 +1,6 @@
 # Trimino Puzzle
 
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/oboukli/trimino-puzzle)
 [![Azure Pipelines build status](https://dev.azure.com/omarboukli/trimino-puzzle/_apis/build/status/oboukli.trimino-puzzle?branchName=develop)](https://dev.azure.com/omarboukli/trimino-puzzle/_build/latest?definitionId=2&branchName=develop)
 
 ## Build options
