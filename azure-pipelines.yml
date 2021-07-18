@@ -1,6 +1,6 @@
 trigger:
-  - master
-  - develop
+  - main
+  - development
 
 jobs:
   - job: macOS
