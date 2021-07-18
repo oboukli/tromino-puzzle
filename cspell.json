@@ -3,10 +3,12 @@
   "language": "en",
   "words": [
     "Boukli",
+    "Hacene",
+    "POSIX",
     "emmake",
     "emscripten",
     "emsdk",
-    "Hacene",
+    "msbuild",
     "tromino",
     "trominos",
     "wasm",
