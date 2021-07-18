@@ -4,7 +4,7 @@
 
 #include "trmn_graph_windows.h"
 
-namespace trimino::windows {
+namespace tromino::windows {
 
     std::array<char, sprite_size> get_sprite(rotation rot) {
         assert(-1 == rot.x || 1 == rot.x);
@@ -77,7 +77,7 @@ namespace trimino::windows {
         }
     }
 
-    void add_trimino(position abspos, rotation rot, void* state) {
+    void add_tromino(position abspos, rotation rot, void* state) {
         graph_state_t* graph_state = static_cast<graph_state_t*>(state);
         board* board = graph_state->board;
         char* board_matrix = board->board_matrix.get();
@@ -122,21 +122,21 @@ namespace trimino::windows {
         }
     }
 
-    void use_wch(int order, position mark, trimino::board* trimino_board_ptr) {
-        SetConsoleTitle(TEXT("Trimino Puzzle")); // TODO:
+    void use_wch(int order, position mark, tromino::board* tromino_board_ptr) {
+        SetConsoleTitle(TEXT("Tromino Puzzle")); // TODO:
 
         HANDLE hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-        trimino::graph_state_t graph_state{
-            .board = trimino_board_ptr,
+        tromino::graph_state_t graph_state{
+            .board = tromino_board_ptr,
             .hOutput = hConsoleOutput,
         };
-        trimino::windows::init_board(trimino_board_ptr);
+        tromino::windows::init_board(tromino_board_ptr);
 
         CONSOLE_SCREEN_BUFFER_INFO originalConsoleScreenBufferInfo;
         GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &originalConsoleScreenBufferInfo);
 
         SetConsoleTextAttribute(hConsoleOutput, FOREGROUND_BLUE);
-        trimino::windows::draw_board(trimino_board_ptr);
+        tromino::windows::draw_board(tromino_board_ptr);
 
         SetConsoleTextAttribute(hConsoleOutput,
             FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
@@ -146,16 +146,16 @@ namespace trimino::windows {
             .Y = (short)mark.y
         };
         SetConsoleCursorPosition(hConsoleOutput, coordMark);
-        std::cout << trimino::windows::mark;
+        std::cout << tromino::windows::mark;
 
         SetConsoleTextAttribute(hConsoleOutput,
             FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
             | BACKGROUND_BLUE | BACKGROUND_INTENSITY
         );
 
-        solve_trimino_puzzle(order, mark, trimino::windows::add_trimino, &graph_state);
+        solve_tromino_puzzle(order, mark, tromino::windows::add_tromino, &graph_state);
 
         SetConsoleTextAttribute(hConsoleOutput, originalConsoleScreenBufferInfo.wAttributes);
     }
 
-} // namespace trimino::windows
+} // namespace tromino::windows

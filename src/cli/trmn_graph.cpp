@@ -2,5 +2,5 @@
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
-#include "trimino.h"
+#include "tromino.h"
 #include "trmn_graph.h"

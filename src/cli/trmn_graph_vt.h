@@ -17,7 +17,7 @@
 #include <Windows.h>
 #endif // _WINDOWS
 
-#include "trimino.h"
+#include "tromino.h"
 #include "trmn_graph.h"
 
 #define BEL "\a"
@@ -29,17 +29,17 @@
 #define MARK_BACKGROUND_COLOR "199"
 #define MARK_FOREGROUND_COLOR "216"
 
-#define TRIMINO_BACKGROUND_COLOR "18"
-#define TRIMINO_FOREGROUND_COLOR "226"
+#define TROMINO_BACKGROUND_COLOR "18"
+#define TROMINO_FOREGROUND_COLOR "226"
 
-namespace trimino::vt {
+namespace tromino::vt {
 
     constexpr char neutral = 'N';
     constexpr char empty = ' ';
 
     constexpr char mark = 'X';
 
-#ifdef TRIMINO_USE_ASCII
+#ifdef TROMINO_USE_ASCII
     constexpr char horizontal = '-';
     constexpr char vertical = '|';
     constexpr char top_left = '+';
@@ -53,7 +53,7 @@ namespace trimino::vt {
     constexpr char top_right = '\x6b';
     constexpr char bottom_left = '\x6d';
     constexpr char bottom_right = '\x6a';
-#endif // TRIMINO_USE_ASCII
+#endif // TROMINO_USE_ASCII
 
     constexpr auto sprite_size = 4;
 
@@ -63,7 +63,7 @@ namespace trimino::vt {
 
     void draw_board(const board* board);
 
-    void add_trimino(position abspos, rotation rot, void* graph_state);
+    void add_tromino(position abspos, rotation rot, void* graph_state);
 
     inline void init_board(board* board) {
         std::fill_n(board->board_matrix.get(), board->size, empty);
@@ -71,7 +71,7 @@ namespace trimino::vt {
         board->board_matrix[calc_index(board->mark.x, board->mark.y, board->order)] = mark;
     }
 
-    void use_vt(int order, position mark, trimino::board * trimino_board_ptr);
+    void use_vt(int order, position mark, tromino::board * tromino_board_ptr);
 
-} // namespace trimino
+} // namespace tromino
 #endif // trmn_graph_vt_h

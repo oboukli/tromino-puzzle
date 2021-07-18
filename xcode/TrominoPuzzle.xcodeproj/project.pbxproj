@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7588708B2663BF8400FAEA50 /* trimino.h in Headers */ = {isa = PBXBuildFile; fileRef = 758870892663BF8400FAEA50 /* trimino.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7588708C2663BF8400FAEA50 /* trimino.c in Sources */ = {isa = PBXBuildFile; fileRef = 7588708A2663BF8400FAEA50 /* trimino.c */; };
+		7588708B2663BF8400FAEA50 /* tromino.h in Headers */ = {isa = PBXBuildFile; fileRef = 758870892663BF8400FAEA50 /* tromino.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7588708C2663BF8400FAEA50 /* tromino.c in Sources */ = {isa = PBXBuildFile; fileRef = 7588708A2663BF8400FAEA50 /* tromino.c */; };
 		758870992663C0A300FAEA50 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 758870982663C0A300FAEA50 /* main.cpp */; };
-		7588709B2663C2E800FAEA50 /* liblibtrimino.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 758870812663BEF100FAEA50 /* liblibtrimino.a */; };
+		7588709B2663C2E800FAEA50 /* liblibtromino.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 758870812663BEF100FAEA50 /* liblibtromino.a */; };
 		75AC1BF0266D4A8E00771211 /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AC1BEC266D4A8D00771211 /* init.cpp */; };
 		75AC1BF1266D4A8E00771211 /* trmn_graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75AC1BED266D4A8D00771211 /* trmn_graph.cpp */; };
 		75F5E5502677F27D009F5035 /* trmn_graph_vt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75F5E54F2677F27C009F5035 /* trmn_graph_vt.cpp */; };
@@ -22,7 +22,7 @@
 			containerPortal = 7588705B2663BBD600FAEA50 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 758870802663BEF100FAEA50;
-			remoteInfo = libtrimino;
+			remoteInfo = libtromino;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -39,10 +39,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		758870812663BEF100FAEA50 /* liblibtrimino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibtrimino.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		758870892663BF8400FAEA50 /* trimino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trimino.h; sourceTree = "<group>"; };
-		7588708A2663BF8400FAEA50 /* trimino.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = trimino.c; sourceTree = "<group>"; };
-		758870912663BFF000FAEA50 /* TriminoPuzzle.Cli */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TriminoPuzzle.Cli; sourceTree = BUILT_PRODUCTS_DIR; };
+		758870812663BEF100FAEA50 /* liblibtromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibtromino.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		758870892663BF8400FAEA50 /* tromino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tromino.h; sourceTree = "<group>"; };
+		7588708A2663BF8400FAEA50 /* tromino.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tromino.c; sourceTree = "<group>"; };
+		758870912663BFF000FAEA50 /* TrominoPuzzle.Cli */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TrominoPuzzle.Cli; sourceTree = BUILT_PRODUCTS_DIR; };
 		758870982663C0A300FAEA50 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../src/cli/main.cpp; sourceTree = "<group>"; };
 		75AC1BEC266D4A8D00771211 /* init.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = init.cpp; path = ../src/cli/init.cpp; sourceTree = "<group>"; };
 		75AC1BED266D4A8D00771211 /* trmn_graph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = trmn_graph.cpp; path = ../src/cli/trmn_graph.cpp; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7588709B2663C2E800FAEA50 /* liblibtrimino.a in Frameworks */,
+				7588709B2663C2E800FAEA50 /* liblibtromino.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				758870882663BF8400FAEA50 /* lib */,
-				758870922663BFF000FAEA50 /* TriminoPuzzle.Cli */,
+				758870922663BFF000FAEA50 /* TrominoPuzzle.Cli */,
 				758870822663BEF100FAEA50 /* Products */,
 				7588709A2663C2E800FAEA50 /* Frameworks */,
 			);
@@ -84,8 +84,8 @@
 		758870822663BEF100FAEA50 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				758870812663BEF100FAEA50 /* liblibtrimino.a */,
-				758870912663BFF000FAEA50 /* TriminoPuzzle.Cli */,
+				758870812663BEF100FAEA50 /* liblibtromino.a */,
+				758870912663BFF000FAEA50 /* TrominoPuzzle.Cli */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -93,14 +93,14 @@
 		758870882663BF8400FAEA50 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				758870892663BF8400FAEA50 /* trimino.h */,
-				7588708A2663BF8400FAEA50 /* trimino.c */,
+				758870892663BF8400FAEA50 /* tromino.h */,
+				7588708A2663BF8400FAEA50 /* tromino.c */,
 			);
 			name = lib;
 			path = ../src/lib;
 			sourceTree = "<group>";
 		};
-		758870922663BFF000FAEA50 /* TriminoPuzzle.Cli */ = {
+		758870922663BFF000FAEA50 /* TrominoPuzzle.Cli */ = {
 			isa = PBXGroup;
 			children = (
 				75F5E54F2677F27C009F5035 /* trmn_graph_vt.cpp */,
@@ -111,7 +111,7 @@
 				75AC1BEF266D4A8E00771211 /* trmn_graph.h */,
 				758870982663C0A300FAEA50 /* main.cpp */,
 			);
-			name = TriminoPuzzle.Cli;
+			name = TrominoPuzzle.Cli;
 			sourceTree = "<group>";
 		};
 		7588709A2663C2E800FAEA50 /* Frameworks */ = {
@@ -128,16 +128,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7588708B2663BF8400FAEA50 /* trimino.h in Headers */,
+				7588708B2663BF8400FAEA50 /* tromino.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		758870802663BEF100FAEA50 /* libtrimino */ = {
+		758870802663BEF100FAEA50 /* libtromino */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 758870852663BEF100FAEA50 /* Build configuration list for PBXNativeTarget "libtrimino" */;
+			buildConfigurationList = 758870852663BEF100FAEA50 /* Build configuration list for PBXNativeTarget "libtromino" */;
 			buildPhases = (
 				7588707D2663BEF100FAEA50 /* Headers */,
 				7588707E2663BEF100FAEA50 /* Sources */,
@@ -147,14 +147,14 @@
 			);
 			dependencies = (
 			);
-			name = libtrimino;
-			productName = libtrimino;
-			productReference = 758870812663BEF100FAEA50 /* liblibtrimino.a */;
+			name = libtromino;
+			productName = libtromino;
+			productReference = 758870812663BEF100FAEA50 /* liblibtromino.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		758870902663BFF000FAEA50 /* TriminoPuzzle.Cli */ = {
+		758870902663BFF000FAEA50 /* TrominoPuzzle.Cli */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 758870952663BFF000FAEA50 /* Build configuration list for PBXNativeTarget "TriminoPuzzle.Cli" */;
+			buildConfigurationList = 758870952663BFF000FAEA50 /* Build configuration list for PBXNativeTarget "TrominoPuzzle.Cli" */;
 			buildPhases = (
 				7588708D2663BFF000FAEA50 /* Sources */,
 				7588708E2663BFF000FAEA50 /* Frameworks */,
@@ -165,9 +165,9 @@
 			dependencies = (
 				7588709D2663C30A00FAEA50 /* PBXTargetDependency */,
 			);
-			name = TriminoPuzzle.Cli;
-			productName = TriminoPuzzle.Cli;
-			productReference = 758870912663BFF000FAEA50 /* TriminoPuzzle.Cli */;
+			name = TrominoPuzzle.Cli;
+			productName = TrominoPuzzle.Cli;
+			productReference = 758870912663BFF000FAEA50 /* TrominoPuzzle.Cli */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7588705E2663BBD600FAEA50 /* Build configuration list for PBXProject "TriminoPuzzle" */;
+			buildConfigurationList = 7588705E2663BBD600FAEA50 /* Build configuration list for PBXProject "TrominoPuzzle" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -199,8 +199,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				758870802663BEF100FAEA50 /* libtrimino */,
-				758870902663BFF000FAEA50 /* TriminoPuzzle.Cli */,
+				758870802663BEF100FAEA50 /* libtromino */,
+				758870902663BFF000FAEA50 /* TrominoPuzzle.Cli */,
 			);
 		};
 /* End PBXProject section */
@@ -210,7 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7588708C2663BF8400FAEA50 /* trimino.c in Sources */,
+				7588708C2663BF8400FAEA50 /* tromino.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +230,7 @@
 /* Begin PBXTargetDependency section */
 		7588709D2663C30A00FAEA50 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 758870802663BEF100FAEA50 /* libtrimino */;
+			target = 758870802663BEF100FAEA50 /* libtromino */;
 			targetProxy = 7588709C2663C30A00FAEA50 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -486,7 +486,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7588705E2663BBD600FAEA50 /* Build configuration list for PBXProject "TriminoPuzzle" */ = {
+		7588705E2663BBD600FAEA50 /* Build configuration list for PBXProject "TrominoPuzzle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7588705F2663BBD600FAEA50 /* Debug */,
@@ -495,7 +495,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		758870852663BEF100FAEA50 /* Build configuration list for PBXNativeTarget "libtrimino" */ = {
+		758870852663BEF100FAEA50 /* Build configuration list for PBXNativeTarget "libtromino" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				758870832663BEF100FAEA50 /* Debug */,
@@ -504,7 +504,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		758870952663BFF000FAEA50 /* Build configuration list for PBXNativeTarget "TriminoPuzzle.Cli" */ = {
+		758870952663BFF000FAEA50 /* Build configuration list for PBXNativeTarget "TrominoPuzzle.Cli" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				758870962663BFF000FAEA50 /* Debug */,

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "758870802663BEF100FAEA50"
-               BuildableName = "liblibtrimino.a"
-               BlueprintName = "libtrimino"
-               ReferencedContainer = "container:TriminoPuzzle.xcodeproj">
+               BuildableName = "liblibtromino.a"
+               BlueprintName = "libtromino"
+               ReferencedContainer = "container:TrominoPuzzle.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -51,9 +51,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "758870802663BEF100FAEA50"
-            BuildableName = "liblibtrimino.a"
-            BlueprintName = "libtrimino"
-            ReferencedContainer = "container:TriminoPuzzle.xcodeproj">
+            BuildableName = "liblibtromino.a"
+            BlueprintName = "libtromino"
+            ReferencedContainer = "container:TrominoPuzzle.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

@@ -4,7 +4,7 @@
 
 #include "trmn_graph_vt.h"
 
-namespace trimino::vt {
+namespace tromino::vt {
 
     std::array<char, sprite_size> get_sprite(rotation rot) {
         assert(-1 == rot.x || 1 == rot.x);
@@ -55,17 +55,17 @@ namespace trimino::vt {
         std::cout << CSI << y << ";" << x << "H" << c;
     }
 
-    void draw_board(const trimino::board* board) {
+    void draw_board(const tromino::board* board) {
         int order = board->order;
         for (int i = 0; i < order; ++i) { // Rows
             std::cout << CSI << 1 + i << ";" << 1 << "H";
             for (int j = 0; j < order; ++j) { // Columns
-                std::cout << board->board_matrix[trimino::calc_index(j, i, order)];
+                std::cout << board->board_matrix[tromino::calc_index(j, i, order)];
             }
         }
     }
 
-    void add_trimino(position abspos, rotation rot, void* state) {
+    void add_tromino(position abspos, rotation rot, void* state) {
         graph_state_t* graph_state = static_cast<graph_state_t*>(state);
         board* board = graph_state->board;
         char* board_matrix = board->board_matrix.get();
@@ -102,7 +102,7 @@ namespace trimino::vt {
         std::this_thread::sleep_for(std::chrono::milliseconds(34)); // TODO: Add options to state
     }
 
-    void use_vt(int order, position mark, trimino::board * trimino_board_ptr) {
+    void use_vt(int order, position mark, tromino::board * tromino_board_ptr) {
 #ifdef _WINDOWS
         HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -117,16 +117,16 @@ namespace trimino::vt {
         SetConsoleMode(hStdout, dwConsoleModifiedMode);
 #endif // _WINDOWS
 
-        trimino::graph_state_t graph_state{
-            .board = trimino_board_ptr,
+        tromino::graph_state_t graph_state{
+            .board = tromino_board_ptr,
         };
 
-        trimino::vt::init_board(trimino_board_ptr);
+        tromino::vt::init_board(tromino_board_ptr);
 
         std::cout <<
 
             // Set icon and window title
-            ESC "]0;" "Trimino Puzzle" BEL
+            ESC "]0;" "Tromino Puzzle" BEL
 
             // Advanced video option (AVO)
             CSI "?1;2c"
@@ -158,7 +158,7 @@ namespace trimino::vt {
         std::cout <<
             // Set board background color.
             CSI "48;5;" BOARD_BACKGROUND_COLOR "m";
-        trimino::vt::draw_board(trimino_board_ptr);
+        tromino::vt::draw_board(tromino_board_ptr);
 
         std::cout <<
             // Set bold mode
@@ -170,23 +170,23 @@ namespace trimino::vt {
             // Set mark foreground color
             CSI "38;5;" MARK_FOREGROUND_COLOR "m";
 
-        trimino::vt::draw_at(mark.x + 1, mark.y + 1, trimino::vt::mark);
+        tromino::vt::draw_at(mark.x + 1, mark.y + 1, tromino::vt::mark);
 
         std::cout <<
 
-            // Set trimino background color
-            CSI "48;5;" TRIMINO_BACKGROUND_COLOR "m"
+            // Set tromino background color
+            CSI "48;5;" TROMINO_BACKGROUND_COLOR "m"
 
-            // Set trimino foreground color
-            CSI "38;5;" TRIMINO_FOREGROUND_COLOR "m";
+            // Set tromino foreground color
+            CSI "38;5;" TROMINO_FOREGROUND_COLOR "m";
 
-#ifndef TRIMINO_USE_ASCII
+#ifndef TROMINO_USE_ASCII
         // Use VT100 Special graphics chararters
         std::cout <<
             ESC "(0";
-#endif // !TRIMINO_USE_ASCII
+#endif // !TROMINO_USE_ASCII
 
-        solve_trimino_puzzle(order, mark, trimino::vt::add_trimino, &graph_state);
+        solve_tromino_puzzle(order, mark, tromino::vt::add_tromino, &graph_state);
 
         std::cin.get();
 
@@ -207,4 +207,4 @@ namespace trimino::vt {
 #endif // _WINDOWS
     }
 
-} // namespace trimino::vt
+} // namespace tromino::vt

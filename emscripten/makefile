@@ -1,4 +1,4 @@
-TARGET ::= trimino-puzzle-wasm.js
+TARGET ::= tromino-puzzle-wasm.js
 
 FLAGS ::= -O3 -DNDEBUG -s WASM=1
 
@@ -25,7 +25,7 @@ directories:
 	$(MKDIR) $(OUT_DIR)
 	$(MKDIR) $(WEB_DIR)
 
-$(TARGET): $(OBJ_DIR)/trimino.o $(OBJ_DIR)/trimino_wasm.o
+$(TARGET): $(OBJ_DIR)/tromino.o $(OBJ_DIR)/tromino_wasm.o
 	$(CC) $(FLAGS) \
 	--no-entry \
 	-s ALLOW_TABLE_GROWTH=1 \
@@ -42,15 +42,15 @@ $(TARGET): $(OBJ_DIR)/trimino.o $(OBJ_DIR)/trimino_wasm.o
 	-s USE_CLOSURE_COMPILER=1 \
 	-o $(OUT_DIR)/$(TARGET) $^
 
-$(OBJ_DIR)/trimino.o: $(SRC_DIR)/lib/trimino.c
+$(OBJ_DIR)/tromino.o: $(SRC_DIR)/lib/tromino.c
 	$(CC) $(FLAGS) \
 	-c $< \
 	-o $@
 
-$(OBJ_DIR)/trimino_wasm.o: $(OBJ_DIR)/trimino.o
+$(OBJ_DIR)/tromino_wasm.o: $(OBJ_DIR)/tromino.o
 	$(CC) $(FLAGS) \
 	-I$(SRC_DIR)/lib \
-	-c $(SRC_DIR)/wasm/trimino_wasm.c \
+	-c $(SRC_DIR)/wasm/tromino_wasm.c \
 	-o $@
 
 webapp: directories
@@ -58,9 +58,9 @@ webapp: directories
 
 .PHONY: clean
 clean:
-	$(RM) $(OBJ_DIR)/trimino_wasm.o $(OBJ_DIR)/trimino.o
+	$(RM) $(OBJ_DIR)/tromino_wasm.o $(OBJ_DIR)/tromino.o
 	$(RM) $(OUT_DIR)/index.html \
-	$(OUT_DIR)/trimino_puzzle.js \
-	$(OUT_DIR)/trimino-web.js \
-	$(OUT_DIR)/trimino-web.wasm
+	$(OUT_DIR)/tromino_puzzle.js \
+	$(OUT_DIR)/tromino-web.js \
+	$(OUT_DIR)/tromino-web.wasm
 	@echo "Done cleaning."

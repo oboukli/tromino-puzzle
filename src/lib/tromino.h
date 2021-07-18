@@ -5,8 +5,8 @@
  * found in the LICENSE file.
  */
 
-#ifndef trimino_h
-#define trimino_h
+#ifndef tromino_h
+#define tromino_h
 
 #ifdef __cplusplus
 extern "C" {
@@ -24,12 +24,12 @@ typedef struct rotation_struct {
     int y;
 } rotation;
 
-typedef void (*add_trimino_func)(position abspos, rotation rot, void * state);
+typedef void (*add_tromino_func)(position abspos, rotation rot, void * state);
 
-void solve_trimino_puzzle(int order, position mark, add_trimino_func add_trimino, void * state);
+void solve_tromino_puzzle(int order, position mark, add_tromino_func add_tromino, void * state);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* trimino_h */
+#endif /* tromino_h */

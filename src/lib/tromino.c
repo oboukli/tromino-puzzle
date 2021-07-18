@@ -5,12 +5,12 @@
  * found in the LICENSE file.
  */
 
-#include "trimino.h"
+#include "tromino.h"
 
-static void solve_trimino(int order, position pos, rotation rot, add_trimino_func add_trimino, void * state) {
+static void solve_tromino(int order, position pos, rotation rot, add_tromino_func add_tromino, void * state) {
     if (order == 2) {
-        if (add_trimino != NULL) {
-            (*add_trimino)(pos, rot, state);
+        if (add_tromino != NULL) {
+            (*add_tromino)(pos, rot, state);
         }
 
         return;
@@ -24,27 +24,27 @@ static void solve_trimino(int order, position pos, rotation rot, add_trimino_fun
         .y = rot.y == -1 ? pos.y : pos.y + n,
     };
 
-    solve_trimino(
+    solve_tromino(
         n,
         (position) {
             .x = p.x - (rot.x * o),
             .y = p.y - (rot.y * o),
         },
         rot,
-        add_trimino,
+        add_tromino,
         state);
 
-    solve_trimino(
+    solve_tromino(
         n,
         (position) {
             .x = p.x - (rot.x * n),
             .y = p.y - (rot.y * n),
         },
         rot,
-        add_trimino,
+        add_tromino,
         state);
 
-    solve_trimino(
+    solve_tromino(
         n,
         (position) {
             .x = p.x - (rot.x * n),
@@ -54,10 +54,10 @@ static void solve_trimino(int order, position pos, rotation rot, add_trimino_fun
             .x = rot.x,
             .y = rot.y * -1,
         },
-        add_trimino,
+        add_tromino,
         state);
 
-    solve_trimino(n,
+    solve_tromino(n,
         (position) {
             .x = p.x,
             .y = p.y - (rot.y * n),
@@ -66,11 +66,11 @@ static void solve_trimino(int order, position pos, rotation rot, add_trimino_fun
             .x = rot.x * -1,
             .y = rot.y,
         },
-        add_trimino,
+        add_tromino,
         state);
 }
 
-static void solve_board(int order, position pos, rotation rot, position mark, add_trimino_func add_trimino, void * state) {
+static void solve_board(int order, position pos, rotation rot, position mark, add_tromino_func add_tromino, void * state) {
     if (order > 2) {
         int s = order >> 1;
         position p = {
@@ -84,13 +84,13 @@ static void solve_board(int order, position pos, rotation rot, position mark, ad
             .y = (mark.y - p.y) < ss ? -1 : 1,
         };
 
-        solve_board(s, p, r, mark, add_trimino, state);
+        solve_board(s, p, r, mark, add_tromino, state);
     }
 
-    solve_trimino(order, pos, rot, add_trimino, state);
+    solve_tromino(order, pos, rot, add_tromino, state);
 }
 
-void solve_trimino_puzzle(int board_order, position mark, add_trimino_func add_trimino, void * state) {
+void solve_tromino_puzzle(int board_order, position mark, add_tromino_func add_tromino, void * state) {
     position pos = {
         .x = 0,
         .y = 0,
@@ -103,5 +103,5 @@ void solve_trimino_puzzle(int board_order, position mark, add_trimino_func add_t
         .y = mark.y < s ? -1 : 1,
     };
 
-    solve_board(board_order, pos, rot, mark, add_trimino, state);
+    solve_board(board_order, pos, rot, mark, add_tromino, state);
 }

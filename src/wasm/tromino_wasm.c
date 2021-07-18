@@ -10,12 +10,12 @@
 
 #include <emscripten.h>
 
-#include "trimino.h"
+#include "tromino.h"
 
-typedef void (*add_trimino_extern_callback)(position abspos, double angle);
+typedef void (*add_tromino_extern_callback)(position abspos, double angle);
 
-static void add_trimino(position abspos, rotation rot, void * state) {
-    add_trimino_extern_callback add_trimino_cb = (add_trimino_extern_callback)state;
+static void add_tromino(position abspos, rotation rot, void * state) {
+    add_tromino_extern_callback add_tromino_cb = (add_tromino_extern_callback)state;
         double angle;
 
         assert(rot.x == -1 || rot.x == 1);
@@ -63,9 +63,9 @@ static void add_trimino(position abspos, rotation rot, void * state) {
             break;
         };
 
-    add_trimino_cb(abspos, angle);
+    add_tromino_cb(abspos, angle);
 }
 
-EMSCRIPTEN_KEEPALIVE void solve(int order, position mark, add_trimino_extern_callback add_trimino_cb) {
-    solve_trimino_puzzle(order, mark, add_trimino, add_trimino_cb);
+EMSCRIPTEN_KEEPALIVE void solve(int order, position mark, add_tromino_extern_callback add_tromino_cb) {
+    solve_tromino_puzzle(order, mark, add_tromino, add_tromino_cb);
 }

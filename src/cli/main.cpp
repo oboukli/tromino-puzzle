@@ -15,7 +15,7 @@ int main(int argc, const char* argv[]) {
     constexpr auto REQUIRED_ARG_COUNT = 4;
 
     if (REQUIRED_ARG_COUNT != argc) {
-        std::cout << "Usage: trimino <order> <x> <y>" << std::endl;
+        std::cout << "Usage: tromino <order> <x> <y>" << std::endl;
         return EXIT_FAILURE;
     }
 

@@ -19,10 +19,10 @@
 #include <Windows.h>
 #endif // _WINDOWS
 
-#include "trimino.h"
+#include "tromino.h"
 #include "trmn_graph.h"
 
-namespace trimino {
+namespace tromino {
 
     struct board {
         std::unique_ptr<char[]> board_matrix;
@@ -43,5 +43,5 @@ namespace trimino {
         return y * o + x;
     }
 
-} // namespace trimino
+} // namespace tromino
 #endif // trmn_graph_h

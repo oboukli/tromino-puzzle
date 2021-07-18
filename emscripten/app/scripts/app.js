@@ -4,7 +4,7 @@
 
 "use strict";
 ;(async function(window, document) {
-  let triminoImgSrc;
+  let trominoImgSrc;
   let canvasElement;
   let orderElement;
   let markXElement;
@@ -22,7 +22,7 @@
   });
 
   function initElements() {
-    triminoImgSrc = "images/trimino.svg"; // TODO: Path
+    trominoImgSrc = "images/tromino.svg"; // TODO: Path
 
     canvasElement = document.getElementById("boardCanvas");
 
@@ -41,7 +41,7 @@
     };
 
     return WebAssembly.instantiateStreaming(
-      fetch('scripts/trimino-puzzle-wasm.wasm'), // TODO: Path
+      fetch('scripts/tromino-puzzle-wasm.wasm'), // TODO: Path
       importObject
     );
   }
@@ -60,7 +60,7 @@
 
     const context = canvasElement.getContext("2d");
 
-    const boardPromise = createBoardAsync(context, triminoImgSrc, order, mark, options);
+    const boardPromise = createBoardAsync(context, trominoImgSrc, order, mark, options);
 
     const [_, board] = await Promise.all([instancePromise, boardPromise]);
 
@@ -72,10 +72,10 @@
       mark: [mark.x, mark.y]
     };
     let placed = 0;
-    solveTrimino(puzzle, (position, angle) => {
+    solveTromino(puzzle, (position, angle) => {
 
       // TODO: That's too many calls. Delay at the source?
-      setTimeout(drawTrimino, delayBase * placed, board, position.x, position.y , angle);
+      setTimeout(drawTromino, delayBase * placed, board, position.x, position.y , angle);
       placed += 1;
     });
   }

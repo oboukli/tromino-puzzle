@@ -9,7 +9,7 @@ jobs:
       vmImage: 'macOS-latest'
     variables:
       configuration: Release
-      scheme: 'TriminoPuzzle.Cli'
+      scheme: 'TrominoPuzzle.Cli'
       sdk: macosx
     steps:
       - task: Xcode@5
@@ -29,7 +29,7 @@ jobs:
       - task: VSBuild@1
         displayName: 'Build'
         inputs:
-          solution: 'msbuild/TriminoPuzzle.sln'
+          solution: 'msbuild/TrominoPuzzle.sln'
           platform: 'x64'
           configuration: 'release'
           maximumCpuCount: true

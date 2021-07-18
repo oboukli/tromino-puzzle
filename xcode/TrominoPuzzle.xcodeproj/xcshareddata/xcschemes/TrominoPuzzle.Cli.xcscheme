@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "758870902663BFF000FAEA50"
-               BuildableName = "TriminoPuzzle.Cli"
-               BlueprintName = "TriminoPuzzle.Cli"
-               ReferencedContainer = "container:TriminoPuzzle.xcodeproj">
+               BuildableName = "TrominoPuzzle.Cli"
+               BlueprintName = "TrominoPuzzle.Cli"
+               ReferencedContainer = "container:TrominoPuzzle.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "758870902663BFF000FAEA50"
-            BuildableName = "TriminoPuzzle.Cli"
-            BlueprintName = "TriminoPuzzle.Cli"
-            ReferencedContainer = "container:TriminoPuzzle.xcodeproj">
+            BuildableName = "TrominoPuzzle.Cli"
+            BlueprintName = "TrominoPuzzle.Cli"
+            ReferencedContainer = "container:TrominoPuzzle.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "758870902663BFF000FAEA50"
-            BuildableName = "TriminoPuzzle.Cli"
-            BlueprintName = "TriminoPuzzle.Cli"
-            ReferencedContainer = "container:TriminoPuzzle.xcodeproj">
+            BuildableName = "TrominoPuzzle.Cli"
+            BlueprintName = "TrominoPuzzle.Cli"
+            ReferencedContainer = "container:TrominoPuzzle.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

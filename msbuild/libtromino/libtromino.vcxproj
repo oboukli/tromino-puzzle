@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{67c72ae0-f810-4766-bc5d-aede7210943c}</ProjectGuid>
-    <RootNamespace>libtrimino</RootNamespace>
+    <RootNamespace>libtromino</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -167,10 +167,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\lib\trimino.h" />
+    <ClInclude Include="..\..\src\lib\tromino.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\lib\trimino.c" />
+    <ClCompile Include="..\..\src\lib\tromino.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

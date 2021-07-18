@@ -12,7 +12,7 @@ void init(int order, int x, int y) {
         .y = y
     };
 
-    trimino::board trimino_board{
+    tromino::board tromino_board{
         .board_matrix = std::make_unique<char[]>(size),
         .size = size,
         .order = order,
@@ -21,13 +21,13 @@ void init(int order, int x, int y) {
 
     bool emulate_vt = true; // TODO:
     if (emulate_vt) {
-        trimino::vt::use_vt(order, mark, &trimino_board);
+        tromino::vt::use_vt(order, mark, &tromino_board);
     }
 
 #ifdef _WINDOWS
     bool use_windows = true; // TODO:
     if (use_windows) {
-        trimino::windows::use_wch(order, mark, &trimino_board);
+        tromino::windows::use_wch(order, mark, &tromino_board);
     }
 #endif // _WINDOWS
 }

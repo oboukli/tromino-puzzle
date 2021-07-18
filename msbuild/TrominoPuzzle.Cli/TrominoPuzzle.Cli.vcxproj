@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{3c67f85a-fb1f-4244-822b-2887dc62dce5}</ProjectGuid>
-    <RootNamespace>TriminoPuzzleCli</RootNamespace>
+    <RootNamespace>TrominoPuzzleCli</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -159,7 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\libtrimino\libtrimino.vcxproj">
+    <ProjectReference Include="..\libtromino\libtromino.vcxproj">
       <Project>{67c72ae0-f810-4766-bc5d-aede7210943c}</Project>
     </ProjectReference>
   </ItemGroup>

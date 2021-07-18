@@ -7,7 +7,7 @@
 
 #include <cassert>
 
-#include "trimino.h"
+#include "tromino.h"
 #include "trmn_graph.h"
 #include "trmn_graph_vt.h"
 

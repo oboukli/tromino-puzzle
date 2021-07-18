@@ -6,17 +6,17 @@
 
 // TODO: Module
 
-async function createBoardAsync(context, triminoImgSrc, order, mark, options) {
+async function createBoardAsync(context, trominoImgSrc, order, mark, options) {
   order = order || 2;
   mark = mark || {};
   options = options || {};
 
   const renderedWidth = context.canvas.clientWidth;
 
-  const triminoImg = new Image();
-  triminoImg.src = triminoImgSrc;
+  const trominoImg = new Image();
+  trominoImg.src = trominoImgSrc;
 
-  await triminoImg.decode();
+  await trominoImg.decode();
 
   return {
     mark: {
@@ -25,10 +25,10 @@ async function createBoardAsync(context, triminoImgSrc, order, mark, options) {
     },
     context,
     order,
-    numNeededTriminos: ((order * order) - 1) / 3,
+    numNeededTrominos: ((order * order) - 1) / 3,
     blockWidth: renderedWidth / order,
     renderedWidth,
-    triminoImg,
+    trominoImg,
     options: {
       baseColor: options.baseColor || "#fff",
       altColor: options.altColor || "#000",
@@ -69,21 +69,21 @@ function drawMark(board) {
   context.fillRect(x * blockWidth, y * blockWidth, blockWidth, blockWidth);
 }
 
-function drawTrimino(board, x, y, angle) {
+function drawTromino(board, x, y, angle) {
   const context = board.context;
-  const triminoImg = board.triminoImg;
+  const trominoImg = board.trominoImg;
   const blockWidth = board.blockWidth;
   const rx = ((x * blockWidth)+ blockWidth);
   const ry = ((y * blockWidth) + blockWidth);
 
   context.translate(rx, ry);
   context.rotate(angle);
-  context.drawImage(triminoImg, -blockWidth, -blockWidth, blockWidth * 2 , blockWidth * 2);
+  context.drawImage(trominoImg, -blockWidth, -blockWidth, blockWidth * 2 , blockWidth * 2);
   context.rotate(-angle);
   context.translate(-rx, -ry);
 }
 
-function solveTrimino(puzzle, cb) {
+function solveTromino(puzzle, cb) {
   const mark = new Uint8Array(new Int32Array(puzzle.mark).buffer);
 
   let stackPtr = Module.stackSave();
