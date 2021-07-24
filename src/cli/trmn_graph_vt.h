@@ -57,21 +57,21 @@ namespace tromino::vt {
 
     constexpr auto sprite_size = 4;
 
-    std::array<char, sprite_size> get_sprite(rotation rot);
+    std::array<char, sprite_size> get_sprite(rotation_t rot);
 
     void draw_at(int x, int y, char c);
 
-    void draw_board(const board* board);
+    void draw_board(const board_t* board);
 
-    void add_tromino(position abspos, rotation rot, void* graph_state);
+    void add_tromino(position_t abspos, rotation_t rot, void* graph_state);
 
-    inline void init_board(board* board) {
+    inline void init_board(board_t* board) {
         std::fill_n(board->board_matrix.get(), board->size, empty);
 
         board->board_matrix[calc_index(board->mark.x, board->mark.y, board->order)] = mark;
     }
 
-    void use_vt(int order, position mark, tromino::board * tromino_board_ptr);
+    void use_vt(int order, position_t mark, tromino::board_t * tromino_board_ptr);
 
 } // namespace tromino
 #endif // trmn_graph_vt_h

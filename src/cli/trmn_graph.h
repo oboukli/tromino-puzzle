@@ -24,15 +24,15 @@
 
 namespace tromino {
 
-    struct board {
+    struct board_t {
         std::unique_ptr<char[]> board_matrix;
         int size;
         int order;
-        position mark;
+        position_t mark;
     };
 
     struct graph_state_t {
-        board* board; // TODO: Use smart pointer?
+        board_t* board; // TODO: Use smart pointer?
 #ifdef _WINDOWS
         HANDLE hOutput;
 #endif // _WINDOWS

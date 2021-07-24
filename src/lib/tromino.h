@@ -17,16 +17,16 @@ extern "C" {
 typedef struct position_struct {
     int x;
     int y;
-} position;
+} position_t;
 
 typedef struct rotation_struct {
     int x;
     int y;
-} rotation;
+} rotation_t;
 
-typedef void (*add_tromino_func)(position abspos, rotation rot, void * state);
+typedef void (*add_tromino_func)(position_t abspos, rotation_t rot, void * state);
 
-void solve_tromino_puzzle(int order, position mark, add_tromino_func add_tromino, void * state);
+void solve_tromino_puzzle(int order, position_t mark, add_tromino_func add_tromino, void * state);
 
 #ifdef __cplusplus
 }

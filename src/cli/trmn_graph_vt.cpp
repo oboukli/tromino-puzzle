@@ -6,7 +6,7 @@
 
 namespace tromino::vt {
 
-    std::array<char, sprite_size> get_sprite(rotation rot) {
+    std::array<char, sprite_size> get_sprite(rotation_t rot) {
         assert(-1 == rot.x || 1 == rot.x);
         assert(-1 == rot.y || 1 == rot.y);
 
@@ -55,7 +55,7 @@ namespace tromino::vt {
         std::cout << CSI << y << ";" << x << "H" << c;
     }
 
-    void draw_board(const tromino::board* board) {
+    void draw_board(const tromino::board_t* board) {
         int order = board->order;
         for (int i = 0; i < order; ++i) { // Rows
             std::cout << CSI << 1 + i << ";" << 1 << "H";
@@ -65,9 +65,9 @@ namespace tromino::vt {
         }
     }
 
-    void add_tromino(position abspos, rotation rot, void* state) {
+    void add_tromino(position_t abspos, rotation_t rot, void* state) {
         graph_state_t* graph_state = static_cast<graph_state_t*>(state);
-        board* board = graph_state->board;
+        board_t* board = graph_state->board;
         char* board_matrix = board->board_matrix.get();
         int order = board->order;
         auto sprite = get_sprite(rot);
@@ -102,7 +102,7 @@ namespace tromino::vt {
         std::this_thread::sleep_for(std::chrono::milliseconds(34)); // TODO: Add options to state
     }
 
-    void use_vt(int order, position mark, tromino::board * tromino_board_ptr) {
+    void use_vt(int order, position_t mark, tromino::board_t * tromino_board_ptr) {
 #ifdef _WINDOWS
         HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
 

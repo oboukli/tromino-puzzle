@@ -6,7 +6,7 @@
 
 namespace tromino::windows {
 
-    std::array<char, sprite_size> get_sprite(rotation rot) {
+    std::array<char, sprite_size> get_sprite(rotation_t rot) {
         assert(-1 == rot.x || 1 == rot.x);
         assert(-1 == rot.y || 1 == rot.y);
 
@@ -66,7 +66,7 @@ namespace tromino::windows {
         draw_at(x, y, c);
     }
 
-    void draw_board(const board* board) {
+    void draw_board(const board_t* board) {
         int order = board->order;
         for (int i = 0; i < order; ++i) { // Rows
             for (int j = 0; j < order; ++j) { // Columns
@@ -77,9 +77,9 @@ namespace tromino::windows {
         }
     }
 
-    void add_tromino(position abspos, rotation rot, void* state) {
+    void add_tromino(position_t abspos, rotation_t rot, void* state) {
         graph_state_t* graph_state = static_cast<graph_state_t*>(state);
-        board* board = graph_state->board;
+        board_t* board = graph_state->board;
         char* board_matrix = board->board_matrix.get();
         int order = board->order;
         auto sprite = get_sprite(rot);
@@ -122,7 +122,7 @@ namespace tromino::windows {
         }
     }
 
-    void use_wch(int order, position mark, tromino::board* tromino_board_ptr) {
+    void use_wch(int order, position_t mark, tromino::board_t* tromino_board_ptr) {
         SetConsoleTitle(TEXT("Tromino Puzzle")); // TODO:
 
         HANDLE hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);

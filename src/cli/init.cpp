@@ -7,12 +7,12 @@
 void init(int order, int x, int y) {
     int size = order * order;
 
-    position mark{
+    position_t mark{
         .x = x,
         .y = y
     };
 
-    tromino::board tromino_board{
+    tromino::board_t tromino_board{
         .board_matrix = std::make_unique<char[]>(size),
         .size = size,
         .order = order,
