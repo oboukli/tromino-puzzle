@@ -12,9 +12,9 @@
 
 #include "tromino.h"
 
-typedef void (*add_tromino_extern_callback)(position abspos, double angle);
+typedef void (*add_tromino_extern_callback)(position_t abspos, double angle);
 
-static void add_tromino(position abspos, rotation rot, void * state) {
+static void add_tromino(position_t abspos, rotation_t rot, void * state) {
     add_tromino_extern_callback add_tromino_cb = (add_tromino_extern_callback)state;
         double angle;
 
@@ -66,6 +66,6 @@ static void add_tromino(position abspos, rotation rot, void * state) {
     add_tromino_cb(abspos, angle);
 }
 
-EMSCRIPTEN_KEEPALIVE void solve(int order, position mark, add_tromino_extern_callback add_tromino_cb) {
+EMSCRIPTEN_KEEPALIVE void solve(int order, position_t mark, add_tromino_extern_callback add_tromino_cb) {
     solve_tromino_puzzle(order, mark, add_tromino, add_tromino_cb);
 }

@@ -29,6 +29,7 @@ $(TARGET): $(OBJ_DIR)/tromino.o $(OBJ_DIR)/tromino_wasm.o
 	$(CC) $(FLAGS) \
 	--no-entry \
 	-s ALLOW_TABLE_GROWTH=1 \
+	-s ALLOW_UNIMPLEMENTED_SYSCALLS \
 	-s ASSERTIONS=0 \
 	-s DYNAMIC_EXECUTION=0 \
 	-s EXPORTED_FUNCTIONS='["_solve"]' \
