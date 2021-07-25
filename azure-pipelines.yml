@@ -39,5 +39,9 @@ jobs:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-      - script: echo hello from Linux
-        displayName: 'Dummy Linux step'
+      - script: autoreconf -i -v -Wall
+      - script: mkdir build && cd build && ../configure
+      - script: make
+        workingDirectory: $(Build.SourcesDirectory)/build
+      - script: make dist
+        workingDirectory: $(Build.SourcesDirectory)/build

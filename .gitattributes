@@ -1,1 +1,5 @@
 * -text
+
+emscripten/app/*.html linguist-vendored
+emscripten/app/styles/* linguist-vendored
+m4/* linguist-vendored
