@@ -39,9 +39,24 @@ jobs:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-      - script: autoreconf -i -v -Wall
+      - script: autoreconf --install --force --verbose --warnings=all
+        displayName: 'autoreconf'
+
       - script: mkdir build && cd build && ../configure
+        displayName: 'configure'
+
       - script: make
-        workingDirectory: $(Build.SourcesDirectory)/build
+        displayName: 'make'
+        workingDirectory: build
+
+      - script: make check
+        displayName: 'make check'
+        workingDirectory: build
+
       - script: make dist
-        workingDirectory: $(Build.SourcesDirectory)/build
+        displayName: 'make dist'
+        workingDirectory: build
+
+      - script: make distcheck
+        displayName: 'make dist'
+        workingDirectory: build

@@ -1,0 +1,32 @@
+name: C/C++ CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: autoreconf
+      run: autoreconf --install --force --verbose --warnings=all
+
+    - name: configure
+      run: mkdir build && cd build && ../configure
+
+    - name: make
+      run: make
+      working-directory: build
+
+    - name: make check
+      run: make check
+      working-directory: build
+
+    - name: make dist
+      run: make dist
+      working-directory: build
+
+    - name: make distcheck
+      run: make distcheck
+      working-directory: build

@@ -1,7 +1,7 @@
 # Autotools build
 
 ```shell
-autoreconf -i -v -Wall
+autoreconf --install --force --verbose --warnings=all
 mkdir build && cd build
 ../configure #--prefix <absolute path>
 make
@@ -13,7 +13,7 @@ make install
 ```shell
 docker pull gcc
 
-docker run --rm -v $(pwd):/tromino -u $(id -u):$(id -g) --workdir="/tromino" gcc autoreconf -i -v -Wall
+docker run --rm -v $(pwd):/tromino -u $(id -u):$(id -g) --workdir="/tromino" gcc autoreconf --install --force --verbose --warnings=all
 
 mkdir build
 
