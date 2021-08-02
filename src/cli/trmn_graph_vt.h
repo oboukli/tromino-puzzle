@@ -57,10 +57,6 @@ namespace tromino::vt {
 
     constexpr auto sprite_size = 4;
 
-    std::array<char, sprite_size> get_sprite(rotation_t rot);
-
-    void draw_at(int x, int y, char c);
-
     void draw_board(const board_t* board);
 
     void add_tromino(position_t abspos, rotation_t rot, void* graph_state);

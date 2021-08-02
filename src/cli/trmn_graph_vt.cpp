@@ -5,8 +5,11 @@
 #include "trmn_graph_vt.h"
 
 namespace tromino::vt {
+    static inline void draw_at(int x, int y, char c) {
+        std::cout << CSI << y << ";" << x << "H" << c;
+    }
 
-    std::array<char, sprite_size> get_sprite(rotation_t rot) {
+    static std::array<char, sprite_size> get_sprite(rotation_t rot) {
         assert(-1 == rot.x || 1 == rot.x);
         assert(-1 == rot.y || 1 == rot.y);
 
@@ -51,8 +54,8 @@ namespace tromino::vt {
         return { mark, mark, mark, mark };
     }
 
-    inline void draw_at(int x, int y, char c) {
-        std::cout << CSI << y << ";" << x << "H" << c;
+    inline void flush() {
+        std::cout << std::flush;
     }
 
     void draw_board(const tromino::board_t* board) {
@@ -80,7 +83,7 @@ namespace tromino::vt {
                 }
 
                 assert((empty == board_matrix[calc_index(abspos.x + j, abspos.y + i, order)])
-                       && "Error: Invalid placement.");
+                    && "Error: Invalid placement.");
 
                 board_matrix[calc_index(abspos.x + j, abspos.y + i, order)] = px;
 
@@ -99,7 +102,9 @@ namespace tromino::vt {
 
         draw_at(order, order, '\0');
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(34)); // TODO: Add options to state
+        flush();
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(50)); // TODO: Add options to state
     }
 
     void use_vt(int order, position_t mark, tromino::board_t * tromino_board_ptr) {
@@ -160,6 +165,8 @@ namespace tromino::vt {
             CSI "48;5;" BOARD_BACKGROUND_COLOR "m";
         tromino::vt::draw_board(tromino_board_ptr);
 
+        flush();
+
         std::cout <<
             // Set bold mode
             CSI "1m"
@@ -186,6 +193,8 @@ namespace tromino::vt {
             ESC "(0";
 #endif // !TROMINO_USE_ASCII
 
+        flush();
+
         solve_tromino_puzzle(order, mark, tromino::vt::add_tromino, &graph_state);
 
         std::cin.get();
@@ -200,6 +209,8 @@ namespace tromino::vt {
 
             // Exit the alternate buffer
             CSI "?1049l";
+
+        flush();
 
 #ifdef _WINDOWS
         assert(0 != dwConsoleOriginalMode);
