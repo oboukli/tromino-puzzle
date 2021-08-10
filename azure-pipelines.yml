@@ -35,28 +35,31 @@ jobs:
           maximumCpuCount: true
           msbuildArchitecture: 'x64'
   - job: Linux
-    displayName: 'Build for Linux'
+    displayName: 'Build for GNU/Linux'
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-      - script: autoreconf --install --force --verbose --warnings=all
-        displayName: 'autoreconf'
+      - script: sudo apt-get update && sudo apt-get install -yq autoconf-archive libboost-test-dev
+        displayName: 'Install dependencies'
+
+      - script: ./autogen.sh
+        displayName: 'Run ./autogen.sh'
 
       - script: mkdir build && cd build && ../configure
-        displayName: 'configure'
+        displayName: 'Configure build'
 
       - script: make
-        displayName: 'make'
+        displayName: 'Make'
         workingDirectory: build
 
       - script: make check
-        displayName: 'make check'
+        displayName: 'Test'
         workingDirectory: build
 
       - script: make dist
-        displayName: 'make dist'
+        displayName: 'Package'
         workingDirectory: build
 
       - script: make distcheck
-        displayName: 'make dist'
+        displayName: 'Test package'
         workingDirectory: build

@@ -9,6 +9,6 @@ tromino_SOURCES = \
 	trmn_graph_vt.cpp \
 	trmn_graph_vt.h
 
-tromino_CPPFLAGS = -I$(srcdir)/../lib
+tromino_CPPFLAGS = -I$(top_srcdir)/src/lib
 
-tromino_LDADD = ../lib/libtromino.la
+tromino_LDADD = $(top_builddir)/src/lib/libtromino.la

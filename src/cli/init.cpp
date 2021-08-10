@@ -30,4 +30,6 @@ void init(int order, int x, int y) {
         tromino::windows::use_wch(order, mark, &tromino_board);
     }
 #endif // _WINDOWS
+
+    // TODO: Clean up memory.
 }

@@ -5,5 +5,5 @@ libtromino_la_SOURCES = tromino.c
 include_HEADERS = tromino.h
 
 libtromino_la_LDFLAGS = \
-	-version-info $(LIBTROMINO_CURRENT):$(LIBTROMINO_REVISION):$(LIBTROMINO_AGE) \
-	-no-undefined
+	-no-undefined \
+	-version-info $(LIBTROMINO_CURRENT):$(LIBTROMINO_REVISION):$(LIBTROMINO_AGE)

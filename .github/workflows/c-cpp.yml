@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: Build for GNU/Linux
 
 on: [push, pull_request]
 
@@ -9,24 +9,27 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: autoreconf
-      run: autoreconf --install --force --verbose --warnings=all
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -yq autoconf-archive libboost-test-dev
 
-    - name: configure
+    - name: Run autogen.sh
+      run: ./autogen.sh
+
+    - name: Configure build
       run: mkdir build && cd build && ../configure
 
-    - name: make
+    - name: Make
       run: make
       working-directory: build
 
-    - name: make check
+    - name: Test
       run: make check
       working-directory: build
 
-    - name: make dist
+    - name: Package
       run: make dist
       working-directory: build
 
-    - name: make distcheck
+    - name: Test package
       run: make distcheck
       working-directory: build

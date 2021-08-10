@@ -41,6 +41,7 @@ autom4te.cache
 
 /src/config/config.h
 /src/config/config.h.in
+/src/config/config.h.in~
 
 # https://www.gnu.org/software/libtool/
 

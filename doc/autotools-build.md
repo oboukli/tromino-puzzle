@@ -10,6 +10,8 @@ make install
 
 ## Using Docker
 
+Using the official GCC Docker image:
+
 ```shell
 docker pull gcc
 
