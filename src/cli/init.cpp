@@ -4,32 +4,29 @@
 
 #include "init.h"
 
-void init(int order, int x, int y) {
-    int size = order * order;
-
-    position_t mark{
-        .x = x,
-        .y = y
-    };
+void init(int order, int x, int y, emulation_mode emulation_mode) {
+    size_t size = order * order;
 
     tromino::board_t tromino_board{
         .board_matrix = std::make_unique<char[]>(size),
         .size = size,
         .order = order,
-        .mark = mark
+        .mark = {
+            .x = x,
+            .y = y
+        }
     };
 
-    bool emulate_vt = true; // TODO:
-    if (emulate_vt) {
-        tromino::vt::use_vt(order, mark, &tromino_board);
-    }
-
+    switch (emulation_mode) {
 #ifdef _WINDOWS
-    bool use_windows = true; // TODO:
-    if (use_windows) {
-        tromino::windows::use_wch(order, mark, &tromino_board);
-    }
+            case emulation_mode::windows_console_host:
+                tromino::windows::use_wch(tromino_board);
+                break;
 #endif // _WINDOWS
 
-    // TODO: Clean up memory.
+            case emulation_mode::vt_100:
+            default:
+                tromino::vt::use_vt(tromino_board);
+                break;
+        }
 }

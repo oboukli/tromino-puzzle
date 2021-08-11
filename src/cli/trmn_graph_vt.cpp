@@ -5,9 +5,6 @@
 #include "trmn_graph_vt.h"
 
 namespace tromino::vt {
-    static inline void draw_at(int x, int y, char c) {
-        std::cout << CSI << y << ";" << x << "H" << c;
-    }
 
     static std::array<char, sprite_size> get_sprite(rotation_t rot) {
         assert(-1 == rot.x || 1 == rot.x);
@@ -24,6 +21,7 @@ namespace tromino::vt {
                 break;
 
             case 1:
+            default:
                 // -1, 1
                 // - +
                 // X |
@@ -33,6 +31,7 @@ namespace tromino::vt {
             break;
 
         case 1:
+        default:
             switch (rot.y) {
             case -1:
                 // 1, -1
@@ -42,6 +41,7 @@ namespace tromino::vt {
                 break;
 
             case 1:
+            default:
                 // 1, 1
                 // + -
                 // | X
@@ -50,29 +50,31 @@ namespace tromino::vt {
             };
             break;
         };
+    }
 
-        return { mark, mark, mark, mark };
+    static inline void draw_at(int x, int y, char c) {
+        std::cout << CSI << y << ";" << x << "H" << c;
     }
 
     inline void flush() {
         std::cout << std::flush;
     }
 
-    void draw_board(const tromino::board_t* board) {
-        int order = board->order;
+    void draw_board(const tromino::board_t& board) {
+        int order = board.order;
         for (int i = 0; i < order; ++i) { // Rows
             std::cout << CSI << 1 + i << ";" << 1 << "H";
             for (int j = 0; j < order; ++j) { // Columns
-                std::cout << board->board_matrix[tromino::calc_index(j, i, order)];
+                std::cout << board.board_matrix[tromino::calc_index(j, i, order)];
             }
         }
     }
 
     void add_tromino(position_t abspos, rotation_t rot, void* state) {
         graph_state_t* graph_state = static_cast<graph_state_t*>(state);
-        board_t* board = graph_state->board;
-        char* board_matrix = board->board_matrix.get();
-        int order = board->order;
+        board_t& board = graph_state->board;
+        char* board_matrix = board.board_matrix.get();
+        int order = board.order;
         auto sprite = get_sprite(rot);
 
         for (int i = 0; i < 2; ++i) {
@@ -107,13 +109,15 @@ namespace tromino::vt {
         std::this_thread::sleep_for(std::chrono::milliseconds(50)); // TODO: Add options to state
     }
 
-    void use_vt(int order, position_t mark, tromino::board_t * tromino_board_ptr) {
+    void use_vt(tromino::board_t& tromino_board) {
 #ifdef _WINDOWS
         HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
 
         DWORD dwConsoleOriginalMode = 0;
         DWORD dwConsoleModifiedMode;
         GetConsoleMode(hStdout, &dwConsoleOriginalMode);
+
+        // TODO: if
 
         dwConsoleModifiedMode =
             dwConsoleOriginalMode
@@ -122,11 +126,7 @@ namespace tromino::vt {
         SetConsoleMode(hStdout, dwConsoleModifiedMode);
 #endif // _WINDOWS
 
-        tromino::graph_state_t graph_state{
-            .board = tromino_board_ptr,
-        };
-
-        tromino::vt::init_board(tromino_board_ptr);
+        tromino::vt::init_board(tromino_board);
 
         std::cout <<
 
@@ -163,7 +163,7 @@ namespace tromino::vt {
         std::cout <<
             // Set board background color.
             CSI "48;5;" BOARD_BACKGROUND_COLOR "m";
-        tromino::vt::draw_board(tromino_board_ptr);
+        tromino::vt::draw_board(tromino_board);
 
         flush();
 
@@ -177,7 +177,7 @@ namespace tromino::vt {
             // Set mark foreground color
             CSI "38;5;" MARK_FOREGROUND_COLOR "m";
 
-        tromino::vt::draw_at(mark.x + 1, mark.y + 1, tromino::vt::mark);
+        tromino::vt::draw_at(tromino_board.mark.x + 1, tromino_board.mark.y + 1, tromino::vt::mark);
 
         std::cout <<
 
@@ -195,7 +195,11 @@ namespace tromino::vt {
 
         flush();
 
-        solve_tromino_puzzle(order, mark, tromino::vt::add_tromino, &graph_state);
+        tromino::graph_state_t graph_state{
+            .board = tromino_board
+        };
+
+        solve_tromino_puzzle(tromino_board.order, tromino_board.mark, tromino::vt::add_tromino, &graph_state);
 
         std::cin.get();
 

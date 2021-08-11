@@ -15,6 +15,11 @@
 #include "trmn_graph_windows.h"
 #endif // _WINDOWS
 
-void init(int size, int x, int y);
+enum class emulation_mode {
+    vt_100 = 0,
+    windows_console_host = 1
+};
+
+void init(int size, int x, int y, emulation_mode emulation_mode);
 
 #endif // init_h

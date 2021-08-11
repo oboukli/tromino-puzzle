@@ -6,7 +6,7 @@
 
 namespace tromino::windows {
 
-    std::array<char, sprite_size> get_sprite(rotation_t rot) {
+    static std::array<char, sprite_size> get_sprite(rotation_t rot) {
         assert(-1 == rot.x || 1 == rot.x);
         assert(-1 == rot.y || 1 == rot.y);
 
@@ -21,6 +21,7 @@ namespace tromino::windows {
                 break;
 
             case 1:
+            default:
                 // -1, 1
                 // - +
                 // X |
@@ -30,6 +31,7 @@ namespace tromino::windows {
             break;
 
         case 1:
+        default:
             switch (rot.y) {
             case -1:
                 // 1, -1
@@ -39,6 +41,7 @@ namespace tromino::windows {
                 break;
 
             case 1:
+            default:
                 // 1, 1
                 // + -
                 // | X
@@ -47,8 +50,6 @@ namespace tromino::windows {
             };
             break;
         };
-
-        return { mark, mark, mark, mark };
     }
 
     inline void draw_at(int x, int y, char c) {
@@ -66,11 +67,11 @@ namespace tromino::windows {
         draw_at(x, y, c);
     }
 
-    void draw_board(const board_t* board) {
-        int order = board->order;
+    void draw_board(const tromino::board_t& board) {
+        int order = board.order;
         for (int i = 0; i < order; ++i) { // Rows
             for (int j = 0; j < order; ++j) { // Columns
-                std::cout << board->board_matrix[calc_index(j, i, order)];
+                std::cout << board.board_matrix[calc_index(j, i, order)];
             }
 
             std::cout << std::endl;
@@ -79,9 +80,9 @@ namespace tromino::windows {
 
     void add_tromino(position_t abspos, rotation_t rot, void* state) {
         graph_state_t* graph_state = static_cast<graph_state_t*>(state);
-        board_t* board = graph_state->board;
-        char* board_matrix = board->board_matrix.get();
-        int order = board->order;
+        board_t& board = graph_state->board;
+        char* board_matrix = board.board_matrix.get();
+        int order = board.order;
         auto sprite = get_sprite(rot);
 
         for (int i = 0; i < 2; ++i) {
@@ -122,28 +123,28 @@ namespace tromino::windows {
         }
     }
 
-    void use_wch(int order, position_t mark, tromino::board_t* tromino_board_ptr) {
+    void use_wch(tromino::board_t& tromino_board) {
         SetConsoleTitle(TEXT("Tromino Puzzle")); // TODO:
 
         HANDLE hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
         tromino::graph_state_t graph_state{
-            .board = tromino_board_ptr,
+            .board = tromino_board,
             .hOutput = hConsoleOutput,
         };
-        tromino::windows::init_board(tromino_board_ptr);
+        tromino::windows::init_board(tromino_board);
 
         CONSOLE_SCREEN_BUFFER_INFO originalConsoleScreenBufferInfo;
         GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &originalConsoleScreenBufferInfo);
 
         SetConsoleTextAttribute(hConsoleOutput, FOREGROUND_BLUE);
-        tromino::windows::draw_board(tromino_board_ptr);
+        tromino::windows::draw_board(tromino_board);
 
         SetConsoleTextAttribute(hConsoleOutput,
             FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
         );
         COORD coordMark = {
-            .X = (short)mark.x,
-            .Y = (short)mark.y
+            .X = (short)tromino_board.mark.x,
+            .Y = (short)tromino_board.mark.y
         };
         SetConsoleCursorPosition(hConsoleOutput, coordMark);
         std::cout << tromino::windows::mark;
@@ -153,7 +154,7 @@ namespace tromino::windows {
             | BACKGROUND_BLUE | BACKGROUND_INTENSITY
         );
 
-        solve_tromino_puzzle(order, mark, tromino::windows::add_tromino, &graph_state);
+        solve_tromino_puzzle(tromino_board.order, tromino_board.mark, tromino::windows::add_tromino, &graph_state);
 
         SetConsoleTextAttribute(hConsoleOutput, originalConsoleScreenBufferInfo.wAttributes);
     }

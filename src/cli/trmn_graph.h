@@ -26,13 +26,13 @@ namespace tromino {
 
     struct board_t {
         std::unique_ptr<char[]> board_matrix;
-        int size;
+        size_t size;
         int order;
         position_t mark;
     };
 
     struct graph_state_t {
-        board_t* board; // TODO: Use smart pointer?
+        board_t& board;
 #ifdef _WINDOWS
         HANDLE hOutput;
 #endif // _WINDOWS
@@ -44,4 +44,5 @@ namespace tromino {
     }
 
 } // namespace tromino
+
 #endif // trmn_graph_h

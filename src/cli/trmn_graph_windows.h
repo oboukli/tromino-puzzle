@@ -41,13 +41,14 @@ namespace tromino::windows {
 
     void add_tromino(position_t abspos, rotation_t rot, void* graph_state);
 
-    inline void init_board(board_t* board) {
-        std::fill_n(board->board_matrix.get(), board->size, empty);
+    inline void init_board(board_t& board) {
+        std::fill_n(board.board_matrix.get(), board.size, empty);
 
-        board->board_matrix[calc_index(board->mark.x, board->mark.y, board->order)] = mark;
+        board.board_matrix[calc_index(board.mark.x, board.mark.y, board.order)] = mark;
     }
 
-    void use_wch(int order, position_t mark, tromino::board_t* tromino_board_ptr);
+    void use_wch(tromino::board_t& tromino_board);
 
 } // namespace tromino::windows
+
 #endif // trmn_graph_windows_h
