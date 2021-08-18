@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:LibTromino/LibTromino.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:LibTromino.Test/LibTromino.Test.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:LibTromino2d/LibTromino2d.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:TrominoCli/TrominoCli.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Tromino2d/Tromino2d.xcodeproj">
+   </FileRef>
+</Workspace>

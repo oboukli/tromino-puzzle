@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "758870902663BFF000FAEA50"
-               BuildableName = "TrominoPuzzle.Cli"
-               BlueprintName = "TrominoPuzzle.Cli"
-               ReferencedContainer = "container:TrominoPuzzle.xcodeproj">
+               BlueprintIdentifier = "7503E7C326C892630018B1F2"
+               BuildableName = "Tromino2d"
+               BlueprintName = "Tromino2d"
+               ReferencedContainer = "container:Tromino2d.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -36,18 +36,18 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      ignoresPersistentStateOnLaunch = "YES"
+      ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "NO">
+      allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "758870902663BFF000FAEA50"
-            BuildableName = "TrominoPuzzle.Cli"
-            BlueprintName = "TrominoPuzzle.Cli"
-            ReferencedContainer = "container:TrominoPuzzle.xcodeproj">
+            BlueprintIdentifier = "7503E7C326C892630018B1F2"
+            BuildableName = "Tromino2d"
+            BlueprintName = "Tromino2d"
+            ReferencedContainer = "container:Tromino2d.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -61,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "758870902663BFF000FAEA50"
-            BuildableName = "TrominoPuzzle.Cli"
-            BlueprintName = "TrominoPuzzle.Cli"
-            ReferencedContainer = "container:TrominoPuzzle.xcodeproj">
+            BlueprintIdentifier = "7503E7C326C892630018B1F2"
+            BuildableName = "Tromino2d"
+            BlueprintName = "Tromino2d"
+            ReferencedContainer = "container:Tromino2d.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -9,13 +9,14 @@ jobs:
       vmImage: 'macOS-latest'
     variables:
       configuration: Release
-      scheme: 'TrominoPuzzle.Cli'
+      scheme: 'TrominoCli'
       sdk: macosx
     steps:
       - task: Xcode@5
         displayName: 'Build'
         inputs:
           actions: 'build'
+          xcWorkspacePath: 'xcode/TrominoPuzzle.xcworkspace'
           scheme: '$(scheme)'
           configuration: '$(configuration)'
           xcodeVersion: '12'
