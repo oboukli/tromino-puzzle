@@ -12,19 +12,17 @@
 extern "C" {
 #endif
 
-#include <stddef.h>
-
 typedef struct position_struct {
     int x;
     int y;
 } position_t;
 
-typedef struct rotation_struct {
+typedef struct flip_struct {
     int x;
     int y;
-} rotation_t;
+} flip_t;
 
-typedef void (*add_tromino_func)(position_t abspos, rotation_t rot, void * state);
+typedef void (*add_tromino_func)(position_t abspos, flip_t flip, void * state);
 
 void solve_tromino_puzzle(int order, position_t mark, add_tromino_func add_tromino, void * state);
 

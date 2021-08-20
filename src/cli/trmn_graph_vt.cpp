@@ -6,13 +6,13 @@
 
 namespace tromino::vt {
 
-    static std::array<char, sprite_size> get_sprite(rotation_t rot) {
-        assert(-1 == rot.x || 1 == rot.x);
-        assert(-1 == rot.y || 1 == rot.y);
+    static std::array<char, sprite_size> get_sprite(flip_t flip) {
+        assert(-1 == flip.x || 1 == flip.x);
+        assert(-1 == flip.y || 1 == flip.y);
 
-        switch (rot.x) {
+        switch (flip.x) {
         case -1:
-            switch (rot.y) {
+            switch (flip.y) {
             case -1:
                 // -1, -1
                 // X |
@@ -32,7 +32,7 @@ namespace tromino::vt {
 
         case 1:
         default:
-            switch (rot.y) {
+            switch (flip.y) {
             case -1:
                 // 1, -1
                 // | X
@@ -70,12 +70,12 @@ namespace tromino::vt {
         }
     }
 
-    void add_tromino(position_t abspos, rotation_t rot, void* state) {
+    void add_tromino(position_t abspos, flip_t flip, void* state) {
         graph_state_t* graph_state = static_cast<graph_state_t*>(state);
         board_t& board = graph_state->board;
         char* board_matrix = board.board_matrix.get();
         int order = board.order;
-        auto sprite = get_sprite(rot);
+        auto sprite = get_sprite(flip);
 
         for (int i = 0; i < 2; ++i) {
             for (int j = 0; j < 2; ++j) {

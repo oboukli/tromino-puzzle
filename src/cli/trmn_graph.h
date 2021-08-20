@@ -26,7 +26,7 @@ namespace tromino {
 
     struct board_t {
         std::unique_ptr<char[]> board_matrix;
-        size_t size;
+        std::size_t size;
         int order;
         position_t mark;
     };

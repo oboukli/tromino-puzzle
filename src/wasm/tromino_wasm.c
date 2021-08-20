@@ -14,16 +14,16 @@
 
 typedef void (*add_tromino_extern_callback)(position_t abspos, double angle);
 
-static void add_tromino(position_t abspos, rotation_t rot, void * state) {
+static void add_tromino(position_t abspos, flip_t flip, void * state) {
     add_tromino_extern_callback add_tromino_cb = (add_tromino_extern_callback)state;
         double angle;
 
-        assert(rot.x == -1 || rot.x == 1);
-        assert(rot.y == -1 || rot.y == 1);
+        assert(flip.x == -1 || flip.x == 1);
+        assert(flip.y == -1 || flip.y == 1);
 
-        switch (rot.x) {
+        switch (flip.x) {
         case -1:
-            switch (rot.y) {
+            switch (flip.y) {
             case -1:
                 // -1, -1
                 // X |
@@ -43,7 +43,7 @@ static void add_tromino(position_t abspos, rotation_t rot, void * state) {
             break;
 
         case 1:
-            switch (rot.y) {
+            switch (flip.y) {
             case -1:
                 // 1, -1
                 // | X

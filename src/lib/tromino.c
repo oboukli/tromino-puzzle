@@ -5,13 +5,13 @@
  * found in the LICENSE file.
  */
 
+#include <assert.h>
+
 #include "tromino.h"
 
-static void solve_tromino(int order, position_t pos, rotation_t rot, add_tromino_func add_tromino, void * state) {
+static void solve_tromino(int order, position_t pos, flip_t flip, add_tromino_func add_tromino, void * state) {
     if (order == 2) {
-        if (add_tromino != NULL) {
-            (*add_tromino)(pos, rot, state);
-        }
+        add_tromino(pos, flip, state);
 
         return;
     }
@@ -20,39 +20,39 @@ static void solve_tromino(int order, position_t pos, rotation_t rot, add_tromino
     int o = n >> 1;
 
     position_t p = {
-        .x = rot.x == -1 ? pos.x : pos.x + n,
-        .y = rot.y == -1 ? pos.y : pos.y + n,
+        .x = flip.x == -1 ? pos.x : pos.x + n,
+        .y = flip.y == -1 ? pos.y : pos.y + n,
     };
 
     solve_tromino(
         n,
         (position_t) {
-            .x = p.x - (rot.x * o),
-            .y = p.y - (rot.y * o),
+            .x = p.x - (flip.x * o),
+            .y = p.y - (flip.y * o),
         },
-        rot,
+        flip,
         add_tromino,
         state);
 
     solve_tromino(
         n,
         (position_t) {
-            .x = p.x - (rot.x * n),
-            .y = p.y - (rot.y * n),
+            .x = p.x - (flip.x * n),
+            .y = p.y - (flip.y * n),
         },
-        rot,
+        flip,
         add_tromino,
         state);
 
     solve_tromino(
         n,
         (position_t) {
-            .x = p.x - (rot.x * n),
+            .x = p.x - (flip.x * n),
             .y = p.y,
         },
-        (rotation_t) {
-            .x = rot.x,
-            .y = rot.y * -1,
+        (flip_t) {
+            .x = flip.x,
+            .y = flip.y * -1,
         },
         add_tromino,
         state);
@@ -60,26 +60,26 @@ static void solve_tromino(int order, position_t pos, rotation_t rot, add_tromino
     solve_tromino(n,
         (position_t) {
             .x = p.x,
-            .y = p.y - (rot.y * n),
+            .y = p.y - (flip.y * n),
         },
-        (rotation_t) {
-            .x = rot.x * -1,
-            .y = rot.y,
+        (flip_t) {
+            .x = flip.x * -1,
+            .y = flip.y,
         },
         add_tromino,
         state);
 }
 
-static void solve_board(int order, position_t pos, rotation_t rot, position_t mark, add_tromino_func add_tromino, void * state) {
+static void solve_board(int order, position_t pos, flip_t flip, position_t mark, add_tromino_func add_tromino, void * state) {
     if (order > 2) {
         int s = order >> 1;
         position_t p = {
-            .x = rot.x == -1 ? pos.x : pos.x + s,
-            .y = rot.y == -1 ? pos.y : pos.y + s,
+            .x = flip.x == -1 ? pos.x : pos.x + s,
+            .y = flip.y == -1 ? pos.y : pos.y + s,
         };
 
         int ss = s >> 1;
-        rotation_t r = {
+        flip_t r = {
             .x = (mark.x - p.x) < ss ? -1 : 1,
             .y = (mark.y - p.y) < ss ? -1 : 1,
         };
@@ -87,10 +87,12 @@ static void solve_board(int order, position_t pos, rotation_t rot, position_t ma
         solve_board(s, p, r, mark, add_tromino, state);
     }
 
-    solve_tromino(order, pos, rot, add_tromino, state);
+    solve_tromino(order, pos, flip, add_tromino, state);
 }
 
 void solve_tromino_puzzle(int board_order, position_t mark, add_tromino_func add_tromino, void * state) {
+    assert(add_tromino);
+
     position_t pos = {
         .x = 0,
         .y = 0,
@@ -98,10 +100,10 @@ void solve_tromino_puzzle(int board_order, position_t mark, add_tromino_func add
 
     int s = board_order >> 1;
 
-    rotation_t rot = {
+    flip_t flip = {
         .x = mark.x < s ? -1 : 1,
         .y = mark.y < s ? -1 : 1,
     };
 
-    solve_board(board_order, pos, rot, mark, add_tromino, state);
+    solve_board(board_order, pos, flip, mark, add_tromino, state);
 }

@@ -2,25 +2,25 @@
 
 struct step_t {
     position_t p;
-    rotation_t f;
+    flip_t f;
 };
 
-SDL_RendererFlip get_flip(const rotation_t& rot) {
-    int f = rot.x == 1 ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
+SDL_RendererFlip get_flip(const flip_t& flip) {
+    int f = flip.x == 1 ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
 
-    if (rot.y == 1) {
+    if (flip.y == 1) {
         f |= SDL_FLIP_VERTICAL;
     }
 
     return static_cast<SDL_RendererFlip>(f);
 }
 
-void add_tromino(position_t abspos, rotation_t rot, void* state) {
+void add_tromino(position_t abspos, flip_t flip, void* state) {
     std::deque<step_t>& steps = *static_cast<std::deque<step_t>*>(state);
 
     step_t step{
         abspos,
-        rot
+        flip
     };
 
     steps.push_back(step);

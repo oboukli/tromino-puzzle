@@ -10,24 +10,24 @@ class Step
 {
 public:
     position_t abspos;
-    rotation_t rot;
+    flip_t flip;
 
     bool operator!=(const Step &rhs) {
         return rhs.abspos.x != this->abspos.x
             || rhs.abspos.y != this->abspos.y
-            || rhs.rot.x != this->rot.x
-            || rhs.rot.y != this->rot.y;
+            || rhs.flip.x != this->flip.x
+            || rhs.flip.y != this->flip.y;
     }
 
     friend std::ostream & operator<<(std::ostream &os, const Step &s) {
         return os
             << "Tromino position: (" << s.abspos.x << ", " << s.abspos.y
-            << "). Rotation: (" << s.rot.x << ", " << s.rot.y << ")";
+            << "). Flip: (" << s.flip.x << ", " << s.flip.y << ")";
     }
 };
 
-void add_tromino(position_t abspos, rotation_t rot, void * state) {
-    Step step = { abspos, rot };
+void add_tromino(position_t abspos, flip_t flip, void * state) {
+    Step step = { abspos, flip };
     static_cast<std::vector<Step>*>(state)->push_back(step);
 }
 
