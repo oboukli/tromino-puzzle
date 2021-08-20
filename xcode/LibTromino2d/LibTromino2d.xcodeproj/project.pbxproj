@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7503E7DB26C896C90018B1F2 /* tromino_gfx.h in Headers */ = {isa = PBXBuildFile; fileRef = 7503E7D926C896C90018B1F2 /* tromino_gfx.h */; };
-		7503E7DC26C896C90018B1F2 /* tromino_gfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E7DA26C896C90018B1F2 /* tromino_gfx.cpp */; };
+		7503E7DB26C896C90018B1F2 /* tromino_gfx2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 7503E7D926C896C90018B1F2 /* tromino_gfx2d.h */; };
+		7503E7DC26C896C90018B1F2 /* tromino_gfx2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E7DA26C896C90018B1F2 /* tromino_gfx2d.cpp */; };
 		7503E7E726C8EB490018B1F2 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7E626C8EB490018B1F2 /* SDL2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7503E7B426C891FF0018B1F2 /* libLibTromino2d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibTromino2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		7503E7D926C896C90018B1F2 /* tromino_gfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tromino_gfx.h; sourceTree = "<group>"; };
-		7503E7DA26C896C90018B1F2 /* tromino_gfx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tromino_gfx.cpp; sourceTree = "<group>"; };
+		7503E7D926C896C90018B1F2 /* tromino_gfx2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tromino_gfx2d.h; sourceTree = "<group>"; };
+		7503E7DA26C896C90018B1F2 /* tromino_gfx2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tromino_gfx2d.cpp; sourceTree = "<group>"; };
 		7503E7E626C8EB490018B1F2 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = /Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -34,7 +34,7 @@
 		7503E7AB26C891FF0018B1F2 = {
 			isa = PBXGroup;
 			children = (
-				7503E7D826C896C90018B1F2 /* 2d */,
+				7503E7D826C896C90018B1F2 /* gfx2d */,
 				7503E7B526C891FF0018B1F2 /* Products */,
 				7503E7E526C8EB490018B1F2 /* Frameworks */,
 			);
@@ -48,14 +48,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7503E7D826C896C90018B1F2 /* 2d */ = {
+		7503E7D826C896C90018B1F2 /* gfx2d */ = {
 			isa = PBXGroup;
 			children = (
-				7503E7D926C896C90018B1F2 /* tromino_gfx.h */,
-				7503E7DA26C896C90018B1F2 /* tromino_gfx.cpp */,
+				7503E7D926C896C90018B1F2 /* tromino_gfx2d.h */,
+				7503E7DA26C896C90018B1F2 /* tromino_gfx2d.cpp */,
 			);
-			name = 2d;
-			path = ../../src/2d;
+			name = gfx2d;
+			path = ../../src/gfx2d;
 			sourceTree = "<group>";
 		};
 		7503E7E526C8EB490018B1F2 /* Frameworks */ = {
@@ -73,7 +73,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7503E7DB26C896C90018B1F2 /* tromino_gfx.h in Headers */,
+				7503E7DB26C896C90018B1F2 /* tromino_gfx2d.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +133,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7503E7DC26C896C90018B1F2 /* tromino_gfx.cpp in Sources */,
+				7503E7DC26C896C90018B1F2 /* tromino_gfx2d.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

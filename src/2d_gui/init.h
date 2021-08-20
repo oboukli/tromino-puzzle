@@ -1,19 +1,12 @@
 #ifndef init_h
 #define init_h
 
-#include <iostream>
-#include <memory>
-#include <queue>
-
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_timer.h>
-#include <SDL_render.h>
+#include <cstddef>
 
 #include "tromino.h"
-#include "tromino_gfx.h"
 
 struct board_t {
-    size_t size;
+    std::size_t size;
     int order;
     position_t mark;
 };

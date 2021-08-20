@@ -1,8 +1,10 @@
+#include <cstddef>
+
 #include "init.h"
 
 int main(int argc, const char * argv[]) {
     int order = 32;
-    size_t size = order * order;
+    std::size_t size = order * order;
     board_t board{
         .size = size,
         .order = order,

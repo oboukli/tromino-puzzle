@@ -1,4 +1,6 @@
-#include "tromino_gfx.h"
+#include "tromino_gfx2d.h"
+
+namespace tromino::gfx2d {
 
 SDL_Texture * CreateBoardTextureAndSetRenderTarget(SDL_Renderer * renderer, int width) {
     SDL_Texture * texture = SDL_CreateTexture(
@@ -6,10 +8,28 @@ SDL_Texture * CreateBoardTextureAndSetRenderTarget(SDL_Renderer * renderer, int 
         SDL_TEXTUREACCESS_TARGET,
         width,
         width);
-    
+
     SDL_SetRenderTarget(renderer, texture);
-    
+
     return texture;
+}
+
+void InitCheckeredBoard(SDL_Renderer * renderer, int squareWidth, int order) {
+    SDL_SetRenderDrawColor(renderer, 127, 255, 127, SDL_ALPHA_OPAQUE);
+    SDL_RenderClear(renderer);
+
+    SDL_SetRenderDrawColor(renderer, 31, 31, 128, SDL_ALPHA_OPAQUE);
+    SDL_Rect square = {0, 0, squareWidth, squareWidth};
+
+    for (int j, i = 0; i < order; ++i) {
+        for (j = 0; j < order; ++j) {
+            if ((j & 1) != (i & 1)) {
+                square.x = j * squareWidth;
+                square.y = i * squareWidth;
+                SDL_RenderFillRect(renderer, &square);
+            }
+        }
+    }
 }
 
 SDL_Texture * InitFilledTromino(SDL_Renderer * renderer, int squareWidth) {
@@ -34,27 +54,9 @@ SDL_Texture * InitFilledTromino(SDL_Renderer * renderer, int squareWidth) {
     SDL_Rect rectangle = {0, squareWidth, squareWidth * 2, squareWidth};
     SDL_RenderFillRect(renderer, &rectangle);
 
-    SDL_SetRenderTarget(renderer, NULL);
+    SDL_SetRenderTarget(renderer, nullptr);
 
     return texture;
-}
-
-void InitCheckeredBoard(SDL_Renderer * renderer, int squareWidth, int order) {
-    SDL_SetRenderDrawColor(renderer, 127, 255, 127, SDL_ALPHA_OPAQUE);
-    SDL_RenderClear(renderer);
-
-    SDL_SetRenderDrawColor(renderer, 31, 31, 128, SDL_ALPHA_OPAQUE);
-    SDL_Rect square = {0, 0, squareWidth, squareWidth};
-
-    for (int j, i = 0; i < order; ++i) {
-        for (j = 0; j < order; ++j) {
-            if ((j & 1) != (i & 1)) {
-                square.x = j * squareWidth;
-                square.y = i * squareWidth;
-                SDL_RenderFillRect(renderer, &square);
-            }
-        }
-    }
 }
 
 void DrawMark(SDL_Renderer * renderer, int squareWidth, int x, int y) {
@@ -65,7 +67,7 @@ void DrawMark(SDL_Renderer * renderer, int squareWidth, int x, int y) {
 }
 
 void DrawTrominoOutline(SDL_Renderer * renderer, SDL_Texture * texture, int squareWidth, int thickness) {
-    constexpr size_t numSegments = 6;
+    constexpr std::size_t numSegments = 6;
 
     SDL_Rect segments[numSegments] = {
         {squareWidth, 0, squareWidth, thickness},
@@ -75,13 +77,15 @@ void DrawTrominoOutline(SDL_Renderer * renderer, SDL_Texture * texture, int squa
         {thickness, squareWidth, squareWidth, thickness},
         {squareWidth, thickness, thickness, squareWidth - thickness},
     };
-    
+
     SDL_SetRenderTarget(renderer, texture);
     SDL_SetRenderDrawColor(renderer, 255, 127, 127, SDL_ALPHA_OPAQUE);
-    
-    for (size_t i = 0; i < numSegments; ++i) {
+
+    for (std::size_t i = 0; i < numSegments; ++i) {
         SDL_RenderFillRect(renderer, &segments[i]);
     }
 
-    SDL_SetRenderTarget(renderer, NULL);
+    SDL_SetRenderTarget(renderer, nullptr);
 }
+
+} // namespace tromino::gfx2d

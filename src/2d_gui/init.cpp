@@ -1,4 +1,13 @@
+#include <iostream>
+#include <queue>
+
+#include <SDL2/SDL.h>
+
+#include "tromino_gfx2d.h"
+
 #include "init.h"
+
+using namespace tromino::gfx2d;
 
 struct step_t {
     position_t p;
@@ -30,7 +39,7 @@ int init(const board_t& board) {
     std::deque<step_t> steps;
     solve_tromino_puzzle(board.order, board.mark, add_tromino, &steps);
 
-    const size_t numSteps = steps.size();
+    const std::size_t numSteps = steps.size();
 
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         std::cerr << "Error initializing SDL: " << SDL_GetError() << std::endl;; // TODO:
@@ -58,7 +67,7 @@ int init(const board_t& board) {
     SDL_Texture * boardTexture = CreateBoardTextureAndSetRenderTarget(renderer, width);
     InitCheckeredBoard(renderer, squareWidth, order);
     DrawMark(renderer, squareWidth, board.mark.x, board.mark.y);
-    SDL_SetRenderTarget(renderer, NULL);
+    SDL_SetRenderTarget(renderer, nullptr);
 
     SDL_Texture * tromino = InitFilledTromino(renderer, squareWidth);
     DrawTrominoOutline(renderer, tromino, squareWidth, borderWidth);
@@ -66,7 +75,7 @@ int init(const board_t& board) {
     SDL_Rect boardTextureDest { 0, 0, width, width };
     SDL_Rect trominoDest = { 0, 0, squareWidth * 2, squareWidth * 2 };
 
-    size_t currentStepNum = 0;
+    std::size_t currentStepNum = 0;
     bool bRender = true;
     bool close = false;
     while (!close) {
@@ -90,15 +99,15 @@ int init(const board_t& board) {
 
             trominoDest.x = currentStep.p.x * squareWidth;
             trominoDest.y = currentStep.p.y * squareWidth;
-            SDL_RenderCopyEx(renderer, tromino, NULL, &trominoDest, 0, NULL, get_flip(currentStep.f));
+            SDL_RenderCopyEx(renderer, tromino, nullptr, &trominoDest, 0, nullptr, get_flip(currentStep.f));
 
-            SDL_SetRenderTarget(renderer, NULL);
+            SDL_SetRenderTarget(renderer, nullptr);
 
             ++currentStepNum;
         }
 
         if (currentStepNum <= numSteps && bRender) {
-            SDL_RenderCopy(renderer, boardTexture, NULL, &boardTextureDest);
+            SDL_RenderCopy(renderer, boardTexture, nullptr, &boardTextureDest);
 
             SDL_RenderPresent(renderer);
 
