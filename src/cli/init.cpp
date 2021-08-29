@@ -2,6 +2,8 @@
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
+// SPDX-License-Identifier: MIT
+
 #include "init.h"
 
 void init(int order, int x, int y, emulation_mode emulation_mode) {

@@ -5,6 +5,8 @@
  * found in the LICENSE file.
  */
 
+/* SPDX-License-Identifier: MIT */
+
 #include <assert.h>
 #include <math.h>
 

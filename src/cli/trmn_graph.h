@@ -2,6 +2,8 @@
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
+// SPDX-License-Identifier: MIT
+
 #ifndef trmn_graph_h
 #define trmn_graph_h
 
