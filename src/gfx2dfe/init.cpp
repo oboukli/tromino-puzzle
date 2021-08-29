@@ -1,3 +1,9 @@
+// Copyright (c) Omar Boukli-Hacene 2021. All Rights Reserved.
+// Distributed under an MIT-style license that can be
+// found in the LICENSE file.
+
+// SPDX-License-Identifier: MIT
+
 #include <iostream>
 #include <queue>
 
@@ -14,7 +20,7 @@ struct step_t {
     flip_t f;
 };
 
-SDL_RendererFlip get_flip(const flip_t& flip) {
+[[nodiscard]] inline SDL_RendererFlip get_flip(const flip_t& flip) noexcept {
     int f = flip.x == 1 ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
 
     if (flip.y == 1) {
@@ -24,7 +30,7 @@ SDL_RendererFlip get_flip(const flip_t& flip) {
     return static_cast<SDL_RendererFlip>(f);
 }
 
-void add_tromino(position_t abspos, flip_t flip, void* state) {
+void add_tromino(position_t abspos, flip_t flip, void* state) noexcept {
     std::deque<step_t>& steps = *static_cast<std::deque<step_t>*>(state);
 
     step_t step{
@@ -63,6 +69,8 @@ int init(const board_t& board) {
         | SDL_RENDERER_TARGETTEXTURE;
     SDL_Renderer* renderer = SDL_CreateRenderer(win, -1, render_flags);
 
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
+    SDL_RenderSetLogicalSize(renderer, width, width); // TODO: define logical width
 
     SDL_Texture * boardTexture = CreateBoardTextureAndSetRenderTarget(renderer, width);
     InitCheckeredBoard(renderer, squareWidth, order);

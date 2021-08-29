@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		7503E7E226C897D60018B1F2 /* libLibTromino2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7E126C897D60018B1F2 /* libLibTromino2d.a */; };
-		7503E7E426C8981F0018B1F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E7E326C8981F0018B1F2 /* main.cpp */; };
 		7503E7E926C8F5EA0018B1F2 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7E826C8F5EA0018B1F2 /* SDL2.framework */; };
-		7503E7EC26CB0FD10018B1F2 /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E7EA26CB0FD10018B1F2 /* init.cpp */; };
 		7503E7EE26CB1A4A0018B1F2 /* libLibTromino.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7ED26CB1A4A0018B1F2 /* libLibTromino.a */; };
+		75ACD98B26DAF724003E33CA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75ACD98A26DAF724003E33CA /* main.cpp */; };
+		75ACD98F26DAF807003E33CA /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75ACD98D26DAF807003E33CA /* init.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,11 +29,11 @@
 /* Begin PBXFileReference section */
 		7503E7C426C892630018B1F2 /* Tromino2d */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tromino2d; sourceTree = BUILT_PRODUCTS_DIR; };
 		7503E7E126C897D60018B1F2 /* libLibTromino2d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTromino2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		7503E7E326C8981F0018B1F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../src/2d_gui/main.cpp; sourceTree = "<group>"; };
 		7503E7E826C8F5EA0018B1F2 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = /Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
-		7503E7EA26CB0FD10018B1F2 /* init.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = init.cpp; path = ../../src/2d_gui/init.cpp; sourceTree = "<group>"; };
-		7503E7EB26CB0FD10018B1F2 /* init.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = init.h; path = ../../src/2d_gui/init.h; sourceTree = "<group>"; };
 		7503E7ED26CB1A4A0018B1F2 /* libLibTromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTromino.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		75ACD98A26DAF724003E33CA /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		75ACD98D26DAF807003E33CA /* init.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = init.cpp; sourceTree = "<group>"; };
+		75ACD98E26DAF807003E33CA /* init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = init.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,9 +53,8 @@
 		7503E7BB26C892630018B1F2 = {
 			isa = PBXGroup;
 			children = (
-				7503E7EA26CB0FD10018B1F2 /* init.cpp */,
-				7503E7EB26CB0FD10018B1F2 /* init.h */,
-				7503E7E326C8981F0018B1F2 /* main.cpp */,
+				75ACD98C26DAF807003E33CA /* gfx2dfe */,
+				75ACD98926DAF724003E33CA /* gui */,
 				7503E7C526C892630018B1F2 /* Products */,
 				7503E7E026C897D60018B1F2 /* Frameworks */,
 			);
@@ -77,6 +76,25 @@
 				7503E7E126C897D60018B1F2 /* libLibTromino2d.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		75ACD98926DAF724003E33CA /* gui */ = {
+			isa = PBXGroup;
+			children = (
+				75ACD98A26DAF724003E33CA /* main.cpp */,
+			);
+			name = gui;
+			path = ../../src/gui;
+			sourceTree = "<group>";
+		};
+		75ACD98C26DAF807003E33CA /* gfx2dfe */ = {
+			isa = PBXGroup;
+			children = (
+				75ACD98D26DAF807003E33CA /* init.cpp */,
+				75ACD98E26DAF807003E33CA /* init.h */,
+			);
+			name = gfx2dfe;
+			path = ../../src/gfx2dfe;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +153,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7503E7E426C8981F0018B1F2 /* main.cpp in Sources */,
-				7503E7EC26CB0FD10018B1F2 /* init.cpp in Sources */,
+				75ACD98B26DAF724003E33CA /* main.cpp in Sources */,
+				75ACD98F26DAF807003E33CA /* init.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +216,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(LOCAL_LIBRARY_DIR)/Frameworks/SDL2.framework/Headers",
 					../../src/gfx2d,
+					../../src/gfx2dfe,
 					../../src/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.1;
@@ -257,6 +276,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(LOCAL_LIBRARY_DIR)/Frameworks/SDL2.framework/Headers",
 					../../src/gfx2d,
+					../../src/gfx2dfe,
 					../../src/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.1;
