@@ -11,7 +11,7 @@
 int main(int argc, const char * argv[]) {
     int order = 32;
     std::size_t size = order * order;
-    board_t board{
+    tromino::gfx2d::board_t board{
         .size = size,
         .order = order,
         .mark = {

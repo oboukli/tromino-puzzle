@@ -8,44 +8,55 @@
 #include <queue>
 
 #include <SDL2/SDL.h>
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+#endif
 
+#include "board.h"
 #include "tromino_gfx2d.h"
+#include "models.h"
+
+#include "window.h"
+#include "viewmodel.h"
 
 #include "init.h"
 
+static bool main_loop_running = true; // TODO:
+
 using namespace tromino::gfx2d;
 
-struct step_t {
-    position_t p;
-    flip_t f;
-};
+static void add_tromino(position_t abspos, flip_t flip, void* state) noexcept {
+    SolutionState& solutionState = *static_cast<SolutionState*>(state);
 
-[[nodiscard]] inline SDL_RendererFlip get_flip(const flip_t& flip) noexcept {
-    int f = flip.x == 1 ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
-
-    if (flip.y == 1) {
-        f |= SDL_FLIP_VERTICAL;
-    }
-
-    return static_cast<SDL_RendererFlip>(f);
-}
-
-void add_tromino(position_t abspos, flip_t flip, void* state) noexcept {
-    std::deque<step_t>& steps = *static_cast<std::deque<step_t>*>(state);
-
-    step_t step{
+    Step step{
         abspos,
         flip
     };
 
-    steps.push_back(step);
+    ++solutionState.progress;
+    solutionState.steps->push_back(step);
 }
 
-int init(const board_t& board) {
-    std::deque<step_t> steps;
-    solve_tromino_puzzle(board.order, board.mark, add_tromino, &steps);
+static void main_loop() {
+    SDL_Event event;
 
-    const std::size_t numSteps = steps.size();
+    while (SDL_PollEvent(&event)) {
+        switch (event.type) {
+            case SDL_QUIT:
+                main_loop_running = false;
+                break;
+
+            default:
+                break;
+        }
+    }
+}
+
+int init(const tromino::gfx2d::board_t& board) {
+    SolutionState solutionState;
+    solutionState.progress = 0; // TODO: ctor
+    solutionState.steps = std::make_unique<std::deque<Step>>();
+    solve_tromino_puzzle(board.order, board.mark, add_tromino, &solutionState);
 
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         std::cerr << "Error initializing SDL: " << SDL_GetError() << std::endl;; // TODO:
@@ -53,84 +64,32 @@ int init(const board_t& board) {
     }
 
     constexpr int width = 512; // TODO:
-    int order = board.order;
-    int squareWidth = width / order; // TODO: Shift?
-    int borderWidth = squareWidth / 8;
+    int squareWidth = width / board.order;
+    tromino::gfx2d::Window * window = new tromino::gfx2d::Window(width);
+    window->Init();
+    
+    tromino::gfx2d::TrominoBoardViewModel * viewModel = new tromino::gfx2d::TrominoBoardViewModel(board, squareWidth, window->GetSdlWindow());
+    
+    viewModel->Init();
 
-    Uint32 windowFlags = 0; // TODO:
-    SDL_Window* win = SDL_CreateWindow("Tromino Puzzle", // TODO:
-        SDL_WINDOWPOS_CENTERED,
-        SDL_WINDOWPOS_CENTERED,
-        width, width, windowFlags);
+#ifdef __EMSCRIPTEN__
+// TODO:
+#else
+    while (main_loop_running) {
+        main_loop();
 
-    Uint32 render_flags =
-        SDL_RENDERER_ACCELERATED
-        | SDL_RENDERER_PRESENTVSYNC
-        | SDL_RENDERER_TARGETTEXTURE;
-    SDL_Renderer* renderer = SDL_CreateRenderer(win, -1, render_flags);
-
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
-    SDL_RenderSetLogicalSize(renderer, width, width); // TODO: define logical width
-
-    SDL_Texture * boardTexture = CreateBoardTextureAndSetRenderTarget(renderer, width);
-    InitCheckeredBoard(renderer, squareWidth, order);
-    DrawMark(renderer, squareWidth, board.mark.x, board.mark.y);
-    SDL_SetRenderTarget(renderer, nullptr);
-
-    SDL_Texture * tromino = InitFilledTromino(renderer, squareWidth);
-    DrawTrominoOutline(renderer, tromino, squareWidth, borderWidth);
-
-    SDL_Rect boardTextureDest { 0, 0, width, width };
-    SDL_Rect trominoDest = { 0, 0, squareWidth * 2, squareWidth * 2 };
-
-    std::size_t currentStepNum = 0;
-    bool bRender = true;
-    bool close = false;
-    while (!close) {
-        SDL_Event event;
-
-        while (SDL_PollEvent(&event)) {
-            switch (event.type) {
-                case SDL_QUIT:
-                    close = true;
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        if (currentStepNum < numSteps) {
-            step_t currentStep = steps[currentStepNum];
-
-            SDL_SetRenderTarget(renderer, boardTexture);
-
-            trominoDest.x = currentStep.p.x * squareWidth;
-            trominoDest.y = currentStep.p.y * squareWidth;
-            SDL_RenderCopyEx(renderer, tromino, nullptr, &trominoDest, 0, nullptr, get_flip(currentStep.f));
-
-            SDL_SetRenderTarget(renderer, nullptr);
-
-            ++currentStepNum;
-        }
-
-        if (currentStepNum <= numSteps && bRender) {
-            SDL_RenderCopy(renderer, boardTexture, nullptr, &boardTextureDest);
-
-            SDL_RenderPresent(renderer);
-
-            if (currentStepNum == numSteps) {
-                bRender = false;
-            }
-        }
+        viewModel->Update(solutionState);
+        viewModel->Render();
 
         SDL_Delay(250); // TODO:
     }
+#endif
 
-    SDL_DestroyTexture(tromino);
-    SDL_DestroyTexture(boardTexture);
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(win);
+    viewModel->Dispose();
+    window->Dispose();
+    delete viewModel;
+    delete window;
+    
     SDL_Quit();
 
     return 0;
