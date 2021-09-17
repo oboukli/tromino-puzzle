@@ -19,6 +19,7 @@ class TrominoBoardViewModel
 {
 public:
     TrominoBoardViewModel(const tromino::gfx2d::board_t& board, int squareWidth, SDL_Window * window);
+
     ~TrominoBoardViewModel();
 
     void Init() noexcept;
@@ -28,19 +29,19 @@ public:
     void Update(const SolutionState& solutionState) noexcept;
 
     void Render(const SolutionState& solutionState) noexcept;
+
 private:
-    bool _bRender;
     const tromino::gfx2d::board_t& _board;
-    SDL_Renderer * _renderer; // TODO:
+    SDL_Window * _window;
+    SDL_Renderer * _renderer;
     SDL_Texture * _viewTexture;
-    SDL_Texture * _boardTexture; // TODO:
+    SDL_Texture * _boardTexture;
     SDL_Texture * _solutionLayerTexture;
     SDL_Texture * _trominoTexture;
     std::size_t _currentStepNum = 0;
     std::size_t _numSteps = 0;
     int _squareWidth;
     int _width;
-    SDL_Window * _window; // TODO:
 };
 
 [[nodiscard]] inline SDL_RendererFlip get_flip(const flip_t& flip) noexcept {

@@ -10,13 +10,13 @@ namespace tromino::gfx2d {
 
 TrominoBoardViewModel::TrominoBoardViewModel(const tromino::gfx2d::board_t& board, int squareWidth, SDL_Window * window):
     _board(board),
-    _squareWidth(squareWidth),
     _window(window),
-    _bRender(true),
     _renderer(nullptr),
     _viewTexture(nullptr),
     _boardTexture(nullptr),
-    _trominoTexture(nullptr) {
+    _solutionLayerTexture(nullptr),
+    _trominoTexture(nullptr),
+    _squareWidth(squareWidth) {
     SolutionState solutionState;
     solutionState.progress = 0;
     solutionState.steps = std::make_unique<std::deque<Step>>();
@@ -63,6 +63,7 @@ void TrominoBoardViewModel::Init() noexcept {
 
 void TrominoBoardViewModel::Dispose() noexcept {
     SDL_DestroyTexture(_trominoTexture);
+    SDL_DestroyTexture(_solutionLayerTexture);
     SDL_DestroyTexture(_boardTexture);
     SDL_DestroyTexture(_viewTexture);
     SDL_DestroyRenderer(_renderer);
