@@ -8,14 +8,22 @@
 
 namespace tromino::gfx2d {
 
-TrominoBoardViewModel::TrominoBoardViewModel(const tromino::gfx2d::board_t& board, int squareWidth, SDL_Window * window)
-: _board(board), _squareWidth(squareWidth), _window(window), _bRender(true) {
+TrominoBoardViewModel::TrominoBoardViewModel(const tromino::gfx2d::board_t& board, int squareWidth, SDL_Window * window):
+    _board(board),
+    _squareWidth(squareWidth),
+    _window(window),
+    _bRender(true),
+    _renderer(nullptr),
+    _viewTexture(nullptr),
+    _boardTexture(nullptr),
+    _trominoTexture(nullptr) {
     SolutionState solutionState;
     solutionState.progress = 0;
     solutionState.steps = std::make_unique<std::deque<Step>>();
 }
 
 TrominoBoardViewModel::~TrominoBoardViewModel() {
+    Dispose();
 }
 
 void TrominoBoardViewModel::Init() noexcept {
@@ -32,53 +40,67 @@ void TrominoBoardViewModel::Init() noexcept {
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
     SDL_RenderSetLogicalSize(_renderer, _width, _width); // TODO: define logical width
 
-    _boardTexture = CreateBoardTextureAndSetRenderTarget(_renderer, _width);
-    InitCheckeredBoard(_renderer, _squareWidth, order);
-    DrawMark(_renderer, _squareWidth, _board.mark.x, _board.mark.y);
-    SDL_SetRenderTarget(_renderer, nullptr);
+    _viewTexture = CreateViewTexture(_renderer, _width);
+    SDL_SetRenderTarget(_renderer, _viewTexture);
 
-    _tromino = InitFilledTromino(_renderer, _squareWidth);
-    DrawTrominoOutline(_renderer, _tromino, _squareWidth, borderWidth);
+    SDL_Color color, altColor;
+    color = { 127, 255, 127, SDL_ALPHA_OPAQUE };
+    altColor = { 31, 31, 128, SDL_ALPHA_OPAQUE };
+    _boardTexture = InitCheckeredBoard(_renderer, _squareWidth, order, color, altColor);
+
+    color = { 0, 0, 0, 128 };
+    _solutionLayerTexture = InitSolutionLayer(_renderer, _width, color);
+
+    color = { 255, 255, 31, SDL_ALPHA_OPAQUE };
+    DrawMark(_renderer, _squareWidth, _board.mark.x, _board.mark.y, color);
+
+    color = { 255, 127, 63, 128 };
+    _trominoTexture = InitFilledTromino(_renderer, _squareWidth, color);
+
+    color = { 255, 127, 127, SDL_ALPHA_OPAQUE };
+    DrawTrominoOutline(_renderer, _trominoTexture, _squareWidth, borderWidth, color);
 }
 
 void TrominoBoardViewModel::Dispose() noexcept {
-    SDL_DestroyTexture(_tromino);
+    SDL_DestroyTexture(_trominoTexture);
     SDL_DestroyTexture(_boardTexture);
+    SDL_DestroyTexture(_viewTexture);
     SDL_DestroyRenderer(_renderer);
     SDL_DestroyWindow(_window);
 }
 
 void TrominoBoardViewModel::Update(const SolutionState& solutionState) noexcept {
     _numSteps = solutionState.steps->size();
-    
+
     if (_currentStepNum < _numSteps) {
-        Step currentStep = (*solutionState.steps)[_currentStepNum];
-
-        SDL_SetRenderTarget(_renderer, _boardTexture);
-        
-        SDL_Rect trominoDest = { 0, 0, _squareWidth * 2, _squareWidth * 2 };
-
-        trominoDest.x = currentStep.p.x * _squareWidth;
-        trominoDest.y = currentStep.p.y * _squareWidth;
-        SDL_RenderCopyEx(_renderer, _tromino, nullptr, &trominoDest, 0, nullptr, get_flip(currentStep.f));
-
-        SDL_SetRenderTarget(_renderer, nullptr);
-
         ++_currentStepNum;
     }
 }
 
-void TrominoBoardViewModel::Render() noexcept {
-    if (_currentStepNum <= _numSteps && _bRender) {
-        SDL_Rect boardTextureDest { 0, 0, _width, _width };
-        SDL_RenderCopy(_renderer, _boardTexture, nullptr, &boardTextureDest);
+void TrominoBoardViewModel::Render(const SolutionState& solutionState) noexcept {
+    SDL_SetRenderTarget(_renderer, _viewTexture);
 
-        SDL_RenderPresent(_renderer);
+    SDL_Rect defaultDest { 0, 0, _width, _width };
+    SDL_RenderCopy(_renderer, _boardTexture, nullptr, &defaultDest);
 
-        if (_currentStepNum == _numSteps) {
-            _bRender = false;
-        }
+    SDL_SetRenderTarget(_renderer, _solutionLayerTexture);
+
+    SDL_Rect trominoDest = { 0, 0, _squareWidth * 2, _squareWidth * 2 };
+
+    std::deque<Step>::iterator targetIdx = solutionState.steps->begin() + _currentStepNum;
+    for (std::deque<Step>::iterator it = solutionState.steps->begin();  it != targetIdx; ++it) {
+        Step s = *it;
+        trominoDest.x = s.p.x * _squareWidth;
+        trominoDest.y = s.p.y * _squareWidth;
+        SDL_RenderCopyEx(_renderer, _trominoTexture, nullptr, &trominoDest, 0, nullptr, get_flip(s.f));
     }
+    SDL_SetRenderTarget(_renderer, _viewTexture);
+    SDL_RenderCopy(_renderer, _solutionLayerTexture, nullptr, &defaultDest);
+
+    SDL_SetRenderTarget(_renderer, nullptr);
+    SDL_RenderCopy(_renderer, _viewTexture, nullptr, &defaultDest);
+
+    SDL_RenderPresent(_renderer);
 }
 
 } // namespace tromino::gfx2d

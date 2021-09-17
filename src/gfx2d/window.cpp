@@ -13,6 +13,7 @@ Window::Window(int width)
 }
 
 Window::~Window() {
+    Dispose();
 }
 
 void Window::Init() noexcept {
@@ -32,7 +33,10 @@ SDL_Window* Window::GetSdlWindow() const noexcept {
 void Window::Dispose() noexcept {
     if (_window) {
         SDL_DestroyWindow(_window);
+        _window = nullptr;
     }
+
+    _isInitialized = false; // TODO: Check for errors
 }
 
 } // namespace tromino::gfx2d

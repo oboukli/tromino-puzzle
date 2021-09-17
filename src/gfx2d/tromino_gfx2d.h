@@ -11,15 +11,17 @@
 
 namespace tromino::gfx2d {
 
-SDL_Texture * CreateBoardTextureAndSetRenderTarget(SDL_Renderer * renderer, int width) noexcept;
+SDL_Texture * CreateViewTexture(SDL_Renderer * renderer, int width) noexcept;
 
-void InitCheckeredBoard(SDL_Renderer * renderer, int width, int order) noexcept;
+SDL_Texture * InitCheckeredBoard(SDL_Renderer * renderer, int width, int order, const SDL_Color& wke1Color, const SDL_Color& bke8Color) noexcept;
 
-SDL_Texture * InitFilledTromino(SDL_Renderer * renderer, int squareWidth) noexcept;
+SDL_Texture * InitSolutionLayer(SDL_Renderer * renderer, int width, const SDL_Color& color) noexcept;
 
-void DrawMark(SDL_Renderer * renderer, int squareWidth, int x, int y) noexcept;
+SDL_Texture * InitFilledTromino(SDL_Renderer * renderer, int squareWidth, const SDL_Color& color) noexcept;
 
-void DrawTrominoOutline(SDL_Renderer * renderer, SDL_Texture * texture, int squareWidth, int thickness) noexcept;
+void DrawMark(SDL_Renderer * renderer, int squareWidth, int x, int y, const SDL_Color& color) noexcept;
+
+void DrawTrominoOutline(SDL_Renderer * renderer, SDL_Texture * texture, int squareWidth, int thickness, const SDL_Color& color) noexcept;
 
 } // namespace tromino::gfx2d
 

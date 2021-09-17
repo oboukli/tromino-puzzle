@@ -20,7 +20,7 @@ struct Step {
 };
 
 struct SolutionState {
-    std::unique_ptr<std::deque<Step>> steps;
+    std::unique_ptr<std::deque<Step>> steps; // TODO: Use vector
     size_t progress; // TODO:
 };
 

@@ -59,7 +59,7 @@ int init(const tromino::gfx2d::board_t& board) {
     solve_tromino_puzzle(board.order, board.mark, add_tromino, &solutionState);
 
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-        std::cerr << "Error initializing SDL: " << SDL_GetError() << std::endl;; // TODO:
+        std::cerr << "Error initializing SDL: " << SDL_GetError() << std::endl; // TODO:
         return 1;
     }
 
@@ -67,29 +67,29 @@ int init(const tromino::gfx2d::board_t& board) {
     int squareWidth = width / board.order;
     tromino::gfx2d::Window * window = new tromino::gfx2d::Window(width);
     window->Init();
-    
+
     tromino::gfx2d::TrominoBoardViewModel * viewModel = new tromino::gfx2d::TrominoBoardViewModel(board, squareWidth, window->GetSdlWindow());
-    
+
     viewModel->Init();
 
-#ifdef __EMSCRIPTEN__
-// TODO:
-#else
     while (main_loop_running) {
         main_loop();
 
         viewModel->Update(solutionState);
-        viewModel->Render();
+        viewModel->Render(solutionState);
 
+#ifdef __EMSCRIPTEN__
+        emscripten_sleep(250); // TODO:
+#else
         SDL_Delay(250); // TODO:
-    }
 #endif
+    }
 
     viewModel->Dispose();
     window->Dispose();
     delete viewModel;
     delete window;
-    
+
     SDL_Quit();
 
     return 0;

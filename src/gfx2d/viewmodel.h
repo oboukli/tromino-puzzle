@@ -27,13 +27,15 @@ public:
 
     void Update(const SolutionState& solutionState) noexcept;
 
-    void Render() noexcept;
+    void Render(const SolutionState& solutionState) noexcept;
 private:
     bool _bRender;
     const tromino::gfx2d::board_t& _board;
     SDL_Renderer * _renderer; // TODO:
+    SDL_Texture * _viewTexture;
     SDL_Texture * _boardTexture; // TODO:
-    SDL_Texture * _tromino;
+    SDL_Texture * _solutionLayerTexture;
+    SDL_Texture * _trominoTexture;
     std::size_t _currentStepNum = 0;
     std::size_t _numSteps = 0;
     int _squareWidth;
