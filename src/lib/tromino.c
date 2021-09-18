@@ -45,16 +45,6 @@ static void solve_tromino(int order, position_t pos, flip_t flip, add_tromino_fu
     solve_tromino(
         n,
         (position_t) {
-            .x = p.x - (flip.x * o),
-            .y = p.y - (flip.y * o),
-        },
-        flip,
-        add_tromino,
-        state);
-
-    solve_tromino(
-        n,
-        (position_t) {
             .x = p.x - (flip.x * n),
             .y = p.y - (flip.y * n),
         },
@@ -84,6 +74,16 @@ static void solve_tromino(int order, position_t pos, flip_t flip, add_tromino_fu
             .x = flip.x * -1,
             .y = flip.y,
         },
+        add_tromino,
+        state);
+
+    solve_tromino(
+        n,
+        (position_t) {
+            .x = p.x - (flip.x * o),
+            .y = p.y - (flip.y * o),
+        },
+        flip,
         add_tromino,
         state);
 }
