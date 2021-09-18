@@ -48,7 +48,7 @@ void TrominoBoardViewModel::Init() noexcept {
     altColor = { 31, 31, 128, SDL_ALPHA_OPAQUE };
     _boardTexture = InitCheckeredBoard(_renderer, _squareWidth, order, color, altColor);
 
-    color = { 0, 0, 0, 128 };
+    color = { 0, 0, 0, SDL_ALPHA_TRANSPARENT };
     _solutionLayerTexture = InitSolutionLayer(_renderer, _width, color);
 
     color = { 255, 255, 31, SDL_ALPHA_OPAQUE };
