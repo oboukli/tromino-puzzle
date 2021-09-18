@@ -5,18 +5,36 @@
 // SPDX-License-Identifier: MIT
 
 #include <cstddef>
+#include <cstdlib>
+#include <iostream>
 
 #include "init.h"
 
 int main(int argc, const char * argv[]) {
-    int order = 32;
+    // TODO: Config values
+    // TODO: App name
+    // TODO: Refactor out of main
+    constexpr int REQUIRED_ARG_COUNT = 4;
+
+    if (REQUIRED_ARG_COUNT > argc) {
+        std::cout
+            << "Usage: tromino <order> <x> <y>"
+            << std::endl;
+
+        return EXIT_FAILURE;
+    }
+
+    int order = std::stoi(argv[1]);
+    int x = std::stoi(argv[2]);
+    int y = std::stoi(argv[3]);
+
     std::size_t size = order * order;
     tromino::gfx2d::board_t board{
         .size = size,
         .order = order,
         .mark = {
-            .x = 11,
-            .y = 17
+            .x = x,
+            .y = y
         }
     };
 
