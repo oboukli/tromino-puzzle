@@ -55,8 +55,8 @@
     const delayBase = 17; // TODO:
 
     const options = {
-      baseColor: "#012340",
-      altColor: "#4E7DA6",
+      baseColor: "#4E7DA6",
+      altColor: "#012340",
       markColor: "#8C1B1B"
     };
 

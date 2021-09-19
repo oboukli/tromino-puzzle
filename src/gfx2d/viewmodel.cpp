@@ -44,20 +44,20 @@ void TrominoBoardViewModel::Init() noexcept {
     SDL_SetRenderTarget(_renderer, _viewTexture);
 
     SDL_Color color, altColor;
-    color = { 127, 255, 127, SDL_ALPHA_OPAQUE };
-    altColor = { 31, 31, 128, SDL_ALPHA_OPAQUE };
+    color = { 78, 125, 166, SDL_ALPHA_OPAQUE };
+    altColor = { 1, 35, 64, SDL_ALPHA_OPAQUE };
     _boardTexture = InitCheckeredBoard(_renderer, _squareWidth, order, color, altColor);
 
     color = { 0, 0, 0, SDL_ALPHA_TRANSPARENT };
     _solutionLayerTexture = InitSolutionLayer(_renderer, _width, color);
 
-    color = { 255, 255, 31, SDL_ALPHA_OPAQUE };
+    color = { 140, 27, 27, SDL_ALPHA_OPAQUE };
     DrawMark(_renderer, _squareWidth, _board.mark.x, _board.mark.y, color);
 
-    color = { 255, 127, 63, 128 };
+    color = { 217, 147, 61, 128 };
     _trominoTexture = InitFilledTromino(_renderer, _squareWidth, color);
 
-    color = { 255, 127, 127, SDL_ALPHA_OPAQUE };
+    color = { 217, 54, 54, SDL_ALPHA_OPAQUE };
     DrawTrominoOutline(_renderer, _trominoTexture, _squareWidth, borderWidth, color);
 }
 
