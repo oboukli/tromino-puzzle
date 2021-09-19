@@ -10,6 +10,9 @@
 		7503E7D326C894EC0018B1F2 /* testmain_libtromino.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E7D026C894EC0018B1F2 /* testmain_libtromino.cpp */; };
 		7503E7D426C894EC0018B1F2 /* tromino_2x2_unittest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E7D126C894EC0018B1F2 /* tromino_2x2_unittest.cpp */; };
 		7503E7D726C895610018B1F2 /* libLibTromino.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7D626C895610018B1F2 /* libLibTromino.a */; };
+		7525762D26F7634500BB3EB3 /* tromino_4x4_unittest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7525762C26F7634500BB3EB3 /* tromino_4x4_unittest.cpp */; };
+		7525763126F76BB400BB3EB3 /* unittest_helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7525762F26F76BB400BB3EB3 /* unittest_helper.cpp */; };
+		7525763526F77D4700BB3EB3 /* tromino_64x64_unittest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7525763426F77D4700BB3EB3 /* tromino_64x64_unittest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +32,10 @@
 		7503E7D026C894EC0018B1F2 /* testmain_libtromino.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testmain_libtromino.cpp; sourceTree = "<group>"; };
 		7503E7D126C894EC0018B1F2 /* tromino_2x2_unittest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tromino_2x2_unittest.cpp; sourceTree = "<group>"; };
 		7503E7D626C895610018B1F2 /* libLibTromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTromino.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7525762C26F7634500BB3EB3 /* tromino_4x4_unittest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tromino_4x4_unittest.cpp; sourceTree = "<group>"; };
+		7525762F26F76BB400BB3EB3 /* unittest_helper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = unittest_helper.cpp; sourceTree = "<group>"; };
+		7525763026F76BB400BB3EB3 /* unittest_helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = unittest_helper.h; sourceTree = "<group>"; };
+		7525763426F77D4700BB3EB3 /* tromino_64x64_unittest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tromino_64x64_unittest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +72,10 @@
 			children = (
 				7503E7D026C894EC0018B1F2 /* testmain_libtromino.cpp */,
 				7503E7D126C894EC0018B1F2 /* tromino_2x2_unittest.cpp */,
+				7525762C26F7634500BB3EB3 /* tromino_4x4_unittest.cpp */,
+				7525762F26F76BB400BB3EB3 /* unittest_helper.cpp */,
+				7525763026F76BB400BB3EB3 /* unittest_helper.h */,
+				7525763426F77D4700BB3EB3 /* tromino_64x64_unittest.cpp */,
 			);
 			name = lib;
 			path = ../../test/lib;
@@ -134,8 +145,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7525763526F77D4700BB3EB3 /* tromino_64x64_unittest.cpp in Sources */,
 				7503E7D326C894EC0018B1F2 /* testmain_libtromino.cpp in Sources */,
+				7525762D26F7634500BB3EB3 /* tromino_4x4_unittest.cpp in Sources */,
 				7503E7D426C894EC0018B1F2 /* tromino_2x2_unittest.cpp in Sources */,
+				7525763126F76BB400BB3EB3 /* unittest_helper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
