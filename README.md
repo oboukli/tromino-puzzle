@@ -29,8 +29,7 @@ To build the web app:
 
 ```shell
 docker pull emscripten/emsdk
-docker run --rm -v $(pwd):/src -u $(id -u):$(id -g) --workdir="/src/emscripten" \
-  emscripten/emsdk emmake make
+docker run --rm -v $(pwd):/src -u $(id -u):$(id -g) --workdir="/src/emscripten" emscripten/emsdk emmake make
 ```
 
 To run the web app:

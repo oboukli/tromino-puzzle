@@ -1,14 +1,12 @@
-/*
- * Copyright (c) Omar Boukli-Hacene 2021. All Rights Reserved.
- *
- * Distributed under an MIT-style license that can be
- * found in the LICENSE file.
- */
 
-/* SPDX-License-Identifier: MIT */
+// Copyright (c) Omar Boukli-Hacene 2021. All Rights Reserved.
+// Distributed under an MIT-style license that can be
+// found in the LICENSE file.
 
-#include <assert.h>
-#include <math.h>
+// SPDX-License-Identifier: MIT
+
+#include <cassert>
+#include <cstddef>
 
 #include <emscripten.h>
 
@@ -17,6 +15,9 @@
 typedef void (*add_tromino_extern_callback)(position_t abspos, double angle);
 
 static void add_tromino(position_t abspos, flip_t flip, void * state) {
+    const double pi = 3.14159265358979323846;
+    const double pi2 = 1.57079632679489661923;
+
     add_tromino_extern_callback add_tromino_cb = (add_tromino_extern_callback)state;
         double angle;
 
@@ -31,7 +32,7 @@ static void add_tromino(position_t abspos, flip_t flip, void * state) {
                 // X |
                 // - +
 
-                angle = 3 * M_PI_2;
+                angle = 3 * pi2;
                 break;
 
             case 1:
@@ -39,7 +40,7 @@ static void add_tromino(position_t abspos, flip_t flip, void * state) {
                 // - +
                 // X |
 
-                angle = M_PI;
+                angle = pi;
                 break;
             };
             break;
@@ -59,7 +60,7 @@ static void add_tromino(position_t abspos, flip_t flip, void * state) {
                 // + -
                 // | X
 
-                angle = M_PI_2;
+                angle = pi2;
                 break;
             };
             break;
@@ -68,6 +69,6 @@ static void add_tromino(position_t abspos, flip_t flip, void * state) {
     add_tromino_cb(abspos, angle);
 }
 
-EMSCRIPTEN_KEEPALIVE void solve(int order, position_t mark, add_tromino_extern_callback add_tromino_cb) {
-    solve_tromino_puzzle(order, mark, add_tromino, add_tromino_cb);
+EMSCRIPTEN_KEEPALIVE extern "C" void solve(int order, position_t mark, add_tromino_extern_callback add_tromino_cb) {
+    solve_tromino_puzzle(order, mark, add_tromino, reinterpret_cast<void *>(add_tromino_cb));
 }
