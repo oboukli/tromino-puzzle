@@ -1,6 +1,7 @@
 trigger:
   - main
   - development
+  - feature/*
 
 jobs:
   - job: macOS
@@ -22,6 +23,7 @@ jobs:
           xcodeVersion: '12'
           destinationPlatformOption: 'macOS'
           packageApp: false
+
   - job: Windows
     displayName: 'Build for Windows'
     pool:
@@ -35,6 +37,7 @@ jobs:
           configuration: 'release'
           maximumCpuCount: true
           msbuildArchitecture: 'x64'
+
   - job: Linux
     displayName: 'Build for GNU/Linux'
     pool:
@@ -64,3 +67,17 @@ jobs:
       - script: make distcheck
         displayName: 'Test package'
         workingDirectory: build
+
+  - job: WebAssembly
+    displayName: 'Build for WebAssembly'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+      - task: DockerInstaller@0
+        displayName: Emscripten SDK
+        inputs:
+          dockerVersion: 18.06.3-ce
+          releaseType: stable
+
+      - script: docker run -i --rm -v $(pwd):/src -u $(id -u):$(id -g) --workdir="/src/emscripten" emscripten/emsdk emmake make
+        displayName: 'Emscripten build for WebAssembly'

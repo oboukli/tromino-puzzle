@@ -1,0 +1,31 @@
+name: Emscripten build for WebAssembly
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out Emscripten repository
+      uses: actions/checkout@v2
+      with:
+        repository: emscripten-core/emsdk
+        path: emsdk
+
+    - name: Install Emscripten SDK
+      run: |
+        ./emsdk install latest
+        ./emsdk activate latest
+      working-directory: emsdk
+
+    - name: Check out repository
+      uses: actions/checkout@v2
+      with:
+        path: tromino-puzzle
+
+    - name: Make
+      run: |
+        source ${{ github.workspace }}/emsdk/emsdk_env.sh
+        emmake make
+      working-directory: tromino-puzzle/emscripten
