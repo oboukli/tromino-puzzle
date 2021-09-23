@@ -4,7 +4,6 @@
 
 // SPDX-License-Identifier: MIT
 
-#include <iostream>
 #include <queue>
 
 #include <SDL2/SDL.h>
@@ -59,7 +58,6 @@ int init(const tromino::gfx2d::board_t& board) {
     solve_tromino_puzzle(board.order, board.mark, add_tromino, &solutionState);
 
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-        std::cerr << "Error initializing SDL: " << SDL_GetError() << std::endl; // TODO:
         return 1;
     }
 
