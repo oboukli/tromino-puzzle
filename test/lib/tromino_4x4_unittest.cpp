@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_CASE(Given_solve_tromino_puzzle_WhenOrderIs4AndMarkIs0_0_ThenSol
     constexpr int order = 4;
     constexpr position_t mark = { 0, 0 };
 
-    std::vector<ShimStep> expected = {
+    const std::vector<ShimStep> expected = {
         { { 0, 0 }, { -1, -1 } },
         { { 2, 2 }, { -1, -1 } },
         { { 2, 0 }, { -1, 1 } },
@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(Given_solve_tromino_puzzle_WhenOrderIs4AndMarkIs0_7_ThenSol
     constexpr int order = 4;
     constexpr position_t mark = { 0, 7 };
 
-    std::vector<ShimStep> expected = {
+    const std::vector<ShimStep> expected = {
         { { 0, 2 }, { -1, 1 } },
         { { 2, 0 }, { -1, 1 } },
         { { 2, 2 }, { -1, -1 } },
@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE(Given_solve_tromino_puzzle_WhenOrderIs4AndMarkIs7_0_ThenSol
     constexpr int order = 4;
     constexpr position_t mark = { 7, 0 };
 
-    std::vector<ShimStep> expected = {
+    const std::vector<ShimStep> expected = {
         { { 2, 0 }, { 1, -1 } },
         { { 0, 2 }, { 1, -1 } },
         { { 0, 0 }, { 1, 1 } },
@@ -82,8 +82,33 @@ BOOST_AUTO_TEST_CASE(Given_solve_tromino_puzzle_WhenOrderIs4AndMarkIs7_7_ThenSol
     constexpr int order = 4;
     constexpr position_t mark = { 7, 7 };
 
-    std::vector<ShimStep> expected = {
+    const std::vector<ShimStep> expected = {
         { { 2, 2 }, { 1, 1 } },
+        { { 0, 0 }, { 1, 1 } },
+        { { 0, 2 }, { 1, -1 } },
+        { { 2, 0 }, { -1, 1 } },
+        { { 1, 1 }, { 1, 1 } },
+    };
+    std::vector<ShimStep> actual;
+
+    solve_tromino_puzzle(order, mark, shim_add_tromino, &actual);
+
+    BOOST_CHECK_EQUAL(actual.size(), 5);
+    BOOST_CHECK_EQUAL_COLLECTIONS(actual.begin(), actual.end(), expected.begin(), expected.end());
+}
+
+//
+// + - - +
+// | + - |
+// | | | X
+// + - + -
+BOOST_AUTO_TEST_CASE(Given_solve_tromino_puzzle_WhenOrderIs4AndMarkIs3_2_ThenSolution)
+{
+    constexpr int order = 4;
+    constexpr position_t mark = { 3, 2 };
+
+    std::vector<ShimStep> expected = {
+        { { 2, 2 }, { 1, -1 } },
         { { 0, 0 }, { 1, 1 } },
         { { 0, 2 }, { 1, -1 } },
         { { 2, 0 }, { -1, 1 } },

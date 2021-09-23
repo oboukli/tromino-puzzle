@@ -15,9 +15,9 @@ BOOST_AUTO_TEST_SUITE(tromino_64x64_test_suite)
 BOOST_AUTO_TEST_CASE(Given_solve_tromino_puzzle_WhenOrderIs64AndMarkIs61_37_ThenSolution)
 {
     constexpr int order = 64;
-    constexpr position_t mark = { 61, 37 };
+    constexpr position_t mark{ 61, 37 };
 
-    std::vector<ShimStep>* expected = new std::vector<ShimStep> {
+    const std::vector<ShimStep> expected{
         { { 60, 36 }, { 1, 1 } },
         { { 62, 38 }, { -1, -1 } },
         { { 62, 36 }, { -1, 1 } },
@@ -1384,13 +1384,13 @@ BOOST_AUTO_TEST_CASE(Given_solve_tromino_puzzle_WhenOrderIs64AndMarkIs61_37_Then
         { { 32, 30 }, { -1, 1 } },
         { { 31, 31 }, { 1, 1 } },
     };
-    std::vector<ShimStep> * actual = new std::vector<ShimStep>();
-    actual->reserve(1365);
+    std::vector<ShimStep> actual;
+    actual.reserve(1365);
 
-    solve_tromino_puzzle(order, mark, shim_add_tromino, actual);
+    solve_tromino_puzzle(order, mark, shim_add_tromino, &actual);
 
-    BOOST_CHECK_EQUAL(actual->size(), 1365);
-    BOOST_CHECK_EQUAL_COLLECTIONS(actual->begin(), actual->end(), expected->begin(), expected->end());
+    BOOST_CHECK_EQUAL(actual.size(), 1365);
+    BOOST_CHECK_EQUAL_COLLECTIONS(actual.begin(), actual.end(), expected.begin(), expected.end());
 }
 
 BOOST_AUTO_TEST_SUITE_END()

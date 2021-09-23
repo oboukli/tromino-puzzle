@@ -20,7 +20,7 @@ BOOST_AUTO_TEST_CASE(GivenK2_WhenTopLeft_ThenSolutionIsK)
     constexpr int order = 2;
     constexpr position_t mark = { 0, 0 };
 
-    std::vector<ShimStep> expected = {{{0, 0}, {-1, -1}}};
+    const std::vector<ShimStep> expected = {{{0, 0}, {-1, -1}}};
     std::vector<ShimStep> actual;
 
     solve_tromino_puzzle(order, mark, shim_add_tromino, &actual);
