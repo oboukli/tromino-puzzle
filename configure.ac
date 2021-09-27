@@ -1,8 +1,8 @@
 AC_PREREQ([2.69])
 
 m4_define(_TRMNPZZL_VERSION_MAJOR, 0)
-m4_define(_TRMNPZZL_VERSION_MINOR, 2)
-m4_define(_TRMNPZZL_VERSION_PATCH, 2)
+m4_define(_TRMNPZZL_VERSION_MINOR, 3)
+m4_define(_TRMNPZZL_VERSION_PATCH, 1)
 m4_define(_TRMNPZZL_VERSION_BUILD, 0)
 m4_define(_TRMNPZZL_VERSION_RC, 0)
 m4_define(_TRMNPZZL_VERSION_IS_RELEASE, true)
@@ -34,7 +34,10 @@ LT_INIT(disable-shared)
 
 AC_CONFIG_FILES([Makefile
 	src/lib/Makefile
-	src/cli/Makefile])
+	src/cli/Makefile
+	src/gfx2d/Makefile
+	src/gfx2dfe/Makefile
+	src/gui/Makefile])
 AC_CONFIG_FILES([test/lib/Makefile])
 
 AX_BOOST_BASE([1.71.0], [], [AC_MSG_ERROR([Boost is not available])])
