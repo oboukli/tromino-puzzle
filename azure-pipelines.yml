@@ -52,7 +52,7 @@ jobs:
       - script: mkdir build && cd build && ../configure
         displayName: 'Configure build'
 
-      - script: make
+      - script: make -j $(($(nproc)*15)/10)
         displayName: 'Make'
         workingDirectory: build
 
