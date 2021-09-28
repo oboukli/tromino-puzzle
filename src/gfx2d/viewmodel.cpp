@@ -19,7 +19,7 @@ TrominoBoardViewModel::TrominoBoardViewModel(const tromino::gfx2d::board_t& boar
     _squareWidth(squareWidth) {
     SolutionState solutionState;
     solutionState.progress = 0;
-    solutionState.steps = std::make_unique<std::deque<Step>>();
+    solutionState.steps = std::make_unique<std::vector<Step>>();
 }
 
 TrominoBoardViewModel::~TrominoBoardViewModel() {
@@ -88,8 +88,8 @@ void TrominoBoardViewModel::Render(const SolutionState& solutionState) noexcept 
 
     SDL_Rect trominoDest = { 0, 0, _squareWidth * 2, _squareWidth * 2 };
 
-    std::deque<Step>::iterator targetIdx = solutionState.steps->begin() + _currentStepNum;
-    for (std::deque<Step>::iterator it = solutionState.steps->begin();  it != targetIdx; ++it) {
+    std::vector<Step>::iterator targetIdx = solutionState.steps->begin() + _currentStepNum;
+    for (std::vector<Step>::iterator it = solutionState.steps->begin();  it != targetIdx; ++it) {
         Step s = *it;
         trominoDest.x = s.p.x * _squareWidth;
         trominoDest.y = s.p.y * _squareWidth;

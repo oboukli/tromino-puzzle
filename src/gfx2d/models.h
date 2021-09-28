@@ -8,7 +8,7 @@
 #define models_h
 
 #include <memory>
-#include <queue>
+#include <vector>
 
 #include "tromino.h"
 
@@ -20,7 +20,7 @@ struct Step {
 };
 
 struct SolutionState {
-    std::unique_ptr<std::deque<Step>> steps; // TODO: Use vector
+    std::unique_ptr<std::vector<Step>> steps;
     size_t progress; // TODO:
 };
 
