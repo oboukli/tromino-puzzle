@@ -26,7 +26,7 @@ void Window::Init() noexcept {
     _isInitialized = true; // TODO: Check for errors
 }
 
-SDL_Window* Window::GetSdlWindow() const noexcept {
+SDL_Window * Window::GetSdlWindow() const noexcept {
     return _window;
 }
 
