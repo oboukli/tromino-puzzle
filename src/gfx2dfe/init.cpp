@@ -77,9 +77,9 @@ int init(const tromino::gfx2d::board_t& board) {
         viewModel->Render(solutionState);
 
 #ifdef __EMSCRIPTEN__
-        emscripten_sleep(250); // TODO:
+        emscripten_sleep(68); // TODO:
 #else
-        SDL_Delay(250); // TODO:
+        SDL_Delay(68); // TODO:
 #endif
     }
 

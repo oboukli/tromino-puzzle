@@ -64,7 +64,7 @@
     const order = parseInt(orderElement.value);
     const mark = { x: parseInt(markXElement.value), y: parseInt(markYElement.value) };
 
-    const delayBase = 17; // TODO:
+    const delayBase = 68; // TODO:
 
     const options = {
       baseColor: "#4E7DA6",
