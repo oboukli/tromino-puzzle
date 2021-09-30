@@ -79,5 +79,5 @@ jobs:
           dockerVersion: 18.06.3-ce
           releaseType: stable
 
-      - script: docker run -i --rm -v $(pwd):/src -u $(id -u):$(id -g) --workdir="/src/emscripten" emscripten/emsdk emmake make
+      - script: docker run -i --rm -v $(pwd):/src --workdir="/src/emscripten" emscripten/emsdk emmake make
         displayName: 'Emscripten build for WebAssembly'
