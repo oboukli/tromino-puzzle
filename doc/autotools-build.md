@@ -5,6 +5,7 @@ autoreconf --install --force --verbose --warnings=all
 mkdir build && cd build
 ../configure #--prefix <absolute path>
 make
+make check # Optional
 make install
 ```
 
