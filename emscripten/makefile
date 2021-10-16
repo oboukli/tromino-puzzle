@@ -49,6 +49,7 @@ $(TARGET_ALG): $(OBJ_DIR)/lib/tromino.o $(OBJ_DIR)/wasm/tromino_alg_wasm.o
 	-s EXPORTED_FUNCTIONS='["_solve"]' \
 	-s EXPORTED_RUNTIME_METHODS='["ALLOC_STACK", "addFunction", "allocate", "ccall", "getValue", "removeFunction", "stackSave", "stackRestore"]' \
 	-s FILESYSTEM=0 \
+	-s INITIAL_MEMORY=64KB \
 	-s LLD_REPORT_UNDEFINED=1 \
 	-s MINIFY_HTML=1 \
 	-s MINIMAL_RUNTIME=0 \
@@ -59,6 +60,7 @@ $(TARGET_ALG): $(OBJ_DIR)/lib/tromino.o $(OBJ_DIR)/wasm/tromino_alg_wasm.o
 	-s STACK_OVERFLOW_CHECK=0 \
 	-s STRICT_JS=1 \
 	-s STRICT=1 \
+	-s TOTAL_STACK=32KB \
 	-s USE_CLOSURE_COMPILER=1 \
 	-s WASM=1 \
 	-o $(OUT_DIR)/$@ $^
@@ -77,6 +79,7 @@ $(TARGET_GFX2D): $(OBJ_DIR)/lib/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/gfx2dfe/init.
 	-s ERROR_ON_UNDEFINED_SYMBOLS=1 \
 	-s EXPORTED_FUNCTIONS='["_playTromino"]' \
 	-s FILESYSTEM=0 \
+	-s INITIAL_MEMORY=32MB \
 	-s LLD_REPORT_UNDEFINED=1 \
 	-s MINIFY_HTML=1 \
 	-s MINIMAL_RUNTIME=0 \
