@@ -59,12 +59,16 @@ body {
   margin: 0;
 }
 
-.flex-outer li input:not([type='checkbox']),
+.flex-outer li input:not([type="checkbox"]),
 .flex-outer li textarea {
   padding: 15px;
   border: none;
   background: #333;
   color: goldenrod;
+}
+
+.flex-outer li input[type="range"] {
+  padding: 0;
 }
 
 .flex-outer li button {

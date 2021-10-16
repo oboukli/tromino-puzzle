@@ -22,11 +22,12 @@
         <ul class="flex-outer">
           <li>
             <label for="order">Puzzle order</label>
+            <input type="range" id="order" min="0" max="8" value="4" step="1">
             <input
               type="number"
-              id="order"
-              placeholder="2, 4, 8, 16, ..."
+              id="orderIndicator"
               value="32"
+              disabled
             />
           </li>
           <li>
@@ -35,7 +36,8 @@
               type="number"
               id="markX"
               placeholder=""
-              value="13"
+              min="0"
+              value="1"
             />
           </li>
           <li>
@@ -44,7 +46,8 @@
               type="number"
               id="markY"
               placeholder=""
-              value="17"
+              min="0"
+              value="0"
             />
           </li>
           <li>

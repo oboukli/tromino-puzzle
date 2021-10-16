@@ -12,6 +12,7 @@
   let trominoImgSrc;
   let canvasElement;
   let orderElement;
+  let orderIndicatorElement;
   let markXElement;
   let markYElement;
   let solveButtonElement;
@@ -36,11 +37,22 @@
       e.preventDefault();
     });
 
-    solveButtonElement = document.getElementById("solveButton");
-
-    orderElement = document.getElementById("order");
     markXElement = document.getElementById("markX");
     markYElement = document.getElementById("markY");
+
+    orderIndicatorElement = document.getElementById("orderIndicator");
+    orderElement = document.getElementById("order");
+    orderElement.addEventListener("input", (event) => {
+      const order = calcOrder(parseInt(event.target.value));
+
+      orderIndicatorElement.value = order;
+
+      setInputValueBounds(order - 1);
+    });
+
+    setInputValueBounds(calcOrder(parseInt(orderElement.value)) - 1);
+
+    solveButtonElement = document.getElementById("solveButton");
   }
 
   function initWasmAsync() {
@@ -60,8 +72,23 @@
     return await createTrmnPzzlAlgMod(/* optional default settings */);
   }
 
+  /**
+   * @param {number} n
+   */
+  function calcOrder(n) {
+    return 2 << n;
+  }
+
+  /**
+   * @param {number} max
+   */
+  function setInputValueBounds(max) {
+    markXElement.max = max;
+    markYElement.max = max;
+  }
+
   async function startSolveAsync() {
-    const order = parseInt(orderElement.value);
+    const order = 2 << parseInt(orderElement.value);
     const mark = { x: parseInt(markXElement.value), y: parseInt(markYElement.value) };
 
     const delayBase = 68; // TODO:
@@ -86,7 +113,7 @@
       mark: [mark.x, mark.y]
     };
     let placed = 0;
-    trmnjs.solveTromino(emModule, puzzle, (position, angle) => {
+    trmnjs.solveTromino(emModule, puzzle, (/** @type {{ x: number; y: number; }} */ position, /** @type {number} */ angle) => {
 
       // TODO: That's too many calls. Delay at the source?
       setTimeout(trmnjs.drawTromino, delayBase * placed, board, position.x, position.y , angle);
@@ -110,7 +137,7 @@
 
     initElements();
 
-    solveButtonElement.addEventListener("click", playTromino, false);
+    solveButtonElement.addEventListener("click", playTrominoAsync, false);
   });
 
   function initElements() {
@@ -121,8 +148,15 @@
     markYElement = document.getElementById("markY");
   }
 
-  function playTromino() {
-    const order = parseInt(orderElement.value);
+  /**
+   * @param {number} n
+   */
+  function calcOrder(n) {
+    return 2 << n;
+  }
+
+  async function playTrominoAsync() {
+    const order = calcOrder(parseInt(orderElement.value));
     const markX = parseInt(markXElement.value);
     const markY = parseInt(markYElement.value);
 
