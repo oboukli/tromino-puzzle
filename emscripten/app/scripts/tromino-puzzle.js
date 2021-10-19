@@ -51,11 +51,13 @@
     context.fillStyle = options.baseColor;
     context.fillRect(0, 0, canvasSize, canvasSize);
 
+    context.beginPath()
     for (var i = 0; i < order; ++i) {
       for (var j = 0, col = order >> 1; j < col; ++j) {
         context.rect(2 * j * blockWidth + (i % 2 ? 0 : blockWidth), i * blockWidth, blockWidth, blockWidth);
       }
     }
+    context.closePath();
 
     context.fillStyle = options.altColor;
     context.fill();

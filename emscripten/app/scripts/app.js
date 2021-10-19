@@ -17,6 +17,8 @@
   let markYElement;
   let solveButtonElement;
 
+  let context;
+
   let instancePromise;
   let emModulePromise;
 
@@ -37,6 +39,8 @@
       e.preventDefault();
     });
 
+    context = canvasElement.getContext("2d");
+
     markXElement = document.getElementById("markX");
     markYElement = document.getElementById("markY");
 
@@ -45,7 +49,7 @@
     orderElement.addEventListener("input", (event) => {
       const order = calcOrder(parseInt(event.target.value));
 
-      orderIndicatorElement.value = order;
+      orderIndicatorElement.innerHTML = order;
 
       setInputValueBounds(order - 1);
     });
@@ -98,8 +102,6 @@
       altColor: "#012340",
       markColor: "#8C1B1B"
     };
-
-    const context = canvasElement.getContext("2d");
 
     const boardPromise = trmnjs.createBoardAsync(context, trominoImgSrc, order, mark, options);
 
