@@ -10,28 +10,29 @@
     <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
-    <h1>Tromino Puzzle</h1>
-    <h2>WebAssembly solver and SDL2 renderer</h2>
-    <canvas id="canvas" width="512" height="512"></canvas>
-
-    <h2>WebAssembly solver, plain JavaScript renderer</h2>
-    <canvas id="boardCanvas" width="512" height="512"></canvas>
-
     <div class="container">
+      <h1>Tromino Puzzle</h1>
+
+      <div class="columns">
+        <div class="column">
+          <h2>WebAssembly solver and SDL2 renderer</h2>
+          <canvas id="canvas" width="512" height="512"></canvas>
+        </div>
+        <div class="column">
+          <h2>WebAssembly solver, plain JavaScript renderer</h2>
+          <canvas id="boardCanvas" width="512" height="512"></canvas>
+        </div>
+      </div>
+
       <form>
         <ul class="flex-outer">
           <li>
             <label for="order">Puzzle order</label>
             <input type="range" id="order" min="0" max="8" value="4" step="1">
-            <input
-              type="number"
-              id="orderIndicator"
-              value="32"
-              disabled
-            />
+            <div id="orderIndicator" class="indicator">32</div>
           </li>
           <li>
-            <label for="markX">Mark x</label>
+            <label for="markX">Mark X</label>
             <input
               type="number"
               id="markX"
