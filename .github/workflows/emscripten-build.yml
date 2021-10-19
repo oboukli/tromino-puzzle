@@ -4,6 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -29,3 +30,38 @@ jobs:
         source ${{ github.workspace }}/emsdk/emsdk_env.sh
         emmake make
       working-directory: tromino-puzzle/emscripten
+
+    - name: Archive web app artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: tromino-puzzle-web-dist
+        path: tromino-puzzle/dist/web
+
+  deploy-gh-pages:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: tromino-puzzle-web-dist
+
+      - name: Display file structure
+        run: |
+          ls -R
+          git status
+
+      - name: Push commit
+        run: |
+          git config --global user.name 'Continuous Deployment Job'
+          git config --global user.email 'oboukli@users.noreply.github.com'
+          git add -A
+          git commit -am "Automated deployment"
+          git push
