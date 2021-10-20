@@ -20,7 +20,7 @@ jobs:
         ./emsdk activate latest
       working-directory: emsdk
 
-    - name: Check out repository
+    - name: Check out main repository
       uses: actions/checkout@v2
       with:
         path: tromino-puzzle
@@ -43,10 +43,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout GitHub Pages branch
         uses: actions/checkout@v2
         with:
           ref: gh-pages
+
+      - name: Remove current files
+        run: rm -rf *
 
       - name: Download build artifact
         uses: actions/download-artifact@v2
@@ -58,7 +61,7 @@ jobs:
           ls -R
           git status
 
-      - name: Push commit
+      - name: Push GitHub Pages branch commit
         run: |
           git config --global user.name 'Continuous Deployment Job'
           git config --global user.email 'oboukli@users.noreply.github.com'
