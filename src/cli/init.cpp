@@ -7,7 +7,8 @@
 #include "init.h"
 
 void init(int order, int x, int y, emulation_mode emulation_mode) {
-    std::size_t size = order * order;
+    std::size_t order_internal = static_cast<std::size_t>(order);
+    std::size_t size = order_internal * order_internal;
 
     tromino::board_t tromino_board{
         .board_matrix = std::make_unique<char[]>(size),

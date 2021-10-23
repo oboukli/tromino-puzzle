@@ -28,7 +28,8 @@ int main(int argc, const char * argv[]) {
     int x = std::stoi(argv[2]);
     int y = std::stoi(argv[3]);
 
-    std::size_t size = order * order;
+    std::size_t order_internal = static_cast<std::size_t>((order));
+    std::size_t size = order_internal * order_internal;
     tromino::gfx2d::board_t board{
         .size = size,
         .order = order,
