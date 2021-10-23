@@ -57,14 +57,19 @@ jobs:
           name: tromino-puzzle-web-dist
 
       - name: Display file structure
-        run: |
-          ls -R
-          git status
+        run: ls -R
 
-      - name: Push GitHub Pages branch commit
+      - name: Git status
+        run: git status
+
+      - name: Publish web app to GitHub Pages
         run: |
-          git config --global user.name 'Continuous Deployment Job'
-          git config --global user.email 'oboukli@users.noreply.github.com'
-          git add -A
-          git commit -am "Automated deployment"
-          git push
+          if [[ $(git diff --stat) != '' ]]; then
+            git config --global user.name 'Continuous Deployment Job'
+            git config --global user.email 'oboukli@users.noreply.github.com'
+            git add -A
+            git commit -am 'Automated deployment'
+            git push
+          else
+            echo 'No web app changes found. Publish step skipped.'
+          fi
