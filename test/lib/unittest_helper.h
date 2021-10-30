@@ -14,8 +14,8 @@
 class ShimStep
 {
 public:
-    position_t abspos;
-    flip_t flip;
+    trmn_position_t abspos;
+    trmn_flip_t flip;
 
     bool operator!=(const ShimStep &rhs) {
         return rhs.abspos.x != this->abspos.x
@@ -31,7 +31,7 @@ public:
     }
 };
 
-void shim_add_tromino(position_t abspos, flip_t flip, void * state);
+void shim_add_tromino(trmn_position_t abspos, trmn_flip_t flip, void * state);
 
 void print_shim_step_vector(const std::vector<ShimStep>& steps);
 

@@ -15,8 +15,8 @@
 namespace tromino::gfx2d {
 
 struct Step {
-    position_t p;
-    flip_t f;
+    trmn_position_t p;
+    trmn_flip_t f;
 };
 
 struct SolutionState {

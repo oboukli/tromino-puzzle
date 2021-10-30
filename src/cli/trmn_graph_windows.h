@@ -35,13 +35,13 @@ namespace tromino::windows {
 
     constexpr auto sprite_size = 4;
 
-    std::array<char, sprite_size> get_sprite(flip_t flip);
+    std::array<char, sprite_size> get_sprite(trmn_flip_t flip);
 
     void draw_at(int x, int y, char c, HANDLE hOutput);
 
     void draw_board(const board_t* board);
 
-    void add_tromino(position_t abspos, flip_t flip, void* graph_state);
+    void add_tromino(trmn_position_t abspos, trmn_flip_t flip, void* graph_state);
 
     inline void init_board(board_t& board) {
         std::fill_n(board.board_matrix.get(), board.size, empty);

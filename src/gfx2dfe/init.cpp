@@ -24,7 +24,7 @@ static bool main_loop_running = true; // TODO:
 
 using namespace tromino::gfx2d;
 
-static void add_tromino(position_t abspos, flip_t flip, void* state) noexcept {
+static void add_tromino(trmn_position_t abspos, trmn_flip_t flip, void* state) noexcept {
     SolutionState& solutionState = *static_cast<SolutionState*>(state);
 
     Step step{
@@ -55,7 +55,7 @@ int init(const tromino::gfx2d::board_t& board) {
     SolutionState solutionState;
     solutionState.progress = 0; // TODO: ctor
     solutionState.steps = std::make_unique<std::vector<Step>>();
-    solve_tromino_puzzle(board.order, board.mark, add_tromino, &solutionState);
+    trmn_solve_puzzle(board.order, board.mark, add_tromino, &solutionState);
 
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         return 1;

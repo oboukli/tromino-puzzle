@@ -8,7 +8,7 @@
 
 #include "unittest_helper.h"
 
-void shim_add_tromino(position_t abspos, flip_t flip, void * state) {
+void shim_add_tromino(trmn_position_t abspos, trmn_flip_t flip, void * state) {
     ShimStep step = { abspos, flip };
     static_cast<std::vector<ShimStep>*>(state)->push_back(step);
 }

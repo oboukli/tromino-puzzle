@@ -30,7 +30,7 @@ namespace tromino {
         std::unique_ptr<char[]> board_matrix;
         std::size_t size;
         int order;
-        position_t mark;
+        trmn_position_t mark;
     };
 
     struct graph_state_t {

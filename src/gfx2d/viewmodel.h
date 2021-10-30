@@ -44,7 +44,7 @@ private:
     int _width;
 };
 
-[[nodiscard]] inline SDL_RendererFlip get_flip(const flip_t& flip) noexcept {
+[[nodiscard]] inline SDL_RendererFlip get_flip(const trmn_flip_t& flip) noexcept {
     int f = flip.x == 1 ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
 
     if (flip.y == 1) {

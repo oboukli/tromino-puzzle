@@ -8,7 +8,7 @@
 
 namespace tromino::windows {
 
-    static std::array<char, sprite_size> get_sprite(flip_t flip) {
+    static std::array<char, sprite_size> get_sprite(trmn_flip_t flip) {
         assert(-1 == flip.x || 1 == flip.x);
         assert(-1 == flip.y || 1 == flip.y);
 
@@ -80,7 +80,7 @@ namespace tromino::windows {
         }
     }
 
-    void add_tromino(position_t abspos, flip_t flip, void* state) {
+    void add_tromino(trmn_position_t abspos, trmn_flip_t flip, void * state) {
         graph_state_t* graph_state = static_cast<graph_state_t*>(state);
         board_t& board = graph_state->board;
         char* board_matrix = board.board_matrix.get();
@@ -156,7 +156,7 @@ namespace tromino::windows {
             | BACKGROUND_BLUE | BACKGROUND_INTENSITY
         );
 
-        solve_tromino_puzzle(tromino_board.order, tromino_board.mark, tromino::windows::add_tromino, &graph_state);
+        trmn_solve_puzzle(tromino_board.order, tromino_board.mark, tromino::windows::add_tromino, &graph_state);
 
         SetConsoleTextAttribute(hConsoleOutput, originalConsoleScreenBufferInfo.wAttributes);
     }

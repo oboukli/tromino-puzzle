@@ -27,7 +27,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #include "tromino.h"
 
-static void solve_tromino(int order, position_t pos, flip_t flip, add_tromino_func add_tromino, void * state) {
+static void solve_tromino(int order, trmn_position_t pos, trmn_flip_t flip, trmn_add_tromino_func add_tromino, void * state) {
     if (2 == order) {
         add_tromino(pos, flip, state);
 
@@ -37,14 +37,14 @@ static void solve_tromino(int order, position_t pos, flip_t flip, add_tromino_fu
     const int n = order >> 1;
     const int o = n >> 1;
 
-    const position_t p = {
+    const trmn_position_t p = {
         .x = flip.x == -1 ? pos.x : pos.x + n,
         .y = flip.y == -1 ? pos.y : pos.y + n,
     };
 
     solve_tromino(
         n,
-        (position_t) {
+        (trmn_position_t){
             .x = p.x - (flip.x * n),
             .y = p.y - (flip.y * n),
         },
@@ -54,23 +54,24 @@ static void solve_tromino(int order, position_t pos, flip_t flip, add_tromino_fu
 
     solve_tromino(
         n,
-        (position_t) {
+        (trmn_position_t){
             .x = p.x - (flip.x * n),
             .y = p.y,
         },
-        (flip_t) {
+        (trmn_flip_t){
             .x = flip.x,
             .y = flip.y * -1,
         },
         add_tromino,
         state);
 
-    solve_tromino(n,
-        (position_t) {
+    solve_tromino(
+        n,
+        (trmn_position_t){
             .x = p.x,
             .y = p.y - (flip.y * n),
         },
-        (flip_t) {
+        (trmn_flip_t){
             .x = flip.x * -1,
             .y = flip.y,
         },
@@ -79,7 +80,7 @@ static void solve_tromino(int order, position_t pos, flip_t flip, add_tromino_fu
 
     solve_tromino(
         n,
-        (position_t) {
+        (trmn_position_t){
             .x = p.x - (flip.x * o),
             .y = p.y - (flip.y * o),
         },
@@ -88,16 +89,16 @@ static void solve_tromino(int order, position_t pos, flip_t flip, add_tromino_fu
         state);
 }
 
-static void solve_board(int order, position_t pos, flip_t flip, position_t mark, add_tromino_func add_tromino, void * state) {
+static void solve_board(int order, trmn_position_t pos, trmn_flip_t flip, trmn_position_t mark, trmn_add_tromino_func add_tromino, void * state) {
     if (order > 2) {
         const int s = order >> 1;
-        const position_t p = {
+        const trmn_position_t p = {
             .x = flip.x == -1 ? pos.x : pos.x + s,
             .y = flip.y == -1 ? pos.y : pos.y + s,
         };
 
         const int ss = s >> 1;
-        const flip_t r = {
+        const trmn_flip_t r = {
             .x = (mark.x - p.x) < ss ? -1 : 1,
             .y = (mark.y - p.y) < ss ? -1 : 1,
         };
@@ -108,17 +109,17 @@ static void solve_board(int order, position_t pos, flip_t flip, position_t mark,
     solve_tromino(order, pos, flip, add_tromino, state);
 }
 
-void solve_tromino_puzzle(int board_order, position_t mark, add_tromino_func add_tromino, void * state) {
+void trmn_solve_puzzle(int board_order, trmn_position_t mark, trmn_add_tromino_func add_tromino, void * state) {
     assert(add_tromino);
 
-    const position_t pos = {
+    const trmn_position_t pos = {
         .x = 0,
         .y = 0,
     };
 
     const int s = board_order >> 1;
 
-    const flip_t flip = {
+    const trmn_flip_t flip = {
         .x = mark.x < s ? -1 : 1,
         .y = mark.y < s ? -1 : 1,
     };
