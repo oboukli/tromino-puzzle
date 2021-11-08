@@ -4,6 +4,7 @@
 [![Azure Pipelines build status](https://dev.azure.com/omarboukli/tromino-puzzle/_apis/build/status/oboukli.tromino-puzzle?branchName=development)](https://dev.azure.com/omarboukli/tromino-puzzle/_build/latest?definitionId=2&branchName=development)
 [![CodeQL](https://github.com/oboukli/tromino-puzzle/actions/workflows/codeql-analysis.yml/badge.svg?branch=development)](https://github.com/oboukli/tromino-puzzle/actions/workflows/codeql-analysis.yml?query=branch%3Adevelopment)
 [![CodeFactor](https://www.codefactor.io/repository/github/oboukli/tromino-puzzle/badge)](https://www.codefactor.io/repository/github/oboukli/tromino-puzzle)
+[![Codacy](https://app.codacy.com/project/badge/Grade/8395b4fbd3b34c72907b0e65fe0b5f35)](https://www.codacy.com/gh/oboukli/tromino-puzzle/dashboard)
 
 This is a C library implementing a divide-and-conquer O(n) algorithm, and a collection of apps, to solve the tromino puzzle, over-engineered for the joy of it.
 
