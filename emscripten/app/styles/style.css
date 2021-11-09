@@ -1,13 +1,12 @@
 body {
-  font-family: Sans-Serif;
-  background-color: floralwhite;
+  font-family: sans-serif;
+  color: #d9933d;
+  background-color: #222;
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    color: #d9933d;
-    background-color: #222;
-  }
+footer {
+  text-align: center;
+  font-size: smaller;
 }
 
 .container {
@@ -52,7 +51,6 @@ body {
 .flex-outer li label,
 .flex-outer li p {
   padding: 8px;
-  font-weight: 300;
 }
 
 .flex-outer > li > label,
@@ -72,10 +70,11 @@ body {
 
 .flex-outer li input:not([type="checkbox"]),
 .flex-outer li textarea {
-  padding: 15px;
+  padding: 8px 16px;
   border: none;
   background: #333;
-  color: goldenrod;
+  color: #d9933d;
+  font-size: medium;
 }
 
 .flex-outer li input[type="range"] {
@@ -87,8 +86,9 @@ body {
   padding: 8px 16px;
   border: none;
   background: #333;
-  color: goldenrod;
+  color: #d9933d;
   border-radius: 2px;
+  font-size: medium;
 }
 
 .flex-outer li div.indicator {
