@@ -22,52 +22,15 @@
   let instancePromise;
   let emModulePromise;
 
-  window.addEventListener("load", () => {
-    instancePromise = initWasmAsync();
-    emModulePromise = initEmscriptenModuleAsync();
-
-    initElements();
-
-    solveButtonElement.addEventListener("click", startSolveAsync, false);
-  });
-
-  function initElements() {
-    trominoImgSrc = "images/tromino.svg"; // TODO: Path
-
-    canvasElement = document.getElementById("boardCanvas");
-    canvasElement.addEventListener("contextmenu", e => {
-      e.preventDefault();
-    });
-
-    context = canvasElement.getContext("2d");
-
-    markXElement = document.getElementById("markX");
-    markYElement = document.getElementById("markY");
-
-    orderIndicatorElement = document.getElementById("orderIndicator");
-    orderElement = document.getElementById("order");
-    orderElement.addEventListener("input", (event) => {
-      const order = calcOrder(parseInt(event.target.value));
-
-      orderIndicatorElement.innerHTML = order;
-
-      setInputValueBounds(order - 1);
-    });
-
-    setInputValueBounds(calcOrder(parseInt(orderElement.value)) - 1);
-
-    solveButtonElement = document.getElementById("solveButton");
-  }
-
   function initWasmAsync() {
     const importObject = {
       env: {
-        'memory': new WebAssembly.Memory({initial: 256, maximum: 256}), // TODO:
+        "memory": new WebAssembly.Memory({initial: 256, maximum: 256}), // TODO:
       }
     };
 
     return WebAssembly.instantiateStreaming(
-      fetch('scripts/tromino-puzzle-alg-wasm.wasm'), // TODO: Path
+      fetch("scripts/tromino-puzzle-alg-wasm.wasm"), // TODO: Path
       importObject
     );
   }
@@ -92,15 +55,15 @@
   }
 
   async function startSolveAsync() {
-    const order = 2 << parseInt(orderElement.value);
-    const mark = { x: parseInt(markXElement.value), y: parseInt(markYElement.value) };
+    const order = 2 << parseInt(orderElement.value, 10);
+    const mark = { x: parseInt(markXElement.value, 10), y: parseInt(markYElement.value, 10) };
 
     const delayBase = 68; // TODO:
 
     const options = {
-      baseColor: "#4E7DA6",
+      baseColor: "#4e7da6",
       altColor: "#012340",
-      markColor: "#8C1B1B"
+      markColor: "#8c1b1b"
     };
 
     const boardPromise = trmnjs.createBoardAsync(context, trominoImgSrc, order, mark, options);
@@ -122,6 +85,43 @@
       placed += 1;
     });
   }
+
+  function initElements() {
+    trominoImgSrc = "images/tromino.svg"; // TODO: Path
+
+    canvasElement = document.getElementById("boardCanvas");
+    canvasElement.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+    });
+
+    context = canvasElement.getContext("2d");
+
+    markXElement = document.getElementById("markX");
+    markYElement = document.getElementById("markY");
+
+    orderIndicatorElement = document.getElementById("orderIndicator");
+    orderElement = document.getElementById("order");
+    orderElement.addEventListener("input", (event) => {
+      const order = calcOrder(parseInt(event.target.value, 10));
+
+      orderIndicatorElement.textContent = order;
+
+      setInputValueBounds(order - 1);
+    });
+
+    setInputValueBounds(calcOrder(parseInt(orderElement.value, 10)) - 1);
+
+    solveButtonElement = document.getElementById("solveButton");
+  }
+
+  window.addEventListener("load", () => {
+    instancePromise = initWasmAsync();
+    emModulePromise = initEmscriptenModuleAsync();
+
+    initElements();
+
+    solveButtonElement.addEventListener("click", startSolveAsync, false);
+  });
 })(window, document, createTrmnPzzlAlgMod, trmnjs);
 
 ;(async function(window, document) {
@@ -130,17 +130,6 @@
   let markYElement;
   let solveButtonElement;
   let module;
-
-  window.addEventListener("load", async () => {
-    module = await createTrmnPzzlGfx2dMod(/* optional default settings */);
-    module.canvas = (function() {
-      return document.getElementById("canvas");
-    })();
-
-    initElements();
-
-    solveButtonElement.addEventListener("click", playTrominoAsync, false);
-  });
 
   function initElements() {
     solveButtonElement = document.getElementById("solveButton");
@@ -158,10 +147,21 @@
   }
 
   async function playTrominoAsync() {
-    const order = calcOrder(parseInt(orderElement.value));
-    const markX = parseInt(markXElement.value);
-    const markY = parseInt(markYElement.value);
+    const order = calcOrder(parseInt(orderElement.value, 10));
+    const markX = parseInt(markXElement.value, 10);
+    const markY = parseInt(markYElement.value, 10);
 
     module._playTromino(order, markX, markY);
   }
+
+  window.addEventListener("load", async () => {
+    module = await createTrmnPzzlGfx2dMod(/* optional default settings */);
+    module.canvas = (function() {
+      return document.getElementById("canvas");
+    })();
+
+    initElements();
+
+    solveButtonElement.addEventListener("click", playTrominoAsync, false);
+  });
 })(window, document);
