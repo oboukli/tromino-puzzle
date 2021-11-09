@@ -20,6 +20,7 @@ TrominoBoardViewModel::TrominoBoardViewModel(const tromino::gfx2d::board_t& boar
     SolutionState solutionState;
     solutionState.progress = 0;
     solutionState.steps = std::make_unique<std::vector<Step>>();
+    _width = squareWidth * board.order;
 }
 
 TrominoBoardViewModel::~TrominoBoardViewModel() {
@@ -27,8 +28,6 @@ TrominoBoardViewModel::~TrominoBoardViewModel() {
 }
 
 void TrominoBoardViewModel::Init() noexcept {
-    int order = this->_board.order; // TODO: ?
-    _width = _squareWidth * order;
     int borderWidth = _squareWidth / 8;
 
     Uint32 render_flags =
@@ -46,7 +45,7 @@ void TrominoBoardViewModel::Init() noexcept {
     SDL_Color color, altColor;
     color = { 78, 125, 166, SDL_ALPHA_OPAQUE };
     altColor = { 1, 35, 64, SDL_ALPHA_OPAQUE };
-    _boardTexture = InitCheckeredBoard(_renderer, _squareWidth, order, color, altColor);
+    _boardTexture = InitCheckeredBoard(_renderer, _squareWidth, _board.order, color, altColor);
 
     color = { 0, 0, 0, SDL_ALPHA_TRANSPARENT };
     _solutionLayerTexture = InitSolutionLayer(_renderer, _width, color);
