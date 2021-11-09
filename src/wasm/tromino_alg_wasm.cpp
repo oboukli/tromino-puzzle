@@ -36,6 +36,7 @@ static void add_tromino(trmn_position_t abspos, trmn_flip_t flip, void * state) 
                 break;
 
             case 1:
+            default:
                 // -1, 1
                 // - +
                 // X |
@@ -46,6 +47,7 @@ static void add_tromino(trmn_position_t abspos, trmn_flip_t flip, void * state) 
             break;
 
         case 1:
+        default:
             switch (flip.y) {
             case -1:
                 // 1, -1
@@ -56,6 +58,7 @@ static void add_tromino(trmn_position_t abspos, trmn_flip_t flip, void * state) 
                 break;
 
             case 1:
+            default:
                 // 1, 1
                 // + -
                 // | X
