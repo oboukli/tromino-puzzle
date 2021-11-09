@@ -1,11 +1,11 @@
 body {
   font-family: Sans-Serif;
-  background-color:floralwhite;
+  background-color: floralwhite;
 }
 
 @media (prefers-color-scheme: dark) {
   body {
-    color: #D9933D;
+    color: #d9933d;
     background-color: #222;
   }
 }
@@ -27,6 +27,7 @@ body {
   width: 100%;
   margin-bottom: 2rem;
 }
+
 .column {
   flex: 50%;
 }
@@ -52,7 +53,6 @@ body {
 .flex-outer li p {
   padding: 8px;
   font-weight: 300;
-  letter-spacing: .09em;
 }
 
 .flex-outer > li > label,
@@ -88,7 +88,6 @@ body {
   border: none;
   background: #333;
   color: goldenrod;
-  letter-spacing: .09em;
   border-radius: 2px;
 }
 
