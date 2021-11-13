@@ -10,34 +10,39 @@
 
 ;var trmnjs = (function() {
   async function createBoardAsync(context, trominoImgSrc, order, mark, options) {
-    order = order || 2;
-    mark = mark || {};
-    options = options || {};
-
-    const renderedWidth = context.canvas.clientWidth;
+    const opts = options || {};
 
     const trominoImg = new Image();
     trominoImg.src = trominoImgSrc;
 
     await trominoImg.decode();
 
-    return {
-      mark: {
-        x: mark.x || 0,
-        y: mark.y || 0,
-      },
+    const board = {
       context,
-      order,
-      numNeededTrominos: ((order * order) - 1) / 3,
-      blockWidth: renderedWidth / order,
-      renderedWidth,
       trominoImg,
       options: {
-        baseColor: options.baseColor || "#fff",
-        altColor: options.altColor || "#000",
-        markColor: options.markColor || "#0f0"
+        baseColor: opts.baseColor || "#fff",
+        altColor: opts.altColor || "#000",
+        markColor: opts.markColor || "#0f0"
       }
     };
+
+    updateBoard(board, order, mark);
+
+    return board;
+  }
+
+  function updateBoard(board, order, mark) {
+    order = order || 2;
+    mark = mark || {};
+
+    board.mark = {
+      x: mark.x || 0,
+      y: mark.y || 0,
+    };
+    board.order = order;
+    board.numTrominos = ((order ** 2) - 1) * 0.3333333333333333;
+    board.blockWidth = board.context.canvas.clientWidth / order;
   }
 
   function drawBoard(board) {
@@ -124,6 +129,7 @@
     drawBoard,
     drawMark,
     drawTromino,
+    updateBoard,
     solveTromino
   };
 })();

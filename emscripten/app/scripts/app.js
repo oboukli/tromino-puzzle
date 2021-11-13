@@ -8,8 +8,14 @@
 
 "use strict";
 
-;(async function(window, document, createTrmnPzzlAlgMod, trmnjs) {
-  let trominoImgSrc;
+(async function (window, document, createTrmnPzzlAlgMod, trmnjs) {
+  const trominoImgSrc = "images/tromino.svg"; // TODO: Path;
+
+  let order = 32;
+  let markX = 0;
+  let markY = 10;
+
+  let puzzleEditorFormElement;
   let canvasElement;
   let orderElement;
   let orderIndicatorElement;
@@ -22,10 +28,15 @@
   let instancePromise;
   let emModulePromise;
 
+  let emModule;
+  let boardViewModel;
+
+  let animationFrameRequestId;
+
   function initWasmAsync() {
     const importObject = {
       env: {
-        "memory": new WebAssembly.Memory({initial: 256, maximum: 256}), // TODO:
+        "memory": new WebAssembly.Memory({ initial: 256, maximum: 256 }), // TODO:
       }
     };
 
@@ -41,6 +52,7 @@
 
   /**
    * @param {number} n
+   * @returns {number}
    */
   function calcOrder(n) {
     return 2 << n;
@@ -54,77 +66,136 @@
     markYElement.max = max;
   }
 
-  async function startSolveAsync() {
-    const order = 2 << parseInt(orderElement.value, 10);
-    const mark = { x: parseInt(markXElement.value, 10), y: parseInt(markYElement.value, 10) };
+  function drawInitial() {
+    trmnjs.drawBoard(boardViewModel);
+    trmnjs.drawMark(boardViewModel);
+  }
+
+  function updateBoard() {
+    cancelAnimationFrame(animationFrameRequestId);
+    animationFrameRequestId = 0;
+
+    orderIndicatorElement.textContent = order;
+
+    setInputValueBounds(order - 1);
+
+    markX = Math.min(markXElement.max, markX);
+    markY = Math.min(markYElement.max, markY);
+
+    markXElement.value = markX;
+    markYElement.value = markY;
+
+    trmnjs.updateBoard(boardViewModel, order, { x: markX, y: markY });
+    drawInitial();
+  }
+
+  function startSolveAsync() {
+    if (animationFrameRequestId !== 0) {
+      cancelAnimationFrame(animationFrameRequestId);
+      animationFrameRequestId = 0;
+      drawInitial();
+    }
 
     const delayBase = 68; // TODO:
+    let drawIndex = 0;
+    let start = 0;
 
+    const numTrominos = boardViewModel.numTrominos;
+    let placed = 0;
+    const solutionModel = new Array(numTrominos);
+
+    function step(timestamp) {
+      if (start === 0) {
+        start = timestamp;
+      }
+      const elapsed = timestamp - start;
+
+      if (drawIndex < numTrominos && elapsed > drawIndex * delayBase) {
+        let { x, y, angle } = solutionModel[drawIndex++];
+        trmnjs.drawTromino(boardViewModel, x, y, angle);
+      }
+
+      if (drawIndex < numTrominos) {
+        animationFrameRequestId = window.requestAnimationFrame(step);
+      }
+    }
+
+    const puzzle = {
+      order,
+      mark: [markX, markY]
+    };
+
+    trmnjs.solveTromino(emModule, puzzle, (/** @type {{ x: number; y: number; }} */ position, /** @type {number} */ angle) => {
+      solutionModel[placed] = { x: position.x, y: position.y, angle };
+      placed += 1;
+    });
+
+    animationFrameRequestId = window.requestAnimationFrame(step);
+  }
+
+  function initElements() {
+    canvasElement = document.getElementById("boardCanvas");
+    markXElement = document.getElementById("markX");
+    markYElement = document.getElementById("markY");
+    orderElement = document.getElementById("order");
+    orderIndicatorElement = document.getElementById("orderIndicator");
+    puzzleEditorFormElement = document.getElementById("puzzleEditorForm");
+    solveButtonElement = document.getElementById("solveButton");
+
+    orderElement.value = Math.log2(order) - 1;
+    orderIndicatorElement.textContent = order.toString();
+    markXElement.value = markX;
+    markYElement.value = markY;
+
+    canvasElement.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+    });
+    context = canvasElement.getContext("2d");
+
+    puzzleEditorFormElement.addEventListener("input", () => {
+      updateBoard();
+    });
+
+    orderElement.addEventListener("input", (event) => {
+      order = calcOrder(parseInt(event.target.value, 10));
+    });
+
+    markXElement.addEventListener("input", (event) => {
+      markX = parseInt(event.target.value, 10);
+    });
+
+    markYElement.addEventListener("input", (event) => {
+      markY = parseInt(event.target.value, 10);
+    });
+  }
+
+  async function initBoard() {
     const options = {
       baseColor: "#4e7da6",
       altColor: "#012340",
       markColor: "#8c1b1b"
     };
 
-    const boardPromise = trmnjs.createBoardAsync(context, trominoImgSrc, order, mark, options);
+    const boardPromise = trmnjs.createBoardAsync(context, trominoImgSrc, order, { x: markX, y: markY }, options);
 
-    const [_, board, emModule] = await Promise.all([instancePromise, boardPromise, emModulePromise]);
-
-    trmnjs.drawBoard(board);
-    trmnjs.drawMark(board);
-
-    const puzzle = {
-      order,
-      mark: [mark.x, mark.y]
-    };
-    let placed = 0;
-    trmnjs.solveTromino(emModule, puzzle, (/** @type {{ x: number; y: number; }} */ position, /** @type {number} */ angle) => {
-
-      // TODO: That's too many calls. Delay at the source?
-      setTimeout(trmnjs.drawTromino, delayBase * placed, board, position.x, position.y , angle);
-      placed += 1;
-    });
+    let _;
+    [_, boardViewModel, emModule] = await Promise.all([instancePromise, boardPromise, emModulePromise]);
   }
 
-  function initElements() {
-    trominoImgSrc = "images/tromino.svg"; // TODO: Path
-
-    canvasElement = document.getElementById("boardCanvas");
-    canvasElement.addEventListener("contextmenu", (e) => {
-      e.preventDefault();
-    });
-
-    context = canvasElement.getContext("2d");
-
-    markXElement = document.getElementById("markX");
-    markYElement = document.getElementById("markY");
-
-    orderIndicatorElement = document.getElementById("orderIndicator");
-    orderElement = document.getElementById("order");
-    orderElement.addEventListener("input", (event) => {
-      const order = calcOrder(parseInt(event.target.value, 10));
-
-      orderIndicatorElement.textContent = order;
-
-      setInputValueBounds(order - 1);
-    });
-
-    setInputValueBounds(calcOrder(parseInt(orderElement.value, 10)) - 1);
-
-    solveButtonElement = document.getElementById("solveButton");
-  }
-
-  window.addEventListener("load", () => {
+  window.addEventListener("load", async () => {
     instancePromise = initWasmAsync();
     emModulePromise = initEmscriptenModuleAsync();
 
     initElements();
+    await initBoard();
+
+    drawInitial();
 
     solveButtonElement.addEventListener("click", startSolveAsync, false);
   });
 })(window, document, createTrmnPzzlAlgMod, trmnjs);
 
-;(async function(window, document) {
+(async function (window, document) {
   let orderElement;
   let markXElement;
   let markYElement;
@@ -141,6 +212,7 @@
 
   /**
    * @param {number} n
+   * @returns {number}
    */
   function calcOrder(n) {
     return 2 << n;
@@ -156,7 +228,7 @@
 
   window.addEventListener("load", async () => {
     module = await createTrmnPzzlGfx2dMod(/* optional default settings */);
-    module.canvas = (function() {
+    module.canvas = (function () {
       return document.getElementById("canvas");
     })();
 
