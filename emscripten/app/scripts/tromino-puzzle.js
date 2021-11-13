@@ -8,9 +8,15 @@
 
 "use strict";
 
-;var trmnjs = (function() {
+var trmnjs = (function() {
+  function updateBoard(board, order, mark) {
+    board.mark = mark;
+    board.order = order;
+    board.numTrominos = ((order ** 2) - 1) * 0.3333333333333333;
+    board.blockWidth = board.context.canvas.clientWidth / order;
+  }
+
   async function createBoardAsync(context, trominoImgSrc, order, mark, options) {
-    const opts = options || {};
 
     const trominoImg = new Image();
     trominoImg.src = trominoImgSrc;
@@ -20,29 +26,12 @@
     const board = {
       context,
       trominoImg,
-      options: {
-        baseColor: opts.baseColor || "#fff",
-        altColor: opts.altColor || "#000",
-        markColor: opts.markColor || "#0f0"
-      }
+      options
     };
 
     updateBoard(board, order, mark);
 
     return board;
-  }
-
-  function updateBoard(board, order, mark) {
-    order = order || 2;
-    mark = mark || {};
-
-    board.mark = {
-      x: mark.x || 0,
-      y: mark.y || 0,
-    };
-    board.order = order;
-    board.numTrominos = ((order ** 2) - 1) * 0.3333333333333333;
-    board.blockWidth = board.context.canvas.clientWidth / order;
   }
 
   function drawBoard(board) {

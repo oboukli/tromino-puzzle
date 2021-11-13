@@ -12,8 +12,8 @@
   const trominoImgSrc = "images/tromino.svg"; // TODO: Path;
 
   let order = 32;
-  let markX = 0;
-  let markY = 10;
+  let markX = 11;
+  let markY = 17;
 
   let puzzleEditorFormElement;
   let canvasElement;
@@ -98,24 +98,22 @@
 
     const delayBase = 68; // TODO:
     let drawIndex = 0;
-    let start = 0;
+    let start = performance.now();
 
     const numTrominos = boardViewModel.numTrominos;
     let placed = 0;
     const solutionModel = new Array(numTrominos);
 
     function step(timestamp) {
-      if (start === 0) {
-        start = timestamp;
-      }
       const elapsed = timestamp - start;
 
-      if (drawIndex < numTrominos && elapsed > drawIndex * delayBase) {
-        let { x, y, angle } = solutionModel[drawIndex++];
-        trmnjs.drawTromino(boardViewModel, x, y, angle);
-      }
-
       if (drawIndex < numTrominos) {
+        if (elapsed > drawIndex * delayBase) {
+          let { x, y, angle } = solutionModel[drawIndex];
+          drawIndex += 1;
+          trmnjs.drawTromino(boardViewModel, x, y, angle);
+        }
+
         animationFrameRequestId = window.requestAnimationFrame(step);
       }
     }
@@ -142,10 +140,17 @@
     puzzleEditorFormElement = document.getElementById("puzzleEditorForm");
     solveButtonElement = document.getElementById("solveButton");
 
-    orderElement.value = Math.log2(order) - 1;
+    orderElement.min = "0";
+    orderElement.max = "8";
+    orderElement.value = (Math.log2(order) - 1).toString();
+
     orderIndicatorElement.textContent = order.toString();
-    markXElement.value = markX;
-    markYElement.value = markY;
+
+    markXElement.value = markX.toString();
+    markXElement.min = "0";
+
+    markYElement.value = markY.toString();
+    markYElement.min = "0";
 
     canvasElement.addEventListener("contextmenu", (e) => {
       e.preventDefault();
