@@ -9,6 +9,7 @@
 "use strict";
 
 (async function (window, document, createTrmnPzzlAlgMod, trmnjs) {
+  const delayBase = 68; // TODO:
   const trominoImgSrc = "images/tromino.svg"; // TODO: Path;
 
   let order = 32;
@@ -96,21 +97,22 @@
       drawInitial();
     }
 
-    const delayBase = 68; // TODO:
-    let drawIndex = 0;
+    let stepIdx = 0;
     let start = performance.now();
 
     const numTrominos = boardViewModel.numTrominos;
-    let placed = 0;
-    const solutionModel = new Array(numTrominos);
+    const trominos = new Array(numTrominos);
+    const trominosIterator = trominos[Symbol.iterator]();
 
+    /**
+     * @param {number} timestamp
+     */
     function step(timestamp) {
       const elapsed = timestamp - start;
-
-      if (drawIndex < numTrominos) {
-        if (elapsed > drawIndex * delayBase) {
-          let { x, y, angle } = solutionModel[drawIndex];
-          drawIndex += 1;
+      if (stepIdx < numTrominos) {
+        if (elapsed > stepIdx * delayBase) {
+          stepIdx += 1;
+          let { x, y, angle } = trominosIterator.next().value;
           trmnjs.drawTromino(boardViewModel, x, y, angle);
         }
 
@@ -122,10 +124,11 @@
       order,
       mark: [markX, markY]
     };
+    let placedIdx = 0;
 
     trmnjs.solveTromino(emModule, puzzle, (/** @type {{ x: number; y: number; }} */ position, /** @type {number} */ angle) => {
-      solutionModel[placed] = { x: position.x, y: position.y, angle };
-      placed += 1;
+      trominos[placedIdx] = { x: position.x, y: position.y, angle };
+      placedIdx += 1;
     });
 
     animationFrameRequestId = window.requestAnimationFrame(step);
