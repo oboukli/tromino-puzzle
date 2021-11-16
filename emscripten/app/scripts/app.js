@@ -36,7 +36,7 @@
   function initWasmAsync() {
     const importObject = {
       env: {
-        "memory": new WebAssembly.Memory({ initial: 256, maximum: 256 }), // TODO:
+        "memory": new WebAssembly.Memory({ initial: 1, maximum: 1 })
       }
     };
 
