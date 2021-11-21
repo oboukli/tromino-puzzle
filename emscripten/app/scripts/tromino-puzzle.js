@@ -67,7 +67,7 @@ var trmnjs = (function() {
     context.beginPath();
     for (var i = 0; i < order; ++i) {
       for (var j = 0, col = order >> 1; j < col; ++j) {
-        context.rect(2 * j * blockWidth + (i % 2 ? 0 : blockWidth), i * blockWidth, blockWidth, blockWidth);
+        context.rect(2 * j * blockWidth + ((i & 1) === 1 ? 0 : blockWidth), i * blockWidth, blockWidth, blockWidth);
       }
     }
     context.closePath();
