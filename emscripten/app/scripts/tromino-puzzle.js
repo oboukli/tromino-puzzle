@@ -27,32 +27,55 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 "use strict";
 
-var trmnjs = (function() {
-  function updateBoard(board, order, mark) {
-    board.mark = mark;
-    board.order = order;
-    board.numTrominos = ((order ** 2) - 1) * 0.3333333333333333;
-    board.blockWidth = board.context.canvas.clientWidth / order;
-  }
+var trmnjs = (function () {
+  /**
+   * @typedef {object} Mark
+   * @property {number} x
+   * @property {number} y
+   */
 
-  async function createBoardAsync(context, trominoImgSrc, order, mark, options) {
+  /**
+   * @typedef {object} Options
+   * @property {string} altColor
+   * @property {string} baseColor
+   * @property {string} markColor
+   */
 
-    const trominoImg = new Image();
-    trominoImg.src = trominoImgSrc;
+  /**
+   * @typedef {object} Board
+   * @property {CanvasRenderingContext2D} context
+   * @property {HTMLImageElement} trominoImg
+   * @property {Options} options
+   * @property {number} order
+   * @property {Mark} mark
+   * @property {number} numTrominos
+   * @property {number} blockWidth
+   */
 
-    await trominoImg.decode();
-
-    const board = {
+  /**
+   * @param {CanvasRenderingContext2D} context
+   * @param {HTMLImageElement} trominoImg
+   * @param {number} order
+   * @param {Mark} mark
+   * @param {Options} options
+   * @returns {Board}
+  */
+  function createBoard(context, trominoImg, order, mark, options) {
+    return {
       context,
       trominoImg,
-      options
+      order,
+      mark,
+      options,
+      numTrominos: ((order ** 2) - 1) * 0.3333333333333333,
+      blockWidth: context.canvas.clientWidth / order
     };
-
-    updateBoard(board, order, mark);
-
-    return board;
   }
 
+  /**
+   * @param {Board} board
+   * @returns {void}
+   */
   function drawBoard(board) {
     const context = board.context;
     const order = board.order;
@@ -76,6 +99,10 @@ var trmnjs = (function() {
     context.fill();
   }
 
+  /**
+   * @param {object} board
+   * @returns {void}
+   */
   function drawMark(board) {
     const context = board.context;
     const x = board.mark.x;
@@ -87,57 +114,31 @@ var trmnjs = (function() {
     context.fillRect(x * blockWidth, y * blockWidth, blockWidth, blockWidth);
   }
 
+  /**
+   * @param {Board} board
+   * @param {number} x
+   * @param {number} y
+   * @param {number} angle
+   * @returns {void}
+   */
   function drawTromino(board, x, y, angle) {
     const context = board.context;
     const trominoImg = board.trominoImg;
     const blockWidth = board.blockWidth;
-    const rx = ((x * blockWidth)+ blockWidth);
+    const rx = ((x * blockWidth) + blockWidth);
     const ry = ((y * blockWidth) + blockWidth);
 
     context.translate(rx, ry);
     context.rotate(angle);
-    context.drawImage(trominoImg, -blockWidth, -blockWidth, blockWidth * 2 , blockWidth * 2);
+    context.drawImage(trominoImg, -blockWidth, -blockWidth, blockWidth * 2, blockWidth * 2);
     context.rotate(-angle);
     context.translate(-rx, -ry);
   }
 
-  function solveTromino(emModule, puzzle, cb) {
-    const mark = new Uint8Array(new Int32Array(puzzle.mark).buffer);
-
-    let stackPtr = emModule.stackSave();
-
-    let markPtr = emModule.allocate(mark, emModule.ALLOC_STACK);
-
-    let funcPtr = emModule.addFunction(function (positionPtr, angle) {
-
-      const position = {
-        x: emModule.getValue(positionPtr, "i32"),
-        y: emModule.getValue(positionPtr + 4, "i32")
-      };
-
-      cb(position, angle);
-    }, "vid");
-
-    emModule.ccall(
-      "solve",
-      "void",
-      ["number", "number", "number", "number"],
-      [puzzle.order, markPtr, funcPtr]
-    );
-
-    emModule.removeFunction(funcPtr);
-    funcPtr = 0;
-
-    emModule.stackRestore(stackPtr);
-    stackPtr = 0;
-  }
-
   return {
-    createBoardAsync,
+    createBoard,
     drawBoard,
     drawMark,
-    drawTromino,
-    updateBoard,
-    solveTromino
+    drawTromino
   };
 })();

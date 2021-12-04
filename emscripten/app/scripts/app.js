@@ -27,7 +27,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 "use strict";
 
-(async function (window, document, createTrmnPzzlAlgMod, trmnjs) {
+(async function (window, document, trmnjs) {
+  /**
+   * @typedef {object} Tromino
+   * @property {number} x
+   * @property {number} y
+   * @property {number} angle
+   */
+
   const delayBase = 68; // TODO:
   const trominoImgSrc = "images/tromino.svg"; // TODO: Path;
 
@@ -44,31 +51,16 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   let solveButtonElement;
 
   let context;
-
-  let instancePromise;
-  let emModulePromise;
-
-  let emModule;
-  let boardViewModel;
-
+  let solverWebWorker;
   let animationFrameRequestId;
+  let trominoImg;
 
-  function initWasmAsync() {
-    const importObject = {
-      env: {
-        "memory": new WebAssembly.Memory({ initial: 1, maximum: 1 })
-      }
-    };
+  let options;
+  let boardModel;
+  let trominos;
 
-    return WebAssembly.instantiateStreaming(
-      fetch("scripts/tromino-puzzle-alg-wasm.wasm"), // TODO: Path
-      importObject
-    );
-  }
-
-  async function initEmscriptenModuleAsync() {
-    return await createTrmnPzzlAlgMod(/* optional default settings */);
-  }
+  let stepIdx;
+  let start;
 
   /**
    * @param {number} n
@@ -79,80 +71,92 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   }
 
   /**
+   * @param {Tromino} tromino
+   * @returns {void}
+   */
+  function handleSolverMessage(tromino) {
+    trominos.push(tromino);
+  }
+
+  /**
+   * @returns {void}
+   */
+  function drawNewPuzzle() {
+    boardModel = trmnjs.createBoard(context, trominoImg, order, { x: markX, y: markY }, options);
+    trmnjs.drawBoard(boardModel);
+    trmnjs.drawMark(boardModel);
+  }
+
+  /**
    * @param {number} max
    */
   function setInputValueBounds(max) {
-    markXElement.max = max;
-    markYElement.max = max;
+    markXElement.max = max.toString();
+    markYElement.max = max.toString();
   }
 
-  function drawInitial() {
-    trmnjs.drawBoard(boardViewModel);
-    trmnjs.drawMark(boardViewModel);
-  }
-
-  function updateBoard() {
+  /**
+   * @returns {void}
+   */
+  function changePuzzle() {
     cancelAnimationFrame(animationFrameRequestId);
-    animationFrameRequestId = 0;
+    initSolver();
 
-    orderIndicatorElement.textContent = order;
+    orderIndicatorElement.textContent = order.toString();
 
     setInputValueBounds(order - 1);
 
-    markX = Math.min(markXElement.max, markX);
-    markY = Math.min(markYElement.max, markY);
+    markX = Math.min(parseInt(markXElement.max, 10), markX);
+    markY = Math.min(parseInt(markYElement.max, 10), markY);
 
-    markXElement.value = markX;
-    markYElement.value = markY;
+    markXElement.value = markX.toString();
+    markYElement.value = markY.toString();
 
-    trmnjs.updateBoard(boardViewModel, order, { x: markX, y: markY });
-    drawInitial();
+    boardModel = trmnjs.createBoard(context, trominoImg, order, { x: markX, y: markY }, options);
+
+    drawNewPuzzle();
   }
 
-  function startSolveAsync() {
-    if (animationFrameRequestId !== 0) {
-      cancelAnimationFrame(animationFrameRequestId);
-      animationFrameRequestId = 0;
-      drawInitial();
-    }
-
-    let stepIdx = 0;
-    let start = performance.now();
-
-    const numTrominos = boardViewModel.numTrominos;
-    const trominos = new Array(numTrominos);
-    const trominosIterator = trominos[Symbol.iterator]();
-
-    /**
-     * @param {number} timestamp
-     */
-    function step(timestamp) {
-      const elapsed = timestamp - start;
-      if (stepIdx < numTrominos) {
-        if (elapsed > stepIdx * delayBase) {
-          stepIdx += 1;
-          let { x, y, angle } = trominosIterator.next().value;
-          trmnjs.drawTromino(boardViewModel, x, y, angle);
-        }
-
-        animationFrameRequestId = window.requestAnimationFrame(step);
+  /**
+   * @param {number} timestamp
+   * @returns {void}
+   */
+  function step(timestamp) {
+    const elapsed = timestamp - start;
+    if (Array.isArray(trominos) && trominos.length > 0) {
+      if (elapsed > stepIdx * delayBase) {
+        stepIdx += 1;
+        let { x, y, angle } = trominos.shift();
+        trmnjs.drawTromino(boardModel, x, y, angle);
       }
     }
-
-    const puzzle = {
-      order,
-      mark: [markX, markY]
-    };
-    let placedIdx = 0;
-
-    trmnjs.solveTromino(emModule, puzzle, (/** @type {{ x: number; y: number; }} */ position, /** @type {number} */ angle) => {
-      trominos[placedIdx] = { x: position.x, y: position.y, angle };
-      placedIdx += 1;
-    });
 
     animationFrameRequestId = window.requestAnimationFrame(step);
   }
 
+  /**
+   * @returns {void}
+   */
+  function startSolveAsync() {
+    if (animationFrameRequestId !== 0) {
+      cancelAnimationFrame(animationFrameRequestId);
+      animationFrameRequestId = 0;
+      drawNewPuzzle();
+    }
+
+    trominos = new Array();
+
+    stepIdx = 0;
+    start = performance.now();
+
+    solverWebWorker.postMessage({ cmd: "solve", payload: { order, mark: [markX, markY] } });
+
+    animationFrameRequestId = window.requestAnimationFrame(step);
+  }
+
+  /**
+   * @returns {void}
+   */
   function initElements() {
     canvasElement = document.getElementById("boardCanvas");
     markXElement = document.getElementById("markX");
@@ -180,7 +184,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     context = canvasElement.getContext("2d");
 
     puzzleEditorFormElement.addEventListener("input", () => {
-      updateBoard();
+      changePuzzle();
     });
 
     orderElement.addEventListener("input", (event) => {
@@ -196,31 +200,59 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     });
   }
 
-  async function initBoard() {
-    const options = {
+  /**
+   * @returns {Promise}
+   */
+  function initResourcesAsync() {
+    trominoImg = new Image();
+    trominoImg.src = trominoImgSrc;
+
+    return trominoImg.decode();
+  }
+
+  /**
+   * @returns {void}
+   */
+  function initSolver() {
+    if (solverWebWorker) {
+      solverWebWorker.terminate();
+    }
+
+    solverWebWorker = new Worker("scripts/solver.js");
+
+    solverWebWorker.addEventListener("message", (e) => {
+      handleSolverMessage(e.data);
+    }, false);
+  }
+
+  /**
+   * @returns {void}
+   */
+  function initOptions() {
+    options = {
       baseColor: "#4e7da6",
       altColor: "#012340",
       markColor: "#8c1b1b"
     };
+  }
 
-    const boardPromise = trmnjs.createBoardAsync(context, trominoImgSrc, order, { x: markX, y: markY }, options);
+  /**
+   * @returns {Promise}
+   */
+  async function initAppAsync() {
+    initElements();
+    initSolver();
+    initOptions();
+    await initResourcesAsync();
 
-    let _;
-    [_, boardViewModel, emModule] = await Promise.all([instancePromise, boardPromise, emModulePromise]);
+    solveButtonElement.disabled = false;
+    solveButtonElement.addEventListener("click", startSolveAsync, false);
   }
 
   window.addEventListener("load", async () => {
-    instancePromise = initWasmAsync();
-    emModulePromise = initEmscriptenModuleAsync();
-
-    initElements();
-    await initBoard();
-
-    drawInitial();
-
-    solveButtonElement.addEventListener("click", startSolveAsync, false);
+    await initAppAsync();
   });
-})(window, document, createTrmnPzzlAlgMod, trmnjs);
+})(window, document, trmnjs);
 
 (async function (window, document) {
   let orderElement;
@@ -229,6 +261,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   let solveButtonElement;
   let module;
 
+  /**
+   * @returns {void}
+   */
   function initElements() {
     solveButtonElement = document.getElementById("solveButton");
 
@@ -245,6 +280,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     return 2 << n;
   }
 
+  /**
+   * @returns {Promise}
+   */
   async function playTrominoAsync() {
     const order = calcOrder(parseInt(orderElement.value, 10));
     const markX = parseInt(markXElement.value, 10);
