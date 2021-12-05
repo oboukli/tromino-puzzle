@@ -26,15 +26,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // @ts-check
 
 /**
- * @typedef {object} Mark
- * @property {number} x
- * @property {number} y
- */
-
-/**
  * @typedef {object} TrominoPuzzle
  * @property {number} order
- * @property {Mark} mark
+ * @property {number} markX
+ * @property {number} markY
  */
 
 "use strict";
@@ -50,12 +45,13 @@ importScripts('tromino-puzzle-alg-wasm.js');
  *
  * @param {object} emModule
  * @param {number} order
- * @param {Mark} mark
+ * @param {number} markX
+ * @param {number} markY
  * @param {function} cb
  * @returns {void}
  */
-function solveTromino(emModule, order, mark, cb) {
-  const markArr = new Uint8Array(new Int32Array(mark).buffer); // TODO:
+function solveTromino(emModule, order, markX, markY, cb) {
+  const markArr = new Uint8Array(new Int32Array([markX, markY]).buffer);
 
   let stackPtr = emModule.stackSave();
 
@@ -89,7 +85,7 @@ function solveTromino(emModule, order, mark, cb) {
  */
 function initWasmAsync() {
   return WebAssembly.instantiateStreaming(
-    fetch("tromino-puzzle-alg-wasm.wasm"), // TODO: Path
+    fetch("tromino-puzzle-alg-wasm.wasm"),
     {
       env: {
         "memory": new WebAssembly.Memory({ initial: 1, maximum: 1 })
@@ -109,7 +105,7 @@ async function initEmscriptenModuleAsync() {
  * @param {TrominoPuzzle}
  * @returns {Promise}
  */
-async function handleSolveAsync({ order, mark }) {
+async function handleSolveAsync({ order, markX, markY }) {
   if (!_isSolverReady) {
     const [_, emModule] = await Promise.all([instancePromise, emModulePromise]);
     self._emModule = emModule;
@@ -119,7 +115,8 @@ async function handleSolveAsync({ order, mark }) {
   solveTromino(
     self._emModule,
     order,
-    mark,
+    markX,
+    markY,
     (/** @type {{ x: number; y: number; }} */ position, /** @type {number} */ angle) => {
       self.postMessage({ x: position.x, y: position.y, angle });
     }

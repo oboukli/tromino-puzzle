@@ -149,7 +149,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     stepIdx = 0;
     start = performance.now();
 
-    solverWebWorker.postMessage({ cmd: "solve", payload: { order, mark: [markX, markY] } });
+    solverWebWorker.postMessage({ cmd: "solve", payload: { order, markX, markY } });
 
     animationFrameRequestId = window.requestAnimationFrame(step);
   }
