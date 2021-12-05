@@ -27,7 +27,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 "use strict";
 
-(async function (window, document, trmnjs) {
+(async function (window, document, ltrGfx) {
   /**
    * @typedef {object} Tromino
    * @property {number} x
@@ -35,8 +35,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    * @property {number} angle
    */
 
-  const delayBase = 68; // TODO:
-  const trominoImgSrc = "images/tromino.svg"; // TODO: Path;
+  const delayBase = 68;
+  const trominoImgSrc = "images/tromino.svg";
 
   let order = 32;
   let markX = 11;
@@ -82,9 +82,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    * @returns {void}
    */
   function drawNewPuzzle() {
-    boardModel = trmnjs.createBoard(context, trominoImg, order, { x: markX, y: markY }, options);
-    trmnjs.drawBoard(boardModel);
-    trmnjs.drawMark(boardModel);
+    boardModel = ltrGfx.createBoard(context, trominoImg, order, { x: markX, y: markY }, options);
+    ltrGfx.drawBoard(boardModel);
+    ltrGfx.drawMark(boardModel);
   }
 
   /**
@@ -93,6 +93,21 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   function setInputValueBounds(max) {
     markXElement.max = max.toString();
     markYElement.max = max.toString();
+  }
+
+  /**
+   * @returns {void}
+   */
+  function initSolver() {
+    if (solverWebWorker) {
+      solverWebWorker.terminate();
+    }
+
+    solverWebWorker = new Worker("scripts/litro/worker.js");
+
+    solverWebWorker.addEventListener("message", (e) => {
+      handleSolverMessage(e.data);
+    }, false);
   }
 
   /**
@@ -112,7 +127,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     markXElement.value = markX.toString();
     markYElement.value = markY.toString();
 
-    boardModel = trmnjs.createBoard(context, trominoImg, order, { x: markX, y: markY }, options);
+    boardModel = ltrGfx.createBoard(context, trominoImg, order, { x: markX, y: markY }, options);
 
     drawNewPuzzle();
   }
@@ -127,7 +142,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       if (elapsed > stepIdx * delayBase) {
         stepIdx += 1;
         let { x, y, angle } = trominos.shift();
-        trmnjs.drawTromino(boardModel, x, y, angle);
+        ltrGfx.drawTromino(boardModel, x, y, angle);
       }
     }
 
@@ -213,21 +228,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   /**
    * @returns {void}
    */
-  function initSolver() {
-    if (solverWebWorker) {
-      solverWebWorker.terminate();
-    }
-
-    solverWebWorker = new Worker("scripts/solver.js");
-
-    solverWebWorker.addEventListener("message", (e) => {
-      handleSolverMessage(e.data);
-    }, false);
-  }
-
-  /**
-   * @returns {void}
-   */
   function initOptions() {
     options = {
       baseColor: "#4e7da6",
@@ -252,7 +252,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   window.addEventListener("load", async () => {
     await initAppAsync();
   });
-})(window, document, trmnjs);
+}(window, document, ltrGfx));
 
 (async function (window, document) {
   let orderElement;
@@ -292,13 +292,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   }
 
   window.addEventListener("load", async () => {
-    module = await createTrmnPzzlGfx2dMod(/* optional default settings */);
+    module = await createTrmnMod(/* optional default settings */);
     module.canvas = (function () {
       return document.getElementById("canvas");
-    })();
+    }());
 
     initElements();
 
     solveButtonElement.addEventListener("click", playTrominoAsync, false);
   });
-})(window, document);
+}(window, document));

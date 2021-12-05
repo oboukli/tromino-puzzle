@@ -27,7 +27,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 "use strict";
 
-var trmnjs = (function () {
+var ltrGfx = (function () {
   /**
    * @typedef {object} Mark
    * @property {number} x
@@ -81,7 +81,6 @@ var trmnjs = (function () {
     const order = board.order;
     const blockWidth = board.blockWidth;
     const options = board.options;
-
     const canvasSize = context.canvas.clientWidth;
 
     context.fillStyle = options.baseColor;
@@ -141,4 +140,4 @@ var trmnjs = (function () {
     drawMark,
     drawTromino
   };
-})();
+}());

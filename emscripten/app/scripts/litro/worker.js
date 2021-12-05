@@ -39,7 +39,7 @@ var _emModule;
 var instancePromise;
 var emModulePromise;
 
-importScripts('tromino-puzzle-alg-wasm.js');
+importScripts("litro-wasm.js");
 
 /**
  *
@@ -85,7 +85,7 @@ function solveTromino(emModule, order, markX, markY, cb) {
  */
 function initWasmAsync() {
   return WebAssembly.instantiateStreaming(
-    fetch("tromino-puzzle-alg-wasm.wasm"),
+    fetch("litro-wasm.wasm"),
     {
       env: {
         "memory": new WebAssembly.Memory({ initial: 1, maximum: 1 })
@@ -98,11 +98,11 @@ function initWasmAsync() {
  * @returns {Promise<object>}
  */
 async function initEmscriptenModuleAsync() {
-  return await createTrmnPzzlAlgMod(/* optional default settings */);
+  return await createLitroMod(/* optional default settings */);
 }
 
 /**
- * @param {TrominoPuzzle}
+ * @param {TrominoPuzzle} tromino
  * @returns {Promise}
  */
 async function handleSolveAsync({ order, markX, markY }) {
@@ -110,7 +110,7 @@ async function handleSolveAsync({ order, markX, markY }) {
     const [_, emModule] = await Promise.all([instancePromise, emModulePromise]);
     self._emModule = emModule;
     _isSolverReady = true;
-  };
+  }
 
   solveTromino(
     self._emModule,
@@ -124,8 +124,8 @@ async function handleSolveAsync({ order, markX, markY }) {
 }
 
 /**
- * @param {string} cmd
- * @param {any} payload
+ * @param {"solve"} cmd
+ * @param {TrominoPuzzle} payload
  * @returns {Promise}
  */
 async function handleCommandAsync(cmd, payload) {
@@ -133,13 +133,6 @@ async function handleCommandAsync(cmd, payload) {
     case "solve":
       handleSolveAsync(payload);
       break;
-
-    case "stop":
-      self.close();
-      break;
-
-    default:
-      self.postMessage({ error: "Unknown command" });
   }
 }
 

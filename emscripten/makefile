@@ -1,5 +1,5 @@
-TARGET_ALG ::= tromino-puzzle-alg-wasm.js
-TARGET_GFX2D ::= tromino-puzzle-gfx2d-wasm.js
+TARGET_LITRO ::= litro-wasm.js
+TARGET_TRMN ::= trmn-wasm.js
 
 CFLAGS ::= -std=c11 -flto -Wall -Werror -O3 -DNDEBUG
 CXXFLAGS ::= -std=c++17 -flto -fno-rtti -fno-exceptions -Wall -Werror -O3 -DNDEBUG
@@ -8,6 +8,9 @@ SRC_DIR ::= ../src
 OBJ_DIR ::= ../obj/web
 OUT_DIR ::= ../dist/web/scripts
 WEB_DIR ::= ../dist/web
+
+LITRO_DIR_NAME ::= litro
+TRMN_DIR_NAME ::= trmn
 
 GFX2D_DIR ::= $(SRC_DIR)/gfx2d
 
@@ -29,13 +32,15 @@ else
 	RM ::= rm -f
 endif
 
-all: directories webapp $(TARGET_ALG) $(TARGET_GFX2D)
+all: directories webapp $(TARGET_LITRO) $(TARGET_TRMN)
 	@echo "Successfully built."
 
 directories:
 	$(MKDIR) $(OUT_DIR)
+	$(MKDIR) $(OUT_DIR)/$(LITRO_DIR_NAME)
+	$(MKDIR) $(OUT_DIR)/$(TRMN_DIR_NAME)
 
-$(TARGET_ALG): $(OBJ_DIR)/lib/tromino.o $(OBJ_DIR)/wasm/tromino_alg_wasm.o
+$(TARGET_LITRO): $(OBJ_DIR)/lib/tromino.o $(OBJ_DIR)/wasm/tromino_alg_wasm.o
 	$(CXX) $(CXXFLAGS) \
 	--closure 1 \
 	--no-entry \
@@ -53,7 +58,7 @@ $(TARGET_ALG): $(OBJ_DIR)/lib/tromino.o $(OBJ_DIR)/wasm/tromino_alg_wasm.o
 	-s LLD_REPORT_UNDEFINED=1 \
 	-s MINIFY_HTML=1 \
 	-s MINIMAL_RUNTIME=0 \
-	-s MODULARIZE=1 -s 'EXPORT_NAME="createTrmnPzzlAlgMod"' \
+	-s MODULARIZE=1 -s 'EXPORT_NAME="createLitroMod"' \
 	-s NO_EXIT_RUNTIME=1 \
 	-s SAFE_HEAP_LOG=0 \
 	-s SAFE_HEAP=0 \
@@ -63,9 +68,9 @@ $(TARGET_ALG): $(OBJ_DIR)/lib/tromino.o $(OBJ_DIR)/wasm/tromino_alg_wasm.o
 	-s TOTAL_STACK=32KB \
 	-s USE_CLOSURE_COMPILER=1 \
 	-s WASM=1 \
-	-o $(OUT_DIR)/$@ $^
+	-o $(OUT_DIR)/$(LITRO_DIR_NAME)/$@ $^
 
-$(TARGET_GFX2D): $(OBJ_DIR)/lib/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/gfx2dfe/init.o $(OBJ_DIR)/wasm/tromino_gfx2d_wasm.o
+$(TARGET_TRMN): $(OBJ_DIR)/lib/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/gfx2dfe/init.o $(OBJ_DIR)/wasm/tromino_gfx2d_wasm.o
 	$(CXX) $(CXXFLAGS) \
 	--closure 1 \
 	--no-entry \
@@ -83,7 +88,7 @@ $(TARGET_GFX2D): $(OBJ_DIR)/lib/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/gfx2dfe/init.
 	-s LLD_REPORT_UNDEFINED=1 \
 	-s MINIFY_HTML=1 \
 	-s MINIMAL_RUNTIME=0 \
-	-s MODULARIZE=1 -s 'EXPORT_NAME="createTrmnPzzlGfx2dMod"' \
+	-s MODULARIZE=1 -s 'EXPORT_NAME="createTrmnMod"' \
 	-s NO_EXIT_RUNTIME=1 \
 	-s SAFE_HEAP_LOG=0 \
 	-s SAFE_HEAP=0 \
@@ -94,7 +99,7 @@ $(TARGET_GFX2D): $(OBJ_DIR)/lib/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/gfx2dfe/init.
 	-s USE_SDL=2 \
 	-s WASM=1 \
 	-lGL \
-	-o $(OUT_DIR)/$@ $^
+	-o $(OUT_DIR)/$(TRMN_DIR_NAME)/$@ $^
 
 $(OBJ_DIR)/lib/tromino.o: $(SRC_DIR)/lib/tromino.c
 	@mkdir -p $(dir $@)
@@ -149,10 +154,11 @@ clean:
 	$(OBJ_DIR)/lib/*.o \
 	$(OBJ_DIR)/wasm/*.o \
 	$(OUT_DIR)/app.js \
-	$(OUT_DIR)/index.html \
-	$(OUT_DIR)/tromino-puzzle.js \
-	$(OUT_DIR)/tromino-puzzle-alg-wasm.js \
-	$(OUT_DIR)/tromino-puzzle-alg-wasm.wasm \
-	$(OUT_DIR)/tromino-puzzle-gfx2d-wasm.js \
-	$(OUT_DIR)/tromino-puzzle-gfx2d-wasm.wasm
+	$(OUT_DIR)/$(LITRO_DIR_NAME)/gfx.js \
+	$(OUT_DIR)/$(LITRO_DIR_NAME)/worker.js \
+	$(OUT_DIR)/$(LITRO_DIR_NAME)/litro-wasm.js \
+	$(OUT_DIR)/$(LITRO_DIR_NAME)/litro-wasm.wasm \
+	$(OUT_DIR)/$(TRMN_DIR_NAME)/trmn-wasm.js \
+	$(OUT_DIR)/$(TRMN_DIR_NAME)/trmn-wasm.wasm \
+	$(WEB_DIR)/index.html
 	@echo "Done cleaning."
