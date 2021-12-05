@@ -43,11 +43,19 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   let markY = 17;
 
   let puzzleEditorFormElement;
+
+  /** @type {HTMLCanvasElement} */
   let canvasElement;
+
+  /** @type {HTMLInputElement} */
   let orderElement;
+  /** @type {HTMLInputElement} */
   let orderIndicatorElement;
+  /** @type {HTMLInputElement} */
   let markXElement;
+  /** @type {HTMLInputElement} */
   let markYElement;
+
   let solveButtonElement;
 
   let context;
@@ -252,9 +260,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   window.addEventListener("load", async () => {
     await initAppAsync();
   });
-}(window, document, ltrGfx));
+}(window, document, /* global ltrGfx */ ltrGfx));
 
-(async function (window, document) {
+(async function (window, document, createTrmnMod) {
   let orderElement;
   let markXElement;
   let markYElement;
@@ -301,4 +309,4 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     solveButtonElement.addEventListener("click", playTrominoAsync, false);
   });
-}(window, document));
+}(window, document, /* global createTrmnMod */ createTrmnMod));

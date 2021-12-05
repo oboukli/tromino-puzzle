@@ -98,6 +98,7 @@ function initWasmAsync() {
  * @returns {Promise<object>}
  */
 async function initEmscriptenModuleAsync() {
+  /* global createLitroMod */
   return await createLitroMod(/* optional default settings */);
 }
 
