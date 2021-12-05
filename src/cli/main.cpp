@@ -18,10 +18,12 @@ int main(int argc, const char* argv[]) {
     if (REQUIRED_ARG_COUNT > argc) {
         std::cout
             << "Usage: tromino <order> <x> <y>"
+            << std::endl
 #ifdef _WINDOWS
             << " [options]" << std::endl
             << "  --use-wch    Use legacy Windows Console Host" << std::endl
 #endif // _WINDOWS
+            << "Copyright (c) 2021 Omar Boukli-Hacene. All rights reserved."
             << std::endl;
 
         return EXIT_FAILURE;
