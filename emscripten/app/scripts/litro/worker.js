@@ -39,46 +39,7 @@ var _emModule;
 var instancePromise;
 var emModulePromise;
 
-importScripts("litro-wasm.js");
-
-/**
- *
- * @param {object} emModule
- * @param {number} order
- * @param {number} markX
- * @param {number} markY
- * @param {function} cb
- * @returns {void}
- */
-function solveTromino(emModule, order, markX, markY, cb) {
-  const markArr = new Uint8Array(new Int32Array([markX, markY]).buffer);
-
-  let stackPtr = emModule.stackSave();
-
-  let markPtr = emModule.allocate(markArr, emModule.ALLOC_STACK);
-
-  let funcPtr = emModule.addFunction(function (positionPtr, angle) {
-    const position = {
-      x: emModule.getValue(positionPtr, "i32"),
-      y: emModule.getValue(positionPtr + 4, "i32")
-    };
-
-    cb(position, angle);
-  }, "vid");
-
-  emModule.ccall(
-    "solve",
-    "void",
-    ["number", "number", "number", "number"],
-    [order, markPtr, funcPtr]
-  );
-
-  emModule.removeFunction(funcPtr);
-  funcPtr = 0;
-
-  emModule.stackRestore(stackPtr);
-  stackPtr = 0;
-}
+importScripts("litro-wasm.js", "wrapper.js");
 
 /**
  * @returns {Promise}
@@ -113,6 +74,7 @@ async function handleSolveAsync({ order, markX, markY }) {
     _isSolverReady = true;
   }
 
+  /* global solveTromino */
   solveTromino(
     self._emModule,
     order,

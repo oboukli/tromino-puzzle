@@ -15,14 +15,14 @@
 
       <div class="columns">
         <div class="column">
-          <h2>WebAssembly solver and renderer</h2>
+          <h2>WebAssembly solver and renderer (beta)</h2>
           <p>Algorithm in pure C, with C++/SDL2 renderer (WebAssembly)</p>
           <canvas id="canvas" width="512" height="512"></canvas>
         </div>
         <div class="column">
           <h2>Hybrid WebAssembly/JavaScript</h2>
           <p>Pure C solver (WebAssembly) with JavaScript renderer</p>
-          <canvas id="boardCanvas" width="512" height="512"></canvas>
+          <canvas id="litroCanvas" width="512" height="512"></canvas>
         </div>
       </div>
 
@@ -65,7 +65,9 @@
     </footer>
 
     <script defer src="scripts/trmn/trmn-wasm.js" type="text/javascript"></script>
+    <script defer src="scripts/trmn/trmn.js" type="text/javascript"></script>
     <script defer src="scripts/litro/gfx.js" type="text/javascript"></script>
+    <script defer src="scripts/litro/litro.js" type="text/javascript"></script>
     <script defer src="scripts/app.js" type="text/javascript"></script>
   </body>
 </html>

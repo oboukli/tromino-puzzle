@@ -27,25 +27,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 "use strict";
 
-(async function (window, document, ltrGfx) {
-  /**
-   * @typedef {object} Tromino
-   * @property {number} x
-   * @property {number} y
-   * @property {number} angle
-   */
-
-  const delayBase = 68;
-  const trominoImgSrc = "images/tromino.svg";
-
+(async function (window, document, litro, trmn) {
   let order = 32;
   let markX = 11;
   let markY = 17;
 
+  /** @type {HTMLFormElement} */
   let puzzleEditorFormElement;
-
-  /** @type {HTMLCanvasElement} */
-  let canvasElement;
 
   /** @type {HTMLInputElement} */
   let orderElement;
@@ -56,19 +44,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   /** @type {HTMLInputElement} */
   let markYElement;
 
+  /** @type {HTMLButtonElement} */
   let solveButtonElement;
-
-  let context;
-  let solverWebWorker;
-  let animationFrameRequestId;
-  let trominoImg;
-
-  let options;
-  let boardModel;
-  let trominos;
-
-  let stepIdx;
-  let start;
 
   /**
    * @param {number} n
@@ -79,23 +56,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   }
 
   /**
-   * @param {Tromino} tromino
-   * @returns {void}
-   */
-  function handleSolverMessage(tromino) {
-    trominos.push(tromino);
-  }
-
-  /**
-   * @returns {void}
-   */
-  function drawNewPuzzle() {
-    boardModel = ltrGfx.createBoard(context, trominoImg, order, { x: markX, y: markY }, options);
-    ltrGfx.drawBoard(boardModel);
-    ltrGfx.drawMark(boardModel);
-  }
-
-  /**
    * @param {number} max
    */
   function setInputValueBounds(max) {
@@ -103,28 +63,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     markYElement.max = max.toString();
   }
 
-  /**
-   * @returns {void}
-   */
-  function initSolver() {
-    if (solverWebWorker) {
-      solverWebWorker.terminate();
-    }
-
-    solverWebWorker = new Worker("scripts/litro/worker.js");
-
-    solverWebWorker.addEventListener("message", (e) => {
-      handleSolverMessage(e.data);
-    }, false);
-  }
-
-  /**
-   * @returns {void}
-   */
   function changePuzzle() {
-    cancelAnimationFrame(animationFrameRequestId);
-    initSolver();
-
     orderIndicatorElement.textContent = order.toString();
 
     setInputValueBounds(order - 1);
@@ -135,53 +74,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     markXElement.value = markX.toString();
     markYElement.value = markY.toString();
 
-    boardModel = ltrGfx.createBoard(context, trominoImg, order, { x: markX, y: markY }, options);
-
-    drawNewPuzzle();
-  }
-
-  /**
-   * @param {number} timestamp
-   * @returns {void}
-   */
-  function step(timestamp) {
-    const elapsed = timestamp - start;
-    if (Array.isArray(trominos) && trominos.length > 0) {
-      if (elapsed > stepIdx * delayBase) {
-        stepIdx += 1;
-        let { x, y, angle } = trominos.shift();
-        ltrGfx.drawTromino(boardModel, x, y, angle);
-      }
-    }
-
-    animationFrameRequestId = window.requestAnimationFrame(step);
-  }
-
-  /**
-   * @returns {void}
-   */
-  function startSolveAsync() {
-    if (animationFrameRequestId !== 0) {
-      cancelAnimationFrame(animationFrameRequestId);
-      animationFrameRequestId = 0;
-      drawNewPuzzle();
-    }
-
-    trominos = new Array();
-
-    stepIdx = 0;
-    start = performance.now();
-
-    solverWebWorker.postMessage({ cmd: "solve", payload: { order, markX, markY } });
-
-    animationFrameRequestId = window.requestAnimationFrame(step);
+    litro.change(order, markX, markY);
   }
 
   /**
    * @returns {void}
    */
   function initElements() {
-    canvasElement = document.getElementById("boardCanvas");
     markXElement = document.getElementById("markX");
     markYElement = document.getElementById("markY");
     orderElement = document.getElementById("order");
@@ -201,112 +100,48 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     markYElement.value = markY.toString();
     markYElement.min = "0";
 
-    canvasElement.addEventListener("contextmenu", (e) => {
-      e.preventDefault();
-    });
-    context = canvasElement.getContext("2d");
-
-    puzzleEditorFormElement.addEventListener("input", () => {
-      changePuzzle();
-    });
+    puzzleEditorFormElement.addEventListener("input", () => changePuzzle()
+      , { capture: false, passive: true });
 
     orderElement.addEventListener("input", (event) => {
       order = calcOrder(parseInt(event.target.value, 10));
-    });
+    }, { capture: false, passive: true });
 
     markXElement.addEventListener("input", (event) => {
       markX = parseInt(event.target.value, 10);
-    });
+    }, { capture: false, passive: true });
 
     markYElement.addEventListener("input", (event) => {
       markY = parseInt(event.target.value, 10);
-    });
+    }, { capture: false, passive: true });
+  }
+
+  function start() {
+    litro.play(order, markX, markY);
+    trmn.play(order, markX, markY);
   }
 
   /**
    * @returns {Promise}
    */
-  function initResourcesAsync() {
-    trominoImg = new Image();
-    trominoImg.src = trominoImgSrc;
-
-    return trominoImg.decode();
-  }
-
-  /**
-   * @returns {void}
-   */
-  function initOptions() {
-    options = {
-      baseColor: "#4e7da6",
-      altColor: "#012340",
-      markColor: "#8c1b1b"
-    };
-  }
-
-  /**
-   * @returns {Promise}
-   */
-  async function initAppAsync() {
+  async function initAsync() {
     initElements();
-    initSolver();
-    initOptions();
-    await initResourcesAsync();
+
+    /** @type {HTMLCanvasElement} */
+    const litroCanvasElement = document.getElementById("litroCanvas");
+
+    const litroContext = litroCanvasElement.getContext("2d");
+    await litro.initAsync(litroContext);
+
+    /** @type {HTMLCanvasElement} */
+    const trmnCanvasElement = document.getElementById("canvas");
+    await trmn.initAsync(trmnCanvasElement);
 
     solveButtonElement.disabled = false;
-    solveButtonElement.addEventListener("click", startSolveAsync, false);
+    solveButtonElement.addEventListener("click", () => start(),
+      { capture: false, passive: true });
   }
 
-  window.addEventListener("load", async () => {
-    await initAppAsync();
-  });
-}(window, document, /* global ltrGfx */ ltrGfx));
-
-(async function (window, document, createTrmnMod) {
-  let orderElement;
-  let markXElement;
-  let markYElement;
-  let solveButtonElement;
-  let module;
-
-  /**
-   * @returns {void}
-   */
-  function initElements() {
-    solveButtonElement = document.getElementById("solveButton");
-
-    orderElement = document.getElementById("order");
-    markXElement = document.getElementById("markX");
-    markYElement = document.getElementById("markY");
-  }
-
-  /**
-   * @param {number} n
-   * @returns {number}
-   */
-  function calcOrder(n) {
-    return 2 << n;
-  }
-
-  /**
-   * @returns {Promise}
-   */
-  async function playTrominoAsync() {
-    const order = calcOrder(parseInt(orderElement.value, 10));
-    const markX = parseInt(markXElement.value, 10);
-    const markY = parseInt(markYElement.value, 10);
-
-    module._playTromino(order, markX, markY);
-  }
-
-  window.addEventListener("load", async () => {
-    module = await createTrmnMod(/* optional default settings */);
-    module.canvas = (function () {
-      return document.getElementById("canvas");
-    }());
-
-    initElements();
-
-    solveButtonElement.addEventListener("click", playTrominoAsync, false);
-  });
-}(window, document, /* global createTrmnMod */ createTrmnMod));
+  window.addEventListener("load", async () => await initAsync(),
+    { capture: false, once: true, passive: true });
+}(window, document, /* global litro */ globalThis.litro, globalThis.trmn));
