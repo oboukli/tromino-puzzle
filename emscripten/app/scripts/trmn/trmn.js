@@ -27,7 +27,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 "use strict";
 
-var trmn = (function (createTrmnMod) {
+// eslint-disable-next-line no-unused-vars
+const trmn = (function (createTrmnMod) {
   let module;
 
   function CanvasException() {
@@ -62,4 +63,5 @@ var trmn = (function (createTrmnMod) {
     initAsync,
     play
   };
+// @ts-ignore
 }(/* global createTrmnMod */ createTrmnMod));

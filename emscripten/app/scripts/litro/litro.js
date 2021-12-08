@@ -27,7 +27,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 "use strict";
 
-var litro = (function (window, ltrGfx) {
+// eslint-disable-next-line no-unused-vars
+const litro = (function (window, ltrGfx) {
   /**
    * @typedef {object} Tromino
    * @property {number} x

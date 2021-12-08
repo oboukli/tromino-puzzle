@@ -144,4 +144,4 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
   window.addEventListener("load", async () => await initAsync(),
     { capture: false, once: true, passive: true });
-}(window, document, /* global litro */ globalThis.litro, globalThis.trmn));
+}(window, document, /* global litro */ litro, /* global trmn */ trmn));

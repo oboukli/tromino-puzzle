@@ -27,7 +27,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 "use strict";
 
-var ltrGfx = (function () {
+// eslint-disable-next-line no-unused-vars
+const ltrGfx = (function () {
   /**
    * @typedef {object} Mark
    * @property {number} x

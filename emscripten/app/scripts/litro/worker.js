@@ -69,14 +69,15 @@ async function initEmscriptenModuleAsync() {
  */
 async function handleSolveAsync({ order, markX, markY }) {
   if (!_isSolverReady) {
+    // eslint-disable-next-line no-unused-vars
     const [_, emModule] = await Promise.all([instancePromise, emModulePromise]);
-    self._emModule = emModule;
+    _emModule = emModule;
     _isSolverReady = true;
   }
 
   /* global solveTromino */
   solveTromino(
-    self._emModule,
+    _emModule,
     order,
     markX,
     markY,

@@ -35,6 +35,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * @param {function} cb
  * @returns {void}
  */
+// eslint-disable-next-line no-unused-vars
 function solveTromino(emModule, order, markX, markY, cb) {
   const markArr = new Uint8Array(new Int32Array([markX, markY]).buffer);
 
