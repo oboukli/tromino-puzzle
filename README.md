@@ -6,15 +6,27 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/oboukli/tromino-puzzle/badge)](https://www.codefactor.io/repository/github/oboukli/tromino-puzzle)
 [![Codacy](https://app.codacy.com/project/badge/Grade/8395b4fbd3b34c72907b0e65fe0b5f35)](https://www.codacy.com/gh/oboukli/tromino-puzzle/dashboard)
 
-This is a C library implementing a divide-and-conquer O(n) algorithm, and a collection of apps, to solve the tromino puzzle, over-engineered for the joy of it.
+This is a C library implementing a divide-and-conquer O(n) algorithm, and a
+collection of apps, to solve the tromino puzzle, over-engineered for the joy of
+learning by doing.
 
-A tromino puzzle consists of a checkered 2^n × 2^n (chess-like) board, where exactly one of the board's squares is marked. The goal is to tile the entire board, except for the marked square, with L-shaped tiles. A tile is a right tromino, in the shape of an L formed by three board squares. Each tile has four possible rotations.
+A tromino puzzle consists of a checkered 2^n × 2^n (chess-like) board, where
+exactly one of the board's squares is marked. The goal is to tile the entire
+board, except for the marked square, with L-shaped tiles. A tile is a right
+tromino, in the shape of an L formed by three board squares. Each tile has four
+possible rotations.
 
 ## Background
 
-The developer (@oboukli) was first introduced to the tromino puzzle in early 2006, via Anany Levitin's book _Introduction to the Design and Analysis of Algorithms_, published in 2003 by Addison-Wesley. Anany Levitin mentions Solomon W. Golomb's second edition _Polyominoes: Puzzles, Patterns, Problems, and Packings_, published in 1994 by Princeton University Press, as a reference to the puzzle.
+The developer (@oboukli) was first introduced to the tromino puzzle in early
+2006, via Anany Levitin's book _Introduction to the Design and Analysis of
+Algorithms_, published in 2003 by Addison-Wesley. Anany Levitin mentions Solomon
+W. Golomb's second edition _Polyominoes: Puzzles, Patterns, Problems, and
+Packings_, published in 1994 by Princeton University Press, as a reference to the
+puzzle.
 
-The realization of the recursive solution was such a beautiful epiphany to the developer.
+The realization of the recursive solution was such a beautiful epiphany to the
+developer.
 
 ## Building the web app
 
@@ -45,17 +57,32 @@ docker run -it --rm -d -p 8080:80 -v $(pwd)/dist/web:/usr/share/nginx/html --nam
 
 ### Virtual terminal mode
 
-The virtual terminal (VT-100) mode should work on any system with POSIX support, including supported versions of macOS and Windows.
+The virtual terminal (VT-100) mode should work on any system with POSIX
+support, including supported versions of macOS and Windows.
 
-For basic ASCII drawings, which may be useful for writing to text files, define `TROMINO_USE_ASCII` before building.
+For basic ASCII drawings, which may be useful for writing to text files,
+define `TROMINO_USE_ASCII` before building.
 
 ### Windows Console Host mode
 
-On Windows, a native legacy Windows Console Host (WCH) renderer, which uses DOS box-drawing characters ([code page 437](https://en.wikipedia.org/wiki/Code_page_437)), is included.
+On Windows, a native legacy Windows Console Host (WCH) renderer, which uses DOS
+box-drawing characters
+([code page 437](https://en.wikipedia.org/wiki/Code_page_437)), is included.
+
+## Building the desktop app
+
+The desktop app is currently supported on macOS. See the `xcode` directory for
+the Xcode project files.
+
+For Windows and Linux, no build files are provided but it should be possible
+to build for the said platforms without source code modification.
+
+The SDL2 library  is required to build the desktop app.
 
 ## License
 
-This software is released under an [MIT-style license](LICENSE). Copyright © 2021 Omar Boukli-Hacene.
+This software is released under an [MIT-style license](LICENSE).
+Copyright © 2021 Omar Boukli-Hacene.
 
 ---
 
