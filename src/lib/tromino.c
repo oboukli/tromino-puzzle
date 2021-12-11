@@ -23,9 +23,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 /* SPDX-License-Identifier: MIT */
 
-#include <assert.h>
-
 #include "tromino.h"
+
+#include <assert.h>
 
 static void solve_tromino(int order, trmn_position_t pos, trmn_flip_t flip, trmn_add_tromino_func add_tromino, void * state) {
     if (2 == order) {

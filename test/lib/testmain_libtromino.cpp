@@ -4,6 +4,6 @@
 
 // SPDX-License-Identifier: MIT
 
-#define BOOST_TEST_MODULE "libtrominio tests"
+#define BOOST_TEST_MODULE "libtromino tests"
 
 #include <boost/test/included/unit_test.hpp>

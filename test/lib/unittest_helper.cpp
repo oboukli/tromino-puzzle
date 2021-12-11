@@ -4,9 +4,9 @@
 
 // SPDX-License-Identifier: MIT
 
-#include <vector>
-
 #include "unittest_helper.h"
+
+#include <vector>
 
 void shim_add_tromino(trmn_position_t abspos, trmn_flip_t flip, void * state) {
     ShimStep step = { abspos, flip };
@@ -16,7 +16,15 @@ void shim_add_tromino(trmn_position_t abspos, trmn_flip_t flip, void * state) {
 void print_shim_step_vector(const std::vector<ShimStep>& steps) {
     for (auto s: steps) {
         std::cout
-        << "{ { " << s.abspos.x <<", " << s.abspos.y << " }, { " << s.flip.x << ", " << s.flip.y << " } },"
-        << std::endl;
+            << "{ { "
+            << s.abspos.x
+            << ", "
+            << s.abspos.y
+            << " }, { "
+            << s.flip.x
+            << ", "
+            << s.flip.y
+            << " } },"
+            << std::endl;
     }
 }
