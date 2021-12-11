@@ -16,6 +16,8 @@ board, except for the marked square, with L-shaped tiles. A tile is a right
 tromino, in the shape of an L formed by three board squares. Each tile has four
 possible rotations.
 
+![Tromino puzzle](content/puzzle-8x8.gif)
+
 ## Background
 
 The developer (@oboukli) was first introduced to the tromino puzzle in early
