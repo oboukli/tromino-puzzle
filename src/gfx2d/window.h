@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef window_h
-#define window_h
+#ifndef WINDOW_H
+#define WINDOW_H
 
 #include <SDL2/SDL.h>
 
@@ -21,14 +21,14 @@ public:
     void Init() noexcept;
     void Dispose() noexcept;
 
-    SDL_Window * GetSdlWindow() const noexcept;
+    ::SDL_Window * GetSdlWindow() const noexcept;
 
 private:
     int _width;
     bool _isInitialized;
-    SDL_Window* _window;
+    ::SDL_Window * _window;
 };
 
 } // namespace tromino::gfx2d
 
-#endif // window_h
+#endif // WINDOW_H

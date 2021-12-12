@@ -18,21 +18,23 @@ Window::~Window() {
 
 void Window::Init() noexcept {
     Uint32 windowFlags = 0; // TODO:
-    _window = SDL_CreateWindow("Tromino Puzzle", // TODO:
+    _window = ::SDL_CreateWindow("Tromino Puzzle", // TODO:
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
-        _width, _width, windowFlags);
+        _width,
+        _width,
+        windowFlags);
 
     _isInitialized = true; // TODO: Check for errors
 }
 
-SDL_Window * Window::GetSdlWindow() const noexcept {
+::SDL_Window * Window::GetSdlWindow() const noexcept {
     return _window;
 }
 
 void Window::Dispose() noexcept {
     if (_window) {
-        SDL_DestroyWindow(_window);
+        ::SDL_DestroyWindow(_window);
         _window = nullptr;
     }
 

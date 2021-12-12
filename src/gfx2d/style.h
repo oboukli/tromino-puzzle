@@ -4,21 +4,21 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef style_h
-#define style_h
+#ifndef STYLE_H
+#define STYLE_H
 
 #include <SDL2/SDL.h>
 
 namespace tromino::gfx2d {
 
 struct Style {
-    SDL_Color wke1_color;
-    SDL_Color bke8_color;
-    SDL_Color mark_color;
-    SDL_Color tromino_color;
-    SDL_Color tromino_outline_color;
+    ::SDL_Color wke1_color;
+    ::SDL_Color bke8_color;
+    ::SDL_Color mark_color;
+    ::SDL_Color tromino_color;
+    ::SDL_Color tromino_outline_color;
 };
 
 } // namespace tromino::gfx2d
 
-#endif /* style_h */
+#endif // STYLE_H

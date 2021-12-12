@@ -32,7 +32,6 @@ static void add_tromino(trmn_position_t abspos, trmn_flip_t flip, void* state) n
         flip
     };
 
-    ++solutionState.progress;
     solutionState.steps->push_back(step);
 }
 
@@ -53,7 +52,6 @@ static void main_loop() noexcept {
 
 int init(const tromino::gfx2d::board_t& board) noexcept {
     SolutionState solutionState;
-    solutionState.progress = 0; // TODO: ctor
     solutionState.steps = std::make_unique<std::vector<Step>>();
     trmn_solve_puzzle(board.order, board.mark, add_tromino, &solutionState);
 
@@ -62,13 +60,14 @@ int init(const tromino::gfx2d::board_t& board) noexcept {
     }
 
     constexpr int width = 512; // TODO:
-    int squareWidth = width / board.order;
+
     tromino::gfx2d::Window * window = new tromino::gfx2d::Window(width);
     window->Init();
 
-    tromino::gfx2d::TrominoBoardViewModel * viewModel = new tromino::gfx2d::TrominoBoardViewModel(board, squareWidth, window->GetSdlWindow());
+    tromino::gfx2d::TrominoBoardViewModel * viewModel = new tromino::gfx2d::TrominoBoardViewModel(width, window->GetSdlWindow());
 
     viewModel->Init();
+    viewModel->SetBoard(board);
 
     while (main_loop_running) {
         main_loop();

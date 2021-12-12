@@ -4,13 +4,13 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef models_h
-#define models_h
+#ifndef MODELS_H
+#define MODELS_H
+
+#include "tromino.h"
 
 #include <memory>
 #include <vector>
-
-#include "tromino.h"
 
 namespace tromino::gfx2d {
 
@@ -21,9 +21,8 @@ struct Step {
 
 struct SolutionState {
     std::unique_ptr<std::vector<Step>> steps;
-    size_t progress; // TODO:
 };
 
 } // namespace tromino::gfx2d
 
-#endif // models_h
+#endif // MODELS_H
