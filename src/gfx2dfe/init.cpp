@@ -36,7 +36,7 @@ static void add_tromino(trmn_position_t abspos, trmn_flip_t flip, void* state) n
     solutionState.steps->push_back(step);
 }
 
-static void main_loop() {
+static void main_loop() noexcept {
     SDL_Event event;
 
     while (SDL_PollEvent(&event)) {
@@ -51,7 +51,7 @@ static void main_loop() {
     }
 }
 
-int init(const tromino::gfx2d::board_t& board) {
+int init(const tromino::gfx2d::board_t& board) noexcept {
     SolutionState solutionState;
     solutionState.progress = 0; // TODO: ctor
     solutionState.steps = std::make_unique<std::vector<Step>>();

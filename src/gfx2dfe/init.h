@@ -4,13 +4,13 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef init_h
-#define init_h
-
-#include <cstddef>
+#ifndef INIT_H
+#define INIT_H
 
 #include "board.h"
 
-int init(const tromino::gfx2d::board_t& board);
+#include <cstddef>
 
-#endif /* init_h */
+int init(const tromino::gfx2d::board_t & board) noexcept;
+
+#endif // INIT_H
