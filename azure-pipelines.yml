@@ -20,7 +20,7 @@ jobs:
           xcWorkspacePath: 'xcode/TrominoPuzzle.xcworkspace'
           scheme: '$(scheme)'
           configuration: '$(configuration)'
-          xcodeVersion: '12'
+          xcodeVersion: '13'
           destinationPlatformOption: 'macOS'
           packageApp: false
 
