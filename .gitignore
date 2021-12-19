@@ -63,3 +63,5 @@ m4/lt~obsolete.m4
 
 /Makefile
 /src/**/Makefile
+
+emscripten_cache
