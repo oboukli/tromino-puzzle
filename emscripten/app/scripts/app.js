@@ -142,6 +142,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       { capture: false, passive: true });
   }
 
-  window.addEventListener("load", async () => await initAsync(),
+  window.addEventListener("DOMContentLoaded", async () => await initAsync(),
     { capture: false, once: true, passive: true });
 }(window, document, /* global litro */ litro, /* global trmn */ trmn));
