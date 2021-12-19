@@ -36,7 +36,7 @@ const litro = (function (window, ltrGfx) {
    * @property {number} angle
    */
 
-  const delayBase = 68;
+  const delayBase = 67;
   const trominoImgSrc = "images/tromino.svg";
 
   /** @type {CanvasRenderingContext2D} */

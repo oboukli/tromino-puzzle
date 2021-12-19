@@ -21,7 +21,7 @@ public:
     void Init() noexcept;
     void Dispose() noexcept;
 
-    ::SDL_Window * GetSdlWindow() const noexcept;
+    [[nodiscard]] ::SDL_Window * GetSdlWindow() const noexcept;
 
 private:
     int _width;

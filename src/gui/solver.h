@@ -4,13 +4,11 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef INIT_H
-#define INIT_H
+#ifndef SOLVER_H
+#define SOLVER_H
 
-#include "board.h"
+#include "tromino.h"
 
-#include <cstddef>
+void solver(int order, trmn_position_t mark, trmn_add_tromino_func add_tromino, void * state);
 
-int init(const tromino::gfx2d::board_t & board) noexcept;
-
-#endif // INIT_H
+#endif // SOLVER_H

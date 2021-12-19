@@ -56,7 +56,7 @@ const trmn = (function (createTrmnMod) {
    * @returns {void}
    */
   function play(order, markX, markY) {
-    module._playTromino(order, markX, markY);
+    module._playTromino(order, markX, markY, module.canvas.width);
   }
 
   return {

@@ -10,13 +10,28 @@
 #include "tromino.h"
 
 #include <memory>
+#include <utility>
 #include <vector>
 
 namespace tromino::gfx2d {
 
 struct Step {
-    trmn_position_t p;
-    trmn_flip_t f;
+    const trmn_position_t p;
+    const trmn_flip_t f;
+
+    Step(trmn_position_t p, trmn_flip_t f)
+        : p(std::move(p)), f(std::move(f))
+    {
+    }
+
+    Step(Step&& other)
+        : p(std::move(other.p)), f(std::move(other.f))
+    {
+    }
+
+    Step(const Step& other) = delete;
+
+    Step& operator=(const Step& other) = delete;
 };
 
 struct SolutionState {

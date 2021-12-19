@@ -32,8 +32,12 @@ else
 	RM ::= rm -f
 endif
 
-all: directories webapp $(TARGET_LITRO) $(TARGET_TRMN)
+all: directories webapp trmn litro
 	@echo "Successfully built."
+
+trmn: directories $(TARGET_TRMN)
+
+litro: directories $(TARGET_LITRO)
 
 directories:
 	$(MKDIR) $(OUT_DIR)
@@ -70,7 +74,7 @@ $(TARGET_LITRO): $(OBJ_DIR)/lib/tromino.o $(OBJ_DIR)/wasm/tromino_alg_wasm.o
 	-s WASM=1 \
 	-o $(OUT_DIR)/$(LITRO_DIR_NAME)/$@ $^
 
-$(TARGET_TRMN): $(OBJ_DIR)/lib/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/gfx2dfe/init.o $(OBJ_DIR)/wasm/tromino_gfx2d_wasm.o
+$(TARGET_TRMN): $(OBJ_DIR)/lib/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/tromino_gfx2d_wasm.o
 	$(CXX) $(CXXFLAGS) \
 	--closure 1 \
 	--no-entry \
@@ -82,6 +86,7 @@ $(TARGET_TRMN): $(OBJ_DIR)/lib/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/gfx2dfe/init.o
 	-s DYNAMIC_EXECUTION=0 \
 	-s ENVIRONMENT=web \
 	-s ERROR_ON_UNDEFINED_SYMBOLS=1 \
+	-s EXIT_RUNTIME=0 \
 	-s EXPORTED_FUNCTIONS='["_playTromino"]' \
 	-s FILESYSTEM=0 \
 	-s INITIAL_MEMORY=32MB \
@@ -89,7 +94,6 @@ $(TARGET_TRMN): $(OBJ_DIR)/lib/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/gfx2dfe/init.o
 	-s MINIFY_HTML=1 \
 	-s MINIMAL_RUNTIME=0 \
 	-s MODULARIZE=1 -s 'EXPORT_NAME="createTrmnMod"' \
-	-s NO_EXIT_RUNTIME=1 \
 	-s SAFE_HEAP_LOG=0 \
 	-s SAFE_HEAP=0 \
 	-s STACK_OVERFLOW_CHECK=0 \
@@ -120,17 +124,6 @@ $(OBJ_DIR)/wasm/tromino_gfx2d_wasm.o: $(SRC_DIR)/wasm/tromino_gfx2d_wasm.cpp
 	-s USE_SDL=2 \
 	-I$(SRC_DIR)/lib \
 	-I$(SRC_DIR)/gfx2d \
-	-I$(SRC_DIR)/gfx2dfe \
-	-c $< \
-	-o $@
-
-$(OBJ_DIR)/gfx2dfe/init.o: $(SRC_DIR)/gfx2dfe/init.cpp
-	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) \
-	-s USE_SDL=2 \
-	-I$(SRC_DIR)/lib \
-	-I$(SRC_DIR)/gfx2d \
-	-I$(SRC_DIR)/gfx2dfe \
 	-c $< \
 	-o $@
 
@@ -150,15 +143,19 @@ webapp:
 clean:
 	$(RM) \
 	$(OBJ_DIR)/gfx2d/*.o \
-	$(OBJ_DIR)/gfx2dfe/*.o \
 	$(OBJ_DIR)/lib/*.o \
 	$(OBJ_DIR)/wasm/*.o \
-	$(OUT_DIR)/app.js \
 	$(OUT_DIR)/$(LITRO_DIR_NAME)/gfx.js \
-	$(OUT_DIR)/$(LITRO_DIR_NAME)/worker.js \
 	$(OUT_DIR)/$(LITRO_DIR_NAME)/litro-wasm.js \
 	$(OUT_DIR)/$(LITRO_DIR_NAME)/litro-wasm.wasm \
+	$(OUT_DIR)/$(LITRO_DIR_NAME)/litro.js \
+	$(OUT_DIR)/$(LITRO_DIR_NAME)/worker.js \
+	$(OUT_DIR)/$(LITRO_DIR_NAME)/wrapper.js \
 	$(OUT_DIR)/$(TRMN_DIR_NAME)/trmn-wasm.js \
 	$(OUT_DIR)/$(TRMN_DIR_NAME)/trmn-wasm.wasm \
-	$(WEB_DIR)/index.html
+	$(OUT_DIR)/$(TRMN_DIR_NAME)/trmn.js \
+	$(OUT_DIR)/app.js \
+	$(WEB_DIR)/images/tromino.svg \
+	$(WEB_DIR)/index.html \
+	$(WEB_DIR)/styles/style.css
 	@echo "Done cleaning."

@@ -5,18 +5,18 @@
 
 // SPDX-License-Identifier: MIT
 
+#include "tromino.h"
+
 #include <cassert>
 #include <cstddef>
 
 #include <emscripten.h>
 
-#include "tromino.h"
-
 typedef void (*add_tromino_extern_callback)(trmn_position_t abspos, double angle);
 
 static void add_tromino(trmn_position_t abspos, trmn_flip_t flip, void * state) {
-    const double pi = 3.14159265358979323846;
-    const double pi2 = 1.57079632679489661923;
+    constexpr double pi = 3.14159265358979323846;
+    constexpr double pi2 = 1.57079632679489661923;
 
     add_tromino_extern_callback add_tromino_cb = (add_tromino_extern_callback)state;
         double angle;

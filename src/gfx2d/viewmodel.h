@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef viewmodel_h
-#define viewmodel_h
+#ifndef VIEWMODEL_H
+#define VIEWMODEL_H
 
 #include "board.h"
 #include "models.h"
@@ -28,9 +28,11 @@ public:
 
     void SetBoard(const tromino::gfx2d::board_t& board) noexcept;
 
-    void Update(const SolutionState& solutionState) noexcept;
+    void StepForward() noexcept;
 
-    void Render(const SolutionState& solutionState) noexcept;
+    void Render(const SolutionState& solutionState) const noexcept;
+
+    [[nodiscard]] bool IsPlaying() const noexcept;
 
 private:
     tromino::gfx2d::board_t _board;
@@ -40,8 +42,8 @@ private:
     ::SDL_Texture * _boardTexture;
     ::SDL_Texture * _solutionTexture;
     ::SDL_Texture * _trominoTexture;
-    std::size_t _currentStepNum = 0;
-    std::size_t _numSteps = 0;
+    std::size_t _numSteps;
+    std::size_t _currentStepNum;
     int _squareWidth;
     int _width;
 };
@@ -58,4 +60,4 @@ private:
 
 } // namespace tromino::gfx2d
 
-#endif // viewmodel_h
+#endif // VIEWMODEL_H

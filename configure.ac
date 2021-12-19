@@ -36,7 +36,6 @@ AC_CONFIG_FILES([Makefile
 	src/lib/Makefile
 	src/cli/Makefile
 	src/gfx2d/Makefile
-	src/gfx2dfe/Makefile
 	src/gui/Makefile])
 AC_CONFIG_FILES([test/lib/Makefile])
 

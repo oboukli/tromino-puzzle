@@ -4,17 +4,18 @@
 
 // SPDX-License-Identifier: MIT
 
+#include "init.h"
+
 #include <cstddef>
 #include <cstdlib>
 #include <iostream>
-
-#include "init.h"
 
 int main(int argc, const char * argv[]) {
     // TODO: Config values
     // TODO: App name
     // TODO: Refactor out of main
     constexpr int REQUIRED_ARG_COUNT = 4;
+    constexpr int WIDTH = 512;
 
     if (REQUIRED_ARG_COUNT > argc) {
         std::cout
@@ -39,5 +40,5 @@ int main(int argc, const char * argv[]) {
         }
     };
 
-    return init(board);
+    return init(board, WIDTH);
 }
