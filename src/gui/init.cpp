@@ -28,9 +28,9 @@ std::condition_variable lockCond;
 static void addTromino(trmn_position_t pos, trmn_flip_t flip, void* state) noexcept {
     using namespace tromino::gfx2d;
 
-    SolutionState& solutionState = *static_cast<SolutionState*>(state);
-
     {
+        SolutionState& solutionState = *static_cast<SolutionState*>(state);
+
         std::lock_guard<std::mutex> lk(mut);
 
         solutionState.steps->emplace_back(pos, flip);
