@@ -79,7 +79,7 @@ the Xcode project files.
 For Windows and Linux, no build files are provided but it should be possible
 to build for the said platforms without source code modification.
 
-The SDL2 library  is required to build the desktop app.
+The SDL2 library is required to build the desktop app.
 
 ## License
 
