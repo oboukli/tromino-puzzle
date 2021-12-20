@@ -17,9 +17,9 @@
 
 static bool isMainLoopRunning = true;
 static bool isInitialized = false;
-static tromino::gfx2d::Window * window;
-static tromino::gfx2d::TrominoBoardViewModel * viewModel;
-static tromino::gfx2d::SolutionState * solutionState;
+static tromino::gfx2d::Window * window = nullptr;
+static tromino::gfx2d::TrominoBoardViewModel * viewModel = nullptr;
+static tromino::gfx2d::SolutionState * solutionState = nullptr;
 
 static void addTromino(trmn_position_t pos, trmn_flip_t flip, void* state) noexcept {
     using namespace tromino::gfx2d;
