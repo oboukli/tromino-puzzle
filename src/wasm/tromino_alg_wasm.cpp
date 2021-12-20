@@ -5,16 +5,16 @@
 
 // SPDX-License-Identifier: MIT
 
-#include "tromino.h"
+#include <emscripten.h>
 
 #include <cassert>
 #include <cstddef>
 
-#include <emscripten.h>
+#include "tromino.h"
 
-typedef void (*add_tromino_extern_callback)(trmn_position_t abspos, double angle);
+typedef void (*add_tromino_extern_callback)(trmn_position_t abspos, double angle) noexcept;
 
-static void add_tromino(trmn_position_t abspos, trmn_flip_t flip, void * state) {
+static void add_tromino(trmn_position_t abspos, trmn_flip_t flip, void * state) noexcept {
     constexpr double pi = 3.14159265358979323846;
     constexpr double pi2 = 1.57079632679489661923;
 
@@ -72,6 +72,6 @@ static void add_tromino(trmn_position_t abspos, trmn_flip_t flip, void * state) 
     add_tromino_cb(abspos, angle);
 }
 
-EMSCRIPTEN_KEEPALIVE extern "C" void solve(int order, trmn_position_t mark, add_tromino_extern_callback add_tromino_cb) {
+EMSCRIPTEN_KEEPALIVE extern "C" void solve(int order, trmn_position_t mark, add_tromino_extern_callback add_tromino_cb) noexcept {
     trmn_solve_puzzle(order, mark, add_tromino, reinterpret_cast<void *>(add_tromino_cb));
 }

@@ -4,5 +4,4 @@
 
 // SPDX-License-Identifier: MIT
 
-#include "tromino.h"
 #include "trmn_graph.h"

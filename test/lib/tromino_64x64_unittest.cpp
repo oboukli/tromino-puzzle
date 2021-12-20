@@ -4,11 +4,11 @@
 
 // SPDX-License-Identifier: MIT
 
+#include <boost/test/unit_test.hpp>
+
 #include "tromino.h"
 
 #include "unittest_helper.h"
-
-#include <boost/test/unit_test.hpp>
 
 BOOST_AUTO_TEST_SUITE(tromino_64x64_test_suite)
 

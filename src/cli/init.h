@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef init_h
-#define init_h
+#ifndef INIT_H_
+#define INIT_H_
 
 #include <cassert>
 
@@ -24,4 +24,4 @@ enum class emulation_mode {
 
 void init(int size, int x, int y, emulation_mode emulation_mode);
 
-#endif // init_h
+#endif // INIT_H_

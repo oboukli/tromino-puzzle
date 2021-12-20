@@ -4,8 +4,13 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef trmn_graph_vt_h
-#define trmn_graph_vt_h
+#ifndef TRMN_GRAPH_VT_H_
+#define TRMN_GRAPH_VT_H_
+
+#ifdef _WINDOWS
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+#endif // _WINDOWS
 
 #include <array>
 #include <cassert>
@@ -13,11 +18,6 @@
 #include <iostream>
 #include <memory>
 #include <thread>
-
-#ifdef _WINDOWS
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-#endif // _WINDOWS
 
 #include "tromino.h"
 #include "trmn_graph.h"
@@ -73,4 +73,4 @@ namespace tromino::vt {
 
 } // namespace tromino::vt
 
-#endif // trmn_graph_vt_h
+#endif // TRMN_GRAPH_VT_H_

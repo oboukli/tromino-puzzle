@@ -4,11 +4,11 @@
 
 // SPDX-License-Identifier: MIT
 
-#include "init.h"
-
 #include <cstddef>
 #include <cstdlib>
 #include <iostream>
+
+#include "init.h"
 
 int main(int argc, const char * argv[]) {
     // TODO: Config values

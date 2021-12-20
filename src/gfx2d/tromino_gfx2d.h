@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef TROMINO_GFX2D_H
-#define TROMINO_GFX2D_H
+#ifndef TROMINO_GFX2D_H_
+#define TROMINO_GFX2D_H_
 
 #include <SDL_render.h>
 
@@ -25,4 +25,4 @@ void DrawTrominoOutline(::SDL_Renderer * renderer, ::SDL_Texture * texture, int 
 
 } // namespace tromino::gfx2d
 
-#endif // TROMINO_GFX2D_H
+#endif // TROMINO_GFX2D_H_

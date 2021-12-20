@@ -4,14 +4,6 @@
 
 // SPDX-License-Identifier: MIT
 
-#include "board.h"
-#include "models.h"
-#include "tromino_gfx2d.h"
-#include "viewmodel.h"
-#include "window.h"
-
-#include "solver.h"
-
 #include "init.h"
 
 #include <SDL2/SDL.h>
@@ -19,6 +11,14 @@
 #include <condition_variable>
 #include <mutex>
 #include <thread>
+
+#include "board.h"
+#include "models.h"
+#include "tromino_gfx2d.h"
+#include "viewmodel.h"
+#include "window.h"
+
+#include "solver.h"
 
 static bool isMainLoopRunning = true;
 

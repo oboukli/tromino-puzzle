@@ -4,6 +4,10 @@
 
 // SPDX-License-Identifier: MIT
 
+#include <emscripten.h>
+
+#include <SDL2/SDL.h>
+
 #include "tromino.h"
 
 #include "board.h"
@@ -11,9 +15,6 @@
 #include "tromino_gfx2d.h"
 #include "viewmodel.h"
 #include "window.h"
-
-#include <emscripten.h>
-#include <SDL2/SDL.h>
 
 static bool isMainLoopRunning = true;
 static bool isInitialized = false;

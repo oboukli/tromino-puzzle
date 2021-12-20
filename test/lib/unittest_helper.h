@@ -4,13 +4,13 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef UNITTEST_HELPER_H
-#define UNITTEST_HELPER_H
-
-#include "tromino.h"
+#ifndef UNITTEST_HELPER_H_
+#define UNITTEST_HELPER_H_
 
 #include <iostream>
 #include <vector>
+
+#include "tromino.h"
 
 class ShimStep
 {
@@ -36,4 +36,4 @@ void shim_add_tromino(trmn_position_t abspos, trmn_flip_t flip, void * state);
 
 void print_shim_step_vector(const std::vector<ShimStep>& steps);
 
-#endif // UNITTEST_HELPER_H
+#endif // UNITTEST_HELPER_H_
