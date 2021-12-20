@@ -45,14 +45,14 @@ To build the web app:
 
 ```shell
 docker pull emscripten/emsdk
-docker run --rm -v $(pwd):/src -v $(pwd)/emscripten_cache:/emsdk/upstream/emscripten/cache --workdir="/src/emscripten" emscripten/emsdk emmake make
+docker run --rm -v $(pwd):/src -v $(pwd)/emscripten_cache:/emsdk/upstream/emscripten/cache --workdir="/src/emscripten" emscripten/emsdk emmake make -j 3
 ```
 
 To run the web app:
 
 ```shell
 docker pull nginx
-docker run -it --rm -d -p 8080:80 -v $(pwd)/dist/web:/usr/share/nginx/html --name tromino-puzzle nginx
+docker run -it --rm -d -p 8080:80 -v $(pwd)/dist/web:/usr/share/nginx/html:ro --name tromino-puzzle nginx
 ```
 
 ## Building the command line app
