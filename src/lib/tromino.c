@@ -38,8 +38,8 @@ static void solve_tromino(int order, trmn_position_t pos, trmn_flip_t flip, trmn
     const int o = n >> 1;
 
     const trmn_position_t p = {
-        .x = flip.x == -1 ? pos.x : pos.x + n,
-        .y = flip.y == -1 ? pos.y : pos.y + n,
+        .x = pos.x + (n * ((flip.x + 1) >> 1)),
+        .y = pos.y + (n * ((flip.y + 1) >> 1)),
     };
 
     solve_tromino(
@@ -91,19 +91,22 @@ static void solve_tromino(int order, trmn_position_t pos, trmn_flip_t flip, trmn
 
 static void solve_board(int order, trmn_position_t pos, trmn_flip_t flip, trmn_position_t mark, trmn_add_tromino_func add_tromino, void * state) {
     if (order > 2) {
-        const int s = order >> 1;
+        const int n = order >> 1;
+
         const trmn_position_t p = {
-            .x = flip.x == -1 ? pos.x : pos.x + s,
-            .y = flip.y == -1 ? pos.y : pos.y + s,
+            .x = pos.x + (n * ((flip.x + 1) >> 1)),
+            .y = pos.y + (n * ((flip.y + 1) >> 1)),
         };
 
-        const int ss = s >> 1;
-        const trmn_flip_t r = {
-            .x = (mark.x - p.x) < ss ? -1 : 1,
-            .y = (mark.y - p.y) < ss ? -1 : 1,
+        const int o = n >> 1;
+        const int x = mark.x - p.x;
+        const int y = mark.y - p.y;
+        const trmn_flip_t f = {
+            .x = (x >= o) - (x < o),
+            .y = (y >= o) - (y < o),
         };
 
-        solve_board(s, p, r, mark, add_tromino, state);
+        solve_board(n, p, f, mark, add_tromino, state);
     }
 
     solve_tromino(order, pos, flip, add_tromino, state);
@@ -117,11 +120,10 @@ void trmn_solve_puzzle(int board_order, trmn_position_t mark, trmn_add_tromino_f
         .y = 0,
     };
 
-    const int s = board_order >> 1;
-
+    const int o = board_order >> 1;
     const trmn_flip_t flip = {
-        .x = mark.x < s ? -1 : 1,
-        .y = mark.y < s ? -1 : 1,
+        .x = (mark.x >= o) - (mark.x < o),
+        .y = (mark.y >= o) - (mark.y < o),
     };
 
     solve_board(board_order, pos, flip, mark, add_tromino, state);
