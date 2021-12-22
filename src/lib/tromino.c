@@ -30,12 +30,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 static void solve_tromino(int order, trmn_position_t pos, trmn_flip_t flip, trmn_add_tromino_func add_tromino, void * state) {
     if (2 == order) {
         add_tromino(pos, flip, state);
-
         return;
     }
 
     const int n = order >> 1;
-    const int o = n >> 1;
 
     const trmn_position_t p = {
         .x = pos.x + (n * ((flip.x + 1) >> 1)),
@@ -78,6 +76,7 @@ static void solve_tromino(int order, trmn_position_t pos, trmn_flip_t flip, trmn
         add_tromino,
         state);
 
+    const int o = n >> 1;
     solve_tromino(
         n,
         (trmn_position_t){
@@ -102,8 +101,8 @@ static void solve_board(int order, trmn_position_t pos, trmn_flip_t flip, trmn_p
         const int x = mark.x - p.x;
         const int y = mark.y - p.y;
         const trmn_flip_t f = {
-            .x = (x >= o) - (x < o),
-            .y = (y >= o) - (y < o),
+            .x = (int)(x >= o) - (int)(x < o),
+            .y = (int)(y >= o) - (int)(y < o),
         };
 
         solve_board(n, p, f, mark, add_tromino, state);
@@ -112,7 +111,7 @@ static void solve_board(int order, trmn_position_t pos, trmn_flip_t flip, trmn_p
     solve_tromino(order, pos, flip, add_tromino, state);
 }
 
-void trmn_solve_puzzle(int board_order, trmn_position_t mark, trmn_add_tromino_func add_tromino, void * state) {
+void trmn_solve_puzzle(int order, trmn_position_t mark, trmn_add_tromino_func add_tromino, void * state) {
     assert(add_tromino);
 
     const trmn_position_t pos = {
@@ -120,11 +119,11 @@ void trmn_solve_puzzle(int board_order, trmn_position_t mark, trmn_add_tromino_f
         .y = 0,
     };
 
-    const int o = board_order >> 1;
+    const int o = order >> 1;
     const trmn_flip_t flip = {
-        .x = (mark.x >= o) - (mark.x < o),
-        .y = (mark.y >= o) - (mark.y < o),
+        .x = (int)(mark.x >= o) - (int)(mark.x < o),
+        .y = (int)(mark.y >= o) - (int)(mark.y < o),
     };
 
-    solve_board(board_order, pos, flip, mark, add_tromino, state);
+    solve_board(order, pos, flip, mark, add_tromino, state);
 }
