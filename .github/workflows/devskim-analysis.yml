@@ -7,12 +7,12 @@ name: DevSkim
 
 on:
   push:
-    branches: [ main, development, feature/* ]
+    branches: [main, development, feature/*]
   pull_request:
     # The branches below must be a subset of the branches above.
-    branches: [ main, development, feature/* ]
+    branches: [main, development, feature/*]
   schedule:
-    - cron: '10 22 * * 5'
+    - cron: "10 22 * * 3"
 
 jobs:
   lint:
@@ -28,7 +28,7 @@ jobs:
 
       - name: Run DevSkim scanner
         uses: microsoft/DevSkim-Action@v1
-        
+
       - name: Upload DevSkim scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v1
         with:
