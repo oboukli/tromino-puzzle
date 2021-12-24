@@ -17,13 +17,12 @@ Window::~Window() {
 }
 
 void Window::Init() noexcept {
-    Uint32 windowFlags = 0; // TODO:
     _window = ::SDL_CreateWindow("Tromino Puzzle", // TODO:
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
         _width,
         _width,
-        windowFlags);
+        ::SDL_WindowFlags::SDL_WINDOW_ALLOW_HIGHDPI);
 
     _isInitialized = true; // TODO: Check for errors
 }
