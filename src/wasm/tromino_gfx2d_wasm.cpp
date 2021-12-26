@@ -51,6 +51,9 @@ static void init(int width) noexcept {
 
     ::SDL_Init(SDL_INIT_VIDEO);
 
+    ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
+    ::SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
+
     window = new tromino::gfx2d::Window(width);
     window->Init();
 

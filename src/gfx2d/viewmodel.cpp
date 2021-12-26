@@ -41,9 +41,6 @@ void TrominoBoardViewModel::Init() noexcept {
         | ::SDL_RendererFlags::SDL_RENDERER_TARGETTEXTURE;
     _renderer = ::SDL_CreateRenderer(_window, -1, render_flags);
 
-    ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
-    ::SDL_RenderSetLogicalSize(_renderer, _width, _width); // TODO: define logical width
-
     _viewTexture = CreateTexture(_renderer, _width);
     ::SDL_SetRenderTarget(_renderer, _viewTexture);
 
@@ -59,6 +56,13 @@ void TrominoBoardViewModel::Dispose() noexcept {
     ::SDL_DestroyTexture(_viewTexture);
     ::SDL_DestroyRenderer(_renderer);
     ::SDL_DestroyWindow(_window);
+
+    _trominoTexture = nullptr;
+    _solutionTexture = nullptr;
+    _boardTexture = nullptr;
+    _viewTexture = nullptr;
+    _renderer = nullptr;
+    _window = nullptr;
 }
 
 void TrominoBoardViewModel::SetBoard(const tromino::gfx2d::board_t& board) noexcept {
@@ -110,12 +114,11 @@ void TrominoBoardViewModel::Render(const SolutionState& solutionState) const noe
     }
 
     ::SDL_SetRenderTarget(_renderer, _viewTexture);
-    ::SDL_Rect defaultDest { 0, 0, _width, _width };
-    ::SDL_RenderCopy(_renderer, _boardTexture, nullptr, &defaultDest);
-    ::SDL_RenderCopy(_renderer, _solutionTexture, nullptr, &defaultDest);
+    ::SDL_RenderCopy(_renderer, _boardTexture, nullptr, nullptr);
+    ::SDL_RenderCopy(_renderer, _solutionTexture, nullptr, nullptr);
 
     ::SDL_SetRenderTarget(_renderer, nullptr);
-    ::SDL_RenderCopy(_renderer, _viewTexture, nullptr, &defaultDest);
+    ::SDL_RenderCopy(_renderer, _viewTexture, nullptr, nullptr);
 
     ::SDL_RenderPresent(_renderer);
 }

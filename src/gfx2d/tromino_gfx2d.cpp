@@ -6,6 +6,8 @@
 
 #include "tromino_gfx2d.h"
 
+#include <cassert>
+
 namespace tromino::gfx2d {
 
 [[nodiscard]] ::SDL_Texture * CreateTexture(::SDL_Renderer * renderer, int width) noexcept {
@@ -15,6 +17,8 @@ namespace tromino::gfx2d {
         ::SDL_TextureAccess::SDL_TEXTUREACCESS_TARGET,
         width,
         width);
+
+    assert(texture);
 
     return texture;
 }

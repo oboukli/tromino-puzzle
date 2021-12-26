@@ -71,6 +71,9 @@ int init(const tromino::gfx2d::board_t& board, int width) noexcept {
         return 1;
     }
 
+    ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
+    ::SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
+
     tromino::gfx2d::Window * window = new tromino::gfx2d::Window(width);
     window->Init();
 
