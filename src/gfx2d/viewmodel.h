@@ -18,7 +18,7 @@ namespace tromino::gfx2d {
 class TrominoBoardViewModel
 {
 public:
-    TrominoBoardViewModel(int width, ::SDL_Window * window);
+    TrominoBoardViewModel(::SDL_Window * window);
 
     ~TrominoBoardViewModel();
 
@@ -44,8 +44,9 @@ private:
     ::SDL_Texture * _trominoTexture;
     std::size_t _numSteps;
     std::size_t _currentStepNum;
-    int _squareWidth;
-    int _width;
+
+    static constexpr int OUTLINE_LOGICAL_WIDTH = 1;
+    static constexpr int SQUARE_LOGICAL_WIDTH = 8;
 };
 
 [[nodiscard]] inline ::SDL_RendererFlip get_flip(const trmn_flip_t& flip) noexcept {

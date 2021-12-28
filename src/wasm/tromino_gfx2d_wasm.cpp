@@ -51,13 +51,14 @@ static void init(int width) noexcept {
 
     ::SDL_Init(SDL_INIT_VIDEO);
 
-    ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
+    ::SDL_SetHint(SDL_HINT_RENDER_LOGICAL_SIZE_MODE, "overscan");
+    ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
     ::SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
 
     window = new tromino::gfx2d::Window(width);
     window->Init();
 
-    viewModel = new tromino::gfx2d::TrominoBoardViewModel(width, window->GetSdlWindow());
+    viewModel = new tromino::gfx2d::TrominoBoardViewModel(window->GetSdlWindow());
     viewModel->Init();
 
     isMainLoopRunning = true;

@@ -39,11 +39,11 @@ static void addTromino(trmn_position_t pos, trmn_flip_t flip, void* state) noexc
 }
 
 static void pollSdlEvents() noexcept {
-    SDL_Event event;
+    ::SDL_Event event;
 
-    while (SDL_PollEvent(&event)) {
+    while (::SDL_PollEvent(&event)) {
         switch (event.type) {
-            case SDL_QUIT:
+            case ::SDL_QUIT:
                 isMainLoopRunning = false;
                 break;
 
@@ -67,17 +67,18 @@ int init(const tromino::gfx2d::board_t& board, int width) noexcept {
 
     std::thread solver_thread(solver, board.order, board.mark, addTromino, &solutionState);
 
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+    if (::SDL_Init(SDL_INIT_VIDEO) != 0) {
         return 1;
     }
 
-    ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
+    ::SDL_SetHint(SDL_HINT_RENDER_LOGICAL_SIZE_MODE, "overscan");
+    ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
     ::SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
 
     tromino::gfx2d::Window * window = new tromino::gfx2d::Window(width);
     window->Init();
 
-    tromino::gfx2d::TrominoBoardViewModel * viewModel = new tromino::gfx2d::TrominoBoardViewModel(width, window->GetSdlWindow());
+    tromino::gfx2d::TrominoBoardViewModel * viewModel = new tromino::gfx2d::TrominoBoardViewModel(window->GetSdlWindow());
 
     viewModel->Init();
     viewModel->SetBoard(board);
@@ -100,7 +101,7 @@ int init(const tromino::gfx2d::board_t& board, int width) noexcept {
 
         viewModel->Render(solutionState);
 
-        SDL_Delay(FRAME_DELAY);
+        ::SDL_Delay(FRAME_DELAY);
     }
 
     viewModel->Dispose();
@@ -108,7 +109,7 @@ int init(const tromino::gfx2d::board_t& board, int width) noexcept {
     delete viewModel;
     delete window;
 
-    SDL_Quit();
+    ::SDL_Quit();
 
     solver_thread.join();
 
