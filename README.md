@@ -73,13 +73,49 @@ box-drawing characters
 
 ## Building the desktop app
 
-The desktop app is currently supported on macOS. See the `xcode` directory for
-the Xcode project files.
+### With Xcode
 
-For Windows and Linux, no build files are provided but it should be possible
-to build for the said platforms without source code modification.
+The desktop app is currently actively supported on macOS. See the `xcode` directory for
+the Xcode 13 project files.
+
+### With GNU Autotools
+
+For Linux, and possibly any platform on which GNU Autotools are
+supported:
+
+```shell
+./autogen.sh
+mkdir build && cd build
+../configure
+make
+```
+
+Optional steps:
+
+```shell
+make check
+make install
+```
+
+### With MSBuild
+
+For Windows, no build files are provided but it should be possible
+to build the GUI app without source code modification.
+
+```powershell
+msbuild /m /p:Configuration=release /p:Platform=x64 "msbuild\TrominoPuzzle.sln"
+```
+
+### Dependencies
 
 The SDL2 library is required to build the desktop app.
+
+To install the dependencies for Ubuntu:
+
+```shell
+sudo apt update
+sudo apt install -yq autoconf-archive libboost-test-dev libsdl2-dev
+```
 
 ## License
 
