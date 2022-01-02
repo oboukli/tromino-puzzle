@@ -6,7 +6,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/oboukli/tromino-puzzle/badge)](https://www.codefactor.io/repository/github/oboukli/tromino-puzzle)
 [![Codacy](https://app.codacy.com/project/badge/Grade/8395b4fbd3b34c72907b0e65fe0b5f35)](https://www.codacy.com/gh/oboukli/tromino-puzzle/dashboard)
 
-This is a C library implementing a divide-and-conquer O(n) algorithm, and a
+This is a C library (see `src/lib`) implementing a divide-and-conquer O(n) algorithm, and a
 collection of apps, to solve the tromino puzzle, over-engineered for the joy of
 learning by doing.
 
@@ -69,16 +69,16 @@ define `TROMINO_USE_ASCII` before building.
 
 On Windows, a native legacy Windows Console Host (WCH) renderer, which uses DOS
 box-drawing characters
-([code page 437](https://en.wikipedia.org/wiki/Code_page_437)), is included.
+(code page 437), is included.
 
 ## Building the desktop app
 
-### With Xcode
+### Building for macOS with Xcode
 
 The desktop app is currently actively supported on macOS. See the `xcode` directory for
 the Xcode 13 project files.
 
-### With GNU Autotools
+### Building for Unix and GNU/Linux with GNU Autotools
 
 For Linux, and possibly any platform on which GNU Autotools are
 supported:
@@ -97,7 +97,7 @@ make check
 make install
 ```
 
-### With MSBuild
+### Building for Windows with MSBuild
 
 For Windows, no build files are provided but it should be possible
 to build the GUI app without source code modification.
@@ -110,17 +110,18 @@ msbuild /m /p:Configuration=release /p:Platform=x64 "msbuild\TrominoPuzzle.sln"
 
 The SDL2 library is required to build the desktop app.
 
-To install the dependencies for Ubuntu:
+> Tip: The Debian and Ubuntu development package for SDL2 is `libsdl2-dev`.
 
 ```shell
-sudo apt update
-sudo apt install -yq autoconf-archive libboost-test-dev libsdl2-dev
+sudo apt install libsdl2-dev
 ```
 
 ## License
 
 This software is released under an [MIT-style license](LICENSE).
 Copyright © 2021 Omar Boukli-Hacene.
+
+SPDX license identifier: MIT.
 
 ---
 
