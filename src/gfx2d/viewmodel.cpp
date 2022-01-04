@@ -65,7 +65,7 @@ void TrominoBoardViewModel::SetBoard(const tromino::gfx2d::board_t& board) noexc
     _numSteps = ((order * order) - 1) / 3;
 
     ::SDL_RenderSetLogicalSize(_renderer, logicalWidth, logicalWidth);
-    ::SDL_RenderSetIntegerScale(_renderer, ::SDL_bool::SDL_TRUE);
+    ::SDL_RenderSetIntegerScale(_renderer, ::SDL_bool::SDL_FALSE);
 
     if (_viewTexture != nullptr) {
         ::SDL_DestroyTexture(_viewTexture);
