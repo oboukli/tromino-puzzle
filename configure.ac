@@ -9,7 +9,7 @@ m4_define(_TRMNPZZL_VERSION_IS_RELEASE, true)
 m4_define(_COPYRIGHT_YEAR, 2021)
 
 AC_INIT([Tromino Puzzle],[m4_join(., _TRMNPZZL_VERSION_MAJOR, _TRMNPZZL_VERSION_MINOR, _TRMNPZZL_VERSION_PATCH, _TRMNPZZL_VERSION_BUILD)m4_if(_TRMNPZZL_VERSION_RC, 0, , rc_TRMNPZZL_VERSION_RC)],[https://github.com/oboukli/tromino-puzzle/issues],[trmnpzzl],[https://omar.fun/tromino-puzzle])
-AM_INIT_AUTOMAKE([foreign -Wall -Werror])
+AM_INIT_AUTOMAKE([foreign subdir-objects -Wall -Werror])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([src/cli/trmn_graph.cpp])
 AC_CONFIG_HEADERS([src/config/config.h])
@@ -31,13 +31,7 @@ AX_CXX_COMPILE_STDCXX([17], [noext], [mandatory])
 AC_PROG_SED
 
 LT_INIT(disable-shared)
-
-AC_CONFIG_FILES([Makefile
-	src/lib/Makefile
-	src/cli/Makefile
-	src/gfx2d/Makefile
-	src/gui/Makefile])
-AC_CONFIG_FILES([test/lib/Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile test/Makefile])
 
 AX_BOOST_BASE([1.71.0], [], [AC_MSG_ERROR([Boost is not available])])
 AX_BOOST_UNIT_TEST_FRAMEWORK

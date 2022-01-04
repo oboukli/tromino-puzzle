@@ -1,3 +1,3 @@
-SUBDIRS = src/lib src/cli src/gfx2d src/gui test/lib
+SUBDIRS = src test
 ACLOCAL_AMFLAGS = -I m4
 dist_doc_DATA = README.md
