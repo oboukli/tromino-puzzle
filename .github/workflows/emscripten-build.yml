@@ -40,7 +40,7 @@ jobs:
     - name: Make
       run: |
         source ${{ github.workspace }}/emsdk/emsdk_env.sh
-        emmake make
+        emmake make -j $(($(nproc)*15)/10)
       working-directory: tromino-puzzle/emscripten
 
     - name: Archive web app artifacts
