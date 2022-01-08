@@ -15,7 +15,7 @@
 
 namespace tromino::gfx2d {
 
-class TrominoBoardViewModel
+class TrominoBoardViewModel final
 {
 public:
     TrominoBoardViewModel(::SDL_Window * window);
@@ -45,6 +45,7 @@ private:
     std::size_t _numSteps;
     std::size_t _currentStepNum;
 
+private:
     static constexpr int OUTLINE_LOGICAL_WIDTH = 1;
     static constexpr int SQUARE_LOGICAL_WIDTH = 8;
 };

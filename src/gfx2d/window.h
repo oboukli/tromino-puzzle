@@ -11,7 +11,7 @@
 
 namespace tromino::gfx2d {
 
-class Window
+class Window final
 {
 public:
     Window(int width);
