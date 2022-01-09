@@ -8,8 +8,8 @@
 
 #include <vector>
 
-void shim_add_tromino(trmn_position_t abspos, trmn_flip_t flip, void * state) {
-    ShimStep step = { abspos, flip };
+void shim_add_tromino(trmn_position_t pos, trmn_flip_t flip, void * state) {
+    ShimStep step = { pos, flip };
     static_cast<std::vector<ShimStep>*>(state)->push_back(step);
 }
 
@@ -17,9 +17,9 @@ void print_shim_step_vector(const std::vector<ShimStep>& steps) {
     for (auto s: steps) {
         std::cout
             << "{ { "
-            << s.abspos.x
+            << s.pos.x
             << ", "
-            << s.abspos.y
+            << s.pos.y
             << " }, { "
             << s.flip.x
             << ", "

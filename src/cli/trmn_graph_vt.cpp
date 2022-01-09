@@ -72,7 +72,7 @@ namespace tromino::vt {
         }
     }
 
-    void add_tromino(trmn_position_t abspos, trmn_flip_t flip, void* state) {
+    void add_tromino(trmn_position_t pos, trmn_flip_t flip, void* state) {
         graph_state_t* graph_state = static_cast<graph_state_t*>(state);
         board_t& board = graph_state->board;
         char* board_matrix = board.board_matrix.get();
@@ -86,12 +86,12 @@ namespace tromino::vt {
                     continue;
                 }
 
-                assert((empty == board_matrix[calc_index(abspos.x + j, abspos.y + i, order)])
+                assert((empty == board_matrix[calc_index(pos.x + j, pos.y + i, order)])
                     && "Error: Invalid placement.");
 
-                board_matrix[calc_index(abspos.x + j, abspos.y + i, order)] = px;
+                board_matrix[calc_index(pos.x + j, pos.y + i, order)] = px;
 
-                draw_at(1 + abspos.x + j, 1 + abspos.y + i, px);
+                draw_at(1 + pos.x + j, 1 + pos.y + i, px);
             }
         }
 

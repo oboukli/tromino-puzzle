@@ -15,24 +15,24 @@
 class ShimStep
 {
 public:
-    trmn_position_t abspos;
+    trmn_position_t pos;
     trmn_flip_t flip;
 
     bool operator!=(const ShimStep &rhs) {
-        return rhs.abspos.x != this->abspos.x
-            || rhs.abspos.y != this->abspos.y
+        return rhs.pos.x != this->pos.x
+            || rhs.pos.y != this->pos.y
             || rhs.flip.x != this->flip.x
             || rhs.flip.y != this->flip.y;
     }
 
     friend std::ostream & operator<<(std::ostream &os, const ShimStep &s) {
         return os
-            << "Tromino position: (" << s.abspos.x << ", " << s.abspos.y
+            << "Tromino position: (" << s.pos.x << ", " << s.pos.y
             << "). Flip: (" << s.flip.x << ", " << s.flip.y << ")";
     }
 };
 
-void shim_add_tromino(trmn_position_t abspos, trmn_flip_t flip, void * state);
+void shim_add_tromino(trmn_position_t pos, trmn_flip_t flip, void * state);
 
 void print_shim_step_vector(const std::vector<ShimStep>& steps);
 
