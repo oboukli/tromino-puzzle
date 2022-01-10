@@ -14,9 +14,9 @@
 namespace tromino::gfx2d {
 
 struct board_t {
+    trmn_position_t mark;
     std::size_t size;
     int order;
-    trmn_position_t mark;
 };
 
 } // namespace tromino::gfx2d

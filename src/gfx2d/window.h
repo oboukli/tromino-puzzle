@@ -24,9 +24,9 @@ public:
     [[nodiscard]] ::SDL_Window * GetSdlWindow() const noexcept;
 
 private:
+    ::SDL_Window * _window;
     int _width;
     bool _isInitialized;
-    ::SDL_Window * _window;
 };
 
 } // namespace tromino::gfx2d

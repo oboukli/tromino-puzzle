@@ -32,12 +32,12 @@ int main(int argc, const char * argv[]) {
     std::size_t order_internal = static_cast<std::size_t>((order));
     std::size_t size = order_internal * order_internal;
     tromino::gfx2d::board_t board{
-        .size = size,
-        .order = order,
         .mark = {
             .x = x,
             .y = y
-        }
+        },
+        .size = size,
+        .order = order
     };
 
     return init(board, WIDTH);

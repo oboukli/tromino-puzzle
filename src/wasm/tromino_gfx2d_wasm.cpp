@@ -120,12 +120,12 @@ static void start(const tromino::gfx2d::board_t& board, int width) noexcept {
 EMSCRIPTEN_KEEPALIVE extern "C" void playTromino(int order, int markX, int markY, int width) noexcept {
     std::size_t size = order * order;
     tromino::gfx2d::board_t board{
-        .size = size,
-        .order = order,
         .mark = {
             .x = markX,
             .y = markY
-        }
+        },
+        .size = size,
+        .order = order
     };
 
     start(board, width);

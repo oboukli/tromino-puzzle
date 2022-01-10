@@ -23,6 +23,27 @@ namespace tromino::gfx2d {
     return texture;
 }
 
+[[nodiscard]] ::SDL_Texture * CreateTrominoTexture(::SDL_Renderer * renderer, int squareWidth, const ::SDL_Color & color) noexcept {
+    ::SDL_Texture * texture = CreateTexture(renderer, squareWidth * 2);
+
+    ::SDL_SetTextureBlendMode(texture, ::SDL_BlendMode::SDL_BLENDMODE_BLEND);
+
+    ::SDL_SetRenderTarget(renderer, texture);
+
+    ::SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_TRANSPARENT);
+    ::SDL_RenderClear(renderer);
+
+    ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+
+    ::SDL_Rect square = { squareWidth, 0, squareWidth, squareWidth };
+    ::SDL_RenderFillRect(renderer, &square);
+
+    ::SDL_Rect rectangle = { 0, squareWidth, squareWidth * 2, squareWidth };
+    ::SDL_RenderFillRect(renderer, &rectangle);
+
+    return texture;
+}
+
 void InitCheckeredBoard(::SDL_Renderer * renderer, ::SDL_Texture * texture, int squareWidth, int order, const ::SDL_Color & wke1Color, const ::SDL_Color & bke8Color) noexcept {
     ::SDL_SetTextureBlendMode(texture, ::SDL_BlendMode::SDL_BLENDMODE_BLEND);
 
@@ -60,27 +81,6 @@ void InitSolutionTexture(::SDL_Renderer * renderer, ::SDL_Texture * texture, int
 
     ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
     ::SDL_RenderClear(renderer);
-}
-
-[[nodiscard]] ::SDL_Texture * CreateTrominoTexture(::SDL_Renderer * renderer, int squareWidth, const ::SDL_Color & color) noexcept {
-    ::SDL_Texture * texture = CreateTexture(renderer, squareWidth * 2);
-
-    ::SDL_SetTextureBlendMode(texture, ::SDL_BlendMode::SDL_BLENDMODE_BLEND);
-
-    ::SDL_SetRenderTarget(renderer, texture);
-
-    ::SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_TRANSPARENT);
-    ::SDL_RenderClear(renderer);
-
-    ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
-
-    ::SDL_Rect square = { squareWidth, 0, squareWidth, squareWidth };
-    ::SDL_RenderFillRect(renderer, &square);
-
-    ::SDL_Rect rectangle = { 0, squareWidth, squareWidth * 2, squareWidth };
-    ::SDL_RenderFillRect(renderer, &rectangle);
-
-    return texture;
 }
 
 void DrawMark(::SDL_Renderer * renderer, int squareWidth, int x, int y, const ::SDL_Color & color) noexcept {

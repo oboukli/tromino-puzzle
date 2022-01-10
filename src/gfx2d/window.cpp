@@ -8,8 +8,10 @@
 
 namespace tromino::gfx2d {
 
-Window::Window(int width)
-    : _width(width), _isInitialized(false), _window(nullptr) {
+Window::Window(int width):
+    _window(nullptr),
+    _width(width),
+    _isInitialized(false) {
 }
 
 Window::~Window() {

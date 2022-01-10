@@ -36,14 +36,14 @@ public:
 
 private:
     tromino::gfx2d::board_t _board;
+    std::size_t _numSteps;
+    std::size_t _currentStepNum;
     ::SDL_Window * _window;
     ::SDL_Renderer * _renderer;
     ::SDL_Texture * _viewTexture;
     ::SDL_Texture * _boardTexture;
     ::SDL_Texture * _solutionTexture;
     ::SDL_Texture * _trominoTexture;
-    std::size_t _numSteps;
-    std::size_t _currentStepNum;
 
 private:
     static constexpr int OUTLINE_LOGICAL_WIDTH = 1;

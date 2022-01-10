@@ -12,20 +12,21 @@ namespace tromino::gfx2d {
 
 TrominoBoardViewModel::TrominoBoardViewModel(::SDL_Window * window):
     _board{
-        .size = 0,
-        .order = 0,
         .mark = {
             .x = 0,
             .y = 0
-    }},
+        },
+        .size = 0,
+        .order = 0,
+    },
+    _numSteps(0),
+    _currentStepNum(0),
     _window(window),
     _renderer(nullptr),
     _viewTexture(nullptr),
     _boardTexture(nullptr),
     _solutionTexture(nullptr),
-    _trominoTexture(nullptr),
-    _numSteps(0),
-    _currentStepNum(0) {
+    _trominoTexture(nullptr) {
 }
 
 TrominoBoardViewModel::~TrominoBoardViewModel() {

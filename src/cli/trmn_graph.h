@@ -21,10 +21,10 @@
 namespace tromino {
 
     struct board_t {
-        std::unique_ptr<char[]> board_matrix;
-        std::size_t size;
-        int order;
         trmn_position_t mark;
+        std::size_t size;
+        std::unique_ptr<char[]> board_matrix;
+        int order;
     };
 
     struct graph_state_t {
