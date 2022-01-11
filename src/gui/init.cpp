@@ -1,4 +1,4 @@
-// Copyright (c) Omar Boukli-Hacene 2021. All Rights Reserved.
+// Copyright (c) Omar Boukli-Hacene 2022. All Rights Reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
@@ -8,7 +8,9 @@
 
 #include <SDL2/SDL.h>
 
+#include <cassert>
 #include <condition_variable>
+#include <memory>
 #include <mutex>
 #include <thread>
 
@@ -53,34 +55,18 @@ static void pollSdlEvents() noexcept {
     }
 }
 
-int init(const tromino::gfx2d::board_t& board, int width) noexcept {
+inline static void start_game_loop(const tromino::gfx2d::board_t& board, const tromino::gfx2d::SolutionState & solutionState, int width, const char * title) {
     using namespace tromino::gfx2d;
     using namespace std::chrono_literals;
 
     constexpr auto WAIT_TIME = 4ms;
     constexpr int FRAME_DELAY = 68;
 
-    const size_t numSteps = ((board.order * board.order) - 1) / 3;
-    SolutionState solutionState;
-    solutionState.steps = std::make_unique<std::vector<Step>>();
-    solutionState.steps->reserve(numSteps);
+    std::unique_ptr<tromino::gfx2d::Window> window = std::make_unique<tromino::gfx2d::Window>(title, width);
+    assert(window->GetSdlWindow() != nullptr);
 
-    std::thread solver_thread(solver, board.order, board.mark, addTromino, &solutionState);
+    std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel = std::make_unique<tromino::gfx2d::TrominoBoardViewModel>(window->GetSdlWindow());
 
-    if (::SDL_Init(SDL_INIT_VIDEO) != 0) {
-        return 1;
-    }
-
-    ::SDL_SetHint(SDL_HINT_RENDER_LOGICAL_SIZE_MODE, "overscan");
-    ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
-    ::SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
-
-    tromino::gfx2d::Window * window = new tromino::gfx2d::Window(width);
-    window->Init();
-
-    tromino::gfx2d::TrominoBoardViewModel * viewModel = new tromino::gfx2d::TrominoBoardViewModel(window->GetSdlWindow());
-
-    viewModel->Init();
     viewModel->SetBoard(board);
 
     while (isMainLoopRunning) {
@@ -103,11 +89,25 @@ int init(const tromino::gfx2d::board_t& board, int width) noexcept {
 
         ::SDL_Delay(FRAME_DELAY);
     }
+}
 
-    viewModel->Dispose();
-    window->Dispose();
-    delete viewModel;
-    delete window;
+int init(const tromino::gfx2d::board_t& board, int width, const char * title) noexcept {
+    const size_t numSteps = ((board.order * board.order) - 1) / 3;
+    tromino::gfx2d::SolutionState solutionState;
+    solutionState.steps = std::make_unique<std::vector<tromino::gfx2d::Step>>();
+    solutionState.steps->reserve(numSteps);
+
+    std::thread solver_thread(solver, board.order, board.mark, addTromino, &solutionState);
+
+    if (::SDL_Init(SDL_INIT_VIDEO) != 0) {
+        return 1;
+    }
+
+    ::SDL_SetHint(SDL_HINT_RENDER_LOGICAL_SIZE_MODE, "overscan");
+    ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
+    ::SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
+
+    start_game_loop(board, solutionState, width, title);
 
     ::SDL_Quit();
 

@@ -1,4 +1,4 @@
-// Copyright (c) Omar Boukli-Hacene 2021. All Rights Reserved.
+// Copyright (c) Omar Boukli-Hacene 2022. All Rights Reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
@@ -9,24 +9,21 @@
 
 #include <SDL2/SDL.h>
 
+#include <memory>
+
 namespace tromino::gfx2d {
 
 class Window final
 {
 public:
-    Window(int width);
+    Window(const char * title, int width) noexcept;
 
-    ~Window();
-
-    void Init() noexcept;
-    void Dispose() noexcept;
+    ~Window() noexcept;
 
     [[nodiscard]] ::SDL_Window * GetSdlWindow() const noexcept;
 
 private:
-    ::SDL_Window * _window;
-    int _width;
-    bool _isInitialized;
+    std::unique_ptr<::SDL_Window, decltype(&::SDL_DestroyWindow)> _window;
 };
 
 } // namespace tromino::gfx2d

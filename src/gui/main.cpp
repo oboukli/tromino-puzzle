@@ -40,5 +40,5 @@ int main(int argc, const char * argv[]) {
         .order = order
     };
 
-    return init(board, WIDTH);
+    return init(board, WIDTH, "Tromino Puzzle");
 }

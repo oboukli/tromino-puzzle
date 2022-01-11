@@ -1,4 +1,4 @@
-// Copyright (c) Omar Boukli-Hacene 2021. All Rights Reserved.
+// Copyright (c) Omar Boukli-Hacene 2022. All Rights Reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
@@ -8,38 +8,21 @@
 
 namespace tromino::gfx2d {
 
-Window::Window(int width):
-    _window(nullptr),
-    _width(width),
-    _isInitialized(false) {
-}
-
-Window::~Window() {
-    Dispose();
-}
-
-void Window::Init() noexcept {
-    _window = ::SDL_CreateWindow("Tromino Puzzle", // TODO:
+Window::Window(const char * title, int width) noexcept:
+    _window(nullptr, ::SDL_DestroyWindow) {
+    _window.reset(::SDL_CreateWindow(title,
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
-        _width,
-        _width,
-        ::SDL_WindowFlags::SDL_WINDOW_ALLOW_HIGHDPI);
+        width,
+        width,
+        ::SDL_WindowFlags::SDL_WINDOW_ALLOW_HIGHDPI));
+}
 
-    _isInitialized = true; // TODO: Check for errors
+Window::~Window() noexcept {
 }
 
 [[nodiscard]] ::SDL_Window * Window::GetSdlWindow() const noexcept {
-    return _window;
-}
-
-void Window::Dispose() noexcept {
-    if (_window) {
-        ::SDL_DestroyWindow(_window);
-        _window = nullptr;
-    }
-
-    _isInitialized = false; // TODO: Check for errors
+    return _window.get();
 }
 
 } // namespace tromino::gfx2d

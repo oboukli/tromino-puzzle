@@ -1,10 +1,12 @@
-// Copyright (c) Omar Boukli-Hacene 2021. All Rights Reserved.
+// Copyright (c) Omar Boukli-Hacene 2022. All Rights Reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
 // SPDX-License-Identifier: MIT
 
 #include <emscripten.h>
+
+#include <memory>
 
 #include <SDL2/SDL.h>
 
@@ -18,9 +20,9 @@
 
 static bool isMainLoopRunning = true;
 static bool isInitialized = false;
-static tromino::gfx2d::Window * window = nullptr;
-static tromino::gfx2d::TrominoBoardViewModel * viewModel = nullptr;
-static tromino::gfx2d::SolutionState * solutionState = nullptr;
+static std::unique_ptr<tromino::gfx2d::Window> window = nullptr;
+static std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel = nullptr;
+static std::unique_ptr<tromino::gfx2d::SolutionState> solutionState = nullptr;
 
 static void addTromino(trmn_position_t pos, trmn_flip_t flip, void* state) noexcept {
     using namespace tromino::gfx2d;
@@ -46,7 +48,7 @@ static void pollSdlEvents() noexcept {
 }
 
 static void init(int width) noexcept {
-    solutionState = new tromino::gfx2d::SolutionState();
+    solutionState = std::make_unique<tromino::gfx2d::SolutionState>();
     solutionState->steps = std::make_unique<std::vector<tromino::gfx2d::Step>>();
 
     ::SDL_Init(SDL_INIT_VIDEO);
@@ -55,11 +57,8 @@ static void init(int width) noexcept {
     ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
     ::SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
 
-    window = new tromino::gfx2d::Window(width);
-    window->Init();
-
-    viewModel = new tromino::gfx2d::TrominoBoardViewModel(window->GetSdlWindow());
-    viewModel->Init();
+    window = std::make_unique<tromino::gfx2d::Window>(nullptr, width);
+    viewModel = std::make_unique<tromino::gfx2d::TrominoBoardViewModel>(window->GetSdlWindow());
 
     isMainLoopRunning = true;
     isInitialized = true;
@@ -68,18 +67,12 @@ static void init(int width) noexcept {
 static void terminate() noexcept {
     ::emscripten_cancel_main_loop();
 
-    viewModel->Dispose();
-    delete viewModel;
-    viewModel = nullptr;
-
-    window->Dispose();
-    delete window;
-    window = nullptr;
+    viewModel.reset();
+    window.reset();
 
     ::SDL_Quit();
 
-    delete solutionState;
-    solutionState = nullptr;
+    solutionState.reset();
 
     isInitialized = false;
     isMainLoopRunning = false;
@@ -109,7 +102,7 @@ static void start(const tromino::gfx2d::board_t& board, int width) noexcept {
     const size_t numSteps = ((board.order * board.order) - 1) / 3;
     solutionState->steps->reserve(numSteps);
 
-    ::trmn_solve_puzzle(board.order, board.mark, addTromino, solutionState);
+    ::trmn_solve_puzzle(board.order, board.mark, addTromino, solutionState.get());
 
     viewModel->SetBoard(board);
 

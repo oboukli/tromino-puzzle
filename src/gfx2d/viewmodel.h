@@ -1,4 +1,4 @@
-// Copyright (c) Omar Boukli-Hacene 2021. All Rights Reserved.
+// Copyright (c) Omar Boukli-Hacene 2022. All Rights Reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
@@ -18,13 +18,9 @@ namespace tromino::gfx2d {
 class TrominoBoardViewModel final
 {
 public:
-    TrominoBoardViewModel(::SDL_Window * window);
+    TrominoBoardViewModel(::SDL_Window * window) noexcept;
 
-    ~TrominoBoardViewModel();
-
-    void Init() noexcept;
-
-    void Dispose() noexcept;
+    ~TrominoBoardViewModel() noexcept;
 
     void SetBoard(const tromino::gfx2d::board_t& board) noexcept;
 
@@ -38,12 +34,12 @@ private:
     tromino::gfx2d::board_t _board;
     std::size_t _numSteps;
     std::size_t _currentStepNum;
-    ::SDL_Window * _window;
-    ::SDL_Renderer * _renderer;
-    ::SDL_Texture * _viewTexture;
-    ::SDL_Texture * _boardTexture;
-    ::SDL_Texture * _solutionTexture;
-    ::SDL_Texture * _trominoTexture;
+    SDL_Window * const _window;
+    std::unique_ptr<::SDL_Renderer, decltype(&::SDL_DestroyRenderer)> _renderer;
+    std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)> _viewTexture;
+    std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)> _boardTexture;
+    std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)> _solutionTexture;
+    std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)> _trominoTexture;
 
 private:
     static constexpr int OUTLINE_LOGICAL_WIDTH = 1;
