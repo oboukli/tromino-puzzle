@@ -10,6 +10,7 @@
 
 #include <cassert>
 #include <condition_variable>
+#include <cstdlib>
 #include <memory>
 #include <mutex>
 #include <thread>
@@ -100,7 +101,7 @@ int init(const tromino::gfx2d::board_t& board, int width, const char * title) no
     std::thread solver_thread(solver, board.order, board.mark, addTromino, &solutionState);
 
     if (::SDL_Init(SDL_INIT_VIDEO) != 0) {
-        return 1;
+        return EXIT_FAILURE;
     }
 
     ::SDL_SetHint(SDL_HINT_RENDER_LOGICAL_SIZE_MODE, "overscan");
@@ -113,5 +114,5 @@ int init(const tromino::gfx2d::board_t& board, int width, const char * title) no
 
     solver_thread.join();
 
-    return 0;
+    return EXIT_SUCCESS;
 }
