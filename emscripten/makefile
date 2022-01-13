@@ -1,3 +1,9 @@
+# Copyright (c) Omar Boukli-Hacene 2022. All Rights Reserved.
+# Distributed under an MIT-style license that can be
+# found in the LICENSE file.
+
+# SPDX-License-Identifier: MIT
+
 TARGET_LITRO ::= litro-wasm.js
 TARGET_TRMN ::= trmn-wasm.js
 

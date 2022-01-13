@@ -1,3 +1,9 @@
+# Copyright (c) Omar Boukli-Hacene 2022. All Rights Reserved.
+# Distributed under an MIT-style license that can be
+# found in the LICENSE file.
+
+# SPDX-License-Identifier: MIT
+
 check_PROGRAMS = libtromino_test
 
 libtromino_test_CPPFLAGS = $(BOOST_CPPFLAGS) -I$(top_srcdir)/src/lib

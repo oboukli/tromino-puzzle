@@ -306,6 +306,7 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Omar Boukli-Hacene";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -320,6 +321,7 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Omar Boukli-Hacene";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
