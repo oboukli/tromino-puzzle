@@ -10,6 +10,7 @@
 #include <cassert>
 
 #include "tromino.h"
+
 #include "trmn_graph.h"
 #include "trmn_graph_vt.h"
 
@@ -17,10 +18,12 @@
 #include "trmn_graph_windows.h"
 #endif // _WINDOWS
 
+// clang-format off
 enum class emulation_mode {
     vt_100 = 0,
     windows_console_host = 1
 };
+// clang-format on
 
 void init(int size, int x, int y, emulation_mode emulation_mode);
 

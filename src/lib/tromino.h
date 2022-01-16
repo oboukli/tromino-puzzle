@@ -40,9 +40,12 @@ typedef struct trmn_flip_struct {
     int y;
 } trmn_flip_t;
 
-typedef void (*trmn_add_tromino_func)(trmn_position_t pos, trmn_flip_t flip, void * state);
+typedef void (*trmn_add_tromino_func)(
+    trmn_position_t pos, trmn_flip_t flip, void* state);
 
-void trmn_solve_puzzle(int order, trmn_position_t mark, trmn_add_tromino_func add_tromino, void * state);
+void trmn_solve_puzzle(
+    int order, trmn_position_t mark, trmn_add_tromino_func add_tromino,
+    void* state);
 
 #ifdef __cplusplus
 }

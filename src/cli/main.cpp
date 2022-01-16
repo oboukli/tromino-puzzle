@@ -17,15 +17,16 @@ int main(int argc, const char* argv[]) {
     constexpr int REQUIRED_ARG_COUNT = 4;
 
     if (REQUIRED_ARG_COUNT > argc) {
+        // clang-format off
         std::cout
-            << "Usage: tromino <order> <x> <y>"
-            << std::endl
+            << "Usage: tromino <order> <x> <y>" << std::endl
 #ifdef _WINDOWS
             << " [options]" << std::endl
             << "  --use-wch    Use legacy Windows Console Host" << std::endl
 #endif // _WINDOWS
             << "Copyright (c) 2021 Omar Boukli-Hacene. All rights reserved."
             << std::endl;
+        // clang-format on
 
         return EXIT_FAILURE;
     }
@@ -35,9 +36,13 @@ int main(int argc, const char* argv[]) {
     int y = std::stoi(argv[3]);
 
 #ifdef _WINDOWS
-    bool use_wch = argc > REQUIRED_ARG_COUNT && std::string(argv[4]) == "--use-wch";
+    bool use_wch
+        = argc > REQUIRED_ARG_COUNT && std::string(argv[4]) == "--use-wch";
 
-    emulation_mode em = use_wch ? emulation_mode::windows_console_host : emulation_mode::vt_100;
+    // clang-format off
+    emulation_mode em =
+        use_wch ? emulation_mode::windows_console_host : emulation_mode::vt_100;
+    // clang-format on
 #else
     constexpr emulation_mode em = emulation_mode::vt_100;
 #endif // _WINDOWS

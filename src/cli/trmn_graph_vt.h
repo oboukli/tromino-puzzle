@@ -20,6 +20,7 @@
 #include <thread>
 
 #include "tromino.h"
+
 #include "trmn_graph.h"
 
 #define BEL "\a"
@@ -36,40 +37,41 @@
 
 namespace tromino::vt {
 
-    constexpr char neutral = 'N';
-    constexpr char empty = ' ';
+constexpr char neutral = 'N';
+constexpr char empty = ' ';
 
-    constexpr char mark = 'X';
+constexpr char mark = 'X';
 
 #ifdef TROMINO_USE_ASCII
-    constexpr char horizontal = '-';
-    constexpr char vertical = '|';
-    constexpr char top_left = '+';
-    constexpr char top_right = '+';
-    constexpr char bottom_left = '+';
-    constexpr char bottom_right = '+';
+constexpr char horizontal = '-';
+constexpr char vertical = '|';
+constexpr char top_left = '+';
+constexpr char top_right = '+';
+constexpr char bottom_left = '+';
+constexpr char bottom_right = '+';
 #else
-    constexpr char horizontal = '\x71';
-    constexpr char vertical = '\x78';
-    constexpr char top_left = '\x6c';
-    constexpr char top_right = '\x6b';
-    constexpr char bottom_left = '\x6d';
-    constexpr char bottom_right = '\x6a';
+constexpr char horizontal = '\x71';
+constexpr char vertical = '\x78';
+constexpr char top_left = '\x6c';
+constexpr char top_right = '\x6b';
+constexpr char bottom_left = '\x6d';
+constexpr char bottom_right = '\x6a';
 #endif // TROMINO_USE_ASCII
 
-    constexpr auto sprite_size = 4;
+constexpr auto sprite_size = 4;
 
-    void draw_board(const board_t& board);
+void draw_board(const board_t& board);
 
-    void add_tromino(trmn_position_t pos, trmn_flip_t flip, void* graph_state);
+void add_tromino(trmn_position_t pos, trmn_flip_t flip, void* graph_state);
 
-    inline void init_board(board_t& board) {
-        std::fill_n(board.board_matrix.get(), board.size, empty);
+inline void init_board(board_t& board) {
+    std::fill_n(board.board_matrix.get(), board.size, empty);
 
-        board.board_matrix[calc_index(board.mark.x, board.mark.y, board.order)] = mark;
-    }
+    board.board_matrix[calc_index(board.mark.x, board.mark.y, board.order)]
+        = mark;
+}
 
-    void use_vt(tromino::board_t& tromino_board);
+void use_vt(tromino::board_t& tromino_board);
 
 } // namespace tromino::vt
 

@@ -20,24 +20,24 @@
 
 namespace tromino {
 
-    struct board_t {
-        trmn_position_t mark;
-        std::size_t size;
-        std::unique_ptr<char[]> board_matrix;
-        int order;
-    };
+struct board_t {
+    trmn_position_t mark;
+    std::size_t size;
+    std::unique_ptr<char[]> board_matrix;
+    int order;
+};
 
-    struct graph_state_t {
-        board_t& board;
+struct graph_state_t {
+    board_t& board;
 #ifdef _WINDOWS
-        HANDLE hOutput;
+    HANDLE hOutput;
 #endif // _WINDOWS
-    };
+};
 
-    template <typename T>
-    inline T calc_index(T x, T y, T o) {
-        return y * o + x;
-    }
+template <typename T>
+inline T calc_index(T x, T y, T o) {
+    return y * o + x;
+}
 
 } // namespace tromino
 

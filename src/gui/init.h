@@ -11,6 +11,8 @@
 
 #include "board.h"
 
-int init(const tromino::gfx2d::board_t & board, int width, const char * title) noexcept;
+int init(
+    const tromino::gfx2d::board_t& board, int width,
+    const char* title) noexcept;
 
 #endif // INIT_H_

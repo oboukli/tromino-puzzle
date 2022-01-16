@@ -12,66 +12,72 @@
 
 #include "tromino.h"
 
-typedef void (*add_tromino_extern_callback)(trmn_position_t pos, double angle) noexcept;
+typedef void (*add_tromino_extern_callback)(
+    trmn_position_t pos, double angle) noexcept;
 
-static void add_tromino(trmn_position_t pos, trmn_flip_t flip, void * state) noexcept {
+static void add_tromino(
+    trmn_position_t pos, trmn_flip_t flip, void* state) noexcept {
     constexpr double pi = 3.14159265358979323846;
     constexpr double pi2 = 1.57079632679489661923;
 
-    add_tromino_extern_callback add_tromino_cb = (add_tromino_extern_callback)state;
-        double angle;
+    add_tromino_extern_callback add_tromino_cb
+        = (add_tromino_extern_callback)state;
+    double angle;
 
-        assert(flip.x == -1 || flip.x == 1);
-        assert(flip.y == -1 || flip.y == 1);
+    assert(flip.x == -1 || flip.x == 1);
+    assert(flip.y == -1 || flip.y == 1);
 
-        switch (flip.x) {
+    switch (flip.x) {
+    case -1:
+        switch (flip.y) {
         case -1:
-            switch (flip.y) {
-            case -1:
-                // -1, -1
-                // X |
-                // - +
+            // -1, -1
+            // X |
+            // - +
 
-                angle = 3 * pi2;
-                break;
-
-            case 1:
-            default:
-                // -1, 1
-                // - +
-                // X |
-
-                angle = pi;
-                break;
-            };
+            angle = 3 * pi2;
             break;
 
         case 1:
         default:
-            switch (flip.y) {
-            case -1:
-                // 1, -1
-                // | X
-                // + -
+            // -1, 1
+            // - +
+            // X |
 
-                angle = 0;
-                break;
-
-            case 1:
-            default:
-                // 1, 1
-                // + -
-                // | X
-
-                angle = pi2;
-                break;
-            };
+            angle = pi;
             break;
         };
+        break;
+
+    case 1:
+    default:
+        switch (flip.y) {
+        case -1:
+            // 1, -1
+            // | X
+            // + -
+
+            angle = 0;
+            break;
+
+        case 1:
+        default:
+            // 1, 1
+            // + -
+            // | X
+
+            angle = pi2;
+            break;
+        };
+        break;
+    };
 
     add_tromino_cb(pos, angle);
 }
 
-EMSCRIPTEN_KEEPALIVE extern "C" void solve(int order, trmn_position_t mark, add_tromino_extern_callback add_tromino_cb) noexcept {
-    trmn_solve_puzzle(order, mark, add_tromino, reinterpret_cast<void *>(add_tromino_cb));
+EMSCRIPTEN_KEEPALIVE extern "C" void solve(
+    int order, trmn_position_t mark,
+    add_tromino_extern_callback add_tromino_cb) noexcept {
+    trmn_solve_puzzle(
+        order, mark, add_tromino, reinterpret_cast<void*>(add_tromino_cb));
 }

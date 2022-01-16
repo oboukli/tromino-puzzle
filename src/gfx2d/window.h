@@ -13,14 +13,13 @@
 
 namespace tromino::gfx2d {
 
-class Window final
-{
+class Window final {
 public:
-    Window(const char * title, int width) noexcept;
+    Window(const char* title, int width) noexcept;
 
     ~Window() noexcept;
 
-    [[nodiscard]] ::SDL_Window * GetSdlWindow() const noexcept;
+    [[nodiscard]] ::SDL_Window* GetSdlWindow() const noexcept;
 
 private:
     std::unique_ptr<::SDL_Window, decltype(&::SDL_DestroyWindow)> _window;

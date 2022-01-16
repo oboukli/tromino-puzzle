@@ -21,10 +21,12 @@
 static bool isMainLoopRunning = true;
 static bool isInitialized = false;
 static std::unique_ptr<tromino::gfx2d::Window> window = nullptr;
-static std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel = nullptr;
+static std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel
+    = nullptr;
 static std::unique_ptr<tromino::gfx2d::SolutionState> solutionState = nullptr;
 
-static void addTromino(trmn_position_t pos, trmn_flip_t flip, void* state) noexcept {
+static void addTromino(
+    trmn_position_t pos, trmn_flip_t flip, void* state) noexcept {
     using namespace tromino::gfx2d;
 
     SolutionState& solutionState = *static_cast<SolutionState*>(state);
@@ -37,19 +39,20 @@ static void pollSdlEvents() noexcept {
 
     while (::SDL_PollEvent(&event)) {
         switch (event.type) {
-            case SDL_QUIT:
-                isMainLoopRunning = false;
-                break;
+        case SDL_QUIT:
+            isMainLoopRunning = false;
+            break;
 
-            default:
-                break;
+        default:
+            break;
         }
     }
 }
 
 static void init(int width) noexcept {
     solutionState = std::make_unique<tromino::gfx2d::SolutionState>();
-    solutionState->steps = std::make_unique<std::vector<tromino::gfx2d::Step>>();
+    solutionState->steps
+        = std::make_unique<std::vector<tromino::gfx2d::Step>>();
 
     ::SDL_Init(SDL_INIT_VIDEO);
 
@@ -58,7 +61,8 @@ static void init(int width) noexcept {
     ::SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
 
     window = std::make_unique<tromino::gfx2d::Window>(nullptr, width);
-    viewModel = std::make_unique<tromino::gfx2d::TrominoBoardViewModel>(window->GetSdlWindow());
+    viewModel = std::make_unique<tromino::gfx2d::TrominoBoardViewModel>(
+        window->GetSdlWindow());
 
     isMainLoopRunning = true;
     isInitialized = true;
@@ -102,7 +106,8 @@ static void start(const tromino::gfx2d::board_t& board, int width) noexcept {
     const size_t numSteps = ((board.order * board.order) - 1) / 3;
     solutionState->steps->reserve(numSteps);
 
-    ::trmn_solve_puzzle(board.order, board.mark, addTromino, solutionState.get());
+    ::trmn_solve_puzzle(
+        board.order, board.mark, addTromino, solutionState.get());
 
     viewModel->SetBoard(board);
 
@@ -110,16 +115,11 @@ static void start(const tromino::gfx2d::board_t& board, int width) noexcept {
     ::emscripten_set_main_loop_timing(EM_TIMING_RAF, SWAP_INTERVAL);
 }
 
-EMSCRIPTEN_KEEPALIVE extern "C" void playTromino(int order, int markX, int markY, int width) noexcept {
+EMSCRIPTEN_KEEPALIVE extern "C" void playTromino(
+    int order, int markX, int markY, int width) noexcept {
     std::size_t size = order * order;
     tromino::gfx2d::board_t board{
-        .mark = {
-            .x = markX,
-            .y = markY
-        },
-        .size = size,
-        .order = order
-    };
+        .mark = {.x = markX, .y = markY}, .size = size, .order = order};
 
     start(board, width);
 }

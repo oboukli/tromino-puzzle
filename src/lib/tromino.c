@@ -27,7 +27,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #include <assert.h>
 
-static void solve_tromino(int order, trmn_position_t pos, trmn_flip_t flip, trmn_add_tromino_func add_tromino, void * state) {
+static void solve_tromino(
+    int order, trmn_position_t pos, trmn_flip_t flip,
+    trmn_add_tromino_func add_tromino, void* state) {
     if (2 == order) {
         add_tromino(pos, flip, state);
         return;
@@ -46,9 +48,7 @@ static void solve_tromino(int order, trmn_position_t pos, trmn_flip_t flip, trmn
             .x = p.x - (flip.x * n),
             .y = p.y - (flip.y * n),
         },
-        flip,
-        add_tromino,
-        state);
+        flip, add_tromino, state);
 
     solve_tromino(
         n,
@@ -60,8 +60,7 @@ static void solve_tromino(int order, trmn_position_t pos, trmn_flip_t flip, trmn
             .x = flip.x,
             .y = flip.y * -1,
         },
-        add_tromino,
-        state);
+        add_tromino, state);
 
     solve_tromino(
         n,
@@ -73,8 +72,7 @@ static void solve_tromino(int order, trmn_position_t pos, trmn_flip_t flip, trmn
             .x = flip.x * -1,
             .y = flip.y,
         },
-        add_tromino,
-        state);
+        add_tromino, state);
 
     const int o = n >> 1;
     solve_tromino(
@@ -83,12 +81,12 @@ static void solve_tromino(int order, trmn_position_t pos, trmn_flip_t flip, trmn
             .x = p.x - (flip.x * o),
             .y = p.y - (flip.y * o),
         },
-        flip,
-        add_tromino,
-        state);
+        flip, add_tromino, state);
 }
 
-static void solve_board(int order, trmn_position_t pos, trmn_flip_t flip, trmn_position_t mark, trmn_add_tromino_func add_tromino, void * state) {
+static void solve_board(
+    int order, trmn_position_t pos, trmn_flip_t flip, trmn_position_t mark,
+    trmn_add_tromino_func add_tromino, void* state) {
     if (order > 2) {
         const int n = order >> 1;
 
@@ -111,7 +109,9 @@ static void solve_board(int order, trmn_position_t pos, trmn_flip_t flip, trmn_p
     solve_tromino(order, pos, flip, add_tromino, state);
 }
 
-void trmn_solve_puzzle(int order, trmn_position_t mark, trmn_add_tromino_func add_tromino, void * state) {
+void trmn_solve_puzzle(
+    int order, trmn_position_t mark, trmn_add_tromino_func add_tromino,
+    void* state) {
     assert(add_tromino);
 
     const trmn_position_t pos = {

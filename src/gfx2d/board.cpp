@@ -6,6 +6,4 @@
 
 #include "board.h"
 
-namespace tromino::gfx2d {
-
-} // namespace tromino::gfx2d
+namespace tromino::gfx2d {}

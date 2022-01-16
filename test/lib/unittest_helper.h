@@ -12,27 +12,26 @@
 
 #include "tromino.h"
 
-class ShimStep
-{
+class ShimStep {
 public:
     trmn_position_t pos;
     trmn_flip_t flip;
 
-    bool operator!=(const ShimStep &rhs) {
-        return rhs.pos.x != this->pos.x
-            || rhs.pos.y != this->pos.y
-            || rhs.flip.x != this->flip.x
-            || rhs.flip.y != this->flip.y;
+    bool operator!=(const ShimStep& rhs) {
+        return rhs.pos.x != this->pos.x || rhs.pos.y != this->pos.y
+            || rhs.flip.x != this->flip.x || rhs.flip.y != this->flip.y;
     }
 
-    friend std::ostream & operator<<(std::ostream &os, const ShimStep &s) {
+    friend std::ostream& operator<<(std::ostream& os, const ShimStep& s) {
+        // clang-format off
         return os
             << "Tromino position: (" << s.pos.x << ", " << s.pos.y
             << "). Flip: (" << s.flip.x << ", " << s.flip.y << ")";
+        // clang-format on
     }
 };
 
-void shim_add_tromino(trmn_position_t pos, trmn_flip_t flip, void * state);
+void shim_add_tromino(trmn_position_t pos, trmn_flip_t flip, void* state);
 
 void print_shim_step_vector(const std::vector<ShimStep>& steps);
 
