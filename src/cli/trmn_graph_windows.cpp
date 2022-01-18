@@ -1,4 +1,4 @@
-// Copyright (c) Omar Boukli-Hacene 2021. All Rights Reserved.
+// Copyright (c) Omar Boukli-Hacene 2022. All Rights Reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
@@ -60,8 +60,8 @@ inline void draw_at(int x, int y, char c) {
 
 inline void draw_at(int x, int y, char c, HANDLE hOutput) {
     COORD coord{
-        .X{(SHORT)x},
-        .Y{(SHORT)y},
+        .X{static_cast<SHORT>(x)},
+        .Y{static_cast<SHORT>(y)},
     };
 
     SetConsoleCursorPosition(hOutput, coord);
@@ -105,8 +105,8 @@ void add_tromino(trmn_position_t pos, trmn_flip_t flip, void* state) {
     }
 
     COORD coord{
-        .X = (SHORT)order - 1,
-        .Y = (SHORT)order - 1,
+        .X = static_cast<SHORT>(order) - 1,
+        .Y = static_cast<SHORT>(order) - 1,
     };
     SetConsoleCursorPosition(graph_state->hOutput, coord);
 
@@ -149,8 +149,12 @@ void use_wch(tromino::board_t& tromino_board) {
     SetConsoleTextAttribute(
         hConsoleOutput,
         FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-    COORD coordMark
-        = {.X = (short)tromino_board.mark.x, .Y = (short)tromino_board.mark.y};
+    // clang-format off
+    COORD coordMark = {
+        .X = static_cast<short>(tromino_board.mark.x),
+        .Y = static_cast<short>(tromino_board.mark.y)
+    };
+    // clang-format on
     SetConsoleCursorPosition(hConsoleOutput, coordMark);
     std::cout << tromino::windows::mark;
 

@@ -1,5 +1,5 @@
 
-// Copyright (c) Omar Boukli-Hacene 2021. All Rights Reserved.
+// Copyright (c) Omar Boukli-Hacene 2022. All Rights Reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
@@ -21,7 +21,7 @@ static void add_tromino(
     constexpr double pi2 = 1.57079632679489661923;
 
     add_tromino_extern_callback add_tromino_cb
-        = (add_tromino_extern_callback)state;
+        = reinterpret_cast<add_tromino_extern_callback>(state);
     double angle;
 
     assert(flip.x == -1 || flip.x == 1);
