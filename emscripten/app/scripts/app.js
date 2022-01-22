@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2021 Omar Boukli-Hacene. All rights reserved.
+Copyright (c) 2022 Omar Boukli-Hacene. All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -92,7 +92,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     orderElement.max = "8";
     orderElement.value = (Math.log2(order) - 1).toString();
 
-    orderIndicatorElement.textContent = order.toString();
+    orderIndicatorElement.value = order.toString();
 
     markXElement.value = markX.toString();
     markXElement.min = "0";
