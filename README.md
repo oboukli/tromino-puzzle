@@ -65,7 +65,7 @@ support, including supported versions of macOS and Windows.
 For basic ASCII drawings, which may be useful for writing to text files,
 define `TROMINO_USE_ASCII` before building.
 
-### Windows Console Host mode
+### Windows Console Host (WCH) mode
 
 On Windows, a native legacy Windows Console Host (WCH) renderer, which uses DOS
 box-drawing characters
@@ -119,7 +119,7 @@ sudo apt install libsdl2-dev
 ## License
 
 This software is released under an [MIT-style license](LICENSE).
-Copyright © 2021 Omar Boukli-Hacene.
+Copyright © 2021-2022 Omar Boukli-Hacene.
 
 SPDX license identifier: MIT.
 
