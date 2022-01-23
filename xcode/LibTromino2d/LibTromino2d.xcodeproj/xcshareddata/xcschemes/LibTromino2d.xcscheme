@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7594DBDA26C4822400CF433E"
-               BuildableName = "TrominoCli"
-               BlueprintName = "TrominoCli"
-               ReferencedContainer = "container:TrominoCli.xcodeproj">
+               BlueprintIdentifier = "7503E7B326C891FF0018B1F2"
+               BuildableName = "libLibTromino2d.a"
+               BlueprintName = "LibTromino2d"
+               ReferencedContainer = "container:LibTromino2d.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -39,32 +39,7 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "NO"
-      consoleMode = "1">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7594DBDA26C4822400CF433E"
-            BuildableName = "TrominoCli"
-            BlueprintName = "TrominoCli"
-            ReferencedContainer = "container:TrominoCli.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "64"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "11"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "17"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
+      allowLocationSimulation = "YES">
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -72,16 +47,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7594DBDA26C4822400CF433E"
-            BuildableName = "TrominoCli"
-            BlueprintName = "TrominoCli"
-            ReferencedContainer = "container:TrominoCli.xcodeproj">
+            BlueprintIdentifier = "7503E7B326C891FF0018B1F2"
+            BuildableName = "libLibTromino2d.a"
+            BlueprintName = "LibTromino2d"
+            ReferencedContainer = "container:LibTromino2d.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
