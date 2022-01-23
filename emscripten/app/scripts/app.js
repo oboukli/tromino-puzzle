@@ -64,7 +64,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   }
 
   function changePuzzle() {
-    orderIndicatorElement.textContent = order.toString();
+    orderIndicatorElement.value = order.toString();
 
     setInputValueBounds(order - 1);
 

@@ -8,11 +8,18 @@
 
 namespace tromino::gfx2d {
 
+#ifdef __EMSCRIPTEN__
+constexpr auto WINDOW_FLAGS = 0;
+#else
+constexpr auto WINDOW_FLAGS = ::SDL_WindowFlags::SDL_WINDOW_ALLOW_HIGHDPI;
+#endif // __EMSCRIPTEN__
+
 Window::Window(const char* title, int width) noexcept
-    : _window(nullptr, ::SDL_DestroyWindow) {
-    _window.reset(::SDL_CreateWindow(
-        title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, width,
-        ::SDL_WindowFlags::SDL_WINDOW_ALLOW_HIGHDPI));
+    : _window(
+        ::SDL_CreateWindow(
+            title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, width,
+            WINDOW_FLAGS),
+        ::SDL_DestroyWindow) {
 }
 
 Window::~Window() noexcept {
