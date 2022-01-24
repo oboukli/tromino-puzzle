@@ -10,15 +10,7 @@
 
 namespace tromino::gfx2d {
 
-TrominoBoardViewModel::TrominoBoardViewModel(::SDL_Window * window) noexcept:
-    _board{
-        .mark = {
-            .x = 0,
-            .y = 0
-        },
-        .size = 0,
-        .order = 0,
-    },
+TrominoBoardViewModel::TrominoBoardViewModel(::SDL_Window* window) noexcept :
     _numSteps(0),
     _currentStepNum(0),
     _window(window),
@@ -42,7 +34,6 @@ void TrominoBoardViewModel::SetBoard(
     const int logicalWidth = SQUARE_LOGICAL_WIDTH * order;
 
     _currentStepNum = 0;
-    _board = board;
     _numSteps = ((order * order) - 1) / 3;
 
     ::SDL_RenderSetLogicalSize(_renderer.get(), logicalWidth, logicalWidth);
@@ -52,7 +43,8 @@ void TrominoBoardViewModel::SetBoard(
 
     _boardTexture.reset(CreateTexture(_renderer.get(), logicalWidth));
 
-    ::SDL_Color color, altColor;
+    ::SDL_Color color;
+    ::SDL_Color altColor;
     color = {0x4e, 0x7d, 0xa6, SDL_ALPHA_OPAQUE};
     altColor = {0x01, 0x23, 0x40, SDL_ALPHA_OPAQUE};
     InitCheckeredBoard(
@@ -61,7 +53,7 @@ void TrominoBoardViewModel::SetBoard(
 
     color = {0x8c, 0x1b, 0x1b, SDL_ALPHA_OPAQUE};
     DrawMark(
-        _renderer.get(), SQUARE_LOGICAL_WIDTH, _board.mark.x, _board.mark.y,
+        _renderer.get(), SQUARE_LOGICAL_WIDTH, board.mark.x, board.mark.y,
         color);
 
     _solutionTexture.reset(CreateTexture(_renderer.get(), logicalWidth));
@@ -97,7 +89,7 @@ void TrominoBoardViewModel::Render(
     std::vector<Step>::iterator begin = solutionState.steps->begin();
     std::vector<Step>::iterator targetIdx = begin + _currentStepNum;
     for (std::vector<Step>::iterator it = begin; it != targetIdx; ++it) {
-        Step& s = *it;
+        const Step& s = *it;
         trominoDest.x = s.p.x * SQUARE_LOGICAL_WIDTH;
         trominoDest.y = s.p.y * SQUARE_LOGICAL_WIDTH;
         ::SDL_RenderCopyEx(

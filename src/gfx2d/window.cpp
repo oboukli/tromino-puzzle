@@ -14,8 +14,8 @@ constexpr auto WINDOW_FLAGS = 0;
 constexpr auto WINDOW_FLAGS = ::SDL_WindowFlags::SDL_WINDOW_ALLOW_HIGHDPI;
 #endif // __EMSCRIPTEN__
 
-Window::Window(const char* title, int width) noexcept
-    : _window(
+Window::Window(const char* title, int width) noexcept :
+    _window(
         ::SDL_CreateWindow(
             title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, width,
             WINDOW_FLAGS),

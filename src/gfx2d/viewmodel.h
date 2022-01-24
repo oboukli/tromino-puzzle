@@ -30,7 +30,6 @@ public:
     [[nodiscard]] bool IsPlaying() const noexcept;
 
 private:
-    tromino::gfx2d::board_t _board;
     std::size_t _numSteps;
     std::size_t _currentStepNum;
     SDL_Window* const _window;

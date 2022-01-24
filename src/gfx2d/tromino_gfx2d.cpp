@@ -6,6 +6,7 @@
 
 #include "tromino_gfx2d.h"
 
+#include <array>
 #include <cassert>
 
 namespace tromino::gfx2d {
@@ -35,10 +36,10 @@ namespace tromino::gfx2d {
 
     ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
-    ::SDL_Rect square = {squareWidth, 0, squareWidth, squareWidth};
+    const ::SDL_Rect square = {squareWidth, 0, squareWidth, squareWidth};
     ::SDL_RenderFillRect(renderer, &square);
 
-    ::SDL_Rect rectangle = {0, squareWidth, squareWidth * 2, squareWidth};
+    const ::SDL_Rect rectangle = {0, squareWidth, squareWidth * 2, squareWidth};
     ::SDL_RenderFillRect(renderer, &rectangle);
 
     return texture;
@@ -87,7 +88,7 @@ void DrawMark(
     const ::SDL_Color& color) noexcept {
     ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
-    ::SDL_Rect square
+    const ::SDL_Rect square
         = {x * squareWidth, y * squareWidth, squareWidth, squareWidth};
 
     ::SDL_RenderFillRect(renderer, &square);
@@ -96,24 +97,24 @@ void DrawMark(
 void DrawTrominoOutline(
     ::SDL_Renderer* renderer, ::SDL_Texture* texture, int squareWidth,
     int thickness, const ::SDL_Color& color) noexcept {
-    constexpr std::size_t numSegments = 6;
+    constexpr std::size_t numSegments{6};
 
     // clang-format off
-    ::SDL_Rect segments[numSegments] = {
+    const std::array<::SDL_Rect, numSegments> segments{{
         {squareWidth, 0, squareWidth, thickness},
         {(squareWidth * 2) - thickness, thickness, thickness, squareWidth * 2},
         {0, (squareWidth * 2) - thickness, (squareWidth * 2) - thickness, thickness},
         {0, squareWidth, thickness, squareWidth - thickness},
         {thickness, squareWidth, squareWidth, thickness},
         {squareWidth, thickness, thickness, squareWidth - thickness},
-    };
+    }};
     // clang-format on
 
     ::SDL_SetRenderTarget(renderer, texture);
     ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
-    for (std::size_t i = 0; i < numSegments; ++i) {
-        ::SDL_RenderFillRect(renderer, &segments[i]);
+    for (const auto& s : segments) {
+        ::SDL_RenderFillRect(renderer, &s);
     }
 }
 
