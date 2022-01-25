@@ -12,8 +12,8 @@
 namespace tromino::gfx2d {
 
 [[nodiscard]] ::SDL_Texture* CreateTexture(
-    ::SDL_Renderer* renderer, int width) noexcept {
-    ::SDL_Texture* texture = ::SDL_CreateTexture(
+    ::SDL_Renderer* const renderer, const int width) noexcept {
+    ::SDL_Texture* const texture = ::SDL_CreateTexture(
         renderer, ::SDL_PixelFormatEnum::SDL_PIXELFORMAT_RGBA8888,
         ::SDL_TextureAccess::SDL_TEXTUREACCESS_TARGET, width, width);
 
@@ -23,9 +23,9 @@ namespace tromino::gfx2d {
 }
 
 [[nodiscard]] ::SDL_Texture* CreateTrominoTexture(
-    ::SDL_Renderer* renderer, int squareWidth,
+    ::SDL_Renderer* const renderer, const int squareWidth,
     const ::SDL_Color& color) noexcept {
-    ::SDL_Texture* texture = CreateTexture(renderer, squareWidth * 2);
+    ::SDL_Texture* const texture = CreateTexture(renderer, squareWidth * 2);
 
     ::SDL_SetTextureBlendMode(texture, ::SDL_BlendMode::SDL_BLENDMODE_BLEND);
 
@@ -46,8 +46,8 @@ namespace tromino::gfx2d {
 }
 
 void InitCheckeredBoard(
-    ::SDL_Renderer* renderer, ::SDL_Texture* texture, int squareWidth,
-    int order, const ::SDL_Color& wke1Color,
+    ::SDL_Renderer* const renderer, ::SDL_Texture* const texture,
+    const int squareWidth, int order, const ::SDL_Color& wke1Color,
     const ::SDL_Color& bke8Color) noexcept {
     ::SDL_SetTextureBlendMode(texture, ::SDL_BlendMode::SDL_BLENDMODE_BLEND);
 
@@ -73,8 +73,8 @@ void InitCheckeredBoard(
 }
 
 void InitSolutionTexture(
-    ::SDL_Renderer* renderer, ::SDL_Texture* texture, int width,
-    const ::SDL_Color& color) noexcept {
+    ::SDL_Renderer* const renderer, ::SDL_Texture* const texture,
+    const int width, const ::SDL_Color& color) noexcept {
     ::SDL_SetTextureBlendMode(texture, ::SDL_BlendMode::SDL_BLENDMODE_BLEND);
 
     ::SDL_SetRenderTarget(renderer, texture);
@@ -84,8 +84,8 @@ void InitSolutionTexture(
 }
 
 void DrawMark(
-    ::SDL_Renderer* renderer, int squareWidth, int x, int y,
-    const ::SDL_Color& color) noexcept {
+    ::SDL_Renderer* const renderer, const int squareWidth, const int x,
+    const int y, const ::SDL_Color& color) noexcept {
     ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
     const ::SDL_Rect square
@@ -95,8 +95,9 @@ void DrawMark(
 }
 
 void DrawTrominoOutline(
-    ::SDL_Renderer* renderer, ::SDL_Texture* texture, int squareWidth,
-    int thickness, const ::SDL_Color& color) noexcept {
+    ::SDL_Renderer* const renderer, ::SDL_Texture* const texture,
+    const int squareWidth, const int thickness,
+    const ::SDL_Color& color) noexcept {
     constexpr std::size_t numSegments{6};
 
     // clang-format off

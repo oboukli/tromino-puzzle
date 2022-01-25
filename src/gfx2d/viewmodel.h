@@ -17,7 +17,7 @@ namespace tromino::gfx2d {
 
 class TrominoBoardViewModel final {
 public:
-    TrominoBoardViewModel(::SDL_Window* window) noexcept;
+    TrominoBoardViewModel(::SDL_Window* const window) noexcept;
 
     ~TrominoBoardViewModel() noexcept;
 

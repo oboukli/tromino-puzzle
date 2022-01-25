@@ -10,7 +10,8 @@
 
 namespace tromino::gfx2d {
 
-TrominoBoardViewModel::TrominoBoardViewModel(::SDL_Window* window) noexcept :
+TrominoBoardViewModel::TrominoBoardViewModel(
+    ::SDL_Window* const window) noexcept :
     _numSteps(0),
     _currentStepNum(0),
     _window(window),
