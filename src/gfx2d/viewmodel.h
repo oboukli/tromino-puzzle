@@ -1,4 +1,4 @@
-// Copyright (c) Omar Boukli-Hacene 2022. All Rights Reserved.
+// Copyright (c) Omar Boukli-Hacene 2021-2022. All Rights Reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
@@ -8,6 +8,8 @@
 #define VIEWMODEL_H_
 
 #include <SDL2/SDL.h>
+
+#include <cstddef>
 
 #include "board.h"
 #include "models.h"
