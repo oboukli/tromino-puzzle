@@ -1,4 +1,4 @@
-// Copyright (c) Omar Boukli-Hacene 2021. All Rights Reserved.
+// Copyright (c) Omar Boukli-Hacene 2021-2022. All Rights Reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
@@ -6,9 +6,13 @@
 
 #include "init.h"
 
-void init(int order, int x, int y, emulation_mode emulation_mode) {
-    std::size_t order_internal = static_cast<std::size_t>(order);
-    std::size_t size = order_internal * order_internal;
+#include <cstddef>
+
+void init(
+    const int order, const int x, const int y,
+    const emulation_mode emulation_mode) noexcept {
+    const std::size_t order_internal = static_cast<std::size_t>(order);
+    const std::size_t size = order_internal * order_internal;
 
     tromino::board_t tromino_board{
         .mark = {.x = x, .y = y},
@@ -24,6 +28,7 @@ void init(int order, int x, int y, emulation_mode emulation_mode) {
 #endif // _WINDOWS
 
     case emulation_mode::vt_100:
+        [[fallthrough]];
     default:
         tromino::vt::use_vt(tromino_board);
         break;

@@ -1,4 +1,4 @@
-// Copyright (c) Omar Boukli-Hacene 2021. All Rights Reserved.
+// Copyright (c) Omar Boukli-Hacene 2021-2022. All Rights Reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
@@ -12,12 +12,7 @@
 #include <Windows.h>
 #endif // _WINDOWS
 
-#include <array>
-#include <cassert>
-#include <chrono>
-#include <iostream>
-#include <memory>
-#include <thread>
+#include <algorithm>
 
 #include "tromino.h"
 
@@ -58,20 +53,20 @@ constexpr char bottom_left = '\x6d';
 constexpr char bottom_right = '\x6a';
 #endif // TROMINO_USE_ASCII
 
-constexpr auto sprite_size = 4;
+void draw_board(const board_t& board) noexcept;
 
-void draw_board(const board_t& board);
+void add_tromino(
+    const trmn_position_t pos, const trmn_flip_t flip,
+    void* const graph_state) noexcept;
 
-void add_tromino(trmn_position_t pos, trmn_flip_t flip, void* graph_state);
-
-inline void init_board(board_t& board) {
+inline void init_board(board_t& board) noexcept {
     std::fill_n(board.board_matrix.get(), board.size, empty);
 
     board.board_matrix[calc_index(board.mark.x, board.mark.y, board.order)]
         = mark;
 }
 
-void use_vt(tromino::board_t& tromino_board);
+void use_vt(tromino::board_t& tromino_board) noexcept;
 
 } // namespace tromino::vt
 

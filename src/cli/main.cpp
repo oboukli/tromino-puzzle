@@ -1,16 +1,15 @@
-// Copyright (c) Omar Boukli-Hacene 2021. All Rights Reserved.
+// Copyright (c) Omar Boukli-Hacene 2021-2022. All Rights Reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
 // SPDX-License-Identifier: MIT
 
-#include <stdlib.h>
-
 #include <iostream>
+#include <string>
 
 #include "init.h"
 
-int main(int argc, const char* argv[]) {
+int main(const int argc, const char* const argv[]) {
     // TODO: Config values
     // TODO: App name
     // TODO: Refactor out of main
@@ -31,9 +30,9 @@ int main(int argc, const char* argv[]) {
         return EXIT_FAILURE;
     }
 
-    int order = std::stoi(argv[1]);
-    int x = std::stoi(argv[2]);
-    int y = std::stoi(argv[3]);
+    const int order = std::stoi(argv[1]);
+    const int x = std::stoi(argv[2]);
+    const int y = std::stoi(argv[3]);
 
 #ifdef _WINDOWS
     bool use_wch
@@ -44,7 +43,7 @@ int main(int argc, const char* argv[]) {
         use_wch ? emulation_mode::windows_console_host : emulation_mode::vt_100;
     // clang-format on
 #else
-    constexpr emulation_mode em = emulation_mode::vt_100;
+    constexpr const emulation_mode em = emulation_mode::vt_100;
 #endif // _WINDOWS
 
     init(order, x, y, em);

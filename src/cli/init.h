@@ -1,4 +1,4 @@
-// Copyright (c) Omar Boukli-Hacene 2021. All Rights Reserved.
+// Copyright (c) Omar Boukli-Hacene 2021-2022. All Rights Reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
@@ -25,6 +25,8 @@ enum class emulation_mode {
 };
 // clang-format on
 
-void init(int size, int x, int y, emulation_mode emulation_mode);
+void init(
+    const int size, const int x, const int y,
+    const emulation_mode emulation_mode) noexcept;
 
 #endif // INIT_H_

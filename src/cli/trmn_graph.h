@@ -1,4 +1,4 @@
-// Copyright (c) Omar Boukli-Hacene 2021. All Rights Reserved.
+// Copyright (c) Omar Boukli-Hacene 2021-2022. All Rights Reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
@@ -14,6 +14,7 @@
 #include <Windows.h>
 #endif // _WINDOWS
 
+#include <cstddef>
 #include <memory>
 
 #include "tromino.h"
@@ -21,10 +22,10 @@
 namespace tromino {
 
 struct board_t {
-    trmn_position_t mark;
-    std::size_t size;
+    const trmn_position_t mark;
+    const std::size_t size;
     std::unique_ptr<char[]> board_matrix;
-    int order;
+    const int order;
 };
 
 struct graph_state_t {
@@ -35,7 +36,7 @@ struct graph_state_t {
 };
 
 template <typename T>
-inline T calc_index(T x, T y, T o) {
+inline const T calc_index(const T x, const T y, const T o) noexcept {
     return y * o + x;
 }
 

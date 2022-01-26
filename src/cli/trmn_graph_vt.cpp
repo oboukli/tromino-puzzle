@@ -1,4 +1,4 @@
-// Copyright (c) Omar Boukli-Hacene 2021. All Rights Reserved.
+// Copyright (c) Omar Boukli-Hacene 2021-2022. All Rights Reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
@@ -6,9 +6,19 @@
 
 #include "trmn_graph_vt.h"
 
+#include <array>
+#include <cassert>
+#include <chrono>
+#include <cstddef>
+#include <iostream>
+#include <thread>
+
 namespace tromino::vt {
 
-static std::array<char, sprite_size> get_sprite(trmn_flip_t flip) {
+static constexpr std::size_t SPRITE_SIZE{4};
+
+static const std::array<char, SPRITE_SIZE> get_sprite(
+    const trmn_flip_t& flip) noexcept {
     assert(-1 == flip.x || 1 == flip.x);
     assert(-1 == flip.y || 1 == flip.y);
 
@@ -23,6 +33,7 @@ static std::array<char, sprite_size> get_sprite(trmn_flip_t flip) {
             break;
 
         case 1:
+            [[fallthrough]];
         default:
             // -1, 1
             // - +
@@ -33,6 +44,7 @@ static std::array<char, sprite_size> get_sprite(trmn_flip_t flip) {
         break;
 
     case 1:
+        [[fallthrough]];
     default:
         switch (flip.y) {
         case -1:
@@ -43,6 +55,7 @@ static std::array<char, sprite_size> get_sprite(trmn_flip_t flip) {
             break;
 
         case 1:
+            [[fallthrough]];
         default:
             // 1, 1
             // + -
@@ -54,16 +67,16 @@ static std::array<char, sprite_size> get_sprite(trmn_flip_t flip) {
     };
 }
 
-static inline void draw_at(int x, int y, char c) {
+static inline void draw_at(const int x, const int y, const char c) noexcept {
     std::cout << CSI << y << ";" << x << "H" << c;
 }
 
-inline void flush() {
+static inline void flush() noexcept {
     std::cout << std::flush;
 }
 
-void draw_board(const tromino::board_t& board) {
-    int order = board.order;
+void draw_board(const tromino::board_t& board) noexcept {
+    const int order = board.order;
     for (int i = 0; i < order; ++i) { // Rows
         std::cout << CSI << 1 + i << ";" << 1 << "H";
         for (int j = 0; j < order; ++j) { // Columns
@@ -72,16 +85,21 @@ void draw_board(const tromino::board_t& board) {
     }
 }
 
-void add_tromino(trmn_position_t pos, trmn_flip_t flip, void* state) {
-    graph_state_t* graph_state = static_cast<graph_state_t*>(state);
-    board_t& board = graph_state->board;
-    char* board_matrix = board.board_matrix.get();
-    int order = board.order;
-    auto sprite = get_sprite(flip);
+void add_tromino(
+    const trmn_position_t pos, const trmn_flip_t flip,
+    void* const state) noexcept {
+    constexpr std::chrono::milliseconds DELAY_AFTER(68);
 
+    const graph_state_t* const graph_state = static_cast<graph_state_t*>(state);
+    const board_t& board = graph_state->board;
+    char* const board_matrix = board.board_matrix.get();
+    const int order = board.order;
+    const auto sprite = get_sprite(flip);
+
+    char px;
     for (int i = 0; i < 2; ++i) {
         for (int j = 0; j < 2; ++j) {
-            auto px = sprite[calc_index(j, i, 2)];
+            px = sprite[calc_index(j, i, 2)];
             if (neutral == px) {
                 continue;
             }
@@ -107,11 +125,10 @@ void add_tromino(trmn_position_t pos, trmn_flip_t flip, void* state) {
 
     flush();
 
-    std::this_thread::sleep_for(
-        std::chrono::milliseconds(50)); // TODO: Add options to state
+    std::this_thread::sleep_for(DELAY_AFTER);
 }
 
-void use_vt(tromino::board_t& tromino_board) {
+void use_vt(tromino::board_t& tromino_board) noexcept {
 #ifdef _WINDOWS
     HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
 
