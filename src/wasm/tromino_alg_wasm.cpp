@@ -1,5 +1,5 @@
 
-// Copyright (c) Omar Boukli-Hacene 2022. All Rights Reserved.
+// Copyright (c) 2021-2022 Omar Boukli-Hacene. All rights reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 

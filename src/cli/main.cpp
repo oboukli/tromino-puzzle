@@ -1,4 +1,4 @@
-// Copyright (c) Omar Boukli-Hacene 2021-2022. All Rights Reserved.
+// Copyright (c) 2021-2022 Omar Boukli-Hacene. All rights reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
@@ -23,7 +23,7 @@ int main(const int argc, const char* const argv[]) {
             << " [options]" << std::endl
             << "  --use-wch    Use legacy Windows Console Host" << std::endl
 #endif // _WINDOWS
-            << "Copyright (c) 2021 Omar Boukli-Hacene. All rights reserved."
+            << "Copyright (c) 2021-2022 Omar Boukli-Hacene. All rights reserved."
             << std::endl;
         // clang-format on
 

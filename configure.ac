@@ -1,4 +1,4 @@
-# Copyright (c) Omar Boukli-Hacene 2022. All Rights Reserved.
+# Copyright (c) 2021-2022 Omar Boukli-Hacene. All rights reserved.
 # Distributed under an MIT-style license that can be
 # found in the LICENSE file.
 
@@ -12,7 +12,7 @@ m4_define(_TRMNPZZL_VERSION_PATCH, 1)
 m4_define(_TRMNPZZL_VERSION_BUILD, 0)
 m4_define(_TRMNPZZL_VERSION_RC, 0)
 m4_define(_TRMNPZZL_VERSION_IS_RELEASE, true)
-m4_define(_COPYRIGHT_YEAR, 2021)
+m4_define(_COPYRIGHT_YEAR, 2022)
 
 AC_INIT([Tromino Puzzle],[m4_join(., _TRMNPZZL_VERSION_MAJOR, _TRMNPZZL_VERSION_MINOR, _TRMNPZZL_VERSION_PATCH, _TRMNPZZL_VERSION_BUILD)m4_if(_TRMNPZZL_VERSION_RC, 0, , rc_TRMNPZZL_VERSION_RC)],[https://github.com/oboukli/tromino-puzzle/issues],[trmnpzzl],[https://omar.fun/tromino-puzzle])
 AM_INIT_AUTOMAKE([foreign subdir-objects -Wall -Werror])
