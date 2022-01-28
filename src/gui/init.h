@@ -12,7 +12,7 @@
 #include "board.h"
 
 int init(
-    const tromino::gfx2d::board_t& board, int width,
-    const char* title) noexcept;
+    const tromino::gfx2d::board_t& board, const int width,
+    const char* const title) noexcept;
 
 #endif // INIT_H_

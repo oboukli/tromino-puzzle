@@ -10,7 +10,7 @@
 
 #include "init.h"
 
-int main(int argc, const char* argv[]) {
+int main(const int argc, const char* const argv[]) {
     // TODO: App name
     // TODO: Refactor out of main
     constexpr int REQUIRED_ARG_COUNT = 4;
@@ -22,13 +22,13 @@ int main(int argc, const char* argv[]) {
         return EXIT_FAILURE;
     }
 
-    int order = std::stoi(argv[1]);
-    int x = std::stoi(argv[2]);
-    int y = std::stoi(argv[3]);
+    const int order = std::stoi(argv[1]);
+    const int x = std::stoi(argv[2]);
+    const int y = std::stoi(argv[3]);
 
-    std::size_t order_internal = static_cast<std::size_t>(order);
-    std::size_t size = order_internal * order_internal;
-    tromino::gfx2d::board_t board{
+    const std::size_t order_internal = static_cast<std::size_t>(order);
+    const std::size_t size = order_internal * order_internal;
+    const tromino::gfx2d::board_t board{
         .mark = {.x = x, .y = y}, .size = size, .order = order};
 
     return init(board, WIDTH, "Tromino Puzzle");

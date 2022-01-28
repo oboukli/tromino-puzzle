@@ -10,7 +10,7 @@
 #include <thread>
 
 void solver(
-    int order, trmn_position_t mark, trmn_add_tromino_func add_tromino,
-    void* state) noexcept {
+    const int order, const trmn_position_t mark,
+    const trmn_add_tromino_func add_tromino, void* const state) noexcept {
     trmn_solve_puzzle(order, mark, add_tromino, state);
 }
