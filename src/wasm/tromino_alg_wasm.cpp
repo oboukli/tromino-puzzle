@@ -1,4 +1,3 @@
-
 // Copyright (c) 2021-2022 Omar Boukli-Hacene. All rights reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
@@ -13,14 +12,15 @@
 #include "tromino.h"
 
 typedef void (*add_tromino_extern_callback)(
-    trmn_position_t pos, double angle) noexcept;
+    const trmn_position_t pos, const double angle) noexcept;
 
 static void add_tromino(
-    trmn_position_t pos, trmn_flip_t flip, void* state) noexcept {
+    const trmn_position_t pos, const trmn_flip_t flip,
+    void* const state) noexcept {
     constexpr double pi = 3.14159265358979323846;
     constexpr double pi2 = 1.57079632679489661923;
 
-    add_tromino_extern_callback add_tromino_cb
+    const add_tromino_extern_callback add_tromino_cb
         = reinterpret_cast<add_tromino_extern_callback>(state);
     double angle;
 
@@ -39,6 +39,7 @@ static void add_tromino(
             break;
 
         case 1:
+            [[fallthrough]];
         default:
             // -1, 1
             // - +
@@ -50,6 +51,7 @@ static void add_tromino(
         break;
 
     case 1:
+        [[fallthrough]];
     default:
         switch (flip.y) {
         case -1:
@@ -61,6 +63,7 @@ static void add_tromino(
             break;
 
         case 1:
+            [[fallthrough]];
         default:
             // 1, 1
             // + -
@@ -76,8 +79,8 @@ static void add_tromino(
 }
 
 EMSCRIPTEN_KEEPALIVE extern "C" void solve(
-    int order, trmn_position_t mark,
+    const int order, const trmn_position_t mark,
     add_tromino_extern_callback add_tromino_cb) noexcept {
-    trmn_solve_puzzle(
+    ::trmn_solve_puzzle(
         order, mark, add_tromino, reinterpret_cast<void*>(add_tromino_cb));
 }

@@ -19,15 +19,16 @@
 #include "viewmodel.h"
 #include "window.h"
 
-static bool isMainLoopRunning = true;
-static bool isInitialized = false;
 static std::unique_ptr<tromino::gfx2d::Window> window = nullptr;
 static std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel
     = nullptr;
 static std::unique_ptr<tromino::gfx2d::SolutionState> solutionState = nullptr;
+static bool isMainLoopRunning = true;
+static bool isInitialized = false;
 
 static void addTromino(
-    trmn_position_t pos, trmn_flip_t flip, void* state) noexcept {
+    const trmn_position_t pos, const trmn_flip_t flip,
+    void* const state) noexcept {
     using namespace tromino::gfx2d;
 
     SolutionState& solutionState = *static_cast<SolutionState*>(state);
@@ -50,7 +51,7 @@ static void pollSdlEvents() noexcept {
     }
 }
 
-static void init(int width) noexcept {
+static void init(const int width) noexcept {
     solutionState = std::make_unique<tromino::gfx2d::SolutionState>();
     solutionState->steps
         = std::make_unique<std::vector<tromino::gfx2d::Step>>();
@@ -94,7 +95,8 @@ static void loopSimulatorCallback() noexcept {
     viewModel->Render(*solutionState);
 }
 
-static void start(const tromino::gfx2d::board_t& board, int width) noexcept {
+static void start(
+    const tromino::gfx2d::board_t& board, const int width) noexcept {
     using namespace tromino::gfx2d;
     constexpr int SWAP_INTERVAL = 4;
 
@@ -104,7 +106,7 @@ static void start(const tromino::gfx2d::board_t& board, int width) noexcept {
 
     init(width);
 
-    const size_t numSteps = ((board.order * board.order) - 1) / 3;
+    const std::size_t numSteps = ((board.order * board.order) - 1) / 3;
     solutionState->steps->reserve(numSteps);
 
     ::trmn_solve_puzzle(
@@ -117,8 +119,9 @@ static void start(const tromino::gfx2d::board_t& board, int width) noexcept {
 }
 
 EMSCRIPTEN_KEEPALIVE extern "C" void playTromino(
-    int order, int markX, int markY, int width) noexcept {
-    std::size_t size = order * order;
+    const int order, const int markX, const int markY,
+    const int width) noexcept {
+    const std::size_t size = order * order;
     tromino::gfx2d::board_t board{
         .mark = {.x = markX, .y = markY}, .size = size, .order = order};
 
