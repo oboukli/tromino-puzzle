@@ -8,28 +8,29 @@
 #include <cstdlib>
 #include <iostream>
 
+#include "tromino_validation.h"
+
+#include "cli_models.h"
+#include "cli_options.h"
 #include "init.h"
 
 int main(const int argc, const char* const argv[]) {
-    // TODO: App name
-    // TODO: Refactor out of main
-    constexpr int REQUIRED_ARG_COUNT = 4;
     constexpr int WIDTH = 512;
 
-    if (REQUIRED_ARG_COUNT > argc) {
-        std::cout << "Usage: tromino <order> <x> <y>" << std::endl;
+    tromino::tromino2d::options options;
+    int read_options_result = tromino::tromino2d::read_options(argc, argv, options);
+
+    if (read_options_result != 0
+        || !::trmn_is_valid_config(options.order, options.x, options.y)) {
+        tromino::tromino2d::print_usage();
 
         return EXIT_FAILURE;
     }
 
-    const int order = std::stoi(argv[1]);
-    const int x = std::stoi(argv[2]);
-    const int y = std::stoi(argv[3]);
-
-    const std::size_t order_internal = static_cast<std::size_t>(order);
+    const std::size_t order_internal = static_cast<std::size_t>(options.order);
     const std::size_t size = order_internal * order_internal;
     const tromino::gfx2d::board_t board{
-        .mark = {.x = x, .y = y}, .size = size, .order = order};
+        .mark = {.x = options.x, .y = options.y}, .size = size, .order = options.order};
 
     return tromino::tromino2d::init(board, WIDTH, "Tromino Puzzle");
 }

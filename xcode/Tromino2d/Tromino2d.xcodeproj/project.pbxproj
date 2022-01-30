@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75002AC727A684E900CBB593 /* cli_options.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75002AC427A684E900CBB593 /* cli_options.cpp */; };
+		75002AC827A684E900CBB593 /* cli_models.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75002AC527A684E900CBB593 /* cli_models.cpp */; };
+		75002ACA27A6855C00CBB593 /* libLibTrominoValidation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75002AC927A6855C00CBB593 /* libLibTrominoValidation.a */; };
 		7503E7E226C897D60018B1F2 /* libLibTromino2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7E126C897D60018B1F2 /* libLibTromino2d.a */; };
 		7503E7E926C8F5EA0018B1F2 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7E826C8F5EA0018B1F2 /* SDL2.framework */; };
 		7503E7EE26CB1A4A0018B1F2 /* libLibTromino.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7ED26CB1A4A0018B1F2 /* libLibTromino.a */; };
@@ -28,7 +31,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7503E7C426C892630018B1F2 /* Tromino2d */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tromino2d; sourceTree = BUILT_PRODUCTS_DIR; };
+		75002AC127A67D6900CBB593 /* libLibTrominoValidation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTrominoValidation.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		75002AC327A684E800CBB593 /* cli_models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cli_models.h; sourceTree = "<group>"; };
+		75002AC427A684E900CBB593 /* cli_options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cli_options.cpp; sourceTree = "<group>"; };
+		75002AC527A684E900CBB593 /* cli_models.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cli_models.cpp; sourceTree = "<group>"; };
+		75002AC627A684E900CBB593 /* cli_options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cli_options.h; sourceTree = "<group>"; };
+		75002AC927A6855C00CBB593 /* libLibTrominoValidation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTrominoValidation.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7503E7C426C892630018B1F2 /* tromino2d */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tromino2d; sourceTree = BUILT_PRODUCTS_DIR; };
 		7503E7E126C897D60018B1F2 /* libLibTromino2d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTromino2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7503E7E826C8F5EA0018B1F2 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = /Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		7503E7ED26CB1A4A0018B1F2 /* libLibTromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTromino.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,6 +54,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7503E7EE26CB1A4A0018B1F2 /* libLibTromino.a in Frameworks */,
+				75002ACA27A6855C00CBB593 /* libLibTrominoValidation.a in Frameworks */,
 				7503E7E226C897D60018B1F2 /* libLibTromino2d.a in Frameworks */,
 				7503E7E926C8F5EA0018B1F2 /* SDL2.framework in Frameworks */,
 			);
@@ -65,7 +75,7 @@
 		7503E7C526C892630018B1F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7503E7C426C892630018B1F2 /* Tromino2d */,
+				7503E7C426C892630018B1F2 /* tromino2d */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -73,6 +83,8 @@
 		7503E7E026C897D60018B1F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				75002AC927A6855C00CBB593 /* libLibTrominoValidation.a */,
+				75002AC127A67D6900CBB593 /* libLibTrominoValidation.a */,
 				7503E7ED26CB1A4A0018B1F2 /* libLibTromino.a */,
 				7503E7E826C8F5EA0018B1F2 /* SDL2.framework */,
 				7503E7E126C897D60018B1F2 /* libLibTromino2d.a */,
@@ -83,6 +95,10 @@
 		75ACD98926DAF724003E33CA /* gui */ = {
 			isa = PBXGroup;
 			children = (
+				75002AC527A684E900CBB593 /* cli_models.cpp */,
+				75002AC327A684E800CBB593 /* cli_models.h */,
+				75002AC427A684E900CBB593 /* cli_options.cpp */,
+				75002AC627A684E900CBB593 /* cli_options.h */,
 				752A62C4276FE49F0076CB0C /* init.cpp */,
 				752A62C6276FE49F0076CB0C /* init.h */,
 				752A62C7276FE49F0076CB0C /* solver.cpp */,
@@ -110,7 +126,7 @@
 			);
 			name = Tromino2d;
 			productName = Tromino2d;
-			productReference = 7503E7C426C892630018B1F2 /* Tromino2d */;
+			productReference = 7503E7C426C892630018B1F2 /* tromino2d */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -152,6 +168,8 @@
 				75ACD98B26DAF724003E33CA /* main.cpp in Sources */,
 				752A62C8276FE49F0076CB0C /* init.cpp in Sources */,
 				752A62C9276FE49F0076CB0C /* solver.cpp in Sources */,
+				75002AC727A684E900CBB593 /* cli_options.cpp in Sources */,
+				75002AC827A684E900CBB593 /* cli_models.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,10 +235,11 @@
 					../../src/gfx2d,
 					../../src/gfx2dfe,
 					../../src/lib,
+					../../src/validation,
 				);
 				INFOPLIST_KEY_CFBundleDisplayName = "Tromino Puzzle";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Omar Boukli-Hacene";
-				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -281,10 +300,11 @@
 					../../src/gfx2d,
 					../../src/gfx2dfe,
 					../../src/lib,
+					../../src/validation,
 				);
 				INFOPLIST_KEY_CFBundleDisplayName = "Tromino Puzzle";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Omar Boukli-Hacene";
-				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -297,6 +317,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_NAME = tromino2d;
 				GCC_C_LANGUAGE_STANDARD = c17;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
@@ -311,6 +332,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_NAME = tromino2d;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;

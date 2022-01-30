@@ -72,22 +72,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\..\src\lib;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\..\src\lib;$(SolutionDir)\..\src\validation;$(IncludePath)</IncludePath>
     <SourcePath>$(SolutionDir)\..\src\cli;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)\..\src\lib;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\..\src\lib;$(SolutionDir)\..\src\validation;$(IncludePath)</IncludePath>
     <SourcePath>$(SolutionDir)\..\src\cli;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\..\src\lib;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\..\src\lib;$(SolutionDir)\..\src\validation;$(IncludePath)</IncludePath>
     <SourcePath>$(SolutionDir)\..\src\cli;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)\..\src\lib;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\..\src\lib;$(SolutionDir)\..\src\validation;$(IncludePath)</IncludePath>
     <SourcePath>$(SolutionDir)\..\src\cli;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -161,6 +161,11 @@
   <ItemGroup>
     <ProjectReference Include="..\libtromino\libtromino.vcxproj">
       <Project>{67c72ae0-f810-4766-bc5d-aede7210943c}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\libtromino_validation\libtromino_validation.vcxproj">
+      <Project>{7f327585-53de-4F6B-919b-1244189b2d40}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

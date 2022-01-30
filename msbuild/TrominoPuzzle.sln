@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libtromino", "libtromino\libtromino.vcxproj", "{67C72AE0-F810-4766-BC5D-AEDE7210943C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libtromino_validation", "libtromino_validation\libtromino_validation.vcxproj", "{7F327585-53DE-4F6B-919B-1244189B2D40}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TrominoPuzzle.Cli", "TrominoPuzzle.Cli\TrominoPuzzle.Cli.vcxproj", "{3C67F85A-FB1F-4244-822B-2887DC62DCE5}"
 EndProject
 Global
@@ -23,6 +25,14 @@ Global
 		{67C72AE0-F810-4766-BC5D-AEDE7210943C}.Release|x64.Build.0 = Release|x64
 		{67C72AE0-F810-4766-BC5D-AEDE7210943C}.Release|x86.ActiveCfg = Release|Win32
 		{67C72AE0-F810-4766-BC5D-AEDE7210943C}.Release|x86.Build.0 = Release|Win32
+		{7F327585-53DE-4F6B-919B-1244189B2D40}.Debug|x64.ActiveCfg = Debug|x64
+		{7F327585-53DE-4F6B-919B-1244189B2D40}.Debug|x64.Build.0 = Debug|x64
+		{7F327585-53DE-4F6B-919B-1244189B2D40}.Debug|x86.ActiveCfg = Debug|Win32
+		{7F327585-53DE-4F6B-919B-1244189B2D40}.Debug|x86.Build.0 = Debug|Win32
+		{7F327585-53DE-4F6B-919B-1244189B2D40}.Release|x64.ActiveCfg = Release|x64
+		{7F327585-53DE-4F6B-919B-1244189B2D40}.Release|x64.Build.0 = Release|x64
+		{7F327585-53DE-4F6B-919B-1244189B2D40}.Release|x86.ActiveCfg = Release|Win32
+		{7F327585-53DE-4F6B-919B-1244189B2D40}.Release|x86.Build.0 = Release|Win32
 		{3C67F85A-FB1F-4244-822B-2887DC62DCE5}.Debug|x64.ActiveCfg = Debug|x64
 		{3C67F85A-FB1F-4244-822B-2887DC62DCE5}.Debug|x64.Build.0 = Debug|x64
 		{3C67F85A-FB1F-4244-822B-2887DC62DCE5}.Debug|x86.ActiveCfg = Debug|Win32

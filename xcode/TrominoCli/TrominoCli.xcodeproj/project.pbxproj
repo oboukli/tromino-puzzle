@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		75002AB627A5D71A00CBB593 /* cli_models.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75002AB427A5D71A00CBB593 /* cli_models.cpp */; };
 		75002AB927A5EB8C00CBB593 /* cli_options.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75002AB827A5EB8C00CBB593 /* cli_options.cpp */; };
+		75002ABB27A5F4CE00CBB593 /* libLibTrominoValidation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75002ABA27A5F4CE00CBB593 /* libLibTrominoValidation.a */; };
 		7503E77A26C88C910018B1F2 /* trmn_graph_vt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E77026C88C910018B1F2 /* trmn_graph_vt.cpp */; };
 		7503E77B26C88C910018B1F2 /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E77226C88C910018B1F2 /* init.cpp */; };
 		7503E77D26C88C920018B1F2 /* trmn_graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E77726C88C910018B1F2 /* trmn_graph.cpp */; };
@@ -33,6 +34,7 @@
 		75002AB527A5D71A00CBB593 /* cli_models.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cli_models.h; sourceTree = "<group>"; };
 		75002AB727A5EB8C00CBB593 /* cli_options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cli_options.h; sourceTree = "<group>"; };
 		75002AB827A5EB8C00CBB593 /* cli_options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cli_options.cpp; sourceTree = "<group>"; };
+		75002ABA27A5F4CE00CBB593 /* libLibTrominoValidation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTrominoValidation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7503E76F26C88C910018B1F2 /* trmn_graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trmn_graph.h; sourceTree = "<group>"; };
 		7503E77026C88C910018B1F2 /* trmn_graph_vt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trmn_graph_vt.cpp; sourceTree = "<group>"; };
 		7503E77226C88C910018B1F2 /* init.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = init.cpp; sourceTree = "<group>"; };
@@ -41,7 +43,7 @@
 		7503E77826C88C910018B1F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7503E77926C88C910018B1F2 /* trmn_graph_vt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trmn_graph_vt.h; sourceTree = "<group>"; };
 		7503E7DE26C8977E0018B1F2 /* libLibTromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTromino.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		7594DBDB26C4822400CF433E /* TrominoCli */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TrominoCli; sourceTree = BUILT_PRODUCTS_DIR; };
+		7594DBDB26C4822400CF433E /* tromino */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tromino; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +52,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7503E7DF26C8977E0018B1F2 /* libLibTromino.a in Frameworks */,
+				75002ABB27A5F4CE00CBB593 /* libLibTrominoValidation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +81,7 @@
 		7503E7DD26C8977E0018B1F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				75002ABA27A5F4CE00CBB593 /* libLibTrominoValidation.a */,
 				7503E7DE26C8977E0018B1F2 /* libLibTromino.a */,
 			);
 			name = Frameworks;
@@ -95,7 +99,7 @@
 		7594DBDC26C4822400CF433E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7594DBDB26C4822400CF433E /* TrominoCli */,
+				7594DBDB26C4822400CF433E /* tromino */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,7 +121,7 @@
 			);
 			name = TrominoCli;
 			productName = TrominoCli;
-			productReference = 7594DBDB26C4822400CF433E /* TrominoCli */;
+			productReference = 7594DBDB26C4822400CF433E /* tromino */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -223,9 +227,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = ../../src/lib;
+				HEADER_SEARCH_PATHS = (
+					../../src/lib,
+					../../src/validation,
+				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2022 Omar Boukli-Hacene. All rights reserved.";
-				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -282,9 +289,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = ../../src/lib;
+				HEADER_SEARCH_PATHS = (
+					../../src/lib,
+					../../src/validation,
+				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2022 Omar Boukli-Hacene. All rights reserved.";
-				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -297,6 +307,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_NAME = tromino;
 				GCC_C_LANGUAGE_STANDARD = c17;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -308,6 +319,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_NAME = tromino;
 				GCC_C_LANGUAGE_STANDARD = c17;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -7,6 +7,8 @@
 #include <iostream>
 #include <string>
 
+#include "tromino_validation.h"
+
 #include "cli_models.h"
 #include "cli_options.h"
 #include "init.h"
@@ -15,7 +17,8 @@ int main(const int argc, const char* const argv[]) {
     tromino::cli::options options;
     int read_options_result = tromino::cli::read_options(argc, argv, options);
 
-    if (read_options_result != 0) {
+    if (read_options_result != 0
+        || !::trmn_is_valid_config(options.order, options.x, options.y)) {
         tromino::cli::print_usage();
 
         return EXIT_FAILURE;

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:LibTrominoValidation/LibTrominoValidation.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:LibTromino/LibTromino.xcodeproj">
    </FileRef>
    <FileRef
