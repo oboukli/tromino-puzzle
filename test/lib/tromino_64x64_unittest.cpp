@@ -1390,7 +1390,7 @@ BOOST_AUTO_TEST_CASE(
     std::vector<ShimStep> actual;
     actual.reserve(1365);
 
-    trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
+    ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
     BOOST_CHECK_EQUAL(actual.size(), 1365);
     BOOST_CHECK_EQUAL_COLLECTIONS(

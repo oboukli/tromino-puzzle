@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(
 
     std::vector<ShimStep> actual;
 
-    trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
+    ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
     BOOST_CHECK_EQUAL(actual.size(), 5);
     BOOST_CHECK_EQUAL_COLLECTIONS(
@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE(
 
     std::vector<ShimStep> actual;
 
-    trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
+    ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
     BOOST_CHECK_EQUAL(actual.size(), 5);
     BOOST_CHECK_EQUAL_COLLECTIONS(
@@ -82,7 +82,7 @@ BOOST_AUTO_TEST_CASE(
 
     std::vector<ShimStep> actual;
 
-    trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
+    ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
     BOOST_CHECK_EQUAL(actual.size(), 5);
     BOOST_CHECK_EQUAL_COLLECTIONS(
@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE(
 
     std::vector<ShimStep> actual;
 
-    trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
+    ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
     BOOST_CHECK_EQUAL(actual.size(), 5);
     BOOST_CHECK_EQUAL_COLLECTIONS(
@@ -135,7 +135,7 @@ BOOST_AUTO_TEST_CASE(
 
     std::vector<ShimStep> actual;
 
-    trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
+    ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
     BOOST_CHECK_EQUAL(actual.size(), 5);
     BOOST_CHECK_EQUAL_COLLECTIONS(

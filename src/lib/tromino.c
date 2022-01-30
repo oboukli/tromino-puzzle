@@ -28,8 +28,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <assert.h>
 
 static void solve_tromino(
-    int order, trmn_position_t pos, trmn_flip_t flip,
-    trmn_add_tromino_func add_tromino, void* state) {
+    const int order, const trmn_position_t pos, const trmn_flip_t flip,
+    const trmn_add_tromino_func add_tromino, void* const state) {
     if (2 == order) {
         add_tromino(pos, flip, state);
         return;
@@ -85,8 +85,9 @@ static void solve_tromino(
 }
 
 static void solve_board(
-    int order, trmn_position_t pos, trmn_flip_t flip, trmn_position_t mark,
-    trmn_add_tromino_func add_tromino, void* state) {
+    const int order, const trmn_position_t pos, const trmn_flip_t flip,
+    const trmn_position_t mark, const trmn_add_tromino_func add_tromino,
+    void* const state) {
     if (order > 2) {
         const int n = order >> 1;
 
@@ -110,8 +111,8 @@ static void solve_board(
 }
 
 void trmn_solve_puzzle(
-    int order, trmn_position_t mark, trmn_add_tromino_func add_tromino,
-    void* state) {
+    const int order, const trmn_position_t mark,
+    const trmn_add_tromino_func add_tromino, void* const state) {
     assert(add_tromino);
 
     const trmn_position_t pos = {

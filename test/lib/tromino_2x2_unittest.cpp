@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_CASE(GivenK2_WhenTopLeft_ThenSolutionIsK) {
     const std::vector<ShimStep> expected = {{{0, 0}, {-1, -1}}};
     std::vector<ShimStep> actual;
 
-    trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
+    ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
     BOOST_CHECK_EQUAL(actual.size(), 1);
     BOOST_CHECK_EQUAL_COLLECTIONS(
@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(GivenL2_WhenTopRight_ThenSolutionIsL) {
     const std::vector<ShimStep> expected = {{{0, 0}, {1, -1}}};
     std::vector<ShimStep> actual;
 
-    trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
+    ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
     BOOST_CHECK_EQUAL(actual.size(), 1);
     BOOST_CHECK_EQUAL_COLLECTIONS(
@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_CASE(GivenM2_WhenBottomLeft_ThenSolutionIsM) {
     const std::vector<ShimStep> expected = {{{0, 0}, {-1, 1}}};
     std::vector<ShimStep> actual;
 
-    trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
+    ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
     BOOST_CHECK_EQUAL(actual.size(), 1);
     BOOST_CHECK_EQUAL_COLLECTIONS(
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE(GivenN2_WhenBottomRight_ThenSolutionIsN) {
     const std::vector<ShimStep> expected = {{{0, 0}, {1, 1}}};
     std::vector<ShimStep> actual;
 
-    trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
+    ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
     BOOST_CHECK_EQUAL(actual.size(), 1);
     BOOST_CHECK_EQUAL_COLLECTIONS(

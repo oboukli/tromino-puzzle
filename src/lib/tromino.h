@@ -31,21 +31,21 @@ extern "C" {
 #endif /* __cplusplus */
 
 typedef struct trmn_position_struct {
-    int x;
-    int y;
+    const int x;
+    const int y;
 } trmn_position_t;
 
 typedef struct trmn_flip_struct {
-    int x;
-    int y;
+    const int x;
+    const int y;
 } trmn_flip_t;
 
 typedef void (*trmn_add_tromino_func)(
-    trmn_position_t pos, trmn_flip_t flip, void* state);
+    const trmn_position_t pos, const trmn_flip_t flip, void* const state);
 
 void trmn_solve_puzzle(
-    int order, trmn_position_t mark, trmn_add_tromino_func add_tromino,
-    void* state);
+    const int order, const trmn_position_t mark,
+    const trmn_add_tromino_func add_tromino, void* const state);
 
 #ifdef __cplusplus
 }
