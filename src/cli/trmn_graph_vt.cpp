@@ -13,7 +13,7 @@
 #include <iostream>
 #include <thread>
 
-namespace tromino::vt {
+namespace tromino::cli::vt {
 
 static constexpr std::size_t SPRITE_SIZE{4};
 
@@ -75,12 +75,12 @@ static inline void flush() noexcept {
     std::cout << std::flush;
 }
 
-void draw_board(const tromino::board_t& board) noexcept {
+void draw_board(const board_t& board) noexcept {
     const int order = board.order;
     for (int i = 0; i < order; ++i) { // Rows
         std::cout << CSI << 1 + i << ";" << 1 << "H";
         for (int j = 0; j < order; ++j) { // Columns
-            std::cout << board.board_matrix[tromino::calc_index(j, i, order)];
+            std::cout << board.board_matrix[calc_index(j, i, order)];
         }
     }
 }
@@ -128,7 +128,7 @@ void add_tromino(
     std::this_thread::sleep_for(DELAY_AFTER);
 }
 
-void use_vt(tromino::board_t& tromino_board) noexcept {
+void use_vt(board_t& tromino_board) noexcept {
 #ifdef _WINDOWS
     HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -143,7 +143,7 @@ void use_vt(tromino::board_t& tromino_board) noexcept {
     SetConsoleMode(hStdout, dwConsoleModifiedMode);
 #endif // _WINDOWS
 
-    tromino::vt::init_board(tromino_board);
+    init_board(tromino_board);
 
     // clang-format off
     std::cout <<
@@ -181,7 +181,7 @@ void use_vt(tromino::board_t& tromino_board) noexcept {
     std::cout <<
         // Set board background color.
         CSI "48;5;" BOARD_BACKGROUND_COLOR "m";
-    tromino::vt::draw_board(tromino_board);
+    draw_board(tromino_board);
 
     flush();
 
@@ -195,8 +195,7 @@ void use_vt(tromino::board_t& tromino_board) noexcept {
         // Set mark foreground color
         CSI "38;5;" MARK_FOREGROUND_COLOR "m";
 
-    tromino::vt::draw_at(
-        tromino_board.mark.x + 1, tromino_board.mark.y + 1, tromino::vt::mark);
+    draw_at(tromino_board.mark.x + 1, tromino_board.mark.y + 1, mark);
 
     std::cout <<
         // Set tromino background color
@@ -212,11 +211,10 @@ void use_vt(tromino::board_t& tromino_board) noexcept {
 
     flush();
 
-    tromino::graph_state_t graph_state{.board = tromino_board};
+    graph_state_t graph_state{.board = tromino_board};
 
-    trmn_solve_puzzle(
-        tromino_board.order, tromino_board.mark, tromino::vt::add_tromino,
-        &graph_state);
+    ::trmn_solve_puzzle(
+        tromino_board.order, tromino_board.mark, add_tromino, &graph_state);
 
     std::cin.get();
 
@@ -238,4 +236,4 @@ void use_vt(tromino::board_t& tromino_board) noexcept {
 #endif // _WINDOWS
 }
 
-} // namespace tromino::vt
+} // namespace tromino::cli::vt

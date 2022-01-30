@@ -30,7 +30,7 @@
 #define TROMINO_BACKGROUND_COLOR "18"
 #define TROMINO_FOREGROUND_COLOR "226"
 
-namespace tromino::vt {
+namespace tromino::cli::vt {
 
 constexpr char neutral = 'N';
 constexpr char empty = ' ';
@@ -66,8 +66,8 @@ inline void init_board(board_t& board) noexcept {
         = mark;
 }
 
-void use_vt(tromino::board_t& tromino_board) noexcept;
+void use_vt(board_t& tromino_board) noexcept;
 
-} // namespace tromino::vt
+} // namespace tromino::cli::vt
 
 #endif // TRMN_GRAPH_VT_H_

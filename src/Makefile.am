@@ -16,6 +16,10 @@ include_HEADERS += lib/tromino.h
 lib_LTLIBRARIES += libtromino.la
 
 tromino_SOURCES = \
+	cli/cli_models.cpp \
+	cli/cli_models.h \
+	cli/cli_options.cpp \
+	cli/cli_options.h \
 	cli/init.cpp \
 	cli/init.h \
 	cli/main.cpp \

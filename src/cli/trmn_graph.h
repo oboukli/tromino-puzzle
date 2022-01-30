@@ -19,7 +19,7 @@
 
 #include "tromino.h"
 
-namespace tromino {
+namespace tromino::cli {
 
 struct board_t {
     const trmn_position_t mark;
@@ -40,6 +40,6 @@ inline const T calc_index(const T x, const T y, const T o) noexcept {
     return y * o + x;
 }
 
-} // namespace tromino
+} // namespace tromino::cli
 
 #endif // TRMN_GRAPH_H_

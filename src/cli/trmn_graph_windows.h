@@ -21,7 +21,7 @@
 
 #include "trmn_graph.h"
 
-namespace tromino::windows {
+namespace tromino::cli::windows {
 
 constexpr char neutral = 'N';
 constexpr char empty = '\xB0';
@@ -51,8 +51,8 @@ inline void init_board(board_t& board) {
         = mark;
 }
 
-void use_wch(tromino::board_t& tromino_board);
+void use_wch(board_t& tromino_board);
 
-} // namespace tromino::windows
+} // namespace tromino::cli::windows
 
 #endif // TRMN_GRAPH_WINDOWS_H_

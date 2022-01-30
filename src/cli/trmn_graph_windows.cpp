@@ -6,7 +6,7 @@
 
 #include "trmn_graph_windows.h"
 
-namespace tromino::windows {
+namespace tromino::cli::windows {
 
 static std::array<char, sprite_size> get_sprite(trmn_flip_t flip) {
     assert(-1 == flip.x || 1 == flip.x);
@@ -69,7 +69,7 @@ inline void draw_at(int x, int y, char c, HANDLE hOutput) {
     draw_at(x, y, c);
 }
 
-void draw_board(const tromino::board_t& board) {
+void draw_board(const board_t& board) {
     int order = board.order;
     for (int i = 0; i < order; ++i) { // Rows
         for (int j = 0; j < order; ++j) { // Columns
@@ -129,22 +129,22 @@ static void ensure_success(BOOL is_success, const std::string& msg) {
     }
 }
 
-void use_wch(tromino::board_t& tromino_board) {
+void use_wch(board_t& tromino_board) {
     SetConsoleTitle(TEXT("Tromino Puzzle")); // TODO:
 
     HANDLE hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-    tromino::graph_state_t graph_state{
+    graph_state_t graph_state{
         .board = tromino_board,
         .hOutput = hConsoleOutput,
     };
-    tromino::windows::init_board(tromino_board);
+    init_board(tromino_board);
 
     CONSOLE_SCREEN_BUFFER_INFO originalConsoleScreenBufferInfo;
     GetConsoleScreenBufferInfo(
         GetStdHandle(STD_OUTPUT_HANDLE), &originalConsoleScreenBufferInfo);
 
     SetConsoleTextAttribute(hConsoleOutput, FOREGROUND_BLUE);
-    tromino::windows::draw_board(tromino_board);
+    draw_board(tromino_board);
 
     SetConsoleTextAttribute(
         hConsoleOutput,
@@ -156,19 +156,18 @@ void use_wch(tromino::board_t& tromino_board) {
     };
     // clang-format on
     SetConsoleCursorPosition(hConsoleOutput, coordMark);
-    std::cout << tromino::windows::mark;
+    std::cout << mark;
 
     SetConsoleTextAttribute(
         hConsoleOutput,
         FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
             | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
 
-    trmn_solve_puzzle(
-        tromino_board.order, tromino_board.mark, tromino::windows::add_tromino,
-        &graph_state);
+    ::trmn_solve_puzzle(
+        tromino_board.order, tromino_board.mark, add_tromino, &graph_state);
 
     SetConsoleTextAttribute(
         hConsoleOutput, originalConsoleScreenBufferInfo.wAttributes);
 }
 
-} // namespace tromino::windows
+} // namespace tromino::cli::windows

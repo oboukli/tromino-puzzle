@@ -11,6 +11,7 @@
 
 #include "tromino.h"
 
+#include "cli_models.h"
 #include "trmn_graph.h"
 #include "trmn_graph_vt.h"
 
@@ -18,15 +19,12 @@
 #include "trmn_graph_windows.h"
 #endif // _WINDOWS
 
-// clang-format off
-enum class emulation_mode {
-    vt_100 = 0,
-    windows_console_host = 1
-};
-// clang-format on
+namespace tromino::cli::app {
 
 void init(
     const int size, const int x, const int y,
-    const emulation_mode emulation_mode) noexcept;
+    const emulation_mode_type emulation_mode) noexcept;
+
+} // namespace tromino::cli::app
 
 #endif // INIT_H_

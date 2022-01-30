@@ -12,6 +12,7 @@
     "msbuild",
     "POSIX",
     "PRESENTVSYNC",
+    "stoi",
     "trmn",
     "TrmnPzzl",
     "tromino",
