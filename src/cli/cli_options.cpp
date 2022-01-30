@@ -31,8 +31,6 @@ int read_options(
     constexpr int REQUIRED_ARG_COUNT = 4;
 
     if (argc < REQUIRED_ARG_COUNT) {
-        print_usage();
-
         return 1;
     }
 
