@@ -9,8 +9,12 @@
 #include <chrono>
 #include <thread>
 
+namespace tromino::tromino2d {
+
 void solver(
     const int order, const trmn_position_t mark,
     const trmn_add_tromino_func add_tromino, void* const state) noexcept {
-    trmn_solve_puzzle(order, mark, add_tromino, state);
+    ::trmn_solve_puzzle(order, mark, add_tromino, state);
 }
+
+} // namespace tromino::tromino2d

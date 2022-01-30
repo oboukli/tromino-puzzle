@@ -31,5 +31,5 @@ int main(const int argc, const char* const argv[]) {
     const tromino::gfx2d::board_t board{
         .mark = {.x = x, .y = y}, .size = size, .order = order};
 
-    return init(board, WIDTH, "Tromino Puzzle");
+    return tromino::tromino2d::init(board, WIDTH, "Tromino Puzzle");
 }

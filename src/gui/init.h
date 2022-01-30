@@ -11,8 +11,12 @@
 
 #include "board.h"
 
+namespace tromino::tromino2d {
+
 int init(
     const tromino::gfx2d::board_t& board, const int width,
     const char* const title) noexcept;
+
+} // namespace tromino::tromino2d
 
 #endif // INIT_H_

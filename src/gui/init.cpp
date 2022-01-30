@@ -24,6 +24,8 @@
 
 #include "solver.h"
 
+namespace tromino::tromino2d {
+
 static std::mutex mut;
 static std::condition_variable lockCond;
 static bool isMainLoopRunning = true;
@@ -125,3 +127,5 @@ int init(
 
     return EXIT_SUCCESS;
 }
+
+} // namespace tromino::tromino2d

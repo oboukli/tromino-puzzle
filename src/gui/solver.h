@@ -9,8 +9,12 @@
 
 #include "tromino.h"
 
+namespace tromino::tromino2d {
+
 void solver(
     const int order, const trmn_position_t mark,
     const trmn_add_tromino_func add_tromino, void* const state) noexcept;
+
+} // namespace tromino::tromino2d
 
 #endif // SOLVER_H_
