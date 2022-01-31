@@ -1,3 +1,9 @@
+# MSBuild
+
+*.user
+[Dd]ebug/
+[Rr]elease/
+
 # Xcode
 
 xcuserdata/
