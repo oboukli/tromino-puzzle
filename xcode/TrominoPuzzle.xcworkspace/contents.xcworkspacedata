@@ -2,13 +2,13 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:LibTrominoValidation/LibTrominoValidation.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:LibTromino/LibTromino.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:LibTromino.Test/LibTromino.Test.xcodeproj">
+      location = "group:LibTrominoValidation/LibTrominoValidation.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:UnitTests/UnitTests.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:LibTromino2d/LibTromino2d.xcodeproj">

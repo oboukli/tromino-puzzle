@@ -8,24 +8,23 @@
 
 #include <vector>
 
-void shim_add_tromino(trmn_position_t pos, trmn_flip_t flip, void* state) {
-    ShimStep step = {pos, flip};
-    static_cast<std::vector<ShimStep>*>(state)->push_back(step);
+void shim_add_tromino(const trmn_position_t pos, const trmn_flip_t flip, void* const state) noexcept {
+    static_cast<std::vector<ShimStep>*>(state)->emplace_back(pos, flip);
 }
 
-void print_shim_step_vector(const std::vector<ShimStep>& steps) {
+void print_shim_step_vector(const std::vector<ShimStep>& steps) noexcept {
     // clang-format off
-    for (auto s: steps) {
+    for (const auto& s : steps) {
         std::cout
-            << "{ { "
+            << "{{"
             << s.pos.x
             << ", "
             << s.pos.y
-            << " }, { "
+            << "}, {"
             << s.flip.x
             << ", "
             << s.flip.y
-            << " } },"
+            << "}},"
             << std::endl;
     }
     // clang-format on

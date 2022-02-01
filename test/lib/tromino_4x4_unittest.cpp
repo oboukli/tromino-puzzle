@@ -4,6 +4,7 @@
 
 // SPDX-License-Identifier: MIT
 
+#include <array>
 #include <boost/test/unit_test.hpp>
 
 #include "tromino.h"
@@ -19,96 +20,96 @@ BOOST_AUTO_TEST_SUITE(tromino_4x4_test_suite)
 // + - - +
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs0_0_ThenSolution) {
-    constexpr int order = 4;
-    constexpr trmn_position_t mark = {0, 0};
+    constexpr int order{4};
+    constexpr trmn_position_t mark{0, 0};
 
     // clang-format off
-    const std::vector<ShimStep> expected = {
+    const std::array<ShimStep, size_t{5}> expected{{
         {{0, 0}, {-1, -1}},
         {{2, 2}, {-1, -1}},
         {{2, 0}, {-1, 1}},
         {{0, 2}, {1, -1}},
         {{1, 1}, {-1, -1}},
-    };
+    }};
     // clang-format on
 
     std::vector<ShimStep> actual;
 
     ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
-    BOOST_CHECK_EQUAL(actual.size(), 5);
+    BOOST_CHECK_EQUAL(actual.size(), size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
         actual.begin(), actual.end(), expected.begin(), expected.end());
 }
 
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs0_7_ThenSolution) {
-    constexpr int order = 4;
-    constexpr trmn_position_t mark = {0, 7};
+    constexpr int order{4};
+    constexpr trmn_position_t mark{0, 7};
 
     // clang-format off
-    const std::vector<ShimStep> expected = {
+    const std::array<ShimStep, size_t{5}> expected{{
         {{0, 2}, {-1, 1}},
         {{2, 0}, {-1, 1}},
         {{2, 2}, {-1, -1}},
         {{0, 0}, {1, 1}},
         {{1, 1}, {-1, 1}},
-    };
+    }};
     // clang-format on
 
     std::vector<ShimStep> actual;
 
     ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
-    BOOST_CHECK_EQUAL(actual.size(), 5);
+    BOOST_CHECK_EQUAL(actual.size(), size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
         actual.begin(), actual.end(), expected.begin(), expected.end());
 }
 
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs7_0_ThenSolution) {
-    constexpr int order = 4;
-    constexpr trmn_position_t mark = {7, 0};
+    constexpr int order{4};
+    constexpr trmn_position_t mark{7, 0};
 
     // clang-format off
-    const std::vector<ShimStep> expected = {
+    const std::array<ShimStep, size_t{5}> expected{{
         {{2, 0}, {1, -1}},
         {{0, 2}, {1, -1}},
         {{0, 0}, {1, 1}},
         {{2, 2}, {-1, -1}},
         {{1, 1}, {1, -1}},
-    };
+    }};
     // clang-format on
 
     std::vector<ShimStep> actual;
 
     ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
-    BOOST_CHECK_EQUAL(actual.size(), 5);
+    BOOST_CHECK_EQUAL(actual.size(), size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
         actual.begin(), actual.end(), expected.begin(), expected.end());
 }
 
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs7_7_ThenSolution) {
-    constexpr int order = 4;
-    constexpr trmn_position_t mark = {7, 7};
+    constexpr int order{4};
+    constexpr trmn_position_t mark{7, 7};
 
     // clang-format off
-    const std::vector<ShimStep> expected = {
+    const std::array<ShimStep, size_t{5}> expected{{
         {{2, 2}, {1, 1}},
         {{0, 0}, {1, 1}},
         {{0, 2}, {1, -1}},
         {{2, 0}, {-1, 1}},
         {{1, 1}, {1, 1}},
-    };
+    }};
     // clang-format on
 
     std::vector<ShimStep> actual;
 
     ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
-    BOOST_CHECK_EQUAL(actual.size(), 5);
+    BOOST_CHECK_EQUAL(actual.size(), size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
         actual.begin(), actual.end(), expected.begin(), expected.end());
 }
@@ -120,24 +121,24 @@ BOOST_AUTO_TEST_CASE(
 // + - + -
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs3_2_ThenSolution) {
-    constexpr int order = 4;
-    constexpr trmn_position_t mark = {3, 2};
+    constexpr int order{4};
+    constexpr trmn_position_t mark{3, 2};
 
     // clang-format off
-    std::vector<ShimStep> expected = {
+    const std::array<ShimStep, size_t{5}> expected{{
         {{2, 2}, {1, -1}},
         {{0, 0}, {1, 1}},
         {{0, 2}, {1, -1}},
         {{2, 0}, {-1, 1}},
         {{1, 1}, {1, 1}},
-    };
+    }};
     // clang-format on
 
     std::vector<ShimStep> actual;
 
     ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
-    BOOST_CHECK_EQUAL(actual.size(), 5);
+    BOOST_CHECK_EQUAL(actual.size(), size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
         actual.begin(), actual.end(), expected.begin(), expected.end());
 }

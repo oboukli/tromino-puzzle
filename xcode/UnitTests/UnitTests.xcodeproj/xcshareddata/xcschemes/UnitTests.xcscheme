@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7503E7A026C891260018B1F2"
-               BuildableName = "LibTromino.Test"
-               BlueprintName = "LibTromino.Test"
-               ReferencedContainer = "container:LibTromino.Test.xcodeproj">
+               BuildableName = "UnitTests"
+               BlueprintName = "UnitTests"
+               ReferencedContainer = "container:UnitTests.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,9 +34,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      enableAddressSanitizer = "YES"
-      enableASanStackUseAfterReturn = "YES"
-      enableUBSanitizer = "YES"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -44,15 +41,16 @@
       debugXPCServices = "NO"
       debugServiceExtension = "internal"
       allowLocationSimulation = "NO"
-      viewDebuggingEnabled = "No">
+      viewDebuggingEnabled = "No"
+      GPUProfilerEnabled = "No">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7503E7A026C891260018B1F2"
-            BuildableName = "LibTromino.Test"
-            BlueprintName = "LibTromino.Test"
-            ReferencedContainer = "container:LibTromino.Test.xcodeproj">
+            BuildableName = "UnitTests"
+            BlueprintName = "UnitTests"
+            ReferencedContainer = "container:UnitTests.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7503E7A026C891260018B1F2"
-            BuildableName = "LibTromino.Test"
-            BlueprintName = "LibTromino.Test"
-            ReferencedContainer = "container:LibTromino.Test.xcodeproj">
+            BuildableName = "UnitTests"
+            BlueprintName = "UnitTests"
+            ReferencedContainer = "container:UnitTests.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

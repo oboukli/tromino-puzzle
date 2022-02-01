@@ -32,7 +32,7 @@
 /* Begin PBXFileReference section */
 		75002ABD27A5F7ED00CBB593 /* tromino_validation_unittest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tromino_validation_unittest.cpp; sourceTree = "<group>"; };
 		75002ABF27A5F8D000CBB593 /* libLibTrominoValidation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTrominoValidation.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		7503E7A126C891260018B1F2 /* LibTromino.Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LibTromino.Test; sourceTree = BUILT_PRODUCTS_DIR; };
+		7503E7A126C891260018B1F2 /* UnitTests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTests; sourceTree = BUILT_PRODUCTS_DIR; };
 		7503E7D026C894EC0018B1F2 /* testmain_libtromino.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testmain_libtromino.cpp; sourceTree = "<group>"; };
 		7503E7D126C894EC0018B1F2 /* tromino_2x2_unittest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tromino_2x2_unittest.cpp; sourceTree = "<group>"; };
 		7503E7D626C895610018B1F2 /* libLibTromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTromino.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,7 +77,7 @@
 		7503E7A226C891260018B1F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7503E7A126C891260018B1F2 /* LibTromino.Test */,
+				7503E7A126C891260018B1F2 /* UnitTests */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,9 +108,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7503E7A026C891260018B1F2 /* LibTromino.Test */ = {
+		7503E7A026C891260018B1F2 /* UnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7503E7A826C891260018B1F2 /* Build configuration list for PBXNativeTarget "LibTromino.Test" */;
+			buildConfigurationList = 7503E7A826C891260018B1F2 /* Build configuration list for PBXNativeTarget "UnitTests" */;
 			buildPhases = (
 				7503E79D26C891260018B1F2 /* Sources */,
 				7503E79E26C891260018B1F2 /* Frameworks */,
@@ -120,9 +120,9 @@
 			);
 			dependencies = (
 			);
-			name = LibTromino.Test;
-			productName = LibTromino.Test;
-			productReference = 7503E7A126C891260018B1F2 /* LibTromino.Test */;
+			name = UnitTests;
+			productName = UnitTests;
+			productReference = 7503E7A126C891260018B1F2 /* UnitTests */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -138,7 +138,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7503E79C26C891260018B1F2 /* Build configuration list for PBXProject "LibTromino.Test" */;
+			buildConfigurationList = 7503E79C26C891260018B1F2 /* Build configuration list for PBXProject "UnitTests" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -151,7 +151,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7503E7A026C891260018B1F2 /* LibTromino.Test */,
+				7503E7A026C891260018B1F2 /* UnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -325,7 +325,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7503E79C26C891260018B1F2 /* Build configuration list for PBXProject "LibTromino.Test" */ = {
+		7503E79C26C891260018B1F2 /* Build configuration list for PBXProject "UnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7503E7A626C891260018B1F2 /* Debug */,
@@ -334,7 +334,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7503E7A826C891260018B1F2 /* Build configuration list for PBXNativeTarget "LibTromino.Test" */ = {
+		7503E7A826C891260018B1F2 /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7503E7A926C891260018B1F2 /* Debug */,
