@@ -116,9 +116,9 @@ void add_tromino(
 
 #ifdef _WINDOWS
     DWORD dwMode;
-    GetConsoleMode(graph_state->hOutput, &dwMode);
+    ::GetConsoleMode(graph_state->hOutput, &dwMode);
     dwMode |= ENABLE_PROCESSED_OUTPUT | ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-    SetConsoleMode(graph_state->hOutput, dwMode);
+    ::SetConsoleMode(graph_state->hOutput, dwMode);
 #endif // _WINDOWS
 
     draw_at(order, order, '\0');
@@ -130,17 +130,20 @@ void add_tromino(
 
 void use_vt(board_t& tromino_board) noexcept {
 #ifdef _WINDOWS
-    HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
+    const HANDLE hStdout = ::GetStdHandle(STD_OUTPUT_HANDLE);
 
-    DWORD dwConsoleOriginalMode = 0;
+    DWORD dwConsoleOriginalMode{0};
+    DWORD dwConsoleModeRequiredFlags{
+        ENABLE_PROCESSED_OUTPUT | ENABLE_VIRTUAL_TERMINAL_PROCESSING};
     DWORD dwConsoleModifiedMode;
-    GetConsoleMode(hStdout, &dwConsoleOriginalMode);
+    ::GetConsoleMode(hStdout, &dwConsoleOriginalMode);
 
-    // TODO: if
-
-    dwConsoleModifiedMode = dwConsoleOriginalMode | ENABLE_PROCESSED_OUTPUT
-        | ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-    SetConsoleMode(hStdout, dwConsoleModifiedMode);
+    if ((dwConsoleOriginalMode & dwConsoleModeRequiredFlags)
+        != dwConsoleModeRequiredFlags) {
+        dwConsoleModifiedMode
+            = dwConsoleOriginalMode | dwConsoleModeRequiredFlags;
+        ::SetConsoleMode(hStdout, dwConsoleModifiedMode);
+    }
 #endif // _WINDOWS
 
     init_board(tromino_board);
@@ -179,10 +182,10 @@ void use_vt(board_t& tromino_board) noexcept {
     // clang-format on
 
     std::cout <<
-        // Set board background color.
+        // Set board background color
         CSI "48;5;" BOARD_BACKGROUND_COLOR "m";
-    draw_board(tromino_board);
 
+    draw_board(tromino_board);
     flush();
 
     std::cout <<
@@ -232,7 +235,7 @@ void use_vt(board_t& tromino_board) noexcept {
 
 #ifdef _WINDOWS
     assert(0 != dwConsoleOriginalMode);
-    SetConsoleMode(hStdout, dwConsoleOriginalMode);
+    ::SetConsoleMode(hStdout, dwConsoleOriginalMode);
 #endif // _WINDOWS
 }
 

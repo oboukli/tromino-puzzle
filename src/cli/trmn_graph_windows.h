@@ -10,12 +10,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#include <array>
-#include <cassert>
-#include <chrono>
-#include <iostream>
-#include <memory>
-#include <thread>
+#include <algorithm>
 
 #include "tromino.h"
 
@@ -34,24 +29,23 @@ constexpr char top_right = '\xBB';
 constexpr char bottom_left = '\xC8';
 constexpr char bottom_right = '\xBC';
 
-constexpr auto sprite_size = 4;
+void draw_at(
+    const int x, const int y, const char c, const HANDLE hOutput) noexcept;
 
-std::array<char, sprite_size> get_sprite(trmn_flip_t flip);
+void draw_board(const board_t& board) noexcept;
 
-void draw_at(int x, int y, char c, HANDLE hOutput);
+void add_tromino(
+    const trmn_position_t pos, const trmn_flip_t flip,
+    void* const graph_state) noexcept;
 
-void draw_board(const board_t* board);
-
-void add_tromino(trmn_position_t pos, trmn_flip_t flip, void* graph_state);
-
-inline void init_board(board_t& board) {
+inline void init_board(board_t& board) noexcept {
     std::fill_n(board.board_matrix.get(), board.size, empty);
 
     board.board_matrix[calc_index(board.mark.x, board.mark.y, board.order)]
         = mark;
 }
 
-void use_wch(board_t& tromino_board);
+void use_wch(board_t& tromino_board) noexcept;
 
 } // namespace tromino::cli::windows
 

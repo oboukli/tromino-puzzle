@@ -31,7 +31,7 @@ struct board_t {
 struct graph_state_t {
     board_t& board;
 #ifdef _WINDOWS
-    HANDLE hOutput;
+    const HANDLE hOutput;
 #endif // _WINDOWS
 };
 

@@ -15,7 +15,7 @@
 
 int main(const int argc, const char* const argv[]) {
     tromino::cli::options options;
-    int read_options_result = tromino::cli::read_options(argc, argv, options);
+    const int read_options_result = tromino::cli::read_options(argc, argv, options);
 
     if (read_options_result != 0
         || !::trmn_is_valid_config(options.order, options.x, options.y)) {

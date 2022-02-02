@@ -6,9 +6,18 @@
 
 #include "trmn_graph_windows.h"
 
+#include <array>
+#include <cassert>
+#include <chrono>
+#include <iostream>
+#include <thread>
+
 namespace tromino::cli::windows {
 
-static std::array<char, sprite_size> get_sprite(trmn_flip_t flip) {
+static constexpr std::size_t SPRITE_SIZE{4};
+
+static std::array<char, SPRITE_SIZE> get_sprite(
+    const trmn_flip_t& flip) noexcept {
     assert(-1 == flip.x || 1 == flip.x);
     assert(-1 == flip.y || 1 == flip.y);
 
@@ -23,6 +32,7 @@ static std::array<char, sprite_size> get_sprite(trmn_flip_t flip) {
             break;
 
         case 1:
+            [[fallthrough]];
         default:
             // -1, 1
             // - +
@@ -33,6 +43,7 @@ static std::array<char, sprite_size> get_sprite(trmn_flip_t flip) {
         break;
 
     case 1:
+        [[fallthrough]];
     default:
         switch (flip.y) {
         case -1:
@@ -43,6 +54,7 @@ static std::array<char, sprite_size> get_sprite(trmn_flip_t flip) {
             break;
 
         case 1:
+            [[fallthrough]];
         default:
             // 1, 1
             // + -
@@ -54,23 +66,24 @@ static std::array<char, sprite_size> get_sprite(trmn_flip_t flip) {
     };
 }
 
-inline void draw_at(int x, int y, char c) {
+static inline void draw_at(const int x, const int y, const char c) noexcept {
     std::cout << c;
 }
 
-inline void draw_at(int x, int y, char c, HANDLE hOutput) {
-    COORD coord{
+static inline void draw_at(
+    const int x, const int y, const char c, const HANDLE hOutput) noexcept {
+    const COORD coord{
         .X{static_cast<SHORT>(x)},
         .Y{static_cast<SHORT>(y)},
     };
 
-    SetConsoleCursorPosition(hOutput, coord);
+    ::SetConsoleCursorPosition(hOutput, coord);
 
     draw_at(x, y, c);
 }
 
-void draw_board(const board_t& board) {
-    int order = board.order;
+void draw_board(const board_t& board) noexcept {
+    const int order = board.order;
     for (int i = 0; i < order; ++i) { // Rows
         for (int j = 0; j < order; ++j) { // Columns
             std::cout << board.board_matrix[calc_index(j, i, order)];
@@ -80,16 +93,21 @@ void draw_board(const board_t& board) {
     }
 }
 
-void add_tromino(trmn_position_t pos, trmn_flip_t flip, void* state) {
-    graph_state_t* graph_state = static_cast<graph_state_t*>(state);
-    board_t& board = graph_state->board;
-    char* board_matrix = board.board_matrix.get();
-    int order = board.order;
-    auto sprite = get_sprite(flip);
+void add_tromino(
+    const trmn_position_t pos, const trmn_flip_t flip,
+    void* const state) noexcept {
+    constexpr std::chrono::milliseconds DELAY_AFTER(68);
 
+    const graph_state_t* graph_state = static_cast<graph_state_t*>(state);
+    const board_t& board = graph_state->board;
+    char* const board_matrix = board.board_matrix.get();
+    const int order = board.order;
+    const auto sprite = get_sprite(flip);
+
+    char px;
     for (int i = 0; i < 2; ++i) {
         for (int j = 0; j < 2; ++j) {
-            auto px = sprite[calc_index(j, i, 2)];
+            px = sprite[calc_index(j, i, 2)];
             if (px == neutral) {
                 continue;
             }
@@ -104,20 +122,20 @@ void add_tromino(trmn_position_t pos, trmn_flip_t flip, void* state) {
         }
     }
 
-    COORD coord{
+    const COORD coord{
         .X = static_cast<SHORT>(order) - 1,
         .Y = static_cast<SHORT>(order) - 1,
     };
-    SetConsoleCursorPosition(graph_state->hOutput, coord);
+    ::SetConsoleCursorPosition(graph_state->hOutput, coord);
 
     std::cout << std::endl;
-    std::this_thread::sleep_for(
-        std::chrono::milliseconds(250)); // TODO: Add options to state
+    std::this_thread::sleep_for(DELAY_AFTER);
 }
 
-static void ensure_success(BOOL is_success, const std::string& msg) {
+static void ensure_success(
+    const BOOL is_success, const std::string& msg) noexcept {
     if (!is_success) {
-        auto error = GetLastError();
+        const auto error = ::GetLastError();
         // clang-format off
         std::cerr
             << "Windows API error: " << error
@@ -125,14 +143,14 @@ static void ensure_success(BOOL is_success, const std::string& msg) {
             << std::endl;
         // clang-format on
 
-        ExitProcess(EXIT_FAILURE);
+        ::ExitProcess(EXIT_FAILURE);
     }
 }
 
-void use_wch(board_t& tromino_board) {
-    SetConsoleTitle(TEXT("Tromino Puzzle")); // TODO:
+void use_wch(board_t& tromino_board) noexcept {
+    ::SetConsoleTitle(TEXT("Tromino Puzzle"));
 
-    HANDLE hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+    const HANDLE hConsoleOutput = ::GetStdHandle(STD_OUTPUT_HANDLE);
     graph_state_t graph_state{
         .board = tromino_board,
         .hOutput = hConsoleOutput,
@@ -140,25 +158,25 @@ void use_wch(board_t& tromino_board) {
     init_board(tromino_board);
 
     CONSOLE_SCREEN_BUFFER_INFO originalConsoleScreenBufferInfo;
-    GetConsoleScreenBufferInfo(
-        GetStdHandle(STD_OUTPUT_HANDLE), &originalConsoleScreenBufferInfo);
+    ::GetConsoleScreenBufferInfo(
+        ::GetStdHandle(STD_OUTPUT_HANDLE), &originalConsoleScreenBufferInfo);
 
-    SetConsoleTextAttribute(hConsoleOutput, FOREGROUND_BLUE);
+    ::SetConsoleTextAttribute(hConsoleOutput, FOREGROUND_BLUE);
     draw_board(tromino_board);
 
-    SetConsoleTextAttribute(
+    ::SetConsoleTextAttribute(
         hConsoleOutput,
         FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
     // clang-format off
-    COORD coordMark = {
+    const COORD coordMark = {
         .X = static_cast<short>(tromino_board.mark.x),
         .Y = static_cast<short>(tromino_board.mark.y)
     };
     // clang-format on
-    SetConsoleCursorPosition(hConsoleOutput, coordMark);
+    ::SetConsoleCursorPosition(hConsoleOutput, coordMark);
     std::cout << mark;
 
-    SetConsoleTextAttribute(
+    ::SetConsoleTextAttribute(
         hConsoleOutput,
         FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
             | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
@@ -166,7 +184,7 @@ void use_wch(board_t& tromino_board) {
     ::trmn_solve_puzzle(
         tromino_board.order, tromino_board.mark, add_tromino, &graph_state);
 
-    SetConsoleTextAttribute(
+    ::SetConsoleTextAttribute(
         hConsoleOutput, originalConsoleScreenBufferInfo.wAttributes);
 }
 
