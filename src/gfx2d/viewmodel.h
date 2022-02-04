@@ -19,9 +19,9 @@ namespace tromino::gfx2d {
 
 class TrominoBoardViewModel final {
 public:
-    TrominoBoardViewModel(::SDL_Window* const window) noexcept;
+    explicit TrominoBoardViewModel(::SDL_Window* const window) noexcept;
 
-    ~TrominoBoardViewModel() noexcept;
+    ~TrominoBoardViewModel() noexcept = default;
 
     void SetBoard(const tromino::gfx2d::board_t& board) noexcept;
 
@@ -32,20 +32,19 @@ public:
     [[nodiscard]] bool IsPlaying() const noexcept;
 
 private:
-    std::size_t _numSteps;
-    std::size_t _currentStepNum;
+    std::size_t _numSteps{0};
+    std::size_t _currentStepNum{0};
     SDL_Window* const _window;
-    std::unique_ptr<::SDL_Renderer, decltype(&::SDL_DestroyRenderer)> _renderer;
+    std::unique_ptr<::SDL_Renderer, decltype(&::SDL_DestroyRenderer)> _renderer{
+        nullptr, &::SDL_DestroyRenderer};
     std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)>
-        _viewTexture;
+        _viewTexture{nullptr, &::SDL_DestroyTexture};
     std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)>
-        _boardTexture;
+        _boardTexture{nullptr, &::SDL_DestroyTexture};
     std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)>
-        _solutionTexture;
+        _solutionTexture{nullptr, &::SDL_DestroyTexture};
     std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)>
-        _trominoTexture;
-
-private:
+        _trominoTexture{nullptr, &::SDL_DestroyTexture};
     static constexpr int OUTLINE_LOGICAL_WIDTH = 1;
     static constexpr int SQUARE_LOGICAL_WIDTH = 8;
 };

@@ -24,7 +24,7 @@ void InitCheckeredBoard(
     const ::SDL_Color& bke8Color) noexcept;
 
 void InitSolutionTexture(
-    ::SDL_Renderer* renderer, ::SDL_Texture* const texture, const int width,
+    ::SDL_Renderer* renderer, ::SDL_Texture* const texture,
     const ::SDL_Color& color) noexcept;
 
 void DrawMark(

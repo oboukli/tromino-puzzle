@@ -12,23 +12,25 @@
 #include <vector>
 
 #include "tromino.h"
+
 namespace tromino::gfx2d {
 
 struct Step {
     const trmn_position_t p;
     const trmn_flip_t f;
 
-    Step(const trmn_position_t p, const trmn_flip_t f) :
-        p(std::move(p)),
-        f(std::move(f)) {
+    Step(trmn_position_t p, trmn_flip_t f) noexcept : p(p), f(f) {
     }
 
-    Step(const Step&& other) : p(std::move(other.p)), f(std::move(other.f)) {
-    }
+    Step(Step&& other) noexcept = default;
 
-    Step(const Step& other) = delete;
+    Step& operator=(Step&& other) noexcept = delete;
 
-    Step& operator=(const Step& other) = delete;
+    Step(Step& other) noexcept = delete;
+
+    Step& operator=(Step& other) noexcept = delete;
+
+    ~Step() noexcept = default;
 };
 
 struct SolutionState {

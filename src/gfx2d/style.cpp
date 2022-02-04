@@ -5,5 +5,3 @@
 // SPDX-License-Identifier: MIT
 
 #include "style.h"
-
-namespace tromino::gfx2d {}

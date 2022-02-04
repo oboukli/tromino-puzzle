@@ -62,8 +62,8 @@ void InitCheckeredBoard(
         renderer, bke8Color.r, bke8Color.g, bke8Color.b, bke8Color.a);
     ::SDL_Rect square = {0, 0, squareWidth, squareWidth};
 
-    for (int j, i = 0; i < order; ++i) {
-        for (j = 0; j < order; ++j) {
+    for (int i = 0; i < order; ++i) {
+        for (int j = 0; j < order; ++j) {
             if ((j & 1) != (i & 1)) {
                 square.x = j * squareWidth;
                 square.y = i * squareWidth;
@@ -75,7 +75,7 @@ void InitCheckeredBoard(
 
 void InitSolutionTexture(
     ::SDL_Renderer* const renderer, ::SDL_Texture* const texture,
-    const int width, const ::SDL_Color& color) noexcept {
+    const ::SDL_Color& color) noexcept {
     ::SDL_SetTextureBlendMode(texture, ::SDL_BlendMode::SDL_BLENDMODE_BLEND);
 
     ::SDL_SetRenderTarget(renderer, texture);

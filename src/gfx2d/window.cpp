@@ -19,11 +19,10 @@ Window::Window(const char* title, int width) noexcept :
         ::SDL_CreateWindow(
             title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, width,
             WINDOW_FLAGS),
-        ::SDL_DestroyWindow) {
+        &::SDL_DestroyWindow) {
 }
 
-Window::~Window() noexcept {
-}
+Window::~Window() noexcept = default;
 
 [[nodiscard]] ::SDL_Window* Window::GetSdlWindow() const noexcept {
     return _window.get();

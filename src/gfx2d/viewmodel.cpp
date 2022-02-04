@@ -12,21 +12,11 @@ namespace tromino::gfx2d {
 
 TrominoBoardViewModel::TrominoBoardViewModel(
     ::SDL_Window* const window) noexcept :
-    _numSteps(0),
-    _currentStepNum(0),
-    _window(window),
-    _renderer(nullptr, ::SDL_DestroyRenderer),
-    _viewTexture(nullptr, ::SDL_DestroyTexture),
-    _boardTexture(nullptr, ::SDL_DestroyTexture),
-    _solutionTexture(nullptr, ::SDL_DestroyTexture),
-    _trominoTexture(nullptr, ::SDL_DestroyTexture) {
+    _window(window) {
     Uint32 render_flags = ::SDL_RendererFlags::SDL_RENDERER_ACCELERATED
         | ::SDL_RendererFlags::SDL_RENDERER_PRESENTVSYNC
         | ::SDL_RendererFlags::SDL_RENDERER_TARGETTEXTURE;
     _renderer.reset(::SDL_CreateRenderer(_window, -1, render_flags));
-}
-
-TrominoBoardViewModel::~TrominoBoardViewModel() noexcept {
 }
 
 void TrominoBoardViewModel::SetBoard(
@@ -59,8 +49,7 @@ void TrominoBoardViewModel::SetBoard(
 
     _solutionTexture.reset(CreateTexture(_renderer.get(), logicalWidth));
     color = {0, 0, 0, SDL_ALPHA_TRANSPARENT};
-    InitSolutionTexture(
-        _renderer.get(), _solutionTexture.get(), logicalWidth, color);
+    InitSolutionTexture(_renderer.get(), _solutionTexture.get(), color);
 
     if (_trominoTexture == nullptr) {
         color = {0xd9, 0x93, 0x3d, 0x80};
@@ -87,9 +76,9 @@ void TrominoBoardViewModel::Render(
     ::SDL_SetRenderTarget(_renderer.get(), _solutionTexture.get());
     ::SDL_Rect trominoDest
         = {0, 0, SQUARE_LOGICAL_WIDTH * 2, SQUARE_LOGICAL_WIDTH * 2};
-    std::vector<Step>::iterator begin = solutionState.steps->begin();
-    std::vector<Step>::iterator targetIdx = begin + _currentStepNum;
-    for (std::vector<Step>::iterator it = begin; it != targetIdx; ++it) {
+    auto begin = solutionState.steps->begin();
+    auto targetIdx = begin + _currentStepNum;
+    for (auto it = begin; it != targetIdx; ++it) {
         const Step& s = *it;
         trominoDest.x = s.p.x * SQUARE_LOGICAL_WIDTH;
         trominoDest.y = s.p.y * SQUARE_LOGICAL_WIDTH;
