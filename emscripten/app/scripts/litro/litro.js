@@ -92,10 +92,9 @@ const litro = (function (window, ltrGfx) {
   }
 
   /**
-   * @param {string} trominoImgSrc
    * @returns {Promise}
    */
-  function initResourcesAsync(trominoImgSrc) {
+  function initResourcesAsync() {
     trominoImg = new Image();
     trominoImg.src = trominoImgSrc;
 
@@ -177,7 +176,7 @@ const litro = (function (window, ltrGfx) {
     context = ctx;
     initSolver();
     initOptions();
-    await initResourcesAsync(trominoImgSrc);
+    await initResourcesAsync();
   }
 
   return {

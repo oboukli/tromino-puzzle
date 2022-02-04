@@ -60,8 +60,6 @@ function solveTromino(emModule, order, markX, markY, cb) {
   );
 
   emModule.removeFunction(funcPtr);
-  funcPtr = 0;
 
   emModule.stackRestore(stackPtr);
-  stackPtr = 0;
 }

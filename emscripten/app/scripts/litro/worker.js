@@ -60,7 +60,7 @@ function initWasmAsync() {
  */
 async function initEmscriptenModuleAsync() {
   /* global createLitroMod */
-  return await createLitroMod(/* optional default settings */);
+  return createLitroMod(/* optional default settings */);
 }
 
 /**
@@ -70,7 +70,7 @@ async function initEmscriptenModuleAsync() {
 async function handleSolveAsync({ order, markX, markY }) {
   if (!_isSolverReady) {
     // eslint-disable-next-line no-unused-vars
-    const [_, emModule] = await Promise.all([instancePromise, emModulePromise]);
+    const [, emModule] = await Promise.all([instancePromise, emModulePromise]);
     _emModule = emModule;
     _isSolverReady = true;
   }
@@ -93,10 +93,8 @@ async function handleSolveAsync({ order, markX, markY }) {
  * @returns {Promise}
  */
 async function handleCommandAsync(cmd, payload) {
-  switch (cmd) {
-    case "solve":
-      handleSolveAsync(payload);
-      break;
+  if (cmd === "solve") {
+    handleSolveAsync(payload);
   }
 }
 
