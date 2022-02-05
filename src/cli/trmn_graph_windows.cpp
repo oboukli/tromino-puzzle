@@ -29,7 +29,6 @@ static std::array<char, SPRITE_SIZE> get_sprite(
             // X |
             // - +
             return {neutral, vertical, horizontal, bottom_right};
-            break;
 
         case 1:
             [[fallthrough]];
@@ -38,7 +37,6 @@ static std::array<char, SPRITE_SIZE> get_sprite(
             // - +
             // X |
             return {horizontal, top_right, neutral, vertical};
-            break;
         };
         break;
 
@@ -51,7 +49,6 @@ static std::array<char, SPRITE_SIZE> get_sprite(
             // | X
             // + -
             return {vertical, neutral, bottom_left, horizontal};
-            break;
 
         case 1:
             [[fallthrough]];
@@ -60,9 +57,7 @@ static std::array<char, SPRITE_SIZE> get_sprite(
             // + -
             // | X
             return {top_left, horizontal, vertical, neutral};
-            break;
         };
-        break;
     };
 }
 

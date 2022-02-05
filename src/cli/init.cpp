@@ -13,7 +13,7 @@ namespace tromino::cli::app {
 void init(
     const int order, const int x, const int y,
     const emulation_mode_type emulation_mode) noexcept {
-    const std::size_t order_internal = static_cast<std::size_t>(order);
+    const auto order_internal = static_cast<std::size_t>(order);
     const std::size_t size = order_internal * order_internal;
 
     board_t tromino_board{

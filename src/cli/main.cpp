@@ -15,10 +15,13 @@
 
 int main(const int argc, const char* const argv[]) {
     tromino::cli::options options;
-    const int read_options_result = tromino::cli::read_options(argc, argv, options);
 
-    if (read_options_result != 0
+    std::string error;
+    if (const bool is_error
+        = tromino::cli::read_options(argc, argv, options, error);
+        is_error
         || !::trmn_is_valid_config(options.order, options.x, options.y)) {
+        std::cerr << error << std::endl;
         tromino::cli::print_usage();
 
         return EXIT_FAILURE;

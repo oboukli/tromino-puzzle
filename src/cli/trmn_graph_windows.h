@@ -38,7 +38,7 @@ void add_tromino(
     const trmn_position_t pos, const trmn_flip_t flip,
     void* const graph_state) noexcept;
 
-inline void init_board(board_t& board) noexcept {
+inline void init_board(const board_t& board) noexcept {
     std::fill_n(board.board_matrix.get(), board.size, empty);
 
     board.board_matrix[calc_index(board.mark.x, board.mark.y, board.order)]

@@ -107,8 +107,7 @@ static void start(
     const std::size_t numSteps = ((board.order * board.order) - 1) / 3;
     steps->reserve(numSteps);
 
-    ::trmn_solve_puzzle(
-        board.order, board.mark, addTromino, steps.get());
+    ::trmn_solve_puzzle(board.order, board.mark, addTromino, steps.get());
 
     viewModel->SetBoard(board);
 

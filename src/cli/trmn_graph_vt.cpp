@@ -17,7 +17,7 @@ namespace tromino::cli::vt {
 
 static constexpr std::size_t SPRITE_SIZE{4};
 
-static const std::array<char, SPRITE_SIZE> get_sprite(
+static std::array<char, SPRITE_SIZE> get_sprite(
     const trmn_flip_t& flip) noexcept {
     assert(-1 == flip.x || 1 == flip.x);
     assert(-1 == flip.y || 1 == flip.y);
@@ -30,7 +30,6 @@ static const std::array<char, SPRITE_SIZE> get_sprite(
             // X |
             // - +
             return {neutral, vertical, horizontal, bottom_right};
-            break;
 
         case 1:
             [[fallthrough]];
@@ -39,9 +38,7 @@ static const std::array<char, SPRITE_SIZE> get_sprite(
             // - +
             // X |
             return {horizontal, top_right, neutral, vertical};
-            break;
         };
-        break;
 
     case 1:
         [[fallthrough]];
@@ -52,7 +49,6 @@ static const std::array<char, SPRITE_SIZE> get_sprite(
             // | X
             // + -
             return {vertical, neutral, bottom_left, horizontal};
-            break;
 
         case 1:
             [[fallthrough]];
@@ -61,9 +57,7 @@ static const std::array<char, SPRITE_SIZE> get_sprite(
             // + -
             // | X
             return {top_left, horizontal, vertical, neutral};
-            break;
         };
-        break;
     };
 }
 
@@ -148,68 +142,76 @@ void use_vt(board_t& tromino_board) noexcept {
 
     init_board(tromino_board);
 
-    // clang-format off
-    std::cout <<
+    using namespace std::string_literals;
+    std::cout << ""s +
+            // clang-format off
+
         // Set icon and window title
-        ESC "]0;" "Tromino Puzzle" BEL
+        ESC + "]0;" "Tromino Puzzle"s + BEL +
 
         // Advanced video option (AVO)
-        CSI "?1;2c"
+        CSI + "?1;2c"s +
 
         // Column mode: 120 * 132 Col
-        CSI "?3h"
+        CSI + "?3h"s +
 
         // Enter the alternate buffer
-        CSI "?1049h"
+        CSI + "?1049h"s +
 
         // Mode 320 * 200 color (256-color graphics)
-        CSI "=19h"
+        CSI + "=19h"s +
 
         // Make cursor invisible
-        CSI "?25l"
+        CSI + "?25l"s +
 
         // Disable line wrapping
-        CSI "=7l"
+        CSI + "=7l"s +
 
         // Relative origin mode
-        CSI "?6h"
+        CSI + "?6h"s +
 
         // Resize the window
-        CSI "8;132;132t"
+        CSI + "8;132;132t"s +
 
         // Clears the entire screen
-        CSI "2J";
-    // clang-format on
+        CSI + "2J"s +
 
-    std::cout <<
         // Set board background color
-        CSI "48;5;" BOARD_BACKGROUND_COLOR "m";
+        CSI + "48;5;"s +
+        BOARD_BACKGROUND_COLOR + "m"s;
+    // clang-format on
 
     draw_board(tromino_board);
     flush();
 
     std::cout <<
+        // clang-format off
+
         // Set bold mode
-        CSI "1m"
+        CSI + "1m"s +
 
         // Set mark background color
-        CSI "48;5;" MARK_BACKGROUND_COLOR "m"
+        CSI + "48;5;"s + MARK_BACKGROUND_COLOR + "m"s +
 
         // Set mark foreground color
-        CSI "38;5;" MARK_FOREGROUND_COLOR "m";
+        CSI + "38;5;"s + MARK_FOREGROUND_COLOR + "m"s;
+    // clang-format on
 
     draw_at(tromino_board.mark.x + 1, tromino_board.mark.y + 1, mark);
 
     std::cout <<
+        // clang-format off
+
         // Set tromino background color
-        CSI "48;5;" TROMINO_BACKGROUND_COLOR "m"
+        CSI + "48;5;"s + TROMINO_BACKGROUND_COLOR + "m"s +
 
         // Set tromino foreground color
-        CSI "38;5;" TROMINO_FOREGROUND_COLOR "m";
+        CSI + "38;5;"s + TROMINO_FOREGROUND_COLOR + "m"s;
+    // clang-format on
 
 #ifndef TROMINO_USE_ASCII
     // Use VT100 Special graphics chararters
-    std::cout << ESC "(0";
+    std::cout << ESC + "(0"s;
 #endif // !TROMINO_USE_ASCII
 
     flush();
@@ -222,14 +224,17 @@ void use_vt(board_t& tromino_board) noexcept {
     std::cin.get();
 
     std::cout <<
+        // clang-format off
+
         // Switch back VT100 Special graphics chararters
-        ESC "0)"
+        ESC + "0)"s +
 
         // Reset to initial state (RIS)
-        ESC "c"
+        ESC + "c"s +
 
         // Exit the alternate buffer
-        CSI "?1049l";
+        CSI + "?1049l"s;
+    // clang-format on
 
     flush();
 

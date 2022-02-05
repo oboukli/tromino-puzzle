@@ -36,7 +36,7 @@ struct graph_state_t {
 };
 
 template <typename T>
-inline const T calc_index(const T x, const T y, const T o) noexcept {
+inline T calc_index(const T x, const T y, const T o) noexcept {
     return y * o + x;
 }
 

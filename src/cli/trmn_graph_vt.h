@@ -18,17 +18,17 @@
 
 #include "trmn_graph.h"
 
-#define BEL "\a"
-#define ESC "\x1b"
-#define CSI "\x1b["
+constexpr auto BEL = "\a";
+constexpr auto ESC = "\x1b";
+constexpr auto CSI = "\x1b[";
 
-#define BOARD_BACKGROUND_COLOR "23"
+constexpr auto BOARD_BACKGROUND_COLOR = "23";
 
-#define MARK_BACKGROUND_COLOR "199"
-#define MARK_FOREGROUND_COLOR "216"
+constexpr auto MARK_BACKGROUND_COLOR = "199";
+constexpr auto MARK_FOREGROUND_COLOR = "216";
 
-#define TROMINO_BACKGROUND_COLOR "18"
-#define TROMINO_FOREGROUND_COLOR "226"
+constexpr auto TROMINO_BACKGROUND_COLOR = "18";
+constexpr auto TROMINO_FOREGROUND_COLOR = "226";
 
 namespace tromino::cli::vt {
 
@@ -59,7 +59,7 @@ void add_tromino(
     const trmn_position_t pos, const trmn_flip_t flip,
     void* const graph_state) noexcept;
 
-inline void init_board(board_t& board) noexcept {
+inline void init_board(const board_t& board) noexcept {
     std::fill_n(board.board_matrix.get(), board.size, empty);
 
     board.board_matrix[calc_index(board.mark.x, board.mark.y, board.order)]
