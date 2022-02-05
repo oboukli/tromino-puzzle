@@ -22,7 +22,7 @@
 static std::unique_ptr<tromino::gfx2d::Window> window = nullptr;
 static std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel
     = nullptr;
-static std::unique_ptr<tromino::gfx2d::SolutionState> solutionState = nullptr;
+static std::unique_ptr<std::vector<tromino::gfx2d::Step>> steps = nullptr;
 static bool isMainLoopRunning = true;
 static bool isInitialized = false;
 
@@ -31,9 +31,9 @@ static void addTromino(
     void* const state) noexcept {
     using namespace tromino::gfx2d;
 
-    SolutionState& solutionState = *static_cast<SolutionState*>(state);
+    auto steps = static_cast<std::vector<tromino::gfx2d::Step>*>(state);
 
-    solutionState.steps->emplace_back(pos, flip);
+    steps->emplace_back(pos, flip);
 }
 
 static void pollSdlEvents() noexcept {
@@ -52,9 +52,7 @@ static void pollSdlEvents() noexcept {
 }
 
 static void init(const int width) noexcept {
-    solutionState = std::make_unique<tromino::gfx2d::SolutionState>();
-    solutionState->steps
-        = std::make_unique<std::vector<tromino::gfx2d::Step>>();
+    steps = std::make_unique<std::vector<tromino::gfx2d::Step>>();
 
     ::SDL_Init(SDL_INIT_VIDEO);
 
@@ -78,7 +76,7 @@ static void terminate() noexcept {
 
     ::SDL_Quit();
 
-    solutionState.reset();
+    steps.reset();
 
     isInitialized = false;
     isMainLoopRunning = false;
@@ -92,7 +90,7 @@ static void loopSimulatorCallback() noexcept {
     }
 
     viewModel->StepForward();
-    viewModel->Render(*solutionState);
+    viewModel->Render(*steps);
 }
 
 static void start(
@@ -107,10 +105,10 @@ static void start(
     init(width);
 
     const std::size_t numSteps = ((board.order * board.order) - 1) / 3;
-    solutionState->steps->reserve(numSteps);
+    steps->reserve(numSteps);
 
     ::trmn_solve_puzzle(
-        board.order, board.mark, addTromino, solutionState.get());
+        board.order, board.mark, addTromino, steps.get());
 
     viewModel->SetBoard(board);
 

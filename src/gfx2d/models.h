@@ -33,10 +33,6 @@ struct Step {
     ~Step() noexcept = default;
 };
 
-struct SolutionState {
-    std::unique_ptr<std::vector<Step>> steps;
-};
-
 } // namespace tromino::gfx2d
 
 #endif // MODELS_H_

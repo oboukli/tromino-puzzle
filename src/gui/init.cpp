@@ -31,12 +31,12 @@ static std::condition_variable lockCond;
 
 static void addTromino(
     const trmn_position_t pos, const trmn_flip_t flip,
-    gfx2d::SolutionState* const solutionState) noexcept {
+    std::vector<tromino::gfx2d::Step>* const steps) noexcept {
     using namespace tromino::gfx2d;
 
     {
         std::lock_guard lk(mut);
-        solutionState->steps->emplace_back(pos, flip);
+        steps->emplace_back(pos, flip);
     }
     lockCond.notify_one();
 }
@@ -53,7 +53,7 @@ static void pollSdlEvents(bool& isMainLoopRunning) noexcept {
 
 inline static void start_game_loop(
     const tromino::gfx2d::board_t& board,
-    const tromino::gfx2d::SolutionState& solutionState, const int width,
+    const std::vector<tromino::gfx2d::Step>& steps, const int width,
     const char* const title) {
     using namespace tromino::gfx2d;
     using namespace std::chrono_literals;
@@ -76,16 +76,15 @@ inline static void start_game_loop(
 
         if (viewModel->IsPlaying()) {
             std::unique_lock lk(mut);
-            if (lockCond.wait_for(lk, WAIT_TIME, [&solutionState] {
-                    return !solutionState.steps->empty();
-                })) {
+            if (lockCond.wait_for(
+                    lk, WAIT_TIME, [&steps] { return !steps.empty(); })) {
                 viewModel->StepForward();
             }
 
             lk.unlock();
         }
 
-        viewModel->Render(solutionState);
+        viewModel->Render(steps);
 
         ::SDL_Delay(FRAME_DELAY);
     }
@@ -95,13 +94,13 @@ int init(
     const tromino::gfx2d::board_t& board, const int width,
     const char* const title) noexcept {
     const std::size_t numSteps = ((board.order * board.order) - 1) / 3;
-    tromino::gfx2d::SolutionState solutionState;
-    solutionState.steps = std::make_unique<std::vector<tromino::gfx2d::Step>>();
-    solutionState.steps->reserve(numSteps);
+
+    auto steps = std::vector<tromino::gfx2d::Step>();
+    steps.reserve(numSteps);
 
     std::thread solver_thread(
-        solver<tromino::gfx2d::SolutionState>, board.order, board.mark,
-        addTromino, &solutionState);
+        solver<std::vector<tromino::gfx2d::Step>>, board.order, board.mark,
+        addTromino, &steps);
 
     if (::SDL_Init(SDL_INIT_VIDEO) != 0) {
         return EXIT_FAILURE;
@@ -111,7 +110,7 @@ int init(
     ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
     ::SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
 
-    start_game_loop(board, solutionState, width, title);
+    start_game_loop(board, steps, width, title);
 
     ::SDL_Quit();
 

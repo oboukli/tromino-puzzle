@@ -22,11 +22,10 @@ void print_usage() noexcept {
 bool read_options(
     const int argc, const char* const argv[], options& options,
     std::string& error) noexcept {
-    constexpr int REQUIRED_ARG_COUNT = 4;
-
-    if (argc < REQUIRED_ARG_COUNT) {
+    if (constexpr int REQUIRED_ARG_COUNT{4}; argc < REQUIRED_ARG_COUNT) {
         using namespace std::string_literals;
         error = "Incorrect argument count."s;
+
         return true;
     }
 

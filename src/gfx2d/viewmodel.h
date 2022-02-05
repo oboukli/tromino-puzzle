@@ -27,7 +27,7 @@ public:
 
     void StepForward() noexcept;
 
-    void Render(const SolutionState& solutionState) const noexcept;
+    void Render(const std::vector<tromino::gfx2d::Step>& steps) const noexcept;
 
     [[nodiscard]] bool IsPlaying() const noexcept;
 
