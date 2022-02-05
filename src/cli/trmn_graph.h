@@ -14,6 +14,8 @@
 #include <Windows.h>
 #endif // _WINDOWS
 
+#include <array>
+#include <cassert>
 #include <cstddef>
 #include <memory>
 
@@ -38,6 +40,43 @@ struct graph_state_t {
 template <typename T>
 inline T calc_index(const T x, const T y, const T o) noexcept {
     return y * o + x;
+}
+
+constexpr std::size_t SPRITE_SIZE{4};
+
+template <
+    char neutral, char empty, char mark, char horizontal, char vertical,
+    char top_left, char top_right, char bottom_left, char bottom_right>
+static std::array<char, SPRITE_SIZE> get_sprite(
+    const trmn_flip_t& flip) noexcept {
+    assert(-1 == flip.x || 1 == flip.x);
+    assert(-1 == flip.y || 1 == flip.y);
+
+    if (-1 == flip.x) {
+        if (-1 == flip.y) {
+            // -1, -1
+            // X |
+            // - +
+            return {neutral, vertical, horizontal, bottom_right};
+        }
+
+        // -1, 1
+        // - +
+        // X |
+        return {horizontal, top_right, neutral, vertical};
+    }
+
+    if (-1 == flip.y) {
+        // 1, -1
+        // | X
+        // + -
+        return {vertical, neutral, bottom_left, horizontal};
+    }
+
+    // 1, 1
+    // + -
+    // | X
+    return {top_left, horizontal, vertical, neutral};
 }
 
 } // namespace tromino::cli

@@ -14,53 +14,6 @@
 
 namespace tromino::cli::windows {
 
-static constexpr std::size_t SPRITE_SIZE{4};
-
-static std::array<char, SPRITE_SIZE> get_sprite(
-    const trmn_flip_t& flip) noexcept {
-    assert(-1 == flip.x || 1 == flip.x);
-    assert(-1 == flip.y || 1 == flip.y);
-
-    switch (flip.x) {
-    case -1:
-        switch (flip.y) {
-        case -1:
-            // -1, -1
-            // X |
-            // - +
-            return {neutral, vertical, horizontal, bottom_right};
-
-        case 1:
-            [[fallthrough]];
-        default:
-            // -1, 1
-            // - +
-            // X |
-            return {horizontal, top_right, neutral, vertical};
-        };
-        break;
-
-    case 1:
-        [[fallthrough]];
-    default:
-        switch (flip.y) {
-        case -1:
-            // 1, -1
-            // | X
-            // + -
-            return {vertical, neutral, bottom_left, horizontal};
-
-        case 1:
-            [[fallthrough]];
-        default:
-            // 1, 1
-            // + -
-            // | X
-            return {top_left, horizontal, vertical, neutral};
-        };
-    };
-}
-
 static inline void draw_at(const int x, const int y, const char c) noexcept {
     std::cout << c;
 }
@@ -97,7 +50,9 @@ void add_tromino(
     const board_t& board = graph_state->board;
     char* const board_matrix = board.board_matrix.get();
     const int order = board.order;
-    const auto sprite = get_sprite(flip);
+    const auto sprite = get_sprite<
+        neutral, empty, mark, horizontal, vertical, top_left, top_right,
+        bottom_left, bottom_right>(flip);
 
     char px;
     for (int i = 0; i < 2; ++i) {

@@ -15,52 +15,6 @@
 
 namespace tromino::cli::vt {
 
-static constexpr std::size_t SPRITE_SIZE{4};
-
-static std::array<char, SPRITE_SIZE> get_sprite(
-    const trmn_flip_t& flip) noexcept {
-    assert(-1 == flip.x || 1 == flip.x);
-    assert(-1 == flip.y || 1 == flip.y);
-
-    switch (flip.x) {
-    case -1:
-        switch (flip.y) {
-        case -1:
-            // -1, -1
-            // X |
-            // - +
-            return {neutral, vertical, horizontal, bottom_right};
-
-        case 1:
-            [[fallthrough]];
-        default:
-            // -1, 1
-            // - +
-            // X |
-            return {horizontal, top_right, neutral, vertical};
-        };
-
-    case 1:
-        [[fallthrough]];
-    default:
-        switch (flip.y) {
-        case -1:
-            // 1, -1
-            // | X
-            // + -
-            return {vertical, neutral, bottom_left, horizontal};
-
-        case 1:
-            [[fallthrough]];
-        default:
-            // 1, 1
-            // + -
-            // | X
-            return {top_left, horizontal, vertical, neutral};
-        };
-    };
-}
-
 static inline void draw_at(const int x, const int y, const char c) noexcept {
     std::cout << CSI << y << ";" << x << "H" << c;
 }
@@ -88,7 +42,9 @@ void add_tromino(
     const board_t& board = graph_state->board;
     char* const board_matrix = board.board_matrix.get();
     const int order = board.order;
-    const auto sprite = get_sprite(flip);
+    const auto sprite = get_sprite<
+        neutral, empty, mark, horizontal, vertical, top_left, top_right,
+        bottom_left, bottom_right>(flip);
 
     char px;
     for (int i = 0; i < 2; ++i) {
@@ -143,11 +99,10 @@ void use_vt(board_t& tromino_board) noexcept {
     init_board(tromino_board);
 
     using namespace std::string_literals;
+    // clang-format off
     std::cout << ""s +
-            // clang-format off
-
         // Set icon and window title
-        ESC + "]0;" "Tromino Puzzle"s + BEL +
+        ESC + "]0;"s + "Tromino Puzzle"s + BEL +
 
         // Advanced video option (AVO)
         CSI + "?1;2c"s +
@@ -184,9 +139,8 @@ void use_vt(board_t& tromino_board) noexcept {
     draw_board(tromino_board);
     flush();
 
+    // clang-format off
     std::cout <<
-        // clang-format off
-
         // Set bold mode
         CSI + "1m"s +
 
@@ -199,9 +153,8 @@ void use_vt(board_t& tromino_board) noexcept {
 
     draw_at(tromino_board.mark.x + 1, tromino_board.mark.y + 1, mark);
 
+    // clang-format off
     std::cout <<
-        // clang-format off
-
         // Set tromino background color
         CSI + "48;5;"s + TROMINO_BACKGROUND_COLOR + "m"s +
 
@@ -223,9 +176,8 @@ void use_vt(board_t& tromino_board) noexcept {
 
     std::cin.get();
 
+    // clang-format off
     std::cout <<
-        // clang-format off
-
         // Switch back VT100 Special graphics chararters
         ESC + "0)"s +
 
