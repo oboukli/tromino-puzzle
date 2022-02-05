@@ -19,19 +19,22 @@ void print_usage() noexcept {
     // clang-format on
 }
 
-int read_options(
-    const int argc, const char* const argv[], options& options) noexcept {
+bool read_options(
+    const int argc, const char* const argv[], options& options,
+    std::string& error) noexcept {
     constexpr int REQUIRED_ARG_COUNT = 4;
 
     if (argc < REQUIRED_ARG_COUNT) {
-        return 1;
+        using namespace std::string_literals;
+        error = "Incorrect argument count."s;
+        return true;
     }
 
     options.order = std::stoi(argv[1]);
     options.x = std::stoi(argv[2]);
     options.y = std::stoi(argv[3]);
 
-    return 0;
+    return false;
 }
 
 } // namespace tromino::tromino2d

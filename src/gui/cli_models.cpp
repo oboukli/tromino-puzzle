@@ -5,5 +5,3 @@
 // SPDX-License-Identifier: MIT
 
 #include "cli_models.h"
-
-namespace tromino::tromino2d {}

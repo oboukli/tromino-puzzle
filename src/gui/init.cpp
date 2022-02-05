@@ -28,34 +28,25 @@ namespace tromino::tromino2d {
 
 static std::mutex mut;
 static std::condition_variable lockCond;
-static bool isMainLoopRunning = true;
 
 static void addTromino(
     const trmn_position_t pos, const trmn_flip_t flip,
-    void* const state) noexcept {
+    gfx2d::SolutionState* const solutionState) noexcept {
     using namespace tromino::gfx2d;
 
     {
-        SolutionState& solutionState = *static_cast<SolutionState*>(state);
-
-        std::lock_guard<std::mutex> lk(mut);
-
-        solutionState.steps->emplace_back(pos, flip);
+        std::lock_guard lk(mut);
+        solutionState->steps->emplace_back(pos, flip);
     }
     lockCond.notify_one();
 }
 
-static void pollSdlEvents() noexcept {
+static void pollSdlEvents(bool& isMainLoopRunning) noexcept {
     ::SDL_Event event;
 
     while (::SDL_PollEvent(&event)) {
-        switch (event.type) {
-        case ::SDL_QUIT:
+        if (::SDL_QUIT == event.type) {
             isMainLoopRunning = false;
-            break;
-
-        default:
-            break;
         }
     }
 }
@@ -70,22 +61,22 @@ inline static void start_game_loop(
     constexpr auto WAIT_TIME = 4ms;
     constexpr int FRAME_DELAY = 68;
 
-    const std::unique_ptr<tromino::gfx2d::Window> window
-        = std::make_unique<tromino::gfx2d::Window>(title, width);
+    const auto window = std::make_unique<tromino::gfx2d::Window>(title, width);
     assert(window->GetSdlWindow() != nullptr);
 
-    const std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel
+    const auto viewModel
         = std::make_unique<tromino::gfx2d::TrominoBoardViewModel>(
             window->GetSdlWindow());
 
     viewModel->SetBoard(board);
 
+    bool isMainLoopRunning = true;
     while (isMainLoopRunning) {
-        pollSdlEvents();
+        pollSdlEvents(isMainLoopRunning);
 
         if (viewModel->IsPlaying()) {
-            std::unique_lock<std::mutex> lk(mut);
-            if (lockCond.wait_for(lk, WAIT_TIME, [&] {
+            std::unique_lock lk(mut);
+            if (lockCond.wait_for(lk, WAIT_TIME, [&solutionState] {
                     return !solutionState.steps->empty();
                 })) {
                 viewModel->StepForward();
@@ -109,7 +100,8 @@ int init(
     solutionState.steps->reserve(numSteps);
 
     std::thread solver_thread(
-        solver, board.order, board.mark, addTromino, &solutionState);
+        solver<tromino::gfx2d::SolutionState>, board.order, board.mark,
+        addTromino, &solutionState);
 
     if (::SDL_Init(SDL_INIT_VIDEO) != 0) {
         return EXIT_FAILURE;
