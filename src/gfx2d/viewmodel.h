@@ -40,8 +40,6 @@ private:
     std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)>
         _viewTexture{nullptr, &::SDL_DestroyTexture};
     std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)>
-        _boardTexture{nullptr, &::SDL_DestroyTexture};
-    std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)>
         _solutionTexture{nullptr, &::SDL_DestroyTexture};
     std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)>
         _trominoTexture{nullptr, &::SDL_DestroyTexture};

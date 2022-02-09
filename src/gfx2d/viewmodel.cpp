@@ -32,15 +32,13 @@ void TrominoBoardViewModel::SetBoard(
 
     _viewTexture.reset(CreateTexture(_renderer.get(), logicalWidth));
 
-    _boardTexture.reset(CreateTexture(_renderer.get(), logicalWidth));
-
     ::SDL_Color color;
     ::SDL_Color altColor;
     color = {0x4e, 0x7d, 0xa6, SDL_ALPHA_OPAQUE};
     altColor = {0x01, 0x23, 0x40, SDL_ALPHA_OPAQUE};
     InitCheckeredBoard(
-        _renderer.get(), _boardTexture.get(), SQUARE_LOGICAL_WIDTH, order,
-        color, altColor);
+        _renderer.get(), _viewTexture.get(), SQUARE_LOGICAL_WIDTH, order, color,
+        altColor);
 
     color = {0x8c, 0x1b, 0x1b, SDL_ALPHA_OPAQUE};
     DrawMark(
@@ -88,7 +86,6 @@ void TrominoBoardViewModel::Render(
     }
 
     ::SDL_SetRenderTarget(_renderer.get(), _viewTexture.get());
-    ::SDL_RenderCopy(_renderer.get(), _boardTexture.get(), nullptr, nullptr);
     ::SDL_RenderCopy(_renderer.get(), _solutionTexture.get(), nullptr, nullptr);
 
     ::SDL_SetRenderTarget(_renderer.get(), nullptr);

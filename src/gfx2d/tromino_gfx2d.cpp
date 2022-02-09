@@ -48,7 +48,7 @@ namespace tromino::gfx2d {
 
 void InitCheckeredBoard(
     ::SDL_Renderer* const renderer, ::SDL_Texture* const texture,
-    const int squareWidth, int order, const ::SDL_Color& wke1Color,
+    const int squareWidth, const int order, const ::SDL_Color& wke1Color,
     const ::SDL_Color& bke8Color) noexcept {
     ::SDL_SetTextureBlendMode(texture, ::SDL_BlendMode::SDL_BLENDMODE_BLEND);
 
@@ -73,17 +73,6 @@ void InitCheckeredBoard(
     }
 }
 
-void InitSolutionTexture(
-    ::SDL_Renderer* const renderer, ::SDL_Texture* const texture,
-    const ::SDL_Color& color) noexcept {
-    ::SDL_SetTextureBlendMode(texture, ::SDL_BlendMode::SDL_BLENDMODE_BLEND);
-
-    ::SDL_SetRenderTarget(renderer, texture);
-
-    ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
-    ::SDL_RenderClear(renderer);
-}
-
 void DrawMark(
     ::SDL_Renderer* const renderer, const int squareWidth, const int x,
     const int y, const ::SDL_Color& color) noexcept {
@@ -93,6 +82,17 @@ void DrawMark(
         = {x * squareWidth, y * squareWidth, squareWidth, squareWidth};
 
     ::SDL_RenderFillRect(renderer, &square);
+}
+
+void InitSolutionTexture(
+    ::SDL_Renderer* const renderer, ::SDL_Texture* const texture,
+    const ::SDL_Color& color) noexcept {
+    ::SDL_SetTextureBlendMode(texture, ::SDL_BlendMode::SDL_BLENDMODE_BLEND);
+
+    ::SDL_SetRenderTarget(renderer, texture);
+
+    ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+    ::SDL_RenderClear(renderer);
 }
 
 void DrawTrominoOutline(
