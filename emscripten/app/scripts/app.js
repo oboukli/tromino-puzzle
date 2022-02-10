@@ -116,8 +116,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     }, { capture: false, passive: true });
   }
 
-  function start() {
+  function startLitro() {
     litro.play(order, markX, markY);
+  }
+
+  function startTrmn() {
     trmn.play(order, markX, markY);
   }
 
@@ -138,7 +141,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     await trmn.initAsync(trmnCanvasElement);
 
     solveButtonElement.disabled = false;
-    solveButtonElement.addEventListener("click", () => start(),
+    solveButtonElement.addEventListener("click", () => startLitro(),
+      { capture: false, passive: true });
+
+    solveButtonElement.addEventListener("click", () => startTrmn(),
       { capture: false, passive: true });
   }
 
