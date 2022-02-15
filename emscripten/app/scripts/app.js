@@ -89,7 +89,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     solveButtonElement = document.getElementById("solveButton");
 
     orderElement.min = "0";
-    orderElement.max = "8";
+    orderElement.max = "6";
     orderElement.value = (Math.log2(order) - 1).toString();
 
     orderIndicatorElement.value = order.toString();
