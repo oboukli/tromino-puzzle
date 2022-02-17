@@ -30,6 +30,9 @@ void TrominoBoardViewModel::SetBoard(
     ::SDL_RenderSetLogicalSize(_renderer.get(), logicalWidth, logicalWidth);
     ::SDL_RenderSetIntegerScale(_renderer.get(), ::SDL_bool::SDL_FALSE);
 
+    ::SDL_SetRenderDrawColor(_renderer.get(), 0, 0xff, 0, SDL_ALPHA_OPAQUE);
+    ::SDL_RenderClear(_renderer.get());
+
     _viewTexture.reset(CreateTexture(_renderer.get(), logicalWidth));
 
     ::SDL_Color color;
