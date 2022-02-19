@@ -2,10 +2,10 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ main, development, feature/* ]
+    branches: [main, development, feature/*]
   pull_request:
     # The branches below must be a subset of the branches above.
-    branches: [ main, development, feature/* ]
+    branches: [main, development, feature/*]
   schedule:
     - cron: '10 22 * * 5'
 
@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'cpp', 'javascript' ]
+        language: ['cpp', 'javascript']
         # https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/configuring-code-scanning#changing-the-languages-that-are-analyzed
 
     steps:
@@ -38,7 +38,7 @@ jobs:
         sudo apt-get update && sudo apt-get install -yq autoconf-archive libboost-test-dev libsdl2-dev
         ./autogen.sh
         ./configure
-        make -j $(($(nproc)*15)/10)
+        make -j $((($(nproc) * 15) / 10))
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
