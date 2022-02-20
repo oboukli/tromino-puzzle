@@ -14,6 +14,18 @@ jobs:
         repository: emscripten-core/emsdk
         path: emsdk
 
+    - name: Emscripten SDK cache
+      id: emscripten-sdk-cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          emsdk/node
+          emsdk/upstream
+        key: >-
+          emscripten-sdk-cache-${{ hashFiles(
+            'emsdk/upstream/emscripten/emscripten-revision.txt'
+          ) }}
+
     - name: Install Emscripten SDK
       env:
         EMSDK_VERSION: '3.1.5'
@@ -21,18 +33,6 @@ jobs:
         ./emsdk install ${EMSDK_VERSION}
         ./emsdk activate ${EMSDK_VERSION}
       working-directory: emsdk
-
-    - name: Emscripten cache
-      id: emscripten-cache
-      uses: actions/cache@v2
-      with:
-        path: emsdk/upstream/emscripten/cache
-        key: >-
-          emscripten-cache-${{ hashFiles(
-            'emsdk/upstream/emscripten/ChangeLog.md',
-            'emsdk/upstream/emscripten/package-lock.json',
-            'emsdk/upstream/emscripten/tools/ports/sdl2.py'
-          ) }}
 
     - name: Check out main repository
       uses: actions/checkout@v2

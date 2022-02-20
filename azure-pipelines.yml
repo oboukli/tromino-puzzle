@@ -80,12 +80,13 @@ jobs:
       vmImage: 'ubuntu-latest'
     variables:
       emsdkVersion: '3.1.5'
+      numMakeJobs: 3
     steps:
       - task: DockerInstaller@0
         displayName: Emscripten SDK
         inputs:
-          dockerVersion: 18.06.3-ce
+          dockerVersion: '20.10.12'
           releaseType: stable
 
-      - script: docker run -i --rm -v $(pwd):/src --workdir="/src/emscripten" emscripten/emsdk:$(emsdkVersion) emmake make
+      - script: docker run -i --rm -v $(pwd):/src --workdir="/src/emscripten" emscripten/emsdk:$(emsdkVersion) emmake make -j $(numMakeJobs)
         displayName: 'Emscripten build for WebAssembly'
