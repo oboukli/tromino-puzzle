@@ -21,8 +21,8 @@ TrominoBoardViewModel::TrominoBoardViewModel(
 
 void TrominoBoardViewModel::SetBoard(
     const tromino::gfx2d::board_t& board) noexcept {
-    const int order = board.order;
-    const int logicalWidth = SQUARE_LOGICAL_WIDTH * order;
+    const int order{board.order};
+    const int logicalWidth{SQUARE_LOGICAL_WIDTH * order};
 
     _currentStepNum = 0;
     _numSteps = ((order * order) - 1) / 3;
@@ -35,10 +35,8 @@ void TrominoBoardViewModel::SetBoard(
 
     _viewTexture.reset(CreateTexture(_renderer.get(), logicalWidth));
 
-    ::SDL_Color color;
-    ::SDL_Color altColor;
-    color = {0x4e, 0x7d, 0xa6, SDL_ALPHA_OPAQUE};
-    altColor = {0x01, 0x23, 0x40, SDL_ALPHA_OPAQUE};
+    ::SDL_Color color{0x4e, 0x7d, 0xa6, SDL_ALPHA_OPAQUE};
+    ::SDL_Color altColor{0x01, 0x23, 0x40, SDL_ALPHA_OPAQUE};
     InitCheckeredBoard(
         _renderer.get(), _viewTexture.get(), SQUARE_LOGICAL_WIDTH, order, color,
         altColor);
@@ -75,12 +73,12 @@ void TrominoBoardViewModel::StepForward() noexcept {
 void TrominoBoardViewModel::Render(
     const std::vector<tromino::gfx2d::Step>& steps) const noexcept {
     ::SDL_SetRenderTarget(_renderer.get(), _solutionTexture.get());
-    ::SDL_Rect trominoDest
-        = {0, 0, SQUARE_LOGICAL_WIDTH * 2, SQUARE_LOGICAL_WIDTH * 2};
-    auto begin = steps.begin();
-    auto targetIdx = begin + _currentStepNum;
-    for (auto it = begin; it != targetIdx; ++it) {
-        const Step& s = *it;
+    ::SDL_Rect trominoDest{
+        0, 0, SQUARE_LOGICAL_WIDTH * 2, SQUARE_LOGICAL_WIDTH * 2};
+    auto begin{steps.begin()};
+    auto targetIdx{begin + _currentStepNum};
+    for (auto it{begin}; it != targetIdx; ++it) {
+        const Step& s{*it};
         trominoDest.x = s.p.x * SQUARE_LOGICAL_WIDTH;
         trominoDest.y = s.p.y * SQUARE_LOGICAL_WIDTH;
         ::SDL_RenderCopyEx(

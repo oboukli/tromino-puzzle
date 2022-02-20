@@ -26,7 +26,7 @@ namespace tromino::gfx2d {
 [[nodiscard]] ::SDL_Texture* CreateTrominoTexture(
     ::SDL_Renderer* const renderer, const int squareWidth,
     const ::SDL_Color& color) noexcept {
-    ::SDL_Texture* const texture = CreateTexture(renderer, squareWidth * 2);
+    ::SDL_Texture* const texture{CreateTexture(renderer, squareWidth * 2)};
 
     ::SDL_SetTextureBlendMode(texture, ::SDL_BlendMode::SDL_BLENDMODE_BLEND);
 
@@ -37,10 +37,10 @@ namespace tromino::gfx2d {
 
     ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
-    const ::SDL_Rect square = {squareWidth, 0, squareWidth, squareWidth};
+    const ::SDL_Rect square{squareWidth, 0, squareWidth, squareWidth};
     ::SDL_RenderFillRect(renderer, &square);
 
-    const ::SDL_Rect rectangle = {0, squareWidth, squareWidth * 2, squareWidth};
+    const ::SDL_Rect rectangle{0, squareWidth, squareWidth * 2, squareWidth};
     ::SDL_RenderFillRect(renderer, &rectangle);
 
     return texture;
@@ -60,7 +60,7 @@ void InitCheckeredBoard(
 
     ::SDL_SetRenderDrawColor(
         renderer, bke8Color.r, bke8Color.g, bke8Color.b, bke8Color.a);
-    ::SDL_Rect square = {0, 0, squareWidth, squareWidth};
+    ::SDL_Rect square{0, 0, squareWidth, squareWidth};
 
     for (int i = 0; i < order; ++i) {
         for (int j = 0; j < order; ++j) {
@@ -78,8 +78,8 @@ void DrawMark(
     const int y, const ::SDL_Color& color) noexcept {
     ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
-    const ::SDL_Rect square
-        = {x * squareWidth, y * squareWidth, squareWidth, squareWidth};
+    const ::SDL_Rect square{
+        x * squareWidth, y * squareWidth, squareWidth, squareWidth};
 
     ::SDL_RenderFillRect(renderer, &square);
 }
