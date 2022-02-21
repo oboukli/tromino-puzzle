@@ -69,7 +69,6 @@ async function initEmscriptenModuleAsync() {
  */
 async function handleSolveAsync({ order, markX, markY }) {
   if (!_isSolverReady) {
-    // eslint-disable-next-line no-unused-vars
     const [, emModule] = await Promise.all([instancePromise, emModulePromise]);
     _emModule = emModule;
     _isSolverReady = true;
@@ -102,5 +101,9 @@ instancePromise = initWasmAsync();
 emModulePromise = initEmscriptenModuleAsync();
 
 self.addEventListener("message", async (e) => {
+  if (e.origin !== "" || e.source !== null) {
+    return;
+  }
+
   await handleCommandAsync(e.data.cmd, e.data.payload);
 }, false);

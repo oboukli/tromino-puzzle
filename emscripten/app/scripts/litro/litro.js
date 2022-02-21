@@ -59,11 +59,15 @@ const litro = (function (window, ltrGfx) {
   let start;
 
   /**
-   * @param {{ data: Tromino }} data
+   * @param {MessageEvent} e
    * @returns {void}
    */
-  function handleSolverMessage({ data: tromino }) {
-    trominos.push(tromino);
+  function handleSolverMessage(e) {
+    if (e.origin !== "" || e.source !== null) {
+      return;
+    }
+
+    trominos.push(e.data);
   }
 
   /**
