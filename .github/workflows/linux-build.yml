@@ -1,4 +1,4 @@
-name: Build for GNU/Linux
+name: Ubuntu build
 
 on: [push, pull_request]
 
