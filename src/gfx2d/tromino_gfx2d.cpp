@@ -99,25 +99,31 @@ void DrawTrominoOutline(
     ::SDL_Renderer* const renderer, ::SDL_Texture* const texture,
     const int squareWidth, const int thickness,
     const ::SDL_Color& color) noexcept {
-    constexpr std::size_t numSegments{6};
-
-    // clang-format off
-    const std::array<::SDL_Rect, numSegments> segments{{
-        {squareWidth, 0, squareWidth, thickness},
-        {(squareWidth * 2) - thickness, thickness, thickness, squareWidth * 2},
-        {0, (squareWidth * 2) - thickness, (squareWidth * 2) - thickness, thickness},
-        {0, squareWidth, thickness, squareWidth - thickness},
-        {thickness, squareWidth, squareWidth, thickness},
-        {squareWidth, thickness, thickness, squareWidth - thickness},
-    }};
-    // clang-format on
-
     ::SDL_SetRenderTarget(renderer, texture);
     ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
-    for (const auto& s : segments) {
-        ::SDL_RenderFillRect(renderer, &s);
-    }
+    ::SDL_Rect segment{squareWidth, 0, squareWidth, thickness};
+    const ::SDL_Rect* pSegment{&segment};
+    ::SDL_RenderFillRect(renderer, pSegment);
+
+    segment = SDL_Rect{
+        (squareWidth * 2) - thickness, thickness, thickness, squareWidth * 2};
+    ::SDL_RenderFillRect(renderer, pSegment);
+
+    segment = SDL_Rect{
+        0, (squareWidth * 2) - thickness, (squareWidth * 2) - thickness,
+        thickness};
+    ::SDL_RenderFillRect(renderer, pSegment);
+
+    segment = SDL_Rect{0, squareWidth, thickness, squareWidth - thickness};
+    ::SDL_RenderFillRect(renderer, pSegment);
+
+    segment = SDL_Rect{thickness, squareWidth, squareWidth, thickness};
+    ::SDL_RenderFillRect(renderer, pSegment);
+
+    segment
+        = SDL_Rect{squareWidth, thickness, thickness, squareWidth - thickness};
+    ::SDL_RenderFillRect(renderer, pSegment);
 }
 
 } // namespace tromino::gfx2d
