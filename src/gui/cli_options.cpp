@@ -12,9 +12,9 @@ namespace tromino::tromino2d {
 
 void print_usage() noexcept {
     // clang-format off
-    std::cout
-        << "Usage: tromino2d <order> <x> <y>\n"
-        << "Copyright (c) 2021-2022 Omar Boukli-Hacene. All rights reserved.\n"
+    std::cout <<
+        "Usage: tromino2d <order> <x> <y>\n"
+        "\nCopyright (c) 2021-2022 Omar Boukli-Hacene. All rights reserved.\n"
         << std::endl;
     // clang-format on
 }
