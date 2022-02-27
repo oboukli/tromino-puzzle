@@ -20,7 +20,7 @@ TrominoBoardViewModel::TrominoBoardViewModel(
 }
 
 void TrominoBoardViewModel::SetBoard(
-    const tromino::gfx2d::board_t& board) noexcept {
+    const Board& board, const Style& style) noexcept {
     const int order{board.order};
     const int logicalWidth{SQUARE_LOGICAL_WIDTH * order};
 
@@ -35,30 +35,25 @@ void TrominoBoardViewModel::SetBoard(
 
     _viewTexture.reset(CreateTexture(_renderer.get(), logicalWidth));
 
-    ::SDL_Color color{0x4e, 0x7d, 0xa6, SDL_ALPHA_OPAQUE};
-    ::SDL_Color altColor{0x01, 0x23, 0x40, SDL_ALPHA_OPAQUE};
     InitCheckeredBoard(
-        _renderer.get(), _viewTexture.get(), SQUARE_LOGICAL_WIDTH, order, color,
-        altColor);
+        _renderer.get(), _viewTexture.get(), SQUARE_LOGICAL_WIDTH, order,
+        style.wke1_color, style.bke8_color);
 
-    color = {0x8c, 0x1b, 0x1b, SDL_ALPHA_OPAQUE};
     DrawMark(
         _renderer.get(), SQUARE_LOGICAL_WIDTH, board.mark.x, board.mark.y,
-        color);
+        style.mark_color);
 
     _solutionTexture.reset(CreateTexture(_renderer.get(), logicalWidth));
-    color = {0, 0, 0, SDL_ALPHA_TRANSPARENT};
+    ::SDL_Color color = {0, 0, 0, SDL_ALPHA_TRANSPARENT};
     InitSolutionTexture(_renderer.get(), _solutionTexture.get(), color);
 
     if (_trominoTexture == nullptr) {
-        color = {0xd9, 0x93, 0x3d, 0x80};
-        _trominoTexture.reset(
-            CreateTrominoTexture(_renderer.get(), SQUARE_LOGICAL_WIDTH, color));
+        _trominoTexture.reset(CreateTrominoTexture(
+            _renderer.get(), SQUARE_LOGICAL_WIDTH, style.tromino_color));
 
-        color = {0xd9, 0x36, 0x36, SDL_ALPHA_OPAQUE};
         DrawTrominoOutline(
             _renderer.get(), _trominoTexture.get(), SQUARE_LOGICAL_WIDTH,
-            OUTLINE_LOGICAL_WIDTH, color);
+            OUTLINE_LOGICAL_WIDTH, style.tromino_outline_color);
     }
 }
 

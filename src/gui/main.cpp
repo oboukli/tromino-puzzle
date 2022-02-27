@@ -31,7 +31,7 @@ int main(const int argc, const char* const argv[]) {
 
     const std::size_t order_internal = static_cast<std::size_t>(options.order);
     const std::size_t size = order_internal * order_internal;
-    const tromino::gfx2d::board_t board{
+    const tromino::gfx2d::Board board{
         .mark = {.x = options.x, .y = options.y},
         .size = size,
         .order = options.order};

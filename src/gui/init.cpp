@@ -52,7 +52,7 @@ static void pollSdlEvents(bool& isMainLoopRunning) noexcept {
 }
 
 inline static void start_game_loop(
-    const tromino::gfx2d::board_t& board,
+    const tromino::gfx2d::Board& board,
     const std::vector<tromino::gfx2d::Step>& steps, const int width,
     const char* const title) {
     using namespace tromino::gfx2d;
@@ -68,7 +68,14 @@ inline static void start_game_loop(
         = std::make_unique<tromino::gfx2d::TrominoBoardViewModel>(
             window->GetSdlWindow());
 
-    viewModel->SetBoard(board);
+    tromino::gfx2d::Style style{
+        .wke1_color{0x4e, 0x7d, 0xa6, SDL_ALPHA_OPAQUE},
+        .bke8_color{0x01, 0x23, 0x40, SDL_ALPHA_OPAQUE},
+        .mark_color{0x8c, 0x1b, 0x1b, SDL_ALPHA_OPAQUE},
+        .tromino_color{0xd9, 0x93, 0x3d, 0x80},
+        .tromino_outline_color{0xd9, 0x36, 0x36, SDL_ALPHA_OPAQUE}};
+
+    viewModel->SetBoard(board, style);
 
     bool isMainLoopRunning = true;
     while (isMainLoopRunning) {
@@ -91,7 +98,7 @@ inline static void start_game_loop(
 }
 
 int init(
-    const tromino::gfx2d::board_t& board, const int width,
+    const tromino::gfx2d::Board& board, const int width,
     const char* const title) noexcept {
     const std::size_t numSteps = ((board.order * board.order) - 1) / 3;
 

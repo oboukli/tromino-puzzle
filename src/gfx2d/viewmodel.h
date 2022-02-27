@@ -13,6 +13,7 @@
 
 #include "board.h"
 #include "models.h"
+#include "style.h"
 #include "tromino_gfx2d.h"
 
 namespace tromino::gfx2d {
@@ -23,11 +24,11 @@ public:
 
     ~TrominoBoardViewModel() noexcept = default;
 
-    void SetBoard(const tromino::gfx2d::board_t& board) noexcept;
+    void SetBoard(const Board& board, const Style& style) noexcept;
 
     void StepForward() noexcept;
 
-    void Render(const std::vector<tromino::gfx2d::Step>& steps) const noexcept;
+    void Render(const std::vector<Step>& steps) const noexcept;
 
     [[nodiscard]] bool IsPlaying() const noexcept;
 

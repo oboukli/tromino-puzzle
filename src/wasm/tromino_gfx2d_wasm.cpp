@@ -94,7 +94,7 @@ static void loopSimulatorCallback() noexcept {
 }
 
 static void start(
-    const tromino::gfx2d::board_t& board, const int width) noexcept {
+    const tromino::gfx2d::Board& board, const int width) noexcept {
     using namespace tromino::gfx2d;
     constexpr int SWAP_INTERVAL = 4;
 
@@ -109,7 +109,13 @@ static void start(
 
     ::trmn_solve_puzzle(board.order, board.mark, addTromino, steps.get());
 
-    viewModel->SetBoard(board);
+    tromino::gfx2d::Style style{
+        .wke1_color{0x4e, 0x7d, 0xa6, SDL_ALPHA_OPAQUE},
+        .bke8_color{0x01, 0x23, 0x40, SDL_ALPHA_OPAQUE},
+        .mark_color{0x8c, 0x1b, 0x1b, SDL_ALPHA_OPAQUE},
+        .tromino_color{0xd9, 0x93, 0x3d, 0x80},
+        .tromino_outline_color{0xd9, 0x36, 0x36, SDL_ALPHA_OPAQUE}};
+    viewModel->SetBoard(board, style);
 
     ::emscripten_set_main_loop(loopSimulatorCallback, -1, 0);
     ::emscripten_set_main_loop_timing(EM_TIMING_RAF, SWAP_INTERVAL);
@@ -119,7 +125,7 @@ EMSCRIPTEN_KEEPALIVE extern "C" void playTromino(
     const int order, const int markX, const int markY,
     const int width) noexcept {
     const std::size_t size = order * order;
-    tromino::gfx2d::board_t board{
+    tromino::gfx2d::Board board{
         .mark = {.x = markX, .y = markY}, .size = size, .order = order};
 
     start(board, width);
