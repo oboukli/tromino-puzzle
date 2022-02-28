@@ -14,7 +14,7 @@
 #include "tromino.h"
 
 #include "board.h"
-#include "models.h"
+#include "step.h"
 #include "tromino_gfx2d.h"
 #include "viewmodel.h"
 #include "window.h"

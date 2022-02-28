@@ -15,9 +15,10 @@
 #include <memory>
 #include <mutex>
 #include <thread>
+#include <vector>
 
 #include "board.h"
-#include "models.h"
+#include "step.h"
 #include "tromino_gfx2d.h"
 #include "viewmodel.h"
 #include "window.h"
@@ -54,7 +55,7 @@ static void pollSdlEvents(bool& isMainLoopRunning) noexcept {
 inline static void start_game_loop(
     const tromino::gfx2d::Board& board,
     const std::vector<tromino::gfx2d::Step>& steps, const int width,
-    const char* const title) {
+    const std::string& title) {
     using namespace tromino::gfx2d;
     using namespace std::chrono_literals;
 
@@ -99,7 +100,7 @@ inline static void start_game_loop(
 
 int init(
     const tromino::gfx2d::Board& board, const int width,
-    const char* const title) noexcept {
+    const std::string& title) noexcept {
     const std::size_t numSteps = ((board.order * board.order) - 1) / 3;
 
     auto steps = std::vector<tromino::gfx2d::Step>();

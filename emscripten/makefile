@@ -21,7 +21,8 @@ TRMN_DIR_NAME ::= trmn
 GFX2D_DIR ::= $(SRC_DIR)/gfx2d
 
 GFX2D_SRCS ::= board.cpp \
-	models.cpp \
+	step.cpp \
+	style.cpp \
 	tromino_gfx2d.cpp \
 	viewmodel.cpp \
 	window.cpp

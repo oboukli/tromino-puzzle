@@ -91,8 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				7503E76E26C88C910018B1F2 /* cli */,
-				7594DBDC26C4822400CF433E /* Products */,
 				7503E7DD26C8977E0018B1F2 /* Frameworks */,
+				7594DBDC26C4822400CF433E /* Products */,
 			);
 			sourceTree = "<group>";
 		};

@@ -10,12 +10,13 @@
 #include <SDL2/SDL.h>
 
 #include <memory>
+#include <string>
 
 namespace tromino::gfx2d {
 
 class Window final {
 public:
-    Window(const char* title, int width) noexcept;
+    Window(const std::string& title, const int width) noexcept;
 
     ~Window() noexcept;
 

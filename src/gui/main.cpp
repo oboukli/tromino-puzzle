@@ -7,6 +7,7 @@
 #include <cstddef>
 #include <cstdlib>
 #include <iostream>
+#include <string>
 
 #include "tromino_validation.h"
 
@@ -15,6 +16,7 @@
 #include "init.h"
 
 int main(const int argc, const char* const argv[]) {
+    using namespace std::string_literals;
     constexpr int WIDTH = 512;
 
     tromino::tromino2d::options options;
@@ -36,5 +38,5 @@ int main(const int argc, const char* const argv[]) {
         .size = size,
         .order = options.order};
 
-    return tromino::tromino2d::init(board, WIDTH, "Tromino Puzzle");
+    return tromino::tromino2d::init(board, WIDTH, "Tromino Puzzle"s);
 }

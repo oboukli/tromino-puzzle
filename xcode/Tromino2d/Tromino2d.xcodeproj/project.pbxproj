@@ -66,9 +66,9 @@
 		7503E7BB26C892630018B1F2 = {
 			isa = PBXGroup;
 			children = (
+				7503E7E026C897D60018B1F2 /* Frameworks */,
 				75ACD98926DAF724003E33CA /* gui */,
 				7503E7C526C892630018B1F2 /* Products */,
-				7503E7E026C897D60018B1F2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

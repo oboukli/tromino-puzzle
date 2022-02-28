@@ -7,7 +7,7 @@
 #ifndef INIT_H_
 #define INIT_H_
 
-#include <cstddef>
+#include <string>
 
 #include "board.h"
 
@@ -15,7 +15,7 @@ namespace tromino::tromino2d {
 
 int init(
     const tromino::gfx2d::Board& board, const int width,
-    const char* const title) noexcept;
+    const std::string& title) noexcept;
 
 } // namespace tromino::tromino2d
 

@@ -67,10 +67,10 @@
 		7503E79826C891260018B1F2 = {
 			isa = PBXGroup;
 			children = (
-				75002ABC27A5F7ED00CBB593 /* validation */,
+				7503E7D526C895610018B1F2 /* Frameworks */,
 				7503E7CE26C894EC0018B1F2 /* lib */,
 				7503E7A226C891260018B1F2 /* Products */,
-				7503E7D526C895610018B1F2 /* Frameworks */,
+				75002ABC27A5F7ED00CBB593 /* validation */,
 			);
 			sourceTree = "<group>";
 		};

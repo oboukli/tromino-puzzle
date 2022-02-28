@@ -9,7 +9,7 @@
 
 #include "tromino.h"
 
-#include "models.h"
+#include "step.h"
 
 namespace tromino::tromino2d {
 

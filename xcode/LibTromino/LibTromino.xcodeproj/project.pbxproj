@@ -31,8 +31,8 @@
 		7503E76726C88C490018B1F2 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				7503E76826C88C490018B1F2 /* tromino.h */,
 				7503E76A26C88C490018B1F2 /* tromino.c */,
+				7503E76826C88C490018B1F2 /* tromino.h */,
 			);
 			name = lib;
 			path = ../../src/lib;

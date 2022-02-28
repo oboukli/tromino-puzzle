@@ -45,8 +45,8 @@ bin_PROGRAMS += tromino
 libtromino_gfx2d_la_SOURCES = \
 	gfx2d/board.cpp \
 	gfx2d/board.h \
-	gfx2d/models.cpp \
-	gfx2d/models.h \
+	gfx2d/step.cpp \
+	gfx2d/step.h \
 	gfx2d/style.cpp \
 	gfx2d/style.h \
 	gfx2d/tromino_gfx2d.cpp \
@@ -66,7 +66,7 @@ libtromino_gfx2d_la_LDFLAGS = \
 	-version-info $(LIBTROMINO_CURRENT):$(LIBTROMINO_REVISION):$(LIBTROMINO_AGE)
 include_HEADERS += \
 	gfx2d/board.h \
-	gfx2d/models.h \
+	gfx2d/step.h \
 	gfx2d/tromino_gfx2d.h \
 	gfx2d/viewmodel.h \
 	gfx2d/window.h

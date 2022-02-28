@@ -9,10 +9,11 @@
 
 #include <SDL2/SDL.h>
 
-#include <cstddef>
+#include <memory>
+#include <vector>
 
 #include "board.h"
-#include "models.h"
+#include "step.h"
 #include "style.h"
 #include "tromino_gfx2d.h"
 

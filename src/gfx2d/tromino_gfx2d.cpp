@@ -6,9 +6,7 @@
 
 #include "tromino_gfx2d.h"
 
-#include <array>
 #include <cassert>
-#include <cstddef>
 
 namespace tromino::gfx2d {
 
@@ -37,11 +35,14 @@ namespace tromino::gfx2d {
 
     ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
-    const ::SDL_Rect square{squareWidth, 0, squareWidth, squareWidth};
-    ::SDL_RenderFillRect(renderer, &square);
+    ::SDL_Rect rect{squareWidth, 0, squareWidth, squareWidth};
+    ::SDL_RenderFillRect(renderer, &rect);
 
-    const ::SDL_Rect rectangle{0, squareWidth, squareWidth * 2, squareWidth};
-    ::SDL_RenderFillRect(renderer, &rectangle);
+    rect.x = 0;
+    rect.y = squareWidth;
+    rect.w = squareWidth * 2;
+    rect.h = squareWidth;
+    ::SDL_RenderFillRect(renderer, &rect);
 
     return texture;
 }

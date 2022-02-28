@@ -31,8 +31,8 @@
 		75002A9C27A5940500CBB593 = {
 			isa = PBXGroup;
 			children = (
-				75002AAC27A5948800CBB593 /* validation */,
 				75002AA627A5940500CBB593 /* Products */,
+				75002AAC27A5948800CBB593 /* validation */,
 			);
 			sourceTree = "<group>";
 		};
