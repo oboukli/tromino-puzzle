@@ -1,0 +1,29 @@
+name: Xcode build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build
+    runs-on: macos-latest
+    env:
+      BUILD_PATH: ${{ github.workspace }}/xcode/build
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: brew install boost
+
+    - name: Build unit tests
+      run: xcodebuild -workspace TrominoPuzzle.xcworkspace -scheme UnitTests CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }} build
+      working-directory: xcode
+
+    - name: Run unit tests
+      run: ./UnitTests
+      working-directory: ${{ env.BUILD_PATH }}
+
+    - name: Build trominocli
+      run: xcodebuild -workspace TrominoPuzzle.xcworkspace -scheme TrominoCli build
+      working-directory: xcode
