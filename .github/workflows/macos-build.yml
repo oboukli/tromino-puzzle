@@ -24,11 +24,9 @@ jobs:
       uses: actions/cache@v2
       with:
         path: |
-          $VCPKG_DEFAULT_BINARY_CACHE
-          $XDG_CACHE_HOME/vcpkg/archives
-          $HOME/.cache/vcpkg/archives
+          ~/.cache/vcpkg/archives
         key: >-
-          vcpkg-cache-${{ hashFiles(
+          vcpkg-archives-cache-${{ hashFiles(
             'vcpkg/CHANGELOG.md'
           ) }}
 
