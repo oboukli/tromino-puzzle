@@ -13,11 +13,42 @@ jobs:
     - name: Check out repository
       uses: actions/checkout@v3
 
-    - name: Install dependencies
-      run: brew install boost
+    - name: Checkout vcpkg
+      uses: actions/checkout@v3
+      with:
+        repository: 'Microsoft/vcpkg'
+        path: ${{ github.workspace }}/vcpkg
+
+    - name: Apply vcpkg cache
+      id: vcpkg-cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          $VCPKG_DEFAULT_BINARY_CACHE
+          $XDG_CACHE_HOME/vcpkg/archives
+          $HOME/.cache/vcpkg/archives
+        key: >-
+          vcpkg-cache-${{ hashFiles(
+            'vcpkg/CHANGELOG.md'
+          ) }}
+
+    - name: Bootstrap vcpkg
+      run: ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
+
+    - name: Install boost-test
+      run: ./vcpkg/vcpkg install boost-test
+
+    - name: Install SDL2
+      run: ./vcpkg/vcpkg install sdl2 --triplet x64-osx-dynamic
 
     - name: Build unit tests
-      run: xcodebuild -workspace TrominoPuzzle.xcworkspace -scheme UnitTests CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }} build
+      run: |
+        xcodebuild \
+        -workspace TrominoPuzzle.xcworkspace \
+        -scheme UnitTests \
+        -destination 'platform=macOS,arch=x86_64' \
+        CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }} \
+        build
       working-directory: xcode
 
     - name: Run unit tests
@@ -25,5 +56,21 @@ jobs:
       working-directory: ${{ env.BUILD_PATH }}
 
     - name: Build trominocli
-      run: xcodebuild -workspace TrominoPuzzle.xcworkspace -scheme TrominoCli build
+      run: |
+        xcodebuild \
+        -workspace TrominoPuzzle.xcworkspace \
+        -scheme TrominoCli \
+        -destination 'platform=macOS,arch=x86_64' \
+        CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }} \
+        build
+      working-directory: xcode
+
+    - name: Build tromino2d
+      run: |
+        xcodebuild \
+        -workspace TrominoPuzzle.xcworkspace \
+        -scheme Tromino2d \
+        -destination 'platform=macOS,arch=x86_64' \
+        CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }} \
+        build
       working-directory: xcode

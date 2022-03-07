@@ -7,7 +7,7 @@
 #ifndef TROMINO_GFX2D_H_
 #define TROMINO_GFX2D_H_
 
-#include <SDL_render.h>
+#include <SDL2/SDL.h>
 
 namespace tromino::gfx2d {
 

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7503E7DB26C896C90018B1F2 /* tromino_gfx2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 7503E7D926C896C90018B1F2 /* tromino_gfx2d.h */; };
 		7503E7DC26C896C90018B1F2 /* tromino_gfx2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E7DA26C896C90018B1F2 /* tromino_gfx2d.cpp */; };
-		7503E7E726C8EB490018B1F2 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7E626C8EB490018B1F2 /* SDL2.framework */; };
 		750984C326E44E83005B6E82 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750984C126E44E83005B6E82 /* window.cpp */; };
 		750984C426E44E83005B6E82 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984C226E44E83005B6E82 /* window.h */; };
 		750984C726E45054005B6E82 /* viewmodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750984C526E45054005B6E82 /* viewmodel.cpp */; };
@@ -20,13 +19,13 @@
 		750984D026E455FE005B6E82 /* board.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984CE26E455FE005B6E82 /* board.h */; };
 		750984D326E55220005B6E82 /* step.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750984D126E55220005B6E82 /* step.cpp */; };
 		750984D426E55220005B6E82 /* step.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984D226E55220005B6E82 /* step.h */; };
+		751B9F3127D5417A009A45AE /* libSDL2-2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 751B9F3027D5417A009A45AE /* libSDL2-2.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7503E7B426C891FF0018B1F2 /* libLibTromino2d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibTromino2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7503E7D926C896C90018B1F2 /* tromino_gfx2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tromino_gfx2d.h; sourceTree = "<group>"; };
 		7503E7DA26C896C90018B1F2 /* tromino_gfx2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tromino_gfx2d.cpp; sourceTree = "<group>"; };
-		7503E7E626C8EB490018B1F2 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = /Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		750984C126E44E83005B6E82 /* window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
 		750984C226E44E83005B6E82 /* window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
 		750984C526E45054005B6E82 /* viewmodel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = viewmodel.cpp; sourceTree = "<group>"; };
@@ -37,6 +36,7 @@
 		750984CE26E455FE005B6E82 /* board.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = board.h; sourceTree = "<group>"; };
 		750984D126E55220005B6E82 /* step.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = step.cpp; sourceTree = "<group>"; };
 		750984D226E55220005B6E82 /* step.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = step.h; sourceTree = "<group>"; };
+		751B9F3027D5417A009A45AE /* libSDL2-2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.dylib"; path = "../../vcpkg/installed/x64-osx-dynamic/lib/libSDL2-2.0.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7503E7E726C8EB490018B1F2 /* SDL2.framework in Frameworks */,
+				751B9F3127D5417A009A45AE /* libSDL2-2.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +91,7 @@
 		7503E7E526C8EB490018B1F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7503E7E626C8EB490018B1F2 /* SDL2.framework */,
+				751B9F3027D5417A009A45AE /* libSDL2-2.0.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -237,13 +237,13 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = ../../src/lib;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2022 Omar Boukli-Hacene. All rights reserved.";
+				LIBRARY_SEARCH_PATHS = "../../vcpkg/packages/sdl2_x64-osx-dynamic/lib";
 				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				SYSTEM_FRAMEWORK_SEARCH_PATHS = /Library/Frameworks/SDL2.framework;
-				SYSTEM_HEADER_SEARCH_PATHS = /Library/Frameworks/SDL2.framework/Headers;
+				SYSTEM_HEADER_SEARCH_PATHS = "../../vcpkg/installed/x64-osx-dynamic/include";
 			};
 			name = Debug;
 		};
@@ -298,12 +298,12 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = ../../src/lib;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2022 Omar Boukli-Hacene. All rights reserved.";
+				LIBRARY_SEARCH_PATHS = "../../vcpkg/packages/sdl2_x64-osx-dynamic/lib";
 				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
-				SYSTEM_FRAMEWORK_SEARCH_PATHS = /Library/Frameworks/SDL2.framework;
-				SYSTEM_HEADER_SEARCH_PATHS = /Library/Frameworks/SDL2.framework/Headers;
+				SYSTEM_HEADER_SEARCH_PATHS = "../../vcpkg/installed/x64-osx-dynamic/include";
 			};
 			name = Release;
 		};

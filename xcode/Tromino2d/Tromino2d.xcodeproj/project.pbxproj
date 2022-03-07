@@ -11,8 +11,9 @@
 		75002AC827A684E900CBB593 /* cli_models.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75002AC527A684E900CBB593 /* cli_models.cpp */; };
 		75002ACA27A6855C00CBB593 /* libLibTrominoValidation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75002AC927A6855C00CBB593 /* libLibTrominoValidation.a */; };
 		7503E7E226C897D60018B1F2 /* libLibTromino2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7E126C897D60018B1F2 /* libLibTromino2d.a */; };
-		7503E7E926C8F5EA0018B1F2 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7E826C8F5EA0018B1F2 /* SDL2.framework */; };
 		7503E7EE26CB1A4A0018B1F2 /* libLibTromino.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7ED26CB1A4A0018B1F2 /* libLibTromino.a */; };
+		751B9F2F27D540CF009A45AE /* libSDL2-2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 751B9F2E27D540CF009A45AE /* libSDL2-2.0.dylib */; };
+		751B9F3227D5431D009A45AE /* libSDL2-2.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 751B9F2E27D540CF009A45AE /* libSDL2-2.0.dylib */; };
 		752A62C8276FE49F0076CB0C /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 752A62C4276FE49F0076CB0C /* init.cpp */; };
 		752A62C9276FE49F0076CB0C /* solver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 752A62C7276FE49F0076CB0C /* solver.cpp */; };
 		75ACD98B26DAF724003E33CA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75ACD98A26DAF724003E33CA /* main.cpp */; };
@@ -28,6 +29,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		751B9F3327D5431D009A45AE /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				751B9F3227D5431D009A45AE /* libSDL2-2.0.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -39,8 +51,8 @@
 		75002AC927A6855C00CBB593 /* libLibTrominoValidation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTrominoValidation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7503E7C426C892630018B1F2 /* tromino2d */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tromino2d; sourceTree = BUILT_PRODUCTS_DIR; };
 		7503E7E126C897D60018B1F2 /* libLibTromino2d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTromino2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		7503E7E826C8F5EA0018B1F2 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = /Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		7503E7ED26CB1A4A0018B1F2 /* libLibTromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTromino.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		751B9F2E27D540CF009A45AE /* libSDL2-2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.dylib"; path = "../../vcpkg/installed/x64-osx-dynamic/lib/libSDL2-2.0.dylib"; sourceTree = "<group>"; };
 		752A62C4276FE49F0076CB0C /* init.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = init.cpp; sourceTree = "<group>"; };
 		752A62C5276FE49F0076CB0C /* solver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = solver.h; sourceTree = "<group>"; };
 		752A62C6276FE49F0076CB0C /* init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = init.h; sourceTree = "<group>"; };
@@ -53,10 +65,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				751B9F2F27D540CF009A45AE /* libSDL2-2.0.dylib in Frameworks */,
 				7503E7EE26CB1A4A0018B1F2 /* libLibTromino.a in Frameworks */,
 				75002ACA27A6855C00CBB593 /* libLibTrominoValidation.a in Frameworks */,
 				7503E7E226C897D60018B1F2 /* libLibTromino2d.a in Frameworks */,
-				7503E7E926C8F5EA0018B1F2 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,10 +95,10 @@
 		7503E7E026C897D60018B1F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				751B9F2E27D540CF009A45AE /* libSDL2-2.0.dylib */,
 				75002AC927A6855C00CBB593 /* libLibTrominoValidation.a */,
 				75002AC127A67D6900CBB593 /* libLibTrominoValidation.a */,
 				7503E7ED26CB1A4A0018B1F2 /* libLibTromino.a */,
-				7503E7E826C8F5EA0018B1F2 /* SDL2.framework */,
 				7503E7E126C897D60018B1F2 /* libLibTromino2d.a */,
 			);
 			name = Frameworks;
@@ -119,6 +131,7 @@
 				7503E7C026C892630018B1F2 /* Sources */,
 				7503E7C126C892630018B1F2 /* Frameworks */,
 				7503E7C226C892630018B1F2 /* CopyFiles */,
+				751B9F3327D5431D009A45AE /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -213,7 +226,6 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = c17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -231,7 +243,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(LOCAL_LIBRARY_DIR)/Frameworks/SDL2.framework/Headers",
 					../../src/gfx2d,
 					../../src/gfx2dfe,
 					../../src/lib,
@@ -239,11 +250,14 @@
 				);
 				INFOPLIST_KEY_CFBundleDisplayName = "Tromino Puzzle";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Omar Boukli-Hacene";
+				LD_RUNPATH_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "../../vcpkg/packages/sdl2_x64-osx-dynamic/lib";
 				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SYSTEM_HEADER_SEARCH_PATHS = "../../vcpkg/installed/x64-osx-dynamic/include";
 			};
 			name = Debug;
 		};
@@ -284,7 +298,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = c17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -296,7 +309,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(LOCAL_LIBRARY_DIR)/Frameworks/SDL2.framework/Headers",
 					../../src/gfx2d,
 					../../src/gfx2dfe,
 					../../src/lib,
@@ -304,10 +316,12 @@
 				);
 				INFOPLIST_KEY_CFBundleDisplayName = "Tromino Puzzle";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Omar Boukli-Hacene";
+				LIBRARY_SEARCH_PATHS = "../../vcpkg/packages/sdl2_x64-osx-dynamic/lib";
 				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				SYSTEM_HEADER_SEARCH_PATHS = "../../vcpkg/installed/x64-osx-dynamic/include";
 			};
 			name = Release;
 		};
