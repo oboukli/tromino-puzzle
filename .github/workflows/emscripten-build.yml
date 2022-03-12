@@ -9,7 +9,7 @@ jobs:
 
     steps:
     - name: Check out Emscripten repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: emscripten-core/emsdk
         path: emsdk
@@ -28,14 +28,14 @@ jobs:
 
     - name: Install Emscripten SDK
       env:
-        EMSDK_VERSION: '3.1.5'
+        EMSDK_VERSION: '3.1.7'
       run: |
         ./emsdk install ${EMSDK_VERSION}
         ./emsdk activate ${EMSDK_VERSION}
       working-directory: emsdk
 
     - name: Check out main repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         path: tromino-puzzle
 
@@ -58,7 +58,7 @@ jobs:
 
     steps:
       - name: Checkout GitHub Pages branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: gh-pages
 

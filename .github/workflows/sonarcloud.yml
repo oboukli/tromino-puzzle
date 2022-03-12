@@ -13,13 +13,13 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     env:
-      SONAR_SCANNER_VERSION: 4.6.2.2472
+      SONAR_SCANNER_VERSION: 4.7.0.2747
       SONAR_SERVER_URL: "https://sonarcloud.io"
       BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory
     steps:
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -yq autoconf-archive libboost-test-dev libsdl2-dev
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Set up JDK 17
