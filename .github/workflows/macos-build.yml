@@ -24,9 +24,10 @@ jobs:
       uses: actions/cache@v2
       with:
         path: |
-          ~/.cache/vcpkg/archives
+          $HOME/.cache/vcpkg/archives
+          ${{ github.workspace }}/vcpkg
         key: >-
-          vcpkg-archives-cache-${{ hashFiles(
+          ${{ runner.os }}-vcpkg-archives-cache-${{ hashFiles(
             'vcpkg/CHANGELOG.md'
           ) }}
 
@@ -37,15 +38,18 @@ jobs:
       run: ./vcpkg/vcpkg install boost-test
 
     - name: Install SDL2
-      run: ./vcpkg/vcpkg install sdl2 --triplet x64-osx-dynamic
+      run: |
+        ./vcpkg/vcpkg install sdl2 --triplet x64-osx-dynamic
+        ./vcpkg/vcpkg install sdl2 --triplet arm64-osx-dynamic
 
     - name: Build unit tests
-      run: |
-        xcodebuild \
-        -workspace TrominoPuzzle.xcworkspace \
-        -scheme UnitTests \
-        -destination 'platform=macOS,arch=x86_64' \
-        CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }} \
+      run: >
+        xcodebuild
+        -workspace TrominoPuzzle.xcworkspace
+        -scheme UnitTests
+        -configuration Debug
+        -destination 'platform=macOS,arch=x86_64'
+        CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }}
         build
       working-directory: xcode
 
@@ -54,21 +58,26 @@ jobs:
       working-directory: ${{ env.BUILD_PATH }}
 
     - name: Build trominocli
-      run: |
-        xcodebuild \
-        -workspace TrominoPuzzle.xcworkspace \
-        -scheme TrominoCli \
-        -destination 'platform=macOS,arch=x86_64' \
-        CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }} \
+      run: >
+        xcodebuild
+        -workspace TrominoPuzzle.xcworkspace
+        -scheme TrominoCli
+        -configuration Release
+        -destination 'platform=macOS,arch=x86_64'
+        CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }}
         build
       working-directory: xcode
 
+    - name: Make SDL2 library directory
+      run: mkdir -p ${{ github.workspace }}/build/libSDL2
+
     - name: Build tromino2d
-      run: |
-        xcodebuild \
-        -workspace TrominoPuzzle.xcworkspace \
-        -scheme Tromino2d \
-        -destination 'platform=macOS,arch=x86_64' \
-        CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }} \
+      run: >
+        xcodebuild
+        -workspace TrominoPuzzle.xcworkspace
+        -scheme Tromino2d
+        -configuration Release
+        -destination 'platform=macOS,arch=x86_64'
+        CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }}
         build
       working-directory: xcode
