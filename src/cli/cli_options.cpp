@@ -14,12 +14,16 @@ namespace tromino::cli {
 void print_usage() noexcept {
     // clang-format off
     std::cout <<
-        "Usage: tromino <order> <x> <y>\n"
+        "Usage: tromino <order> <x> <y>"
 #ifdef _WINDOWS
-        " [options]\n"
+        " [options]\n\n"
+        "Options:\n"
         "  --use-wch    Use legacy Windows Console Host instead of VT-100 emulation\n"
+        "\n"
+#else
+        "\n\n"
 #endif // _WINDOWS
-        "\nCopyright (c) 2021-2022 Omar Boukli-Hacene. All rights reserved.\n"
+        "Copyright (c) 2021-2022 Omar Boukli-Hacene. All rights reserved.\n"
         << std::endl;
     // clang-format on
 }
