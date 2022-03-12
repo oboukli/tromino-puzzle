@@ -14,7 +14,7 @@
 		7503E77B26C88C910018B1F2 /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E77226C88C910018B1F2 /* init.cpp */; };
 		7503E77D26C88C920018B1F2 /* trmn_graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E77726C88C910018B1F2 /* trmn_graph.cpp */; };
 		7503E77E26C88C920018B1F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E77826C88C910018B1F2 /* main.cpp */; };
-		7503E7DF26C8977E0018B1F2 /* libLibTromino.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7DE26C8977E0018B1F2 /* libLibTromino.a */; };
+		7519E6AB27DD0A62006C39A6 /* libLibTromino.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7DE26C8977E0018B1F2 /* libLibTromino.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7503E7DF26C8977E0018B1F2 /* libLibTromino.a in Frameworks */,
+				7519E6AB27DD0A62006C39A6 /* libLibTromino.a in Frameworks */,
 				75002ABB27A5F4CE00CBB593 /* libLibTrominoValidation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

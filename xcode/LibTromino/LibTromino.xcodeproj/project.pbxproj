@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7503E76C26C88C490018B1F2 /* tromino.h in Headers */ = {isa = PBXBuildFile; fileRef = 7503E76826C88C490018B1F2 /* tromino.h */; };
+		7503E76C26C88C490018B1F2 /* tromino.h in Headers */ = {isa = PBXBuildFile; fileRef = 7503E76826C88C490018B1F2 /* tromino.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7503E76D26C88C490018B1F2 /* tromino.c in Sources */ = {isa = PBXBuildFile; fileRef = 7503E76A26C88C490018B1F2 /* tromino.c */; };
 /* End PBXBuildFile section */
 

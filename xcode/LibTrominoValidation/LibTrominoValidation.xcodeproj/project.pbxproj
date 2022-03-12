@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		75002AAF27A5948800CBB593 /* tromino_validation.c in Sources */ = {isa = PBXBuildFile; fileRef = 75002AAD27A5948800CBB593 /* tromino_validation.c */; };
-		75002AB027A5948800CBB593 /* tromino_validation.h in Headers */ = {isa = PBXBuildFile; fileRef = 75002AAE27A5948800CBB593 /* tromino_validation.h */; };
+		75002AB027A5948800CBB593 /* tromino_validation.h in Headers */ = {isa = PBXBuildFile; fileRef = 75002AAE27A5948800CBB593 /* tromino_validation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */

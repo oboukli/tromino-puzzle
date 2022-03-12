@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7503E7DB26C896C90018B1F2 /* tromino_gfx2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 7503E7D926C896C90018B1F2 /* tromino_gfx2d.h */; };
+		7503E7DB26C896C90018B1F2 /* tromino_gfx2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 7503E7D926C896C90018B1F2 /* tromino_gfx2d.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7503E7DC26C896C90018B1F2 /* tromino_gfx2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E7DA26C896C90018B1F2 /* tromino_gfx2d.cpp */; };
 		750984C326E44E83005B6E82 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750984C126E44E83005B6E82 /* window.cpp */; };
-		750984C426E44E83005B6E82 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984C226E44E83005B6E82 /* window.h */; };
+		750984C426E44E83005B6E82 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984C226E44E83005B6E82 /* window.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		750984C726E45054005B6E82 /* viewmodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750984C526E45054005B6E82 /* viewmodel.cpp */; };
-		750984C826E45054005B6E82 /* viewmodel.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984C626E45054005B6E82 /* viewmodel.h */; };
+		750984C826E45054005B6E82 /* viewmodel.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984C626E45054005B6E82 /* viewmodel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		750984CB26E45076005B6E82 /* style.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750984C926E45076005B6E82 /* style.cpp */; };
-		750984CC26E45076005B6E82 /* style.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984CA26E45076005B6E82 /* style.h */; };
+		750984CC26E45076005B6E82 /* style.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984CA26E45076005B6E82 /* style.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		750984CF26E455FE005B6E82 /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750984CD26E455FE005B6E82 /* board.cpp */; };
-		750984D026E455FE005B6E82 /* board.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984CE26E455FE005B6E82 /* board.h */; };
+		750984D026E455FE005B6E82 /* board.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984CE26E455FE005B6E82 /* board.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		750984D326E55220005B6E82 /* step.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750984D126E55220005B6E82 /* step.cpp */; };
-		750984D426E55220005B6E82 /* step.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984D226E55220005B6E82 /* step.h */; };
+		750984D426E55220005B6E82 /* step.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984D226E55220005B6E82 /* step.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,12 +99,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				750984D026E455FE005B6E82 /* board.h in Headers */,
 				750984D426E55220005B6E82 /* step.h in Headers */,
 				750984CC26E45076005B6E82 /* style.h in Headers */,
-				750984D026E455FE005B6E82 /* board.h in Headers */,
-				750984C426E44E83005B6E82 /* window.h in Headers */,
 				7503E7DB26C896C90018B1F2 /* tromino_gfx2d.h in Headers */,
 				750984C826E45054005B6E82 /* viewmodel.h in Headers */,
+				750984C426E44E83005B6E82 /* window.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
