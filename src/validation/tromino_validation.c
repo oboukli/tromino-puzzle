@@ -39,7 +39,7 @@ bool trmn_is_valid_coordinate(const int c, const int order) {
 bool trmn_is_order_overflow_safe(const int order) {
     volatile size_t o = ((size_t)order * (size_t)order);
 
-    return o > 0 && o <= INT_MAX;
+    return order > 0 && o <= INT_MAX;
 }
 
 bool trmn_is_valid_config(const int order, const int x, const int y) {

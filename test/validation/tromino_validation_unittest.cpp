@@ -85,6 +85,13 @@ BOOST_AUTO_TEST_CASE(
 }
 
 BOOST_AUTO_TEST_CASE(
+    Given_trmn_is_order_overflow_safe_WhenNegativeInteger_ThenFalse) {
+    const bool is_valid = ::trmn_is_order_overflow_safe(-1);
+
+    BOOST_TEST(is_valid == false);
+}
+
+BOOST_AUTO_TEST_CASE(
     Given_trmn_is_order_overflow_safe_WhenUnsafeInteger_ThenFalse) {
     bool is_valid = ::trmn_is_order_overflow_safe(0x40000000);
 
