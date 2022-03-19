@@ -2,11 +2,11 @@ name: SonarCloud scan
 
 on:
   push:
-    branches: [ main, development, feature/* ]
+    branches: [main, development, feature/*]
   pull_request:
-    branches: [ main, development, feature/* ]
+    branches: [main, development, feature/*]
   schedule:
-    - cron: "10 22 * * 5"
+    - cron: 10 22 * * 5
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -yq autoconf-archive lcov libboost-test-dev libsdl2-dev
+          sudo apt-get install -yq autoconf-archive gcovr libboost-test-dev libsdl2-dev
           pip install gcovr
 
       - name: Check out repository

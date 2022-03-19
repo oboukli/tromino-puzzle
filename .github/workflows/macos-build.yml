@@ -6,6 +6,7 @@ jobs:
   build:
     name: Build
     runs-on: macos-latest
+
     env:
       BUILD_PATH: ${{ github.workspace }}/xcode/build
 
@@ -13,10 +14,10 @@ jobs:
     - name: Check out repository
       uses: actions/checkout@v3
 
-    - name: Checkout vcpkg
+    - name: Check out vcpkg
       uses: actions/checkout@v3
       with:
-        repository: 'Microsoft/vcpkg'
+        repository: microsoft/vcpkg
         path: ${{ github.workspace }}/vcpkg
 
     - name: Apply vcpkg cache
@@ -42,6 +43,28 @@ jobs:
         ./vcpkg/vcpkg install sdl2 --triplet x64-osx-dynamic
         ./vcpkg/vcpkg install sdl2 --triplet arm64-osx-dynamic
 
+    - name: Build trominocli
+      run: >
+        xcodebuild
+        -workspace TrominoPuzzle.xcworkspace
+        -scheme TrominoCli
+        -configuration Release
+        -destination 'platform=macOS,arch=x86_64'
+        CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }}
+        build
+      working-directory: xcode
+
+    - name: Build tromino2d
+      run: >
+        xcodebuild
+        -workspace TrominoPuzzle.xcworkspace
+        -scheme Tromino2d
+        -configuration Release
+        -destination 'platform=macOS,arch=x86_64'
+        CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }}
+        build
+      working-directory: xcode
+
     - name: Build unit tests
       run: >
         xcodebuild
@@ -56,28 +79,3 @@ jobs:
     - name: Run unit tests
       run: ./UnitTests
       working-directory: ${{ env.BUILD_PATH }}
-
-    - name: Build trominocli
-      run: >
-        xcodebuild
-        -workspace TrominoPuzzle.xcworkspace
-        -scheme TrominoCli
-        -configuration Release
-        -destination 'platform=macOS,arch=x86_64'
-        CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }}
-        build
-      working-directory: xcode
-
-    - name: Make SDL2 library directory
-      run: mkdir -p ${{ github.workspace }}/build/libSDL2
-
-    - name: Build tromino2d
-      run: >
-        xcodebuild
-        -workspace TrominoPuzzle.xcworkspace
-        -scheme Tromino2d
-        -configuration Release
-        -destination 'platform=macOS,arch=x86_64'
-        CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }}
-        build
-      working-directory: xcode

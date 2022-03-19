@@ -28,7 +28,7 @@ jobs:
 
     - name: Install Emscripten SDK
       env:
-        EMSDK_VERSION: '3.1.7'
+        EMSDK_VERSION: 3.1.7
       run: |
         ./emsdk install ${EMSDK_VERSION}
         ./emsdk activate ${EMSDK_VERSION}
@@ -57,7 +57,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout GitHub Pages branch
+      - name: Check out GitHub Pages branch
         uses: actions/checkout@v3
         with:
           ref: gh-pages

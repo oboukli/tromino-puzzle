@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 env:
   # Path to the solution file relative to the root of the project.
-  SOLUTION_FILE_PATH: "\"msbuild\\TrominoPuzzle.sln\""
+  SOLUTION_FILE_PATH: msbuild\TrominoPuzzle.sln
 
   # Configuration type to build.
   # https://docs.github.com/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
@@ -17,12 +17,18 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Check out repository
+      uses: actions/checkout@v3
 
-    - name: Add MSBuild to PATH
+    - name: Set up MSBuild
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Build
       working-directory: ${{ github.workspace }}
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
-      run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} ${{env.SOLUTION_FILE_PATH}}
+      run: >
+        msbuild
+        /m
+        /p:Configuration=${{ env.BUILD_CONFIGURATION }}
+        /p:Platform=${{ env.BUILD_PLATFORM }}
+        ${{ env.SOLUTION_FILE_PATH }}

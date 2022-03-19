@@ -8,10 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Check out repository
+      uses: actions/checkout@v3
 
     - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -yq autoconf-archive libboost-test-dev libsdl2-dev
+      run: >
+        sudo apt-get update &&
+        sudo apt-get install -yq autoconf-archive libboost-test-dev libsdl2-dev
 
     - name: Run autogen.sh
       run: ./autogen.sh

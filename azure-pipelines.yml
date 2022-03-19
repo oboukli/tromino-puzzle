@@ -11,82 +11,82 @@ trigger:
 
 jobs:
   - job: macOS
-    displayName: 'Build for macOS'
+    displayName: Build for macOS
     pool:
-      vmImage: 'macOS-latest'
+      vmImage: macOS-latest
     variables:
       configuration: Release
-      scheme: 'TrominoCli'
+      scheme: TrominoCli
       sdk: macosx
     steps:
       - task: Xcode@5
-        displayName: 'Build TrominoCli'
+        displayName: Build TrominoCli
         inputs:
-          actions: 'build'
-          xcWorkspacePath: 'xcode/TrominoPuzzle.xcworkspace'
-          scheme: '$(scheme)'
-          configuration: '$(configuration)'
-          xcodeVersion: '13'
-          destinationPlatformOption: 'macOS'
+          actions: build
+          xcWorkspacePath: xcode/TrominoPuzzle.xcworkspace
+          scheme: $(scheme)
+          configuration: $(configuration)
+          xcodeVersion: 13
+          destinationPlatformOption: macOS
           packageApp: false
 
   - job: Windows
-    displayName: 'Build for Windows'
+    displayName: Build for Windows
     pool:
-      vmImage: 'windows-latest'
+      vmImage: windows-latest
     steps:
       - task: VSBuild@1
-        displayName: 'Build'
+        displayName: Build
         inputs:
-          solution: 'msbuild/TrominoPuzzle.sln'
-          platform: 'x64'
-          configuration: 'release'
+          solution: msbuild/TrominoPuzzle.sln
+          platform: x64
+          configuration: release
           maximumCpuCount: true
-          msbuildArchitecture: 'x64'
+          msbuildArchitecture: x64
 
   - job: Linux
-    displayName: 'Build for GNU/Linux'
+    displayName: Build for GNU/Linux
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: ubuntu-latest
     steps:
       - script: sudo apt-get update && sudo apt-get install -yq autoconf-archive libboost-test-dev libsdl2-dev
         displayName: 'Install dependencies'
 
       - script: ./autogen.sh
-        displayName: 'Run ./autogen.sh'
+        displayName: Run autogen.sh
 
       - script: mkdir build && cd build && ../configure
-        displayName: 'Configure build'
+        displayName: Configure build
 
       - script: make -j $((($(nproc) * 15) / 10))
-        displayName: 'Make'
+        displayName: Make
         workingDirectory: build
 
       - script: make check
-        displayName: 'Test'
+        displayName: Test
         workingDirectory: build
 
       - script: make dist
-        displayName: 'Package'
+        displayName: Package
         workingDirectory: build
 
       - script: make distcheck
-        displayName: 'Test package'
+        displayName: Test package
         workingDirectory: build
 
   - job: WebAssembly
-    displayName: 'Build for WebAssembly'
+    displayName: Build for WebAssembly
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: ubuntu-latest
     variables:
-      emsdkVersion: '3.1.7'
+      emsdkVersion: 3.1.7
       numMakeJobs: 3
     steps:
       - task: DockerInstaller@0
         displayName: Emscripten SDK
         inputs:
-          dockerVersion: '20.10.13'
+          dockerVersion: 20.10.13
           releaseType: stable
 
       - script: docker run -i --rm -v $(pwd):/src --workdir="/src/emscripten" emscripten/emsdk:$(emsdkVersion) emmake make -j $(numMakeJobs)
-        displayName: 'Emscripten build for WebAssembly'
+        displayName: Emscripten build for WebAssembly

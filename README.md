@@ -8,9 +8,9 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/oboukli/tromino-puzzle/badge)](https://www.codefactor.io/repository/github/oboukli/tromino-puzzle)
 [![Codacy](https://app.codacy.com/project/badge/Grade/8395b4fbd3b34c72907b0e65fe0b5f35)](https://www.codacy.com/gh/oboukli/tromino-puzzle/dashboard)
 
-This is a C library (see `src/lib`) implementing a divide-and-conquer O(n) algorithm, and a
-collection of apps, to solve the tromino puzzle, over-engineered for the joy of
-learning by doing.
+This is a C library (see `src/lib`) implementing a divide-and-conquer O(n)
+algorithm, and a collection of apps, to solve the tromino puzzle,
+over-engineered for the joy of learning by doing.
 
 A tromino puzzle consists of a checkered 2^n × 2^n (chess-like) board, where
 exactly one of the board's squares is marked. The goal is to tile the entire
@@ -77,8 +77,32 @@ box-drawing characters
 
 ### Building for macOS with Xcode
 
-The desktop app is currently actively supported on macOS. See the `xcode` directory for
-the Xcode 13 project files.
+The desktop app is currently actively supported on macOS. See the `xcode`
+directory for the Xcode 13 project files.
+
+The Xcode projects are configured to use vcpkg paths. To install the build
+dependencies with vcpkg:
+
+```shell
+git clone https://github.com/microsoft/vcpkg
+./vcpkg/bootstrap-vcpkg.sh -disableMetrics
+./vcpkg/vcpkg install sdl2 --triplet x64-osx-dynamic
+./vcpkg/vcpkg install sdl2 --triplet arm64-osx-dynamic
+```
+
+Boost Test is required for building the the unit tests:
+
+```shell
+./vcpkg/vcpkg install boost-test
+```
+
+Homebrew can also be used. However, the Xcode projects must be reconfigured.
+
+To install the build dependencies with Homebrew:
+
+```shell
+brew install boost sdl2
+```
 
 ### Building for Unix and GNU/Linux with GNU Autotools
 

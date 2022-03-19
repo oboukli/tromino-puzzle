@@ -1,4 +1,4 @@
-name: "CodeQL"
+name: CodeQL
 
 on:
   push:
@@ -7,12 +7,13 @@ on:
     # The branches below must be a subset of the branches above.
     branches: [main, development, feature/*]
   schedule:
-    - cron: '10 22 * * 5'
+    - cron: 10 22 * * 5
 
 jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
+
     permissions:
       actions: read
       contents: read
@@ -21,11 +22,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: ['cpp', 'javascript']
+        language: [c, cpp, javascript]
         # https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/configuring-code-scanning#changing-the-languages-that-are-analyzed
 
     steps:
-    - name: Checkout repository
+    - name: Check out repository
       uses: actions/checkout@v3
 
     - name: Initialize CodeQL
