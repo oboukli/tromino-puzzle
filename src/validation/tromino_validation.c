@@ -43,7 +43,7 @@ bool trmn_is_order_overflow_safe(const int order) {
 }
 
 bool trmn_is_valid_config(const int order, const int x, const int y) {
-    return trmn_is_valid_order(order) && trmn_is_order_overflow_safe(order)
+    return trmn_is_order_overflow_safe(order) && trmn_is_valid_order(order)
         && trmn_is_valid_coordinate(x, order)
         && trmn_is_valid_coordinate(y, order);
 }

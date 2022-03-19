@@ -8,7 +8,9 @@
 
 #include <vector>
 
-void shim_add_tromino(const trmn_position_t pos, const trmn_flip_t flip, void* const state) noexcept {
+void shim_add_tromino(
+    const trmn_position_t pos, const trmn_flip_t flip,
+    void* const state) noexcept {
     static_cast<std::vector<ShimStep>*>(state)->emplace_back(pos, flip);
 }
 

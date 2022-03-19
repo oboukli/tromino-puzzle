@@ -35,7 +35,8 @@ struct ShimStep {
             || rhs.flip.x != this->flip.x || rhs.flip.y != this->flip.y;
     }
 
-    friend std::ostream& operator<<(std::ostream& os, const ShimStep& s) noexcept {
+    friend std::ostream& operator<<(
+        std::ostream& os, const ShimStep& s) noexcept {
         // clang-format off
         return os
             << "Tromino position: (" << s.pos.x << ", " << s.pos.y

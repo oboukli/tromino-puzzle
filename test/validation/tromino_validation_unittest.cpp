@@ -132,8 +132,20 @@ BOOST_AUTO_TEST_CASE(Given_trmn_is_valid_config_WhenInvalidOrder_ThenFalse) {
     BOOST_TEST(is_valid == false);
 }
 
+BOOST_AUTO_TEST_CASE(Given_trmn_is_valid_config_WhenOrderIs3_ThenFalse) {
+    const bool is_valid = ::trmn_is_valid_config(3, 0, 0);
+
+    BOOST_TEST(is_valid == false);
+}
+
 BOOST_AUTO_TEST_CASE(Given_trmn_is_valid_config_WhenUnsafeOrder_ThenFalse) {
     const bool is_valid = ::trmn_is_valid_config(INT_MAX, 0, 0);
+
+    BOOST_TEST(is_valid == false);
+}
+
+BOOST_AUTO_TEST_CASE(Given_trmn_is_valid_config_WhenNegativeOrder_ThenFalse) {
+    const bool is_valid = ::trmn_is_valid_config(-1, 0, 0);
 
     BOOST_TEST(is_valid == false);
 }
@@ -146,6 +158,18 @@ BOOST_AUTO_TEST_CASE(Given_trmn_is_valid_config_WhenInvalidMarkX_ThenFalse) {
 
 BOOST_AUTO_TEST_CASE(Given_trmn_is_valid_config_WhenInvalidMarkY_ThenFalse) {
     const bool is_valid = ::trmn_is_valid_config(4, 0, 11);
+
+    BOOST_TEST(is_valid == false);
+}
+
+BOOST_AUTO_TEST_CASE(Given_trmn_is_valid_config_WhenNegativeMarkX_ThenFalse) {
+    const bool is_valid = ::trmn_is_valid_config(4, -1, 0);
+
+    BOOST_TEST(is_valid == false);
+}
+
+BOOST_AUTO_TEST_CASE(Given_trmn_is_valid_config_WhenNegativeMarkY_ThenFalse) {
+    const bool is_valid = ::trmn_is_valid_config(4, 0, -1);
 
     BOOST_TEST(is_valid == false);
 }
