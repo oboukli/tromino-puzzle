@@ -4,12 +4,14 @@
 
 # SPDX-License-Identifier: MIT
 
-check_PROGRAMS = libtromino_test
+if CODE_COVERAGE_ENABLED
+AM_CPPFLAGS = $(CODE_COVERAGE_CPPFLAGS)
+AM_CFLAGS = $(CODE_COVERAGE_CFLAGS)
+AM_CXXFLAGS = $(CODE_COVERAGE_CXXFLAGS)
+AM_LDFLAGS = $(CODE_COVERAGE_LIBS)
+endif
 
-libtromino_test_CPPFLAGS = \
-	$(BOOST_CPPFLAGS) \
-	-I$(top_srcdir)/src/lib \
-	-I$(top_srcdir)/src/validation
+check_PROGRAMS = libtromino_test
 
 libtromino_test_SOURCES = \
 	lib/testmain_libtromino.cpp \
@@ -20,7 +22,19 @@ libtromino_test_SOURCES = \
 	lib/unittest_helper.h \
 	validation/tromino_validation_unittest.cpp
 
-libtromino_test_LDFLAGS = $(BOOST_LDFLAGS) $(BOOST_UNIT_TEST_FRAMEWORK_LDFLAGS)
+libtromino_test_CPPFLAGS = \
+	$(BOOST_CPPFLAGS) \
+	$(CODE_COVERAGE_CPPFLAGS) \
+	-I$(top_srcdir)/src/lib \
+	-I$(top_srcdir)/src/validation
+
+libtromino_test_CFLAGS = $(CODE_COVERAGE_CFLAGS)
+
+libtromino_test_CXXFLAGS = $(CODE_COVERAGE_CXXFLAGS)
+libtromino_test_LDFLAGS = \
+	$(BOOST_LDFLAGS) \
+	$(BOOST_UNIT_TEST_FRAMEWORK_LDFLAGS)
+
 libtromino_test_LDADD = \
 	$(BOOST_UNIT_TEST_FRAMEWORK_LIB) \
 	$(top_builddir)/src/libtromino.la \

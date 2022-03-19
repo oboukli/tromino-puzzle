@@ -4,6 +4,13 @@
 
 # SPDX-License-Identifier: MIT
 
+if CODE_COVERAGE_ENABLED
+AM_CPPFLAGS = $(CODE_COVERAGE_CPPFLAGS)
+AM_CFLAGS = $(CODE_COVERAGE_CFLAGS)
+AM_CXXFLAGS = $(CODE_COVERAGE_CXXFLAGS)
+AM_LDFLAGS = $(CODE_COVERAGE_LIBS)
+endif
+
 bin_PROGRAMS =
 include_HEADERS =
 lib_LTLIBRARIES =
@@ -58,12 +65,11 @@ libtromino_gfx2d_la_SOURCES = \
 libtromino_gfx2d_la_CPPFLAGS = \
 	-I/usr/include/SDL2 \
 	-I$(top_srcdir)/src/lib
-libtromino_gfx2d_la_LIBADD = \
-	libtromino.la
 libtromino_gfx2d_la_LDFLAGS = \
 	-lSDL2 \
 	-no-undefined \
 	-version-info $(LIBTROMINO_CURRENT):$(LIBTROMINO_REVISION):$(LIBTROMINO_AGE)
+libtromino_gfx2d_la_LIBADD = libtromino.la
 include_HEADERS += \
 	gfx2d/board.h \
 	gfx2d/step.h \
@@ -87,12 +93,12 @@ tromino2d_CPPFLAGS = \
 	-I$(top_srcdir)/src/lib \
 	-I$(top_srcdir)/src/gfx2d \
 	-I$(top_srcdir)/src/validation
-tromino2d_LDADD = \
-	libtromino.la \
-	libtromino-gfx2d.la \
-	libtromino-validation.la
 tromino2d_LDFLAGS = \
 	-lpthread \
 	-lSDL2 \
 	-no-undefined
+tromino2d_LDADD = \
+	libtromino.la \
+	libtromino-gfx2d.la \
+	libtromino-validation.la
 bin_PROGRAMS += tromino2d
