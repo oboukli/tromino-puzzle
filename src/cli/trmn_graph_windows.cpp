@@ -119,8 +119,8 @@ void use_wch(board_t& tromino_board) noexcept {
         FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
     // clang-format off
     const COORD coordMark = {
-        .X = static_cast<short>(tromino_board.mark.x),
-        .Y = static_cast<short>(tromino_board.mark.y)
+        .X = static_cast<SHORT>(tromino_board.mark.x),
+        .Y = static_cast<SHORT>(tromino_board.mark.y)
     };
     // clang-format on
     ::SetConsoleCursorPosition(hConsoleOutput, coordMark);

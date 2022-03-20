@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_CASE(
     constexpr trmn_position_t mark{61, 37};
 
     // clang-format off
-    const std::array<ShimStep, size_t{((64 * 64) - 1) / 3}> expected{{
+    const std::array<ShimStep, std::size_t{((64 * 64) - 1) / 3}> expected{{
         {{60, 36}, {1, 1}},
         {{62, 38}, {-1, -1}},
         {{62, 36}, {-1, 1}},
@@ -1389,11 +1389,11 @@ BOOST_AUTO_TEST_CASE(
     // clang-format on
 
     std::vector<ShimStep> actual;
-    actual.reserve(size_t{1365});
+    actual.reserve(std::size_t{1365});
 
     ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
-    BOOST_CHECK_EQUAL(actual.size(), size_t{1365});
+    BOOST_CHECK_EQUAL(actual.size(), std::size_t{1365});
     BOOST_CHECK_EQUAL_COLLECTIONS(
         actual.begin(), actual.end(), expected.begin(), expected.end());
 }

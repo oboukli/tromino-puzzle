@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_CASE(
     constexpr trmn_position_t mark{0, 0};
 
     // clang-format off
-    const std::array<ShimStep, size_t{5}> expected{{
+    const std::array<ShimStep, std::size_t{5}> expected{{
         {{0, 0}, {-1, -1}},
         {{2, 2}, {-1, -1}},
         {{2, 0}, {-1, 1}},
@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE(
 
     ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
-    BOOST_CHECK_EQUAL(actual.size(), size_t{5});
+    BOOST_CHECK_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
         actual.begin(), actual.end(), expected.begin(), expected.end());
 }
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(
     constexpr trmn_position_t mark{0, 7};
 
     // clang-format off
-    const std::array<ShimStep, size_t{5}> expected{{
+    const std::array<ShimStep, std::size_t{5}> expected{{
         {{0, 2}, {-1, 1}},
         {{2, 0}, {-1, 1}},
         {{2, 2}, {-1, -1}},
@@ -61,7 +61,7 @@ BOOST_AUTO_TEST_CASE(
 
     ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
-    BOOST_CHECK_EQUAL(actual.size(), size_t{5});
+    BOOST_CHECK_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
         actual.begin(), actual.end(), expected.begin(), expected.end());
 }
@@ -72,7 +72,7 @@ BOOST_AUTO_TEST_CASE(
     constexpr trmn_position_t mark{7, 0};
 
     // clang-format off
-    const std::array<ShimStep, size_t{5}> expected{{
+    const std::array<ShimStep, std::size_t{5}> expected{{
         {{2, 0}, {1, -1}},
         {{0, 2}, {1, -1}},
         {{0, 0}, {1, 1}},
@@ -85,7 +85,7 @@ BOOST_AUTO_TEST_CASE(
 
     ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
-    BOOST_CHECK_EQUAL(actual.size(), size_t{5});
+    BOOST_CHECK_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
         actual.begin(), actual.end(), expected.begin(), expected.end());
 }
@@ -96,7 +96,7 @@ BOOST_AUTO_TEST_CASE(
     constexpr trmn_position_t mark{7, 7};
 
     // clang-format off
-    const std::array<ShimStep, size_t{5}> expected{{
+    const std::array<ShimStep, std::size_t{5}> expected{{
         {{2, 2}, {1, 1}},
         {{0, 0}, {1, 1}},
         {{0, 2}, {1, -1}},
@@ -109,7 +109,7 @@ BOOST_AUTO_TEST_CASE(
 
     ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
-    BOOST_CHECK_EQUAL(actual.size(), size_t{5});
+    BOOST_CHECK_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
         actual.begin(), actual.end(), expected.begin(), expected.end());
 }
@@ -125,7 +125,7 @@ BOOST_AUTO_TEST_CASE(
     constexpr trmn_position_t mark{3, 2};
 
     // clang-format off
-    const std::array<ShimStep, size_t{5}> expected{{
+    const std::array<ShimStep, std::size_t{5}> expected{{
         {{2, 2}, {1, -1}},
         {{0, 0}, {1, 1}},
         {{0, 2}, {1, -1}},
@@ -138,7 +138,7 @@ BOOST_AUTO_TEST_CASE(
 
     ::trmn_solve_puzzle(order, mark, shim_add_tromino, &actual);
 
-    BOOST_CHECK_EQUAL(actual.size(), size_t{5});
+    BOOST_CHECK_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
         actual.begin(), actual.end(), expected.begin(), expected.end());
 }
