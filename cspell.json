@@ -40,6 +40,7 @@
     "trominocli",
     "trominos",
     "vcpkg",
+    "VSYNC",
     "wasm",
     "workdir",
     "xcodebuild",

@@ -1,14 +1,14 @@
-# Copyright (c) 2021-2022 Omar Boukli-Hacene. All rights reserved.
-# Distributed under an MIT-style license that can be
-# found in the LICENSE file.
-
-# SPDX-License-Identifier: MIT
+dnl Copyright (c) 2021-2022 Omar Boukli-Hacene. All rights reserved.
+dnl Distributed under an MIT-style license that can be
+dnl found in the LICENSE file.
+dnl
+dnl SPDX-License-Identifier: MIT
 
 AC_PREREQ([2.69])
 
 m4_define(_TRMNPZZL_VERSION_MAJOR, 0)
-m4_define(_TRMNPZZL_VERSION_MINOR, 8)
-m4_define(_TRMNPZZL_VERSION_PATCH, 0)
+m4_define(_TRMNPZZL_VERSION_MINOR, 9)
+m4_define(_TRMNPZZL_VERSION_PATCH, 5)
 m4_define(_TRMNPZZL_VERSION_BUILD, 0)
 m4_define(_TRMNPZZL_VERSION_RC, 0)
 m4_define(_TRMNPZZL_VERSION_IS_RELEASE, true)

@@ -129,7 +129,7 @@ For Windows, no build files are provided but it should be possible
 to build the GUI app without source code modification.
 
 ```powershell
-msbuild /m /p:Configuration=release /p:Platform=x64 "msbuild\TrominoPuzzle.sln"
+msbuild /m /p:Configuration=release /p:Platform=x64 msbuild\TrominoPuzzle.sln
 ```
 
 ### Dependencies

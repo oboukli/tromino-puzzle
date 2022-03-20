@@ -52,3 +52,7 @@ m4/
 # Custom directory for Docker-based Emscripten SDK.
 
 emscripten_cache/
+
+# vcpkg
+
+vcpkg/
