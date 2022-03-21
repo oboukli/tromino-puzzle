@@ -24,13 +24,9 @@ libtromino_test_SOURCES = \
 
 libtromino_test_CPPFLAGS = \
 	$(BOOST_CPPFLAGS) \
-	$(CODE_COVERAGE_CPPFLAGS) \
 	-I$(top_srcdir)/src/lib \
 	-I$(top_srcdir)/src/validation
 
-libtromino_test_CFLAGS = $(CODE_COVERAGE_CFLAGS)
-
-libtromino_test_CXXFLAGS = $(CODE_COVERAGE_CXXFLAGS)
 libtromino_test_LDFLAGS = \
 	$(BOOST_LDFLAGS) \
 	$(BOOST_UNIT_TEST_FRAMEWORK_LDFLAGS)

@@ -24,7 +24,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -yq autoconf-archive gcovr libboost-test-dev libsdl2-dev
-          pip install gcovr
 
       - name: Check out repository
         uses: actions/checkout@v3
@@ -69,16 +68,13 @@ jobs:
           make clean all check
 
       - name: Run tromino
-        run: ./src/tromino
-        continue-on-error: true
+        run: ./src/tromino 2> /dev/null || true
 
       - name: Run tromino 5 0 0
-        run: ./src/tromino 5 0 0 2>/dev/null
-        continue-on-error: true
+        run: ./src/tromino 5 0 0 2> /dev/null || true
 
       - name: Run tromino 4 2 3
-        run: ./src/tromino 4 2 3 2>/dev/null
-        continue-on-error: true
+        run: ./src/tromino 4 2 3
 
       - name: Run gcovr
         run: >
