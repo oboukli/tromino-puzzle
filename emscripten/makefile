@@ -7,8 +7,10 @@
 TARGET_LITRO ::= litro-wasm.js
 TARGET_TRMN ::= trmn-wasm.js
 
-CFLAGS ::= -std=c11 -flto -Wall -Werror -O3 -DNDEBUG
-CXXFLAGS ::= -std=c++17 -flto -fno-rtti -fno-exceptions -Wall -Werror -O3 -DNDEBUG
+CPPFLAGS ::= -DNDEBUG
+CFLAGS ::= -std=c11 -flto -Wall -Werror -O3
+CXXFLAGS ::= -std=c++17 -flto -fno-rtti -fno-exceptions -Wall -Werror -O3
+LDFLAGS ::=
 
 SRC_DIR ::= ../src
 OBJ_DIR ::= ../obj/web
@@ -31,6 +33,7 @@ GFX2D_OBJS ::= $(GFX2D_SRCS:%.cpp=$(OBJ_DIR)/gfx2d/%.o)
 
 ifeq ($(OS),Windows_NT)
 	MKDIR ::= mkdir
+	RMDIR ::= rmdir
 	CP ::= robocopy /s
 	RM ::= del /Q
 else
@@ -52,7 +55,7 @@ directories:
 	$(MKDIR) $(OUT_DIR)/$(TRMN_DIR_NAME)
 
 $(TARGET_LITRO): $(OBJ_DIR)/lib/tromino.o $(OBJ_DIR)/wasm/tromino_alg_wasm.o
-	$(CXX) $(CXXFLAGS) \
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) \
 	--closure 1 \
 	--no-entry \
 	-s ALLOW_TABLE_GROWTH=1 \
@@ -62,15 +65,16 @@ $(TARGET_LITRO): $(OBJ_DIR)/lib/tromino.o $(OBJ_DIR)/wasm/tromino_alg_wasm.o
 	-s DYNAMIC_EXECUTION=0 \
 	-s ENVIRONMENT=web \
 	-s ERROR_ON_UNDEFINED_SYMBOLS=1 \
+	-s EXIT_RUNTIME=0 \
 	-s EXPORTED_FUNCTIONS='["_solve"]' \
 	-s EXPORTED_RUNTIME_METHODS='["addFunction", "ccall", "getValue", "removeFunction", "setValue", "stackAlloc", "stackSave", "stackRestore"]' \
 	-s FILESYSTEM=0 \
 	-s INITIAL_MEMORY=64KB \
+	-s INVOKE_RUN=0 \
 	-s LLD_REPORT_UNDEFINED=1 \
 	-s MINIFY_HTML=1 \
 	-s MINIMAL_RUNTIME=0 \
 	-s MODULARIZE=1 -s 'EXPORT_NAME="createLitroMod"' \
-	-s NO_EXIT_RUNTIME=1 \
 	-s SAFE_HEAP_LOG=0 \
 	-s SAFE_HEAP=0 \
 	-s STACK_OVERFLOW_CHECK=0 \
@@ -82,10 +86,10 @@ $(TARGET_LITRO): $(OBJ_DIR)/lib/tromino.o $(OBJ_DIR)/wasm/tromino_alg_wasm.o
 	-o $(OUT_DIR)/$(LITRO_DIR_NAME)/$@ $^
 
 $(TARGET_TRMN): $(OBJ_DIR)/lib/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/tromino_gfx2d_wasm.o
-	$(CXX) $(CXXFLAGS) \
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) \
 	--closure 1 \
 	--no-entry \
-	-s ALLOW_TABLE_GROWTH=0 \
+	-s ALLOW_TABLE_GROWTH=1 \
 	-s ALLOW_UNIMPLEMENTED_SYSCALLS=1 \
 	-s ASSERTIONS=0 \
 	-s ASYNCIFY=1 \
@@ -114,20 +118,20 @@ $(TARGET_TRMN): $(OBJ_DIR)/lib/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/tromino_g
 
 $(OBJ_DIR)/lib/tromino.o: $(SRC_DIR)/lib/tromino.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) \
+	$(CC) $(CPPFLAGS) $(CFLAGS) \
 	-c $< \
 	-o $@
 
 $(OBJ_DIR)/wasm/tromino_alg_wasm.o: $(SRC_DIR)/wasm/tromino_alg_wasm.cpp
 	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) \
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) \
 	-I$(SRC_DIR)/lib \
 	-c $< \
 	-o $@
 
 $(OBJ_DIR)/wasm/tromino_gfx2d_wasm.o: $(SRC_DIR)/wasm/tromino_gfx2d_wasm.cpp
 	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) \
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) \
 	-s USE_SDL=2 \
 	-I$(SRC_DIR)/lib \
 	-I$(SRC_DIR)/gfx2d \
@@ -136,7 +140,7 @@ $(OBJ_DIR)/wasm/tromino_gfx2d_wasm.o: $(SRC_DIR)/wasm/tromino_gfx2d_wasm.cpp
 
 $(OBJ_DIR)/gfx2d/%.o: $(SRC_DIR)/gfx2d/%.cpp
 	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) \
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) \
 	-s USE_SDL=2 \
 	-I$(SRC_DIR)/lib \
 	-c $< \
@@ -163,6 +167,6 @@ clean:
 	$(OUT_DIR)/$(TRMN_DIR_NAME)/trmn.js \
 	$(OUT_DIR)/app.js \
 	$(WEB_DIR)/images/tromino.svg \
-	$(WEB_DIR)/index.html \
-	$(WEB_DIR)/styles/style.css
+	$(WEB_DIR)/styles/style.css \
+	$(WEB_DIR)/index.html
 	@echo "Done cleaning."
