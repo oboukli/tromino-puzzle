@@ -9,6 +9,10 @@ footer {
   font-size: smaller;
 }
 
+canvas {
+  border: 1px solid #333;
+}
+
 .container {
   width: 80%;
   max-width: 1200px;

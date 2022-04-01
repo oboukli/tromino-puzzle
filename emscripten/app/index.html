@@ -27,31 +27,33 @@
         <canvas id="litroCanvas" width="512" height="512" aria-label="Tromino puzzle demo 1" role="img"></canvas>
       </div>
       <div class="column">
-        <h2>WebAssembly solver and renderer (beta)</h2>
+        <h2>WebAssembly solver and renderer</h2>
         <p>Algorithm in pure C, with C++/SDL2 renderer (WebAssembly)</p>
         <canvas id="canvas" width="512" height="512" aria-label="Tromino puzzle demo 2" role="img"></canvas>
       </div>
     </div>
-    <form id="puzzleEditorForm">
-      <ul class="flex-outer">
-        <li>
-          <label for="order">Puzzle order</label>
-          <input type="range" id="order" min="0" max="0" value="0" step="1">
-          <div class="indicator"><output id="orderIndicator" for="order">0</output></div>
-        </li>
-        <li>
-          <label for="markX">Mark X</label>
-          <input type="number" id="markX" placeholder="" min="0" value="0">
-        </li>
-        <li>
-          <label for="markY">Mark Y</label>
-          <input type="number" id="markY" placeholder="" min="0" value="0">
-        </li>
-        <li>
-          <button id="solveButton" type="button" disabled>Solve</button>
-        </li>
-      </ul>
-    </form>
+    <div class="editor-container">
+      <form id="puzzleEditorForm">
+        <ul class="flex-outer">
+          <li>
+            <label for="order">Puzzle order</label>
+            <input type="range" id="order" min="0" max="0" value="0" step="1">
+            <div class="indicator"><output id="orderIndicator" for="order">0</output></div>
+          </li>
+          <li>
+            <label for="markX">Mark X</label>
+            <input type="number" id="markX" placeholder="" min="0" value="0">
+          </li>
+          <li>
+            <label for="markY">Mark Y</label>
+            <input type="number" id="markY" placeholder="" min="0" value="0">
+          </li>
+          <li>
+            <button id="solveButton" type="button" disabled>Solve</button>
+          </li>
+        </ul>
+      </form>
+    </div>
   </div>
   <footer>
     <p>Copyright &copy; 2021-2022 Omar Boukli-Hacene.</p>
