@@ -28,7 +28,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 "use strict";
 
 // eslint-disable-next-line no-unused-vars
-const litro = (function (window, ltrGfx) {
+const litro = (function (window, document, ltrGfx) {
   /**
    * @typedef {object} Tromino
    * @property {number} x
@@ -173,11 +173,13 @@ const litro = (function (window, ltrGfx) {
   }
 
   /**
-   * @param {CanvasRenderingContext2D} ctx
    * @returns {Promise}
    */
-  async function initAsync(ctx) {
-    context = ctx;
+  async function initAsync() {
+    /** @type {HTMLCanvasElement} */
+    const litroCanvasElement = document.getElementById("litroCanvas");
+
+    context = litroCanvasElement.getContext("2d");
     initSolver();
     initOptions();
     await initResourcesAsync();
@@ -188,4 +190,4 @@ const litro = (function (window, ltrGfx) {
     play,
     change
   };
-}(window, /* global ltrGfx */ ltrGfx));
+}(window, document, /* global ltrGfx */ ltrGfx));

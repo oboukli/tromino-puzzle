@@ -31,19 +31,12 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 const trmn = (function (createTrmnMod) {
   let module;
 
-  function CanvasException() {
-    this.message = 'Canvas element ID must be "canvas"';
-    this.name = "CanvasException";
-  }
-
   /**
-   * @param {HTMLCanvasElement} canvasElement
    * @returns {Promise}
    */
-  async function initAsync(canvasElement) {
-    if (canvasElement.id !== "canvas") {
-      throw new CanvasException();
-    }
+  async function initAsync() {
+    /** @type {HTMLElement} */
+    const canvasElement = document.getElementById("canvas");
 
     module = await createTrmnMod(/* optional default settings */);
     module.canvas = ((() => canvasElement)());
