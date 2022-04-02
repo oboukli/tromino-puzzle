@@ -40,12 +40,14 @@ const ltrGfx = (function () {
    * @property {string} altColor
    * @property {string} baseColor
    * @property {string} markColor
+   * @property {string} trominoColor
+   * @property {string} trominoOutlineColor
    */
 
   /**
    * @typedef {object} Board
    * @property {CanvasRenderingContext2D} context
-   * @property {HTMLImageElement} trominoImg
+   * @property {CanvasRenderingContext2D} trominoContext
    * @property {Options} options
    * @property {number} order
    * @property {Mark} mark
@@ -55,21 +57,30 @@ const ltrGfx = (function () {
 
   /**
    * @param {CanvasRenderingContext2D} context
-   * @param {HTMLImageElement} trominoImg
    * @param {number} order
    * @param {Mark} mark
    * @param {Options} options
    * @returns {Board}
   */
-  function createBoard(context, trominoImg, order, mark, options) {
+  function createBoard(context, order, mark, options) {
+    const blockWidth = context.canvas.clientWidth / order;
+
+    const trominoCanvas = document.createElement("canvas");
+    const wl = blockWidth * 2;
+    trominoCanvas.width = wl;
+    trominoCanvas.height = wl;
+    const trominoContext = trominoCanvas.getContext("2d");
+
+    initSprite(trominoContext, blockWidth, blockWidth * 0.125, options);
+
     return {
       context,
-      trominoImg,
+      trominoContext,
       order,
       mark,
       options,
       numTrominos: ((order ** 2) - 1) * 0.3333333333333333,
-      blockWidth: context.canvas.clientWidth / order
+      blockWidth
     };
   }
 
@@ -115,6 +126,26 @@ const ltrGfx = (function () {
   }
 
   /**
+   * @param {CanvasRenderingContext2D} trominoContext
+   * @param {number} blockWidth
+   * @param {number} thickness
+   * @param {Options} options
+   */
+  function initSprite(trominoContext, blockWidth, thickness, options) {
+    trominoContext.fillStyle = options.trominoColor;
+    trominoContext.fillRect(blockWidth, 0, blockWidth, blockWidth);
+    trominoContext.fillRect(0, blockWidth, blockWidth * 2, blockWidth);
+
+    trominoContext.fillStyle = options.trominoOutlineColor;
+    trominoContext.fillRect(blockWidth, 0, blockWidth, thickness);
+    trominoContext.fillRect((blockWidth * 2) - thickness, thickness, thickness, blockWidth * 2);
+    trominoContext.fillRect(0, (blockWidth * 2) - thickness, (blockWidth * 2) - thickness, thickness);
+    trominoContext.fillRect(0, blockWidth, thickness, blockWidth - thickness);
+    trominoContext.fillRect(thickness, blockWidth, blockWidth, thickness);
+    trominoContext.fillRect(blockWidth, thickness, thickness, blockWidth - thickness);
+  }
+
+  /**
    * @param {Board} board
    * @param {number} x
    * @param {number} y
@@ -123,14 +154,13 @@ const ltrGfx = (function () {
    */
   function drawTromino(board, x, y, angle) {
     const context = board.context;
-    const trominoImg = board.trominoImg;
     const blockWidth = board.blockWidth;
     const rx = ((x * blockWidth) + blockWidth);
     const ry = ((y * blockWidth) + blockWidth);
 
     context.translate(rx, ry);
     context.rotate(angle);
-    context.drawImage(trominoImg, -blockWidth, -blockWidth, blockWidth * 2, blockWidth * 2);
+    context.drawImage(board.trominoContext.canvas, -blockWidth, -blockWidth);
     context.rotate(-angle);
     context.translate(-rx, -ry);
   }

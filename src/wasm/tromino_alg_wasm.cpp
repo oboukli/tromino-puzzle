@@ -35,7 +35,7 @@ static void add_tromino(
             // X |
             // - +
 
-            angle = 3 * pi2;
+            angle = 0;
             break;
 
         case 1:
@@ -45,7 +45,7 @@ static void add_tromino(
             // - +
             // X |
 
-            angle = pi;
+            angle = 3 * pi2;
             break;
         };
         break;
@@ -59,7 +59,7 @@ static void add_tromino(
             // | X
             // + -
 
-            angle = 0;
+            angle = pi2;
             break;
 
         case 1:
@@ -69,7 +69,7 @@ static void add_tromino(
             // + -
             // | X
 
-            angle = pi2;
+            angle = pi;
             break;
         };
         break;

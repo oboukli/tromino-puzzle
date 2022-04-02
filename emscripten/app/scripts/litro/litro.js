@@ -37,7 +37,6 @@ const litro = (function (window, document, ltrGfx) {
    */
 
   const delayBase = 67;
-  const trominoImgSrc = "images/tromino.svg";
 
   /** @type {CanvasRenderingContext2D} */
   let context;
@@ -45,8 +44,6 @@ const litro = (function (window, document, ltrGfx) {
   let solverWebWorker;
   /** @type {number} */
   let animationFrameRequestId;
-  /** @type {HTMLImageElement} */
-  let trominoImg;
 
   let options;
   let boardModel;
@@ -91,18 +88,10 @@ const litro = (function (window, document, ltrGfx) {
     options = {
       baseColor: "#4e7da6",
       altColor: "#012340",
-      markColor: "#8c1b1b"
+      markColor: "#8c1b1b",
+      trominoColor: "#d9933d",
+      trominoOutlineColor: "#d93636",
     };
-  }
-
-  /**
-   * @returns {Promise}
-   */
-  function initResourcesAsync() {
-    trominoImg = new Image();
-    trominoImg.src = trominoImgSrc;
-
-    return trominoImg.decode();
   }
 
   /**
@@ -112,7 +101,7 @@ const litro = (function (window, document, ltrGfx) {
    * @returns {void}
    */
   function drawNewPuzzle(order, markX, markY) {
-    boardModel = ltrGfx.createBoard(context, trominoImg, order, { x: markX, y: markY }, options);
+    boardModel = ltrGfx.createBoard(context, order, { x: markX, y: markY }, options);
     ltrGfx.drawBoard(boardModel);
     ltrGfx.drawMark(boardModel);
   }
@@ -125,9 +114,11 @@ const litro = (function (window, document, ltrGfx) {
    */
   function change(order, markX, markY) {
     cancelAnimationFrame(animationFrameRequestId);
+    animationFrameRequestId = 0;
+
     initSolver();
 
-    boardModel = ltrGfx.createBoard(context, trominoImg, order, { x: markX, y: markY }, options);
+    boardModel = ltrGfx.createBoard(context, order, { x: markX, y: markY }, options);
 
     drawNewPuzzle(order, markX, markY);
   }
@@ -182,7 +173,6 @@ const litro = (function (window, document, ltrGfx) {
     context = litroCanvasElement.getContext("2d");
     initSolver();
     initOptions();
-    await initResourcesAsync();
   }
 
   return {
