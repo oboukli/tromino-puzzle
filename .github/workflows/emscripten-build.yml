@@ -1,6 +1,8 @@
 name: Emscripten build for WebAssembly
 
-on: [push, pull_request]
+on:
+  pull_request:
+  push:
 
 jobs:
   build:
@@ -8,48 +10,48 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out Emscripten repository
-      uses: actions/checkout@v3
-      with:
-        repository: emscripten-core/emsdk
-        path: emsdk
+      - name: Check out Emscripten repository
+        uses: actions/checkout@v3
+        with:
+          repository: emscripten-core/emsdk
+          path: emsdk
 
-    - name: Emscripten SDK cache
-      id: emscripten-sdk-cache
-      uses: actions/cache@v2
-      with:
-        path: |
-          emsdk/node
-          emsdk/upstream
-        key: >-
-          emscripten-sdk-cache-${{ hashFiles(
-            'emsdk/upstream/emscripten/emscripten-revision.txt'
-          ) }}
+      - name: Emscripten SDK cache
+        id: emscripten-sdk-cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            emsdk/node
+            emsdk/upstream
+          key: >-
+            emscripten-sdk-cache-${{ hashFiles(
+              'emsdk/upstream/emscripten/emscripten-revision.txt'
+            ) }}
 
-    - name: Install Emscripten SDK
-      env:
-        EMSDK_VERSION: 3.1.7
-      run: |
-        ./emsdk install ${EMSDK_VERSION}
-        ./emsdk activate ${EMSDK_VERSION}
-      working-directory: emsdk
+      - name: Install Emscripten SDK
+        env:
+          EMSDK_VERSION: 3.1.8
+        run: |
+          ./emsdk install ${EMSDK_VERSION}
+          ./emsdk activate ${EMSDK_VERSION}
+        working-directory: emsdk
 
-    - name: Check out main repository
-      uses: actions/checkout@v3
-      with:
-        path: tromino-puzzle
+      - name: Check out main repository
+        uses: actions/checkout@v3
+        with:
+          path: tromino-puzzle
 
-    - name: Make
-      run: |
-        source ${{ github.workspace }}/emsdk/emsdk_env.sh
-        emmake make -j $((($(nproc) * 15) / 10))
-      working-directory: tromino-puzzle/emscripten
+      - name: Make
+        run: |
+          source ${{ github.workspace }}/emsdk/emsdk_env.sh
+          emmake make -j $((($(nproc) * 15) / 10))
+        working-directory: tromino-puzzle/emscripten
 
-    - name: Archive web app artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: tromino-puzzle-web-dist
-        path: tromino-puzzle/dist/web
+      - name: Archive web app artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: tromino-puzzle-web-dist
+          path: tromino-puzzle/dist/web
 
   deploy-gh-pages:
     name: Deploy to GitHub Pages

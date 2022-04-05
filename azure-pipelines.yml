@@ -1,13 +1,8 @@
-# Copyright (c) 2021-2022 Omar Boukli-Hacene. All rights reserved.
-# Distributed under an MIT-style license that can be
-# found in the LICENSE file.
-
-# SPDX-License-Identifier: MIT
-
 trigger:
-  - main
-  - development
-  - feature/*
+  batch: true
+  branches:
+    include:
+      - "*"
 
 jobs:
   - job: macOS
@@ -40,7 +35,7 @@ jobs:
         inputs:
           solution: msbuild/TrominoPuzzle.sln
           platform: x64
-          configuration: release
+          configuration: Release
           maximumCpuCount: true
           msbuildArchitecture: x64
 
@@ -49,14 +44,23 @@ jobs:
     pool:
       vmImage: ubuntu-latest
     steps:
-      - script: sudo apt-get update && sudo apt-get install -yq autoconf-archive libboost-test-dev libsdl2-dev
-        displayName: 'Install dependencies'
+      - task: Bash@3
+        displayName: Install dependencies
+        inputs:
+          targetType: inline
+          script: |
+            sudo apt-get update
+            sudo apt-get install -yq autoconf-archive libboost-test-dev libsdl2-dev
 
-      - script: ./autogen.sh
-        displayName: Run autogen.sh
-
-      - script: mkdir build && cd build && ../configure
+      - task: Bash@3
         displayName: Configure build
+        inputs:
+          targetType: inline
+          script: |
+            ./autogen.sh
+            mkdir build
+            cd build
+            ../configure
 
       - script: make -j $((($(nproc) * 15) / 10))
         displayName: Make
@@ -79,13 +83,13 @@ jobs:
     pool:
       vmImage: ubuntu-latest
     variables:
-      emsdkVersion: 3.1.7
+      emsdkVersion: 3.1.8
       numMakeJobs: 3
     steps:
       - task: DockerInstaller@0
         displayName: Emscripten SDK
         inputs:
-          dockerVersion: 20.10.13
+          dockerVersion: 20.10.14
           releaseType: stable
 
       - script: docker run -i --rm -v $(pwd):/src --workdir="/src/emscripten" emscripten/emsdk:$(emsdkVersion) emmake make -j $(numMakeJobs)

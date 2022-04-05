@@ -1,6 +1,8 @@
 name: Xcode build
 
-on: [push, pull_request]
+on:
+  pull_request:
+  push:
 
 jobs:
   build:
@@ -11,71 +13,71 @@ jobs:
       BUILD_PATH: ${{ github.workspace }}/xcode/build
 
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v3
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-    - name: Check out vcpkg
-      uses: actions/checkout@v3
-      with:
-        repository: microsoft/vcpkg
-        path: ${{ github.workspace }}/vcpkg
+      - name: Check out vcpkg
+        uses: actions/checkout@v3
+        with:
+          repository: microsoft/vcpkg
+          path: ${{ github.workspace }}/vcpkg
 
-    - name: Apply vcpkg cache
-      id: vcpkg-cache
-      uses: actions/cache@v2
-      with:
-        path: |
-          $HOME/.cache/vcpkg/archives
-          ${{ github.workspace }}/vcpkg
-        key: >-
-          ${{ runner.os }}-vcpkg-archives-cache-${{ hashFiles(
-            'vcpkg/CHANGELOG.md'
-          ) }}
+      - name: Apply vcpkg cache
+        id: vcpkg-cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            $HOME/.cache/vcpkg/archives
+            ${{ github.workspace }}/vcpkg
+          key: >-
+            ${{ runner.os }}-vcpkg-archives-cache-${{ hashFiles(
+              'vcpkg/CHANGELOG.md'
+            ) }}
 
-    - name: Bootstrap vcpkg
-      run: ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
+      - name: Bootstrap vcpkg
+        run: ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
 
-    - name: Install boost-test
-      run: ./vcpkg/vcpkg install boost-test
+      - name: Install boost-test
+        run: ./vcpkg/vcpkg install boost-test
 
-    - name: Install SDL2
-      run: |
-        ./vcpkg/vcpkg install sdl2 --triplet x64-osx-dynamic
-        ./vcpkg/vcpkg install sdl2 --triplet arm64-osx-dynamic
+      - name: Install SDL2
+        run: |
+          ./vcpkg/vcpkg install sdl2 --triplet x64-osx-dynamic
+          ./vcpkg/vcpkg install sdl2 --triplet arm64-osx-dynamic
 
-    - name: Build trominocli
-      run: >
-        xcodebuild
-        -workspace TrominoPuzzle.xcworkspace
-        -scheme TrominoCli
-        -configuration Release
-        -destination 'platform=macOS,arch=x86_64'
-        CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }}
-        build
-      working-directory: xcode
+      - name: Build trominocli
+        run: >
+          xcodebuild
+          -workspace TrominoPuzzle.xcworkspace
+          -scheme TrominoCli
+          -configuration Release
+          -destination 'platform=macOS,arch=x86_64'
+          CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }}
+          build
+        working-directory: xcode
 
-    - name: Build tromino2d
-      run: >
-        xcodebuild
-        -workspace TrominoPuzzle.xcworkspace
-        -scheme Tromino2d
-        -configuration Release
-        -destination 'platform=macOS,arch=x86_64'
-        CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }}
-        build
-      working-directory: xcode
+      - name: Build tromino2d
+        run: >
+          xcodebuild
+          -workspace TrominoPuzzle.xcworkspace
+          -scheme Tromino2d
+          -configuration Release
+          -destination 'platform=macOS,arch=x86_64'
+          CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }}
+          build
+        working-directory: xcode
 
-    - name: Build unit tests
-      run: >
-        xcodebuild
-        -workspace TrominoPuzzle.xcworkspace
-        -scheme UnitTests
-        -configuration Debug
-        -destination 'platform=macOS,arch=x86_64'
-        CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }}
-        build
-      working-directory: xcode
+      - name: Build unit tests
+        run: >
+          xcodebuild
+          -workspace TrominoPuzzle.xcworkspace
+          -scheme UnitTests
+          -configuration Debug
+          -destination 'platform=macOS,arch=x86_64'
+          CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }}
+          build
+        working-directory: xcode
 
-    - name: Run unit tests
-      run: ./UnitTests
-      working-directory: ${{ env.BUILD_PATH }}
+      - name: Run unit tests
+        run: ./UnitTests
+        working-directory: ${{ env.BUILD_PATH }}

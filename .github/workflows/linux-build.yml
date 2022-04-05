@@ -1,6 +1,8 @@
 name: Ubuntu build
 
-on: [push, pull_request]
+on:
+  pull_request:
+  push:
 
 jobs:
   build:
@@ -8,32 +10,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v3
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-    - name: Install dependencies
-      run: >
-        sudo apt-get update &&
-        sudo apt-get install -yq autoconf-archive libboost-test-dev libsdl2-dev
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -yq autoconf-archive libboost-test-dev libsdl2-dev
 
-    - name: Run autogen.sh
-      run: ./autogen.sh
+      - name: Run autogen.sh
+        run: ./autogen.sh
 
-    - name: Configure build
-      run: mkdir build && cd build && ../configure
+      - name: Configure build
+        run: |
+          mkdir build
+          cd build
+          ../configure
 
-    - name: Make
-      run: make -j $((($(nproc) * 15) / 10))
-      working-directory: build
+      - name: Make
+        run: make -j $((($(nproc) * 15) / 10))
+        working-directory: build
 
-    - name: Test
-      run: make check
-      working-directory: build
+      - name: Test
+        run: make check
+        working-directory: build
 
-    - name: Package
-      run: make dist
-      working-directory: build
+      - name: Package
+        run: make dist
+        working-directory: build
 
-    - name: Test package
-      run: make distcheck
-      working-directory: build
+      - name: Test package
+        run: make distcheck
+        working-directory: build

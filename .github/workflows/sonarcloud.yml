@@ -1,10 +1,8 @@
 name: SonarCloud scan
 
 on:
-  push:
-    branches: [main, development, feature/*]
   pull_request:
-    branches: [main, development, feature/*]
+  push:
   schedule:
     - cron: 10 22 * * 5
 
