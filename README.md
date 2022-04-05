@@ -96,7 +96,8 @@ Boost Test is required for building the the unit tests:
 ./vcpkg/vcpkg install boost-test
 ```
 
-Homebrew can also be used. However, the Xcode projects must be reconfigured.
+Homebrew can also be used. However, the Xcode projects must be manually
+reconfigured. The same applies for manual or custom SDL2 installation.
 
 To install the build dependencies with Homebrew:
 
