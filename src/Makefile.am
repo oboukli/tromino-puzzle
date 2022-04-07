@@ -86,6 +86,8 @@ tromino2d_SOURCES = \
 	gui/init.cpp \
 	gui/init.h \
 	gui/main.cpp \
+	gui/params.cpp \
+	gui/params.h \
 	gui/solver.cpp \
 	gui/solver.h
 tromino2d_CPPFLAGS = \

@@ -14,10 +14,10 @@
 #include "cli_models.h"
 #include "cli_options.h"
 #include "init.h"
+#include "params.h"
 
 int main(const int argc, const char* const argv[]) {
     using namespace std::string_literals;
-    constexpr int WIDTH = 512;
 
     tromino::tromino2d::options options;
     std::string error;
@@ -38,5 +38,5 @@ int main(const int argc, const char* const argv[]) {
         .size = size,
         .order = options.order};
 
-    return tromino::tromino2d::init(board, WIDTH, "Tromino Puzzle"s);
+    return tromino::tromino2d::init(board, tromino::tromino2d::params::CANVAS_WIDTH, "Tromino Puzzle"s);
 }
