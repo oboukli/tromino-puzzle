@@ -1,8 +1,8 @@
 # Tromino Puzzle
 
-[![Azure Pipelines build status](https://dev.azure.com/omarboukli/tromino-puzzle/_apis/build/status/oboukli.tromino-puzzle?branchName=development)](https://dev.azure.com/omarboukli/tromino-puzzle/_build/latest?definitionId=2&branchName=development)
-[![DevSkim](https://github.com/oboukli/tromino-puzzle/actions/workflows/devskim-analysis.yml/badge.svg?branch=development)](https://github.com/oboukli/tromino-puzzle/actions/workflows/devskim-analysis.yml?query=branch%3Adevelopment)
-[![CodeQL](https://github.com/oboukli/tromino-puzzle/actions/workflows/codeql-analysis.yml/badge.svg?branch=development)](https://github.com/oboukli/tromino-puzzle/actions/workflows/codeql-analysis.yml?query=branch%3Adevelopment)
+[![Azure Pipelines build status](https://dev.azure.com/omarboukli/tromino-puzzle/_apis/build/status/oboukli.tromino-puzzle?branchName=main)](https://dev.azure.com/omarboukli/tromino-puzzle/_build/latest?definitionId=2&branchName=main)
+[![DevSkim](https://github.com/oboukli/tromino-puzzle/actions/workflows/devskim-analysis.yml/badge.svg?branch=main)](https://github.com/oboukli/tromino-puzzle/actions/workflows/devskim-analysis.yml?query=branch%3Amain)
+[![CodeQL](https://github.com/oboukli/tromino-puzzle/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/oboukli/tromino-puzzle/actions/workflows/codeql-analysis.yml?query=branch%3Amain)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=oboukli_tromino-puzzle&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=oboukli_tromino-puzzle)
 [![CodeFactor](https://www.codefactor.io/repository/github/oboukli/tromino-puzzle/badge)](https://www.codefactor.io/repository/github/oboukli/tromino-puzzle)
@@ -24,40 +24,18 @@ possible rotations.
 
 The developer (@oboukli) was first introduced to the tromino puzzle in early
 2006, via Anany Levitin's book _Introduction to the Design and Analysis of
-Algorithms_, published in 2003 by Addison-Wesley. Anany Levitin mentions Solomon
-W. Golomb's second edition _Polyominoes: Puzzles, Patterns, Problems, and
-Packings_, published in 1994 by Princeton University Press, as a reference to the
-puzzle.
+Algorithms_, published in 2003 by Addison-Wesley. Anany Levitin mentions
+Solomon W. Golomb's second edition _Polyominoes: Puzzles, Patterns, Problems,
+and Packings_, published in 1994 by Princeton University Press, as a reference
+to the puzzle.
 
 The realization of the recursive solution was such a beautiful epiphany to the
 developer.
 
-## Building the web app
+## Command line app
 
-The web app makes use of WebAssembly and requires Emscripten to build.
-
-```shell
-cd emscripten
-emmake make
-```
-
-### Building and running the web app on Docker
-
-To build the web app:
-
-```shell
-docker pull emscripten/emsdk
-docker run --rm -v $(pwd):/src --workdir="/src/emscripten" emscripten/emsdk emmake make
-```
-
-To run the web app:
-
-```shell
-docker pull nginx
-docker run -it --rm -d -p 8080:80 -v $(pwd)/dist/web:/usr/share/nginx/html:ro --name tromino-puzzle nginx
-```
-
-## Building the command line app
+The command line app is supported on Linux, macOS, and Windows. See "Building
+the desktop" section for build instruction.
 
 ### Virtual terminal mode
 
@@ -73,7 +51,7 @@ On Windows, a native legacy Windows Console Host (WCH) renderer, which uses DOS
 box-drawing characters
 (code page 437), is included.
 
-## Building the desktop app
+## Desktop app
 
 ### Building for macOS with Xcode
 
@@ -112,7 +90,8 @@ supported:
 
 ```shell
 ./autogen.sh
-mkdir build && cd build
+mkdir build
+cd build
 ../configure
 make
 ```
@@ -126,11 +105,11 @@ make install
 
 ### Building for Windows with MSBuild
 
-For Windows, no build files are provided but it should be possible
-to build the GUI app without source code modification.
+For Windows, build files are provided for only the command line app. However,
+it should be possible to build the GUI app without source code modifications.
 
 ```powershell
-msbuild /m /p:Configuration=release /p:Platform=x64 msbuild\TrominoPuzzle.sln
+msbuild -maxCpuCount -property:Configuration=release -property:Platform=x64 msbuild\TrominoPuzzle.sln
 ```
 
 ### Dependencies
@@ -141,6 +120,31 @@ The SDL2 library is required to build the desktop app.
 
 ```shell
 sudo apt install libsdl2-dev
+```
+
+## Web app
+
+The web app makes use of WebAssembly and requires Emscripten to build.
+
+```shell
+cd emscripten
+emmake make
+```
+
+### Building and running the web app on Docker
+
+To build the web app:
+
+```shell
+docker pull emscripten/emsdk
+docker run --rm -v $(pwd):/src --workdir=/src/emscripten emscripten/emsdk emmake make
+```
+
+To run the web app:
+
+```shell
+docker pull nginx
+docker run -i -t --rm -d -p 8080:80 -v $(pwd)/dist/web:/usr/share/nginx/html:ro nginx
 ```
 
 ## License
