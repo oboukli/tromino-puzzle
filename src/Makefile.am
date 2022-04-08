@@ -37,6 +37,8 @@ tromino_SOURCES = \
 	cli/init.cpp \
 	cli/init.h \
 	cli/main.cpp \
+	cli/params.cpp \
+	cli/params.h \
 	cli/trmn_graph.cpp \
 	cli/trmn_graph.h \
 	cli/trmn_graph_vt.cpp \
