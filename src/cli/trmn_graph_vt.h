@@ -56,13 +56,13 @@ constexpr char bottom_right = '\x6a';
 void draw_board(const board_t& board) noexcept;
 
 void add_tromino(
-    const trmn_position_t pos, const trmn_flip_t flip,
+    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
     void* const graph_state) noexcept;
 
 inline void init_board(const board_t& board) noexcept {
     std::fill_n(board.board_matrix.get(), board.size, empty);
 
-    board.board_matrix[calc_index(board.mark.x, board.mark.y, board.order)]
+    board.board_matrix[calc_index(board.mark_x, board.mark_y, board.order)]
         = mark;
 }
 

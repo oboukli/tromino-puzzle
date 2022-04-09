@@ -42,7 +42,7 @@ void draw_board(const board_t& board) noexcept {
 }
 
 void add_tromino(
-    const trmn_position_t pos, const trmn_flip_t flip,
+    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
     void* const state) noexcept {
     constexpr std::chrono::milliseconds DELAY_AFTER(68);
 
@@ -52,7 +52,7 @@ void add_tromino(
     const int order = board.order;
     const auto sprite = get_sprite<
         neutral, empty, mark, horizontal, vertical, top_left, top_right,
-        bottom_left, bottom_right>(flip);
+        bottom_left, bottom_right>(flip_x, flip_y);
 
     char px;
     for (int i = 0; i < 2; ++i) {
@@ -63,12 +63,12 @@ void add_tromino(
             }
 
             assert(
-                (board_matrix[calc_index(pos.x + j, pos.y + i, order)] == empty)
+                (board_matrix[calc_index(pos_x + j, pos_y + i, order)] == empty)
                 && "Error: Invalid placement.");
 
-            board_matrix[calc_index(pos.x + j, pos.y + i, order)] = px;
+            board_matrix[calc_index(pos_x + j, pos_y + i, order)] = px;
 
-            draw_at(pos.x + j, pos.y + i, px, graph_state->hOutput);
+            draw_at(pos_x + j, pos_y + i, px, graph_state->hOutput);
         }
     }
 
@@ -119,8 +119,8 @@ void use_wch(board_t& tromino_board) noexcept {
         FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
     // clang-format off
     const COORD coordMark = {
-        .X = static_cast<SHORT>(tromino_board.mark.x),
-        .Y = static_cast<SHORT>(tromino_board.mark.y)
+        .X = static_cast<SHORT>(tromino_board.mark_x),
+        .Y = static_cast<SHORT>(tromino_board.mark_y)
     };
     // clang-format on
     ::SetConsoleCursorPosition(hConsoleOutput, coordMark);
@@ -132,7 +132,8 @@ void use_wch(board_t& tromino_board) noexcept {
             | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
 
     ::trmn_solve_puzzle(
-        tromino_board.order, tromino_board.mark, add_tromino, &graph_state);
+        tromino_board.order, tromino_board.mark_x, tromino_board.mark_x,
+        add_tromino, &graph_state);
 
     ::SetConsoleTextAttribute(
         hConsoleOutput, originalConsoleScreenBufferInfo.wAttributes);

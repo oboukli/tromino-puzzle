@@ -45,8 +45,8 @@ bool read_options(
     }
 
 #ifdef _WINDOWS
-    options.use_wch
-        = argc > REQUIRED_ARG_COUNT && std::string(argv[USE_WCH_ARG_IDX]) == "--use-wch"s;
+    options.use_wch = argc > REQUIRED_ARG_COUNT
+        && std::string(argv[USE_WCH_ARG_IDX]) == "--use-wch"s;
 
     // clang-format off
     options.emulation_mode =

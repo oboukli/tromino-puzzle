@@ -12,10 +12,16 @@
 namespace tromino::gfx2d {
 
 struct Step {
-    const trmn_position_t p;
-    const trmn_flip_t f;
+    const int px;
+    const int py;
+    const int fx;
+    const int fy;
 
-    Step(trmn_position_t p, trmn_flip_t f) noexcept : p(p), f(f) {
+    Step(int px, int py, int fx, int fy) noexcept :
+        px(px),
+        py(py),
+        fx(fx),
+        fy(fy) {
     }
 
     Step(Step&& other) noexcept = default;

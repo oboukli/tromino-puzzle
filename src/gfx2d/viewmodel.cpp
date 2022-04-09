@@ -40,7 +40,7 @@ void TrominoBoardViewModel::SetBoard(
         style.wke1_color, style.bke8_color);
 
     DrawMark(
-        _renderer.get(), SQUARE_LOGICAL_WIDTH, board.mark.x, board.mark.y,
+        _renderer.get(), SQUARE_LOGICAL_WIDTH, board.mark_x, board.mark_y,
         style.mark_color);
 
     _solutionTexture.reset(CreateTexture(_renderer.get(), logicalWidth));
@@ -74,11 +74,11 @@ void TrominoBoardViewModel::Render(
     auto targetIdx{begin + _currentStepNum};
     for (auto it{begin}; it != targetIdx; ++it) {
         const Step& s{*it};
-        trominoDest.x = s.p.x * SQUARE_LOGICAL_WIDTH;
-        trominoDest.y = s.p.y * SQUARE_LOGICAL_WIDTH;
+        trominoDest.x = s.px * SQUARE_LOGICAL_WIDTH;
+        trominoDest.y = s.py * SQUARE_LOGICAL_WIDTH;
         ::SDL_RenderCopyEx(
             _renderer.get(), _trominoTexture.get(), nullptr, &trominoDest, 0,
-            nullptr, get_flip(s.f));
+            nullptr, get_flip(s.fx, s.fy));
     }
 
     ::SDL_SetRenderTarget(_renderer.get(), _viewTexture.get());

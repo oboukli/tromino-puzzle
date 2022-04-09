@@ -67,7 +67,7 @@ $(TARGET_LITRO): $(OBJ_DIR)/lib/tromino.o $(OBJ_DIR)/wasm/tromino_alg_wasm.o
 	-s ERROR_ON_UNDEFINED_SYMBOLS=1 \
 	-s EXIT_RUNTIME=0 \
 	-s EXPORTED_FUNCTIONS='["_solve"]' \
-	-s EXPORTED_RUNTIME_METHODS='["addFunction", "ccall", "getValue", "removeFunction", "setValue", "stackAlloc", "stackSave", "stackRestore"]' \
+	-s EXPORTED_RUNTIME_METHODS='["addFunction", "removeFunction"]' \
 	-s FILESYSTEM=0 \
 	-s INITIAL_MEMORY=64KB \
 	-s INVOKE_RUN=0 \

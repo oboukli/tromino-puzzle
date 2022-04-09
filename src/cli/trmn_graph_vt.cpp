@@ -34,7 +34,7 @@ void draw_board(const board_t& board) noexcept {
 }
 
 void add_tromino(
-    const trmn_position_t pos, const trmn_flip_t flip,
+    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
     void* const state) noexcept {
     constexpr std::chrono::milliseconds DELAY_AFTER(68);
 
@@ -44,7 +44,7 @@ void add_tromino(
     const int order = board.order;
     const auto sprite = get_sprite<
         neutral, empty, mark, horizontal, vertical, top_left, top_right,
-        bottom_left, bottom_right>(flip);
+        bottom_left, bottom_right>(flip_x, flip_y);
 
     char px;
     for (int i = 0; i < 2; ++i) {
@@ -55,12 +55,12 @@ void add_tromino(
             }
 
             assert(
-                (empty == board_matrix[calc_index(pos.x + j, pos.y + i, order)])
+                (empty == board_matrix[calc_index(pos_x + j, pos_y + i, order)])
                 && "Error: Invalid placement.");
 
-            board_matrix[calc_index(pos.x + j, pos.y + i, order)] = px;
+            board_matrix[calc_index(pos_x + j, pos_y + i, order)] = px;
 
-            draw_at(1 + pos.x + j, 1 + pos.y + i, px);
+            draw_at(1 + pos_x + j, 1 + pos_y + i, px);
         }
     }
 
@@ -151,7 +151,7 @@ void use_vt(board_t& tromino_board) noexcept {
         CSI + "38;5;"s + MARK_FOREGROUND_COLOR + "m"s;
     // clang-format on
 
-    draw_at(tromino_board.mark.x + 1, tromino_board.mark.y + 1, mark);
+    draw_at(tromino_board.mark_x + 1, tromino_board.mark_y + 1, mark);
 
     // clang-format off
     std::cout <<
@@ -172,7 +172,8 @@ void use_vt(board_t& tromino_board) noexcept {
     graph_state_t graph_state{.board = tromino_board};
 
     ::trmn_solve_puzzle(
-        tromino_board.order, tromino_board.mark, add_tromino, &graph_state);
+        tromino_board.order, tromino_board.mark_x, tromino_board.mark_y,
+        add_tromino, &graph_state);
 
     std::cin.get();
 

@@ -80,8 +80,8 @@ async function handleSolveAsync({ order, markX, markY }) {
     order,
     markX,
     markY,
-    (/** @type {{ x: number; y: number; }} */ position, /** @type {number} */ angle) => {
-      self.postMessage({ x: position.x, y: position.y, angle });
+    (/** @type {number} */ positionX,/** @type {number} */ positionY, /** @type {number} */ angle) => {
+      self.postMessage({ x: positionX, y: positionY, angle });
     }
   );
 }

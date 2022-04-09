@@ -28,7 +28,8 @@
 namespace tromino::cli {
 
 struct board_t {
-    const trmn_position_t mark;
+    const int mark_x;
+    const int mark_y;
     const std::size_t size;
     std::unique_ptr<char[]> board_matrix;
     const int order;
@@ -54,12 +55,12 @@ template <
     char neutral, char empty, char mark, char horizontal, char vertical,
     char top_left, char top_right, char bottom_left, char bottom_right>
 static std::array<char, SPRITE_SIZE> get_sprite(
-    const trmn_flip_t& flip) noexcept {
-    assert(-1 == flip.x || 1 == flip.x);
-    assert(-1 == flip.y || 1 == flip.y);
+    const int flip_x, const int flip_y) noexcept {
+    assert(-1 == flip_x || 1 == flip_x);
+    assert(-1 == flip_y || 1 == flip_y);
 
-    if (-1 == flip.x) {
-        if (-1 == flip.y) {
+    if (-1 == flip_x) {
+        if (-1 == flip_y) {
             // -1, -1
             // X |
             // - +
@@ -72,7 +73,7 @@ static std::array<char, SPRITE_SIZE> get_sprite(
         return {horizontal, top_right, neutral, vertical};
     }
 
-    if (-1 == flip.y) {
+    if (-1 == flip_y) {
         // 1, -1
         // | X
         // + -

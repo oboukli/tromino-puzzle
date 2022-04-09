@@ -50,14 +50,14 @@ private:
 };
 
 [[nodiscard]] inline ::SDL_RendererFlip get_flip(
-    const trmn_flip_t& flip) noexcept {
+    const int flip_x, const int flip_y) noexcept {
     // clang-format off
-    int f = flip.x == 1
+    int f = flip_x == 1
         ? ::SDL_RendererFlip::SDL_FLIP_HORIZONTAL
         : ::SDL_RendererFlip::SDL_FLIP_NONE;
     // clang-format on
 
-    if (flip.y == 1) {
+    if (flip_y == 1) {
         f |= ::SDL_RendererFlip::SDL_FLIP_VERTICAL;
     }
 

@@ -31,13 +31,13 @@ static std::mutex mut;
 static std::condition_variable lockCond;
 
 static void addTromino(
-    const trmn_position_t pos, const trmn_flip_t flip,
+    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
     std::vector<tromino::gfx2d::Step>* const steps) noexcept {
     using namespace tromino::gfx2d;
 
     {
         std::lock_guard lk(mut);
-        steps->emplace_back(pos, flip);
+        steps->emplace_back(pos_x, pos_y, flip_x, flip_y);
     }
     lockCond.notify_one();
 }
@@ -107,8 +107,8 @@ int init(
     steps.reserve(numSteps);
 
     std::thread solver_thread(
-        solver<std::vector<tromino::gfx2d::Step>>, board.order, board.mark,
-        addTromino, &steps);
+        solver<std::vector<tromino::gfx2d::Step>>, board.order, board.mark_x,
+        board.mark_y, addTromino, &steps);
 
     if (::SDL_Init(SDL_INIT_VIDEO) != 0) {
         return EXIT_FAILURE;

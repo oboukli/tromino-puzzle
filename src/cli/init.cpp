@@ -17,7 +17,8 @@ void init(
     const std::size_t size = order_internal * order_internal;
 
     board_t tromino_board{
-        .mark = {.x = x, .y = y},
+        .mark_x = x,
+        .mark_y = y,
         .size = size,
         .board_matrix = std::make_unique<char[]>(size),
         .order = order};

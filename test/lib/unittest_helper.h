@@ -13,17 +13,23 @@
 #include "tromino.h"
 
 struct ShimStep {
-    const trmn_position_t pos;
-    const trmn_flip_t flip;
+    const int pos_x;
+    const int pos_y;
+    const int flip_x;
+    const int flip_y;
 
-    ShimStep(trmn_position_t pos, trmn_flip_t flip) :
-        pos(std::move(pos)),
-        flip(std::move(flip)) {
+    ShimStep(int pos_x, int pos_y, int flip_x, int flip_y) :
+        pos_x(pos_x),
+        pos_y(pos_y),
+        flip_x(flip_x),
+        flip_y(flip_y) {
     }
 
     ShimStep(ShimStep&& other) :
-        pos(std::move(other.pos)),
-        flip(std::move(other.flip)) {
+        pos_x(other.pos_x),
+        pos_y(other.pos_y),
+        flip_x(other.flip_x),
+        flip_y(other.flip_y) {
     }
 
     ShimStep(const ShimStep& other) = delete;
@@ -31,22 +37,22 @@ struct ShimStep {
     ShimStep& operator=(const ShimStep& other) = delete;
 
     bool operator!=(const ShimStep& rhs) const noexcept {
-        return rhs.pos.x != this->pos.x || rhs.pos.y != this->pos.y
-            || rhs.flip.x != this->flip.x || rhs.flip.y != this->flip.y;
+        return rhs.pos_x != this->pos_x || rhs.pos_y != this->pos_y
+            || rhs.flip_x != this->flip_x || rhs.flip_y != this->flip_y;
     }
 
     friend std::ostream& operator<<(
         std::ostream& os, const ShimStep& s) noexcept {
         // clang-format off
         return os
-            << "Tromino position: (" << s.pos.x << ", " << s.pos.y
-            << "). Flip: (" << s.flip.x << ", " << s.flip.y << ")";
+            << "Tromino position: (" << s.pos_x << ", " << s.pos_y
+            << "). Flip: (" << s.flip_x << ", " << s.flip_y << ")";
         // clang-format on
     }
 };
 
 void shim_add_tromino(
-    trmn_position_t pos, trmn_flip_t flip, void* state) noexcept;
+    int pos_x, int pos_y, int flip_x, int flip_y, void* state) noexcept;
 
 void print_shim_step_vector(const std::vector<ShimStep>& steps) noexcept;
 

@@ -27,13 +27,13 @@ static bool isMainLoopRunning = true;
 static bool isInitialized = false;
 
 static void addTromino(
-    const trmn_position_t pos, const trmn_flip_t flip,
+    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
     void* const state) noexcept {
     using namespace tromino::gfx2d;
 
     auto steps = static_cast<std::vector<tromino::gfx2d::Step>*>(state);
 
-    steps->emplace_back(pos, flip);
+    steps->emplace_back(pos_x, pos_y, flip_x, flip_y);
 }
 
 static void pollSdlEvents() noexcept {
@@ -107,7 +107,8 @@ static void start(
     const std::size_t numSteps = ((board.order * board.order) - 1) / 3;
     steps->reserve(numSteps);
 
-    ::trmn_solve_puzzle(board.order, board.mark, addTromino, steps.get());
+    ::trmn_solve_puzzle(
+        board.order, board.mark_x, board.mark_y, addTromino, steps.get());
 
     tromino::gfx2d::Style style{
         .wke1_color{0x4e, 0x7d, 0xa6, SDL_ALPHA_OPAQUE},
@@ -126,7 +127,7 @@ EMSCRIPTEN_KEEPALIVE extern "C" void playTromino(
     const int width) noexcept {
     const std::size_t size = order * order;
     tromino::gfx2d::Board board{
-        .mark = {.x = markX, .y = markY}, .size = size, .order = order};
+        .mark_x = markX, .mark_y = markY, .size = size, .order = order};
 
     start(board, width);
 }

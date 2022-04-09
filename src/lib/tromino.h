@@ -30,21 +30,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 extern "C" {
 #endif /* __cplusplus */
 
-typedef struct trmn_position_struct {
-    const int x;
-    const int y;
-} trmn_position_t;
-
-typedef struct trmn_flip_struct {
-    const int x;
-    const int y;
-} trmn_flip_t;
-
 typedef void (*trmn_add_tromino_func)(
-    const trmn_position_t pos, const trmn_flip_t flip, void* const state);
+    const int px, const int py, const int fx, const int fy, void* const state);
 
 void trmn_solve_puzzle(
-    const int order, const trmn_position_t mark,
+    const int order, const int mx, const int my,
     const trmn_add_tromino_func add_tromino, void* const state);
 
 #ifdef __cplusplus
