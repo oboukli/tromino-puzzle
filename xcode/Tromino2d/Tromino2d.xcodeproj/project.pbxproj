@@ -13,8 +13,8 @@
 		7503E7EE26CB1A4A0018B1F2 /* libLibTromino.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7ED26CB1A4A0018B1F2 /* libLibTromino.a */; };
 		752A62C8276FE49F0076CB0C /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 752A62C4276FE49F0076CB0C /* init.cpp */; };
 		752A62C9276FE49F0076CB0C /* solver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 752A62C7276FE49F0076CB0C /* solver.cpp */; };
-		7544A96627DC89BC00FD9157 /* libSDL2-2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7544A96227DBF9A600FD9157 /* libSDL2-2.0.dylib */; };
-		756A682227FBE3C9009FD127 /* libSDL2-2.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7544A96227DBF9A600FD9157 /* libSDL2-2.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		7530DEC6280212E800812ABF /* libSDL2-2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7530DEC5280212E800812ABF /* libSDL2-2.0.dylib */; };
+		7530DEC72802131100812ABF /* libSDL2-2.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7530DEC5280212E800812ABF /* libSDL2-2.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		7584759827DCAE0900CFA5F4 /* libLibTrominoValidation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7584759727DCAE0900CFA5F4 /* libLibTrominoValidation.a */; };
 		75ACD98B26DAF724003E33CA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75ACD98A26DAF724003E33CA /* main.cpp */; };
 		75E2E8BA27FCAC0800B0525E /* params.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75E2E8B827FCAC0800B0525E /* params.cpp */; };
@@ -25,9 +25,9 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolderSpec = 16;
 			files = (
-				756A682227FBE3C9009FD127 /* libSDL2-2.0.dylib in CopyFiles */,
+				7530DEC72802131100812ABF /* libSDL2-2.0.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,7 +45,7 @@
 		752A62C5276FE49F0076CB0C /* solver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = solver.h; sourceTree = "<group>"; };
 		752A62C6276FE49F0076CB0C /* init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = init.h; sourceTree = "<group>"; };
 		752A62C7276FE49F0076CB0C /* solver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = solver.cpp; sourceTree = "<group>"; };
-		7544A96227DBF9A600FD9157 /* libSDL2-2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.dylib"; path = "$(BUILD_DIR)/libSDL2/libSDL2-2.0.dylib"; sourceTree = "<group>"; };
+		7530DEC5280212E800812ABF /* libSDL2-2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.dylib"; path = "$(BUILD_DIR)/libSDL2/libSDL2-2.0.dylib"; sourceTree = "<group>"; };
 		7584759727DCAE0900CFA5F4 /* libLibTrominoValidation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTrominoValidation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75ACD98A26DAF724003E33CA /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		75E2E8B827FCAC0800B0525E /* params.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = params.cpp; sourceTree = "<group>"; };
@@ -57,10 +57,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7530DEC6280212E800812ABF /* libSDL2-2.0.dylib in Frameworks */,
 				7584759827DCAE0900CFA5F4 /* libLibTrominoValidation.a in Frameworks */,
 				7503E7EE26CB1A4A0018B1F2 /* libLibTromino.a in Frameworks */,
 				7503E7E226C897D60018B1F2 /* libLibTromino2d.a in Frameworks */,
-				7544A96627DC89BC00FD9157 /* libSDL2-2.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,8 +87,8 @@
 		7503E7E026C897D60018B1F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7530DEC5280212E800812ABF /* libSDL2-2.0.dylib */,
 				7584759727DCAE0900CFA5F4 /* libLibTrominoValidation.a */,
-				7544A96227DBF9A600FD9157 /* libSDL2-2.0.dylib */,
 				7503E7ED26CB1A4A0018B1F2 /* libLibTromino.a */,
 				7503E7E126C897D60018B1F2 /* libLibTromino2d.a */,
 			);
@@ -122,9 +122,9 @@
 			buildConfigurationList = 7503E7CB26C892630018B1F2 /* Build configuration list for PBXNativeTarget "Tromino2d" */;
 			buildPhases = (
 				7544A95827DBDA0F00FD9157 /* ShellScript */,
+				7503E7C226C892630018B1F2 /* CopyFiles */,
 				7503E7C026C892630018B1F2 /* Sources */,
 				7503E7C126C892630018B1F2 /* Frameworks */,
-				7503E7C226C892630018B1F2 /* CopyFiles */,
 			);
 			buildRules = (
 			);
