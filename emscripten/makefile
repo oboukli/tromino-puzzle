@@ -148,7 +148,8 @@ $(OBJ_DIR)/gfx2d/%.o: $(SRC_DIR)/gfx2d/%.cpp
 
 webapp:
 	$(MKDIR) $(WEB_DIR)
-	$(CP) ./app/* $(WEB_DIR)
+	$(CP) ../web/app/* $(WEB_DIR)
+	$(CP) $(SRC_DIR)/js/* $(WEB_DIR)/scripts
 
 .PHONY: clean
 clean:

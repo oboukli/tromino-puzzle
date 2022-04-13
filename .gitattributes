@@ -1,10 +1,11 @@
 * -text
 
+*.css linguist-vendored
+*.html linguist-vendored
 *.json linguist-vendored
 *.m4 linguist-vendored
+*.sh linguist-vendored
 configure.ac linguist-vendored
-emscripten/app/*.html linguist-vendored
-emscripten/app/styles/* linguist-vendored
 makefile linguist-vendored
 Makefile.am linguist-vendored
 msbuild/* linguist-vendored
