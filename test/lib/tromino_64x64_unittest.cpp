@@ -11,16 +11,9 @@
 
 #include "unittest_helper.h"
 
-BOOST_AUTO_TEST_SUITE(tromino_64x64_test_suite)
-
-BOOST_AUTO_TEST_CASE(
-    Given_trmn_solve_puzzle_WhenOrderIs64AndMarkIs61_37_ThenSolution) {
-    constexpr int order{64};
-    constexpr int mark_x{61};
-    constexpr int mark_y{37};
-
-    // clang-format off
-    const std::array<ShimStep, std::size_t{((64 * 64) - 1) / 3}> expected{{
+// clang-format off
+static const std::array<ShimStep, std::size_t{((64 * 64) - 1) / 3}>
+    g_expected_for_order_64_and_mark_61_37{{
         {60, 36, 1, 1},
         {62, 38, -1, -1},
         {62, 36, -1, 1},
@@ -1387,7 +1380,15 @@ BOOST_AUTO_TEST_CASE(
         {32, 30, -1, 1},
         {31, 31, 1, 1},
     }};
-    // clang-format on
+// clang-format on
+
+BOOST_AUTO_TEST_SUITE(tromino_64x64_test_suite)
+
+BOOST_AUTO_TEST_CASE(
+    Given_trmn_solve_puzzle_WhenOrderIs64AndMarkIs61_37_ThenSolution) {
+    constexpr int order{64};
+    constexpr int mark_x{61};
+    constexpr int mark_y{37};
 
     std::vector<ShimStep> actual;
     actual.reserve(std::size_t{1365});
@@ -1396,7 +1397,9 @@ BOOST_AUTO_TEST_CASE(
 
     BOOST_CHECK_EQUAL(actual.size(), std::size_t{1365});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.begin(), actual.end(), expected.begin(), expected.end());
+        actual.begin(), actual.end(),
+        g_expected_for_order_64_and_mark_61_37.begin(),
+        g_expected_for_order_64_and_mark_61_37.end());
 }
 
 BOOST_AUTO_TEST_SUITE_END()
