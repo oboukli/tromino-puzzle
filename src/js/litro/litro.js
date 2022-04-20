@@ -33,7 +33,8 @@ const litro = (function (window, document, ltrGfx) {
    * @typedef {object} Tromino
    * @property {number} x
    * @property {number} y
-   * @property {number} angle
+   * @property {number} flipX
+   * @property {number} flipY
    */
 
   const delayBase = 67;
@@ -132,8 +133,8 @@ const litro = (function (window, document, ltrGfx) {
     if (Array.isArray(trominos) && trominos.length > 0) {
       if (elapsed > stepIdx * delayBase) {
         stepIdx += 1;
-        let { x, y, angle } = trominos.shift();
-        ltrGfx.drawTromino(boardModel, x, y, angle);
+        let { x, y, flipX, flipY } = trominos.shift();
+        ltrGfx.drawTromino(boardModel, x, y, flipX, flipY);
       }
     }
 

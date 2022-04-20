@@ -80,8 +80,9 @@ async function handleSolveAsync({ order, markX, markY }) {
     order,
     markX,
     markY,
-    (/** @type {number} */ positionX,/** @type {number} */ positionY, /** @type {number} */ angle) => {
-      self.postMessage({ x: positionX, y: positionY, angle });
+    (/** @type {number} */ x, /** @type {number} */ y, /** @type {number} */ flipX,
+    /** @type {number} */ flipY) => {
+      self.postMessage({ x, y, flipX, flipY });
     }
   );
 }

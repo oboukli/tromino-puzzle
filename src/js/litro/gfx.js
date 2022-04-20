@@ -133,35 +133,36 @@ const ltrGfx = (function () {
    */
   function initSprite(trominoContext, blockWidth, thickness, options) {
     trominoContext.fillStyle = options.trominoColor;
-    trominoContext.fillRect(blockWidth, 0, blockWidth, blockWidth);
-    trominoContext.fillRect(0, blockWidth, blockWidth * 2, blockWidth);
+    trominoContext.fillRect(0, 0, blockWidth * 2, blockWidth);
+    trominoContext.fillRect(0, blockWidth, blockWidth, blockWidth);
 
     trominoContext.fillStyle = options.trominoOutlineColor;
-    trominoContext.fillRect(blockWidth, 0, blockWidth, thickness);
-    trominoContext.fillRect((blockWidth * 2) - thickness, thickness, thickness, blockWidth * 2);
-    trominoContext.fillRect(0, (blockWidth * 2) - thickness, (blockWidth * 2) - thickness, thickness);
-    trominoContext.fillRect(0, blockWidth, thickness, blockWidth - thickness);
-    trominoContext.fillRect(thickness, blockWidth, blockWidth, thickness);
-    trominoContext.fillRect(blockWidth, thickness, thickness, blockWidth - thickness);
+    trominoContext.fillRect(0, 0, blockWidth * 2, thickness);
+    trominoContext.fillRect((blockWidth * 2) - thickness, thickness, thickness, blockWidth - thickness);
+    trominoContext.fillRect(blockWidth - thickness, blockWidth - thickness, (blockWidth * 2) - thickness, thickness);
+    trominoContext.fillRect(blockWidth - thickness, blockWidth, thickness, blockWidth - thickness);
+    trominoContext.fillRect(0, (blockWidth * 2) - thickness, blockWidth, thickness);
+    trominoContext.fillRect(0, thickness, thickness, (blockWidth * 2) - thickness);
   }
 
   /**
    * @param {Board} board
    * @param {number} x
    * @param {number} y
-   * @param {number} angle
+   * @param {number} flipX
+   * @param {number} flipY
    * @returns {void}
    */
-  function drawTromino(board, x, y, angle) {
+  function drawTromino(board, x, y, flipX, flipY) {
     const context = board.context;
     const blockWidth = board.blockWidth;
     const rx = ((x * blockWidth) + blockWidth);
     const ry = ((y * blockWidth) + blockWidth);
 
     context.translate(rx, ry);
-    context.rotate(angle);
+    context.scale(flipX, flipY);
     context.drawImage(board.trominoContext.canvas, -blockWidth, -blockWidth);
-    context.rotate(-angle);
+    context.scale(flipX, flipY);
     context.translate(-rx, -ry);
   }
 

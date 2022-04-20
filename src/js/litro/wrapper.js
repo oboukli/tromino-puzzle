@@ -41,9 +41,10 @@ function solveTromino(emModule, order, markX, markY, cb) {
   let funcPtr = emModule.addFunction(function (
     /** @type {number} */ positionX,
     /** @type {number} */ positionY,
-    /** @type {number} */ angle) {
-    cb(positionX, positionY, angle);
-  }, "viid");
+    /** @type {number} */ flipX,
+    /** @type {number} */ flipY) {
+    cb(positionX, positionY, flipX, flipY);
+  }, "viiii");
 
   emModule._solve(order, markX, markY, funcPtr);
 
