@@ -101,7 +101,8 @@ inline static void start_game_loop(
 int init(
     const tromino::gfx2d::Board& board, const int width,
     const std::string& title) noexcept {
-    const std::size_t numSteps = ((board.order * board.order) - 1) / 3;
+    const std::size_t board_order = static_cast<std::size_t>(board.order);
+    const std::size_t numSteps = ((board_order * board_order) - 1) / 3;
 
     auto steps = std::vector<tromino::gfx2d::Step>();
     steps.reserve(numSteps);
