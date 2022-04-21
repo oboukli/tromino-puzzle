@@ -13,8 +13,14 @@
 
 BOOST_AUTO_TEST_SUITE(trmn_is_valid_order_test_suite)
 
-BOOST_AUTO_TEST_CASE(Given_trmn_is_valid_order_WhenValidOrder_ThenTrue) {
-    const bool is_valid = ::trmn_is_valid_order(0x40000000);
+BOOST_AUTO_TEST_CASE(Given_trmn_is_valid_order_WhenMinValidOrder_ThenTrue) {
+    const bool is_valid = ::trmn_is_valid_order(2);
+
+    BOOST_TEST(is_valid == true);
+}
+
+BOOST_AUTO_TEST_CASE(Given_trmn_is_valid_order_WhenMaxValidOrder_ThenTrue) {
+    const bool is_valid = ::trmn_is_valid_order(32768);
 
     BOOST_TEST(is_valid == true);
 }
@@ -23,6 +29,13 @@ BOOST_AUTO_TEST_CASE(Given_trmn_is_valid_order_WhenOrder64_ThenTrue) {
     const bool is_valid = ::trmn_is_valid_order(64);
 
     BOOST_TEST(is_valid == true);
+}
+
+BOOST_AUTO_TEST_CASE(
+    Given_trmn_is_valid_order_WhenOrderIsPowerOfTwoButTooLarge_ThenFalse) {
+    const bool is_valid = ::trmn_is_valid_order(0x40000000);
+
+    BOOST_TEST(is_valid == false);
 }
 
 BOOST_AUTO_TEST_CASE(Given_trmn_is_valid_order_WhenNegativeOrder_ThenFalse) {
@@ -98,20 +111,22 @@ BOOST_AUTO_TEST_CASE(
     BOOST_TEST(is_valid == false);
 }
 
-BOOST_AUTO_TEST_CASE(
-    Given_trmn_is_order_overflow_safe_WhenMaxSafeOrder_ThenTrue) {
-    const int maxSafeOrder = std::sqrt(INT_MAX);
-
-    bool is_valid = ::trmn_is_order_overflow_safe(maxSafeOrder);
+BOOST_AUTO_TEST_CASE(Given_trmn_is_order_overflow_safe_WhenMaxOrder_ThenTrue) {
+    bool is_valid = ::trmn_is_order_overflow_safe(32768);
 
     BOOST_TEST(is_valid == true);
 }
 
 BOOST_AUTO_TEST_CASE(
-    Given_trmn_is_order_overflow_safe_WhenMinUnsafeOrder_ThenFalse) {
-    const int maxSafeOrder = std::sqrt(INT_MAX) + 1;
+    Given_trmn_is_order_overflow_safe_WhenMaxOverflowSafeArgument_ThenTrue) {
+    bool is_valid = ::trmn_is_order_overflow_safe(46340);
 
-    bool is_valid = ::trmn_is_order_overflow_safe(maxSafeOrder);
+    BOOST_TEST(is_valid == true);
+}
+
+BOOST_AUTO_TEST_CASE(
+    Given_trmn_is_order_overflow_safe_WhenMinOverflowUnsafeArgument_ThenFalse) {
+    bool is_valid = ::trmn_is_order_overflow_safe(46341);
 
     BOOST_TEST(is_valid == false);
 }

@@ -29,7 +29,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <stddef.h>
 
 bool trmn_is_valid_order(const int order) {
-    return (order > 1) && ((order & (order - 1)) == 0);
+    return (order > 1) && (order < 32769) && ((order & (order - 1)) == 0);
 }
 
 bool trmn_is_valid_coordinate(const int c, const int order) {
