@@ -9,6 +9,7 @@
 #include <SDL2/SDL.h>
 
 #include <cassert>
+#include <chrono>
 #include <condition_variable>
 #include <cstddef>
 #include <cstdlib>
@@ -27,19 +28,22 @@
 
 namespace tromino::tromino2d {
 
-static std::mutex mut;
-static std::condition_variable lockCond;
+struct SharedState {
+    std::mutex mut;
+    std::condition_variable lockCond;
+    std::vector<tromino::gfx2d::Step> steps;
+};
 
 static void addTromino(
     const int pos_x, const int pos_y, const int flip_x, const int flip_y,
-    std::vector<tromino::gfx2d::Step>* const steps) noexcept {
+    SharedState* const sharedState) noexcept {
     using namespace tromino::gfx2d;
 
     {
-        std::lock_guard lk(mut);
-        steps->emplace_back(pos_x, pos_y, flip_x, flip_y);
+        std::lock_guard lk(sharedState->mut);
+        sharedState->steps.emplace_back(pos_x, pos_y, flip_x, flip_y);
     }
-    lockCond.notify_one();
+    sharedState->lockCond.notify_one();
 }
 
 static void pollSdlEvents(bool& isMainLoopRunning) noexcept {
@@ -53,21 +57,20 @@ static void pollSdlEvents(bool& isMainLoopRunning) noexcept {
 }
 
 inline static void start_game_loop(
-    const tromino::gfx2d::Board& board,
-    const std::vector<tromino::gfx2d::Step>& steps, const int width,
-    const std::string& title) {
+    const tromino::gfx2d::Board& board, SharedState& sharedState,
+    const int width, const std::string& title) {
     using namespace tromino::gfx2d;
     using namespace std::chrono_literals;
 
     constexpr auto WAIT_TIME = 4ms;
     constexpr int FRAME_DELAY = 68;
 
-    const auto window = std::make_unique<tromino::gfx2d::Window>(title, width);
+    const auto window{std::make_unique<tromino::gfx2d::Window>(title, width)};
     assert(window->GetSdlWindow() != nullptr);
 
-    const auto viewModel
-        = std::make_unique<tromino::gfx2d::TrominoBoardViewModel>(
-            window->GetSdlWindow());
+    const auto viewModel{
+        std::make_unique<tromino::gfx2d::TrominoBoardViewModel>(
+            window->GetSdlWindow())};
 
     tromino::gfx2d::Style style{
         .wke1_color{0x4e, 0x7d, 0xa6, SDL_ALPHA_OPAQUE},
@@ -83,16 +86,17 @@ inline static void start_game_loop(
         pollSdlEvents(isMainLoopRunning);
 
         if (viewModel->IsPlaying()) {
-            std::unique_lock lk(mut);
-            if (lockCond.wait_for(
-                    lk, WAIT_TIME, [&steps] { return !steps.empty(); })) {
+            std::unique_lock lk(sharedState.mut);
+            if (sharedState.lockCond.wait_for(lk, WAIT_TIME, [&sharedState] {
+                    return !sharedState.steps.empty();
+                })) {
                 viewModel->StepForward();
             }
 
             lk.unlock();
         }
 
-        viewModel->Render(steps);
+        viewModel->Render(sharedState.steps);
 
         ::SDL_Delay(FRAME_DELAY);
     }
@@ -104,12 +108,12 @@ int init(
     const std::size_t board_order = static_cast<std::size_t>(board.order);
     const std::size_t numSteps = ((board_order * board_order) - 1) / 3;
 
-    auto steps = std::vector<tromino::gfx2d::Step>();
-    steps.reserve(numSteps);
+    SharedState sharedState;
+    sharedState.steps.reserve(numSteps);
 
     std::thread solver_thread(
-        solver<std::vector<tromino::gfx2d::Step>>, board.order, board.mark_x,
-        board.mark_y, addTromino, &steps);
+        solver<SharedState>, board.order, board.mark_x, board.mark_y,
+        addTromino, &sharedState);
 
     if (::SDL_Init(SDL_INIT_VIDEO) != 0) {
         return EXIT_FAILURE;
@@ -119,7 +123,7 @@ int init(
     ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
     ::SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
 
-    start_game_loop(board, steps, width, title);
+    start_game_loop(board, sharedState, width, title);
 
     ::SDL_Quit();
 
