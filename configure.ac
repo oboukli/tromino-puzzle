@@ -17,7 +17,7 @@ m4_define(_COPYRIGHT_YEAR, 2022)
 AC_INIT([trmnpzzl],[m4_join(., _TRMNPZZL_VERSION_MAJOR, _TRMNPZZL_VERSION_MINOR, _TRMNPZZL_VERSION_PATCH, _TRMNPZZL_VERSION_BUILD)m4_if(_TRMNPZZL_VERSION_RC, 0, , rc_TRMNPZZL_VERSION_RC)],[https://github.com/oboukli/tromino-puzzle/issues],[trmnpzzl],[https://omar.fun/tromino-puzzle])
 AM_INIT_AUTOMAKE([foreign subdir-objects -Wall -Werror])
 AC_CONFIG_MACRO_DIR([m4])
-AC_CONFIG_SRCDIR([src/cli/trmn_graph.cpp])
+AC_CONFIG_SRCDIR([src/lib/tromino.c])
 AC_CONFIG_HEADERS([src/config/config.h])
 
 AC_SUBST([LIBTROMINO_CURRENT],[1])

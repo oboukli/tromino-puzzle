@@ -8,16 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		75002AC727A684E900CBB593 /* cli_options.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75002AC427A684E900CBB593 /* cli_options.cpp */; };
-		75002AC827A684E900CBB593 /* cli_models.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75002AC527A684E900CBB593 /* cli_models.cpp */; };
 		7503E7E226C897D60018B1F2 /* libLibTromino2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7E126C897D60018B1F2 /* libLibTromino2d.a */; };
 		7503E7EE26CB1A4A0018B1F2 /* libLibTromino.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7ED26CB1A4A0018B1F2 /* libLibTromino.a */; };
 		752A62C8276FE49F0076CB0C /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 752A62C4276FE49F0076CB0C /* init.cpp */; };
-		752A62C9276FE49F0076CB0C /* solver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 752A62C7276FE49F0076CB0C /* solver.cpp */; };
 		7530DEC6280212E800812ABF /* libSDL2-2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7530DEC5280212E800812ABF /* libSDL2-2.0.dylib */; };
 		7530DEC72802131100812ABF /* libSDL2-2.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7530DEC5280212E800812ABF /* libSDL2-2.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		7584759827DCAE0900CFA5F4 /* libLibTrominoValidation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7584759727DCAE0900CFA5F4 /* libLibTrominoValidation.a */; };
 		75ACD98B26DAF724003E33CA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75ACD98A26DAF724003E33CA /* main.cpp */; };
-		75E2E8BA27FCAC0800B0525E /* params.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75E2E8B827FCAC0800B0525E /* params.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,7 +33,6 @@
 /* Begin PBXFileReference section */
 		75002AC327A684E800CBB593 /* cli_models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cli_models.h; sourceTree = "<group>"; };
 		75002AC427A684E900CBB593 /* cli_options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cli_options.cpp; sourceTree = "<group>"; };
-		75002AC527A684E900CBB593 /* cli_models.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cli_models.cpp; sourceTree = "<group>"; };
 		75002AC627A684E900CBB593 /* cli_options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cli_options.h; sourceTree = "<group>"; };
 		7503E7C426C892630018B1F2 /* tromino2d */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tromino2d; sourceTree = BUILT_PRODUCTS_DIR; };
 		7503E7E126C897D60018B1F2 /* libLibTromino2d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTromino2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,11 +40,9 @@
 		752A62C4276FE49F0076CB0C /* init.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = init.cpp; sourceTree = "<group>"; };
 		752A62C5276FE49F0076CB0C /* solver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = solver.h; sourceTree = "<group>"; };
 		752A62C6276FE49F0076CB0C /* init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = init.h; sourceTree = "<group>"; };
-		752A62C7276FE49F0076CB0C /* solver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = solver.cpp; sourceTree = "<group>"; };
 		7530DEC5280212E800812ABF /* libSDL2-2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.dylib"; path = "$(BUILD_DIR)/libSDL2/libSDL2-2.0.dylib"; sourceTree = "<group>"; };
 		7584759727DCAE0900CFA5F4 /* libLibTrominoValidation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTrominoValidation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75ACD98A26DAF724003E33CA /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		75E2E8B827FCAC0800B0525E /* params.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = params.cpp; sourceTree = "<group>"; };
 		75E2E8B927FCAC0800B0525E /* params.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = params.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,16 +92,13 @@
 		75ACD98926DAF724003E33CA /* gui */ = {
 			isa = PBXGroup;
 			children = (
-				75002AC527A684E900CBB593 /* cli_models.cpp */,
 				75002AC327A684E800CBB593 /* cli_models.h */,
 				75002AC427A684E900CBB593 /* cli_options.cpp */,
 				75002AC627A684E900CBB593 /* cli_options.h */,
 				752A62C4276FE49F0076CB0C /* init.cpp */,
 				752A62C6276FE49F0076CB0C /* init.h */,
-				752A62C7276FE49F0076CB0C /* solver.cpp */,
 				752A62C5276FE49F0076CB0C /* solver.h */,
 				75ACD98A26DAF724003E33CA /* main.cpp */,
-				75E2E8B827FCAC0800B0525E /* params.cpp */,
 				75E2E8B927FCAC0800B0525E /* params.h */,
 			);
 			name = gui;
@@ -194,10 +185,7 @@
 			files = (
 				75ACD98B26DAF724003E33CA /* main.cpp in Sources */,
 				752A62C8276FE49F0076CB0C /* init.cpp in Sources */,
-				752A62C9276FE49F0076CB0C /* solver.cpp in Sources */,
 				75002AC727A684E900CBB593 /* cli_options.cpp in Sources */,
-				75002AC827A684E900CBB593 /* cli_models.cpp in Sources */,
-				75E2E8BA27FCAC0800B0525E /* params.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,11 +13,8 @@
 		750984C426E44E83005B6E82 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984C226E44E83005B6E82 /* window.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		750984C726E45054005B6E82 /* viewmodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750984C526E45054005B6E82 /* viewmodel.cpp */; };
 		750984C826E45054005B6E82 /* viewmodel.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984C626E45054005B6E82 /* viewmodel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		750984CB26E45076005B6E82 /* style.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750984C926E45076005B6E82 /* style.cpp */; };
 		750984CC26E45076005B6E82 /* style.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984CA26E45076005B6E82 /* style.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		750984CF26E455FE005B6E82 /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750984CD26E455FE005B6E82 /* board.cpp */; };
 		750984D026E455FE005B6E82 /* board.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984CE26E455FE005B6E82 /* board.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		750984D326E55220005B6E82 /* step.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750984D126E55220005B6E82 /* step.cpp */; };
 		750984D426E55220005B6E82 /* step.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984D226E55220005B6E82 /* step.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -29,11 +26,8 @@
 		750984C226E44E83005B6E82 /* window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
 		750984C526E45054005B6E82 /* viewmodel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = viewmodel.cpp; sourceTree = "<group>"; };
 		750984C626E45054005B6E82 /* viewmodel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = viewmodel.h; sourceTree = "<group>"; };
-		750984C926E45076005B6E82 /* style.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = style.cpp; sourceTree = "<group>"; };
 		750984CA26E45076005B6E82 /* style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = style.h; sourceTree = "<group>"; };
-		750984CD26E455FE005B6E82 /* board.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = board.cpp; sourceTree = "<group>"; };
 		750984CE26E455FE005B6E82 /* board.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = board.h; sourceTree = "<group>"; };
-		750984D126E55220005B6E82 /* step.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = step.cpp; sourceTree = "<group>"; };
 		750984D226E55220005B6E82 /* step.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = step.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,11 +62,8 @@
 		7503E7D826C896C90018B1F2 /* gfx2d */ = {
 			isa = PBXGroup;
 			children = (
-				750984CD26E455FE005B6E82 /* board.cpp */,
 				750984CE26E455FE005B6E82 /* board.h */,
-				750984D126E55220005B6E82 /* step.cpp */,
 				750984D226E55220005B6E82 /* step.h */,
-				750984C926E45076005B6E82 /* style.cpp */,
 				750984CA26E45076005B6E82 /* style.h */,
 				7503E7DA26C896C90018B1F2 /* tromino_gfx2d.cpp */,
 				7503E7D926C896C90018B1F2 /* tromino_gfx2d.h */,
@@ -165,11 +156,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7503E7DC26C896C90018B1F2 /* tromino_gfx2d.cpp in Sources */,
-				750984CF26E455FE005B6E82 /* board.cpp in Sources */,
 				750984C326E44E83005B6E82 /* window.cpp in Sources */,
 				750984C726E45054005B6E82 /* viewmodel.cpp in Sources */,
-				750984CB26E45076005B6E82 /* style.cpp in Sources */,
-				750984D326E55220005B6E82 /* step.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

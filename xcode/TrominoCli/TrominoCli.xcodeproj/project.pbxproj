@@ -7,15 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		75002AB627A5D71A00CBB593 /* cli_models.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75002AB427A5D71A00CBB593 /* cli_models.cpp */; };
 		75002AB927A5EB8C00CBB593 /* cli_options.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75002AB827A5EB8C00CBB593 /* cli_options.cpp */; };
 		75002ABB27A5F4CE00CBB593 /* libLibTrominoValidation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75002ABA27A5F4CE00CBB593 /* libLibTrominoValidation.a */; };
 		7503E77A26C88C910018B1F2 /* trmn_graph_vt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E77026C88C910018B1F2 /* trmn_graph_vt.cpp */; };
 		7503E77B26C88C910018B1F2 /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E77226C88C910018B1F2 /* init.cpp */; };
-		7503E77D26C88C920018B1F2 /* trmn_graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E77726C88C910018B1F2 /* trmn_graph.cpp */; };
 		7503E77E26C88C920018B1F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E77826C88C910018B1F2 /* main.cpp */; };
 		7519E6AB27DD0A62006C39A6 /* libLibTromino.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7503E7DE26C8977E0018B1F2 /* libLibTromino.a */; };
-		75E2E8BD27FCB7CF00B0525E /* params.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75E2E8BB27FCB7CF00B0525E /* params.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,7 +28,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		75002AB427A5D71A00CBB593 /* cli_models.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cli_models.cpp; sourceTree = "<group>"; };
 		75002AB527A5D71A00CBB593 /* cli_models.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cli_models.h; sourceTree = "<group>"; };
 		75002AB727A5EB8C00CBB593 /* cli_options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cli_options.h; sourceTree = "<group>"; };
 		75002AB827A5EB8C00CBB593 /* cli_options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cli_options.cpp; sourceTree = "<group>"; };
@@ -40,12 +36,10 @@
 		7503E77026C88C910018B1F2 /* trmn_graph_vt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trmn_graph_vt.cpp; sourceTree = "<group>"; };
 		7503E77226C88C910018B1F2 /* init.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = init.cpp; sourceTree = "<group>"; };
 		7503E77426C88C910018B1F2 /* init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = init.h; sourceTree = "<group>"; };
-		7503E77726C88C910018B1F2 /* trmn_graph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trmn_graph.cpp; sourceTree = "<group>"; };
 		7503E77826C88C910018B1F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7503E77926C88C910018B1F2 /* trmn_graph_vt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trmn_graph_vt.h; sourceTree = "<group>"; };
 		7503E7DE26C8977E0018B1F2 /* libLibTromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTromino.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7594DBDB26C4822400CF433E /* tromino */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tromino; sourceTree = BUILT_PRODUCTS_DIR; };
-		75E2E8BB27FCB7CF00B0525E /* params.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = params.cpp; sourceTree = "<group>"; };
 		75E2E8BC27FCB7CF00B0525E /* params.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = params.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,7 +59,6 @@
 		7503E76E26C88C910018B1F2 /* cli */ = {
 			isa = PBXGroup;
 			children = (
-				75E2E8BB27FCB7CF00B0525E /* params.cpp */,
 				75E2E8BC27FCB7CF00B0525E /* params.h */,
 				75002AB827A5EB8C00CBB593 /* cli_options.cpp */,
 				75002AB727A5EB8C00CBB593 /* cli_options.h */,
@@ -73,10 +66,8 @@
 				7503E77026C88C910018B1F2 /* trmn_graph_vt.cpp */,
 				7503E77226C88C910018B1F2 /* init.cpp */,
 				7503E77426C88C910018B1F2 /* init.h */,
-				7503E77726C88C910018B1F2 /* trmn_graph.cpp */,
 				7503E77826C88C910018B1F2 /* main.cpp */,
 				7503E77926C88C910018B1F2 /* trmn_graph_vt.h */,
-				75002AB427A5D71A00CBB593 /* cli_models.cpp */,
 				75002AB527A5D71A00CBB593 /* cli_models.h */,
 			);
 			name = cli;
@@ -165,13 +156,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75002AB627A5D71A00CBB593 /* cli_models.cpp in Sources */,
-				7503E77D26C88C920018B1F2 /* trmn_graph.cpp in Sources */,
 				7503E77A26C88C910018B1F2 /* trmn_graph_vt.cpp in Sources */,
 				75002AB927A5EB8C00CBB593 /* cli_options.cpp in Sources */,
 				7503E77E26C88C920018B1F2 /* main.cpp in Sources */,
 				7503E77B26C88C910018B1F2 /* init.cpp in Sources */,
-				75E2E8BD27FCB7CF00B0525E /* params.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

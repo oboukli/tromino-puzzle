@@ -169,11 +169,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\cli\cli_models.cpp" />
     <ClCompile Include="..\..\src\cli\cli_options.cpp" />
     <ClCompile Include="..\..\src\cli\init.cpp" />
     <ClCompile Include="..\..\src\cli\main.cpp" />
-    <ClCompile Include="..\..\src\cli\trmn_graph.cpp" />
     <ClCompile Include="..\..\src\cli\trmn_graph_vt.cpp" />
     <ClCompile Include="..\..\src\cli\trmn_graph_windows.cpp" />
   </ItemGroup>
