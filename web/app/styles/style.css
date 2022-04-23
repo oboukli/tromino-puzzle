@@ -1,4 +1,4 @@
-body {
+:root {
   font-family: sans-serif;
   color: #d9933d;
   background-color: #222;
@@ -19,7 +19,7 @@ canvas {
   margin: 0 auto;
 }
 
-.container * {
+.editor-container * {
   box-sizing: border-box;
 }
 
@@ -28,7 +28,7 @@ canvas {
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  margin-bottom: 2rem;
+  margin-bottom: 32px;
 }
 
 .column {
@@ -48,7 +48,7 @@ canvas {
   align-items: center;
 }
 
-.flex-outer > li:not(:last-child) {
+.flex-outer>li:not(:last-child) {
   margin-bottom: 20px;
 }
 
@@ -57,13 +57,13 @@ canvas {
   padding: 8px;
 }
 
-.flex-outer > li > label,
+.flex-outer>li>label,
 .flex-outer li p {
   flex: 1 0 120px;
   max-width: 220px;
 }
 
-.flex-outer > li > label + *,
+.flex-outer>li>label+*,
 .flex-inner {
   flex: 1 0 220px;
 }
@@ -95,7 +95,7 @@ canvas {
   font-size: medium;
 }
 
-.flex-outer li div.indicator {
+.flex-outer li .indicator {
   width: 2em;
   text-align: center;
 }
