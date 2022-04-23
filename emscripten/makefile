@@ -52,7 +52,7 @@ directories:
 	$(MKDIR) $(OUT_DIR)/$(LITRO_DIR_NAME)
 	$(MKDIR) $(OUT_DIR)/$(TRMN_DIR_NAME)
 
-$(TARGET_LITRO): $(OBJ_DIR)/lib/tromino.o $(OBJ_DIR)/wasm/tromino_alg_wasm.o
+$(TARGET_LITRO): $(OBJ_DIR)/lib/tromino.o $(OBJ_DIR)/wasm/litro/libtromino_wrapper.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) \
 	--closure 1 \
 	--no-entry \
@@ -120,9 +120,9 @@ $(OBJ_DIR)/lib/tromino.o: $(SRC_DIR)/lib/tromino.c
 	-c $< \
 	-o $@
 
-$(OBJ_DIR)/wasm/tromino_alg_wasm.o: $(SRC_DIR)/wasm/tromino_alg_wasm.cpp
+$(OBJ_DIR)/wasm/litro/libtromino_wrapper.o: $(SRC_DIR)/wasm/litro/libtromino_wrapper.c
 	@mkdir -p $(dir $@)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) \
+	$(CC) $(CPPFLAGS) $(CFLAGS) \
 	-I$(SRC_DIR)/lib \
 	-c $< \
 	-o $@
@@ -155,6 +155,7 @@ clean:
 	$(OBJ_DIR)/gfx2d/*.o \
 	$(OBJ_DIR)/lib/*.o \
 	$(OBJ_DIR)/wasm/*.o \
+	$(OBJ_DIR)/wasm/litro/*.o \
 	$(OUT_DIR)/$(LITRO_DIR_NAME)/gfx.js \
 	$(OUT_DIR)/$(LITRO_DIR_NAME)/litro-wasm.js \
 	$(OUT_DIR)/$(LITRO_DIR_NAME)/litro-wasm.wasm \
