@@ -23,7 +23,6 @@ jobs:
 
     - name: Build
       working-directory: ${{ github.workspace }}
-      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: >
         msbuild
         -detailedSummary

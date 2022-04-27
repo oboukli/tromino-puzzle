@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -yq autoconf-archive libboost-test-dev libsdl2-dev
+          sudo apt-get install --assume-yes --quiet autoconf-archive libboost-test-dev libsdl2-dev
 
       - name: Run autogen.sh
         run: ./autogen.sh
@@ -28,7 +28,7 @@ jobs:
           ../configure
 
       - name: Make
-        run: make -j $((($(nproc) * 15) / 10))
+        run: make --jobs=$((($(nproc) * 15) / 10))
         working-directory: build
 
       - name: Test

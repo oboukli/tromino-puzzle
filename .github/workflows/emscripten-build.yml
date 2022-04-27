@@ -30,7 +30,7 @@ jobs:
 
       - name: Install Emscripten SDK
         env:
-          EMSDK_VERSION: 3.1.8
+          EMSDK_VERSION: 3.1.9
         run: |
           ./emsdk install ${EMSDK_VERSION}
           ./emsdk activate ${EMSDK_VERSION}
@@ -44,7 +44,7 @@ jobs:
       - name: Make
         run: |
           source ${{ github.workspace }}/emsdk/emsdk_env.sh
-          emmake make -j $((($(nproc) * 15) / 10))
+          emmake make --jobs=$((($(nproc) * 15) / 10))
         working-directory: tromino-puzzle/emscripten
 
       - name: Archive web app artifacts

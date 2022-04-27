@@ -50,7 +50,7 @@ jobs:
           targetType: inline
           script: |
             sudo apt-get update
-            sudo apt-get install -yq autoconf-archive libboost-test-dev libsdl2-dev
+            sudo apt-get install --assume-yes --quiet autoconf-archive libboost-test-dev libsdl2-dev
 
       - task: Bash@3
         displayName: Configure build
@@ -62,7 +62,7 @@ jobs:
             cd build
             ../configure
 
-      - script: make -j $((($(nproc) * 15) / 10))
+      - script: make --jobs=$((($(nproc) * 15) / 10))
         displayName: Make
         workingDirectory: build
 
@@ -83,7 +83,7 @@ jobs:
     pool:
       vmImage: ubuntu-latest
     variables:
-      emsdkVersion: 3.1.8
+      emsdkVersion: 3.1.9
       numMakeJobs: 3
     steps:
       - task: DockerInstaller@0
@@ -92,5 +92,5 @@ jobs:
           dockerVersion: 20.10.14
           releaseType: stable
 
-      - script: docker run -i --rm -v $(pwd):/src --workdir="/src/emscripten" emscripten/emsdk:$(emsdkVersion) emmake make -j $(numMakeJobs)
+      - script: docker run --volume=$(pwd):/src --workdir="/src/emscripten" emscripten/emsdk:$(emsdkVersion) emmake make --jobs=$(numMakeJobs)
         displayName: Emscripten build for WebAssembly

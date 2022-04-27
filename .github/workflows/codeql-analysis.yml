@@ -35,10 +35,10 @@ jobs:
       - name: Build
         run: |
           sudo apt-get update
-          sudo apt-get install -yq autoconf-archive libboost-test-dev libsdl2-dev
+          sudo apt-get install --assume-yes --quiet autoconf-archive libboost-test-dev libsdl2-dev
           ./autogen.sh
           ./configure
-          make -j $((($(nproc) * 15) / 10))
+          make --jobs=$((($(nproc) * 15) / 10))
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1
