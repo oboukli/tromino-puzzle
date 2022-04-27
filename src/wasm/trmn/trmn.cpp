@@ -6,10 +6,10 @@
 
 #include <emscripten.h>
 
-#include <cstddef>
-#include <memory>
-
 #include <SDL2/SDL.h>
+
+#include <memory>
+#include <vector>
 
 #include "tromino.h"
 
@@ -19,14 +19,15 @@
 #include "viewmodel.h"
 #include "window.h"
 
-static std::unique_ptr<tromino::gfx2d::Window> window = nullptr;
-static std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel
-    = nullptr;
-static std::unique_ptr<std::vector<tromino::gfx2d::Step>> steps = nullptr;
-static bool isMainLoopRunning = true;
-static bool isInitialized = false;
+namespace {
 
-static void addTromino(
+std::unique_ptr<tromino::gfx2d::Window> window = nullptr;
+std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel = nullptr;
+std::unique_ptr<std::vector<tromino::gfx2d::Step>> steps = nullptr;
+bool isMainLoopRunning = true;
+bool isInitialized = false;
+
+void addTromino(
     const int pos_x, const int pos_y, const int flip_x, const int flip_y,
     void* const state) noexcept {
     using namespace tromino::gfx2d;
@@ -36,7 +37,7 @@ static void addTromino(
     steps->emplace_back(pos_x, pos_y, flip_x, flip_y);
 }
 
-static void pollSdlEvents() noexcept {
+void pollSdlEvents() noexcept {
     ::SDL_Event event;
 
     while (::SDL_PollEvent(&event)) {
@@ -51,7 +52,7 @@ static void pollSdlEvents() noexcept {
     }
 }
 
-static void init(const int width) noexcept {
+void init(const int width) noexcept {
     steps = std::make_unique<std::vector<tromino::gfx2d::Step>>();
 
     ::SDL_Init(SDL_INIT_VIDEO);
@@ -68,7 +69,7 @@ static void init(const int width) noexcept {
     isInitialized = true;
 }
 
-static void terminate() noexcept {
+void terminate() noexcept {
     ::emscripten_cancel_main_loop();
 
     viewModel.reset();
@@ -82,7 +83,7 @@ static void terminate() noexcept {
     isMainLoopRunning = false;
 }
 
-static void loopSimulatorCallback() noexcept {
+void loopSimulatorCallback() noexcept {
     pollSdlEvents();
 
     if (!isMainLoopRunning) {
@@ -93,8 +94,7 @@ static void loopSimulatorCallback() noexcept {
     viewModel->Render(*steps);
 }
 
-static void start(
-    const tromino::gfx2d::Board& board, const int width) noexcept {
+void start(const tromino::gfx2d::Board& board, const int width) noexcept {
     using namespace tromino::gfx2d;
     constexpr int SWAP_INTERVAL = 4;
 
@@ -131,3 +131,5 @@ EMSCRIPTEN_KEEPALIVE extern "C" void playTromino(
 
     start(board, width);
 }
+
+} // namespace
