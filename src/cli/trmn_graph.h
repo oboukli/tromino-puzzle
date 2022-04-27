@@ -28,11 +28,11 @@
 namespace tromino::cli {
 
 struct board_t {
+    std::unique_ptr<char[]> board_matrix;
+    const std::size_t size;
+    const int order;
     const int mark_x;
     const int mark_y;
-    const std::size_t size;
-    std::unique_ptr<char[]> board_matrix;
-    const int order;
 };
 
 struct graph_state_t {

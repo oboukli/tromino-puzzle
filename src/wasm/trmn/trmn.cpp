@@ -106,7 +106,7 @@ EMSCRIPTEN_KEEPALIVE extern "C" void playTromino(
     const std::size_t size = order_internal * order_internal;
 
     tromino::gfx2d::Board board{
-        .mark_x = markX, .mark_y = markY, .size = size, .order = order};
+        .size = size, .order = order, .mark_x = markX, .mark_y = markY};
 
     start(board, width);
 }

@@ -34,10 +34,10 @@ int main(const int argc, const char* const argv[]) {
     const std::size_t order_internal = static_cast<std::size_t>(options.order);
     const std::size_t size = order_internal * order_internal;
     const tromino::gfx2d::Board board{
-        .mark_x = options.x,
-        .mark_y = options.y,
         .size = size,
-        .order = options.order};
+        .order = options.order,
+        .mark_x = options.x,
+        .mark_y = options.y};
 
     return tromino::tromino2d::init(
         board, tromino::tromino2d::params::CANVAS_WIDTH, "Tromino Puzzle"s);

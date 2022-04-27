@@ -17,11 +17,11 @@ void init(
     const std::size_t size = order_internal * order_internal;
 
     board_t tromino_board{
-        .mark_x = x,
-        .mark_y = y,
-        .size = size,
         .board_matrix = std::make_unique<char[]>(size),
-        .order = order};
+        .size = size,
+        .order = order,
+        .mark_x = x,
+        .mark_y = y};
 
     switch (emulation_mode) {
 #ifdef _WINDOWS
