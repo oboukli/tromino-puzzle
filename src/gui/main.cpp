@@ -31,7 +31,7 @@ int main(const int argc, const char* const argv[]) {
         return EXIT_FAILURE;
     }
 
-    const std::size_t order_internal = static_cast<std::size_t>(options.order);
+    const auto order_internal = static_cast<std::size_t>(options.order);
     const std::size_t size = order_internal * order_internal;
     const tromino::gfx2d::Board board{
         .size = size,
