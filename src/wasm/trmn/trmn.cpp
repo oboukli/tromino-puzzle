@@ -80,7 +80,8 @@ void start(const tromino::gfx2d::Board& board, const int width) noexcept {
 
     init(width);
 
-    const std::size_t numSteps = ((board.order * board.order) - 1) / 3;
+    const std::size_t order_internal = static_cast<std::size_t>(board.order);
+    const std::size_t numSteps = ((order_internal * order_internal) - 1) / 3;
     steps->reserve(numSteps);
 
     ::trmn_solve_puzzle(
@@ -101,7 +102,9 @@ void start(const tromino::gfx2d::Board& board, const int width) noexcept {
 EMSCRIPTEN_KEEPALIVE extern "C" void playTromino(
     const int order, const int markX, const int markY,
     const int width) noexcept {
-    const std::size_t size = order * order;
+    const std::size_t order_internal = static_cast<std::size_t>(order);
+    const std::size_t size = order_internal * order_internal;
+
     tromino::gfx2d::Board board{
         .mark_x = markX, .mark_y = markY, .size = size, .order = order};
 
