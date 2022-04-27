@@ -137,14 +137,14 @@ To build the web app:
 
 ```shell
 docker pull emscripten/emsdk
-docker run --rm -v $(pwd):/src --workdir=/src/emscripten emscripten/emsdk emmake make
+docker run --rm --volume=$(pwd):/src --workdir=/src/emscripten emscripten/emsdk emmake make
 ```
 
 To run the web app:
 
 ```shell
 docker pull nginx
-docker run -i -t --rm -d -p 8080:80 -v $(pwd)/dist/web:/usr/share/nginx/html:ro nginx
+docker run --detach --rm --publish=8080:80 --volume=$(pwd)/dist/web:/usr/share/nginx/html:ro nginx
 ```
 
 ## License
