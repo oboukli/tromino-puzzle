@@ -24,7 +24,6 @@ namespace {
 std::unique_ptr<tromino::gfx2d::Window> window = nullptr;
 std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel = nullptr;
 std::unique_ptr<std::vector<tromino::gfx2d::Step>> steps = nullptr;
-bool isMainLoopRunning = true;
 bool isInitialized = false;
 
 void addTromino(
@@ -35,21 +34,6 @@ void addTromino(
     auto steps = static_cast<std::vector<tromino::gfx2d::Step>*>(state);
 
     steps->emplace_back(pos_x, pos_y, flip_x, flip_y);
-}
-
-void pollSdlEvents() noexcept {
-    ::SDL_Event event;
-
-    while (::SDL_PollEvent(&event)) {
-        switch (event.type) {
-        case SDL_QUIT:
-            isMainLoopRunning = false;
-            break;
-
-        default:
-            break;
-        }
-    }
 }
 
 void init(const int width) noexcept {
@@ -65,7 +49,6 @@ void init(const int width) noexcept {
     viewModel = std::make_unique<tromino::gfx2d::TrominoBoardViewModel>(
         window->GetSdlWindow());
 
-    isMainLoopRunning = true;
     isInitialized = true;
 }
 
@@ -80,16 +63,9 @@ void terminate() noexcept {
     steps.reset();
 
     isInitialized = false;
-    isMainLoopRunning = false;
 }
 
 void loopSimulatorCallback() noexcept {
-    pollSdlEvents();
-
-    if (!isMainLoopRunning) {
-        terminate();
-    }
-
     viewModel->StepForward();
     viewModel->Render(*steps);
 }
