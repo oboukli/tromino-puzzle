@@ -79,6 +79,8 @@ void TrominoBoardViewModel::Render(
     auto targetIdx{steps.begin()};
     std::advance(targetIdx, _currentStepNum);
 
+    assert(steps.begin() <= targetIdx && targetIdx <= steps.end());
+
     for (auto it{steps.begin()}; it != targetIdx; ++it) {
         const Step& s{*it};
         trominoDest.x = s.px * SQUARE_LOGICAL_WIDTH;
