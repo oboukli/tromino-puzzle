@@ -31,7 +31,7 @@ void addTromino(
     void* const state) noexcept {
     using namespace tromino::gfx2d;
 
-    auto steps = static_cast<std::vector<tromino::gfx2d::Step>*>(state);
+    const auto steps = static_cast<std::vector<tromino::gfx2d::Step>*>(state);
 
     steps->emplace_back(pos_x, pos_y, flip_x, flip_y);
 }
@@ -87,7 +87,7 @@ void start(const tromino::gfx2d::Board& board, const int width) noexcept {
     ::trmn_solve_puzzle(
         board.order, board.mark_x, board.mark_y, addTromino, steps.get());
 
-    tromino::gfx2d::Style style{
+    const tromino::gfx2d::Style style{
         .wke1_color{0x4e, 0x7d, 0xa6, SDL_ALPHA_OPAQUE},
         .bke8_color{0x01, 0x23, 0x40, SDL_ALPHA_OPAQUE},
         .mark_color{0x8c, 0x1b, 0x1b, SDL_ALPHA_OPAQUE},
