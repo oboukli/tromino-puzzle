@@ -132,7 +132,7 @@ void use_wch(board_t& tromino_board) noexcept {
             | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
 
     ::trmn_solve_puzzle(
-        tromino_board.order, tromino_board.mark_x, tromino_board.mark_x,
+        tromino_board.order, tromino_board.mark_x, tromino_board.mark_y,
         add_tromino, &graph_state);
 
     ::SetConsoleTextAttribute(
