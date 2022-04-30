@@ -34,8 +34,8 @@ developer.
 
 ## Command line app
 
-The command line app is supported on Linux, macOS, and Windows. See "Building
-the desktop" section for build instruction.
+The command line app is supported on Linux, macOS, and Windows. See the
+[_Desktop app_](#desktop-app) section for build instruction.
 
 ### Virtual terminal mode
 
@@ -133,7 +133,7 @@ emmake make
 
 ### Building and running the web app on Docker
 
-To build the web app:
+The web app can be built using the Emscripten SDK Docker image:
 
 ```shell
 docker pull emscripten/emsdk
@@ -144,7 +144,7 @@ To run the web app:
 
 ```shell
 docker pull nginx
-docker run --detach --rm --publish=8080:80 --volume=$(pwd)/dist/web:/usr/share/nginx/html:ro nginx
+docker run --detach --rm --publish=8080:80 --volume=$(pwd)/dist/web:/usr/share/nginx/html:ro --name tromino-puzzle nginx
 ```
 
 ## License
