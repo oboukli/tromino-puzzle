@@ -23,19 +23,14 @@ void init(
         .mark_x = x,
         .mark_y = y};
 
-    switch (emulation_mode) {
 #ifdef _WINDOWS
-    case emulation_mode_type::wch:
+    if (emulation_mode == emulation_mode_type::wch) {
         tromino::cli::windows::use_wch(tromino_board);
-        break;
+        return;
+    }
 #endif // _WINDOWS
 
-    case emulation_mode_type::vt100:
-        [[fallthrough]];
-    default:
-        tromino::cli::vt::use_vt(tromino_board);
-        break;
-    }
+    tromino::cli::vt::use_vt(tromino_board);
 }
 
 } // namespace tromino::cli::app
