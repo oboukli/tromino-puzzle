@@ -40,6 +40,7 @@
 		7525762F26F76BB400BB3EB3 /* unittest_helper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = unittest_helper.cpp; sourceTree = "<group>"; };
 		7525763026F76BB400BB3EB3 /* unittest_helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = unittest_helper.h; sourceTree = "<group>"; };
 		7525763426F77D4700BB3EB3 /* tromino_64x64_unittest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tromino_64x64_unittest.cpp; sourceTree = "<group>"; };
+		755F9D212811CA4B004C54E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +68,7 @@
 		7503E79826C891260018B1F2 = {
 			isa = PBXGroup;
 			children = (
+				755F9D212811CA4B004C54E0 /* Config.xcconfig */,
 				7503E7D526C895610018B1F2 /* Frameworks */,
 				7503E7CE26C894EC0018B1F2 /* lib */,
 				75002ABC27A5F7ED00CBB593 /* validation */,
@@ -175,6 +177,7 @@
 /* Begin XCBuildConfiguration section */
 		7503E7A626C891260018B1F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 755F9D212811CA4B004C54E0 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -243,6 +246,7 @@
 		};
 		7503E7A726C891260018B1F2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 755F9D212811CA4B004C54E0 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

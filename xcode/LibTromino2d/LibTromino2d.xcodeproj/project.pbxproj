@@ -29,6 +29,7 @@
 		750984CA26E45076005B6E82 /* style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = style.h; sourceTree = "<group>"; };
 		750984CE26E455FE005B6E82 /* board.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = board.h; sourceTree = "<group>"; };
 		750984D226E55220005B6E82 /* step.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = step.h; sourceTree = "<group>"; };
+		755F9D222811CAF8004C54E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +46,7 @@
 		7503E7AB26C891FF0018B1F2 = {
 			isa = PBXGroup;
 			children = (
+				755F9D222811CAF8004C54E0 /* Config.xcconfig */,
 				7503E7E526C8EB490018B1F2 /* Frameworks */,
 				7503E7D826C896C90018B1F2 /* gfx2d */,
 				7503E7B526C891FF0018B1F2 /* Products */,
@@ -166,6 +168,7 @@
 /* Begin XCBuildConfiguration section */
 		7503E7B626C891FF0018B1F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 755F9D222811CAF8004C54E0 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -231,6 +234,7 @@
 		};
 		7503E7B726C891FF0018B1F2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 755F9D222811CAF8004C54E0 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

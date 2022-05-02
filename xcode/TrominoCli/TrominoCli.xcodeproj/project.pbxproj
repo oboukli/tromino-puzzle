@@ -39,6 +39,7 @@
 		7503E77826C88C910018B1F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7503E77926C88C910018B1F2 /* trmn_graph_vt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trmn_graph_vt.h; sourceTree = "<group>"; };
 		7503E7DE26C8977E0018B1F2 /* libLibTromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLibTromino.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		755F9D232811CB3B004C54E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		7594DBDB26C4822400CF433E /* tromino */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tromino; sourceTree = BUILT_PRODUCTS_DIR; };
 		75E2E8BC27FCB7CF00B0525E /* params.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = params.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +87,7 @@
 		7594DBD226C4822400CF433E = {
 			isa = PBXGroup;
 			children = (
+				755F9D232811CB3B004C54E0 /* Config.xcconfig */,
 				7503E76E26C88C910018B1F2 /* cli */,
 				7503E7DD26C8977E0018B1F2 /* Frameworks */,
 				7594DBDC26C4822400CF433E /* Products */,
@@ -168,6 +170,7 @@
 /* Begin XCBuildConfiguration section */
 		7594DBE026C4822400CF433E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 755F9D232811CB3B004C54E0 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -235,6 +238,7 @@
 		};
 		7594DBE126C4822400CF433E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 755F9D232811CB3B004C54E0 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

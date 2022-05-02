@@ -15,6 +15,7 @@
 		75002AA527A5940500CBB593 /* libLibTrominoValidation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibTrominoValidation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75002AAD27A5948800CBB593 /* tromino_validation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tromino_validation.c; sourceTree = "<group>"; };
 		75002AAE27A5948800CBB593 /* tromino_validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tromino_validation.h; sourceTree = "<group>"; };
+		755F9D202811CA28004C54E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +32,7 @@
 		75002A9C27A5940500CBB593 = {
 			isa = PBXGroup;
 			children = (
+				755F9D202811CA28004C54E0 /* Config.xcconfig */,
 				75002AA627A5940500CBB593 /* Products */,
 				75002AAC27A5948800CBB593 /* validation */,
 			);
@@ -131,6 +133,7 @@
 /* Begin XCBuildConfiguration section */
 		75002AA727A5940500CBB593 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 755F9D202811CA28004C54E0 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -194,6 +197,7 @@
 		};
 		75002AA827A5940500CBB593 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 755F9D202811CA28004C54E0 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
