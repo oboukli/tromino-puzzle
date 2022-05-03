@@ -52,8 +52,6 @@ bool read_options(
     options.emulation_mode =
         options.use_wch ? emulation_mode_type::wch: emulation_mode_type::vt100;
     // clang-format on
-#else
-    options.emulation_mode = emulation_mode_type::vt100;
 #endif // _WINDOWS
 
     options.order = std::stoi(argv[ORDER_ARG_IDX]);
