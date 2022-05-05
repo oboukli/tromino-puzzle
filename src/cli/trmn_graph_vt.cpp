@@ -15,13 +15,17 @@
 
 namespace tromino::cli::vt {
 
-static inline void draw_at(const int x, const int y, const char c) noexcept {
+namespace {
+
+inline void draw_at(const int x, const int y, const char c) noexcept {
     std::cout << CSI << y << ";" << x << "H" << c;
 }
 
-static inline void flush() noexcept {
+inline void flush() noexcept {
     std::cout << std::flush;
 }
+
+} // namespace
 
 void draw_board(const board_t& board) noexcept {
     const int order = board.order;
