@@ -4,6 +4,13 @@ trigger:
     include:
       - "*"
 
+resources:
+  repositories:
+  - repository: vcpkg
+    type: github
+    endpoint: oboukli
+    name: microsoft/vcpkg
+
 jobs:
   - job: macOS
     displayName: Build for macOS
@@ -29,11 +36,28 @@ jobs:
     displayName: Build for Windows
     pool:
       vmImage: windows-latest
+    variables:
+      primaryRepository: tromino-puzzle
     steps:
+      - checkout: self
+        displayName: Check out primary repository
+
+      - checkout: vcpkg
+        path: s/$(primaryRepository)/vcpkg
+        displayName: Check out vcpkg repository
+
+      - task: BatchScript@1
+        displayName: Bootstrap vcpkg
+        inputs:
+          filename: $(primaryRepository)\vcpkg\bootstrap-vcpkg.bat
+
+      - script: $(primaryRepository)\vcpkg\vcpkg.exe install --triplet x64-windows boost-test
+        displayName: Install vcpkg packages
+
       - task: VSBuild@1
         displayName: Build
         inputs:
-          solution: msbuild/TrominoPuzzle.sln
+          solution: $(primaryRepository)/msbuild/TrominoPuzzle.sln
           platform: x64
           configuration: Release
           maximumCpuCount: true
@@ -92,5 +116,5 @@ jobs:
           dockerVersion: 20.10.14
           releaseType: stable
 
-      - script: docker run --volume=$(pwd):/src --workdir="/src/emscripten" emscripten/emsdk:$(emsdkVersion) emmake make --jobs=$(numMakeJobs)
+      - script: docker run --volume=$(pwd):/src --workdir=/src/emscripten emscripten/emsdk:$(emsdkVersion) emmake make --jobs=$(numMakeJobs)
         displayName: Emscripten build for WebAssembly
