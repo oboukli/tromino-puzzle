@@ -1,5 +1,4 @@
 trigger:
-  batch: true
   branches:
     include:
       - "*"
@@ -107,13 +106,13 @@ jobs:
     pool:
       vmImage: ubuntu-latest
     variables:
-      emsdkVersion: 3.1.9
+      emsdkVersion: 3.1.10
       numMakeJobs: 3
     steps:
       - task: DockerInstaller@0
         displayName: Emscripten SDK
         inputs:
-          dockerVersion: 20.10.14
+          dockerVersion: 20.10.15
           releaseType: stable
 
       - script: docker run --volume=$(pwd):/src --workdir=/src/emscripten emscripten/emsdk:$(emsdkVersion) emmake make --jobs=$(numMakeJobs)
