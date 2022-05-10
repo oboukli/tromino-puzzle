@@ -105,8 +105,8 @@ make install
 
 ### Building for Windows with MSBuild
 
-For Windows, build files are provided for only the command line app. However,
-it should be possible to build the GUI app without source code modifications.
+For Windows, MSBuild files are provided which can be built with
+Visual Studio 2022, or from the command line:
 
 ```powershell
 msbuild -maxCpuCount -property:Configuration=release -property:Platform=x64 msbuild\TrominoPuzzle.sln

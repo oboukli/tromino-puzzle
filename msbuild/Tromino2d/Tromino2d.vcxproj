@@ -10,26 +10,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\test\lib\testmain_libtromino.cpp" />
-    <ClCompile Include="..\..\test\lib\tromino_2x2_unittest.cpp" />
-    <ClCompile Include="..\..\test\lib\tromino_4x4_unittest.cpp" />
-    <ClCompile Include="..\..\test\lib\tromino_64x64_unittest.cpp" />
-    <ClCompile Include="..\..\test\lib\unittest_helper.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\libtromino\libtromino.vcxproj">
-      <Project>{67c72ae0-f810-4766-bc5d-aede7210943c}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\test\lib\unittest_helper.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{a6e987ad-eed6-46d7-b521-6edea4c50f97}</ProjectGuid>
-    <RootNamespace>LibTrominoTest</RootNamespace>
+    <ProjectGuid>{63d50462-2a96-4526-80d7-a678cb63690a}</ProjectGuid>
+    <RootNamespace>Tromino2d</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -60,12 +45,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>tromino2d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Label="Vcpkg">
-    <VcpkgEnabled>false</VcpkgEnabled>
+    <TargetName>tromino2d</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -73,8 +57,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\lib;$(SolutionDir)\..\src\validation;$(SolutionDir)\..\src\gfx2d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
@@ -90,8 +74,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\lib;$(SolutionDir)\..\src\validation;$(SolutionDir)\..\src\gfx2d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
@@ -101,6 +85,29 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\gui\cli_models.h" />
+    <ClInclude Include="..\..\src\gui\cli_options.h" />
+    <ClInclude Include="..\..\src\gui\init.h" />
+    <ClInclude Include="..\..\src\gui\params.h" />
+    <ClInclude Include="..\..\src\gui\solver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\gui\cli_options.cpp" />
+    <ClCompile Include="..\..\src\gui\init.cpp" />
+    <ClCompile Include="..\..\src\gui\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibTromino2d\LibTromino2d.vcxproj">
+      <Project>{58055b54-0bf4-420c-9dda-9febb5584955}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libtromino\libtromino.vcxproj">
+      <Project>{67c72ae0-f810-4766-bc5d-aede7210943c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libtromino_validation\libtromino_validation.vcxproj">
+      <Project>{7f327585-53de-4f6b-919b-1244189b2d40}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

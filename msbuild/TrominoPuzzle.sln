@@ -11,6 +11,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TrominoPuzzle.Cli", "Tromin
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibTromino.Test", "LibTromino.Test\LibTromino.Test.vcxproj", "{A6E987AD-EED6-46D7-B521-6EDEA4C50F97}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tromino2d", "Tromino2d\Tromino2d.vcxproj", "{63D50462-2A96-4526-80D7-A678CB63690A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibTromino2d", "LibTromino2d\LibTromino2d.vcxproj", "{58055B54-0BF4-420C-9DDA-9FEBB5584955}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -33,6 +37,14 @@ Global
 		{A6E987AD-EED6-46D7-B521-6EDEA4C50F97}.Debug|x64.Build.0 = Debug|x64
 		{A6E987AD-EED6-46D7-B521-6EDEA4C50F97}.Release|x64.ActiveCfg = Release|x64
 		{A6E987AD-EED6-46D7-B521-6EDEA4C50F97}.Release|x64.Build.0 = Release|x64
+		{63D50462-2A96-4526-80D7-A678CB63690A}.Debug|x64.ActiveCfg = Debug|x64
+		{63D50462-2A96-4526-80D7-A678CB63690A}.Debug|x64.Build.0 = Debug|x64
+		{63D50462-2A96-4526-80D7-A678CB63690A}.Release|x64.ActiveCfg = Release|x64
+		{63D50462-2A96-4526-80D7-A678CB63690A}.Release|x64.Build.0 = Release|x64
+		{58055B54-0BF4-420C-9DDA-9FEBB5584955}.Debug|x64.ActiveCfg = Debug|x64
+		{58055B54-0BF4-420C-9DDA-9FEBB5584955}.Debug|x64.Build.0 = Debug|x64
+		{58055B54-0BF4-420C-9DDA-9FEBB5584955}.Release|x64.ActiveCfg = Release|x64
+		{58055B54-0BF4-420C-9DDA-9FEBB5584955}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

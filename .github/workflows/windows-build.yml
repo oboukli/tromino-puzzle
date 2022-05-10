@@ -39,8 +39,17 @@ jobs:
             'vcpkg\CHANGELOG.md'
           ) }}
 
-    - name: Install boost-test
-      run: vcpkg\vcpkg install boost-test --triplet x64-windows
+    - name: Install Boost.Test vcpkg package
+      run: vcpkg install boost-test --triplet x64-windows
+      working-directory: vcpkg
+
+    - name: Install SDL2 vcpkg package
+      run: vcpkg install sdl2 --triplet x64-windows
+      working-directory: vcpkg
+
+    - name: Integrate vcpkg
+      run: vcpkg integrate install
+      working-directory: vcpkg
 
     - name: Set up MSBuild
       uses: microsoft/setup-msbuild@v1.0.2

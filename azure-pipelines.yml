@@ -52,7 +52,11 @@ jobs:
           arguments: -disableMetrics
 
       - script: vcpkg install --triplet x64-windows boost-test
-        displayName: Install vcpkg packages
+        displayName: Install Boost.Test vcpkg package
+        workingDirectory: $(primaryRepository)/vcpkg
+
+      - script: vcpkg install --triplet x64-windows sdl2
+        displayName: Install SDL2 vcpkg package
         workingDirectory: $(primaryRepository)/vcpkg
 
       - script: vcpkg integrate install
