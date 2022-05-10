@@ -49,9 +49,15 @@ jobs:
         displayName: Bootstrap vcpkg
         inputs:
           filename: $(primaryRepository)\vcpkg\bootstrap-vcpkg.bat
+          arguments: -disableMetrics
 
-      - script: $(primaryRepository)\vcpkg\vcpkg.exe install --triplet x64-windows boost-test
+      - script: vcpkg install --triplet x64-windows boost-test
         displayName: Install vcpkg packages
+        workingDirectory: $(primaryRepository)/vcpkg
+
+      - script: vcpkg integrate install
+        displayName: Integrate vcpkg
+        workingDirectory: $(primaryRepository)/vcpkg
 
       - task: VSBuild@1
         displayName: Build
@@ -110,10 +116,10 @@ jobs:
       numMakeJobs: 3
     steps:
       - task: DockerInstaller@0
-        displayName: Emscripten SDK
+        displayName: Install Docker
         inputs:
           dockerVersion: 20.10.15
           releaseType: stable
 
       - script: docker run --volume=$(pwd):/src --workdir=/src/emscripten emscripten/emsdk:$(emsdkVersion) emmake make --jobs=$(numMakeJobs)
-        displayName: Emscripten build for WebAssembly
+        displayName: Build with Emscripten SDK
