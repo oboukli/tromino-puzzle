@@ -29,9 +29,6 @@ constexpr char top_right = '\xBB';
 constexpr char bottom_left = '\xC8';
 constexpr char bottom_right = '\xBC';
 
-void draw_at(
-    const int x, const int y, const char c, const HANDLE hOutput) noexcept;
-
 void draw_board(const board_t& board) noexcept;
 
 void add_tromino(

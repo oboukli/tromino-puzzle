@@ -28,13 +28,15 @@
 
 namespace tromino::tromino2d {
 
+namespace {
+
 struct SharedState {
     std::mutex mut;
     std::condition_variable lockCond;
     std::vector<tromino::gfx2d::Step> steps;
 };
 
-static void addTromino(
+void addTromino(
     const int pos_x, const int pos_y, const int flip_x, const int flip_y,
     SharedState* const sharedState) noexcept {
     using namespace tromino::gfx2d;
@@ -46,7 +48,7 @@ static void addTromino(
     sharedState->lockCond.notify_one();
 }
 
-static void pollSdlEvents(bool& isMainLoopRunning) noexcept {
+void pollSdlEvents(bool& isMainLoopRunning) noexcept {
     ::SDL_Event event;
 
     while (::SDL_PollEvent(&event)) {
@@ -56,7 +58,7 @@ static void pollSdlEvents(bool& isMainLoopRunning) noexcept {
     }
 }
 
-inline static void start_game_loop(
+inline void start_game_loop(
     const tromino::gfx2d::Board& board, SharedState& sharedState,
     const int width, const std::string& title) {
     using namespace tromino::gfx2d;
@@ -101,6 +103,8 @@ inline static void start_game_loop(
         ::SDL_Delay(FRAME_DELAY);
     }
 }
+
+} // namespace
 
 int init(
     const tromino::gfx2d::Board& board, const int width,

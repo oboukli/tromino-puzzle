@@ -11,8 +11,10 @@
 
 #include "unittest_helper.h"
 
+namespace {
+
 // clang-format off
-static const std::array<ShimStep, std::size_t{((64 * 64) - 1) / 3}>
+const std::array<ShimStep, std::size_t{((64 * 64) - 1) / 3}>
     g_expected_for_order_64_and_mark_61_37{{
         {60, 36, 1, 1},
         {62, 38, -1, -1},
@@ -1381,6 +1383,8 @@ static const std::array<ShimStep, std::size_t{((64 * 64) - 1) / 3}>
         {31, 31, 1, 1},
     }};
 // clang-format on
+
+} // namespace
 
 BOOST_AUTO_TEST_SUITE(tromino_64x64_test_suite)
 

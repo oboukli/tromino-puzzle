@@ -14,11 +14,13 @@
 
 namespace tromino::cli::windows {
 
-static inline void draw_at(const int x, const int y, const char c) noexcept {
+namespace {
+
+inline void draw_at(const int x, const int y, const char c) noexcept {
     std::cout << c;
 }
 
-static inline void draw_at(
+inline void draw_at(
     const int x, const int y, const char c, const HANDLE hOutput) noexcept {
     const COORD coord{
         .X{static_cast<SHORT>(x)},
@@ -29,6 +31,22 @@ static inline void draw_at(
 
     draw_at(x, y, c);
 }
+
+void ensure_success(const BOOL is_success, const std::string& msg) noexcept {
+    if (!is_success) {
+        const auto error = ::GetLastError();
+        // clang-format off
+        std::cerr
+            << "Windows API error: " << error
+            << "Message: " << msg
+            << std::endl;
+        // clang-format on
+
+        ::ExitProcess(EXIT_FAILURE);
+    }
+}
+
+} // namespace
 
 void draw_board(const board_t& board) noexcept {
     const int order = board.order;
@@ -80,21 +98,6 @@ void add_tromino(
 
     std::cout << std::endl;
     std::this_thread::sleep_for(DELAY_AFTER);
-}
-
-static void ensure_success(
-    const BOOL is_success, const std::string& msg) noexcept {
-    if (!is_success) {
-        const auto error = ::GetLastError();
-        // clang-format off
-        std::cerr
-            << "Windows API error: " << error
-            << "Message: " << msg
-            << std::endl;
-        // clang-format on
-
-        ::ExitProcess(EXIT_FAILURE);
-    }
 }
 
 void use_wch(board_t& tromino_board) noexcept {
