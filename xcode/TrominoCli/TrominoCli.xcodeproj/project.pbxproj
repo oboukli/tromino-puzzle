@@ -225,7 +225,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					../../src/lib,
+					../../src/libtromino,
 					../../src/validation,
 				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2022 Omar Boukli-Hacene. All rights reserved.";
@@ -288,7 +288,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					../../src/lib,
+					../../src/libtromino,
 					../../src/validation,
 				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2022 Omar Boukli-Hacene. All rights reserved.";

@@ -46,12 +46,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(IncludePath)</IncludePath>
-    <SourcePath>$(SolutionDir)\..\src\lib;$(SourcePath)</SourcePath>
+    <SourcePath>$(SolutionDir)\..\src\libtromino;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(IncludePath)</IncludePath>
-    <SourcePath>$(SolutionDir)\..\src\lib;$(SourcePath)</SourcePath>
+    <SourcePath>$(SolutionDir)\..\src\libtromino;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnabled>false</VcpkgEnabled>
@@ -95,10 +95,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\lib\tromino.h" />
+    <ClInclude Include="..\..\src\libtromino\tromino.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\lib\tromino.c" />
+    <ClCompile Include="..\..\src\libtromino\tromino.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

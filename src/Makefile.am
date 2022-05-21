@@ -15,11 +15,11 @@ bin_PROGRAMS =
 include_HEADERS =
 lib_LTLIBRARIES =
 
-libtromino_la_SOURCES = lib/tromino.c
+libtromino_la_SOURCES = libtromino/tromino.c
 libtromino_la_LDFLAGS = \
 	-no-undefined \
 	-version-info $(LIBTROMINO_CURRENT):$(LIBTROMINO_REVISION):$(LIBTROMINO_AGE)
-include_HEADERS += lib/tromino.h
+include_HEADERS += libtromino/tromino.h
 lib_LTLIBRARIES += libtromino.la
 
 libtromino_validation_la_SOURCES = validation/tromino_validation.c
@@ -41,7 +41,7 @@ tromino_SOURCES = \
 	cli/trmn_graph_vt.cpp \
 	cli/trmn_graph_vt.h
 tromino_CPPFLAGS = \
-	-I$(top_srcdir)/src/lib \
+	-I$(top_srcdir)/src/libtromino \
 	-I$(top_srcdir)/src/validation
 tromino_LDADD = \
 	libtromino.la \
@@ -60,7 +60,7 @@ libtromino_gfx2d_la_SOURCES = \
 	gfx2d/window.h
 libtromino_gfx2d_la_CPPFLAGS = \
 	-I/usr/include/SDL2 \
-	-I$(top_srcdir)/src/lib
+	-I$(top_srcdir)/src/libtromino
 libtromino_gfx2d_la_LDFLAGS = \
 	-lSDL2 \
 	-no-undefined \
@@ -85,7 +85,7 @@ tromino2d_SOURCES = \
 	gui/solver.h
 tromino2d_CPPFLAGS = \
 	-I/usr/include/SDL2 \
-	-I$(top_srcdir)/src/lib \
+	-I$(top_srcdir)/src/libtromino \
 	-I$(top_srcdir)/src/gfx2d \
 	-I$(top_srcdir)/src/validation
 tromino2d_LDFLAGS = \

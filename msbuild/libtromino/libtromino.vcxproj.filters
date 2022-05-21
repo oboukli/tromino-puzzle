@@ -11,12 +11,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\lib\tromino.h">
+    <ClInclude Include="..\..\src\libtromino\tromino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\lib\tromino.c">
+    <ClCompile Include="..\..\src\libtromino\tromino.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

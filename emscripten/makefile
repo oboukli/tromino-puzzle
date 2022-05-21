@@ -52,7 +52,7 @@ directories:
 	$(MKDIR) $(OUT_DIR)/$(LITRO_DIR_NAME)
 	$(MKDIR) $(OUT_DIR)/$(TRMN_DIR_NAME)
 
-$(TARGET_LITRO): $(OBJ_DIR)/lib/tromino.o $(OBJ_DIR)/wasm/litro/libtromino_wrapper.o
+$(TARGET_LITRO): $(OBJ_DIR)/libtromino/tromino.o $(OBJ_DIR)/wasm/litro/libtromino_wrapper.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) \
 	--closure 1 \
 	--no-entry \
@@ -83,7 +83,7 @@ $(TARGET_LITRO): $(OBJ_DIR)/lib/tromino.o $(OBJ_DIR)/wasm/litro/libtromino_wrapp
 	-s WASM=1 \
 	-o $(OUT_DIR)/$(LITRO_DIR_NAME)/$@ $^
 
-$(TARGET_TRMN): $(OBJ_DIR)/lib/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/trmn/trmn.o
+$(TARGET_TRMN): $(OBJ_DIR)/libtromino/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/trmn/trmn.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) \
 	--closure 1 \
 	--no-entry \
@@ -114,7 +114,7 @@ $(TARGET_TRMN): $(OBJ_DIR)/lib/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/trmn/trmn
 	-lGL \
 	-o $(OUT_DIR)/$(TRMN_DIR_NAME)/$@ $^
 
-$(OBJ_DIR)/lib/tromino.o: $(SRC_DIR)/lib/tromino.c
+$(OBJ_DIR)/libtromino/tromino.o: $(SRC_DIR)/libtromino/tromino.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CPPFLAGS) $(CFLAGS) \
 	-c $< \
@@ -123,7 +123,7 @@ $(OBJ_DIR)/lib/tromino.o: $(SRC_DIR)/lib/tromino.c
 $(OBJ_DIR)/wasm/litro/libtromino_wrapper.o: $(SRC_DIR)/wasm/litro/libtromino_wrapper.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CPPFLAGS) $(CFLAGS) \
-	-I$(SRC_DIR)/lib \
+	-I$(SRC_DIR)/libtromino \
 	-c $< \
 	-o $@
 
@@ -131,7 +131,7 @@ $(OBJ_DIR)/wasm/trmn/trmn.o: $(SRC_DIR)/wasm/trmn/trmn.cpp
 	@mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) \
 	-s USE_SDL=2 \
-	-I$(SRC_DIR)/lib \
+	-I$(SRC_DIR)/libtromino \
 	-I$(SRC_DIR)/gfx2d \
 	-c $< \
 	-o $@
@@ -140,7 +140,7 @@ $(OBJ_DIR)/gfx2d/%.o: $(SRC_DIR)/gfx2d/%.cpp
 	@mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) \
 	-s USE_SDL=2 \
-	-I$(SRC_DIR)/lib \
+	-I$(SRC_DIR)/libtromino \
 	-c $< \
 	-o $@
 
@@ -153,7 +153,7 @@ webapp:
 clean:
 	$(RM) \
 	$(OBJ_DIR)/gfx2d/*.o \
-	$(OBJ_DIR)/lib/*.o \
+	$(OBJ_DIR)/libtromino/*.o \
 	$(OBJ_DIR)/wasm/trmn/*.o \
 	$(OBJ_DIR)/wasm/litro/*.o \
 	$(OUT_DIR)/$(LITRO_DIR_NAME)/gfx.js \

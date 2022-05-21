@@ -8,7 +8,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/oboukli/tromino-puzzle/badge)](https://www.codefactor.io/repository/github/oboukli/tromino-puzzle)
 [![Codacy](https://app.codacy.com/project/badge/Grade/8395b4fbd3b34c72907b0e65fe0b5f35)](https://www.codacy.com/gh/oboukli/tromino-puzzle/dashboard)
 
-This is a C library (see `src/lib`) implementing a divide-and-conquer O(n)
+This is a C library (see `src/libtromino`) implementing a divide-and-conquer O(n)
 algorithm, and a collection of apps, to solve the tromino puzzle,
 over-engineered for the joy of learning by doing.
 

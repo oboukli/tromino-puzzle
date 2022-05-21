@@ -11,11 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\test\lib\testmain_libtromino.cpp" />
-    <ClCompile Include="..\..\test\lib\tromino_2x2_unittest.cpp" />
-    <ClCompile Include="..\..\test\lib\tromino_4x4_unittest.cpp" />
-    <ClCompile Include="..\..\test\lib\tromino_64x64_unittest.cpp" />
-    <ClCompile Include="..\..\test\lib\unittest_helper.cpp" />
+    <ClCompile Include="..\..\test\libtromino\testmain_libtromino.cpp" />
+    <ClCompile Include="..\..\test\libtromino\tromino_2x2_unittest.cpp" />
+    <ClCompile Include="..\..\test\libtromino\tromino_4x4_unittest.cpp" />
+    <ClCompile Include="..\..\test\libtromino\tromino_64x64_unittest.cpp" />
+    <ClCompile Include="..\..\test\libtromino\unittest_helper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\libtromino\libtromino.vcxproj">
@@ -23,7 +23,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\test\lib\unittest_helper.h" />
+    <ClInclude Include="..\..\test\libtromino\unittest_helper.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -73,7 +73,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\libtromino;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -90,7 +90,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\libtromino;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>

@@ -29,21 +29,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7503E76726C88C490018B1F2 /* lib */ = {
+		7503E76726C88C490018B1F2 /* libtromino */ = {
 			isa = PBXGroup;
 			children = (
 				7503E76A26C88C490018B1F2 /* tromino.c */,
 				7503E76826C88C490018B1F2 /* tromino.h */,
 			);
-			name = lib;
-			path = ../../src/lib;
+			name = libtromino;
+			path = ../../src/libtromino;
 			sourceTree = "<group>";
 		};
 		7594DBE526C482A500CF433E = {
 			isa = PBXGroup;
 			children = (
 				755F9D1F2811C878004C54E0 /* Config.xcconfig */,
-				7503E76726C88C490018B1F2 /* lib */,
+				7503E76726C88C490018B1F2 /* libtromino */,
 				7594DBEF26C482A500CF433E /* Products */,
 			);
 			sourceTree = "<group>";

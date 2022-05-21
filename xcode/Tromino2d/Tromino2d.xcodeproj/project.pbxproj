@@ -252,7 +252,7 @@
 				HEADER_SEARCH_PATHS = (
 					../../src/gfx2d,
 					../../src/gfx2dfe,
-					../../src/lib,
+					../../src/libtromino,
 					../../src/validation,
 				);
 				INFOPLIST_KEY_CFBundleDisplayName = "Tromino Puzzle";
@@ -324,7 +324,7 @@
 				HEADER_SEARCH_PATHS = (
 					../../src/gfx2d,
 					../../src/gfx2dfe,
-					../../src/lib,
+					../../src/libtromino,
 					../../src/validation,
 				);
 				INFOPLIST_KEY_CFBundleDisplayName = "Tromino Puzzle";

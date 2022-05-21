@@ -70,7 +70,7 @@
 			children = (
 				755F9D212811CA4B004C54E0 /* Config.xcconfig */,
 				7503E7D526C895610018B1F2 /* Frameworks */,
-				7503E7CE26C894EC0018B1F2 /* lib */,
+				7503E7CE26C894EC0018B1F2 /* libtromino */,
 				75002ABC27A5F7ED00CBB593 /* validation */,
 				7503E7A226C891260018B1F2 /* Products */,
 			);
@@ -84,7 +84,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7503E7CE26C894EC0018B1F2 /* lib */ = {
+		7503E7CE26C894EC0018B1F2 /* libtromino */ = {
 			isa = PBXGroup;
 			children = (
 				7503E7D026C894EC0018B1F2 /* testmain_libtromino.cpp */,
@@ -94,8 +94,8 @@
 				7525763026F76BB400BB3EB3 /* unittest_helper.h */,
 				7525763426F77D4700BB3EB3 /* tromino_64x64_unittest.cpp */,
 			);
-			name = lib;
-			path = ../../test/lib;
+			name = libtromino;
+			path = ../../test/libtromino;
 			sourceTree = "<group>";
 		};
 		7503E7D526C895610018B1F2 /* Frameworks */ = {
@@ -232,7 +232,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					../../src/lib,
+					../../src/libtromino,
 					../../src/validation,
 				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2022 Omar Boukli-Hacene. All rights reserved.";
@@ -296,7 +296,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					../../src/lib,
+					../../src/libtromino,
 					../../src/validation,
 				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2022 Omar Boukli-Hacene. All rights reserved.";
