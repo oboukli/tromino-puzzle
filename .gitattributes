@@ -3,10 +3,14 @@
 *.css linguist-vendored
 *.html linguist-vendored
 *.json linguist-vendored
-*.m4 linguist-vendored
 *.sh linguist-vendored
+
 configure.ac linguist-vendored
-makefile linguist-vendored
 Makefile.am linguist-vendored
-msbuild/* linguist-vendored
-xcode/* linguist-vendored
+
+content/** linguist-vendored
+emscripten/** linguist-vendored
+msbuild/** linguist-vendored
+vendor/** linguist-vendored
+web/** linguist-vendored
+xcode/** linguist-vendored
