@@ -119,21 +119,21 @@ int init(
         solver<SharedState>, board.order, board.mark_x, board.mark_y,
         addTromino, &sharedState);
 
-    if (::SDL_Init(SDL_INIT_VIDEO) != 0) {
-        return EXIT_FAILURE;
+    bool sdl2_success = false;
+    if (::SDL_Init(SDL_INIT_VIDEO) == 0) {
+        ::SDL_SetHint(SDL_HINT_RENDER_LOGICAL_SIZE_MODE, "overscan");
+        ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
+        ::SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
+
+        start_game_loop(board, sharedState, width, title);
+
+        sdl2_success = true;
     }
-
-    ::SDL_SetHint(SDL_HINT_RENDER_LOGICAL_SIZE_MODE, "overscan");
-    ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
-    ::SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
-
-    start_game_loop(board, sharedState, width, title);
-
     ::SDL_Quit();
 
     solver_thread.join();
 
-    return EXIT_SUCCESS;
+    return sdl2_success ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 
 } // namespace tromino::tromino2d
