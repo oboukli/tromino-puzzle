@@ -7,10 +7,10 @@
 #ifndef INIT_H_
 #define INIT_H_
 
-namespace tromino::cli::app {
+namespace tromino::cli::wch {
 
 void init(const int size, const int x, const int y) noexcept;
 
-} // namespace tromino::cli::app
+} // namespace tromino::cli::wch
 
 #endif // INIT_H_
