@@ -54,8 +54,8 @@ libtromino_gfx2d_la_SOURCES = \
 	gfx2d/style.h \
 	gfx2d/tromino_gfx2d.cpp \
 	gfx2d/tromino_gfx2d.h \
-	gfx2d/viewmodel.cpp \
-	gfx2d/viewmodel.h \
+	gfx2d/view_model.cpp \
+	gfx2d/view_model.h \
 	gfx2d/window.cpp \
 	gfx2d/window.h
 libtromino_gfx2d_la_CPPFLAGS = \
@@ -70,7 +70,7 @@ include_HEADERS += \
 	gfx2d/board.h \
 	gfx2d/step.h \
 	gfx2d/tromino_gfx2d.h \
-	gfx2d/viewmodel.h \
+	gfx2d/view_model.h \
 	gfx2d/window.h
 lib_LTLIBRARIES += libtromino-gfx2d.la
 

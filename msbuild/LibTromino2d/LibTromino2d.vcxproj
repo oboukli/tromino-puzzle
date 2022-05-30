@@ -94,12 +94,12 @@
     <ClInclude Include="..\..\src\gfx2d\step.h" />
     <ClInclude Include="..\..\src\gfx2d\style.h" />
     <ClInclude Include="..\..\src\gfx2d\tromino_gfx2d.h" />
-    <ClInclude Include="..\..\src\gfx2d\viewmodel.h" />
+    <ClInclude Include="..\..\src\gfx2d\view_model.h" />
     <ClInclude Include="..\..\src\gfx2d\window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\gfx2d\tromino_gfx2d.cpp" />
-    <ClCompile Include="..\..\src\gfx2d\viewmodel.cpp" />
+    <ClCompile Include="..\..\src\gfx2d\view_model.cpp" />
     <ClCompile Include="..\..\src\gfx2d\window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

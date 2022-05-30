@@ -27,7 +27,7 @@
     <ClInclude Include="..\..\src\gfx2d\tromino_gfx2d.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\gfx2d\viewmodel.h">
+    <ClInclude Include="..\..\src\gfx2d\view_model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\gfx2d\window.h">
@@ -38,7 +38,7 @@
     <ClCompile Include="..\..\src\gfx2d\tromino_gfx2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\gfx2d\viewmodel.cpp">
+    <ClCompile Include="..\..\src\gfx2d\view_model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\gfx2d\window.cpp">

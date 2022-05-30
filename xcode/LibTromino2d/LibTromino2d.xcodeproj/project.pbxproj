@@ -11,8 +11,8 @@
 		7503E7DC26C896C90018B1F2 /* tromino_gfx2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E7DA26C896C90018B1F2 /* tromino_gfx2d.cpp */; };
 		750984C326E44E83005B6E82 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750984C126E44E83005B6E82 /* window.cpp */; };
 		750984C426E44E83005B6E82 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984C226E44E83005B6E82 /* window.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		750984C726E45054005B6E82 /* viewmodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750984C526E45054005B6E82 /* viewmodel.cpp */; };
-		750984C826E45054005B6E82 /* viewmodel.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984C626E45054005B6E82 /* viewmodel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		750984C726E45054005B6E82 /* view_model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750984C526E45054005B6E82 /* view_model.cpp */; };
+		750984C826E45054005B6E82 /* view_model.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984C626E45054005B6E82 /* view_model.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		750984CC26E45076005B6E82 /* style.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984CA26E45076005B6E82 /* style.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		750984D026E455FE005B6E82 /* board.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984CE26E455FE005B6E82 /* board.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		750984D426E55220005B6E82 /* step.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984D226E55220005B6E82 /* step.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -24,8 +24,8 @@
 		7503E7DA26C896C90018B1F2 /* tromino_gfx2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tromino_gfx2d.cpp; sourceTree = "<group>"; };
 		750984C126E44E83005B6E82 /* window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
 		750984C226E44E83005B6E82 /* window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
-		750984C526E45054005B6E82 /* viewmodel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = viewmodel.cpp; sourceTree = "<group>"; };
-		750984C626E45054005B6E82 /* viewmodel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = viewmodel.h; sourceTree = "<group>"; };
+		750984C526E45054005B6E82 /* view_model.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = view_model.cpp; sourceTree = "<group>"; };
+		750984C626E45054005B6E82 /* view_model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = view_model.h; sourceTree = "<group>"; };
 		750984CA26E45076005B6E82 /* style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = style.h; sourceTree = "<group>"; };
 		750984CE26E455FE005B6E82 /* board.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = board.h; sourceTree = "<group>"; };
 		750984D226E55220005B6E82 /* step.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = step.h; sourceTree = "<group>"; };
@@ -69,8 +69,8 @@
 				750984CA26E45076005B6E82 /* style.h */,
 				7503E7DA26C896C90018B1F2 /* tromino_gfx2d.cpp */,
 				7503E7D926C896C90018B1F2 /* tromino_gfx2d.h */,
-				750984C526E45054005B6E82 /* viewmodel.cpp */,
-				750984C626E45054005B6E82 /* viewmodel.h */,
+				750984C526E45054005B6E82 /* view_model.cpp */,
+				750984C626E45054005B6E82 /* view_model.h */,
 				750984C126E44E83005B6E82 /* window.cpp */,
 				750984C226E44E83005B6E82 /* window.h */,
 			);
@@ -96,7 +96,7 @@
 				750984D426E55220005B6E82 /* step.h in Headers */,
 				750984CC26E45076005B6E82 /* style.h in Headers */,
 				7503E7DB26C896C90018B1F2 /* tromino_gfx2d.h in Headers */,
-				750984C826E45054005B6E82 /* viewmodel.h in Headers */,
+				750984C826E45054005B6E82 /* view_model.h in Headers */,
 				750984C426E44E83005B6E82 /* window.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,7 +159,7 @@
 			files = (
 				7503E7DC26C896C90018B1F2 /* tromino_gfx2d.cpp in Sources */,
 				750984C326E44E83005B6E82 /* window.cpp in Sources */,
-				750984C726E45054005B6E82 /* viewmodel.cpp in Sources */,
+				750984C726E45054005B6E82 /* view_model.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

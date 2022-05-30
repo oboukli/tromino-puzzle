@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef VIEWMODEL_H_
-#define VIEWMODEL_H_
+#ifndef VIEW_MODEL_H_
+#define VIEW_MODEL_H_
 
 #include <SDL2/SDL.h>
 
@@ -66,4 +66,4 @@ private:
 
 } // namespace tromino::gfx2d
 
-#endif // VIEWMODEL_H_
+#endif // VIEW_MODEL_H_

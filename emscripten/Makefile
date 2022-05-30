@@ -24,7 +24,7 @@ GFX2D_DIR ::= $(SRC_DIR)/gfx2d
 
 GFX2D_SRCS ::= \
 	tromino_gfx2d.cpp \
-	viewmodel.cpp \
+	view_model.cpp \
 	window.cpp
 
 GFX2D_OBJS ::= $(GFX2D_SRCS:%.cpp=$(OBJ_DIR)/gfx2d/%.o)
