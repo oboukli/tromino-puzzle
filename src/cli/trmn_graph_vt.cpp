@@ -167,7 +167,7 @@ void use_vt(board_t& tromino_board) noexcept {
     // clang-format on
 
 #ifndef TROMINO_USE_ASCII
-    // Use VT100 Special graphics chararters
+    // Use VT100 Special graphics characters
     std::cout << ESC + "(0"s;
 #endif // !TROMINO_USE_ASCII
 
@@ -183,7 +183,7 @@ void use_vt(board_t& tromino_board) noexcept {
 
     // clang-format off
     std::cout <<
-        // Switch back VT100 Special graphics chararters
+        // Switch back VT100 Special graphics characters
         ESC + "0)"s +
 
         // Reset to initial state (RIS)
