@@ -15,10 +15,6 @@ constexpr int ORDER_ARG_IDX{1};
 constexpr int MARKX_ARG_IDX{2};
 constexpr int MARKY_ARG_IDX{3};
 
-#ifdef _WINDOWS
-constexpr int USE_WCH_ARG_IDX{4};
-#endif
-
 } // namespace tromino::cli::params
 
 #endif // PARAMS_H

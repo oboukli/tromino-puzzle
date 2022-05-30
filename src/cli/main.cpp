@@ -27,12 +27,7 @@ int main(const int argc, const char* const argv[]) noexcept {
         return EXIT_FAILURE;
     }
 
-#ifdef _WINDOWS
-    tromino::cli::app::init(
-        options.order, options.x, options.y, options.emulation_mode);
-#else
     tromino::cli::app::init(options.order, options.x, options.y);
-#endif // _WINDOWS
 
     return EXIT_SUCCESS;
 }

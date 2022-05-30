@@ -9,15 +9,15 @@
 #include <array>
 #include <cassert>
 #include <chrono>
-#include <iostream>
 #include <thread>
 
 namespace tromino::cli::windows {
 
 namespace {
 
-inline void draw_at(const int x, const int y, const char c) noexcept {
-    std::cout << c;
+inline void draw_at(
+    const int x, const int y, const char c, std::ostream& os) noexcept {
+    os << c;
 }
 
 inline void draw_at(
@@ -29,14 +29,20 @@ inline void draw_at(
 
     ::SetConsoleCursorPosition(hOutput, coord);
 
-    draw_at(x, y, c);
+    // https://docs.microsoft.com/en-us/windows/console/writeconsoleoutput
+    // ::WriteConsoleOutput
+
+    // https://docs.microsoft.com/en-us/windows/console/writeconsole
+    // ::WriteConsole
+
+    draw_at(x, y, c); // TODO:
 }
 
 void ensure_success(const BOOL is_success, const std::string& msg) noexcept {
     if (!is_success) {
         const auto error = ::GetLastError();
         // clang-format off
-        std::cerr
+        std::cerr // TODO:
             << "Windows API error: " << error
             << "Message: " << msg
             << std::endl;
@@ -48,14 +54,14 @@ void ensure_success(const BOOL is_success, const std::string& msg) noexcept {
 
 } // namespace
 
-void draw_board(const board_t& board) noexcept {
+void draw_board(const board_t& board, std::ostream os) noexcept {
     const int order = board.order;
     for (int i = 0; i < order; ++i) { // Rows
         for (int j = 0; j < order; ++j) { // Columns
-            std::cout << board.board_matrix[calc_index(j, i, order)];
+            os << board.board_matrix[calc_index(j, i, order)];
         }
 
-        std::cout << std::endl;
+        os << std::endl; // TODO:
     }
 }
 
@@ -96,7 +102,7 @@ void add_tromino(
     };
     ::SetConsoleCursorPosition(graph_state->hOutput, coord);
 
-    std::cout << std::endl;
+    os << std::endl;
     std::this_thread::sleep_for(DELAY_AFTER);
 }
 
@@ -128,7 +134,7 @@ void use_wch(board_t& tromino_board, std::ostream& os) noexcept {
     };
     // clang-format on
     ::SetConsoleCursorPosition(hConsoleOutput, coordMark);
-    std::cout << mark;
+    os << mark;
 
     ::SetConsoleTextAttribute(
         hConsoleOutput,

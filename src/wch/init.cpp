@@ -6,16 +6,10 @@
 
 #include "init.h"
 
-#include <cstddef>
-#include <iostream>
-#include <memory>
+namespace tromino::cli::wch {
 
-#include "trmn_graph.h"
-#include "trmn_graph_vt.h"
-
-namespace tromino::cli::app {
-
-void init(const int order, const int x, const int y) noexcept {
+void init(
+    const int order, const int x, const int y) noexcept {
     const auto order_internal = static_cast<std::size_t>(order);
     const std::size_t size = order_internal * order_internal;
 
@@ -26,7 +20,7 @@ void init(const int order, const int x, const int y) noexcept {
         .mark_x = x,
         .mark_y = y};
 
-    tromino::cli::vt::use_vt(tromino_board, std::cout);
+    tromino::cli::windows::use_wch(tromino_board, std::cout);
 }
 
-} // namespace tromino::cli::app
+} // namespace tromino::cli::wch

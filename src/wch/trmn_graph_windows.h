@@ -11,6 +11,7 @@
 #include <Windows.h>
 
 #include <algorithm>
+#include <iostream>
 
 #include "tromino.h"
 

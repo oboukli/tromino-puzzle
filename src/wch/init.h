@@ -4,17 +4,13 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef CLI_MODELS_H
-#define CLI_MODELS_H
+#ifndef INIT_H_
+#define INIT_H_
 
-namespace tromino::cli {
+namespace tromino::cli::wch {
 
-struct options {
-    int order;
-    int x;
-    int y;
-};
+void init(const int size, const int x, const int y) noexcept;
 
-} // namespace tromino::cli
+} // namespace tromino::cli::wch
 
-#endif // CLI_MODELS_H
+#endif // INIT_H_

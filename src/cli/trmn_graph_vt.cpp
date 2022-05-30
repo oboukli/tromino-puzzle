@@ -175,7 +175,7 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept {
         tromino_board.order, tromino_board.mark_x, tromino_board.mark_y,
         add_tromino, &graph_state);
 
-    std::cin.get();
+    std::cin.get(); // TODO:
 
     // clang-format off
     os <<
