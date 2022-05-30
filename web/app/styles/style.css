@@ -48,7 +48,7 @@ canvas {
   align-items: center;
 }
 
-.flex-outer>li:not(:last-child) {
+.flex-outer > li:not(:last-child) {
   margin-bottom: 20px;
 }
 
@@ -57,13 +57,13 @@ canvas {
   padding: 8px;
 }
 
-.flex-outer>li>label,
+.flex-outer > li > label,
 .flex-outer li p {
   flex: 1 0 120px;
   max-width: 220px;
 }
 
-.flex-outer>li>label+*,
+.flex-outer > li > label + *,
 .flex-inner {
   flex: 1 0 220px;
 }
