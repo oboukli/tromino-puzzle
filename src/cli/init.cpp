@@ -7,6 +7,14 @@
 #include "init.h"
 
 #include <cstddef>
+#include <memory>
+
+#include "trmn_graph.h"
+#include "trmn_graph_vt.h"
+
+#ifdef _WINDOWS
+#include "trmn_graph_windows.h"
+#endif // _WINDOWS
 
 namespace tromino::cli::app {
 

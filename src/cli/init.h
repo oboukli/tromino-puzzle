@@ -7,17 +7,7 @@
 #ifndef INIT_H_
 #define INIT_H_
 
-#include <cassert>
-
-#include "tromino.h"
-
 #include "cli_models.h"
-#include "trmn_graph.h"
-#include "trmn_graph_vt.h"
-
-#ifdef _WINDOWS
-#include "trmn_graph_windows.h"
-#endif // _WINDOWS
 
 namespace tromino::cli::app {
 
