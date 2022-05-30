@@ -78,8 +78,10 @@ const litro = (function (window, document, ltrGfx) {
 
     solverWebWorker = new Worker("scripts/litro/worker.js");
 
-    solverWebWorker.addEventListener("message", handleSolverMessage,
-      { capture: false, passive: true });
+    solverWebWorker.addEventListener("message", handleSolverMessage, {
+      capture: false,
+      passive: true,
+    });
   }
 
   /**
@@ -102,7 +104,12 @@ const litro = (function (window, document, ltrGfx) {
    * @returns {void}
    */
   function drawNewPuzzle(order, markX, markY) {
-    boardModel = ltrGfx.createBoard(context, order, { x: markX, y: markY }, options);
+    boardModel = ltrGfx.createBoard(
+      context,
+      order,
+      { x: markX, y: markY },
+      options
+    );
     ltrGfx.drawBoard(boardModel);
     ltrGfx.drawMark(boardModel);
   }
@@ -119,7 +126,12 @@ const litro = (function (window, document, ltrGfx) {
 
     initSolver();
 
-    boardModel = ltrGfx.createBoard(context, order, { x: markX, y: markY }, options);
+    boardModel = ltrGfx.createBoard(
+      context,
+      order,
+      { x: markX, y: markY },
+      options
+    );
 
     drawNewPuzzle(order, markX, markY);
   }
@@ -159,7 +171,10 @@ const litro = (function (window, document, ltrGfx) {
     stepIdx = 0;
     start = performance.now();
 
-    solverWebWorker.postMessage({ cmd: "solve", payload: { order, markX, markY } });
+    solverWebWorker.postMessage({
+      cmd: "solve",
+      payload: { order, markX, markY },
+    });
 
     animationFrameRequestId = window.requestAnimationFrame(step);
   }
@@ -179,6 +194,6 @@ const litro = (function (window, document, ltrGfx) {
   return {
     initAsync,
     play,
-    change
+    change,
   };
-}(window, document, /* global ltrGfx */ ltrGfx));
+})(window, document, /* global ltrGfx */ ltrGfx);

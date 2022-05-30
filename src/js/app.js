@@ -28,29 +28,30 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 "use strict";
 
 (async function (window, editorFactory, litro, trmn) {
-  window.addEventListener("DOMContentLoaded", async () => {
-    const editor = editorFactory.create();
+  window.addEventListener(
+    "DOMContentLoaded",
+    async () => {
+      const editor = editorFactory.create();
 
-    await Promise.all([litro.initAsync(), trmn.initAsync()]);
+      await Promise.all([litro.initAsync(), trmn.initAsync()]);
 
-    editor.addEventListener("change",
-      (e) => {
+      editor.addEventListener("change", (e) => {
         litro.change(e.detail.order, e.detail.markX, e.detail.markY);
       });
 
-    editor.addEventListener("solve",
-      (e) => {
+      editor.addEventListener("solve", (e) => {
         litro.play(e.detail.order, e.detail.markX, e.detail.markY);
       });
 
-    editor.addEventListener("solve",
-      (e) => {
+      editor.addEventListener("solve", (e) => {
         trmn.play(e.detail.order, e.detail.markX, e.detail.markY);
       });
-  }, { capture: false, once: true, passive: true });
-}(
+    },
+    { capture: false, once: true, passive: true }
+  );
+})(
   window,
   /* global editorFactory */ editorFactory,
   /* global litro */ litro,
   /* global trmn */ trmn
-));
+);

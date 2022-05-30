@@ -42,9 +42,11 @@ function solveTromino(emModule, order, markX, markY, cb) {
     /** @type {number} */ positionX,
     /** @type {number} */ positionY,
     /** @type {number} */ flipX,
-    /** @type {number} */ flipY) {
+    /** @type {number} */ flipY
+  ) {
     cb(positionX, positionY, flipX, flipY);
-  }, "viiii");
+  },
+  "viiii");
 
   emModule._solve(order, markX, markY, funcPtr);
 

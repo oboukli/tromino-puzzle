@@ -61,7 +61,7 @@ const ltrGfx = (function () {
    * @param {Mark} mark
    * @param {Options} options
    * @returns {Board}
-  */
+   */
   function createBoard(context, order, mark, options) {
     const blockWidth = context.canvas.clientWidth / order;
 
@@ -79,8 +79,8 @@ const ltrGfx = (function () {
       order,
       mark,
       options,
-      numTrominos: ((order ** 2) - 1) * 0.3333333333333333,
-      blockWidth
+      numTrominos: (order ** 2 - 1) * 0.3333333333333333,
+      blockWidth,
     };
   }
 
@@ -101,7 +101,12 @@ const ltrGfx = (function () {
     context.beginPath();
     for (var i = 0; i < order; ++i) {
       for (var j = 0, col = order >> 1; j < col; ++j) {
-        context.rect(2 * j * blockWidth + ((i & 1) === 1 ? 0 : blockWidth), i * blockWidth, blockWidth, blockWidth);
+        context.rect(
+          2 * j * blockWidth + ((i & 1) === 1 ? 0 : blockWidth),
+          i * blockWidth,
+          blockWidth,
+          blockWidth
+        );
       }
     }
     context.closePath();
@@ -138,11 +143,36 @@ const ltrGfx = (function () {
 
     trominoContext.fillStyle = options.trominoOutlineColor;
     trominoContext.fillRect(0, 0, blockWidth * 2, thickness);
-    trominoContext.fillRect((blockWidth * 2) - thickness, thickness, thickness, blockWidth - thickness);
-    trominoContext.fillRect(blockWidth - thickness, blockWidth - thickness, (blockWidth * 2) - thickness, thickness);
-    trominoContext.fillRect(blockWidth - thickness, blockWidth, thickness, blockWidth - thickness);
-    trominoContext.fillRect(0, (blockWidth * 2) - thickness, blockWidth, thickness);
-    trominoContext.fillRect(0, thickness, thickness, (blockWidth * 2) - thickness);
+    trominoContext.fillRect(
+      blockWidth * 2 - thickness,
+      thickness,
+      thickness,
+      blockWidth - thickness
+    );
+    trominoContext.fillRect(
+      blockWidth - thickness,
+      blockWidth - thickness,
+      blockWidth * 2 - thickness,
+      thickness
+    );
+    trominoContext.fillRect(
+      blockWidth - thickness,
+      blockWidth,
+      thickness,
+      blockWidth - thickness
+    );
+    trominoContext.fillRect(
+      0,
+      blockWidth * 2 - thickness,
+      blockWidth,
+      thickness
+    );
+    trominoContext.fillRect(
+      0,
+      thickness,
+      thickness,
+      blockWidth * 2 - thickness
+    );
   }
 
   /**
@@ -156,8 +186,8 @@ const ltrGfx = (function () {
   function drawTromino(board, x, y, flipX, flipY) {
     const context = board.context;
     const blockWidth = board.blockWidth;
-    const rx = ((x * blockWidth) + blockWidth);
-    const ry = ((y * blockWidth) + blockWidth);
+    const rx = x * blockWidth + blockWidth;
+    const ry = y * blockWidth + blockWidth;
 
     context.translate(rx, ry);
     context.scale(flipX, flipY);
@@ -170,6 +200,6 @@ const ltrGfx = (function () {
     createBoard,
     drawBoard,
     drawMark,
-    drawTromino
+    drawTromino,
   };
-}());
+})();

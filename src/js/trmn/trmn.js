@@ -39,7 +39,7 @@ const trmn = (function (createTrmnMod) {
     const canvasElement = document.getElementById("canvas");
 
     module = await createTrmnMod(/* optional default settings */);
-    module.canvas = ((() => canvasElement)());
+    module.canvas = (() => canvasElement)();
   }
 
   /**
@@ -54,7 +54,7 @@ const trmn = (function (createTrmnMod) {
 
   return {
     initAsync,
-    play
+    play,
   };
-// @ts-ignore
-}(/* global createTrmnMod */ createTrmnMod));
+  // @ts-ignore
+})(/* global createTrmnMod */ createTrmnMod);

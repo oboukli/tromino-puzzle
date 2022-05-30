@@ -45,14 +45,11 @@ importScripts("litro-wasm.js", "wrapper.js");
  * @returns {Promise}
  */
 function initWasmAsync() {
-  return WebAssembly.instantiateStreaming(
-    fetch("litro-wasm.wasm"),
-    {
-      env: {
-        "memory": new WebAssembly.Memory({ initial: 1, maximum: 1 })
-      }
-    }
-  );
+  return WebAssembly.instantiateStreaming(fetch("litro-wasm.wasm"), {
+    env: {
+      memory: new WebAssembly.Memory({ initial: 1, maximum: 1 }),
+    },
+  });
 }
 
 /**
@@ -80,8 +77,12 @@ async function handleSolveAsync({ order, markX, markY }) {
     order,
     markX,
     markY,
-    (/** @type {number} */ x, /** @type {number} */ y, /** @type {number} */ flipX,
-    /** @type {number} */ flipY) => {
+    (
+      /** @type {number} */ x,
+      /** @type {number} */ y,
+      /** @type {number} */ flipX,
+      /** @type {number} */ flipY
+    ) => {
       self.postMessage({ x, y, flipX, flipY });
     }
   );
@@ -101,10 +102,14 @@ async function handleCommandAsync(cmd, payload) {
 instancePromise = initWasmAsync();
 emModulePromise = initEmscriptenModuleAsync();
 
-self.addEventListener("message", async (e) => {
-  if (e.origin !== "" || e.source !== null) {
-    return;
-  }
+self.addEventListener(
+  "message",
+  async (e) => {
+    if (e.origin !== "" || e.source !== null) {
+      return;
+    }
 
-  await handleCommandAsync(e.data.cmd, e.data.payload);
-}, false);
+    await handleCommandAsync(e.data.cmd, e.data.payload);
+  },
+  false
+);

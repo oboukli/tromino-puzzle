@@ -79,13 +79,15 @@ const editorFactory = (function (document) {
     markXElement.value = markX.toString();
     markYElement.value = markY.toString();
 
-    editor.dispatchEvent(new CustomEvent("change", {
-      detail: {
-        order,
-        markX,
-        markY
-      }
-    }));
+    editor.dispatchEvent(
+      new CustomEvent("change", {
+        detail: {
+          order,
+          markX,
+          markY,
+        },
+      })
+    );
   }
 
   /**
@@ -111,20 +113,34 @@ const editorFactory = (function (document) {
     markYElement.value = markY.toString();
     markYElement.min = "0";
 
-    puzzleEditorFormElement.addEventListener("input", () => changePuzzle(),
-      { capture: false, passive: true });
+    puzzleEditorFormElement.addEventListener("input", () => changePuzzle(), {
+      capture: false,
+      passive: true,
+    });
 
-    orderElement.addEventListener("input", (event) => {
-      order = calcOrder(parseInt(event.target.value, 10));
-    }, { capture: false, passive: true });
+    orderElement.addEventListener(
+      "input",
+      (event) => {
+        order = calcOrder(parseInt(event.target.value, 10));
+      },
+      { capture: false, passive: true }
+    );
 
-    markXElement.addEventListener("input", (event) => {
-      markX = parseInt(event.target.value, 10);
-    }, { capture: false, passive: true });
+    markXElement.addEventListener(
+      "input",
+      (event) => {
+        markX = parseInt(event.target.value, 10);
+      },
+      { capture: false, passive: true }
+    );
 
-    markYElement.addEventListener("input", (event) => {
-      markY = parseInt(event.target.value, 10);
-    }, { capture: false, passive: true });
+    markYElement.addEventListener(
+      "input",
+      (event) => {
+        markY = parseInt(event.target.value, 10);
+      },
+      { capture: false, passive: true }
+    );
   }
 
   /**
@@ -133,15 +149,21 @@ const editorFactory = (function (document) {
   function create() {
     initElements();
 
-    solveButtonElement.addEventListener("click", () => {
-      editor.dispatchEvent(new CustomEvent("solve", {
-        detail: {
-          order,
-          markX,
-          markY
-        }
-      }));
-    }, { capture: false, passive: true });
+    solveButtonElement.addEventListener(
+      "click",
+      () => {
+        editor.dispatchEvent(
+          new CustomEvent("solve", {
+            detail: {
+              order,
+              markX,
+              markY,
+            },
+          })
+        );
+      },
+      { capture: false, passive: true }
+    );
 
     solveButtonElement.disabled = false;
 
@@ -149,6 +171,6 @@ const editorFactory = (function (document) {
   }
 
   return {
-    create
+    create,
   };
-}(document));
+})(document);
