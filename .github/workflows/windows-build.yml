@@ -29,9 +29,9 @@ jobs:
 
     - name: Apply vcpkg cache
       id: vcpkg-cache
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
-        path: |
+        path: |-
           %VCPKG_DEFAULT_BINARY_CACHE%
           ${{ github.workspace }}\vcpkg
         key: >-
@@ -52,11 +52,11 @@ jobs:
       working-directory: vcpkg
 
     - name: Set up MSBuild
-      uses: microsoft/setup-msbuild@v1.0.2
+      uses: microsoft/setup-msbuild@v1
 
     - name: Build
       working-directory: ${{ github.workspace }}
-      run: >
+      run: >-
         msbuild
         -detailedSummary
         -maxCpuCount

@@ -77,19 +77,23 @@ jobs:
     pool:
       vmImage: ubuntu-latest
     steps:
-      - task: Bash@3
+      - script: sudo apt-get update
+        displayName: Update dependency list
+
+      - script: >-
+          sudo apt-get install
+          --assume-yes
+          --quiet
+          autoconf-archive
+          libboost-test-dev
+          libsdl2-dev
         displayName: Install dependencies
-        inputs:
-          targetType: inline
-          script: |
-            sudo apt-get update
-            sudo apt-get install --assume-yes --quiet autoconf-archive libboost-test-dev libsdl2-dev
 
       - task: Bash@3
         displayName: Configure build
         inputs:
           targetType: inline
-          script: |
+          script: |-
             ./autogen.sh
             mkdir build
             cd build
@@ -116,14 +120,19 @@ jobs:
     pool:
       vmImage: ubuntu-latest
     variables:
-      emsdkVersion: 3.1.10
+      emsdkVersion: 3.1.11
       numMakeJobs: 3
     steps:
       - task: DockerInstaller@0
         displayName: Install Docker
         inputs:
-          dockerVersion: 20.10.15
+          dockerVersion: 20.10.16
           releaseType: stable
 
-      - script: docker run --volume=$(pwd):/src --workdir=/src/emscripten emscripten/emsdk:$(emsdkVersion) emmake make --jobs=$(numMakeJobs)
+      - script: >-
+          docker run
+          --volume=$(pwd):/src
+          --workdir=/src/emscripten
+          emscripten/emsdk:$(emsdkVersion)
+          emmake make --jobs=$(numMakeJobs)
         displayName: Build with Emscripten SDK

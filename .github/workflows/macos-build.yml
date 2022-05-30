@@ -24,9 +24,9 @@ jobs:
 
       - name: Apply vcpkg cache
         id: vcpkg-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
-          path: |
+          path: |-
             $HOME/.cache/vcpkg/archives
             ${{ github.workspace }}/vcpkg
           key: >-
@@ -41,12 +41,12 @@ jobs:
         run: ./vcpkg/vcpkg install boost-test
 
       - name: Install SDL2
-        run: |
+        run: |-
           ./vcpkg/vcpkg install sdl2 --triplet x64-osx-dynamic
           ./vcpkg/vcpkg install sdl2 --triplet arm64-osx-dynamic
 
       - name: Build trominocli
-        run: >
+        run: >-
           xcodebuild
           -workspace TrominoPuzzle.xcworkspace
           -scheme TrominoCli
@@ -57,7 +57,7 @@ jobs:
         working-directory: xcode
 
       - name: Build tromino2d
-        run: >
+        run: >-
           xcodebuild
           -workspace TrominoPuzzle.xcworkspace
           -scheme Tromino2d
@@ -68,7 +68,7 @@ jobs:
         working-directory: xcode
 
       - name: Build unit tests
-        run: >
+        run: >-
           xcodebuild
           -workspace TrominoPuzzle.xcworkspace
           -scheme UnitTests

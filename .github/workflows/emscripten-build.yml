@@ -18,9 +18,9 @@ jobs:
 
       - name: Emscripten SDK cache
         id: emscripten-sdk-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
-          path: |
+          path: |-
             emsdk/node
             emsdk/upstream
           key: >-
@@ -30,8 +30,8 @@ jobs:
 
       - name: Install Emscripten SDK
         env:
-          EMSDK_VERSION: 3.1.10
-        run: |
+          EMSDK_VERSION: 3.1.11
+        run: |-
           ./emsdk install ${EMSDK_VERSION}
           ./emsdk activate ${EMSDK_VERSION}
         working-directory: emsdk
@@ -42,7 +42,7 @@ jobs:
           path: tromino-puzzle
 
       - name: Make
-        run: |
+        run: |-
           source ${{ github.workspace }}/emsdk/emsdk_env.sh
           emmake make --jobs=$((($(nproc) * 15) / 10))
         working-directory: tromino-puzzle/emscripten
@@ -80,7 +80,7 @@ jobs:
         run: git status
 
       - name: Publish web app to GitHub Pages
-        run: |
+        run: |-
           if [[ $(git diff --stat) != '' ]]; then
             git config --global user.name 'Continuous Deployment Job'
             git config --global user.email 'oboukli@users.noreply.github.com'
