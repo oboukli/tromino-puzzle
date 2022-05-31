@@ -12,9 +12,9 @@
 
 namespace tromino::cli {
 
-void print_usage() noexcept {
+void print_usage(std::ostream& os) noexcept {
     // clang-format off
-    std::cout <<
+    os <<
         "Usage: tromino <order> <x> <y>"
 #ifdef _WINDOWS
         " [options]\n"

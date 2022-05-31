@@ -26,7 +26,7 @@ int main(const int argc, const char* const argv[]) {
         is_error
         || !::trmn_is_valid_config(options.order, options.x, options.y)) {
         std::cerr << error << std::endl;
-        tromino::tromino2d::print_usage();
+        tromino::tromino2d::print_usage(std::cout);
 
         return EXIT_FAILURE;
     }

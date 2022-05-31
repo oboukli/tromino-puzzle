@@ -6,15 +6,13 @@
 
 #include "cli_options.h"
 
-#include <iostream>
-
 #include "params.h"
 
 namespace tromino::tromino2d {
 
-void print_usage() noexcept {
+void print_usage(std::ostream& os) noexcept {
     // clang-format off
-    std::cout <<
+    os <<
         "Usage: tromino2d <order> <x> <y> [options]\n"
         "\n"
         "Options:\n"

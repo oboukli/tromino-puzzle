@@ -13,6 +13,7 @@
 #endif // _WINDOWS
 
 #include <algorithm>
+#include <iostream>
 
 #include "tromino.h"
 
@@ -53,7 +54,7 @@ constexpr char bottom_left = '\x6d';
 constexpr char bottom_right = '\x6a';
 #endif // TROMINO_USE_ASCII
 
-void draw_board(const board_t& board) noexcept;
+void draw_board(const board_t& board, std::ostream& os) noexcept;
 
 void add_tromino(
     const int pos_x, const int pos_y, const int flip_x, const int flip_y,
@@ -66,7 +67,7 @@ inline void init_board(const board_t& board) noexcept {
         = mark;
 }
 
-void use_vt(board_t& tromino_board) noexcept;
+void use_vt(board_t& tromino_board, std::ostream& os) noexcept;
 
 } // namespace tromino::cli::vt
 

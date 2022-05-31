@@ -100,11 +100,12 @@ void add_tromino(
     std::this_thread::sleep_for(DELAY_AFTER);
 }
 
-void use_wch(board_t& tromino_board) noexcept {
+void use_wch(board_t& tromino_board, std::ostream& os) noexcept {
     ::SetConsoleTitle(TEXT("Tromino Puzzle"));
 
     const HANDLE hConsoleOutput = ::GetStdHandle(STD_OUTPUT_HANDLE);
     graph_state_t graph_state{
+        .os = os,
         .board = tromino_board,
         .hOutput = hConsoleOutput,
     };

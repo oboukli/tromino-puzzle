@@ -9,11 +9,12 @@
 
 #include "cli_models.h"
 
+#include <iostream>
 #include <string>
 
 namespace tromino::cli {
 
-void print_usage() noexcept;
+void print_usage(std::ostream& os) noexcept;
 
 bool read_options(
     const int argc, const char* const argv[], options& options,

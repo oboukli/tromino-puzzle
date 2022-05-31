@@ -29,7 +29,7 @@ void init(const int order, const int x, const int y) noexcept {
         .mark_x = x,
         .mark_y = y};
 
-    tromino::cli::vt::use_vt(tromino_board);
+    tromino::cli::vt::use_vt(tromino_board, std::cout);
 }
 
 #ifdef _WINDOWS
@@ -47,11 +47,11 @@ void init(
         .mark_y = y};
 
     if (emulation_mode == emulation_mode_type::wch) {
-        tromino::cli::windows::use_wch(tromino_board);
+        tromino::cli::windows::use_wch(tromino_board, std::cout);
         return;
     }
 
-    tromino::cli::vt::use_vt(tromino_board);
+    tromino::cli::vt::use_vt(tromino_board, std::cout);
 }
 #endif // _WINDOWS
 

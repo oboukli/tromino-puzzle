@@ -7,8 +7,6 @@
 #ifndef TRMN_GRAPH_H_
 #define TRMN_GRAPH_H_
 
-#include "trmn_graph.h"
-
 #ifdef _WINDOWS
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
@@ -17,6 +15,7 @@
 #include <array>
 #include <cassert>
 #include <cstddef>
+#include <iostream>
 #include <memory>
 
 #include "tromino.h"
@@ -36,6 +35,7 @@ struct board_t {
 };
 
 struct graph_state_t {
+    std::ostream& os;
     board_t& board;
 #ifdef _WINDOWS
     const HANDLE hOutput;

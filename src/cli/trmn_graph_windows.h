@@ -42,7 +42,7 @@ inline void init_board(const board_t& board) noexcept {
         = mark;
 }
 
-void use_wch(board_t& tromino_board) noexcept;
+void use_wch(board_t& tromino_board, std::ostream& os) noexcept;
 
 } // namespace tromino::cli::windows
 
