@@ -179,7 +179,7 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept {
 
     // clang-format off
     os <<
-        // Switch back VT100 Special graphics chararters
+        // Switch back VT100 Special graphics characters
         ESC + "0)"s +
 
         // Reset to initial state (RIS)
