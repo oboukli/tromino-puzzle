@@ -34,10 +34,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 "use strict";
 
-var _isSolverReady = false;
-var _emModule;
-var instancePromise;
-var emModulePromise;
+let _isSolverReady = false;
+let _emModule;
+let instancePromise;
+let emModulePromise;
 
 importScripts("litro-wasm.js", "wrapper.js");
 
