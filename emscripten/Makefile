@@ -51,7 +51,7 @@ trmn: $(TARGET_TRMN)
 litro: $(TARGET_LITRO)
 	@echo "Target \"litro\" successfully built."
 
-$(TARGET_LITRO): $(OBJ_DIR)/libtromino/tromino.o $(OBJ_DIR)/wasm/litro/libtromino_wrapper.o
+$(TARGET_LITRO): $(OBJ_DIR)/libtromino/tromino.o $(OBJ_DIR)/wasm/litro/litro.o
 	$(MKDIR) $(OUT_DIR)/$(LITRO_DIR_NAME)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) \
 		--closure 1 \
@@ -121,7 +121,7 @@ $(OBJ_DIR)/libtromino/tromino.o: $(SRC_DIR)/libtromino/tromino.c
 		-c $< \
 		-o $@
 
-$(OBJ_DIR)/wasm/litro/libtromino_wrapper.o: $(SRC_DIR)/wasm/litro/libtromino_wrapper.c
+$(OBJ_DIR)/wasm/litro/litro.o: $(SRC_DIR)/wasm/litro/litro.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CPPFLAGS) $(CFLAGS) \
 		-I$(SRC_DIR)/libtromino \

@@ -4,12 +4,9 @@
 
 // SPDX-License-Identifier: MIT
 
-#include <emscripten.h>
+#include "litro.h"
 
 #include "tromino.h"
-
-typedef void (*add_tromino_extern_callback)(
-    const int pos_x, const int pos_y, const int flip_x, const int flip_y);
 
 static void add_tromino(
     const int pos_x, const int pos_y, const int flip_x, const int flip_y,
