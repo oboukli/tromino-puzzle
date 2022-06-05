@@ -6,8 +6,6 @@
 
 #include "unittest_helper.h"
 
-#include <vector>
-
 void shim_add_tromino(
     const int pos_x, const int pos_y, const int flip_x, const int flip_y,
     void* const state) noexcept {

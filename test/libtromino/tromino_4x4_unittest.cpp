@@ -5,6 +5,9 @@
 // SPDX-License-Identifier: MIT
 
 #include <array>
+#include <cstddef>
+#include <vector>
+
 #include <boost/test/unit_test.hpp>
 
 #include "tromino.h"
