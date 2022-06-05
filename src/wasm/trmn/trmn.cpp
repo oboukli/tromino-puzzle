@@ -4,7 +4,7 @@
 
 // SPDX-License-Identifier: MIT
 
-#include <emscripten.h>
+#include "trmn.h"
 
 #include <SDL2/SDL.h>
 
@@ -26,7 +26,7 @@ std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel = nullptr;
 std::unique_ptr<std::vector<tromino::gfx2d::Step>> steps = nullptr;
 bool isInitialized = false;
 
-void addTromino(
+void add_tromino(
     const int pos_x, const int pos_y, const int flip_x, const int flip_y,
     void* const state) noexcept {
     using namespace tromino::gfx2d;
@@ -65,7 +65,7 @@ void terminate() noexcept {
     isInitialized = false;
 }
 
-void loopSimulatorCallback() noexcept {
+void render_frame() noexcept {
     viewModel->StepForward();
     viewModel->Render(*steps);
 }
@@ -85,7 +85,7 @@ void start(const tromino::gfx2d::Board& board, const int width) noexcept {
     steps->reserve(numSteps);
 
     ::trmn_solve_puzzle(
-        board.order, board.mark_x, board.mark_y, addTromino, steps.get());
+        board.order, board.mark_x, board.mark_y, add_tromino, steps.get());
 
     const tromino::gfx2d::Style style{
         .wke1_color{0x4e, 0x7d, 0xa6, SDL_ALPHA_OPAQUE},
@@ -95,9 +95,11 @@ void start(const tromino::gfx2d::Board& board, const int width) noexcept {
         .tromino_outline_color{0xd9, 0x36, 0x36, SDL_ALPHA_OPAQUE}};
     viewModel->SetBoard(board, style);
 
-    ::emscripten_set_main_loop(loopSimulatorCallback, -1, 0);
+    ::emscripten_set_main_loop(render_frame, -1, 0);
     ::emscripten_set_main_loop_timing(EM_TIMING_RAF, SWAP_INTERVAL);
 }
+
+} // namespace
 
 EMSCRIPTEN_KEEPALIVE extern "C" void playTromino(
     const int order, const int markX, const int markY,
@@ -110,5 +112,3 @@ EMSCRIPTEN_KEEPALIVE extern "C" void playTromino(
 
     start(board, width);
 }
-
-} // namespace
