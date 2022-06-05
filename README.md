@@ -12,7 +12,7 @@ This is a C library (see `src/libtromino`) implementing a divide-and-conquer O(n
 algorithm, and a collection of apps, to solve the tromino puzzle,
 over-engineered for the joy of learning by doing.
 
-A tromino puzzle consists of a checkered $2^n × 2^n$ (chess-like) board, where
+A tromino puzzle consists of a checkered $2^n \times 2^n$ (chess-like) board, where
 exactly one of the board's squares is marked. The goal is to tile the entire
 board, except for the marked square, with L-shaped tiles. A tile is a right
 tromino, in the shape of an L formed by three board squares. Each tile has four
@@ -43,7 +43,15 @@ The virtual terminal (VT-100) mode should work on any system with POSIX
 support, including supported versions of macOS and Windows.
 
 For basic ASCII drawings, which may be useful for writing to text files,
-define `TROMINO_USE_ASCII` before building.
+define `TROMINO_USE_ASCII` before building. The following is an example
+output for a $4 \times 4$ puzzle marked at $(1, 1)$:
+
+```text
++--+
+|X||
+|-+|
++--+
+```
 
 ### Windows Console Host (WCH) mode
 
