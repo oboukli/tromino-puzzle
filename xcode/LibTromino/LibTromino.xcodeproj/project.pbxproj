@@ -15,7 +15,7 @@
 		7503E76826C88C490018B1F2 /* tromino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tromino.h; sourceTree = "<group>"; };
 		7503E76A26C88C490018B1F2 /* tromino.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tromino.c; sourceTree = "<group>"; };
 		755F9D1F2811C878004C54E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		7594DBEE26C482A500CF433E /* libLibTromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibTromino.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7594DBEE26C482A500CF433E /* libtromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtromino.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +51,7 @@
 		7594DBEF26C482A500CF433E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7594DBEE26C482A500CF433E /* libLibTromino.a */,
+				7594DBEE26C482A500CF433E /* libtromino.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -84,7 +84,7 @@
 			);
 			name = LibTromino;
 			productName = LibTromino;
-			productReference = 7594DBEE26C482A500CF433E /* libLibTromino.a */;
+			productReference = 7594DBEE26C482A500CF433E /* libtromino.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -259,7 +259,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c17;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = tromino;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -271,7 +271,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c17;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = tromino;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

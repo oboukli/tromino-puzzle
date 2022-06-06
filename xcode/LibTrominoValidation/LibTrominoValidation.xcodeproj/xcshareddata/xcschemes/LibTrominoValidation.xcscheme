@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "75002AA427A5940500CBB593"
-               BuildableName = "libLibTrominoValidation.a"
+               BuildableName = "libtromino-validation.a"
                BlueprintName = "LibTrominoValidation"
                ReferencedContainer = "container:LibTrominoValidation.xcodeproj">
             </BuildableReference>
@@ -59,7 +59,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "75002AA427A5940500CBB593"
-            BuildableName = "libLibTrominoValidation.a"
+            BuildableName = "libtromino-validation.a"
             BlueprintName = "LibTrominoValidation"
             ReferencedContainer = "container:LibTrominoValidation.xcodeproj">
          </BuildableReference>

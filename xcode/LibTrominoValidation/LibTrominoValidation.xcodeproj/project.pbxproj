@@ -12,7 +12,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		75002AA527A5940500CBB593 /* libLibTrominoValidation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibTrominoValidation.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		75002AA527A5940500CBB593 /* libtromino-validation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libtromino-validation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75002AAD27A5948800CBB593 /* tromino_validation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tromino_validation.c; sourceTree = "<group>"; };
 		75002AAE27A5948800CBB593 /* tromino_validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tromino_validation.h; sourceTree = "<group>"; };
 		755F9D202811CA28004C54E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -41,7 +41,7 @@
 		75002AA627A5940500CBB593 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				75002AA527A5940500CBB593 /* libLibTrominoValidation.a */,
+				75002AA527A5940500CBB593 /* libtromino-validation.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -84,7 +84,7 @@
 			);
 			name = LibTrominoValidation;
 			productName = LibTrominoValidation;
-			productReference = 75002AA527A5940500CBB593 /* libLibTrominoValidation.a */;
+			productReference = 75002AA527A5940500CBB593 /* libtromino-validation.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -260,7 +260,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c17;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = tromino-validation;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -272,7 +272,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c17;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = tromino-validation;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

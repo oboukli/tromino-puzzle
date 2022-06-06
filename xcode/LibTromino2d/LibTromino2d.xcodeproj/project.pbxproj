@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7503E7B426C891FF0018B1F2 /* libLibTromino2d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibTromino2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7503E7B426C891FF0018B1F2 /* libtromino2d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtromino2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7503E7D926C896C90018B1F2 /* tromino_gfx2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tromino_gfx2d.h; sourceTree = "<group>"; };
 		7503E7DA26C896C90018B1F2 /* tromino_gfx2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tromino_gfx2d.cpp; sourceTree = "<group>"; };
 		750984C126E44E83005B6E82 /* window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 		7503E7B526C891FF0018B1F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7503E7B426C891FF0018B1F2 /* libLibTromino2d.a */,
+				7503E7B426C891FF0018B1F2 /* libtromino2d.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,7 +118,7 @@
 			);
 			name = LibTromino2d;
 			productName = LibTromino2d;
-			productReference = 7503E7B426C891FF0018B1F2 /* libLibTromino2d.a */;
+			productReference = 7503E7B426C891FF0018B1F2 /* libtromino2d.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -302,7 +302,7 @@
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Omar Boukli-Hacene";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = tromino2d;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -317,7 +317,7 @@
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Omar Boukli-Hacene";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = tromino2d;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
