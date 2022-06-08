@@ -51,12 +51,12 @@ void add_tromino(
     for (int i = 0; i < 2; ++i) {
         for (int j = 0; j < 2; ++j) {
             px = sprite[calc_index(j, i, 2)];
-            if (neutral == px) {
+            if (px == neutral) {
                 continue;
             }
 
             assert(
-                (empty == board_matrix[calc_index(pos_x + j, pos_y + i, order)])
+                (board_matrix[calc_index(pos_x + j, pos_y + i, order)] == empty)
                 && "Error: Invalid placement.");
 
             board_matrix[calc_index(pos_x + j, pos_y + i, order)] = px;
@@ -192,7 +192,7 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept {
     os << std::flush;
 
 #ifdef _WINDOWS
-    assert(0 != dwConsoleOriginalMode);
+    assert(dwConsoleOriginalMode != 0);
     ::SetConsoleMode(hStdout, dwConsoleOriginalMode);
 #endif // _WINDOWS
 }

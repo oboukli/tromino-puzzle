@@ -56,11 +56,11 @@ template <
     char top_left, char top_right, char bottom_left, char bottom_right>
 static std::array<char, SPRITE_SIZE> get_sprite(
     const int flip_x, const int flip_y) noexcept {
-    assert(-1 == flip_x || 1 == flip_x);
-    assert(-1 == flip_y || 1 == flip_y);
+    assert(flip_x == -1 || flip_x == 1);
+    assert(flip_y == -1 || flip_y == 1);
 
-    if (-1 == flip_x) {
-        if (-1 == flip_y) {
+    if (flip_x == -1) {
+        if (flip_y == -1) {
             // -1, -1
             // X |
             // - +
@@ -73,7 +73,7 @@ static std::array<char, SPRITE_SIZE> get_sprite(
         return {horizontal, top_right, neutral, vertical};
     }
 
-    if (-1 == flip_y) {
+    if (flip_y == -1) {
         // 1, -1
         // | X
         // + -

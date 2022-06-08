@@ -30,7 +30,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 static void solve_tromino(
     const int order, const int px, const int py, const int fx, const int fy,
     const trmn_add_tromino_func add_tromino, void* const state) {
-    if (2 == order) {
+    if (order == 2) {
         add_tromino(px, py, fx, fy, state);
         return;
     }

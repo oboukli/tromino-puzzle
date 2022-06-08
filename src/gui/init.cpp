@@ -52,7 +52,7 @@ void poll_sdl_events(bool& is_main_loop_running) noexcept {
     ::SDL_Event event;
 
     while (::SDL_PollEvent(&event)) {
-        if (::SDL_QUIT == event.type) {
+        if (event.type == ::SDL_QUIT) {
             is_main_loop_running = false;
         }
     }
