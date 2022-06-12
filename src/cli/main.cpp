@@ -13,7 +13,7 @@
 #include "cli_options.h"
 #include "init.h"
 
-int main(const int argc, const char* const argv[]) {
+int main(const int argc, const char* const argv[]) noexcept {
     tromino::cli::options options;
 
     std::string error;

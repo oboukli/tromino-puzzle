@@ -16,7 +16,7 @@
 #include "init.h"
 #include "params.h"
 
-int main(const int argc, const char* const argv[]) {
+int main(const int argc, const char* const argv[]) noexcept {
     using namespace std::string_literals;
 
     tromino::tromino2d::options options;

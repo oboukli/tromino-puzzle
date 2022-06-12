@@ -16,7 +16,7 @@ namespace tromino::tromino2d {
 template <typename T>
 using add_tromino_func = void (*)(
     const int pos_x, const int pos_y, const int flip_x, const int flip_y,
-    T* const state);
+    T* const state) noexcept;
 
 template <typename T>
 void solver(
