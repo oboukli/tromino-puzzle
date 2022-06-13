@@ -37,7 +37,7 @@ AC_CHECK_HEADER_STDBOOL
 AC_C_INLINE
 
 AC_PROG_CXX
-AX_CXX_COMPILE_STDCXX([17], [noext], [mandatory])
+AX_CXX_COMPILE_STDCXX([20], [noext], [mandatory])
 
 AC_PROG_SED
 
