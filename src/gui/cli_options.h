@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef CLI_OPTIONS_H_
-#define CLI_OPTIONS_H_
+#ifndef CLI_OPTIONS_H
+#define CLI_OPTIONS_H
 
 #include "cli_models.h"
 
@@ -22,4 +22,4 @@ bool read_options(
 
 } // namespace tromino::tromino2d
 
-#endif // CLI_OPTIONS_H_
+#endif // CLI_OPTIONS_H

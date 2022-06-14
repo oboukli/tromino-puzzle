@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef BOARD_H_
-#define BOARD_H_
+#ifndef BOARD_H
+#define BOARD_H
 
 #include <cstddef>
 
@@ -22,4 +22,4 @@ struct Board {
 
 } // namespace tromino::gfx2d
 
-#endif // BOARD_H_
+#endif // BOARD_H

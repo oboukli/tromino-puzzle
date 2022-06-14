@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef STEP_H_
-#define STEP_H_
+#ifndef STEP_H
+#define STEP_H
 
 #include "tromino.h"
 
@@ -37,4 +37,4 @@ struct Step {
 
 } // namespace tromino::gfx2d
 
-#endif // STEP_H_
+#endif // STEP_H

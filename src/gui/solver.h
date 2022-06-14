@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef SOLVER_H_
-#define SOLVER_H_
+#ifndef SOLVER_H
+#define SOLVER_H
 
 #include "tromino.h"
 
@@ -29,4 +29,4 @@ void solver(
 
 } // namespace tromino::tromino2d
 
-#endif // SOLVER_H_
+#endif // SOLVER_H

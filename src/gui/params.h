@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef PARAMS_H_
-#define PARAMS_H_
+#ifndef PARAMS_H
+#define PARAMS_H
 
 namespace tromino::tromino2d::params {
 
@@ -30,4 +30,4 @@ constexpr int FORCE_ARG_IDX{4};
 
 } // namespace tromino::tromino2d::params
 
-#endif // PARAMS_H_
+#endif // PARAMS_H

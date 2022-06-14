@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef TRMN_GRAPH_VT_H_
-#define TRMN_GRAPH_VT_H_
+#ifndef TRMN_GRAPH_VT_H
+#define TRMN_GRAPH_VT_H
 
 #ifdef _WINDOWS
 #define WIN32_LEAN_AND_MEAN
@@ -71,4 +71,4 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept;
 
 } // namespace tromino::cli::vt
 
-#endif // TRMN_GRAPH_VT_H_
+#endif // TRMN_GRAPH_VT_H

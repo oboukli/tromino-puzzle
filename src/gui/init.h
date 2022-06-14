@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef INIT_H_
-#define INIT_H_
+#ifndef INIT_H
+#define INIT_H
 
 #include <string>
 
@@ -19,4 +19,4 @@ int init(
 
 } // namespace tromino::tromino2d
 
-#endif // INIT_H_
+#endif // INIT_H

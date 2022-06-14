@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef PARAMS_H_
-#define PARAMS_H_
+#ifndef PARAMS_H
+#define PARAMS_H
 
 namespace tromino::cli::params {
 
@@ -21,4 +21,4 @@ constexpr int USE_WCH_ARG_IDX{4};
 
 } // namespace tromino::cli::params
 
-#endif // PARAMS_H_
+#endif // PARAMS_H
