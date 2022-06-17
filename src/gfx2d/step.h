@@ -11,13 +11,13 @@
 
 namespace tromino::gfx2d {
 
-struct Step {
+struct Step final {
     const int px;
     const int py;
     const int fx;
     const int fy;
 
-    Step(int px, int py, int fx, int fy) noexcept :
+    constexpr Step(int px, int py, int fx, int fy) noexcept :
         px(px),
         py(py),
         fx(fx),
