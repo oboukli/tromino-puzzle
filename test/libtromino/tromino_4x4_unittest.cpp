@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_CASE(
     constexpr int mark_y{0};
 
     // clang-format off
-    const std::array<ShimStep, std::size_t{5}> expected{{
+    constexpr std::array<ShimStep, std::size_t{5}> expected{{
         {0, 0, -1, -1},
         {2, 2, -1, -1},
         {2, 0, -1, 1},
@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(
     constexpr int mark_y{7};
 
     // clang-format off
-    const std::array<ShimStep, std::size_t{5}> expected{{
+    constexpr std::array<ShimStep, std::size_t{5}> expected{{
         {0, 2, -1, 1},
         {2, 0, -1, 1},
         {2, 2, -1, -1},
@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE(
     constexpr int mark_y{0};
 
     // clang-format off
-    const std::array<ShimStep, std::size_t{5}> expected{{
+    constexpr std::array<ShimStep, std::size_t{5}> expected{{
         {2, 0, 1, -1},
         {0, 2, 1, -1},
         {0, 0, 1, 1},
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE(
     constexpr int mark_y{7};
 
     // clang-format off
-    const std::array<ShimStep, std::size_t{5}> expected{{
+    constexpr std::array<ShimStep, std::size_t{5}> expected{{
         {2, 2, 1, 1},
         {0, 0, 1, 1},
         {0, 2, 1, -1},
@@ -133,7 +133,7 @@ BOOST_AUTO_TEST_CASE(
     constexpr int mark_y{2};
 
     // clang-format off
-    const std::array<ShimStep, std::size_t{5}> expected{{
+    constexpr std::array<ShimStep, std::size_t{5}> expected{{
         {2, 2, 1, -1},
         {0, 0, 1, 1},
         {0, 2, 1, -1},

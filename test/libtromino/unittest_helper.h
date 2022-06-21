@@ -18,14 +18,14 @@ struct ShimStep {
     const int flip_x;
     const int flip_y;
 
-    ShimStep(int pos_x, int pos_y, int flip_x, int flip_y) :
+    constexpr ShimStep(int pos_x, int pos_y, int flip_x, int flip_y) noexcept :
         pos_x(pos_x),
         pos_y(pos_y),
         flip_x(flip_x),
         flip_y(flip_y) {
     }
 
-    ShimStep(ShimStep&& other) :
+    constexpr ShimStep(ShimStep&& other) noexcept :
         pos_x(other.pos_x),
         pos_y(other.pos_y),
         flip_x(other.flip_x),
@@ -52,7 +52,8 @@ struct ShimStep {
 };
 
 void shim_add_tromino(
-    int pos_x, int pos_y, int flip_x, int flip_y, void* state) noexcept;
+    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
+    void* const state) noexcept;
 
 void print_shim_step_vector(const std::vector<ShimStep>& steps) noexcept;
 
