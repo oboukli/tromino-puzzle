@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+title: OBoukli Tromino Puzzle
+message: >-
+  If you use this software, kindly cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Omar
+    family-names: Boukli Hacene
+repository-code: "https://github.com/oboukli/tromino-puzzle"
+abstract: >-
+  A software library, and a collection of apps, to
+  solve and visualize the right tromino puzzle.
+license: MIT
