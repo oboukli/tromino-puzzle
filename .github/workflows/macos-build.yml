@@ -1,8 +1,9 @@
-name: Xcode build
+name: Xcode build on macOS
 
 on:
   pull_request:
   push:
+  workflow_dispatch:
 
 jobs:
   build:

@@ -1,10 +1,11 @@
-name: DevSkim
+name: DevSkim analysis
 
 on:
   pull_request:
   push:
   schedule:
     - cron: 10 22 * * 3
+  workflow_dispatch:
 
 jobs:
   lint:

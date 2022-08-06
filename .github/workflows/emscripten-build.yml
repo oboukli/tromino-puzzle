@@ -3,6 +3,7 @@ name: Emscripten build for WebAssembly
 on:
   pull_request:
   push:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -30,7 +31,7 @@ jobs:
 
       - name: Install Emscripten SDK
         env:
-          EMSDK_VERSION: 3.1.16
+          EMSDK_VERSION: 3.1.18
         run: |-
           ./emsdk install ${EMSDK_VERSION}
           ./emsdk activate ${EMSDK_VERSION}
@@ -47,11 +48,16 @@ jobs:
           emmake make --jobs=$((($(nproc) * 15) / 10))
         working-directory: tromino-puzzle/emscripten
 
+      - name: Archive files
+        run: tar --create --file=dist.tar *
+        working-directory: tromino-puzzle/dist/web
+
       - name: Archive web app artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
+        continue-on-error: false
         with:
           name: tromino-puzzle-web-dist
-          path: tromino-puzzle/dist/web
+          path: tromino-puzzle/dist/web/dist.tar
 
   deploy-gh-pages:
     name: Deploy to GitHub Pages
@@ -72,6 +78,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: tromino-puzzle-web-dist
+
+      - name: Unarchive files
+        run: |-
+          tar --extract --file=dist.tar
+          rm dist.tar
 
       - name: Display file structure
         run: ls -R

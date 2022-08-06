@@ -1,8 +1,9 @@
-name: Ubuntu build
+name: GNU Autotools build on Ubuntu
 
 on:
   pull_request:
   push:
+  workflow_dispatch:
 
 jobs:
   build:

@@ -1,8 +1,9 @@
-name: MSBuild
+name: MSBuild build on Windows
 
 on:
   pull_request:
   push:
+  workflow_dispatch:
 
 env:
   SOLUTION_FILE_PATH: msbuild\TrominoPuzzle.sln

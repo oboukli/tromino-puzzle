@@ -5,6 +5,7 @@ on:
   push:
   schedule:
     - cron: 10 22 * * 5
+  workflow_dispatch:
 
 jobs:
   build:
@@ -67,12 +68,14 @@ jobs:
           echo "$HOME/.sonar/build-wrapper-linux-x86" >> $GITHUB_PATH
 
       - name: Run build-wrapper
-        run: |-
+        run: >-
           ./autogen.sh
+
           ./configure --enable-code-coverage
-          build-wrapper-linux-x86-64 \
-            --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
-            make clean all check
+
+          build-wrapper-linux-x86-64
+          --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }}
+          make clean all check
 
       - name: Run tromino
         run: ./src/tromino 2> /dev/null || true
