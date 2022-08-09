@@ -5,6 +5,9 @@ on:
   push:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 env:
   SOLUTION_FILE_PATH: msbuild\TrominoPuzzle.sln
   BUILD_CONFIGURATION: Release
