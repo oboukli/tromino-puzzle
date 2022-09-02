@@ -43,7 +43,7 @@ bool read_options(
 
     if (options.order > MAX_SUPPORTED_ORDER && !options.force) {
         error
-            = "Order is too large that it might crash the app. Use the  -f option to force the puzzle."s;
+            = "Order is too large that it might crash the app. Use the -f option to force the puzzle."s;
 
         return true;
     }
