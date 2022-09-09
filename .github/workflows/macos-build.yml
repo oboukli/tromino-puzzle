@@ -39,12 +39,12 @@ jobs:
         run: ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
 
       - name: Install boost-test
-        run: ./vcpkg/vcpkg install boost-test
+        run: sudo ./vcpkg/vcpkg install boost-test
 
       - name: Install SDL2
         run: |-
-          ./vcpkg/vcpkg install sdl2 --triplet x64-osx-dynamic
-          ./vcpkg/vcpkg install sdl2 --triplet arm64-osx-dynamic
+          sudo ./vcpkg/vcpkg install sdl2 --triplet x64-osx-dynamic
+          sudo ./vcpkg/vcpkg install sdl2 --triplet arm64-osx-dynamic
 
       - name: Build trominocli
         run: >-

@@ -5,10 +5,10 @@ trigger:
 
 resources:
   repositories:
-  - repository: vcpkg
-    type: github
-    endpoint: oboukli
-    name: microsoft/vcpkg
+    - repository: vcpkg
+      type: github
+      endpoint: oboukli
+      name: microsoft/vcpkg
 
 jobs:
   - job: macOS

@@ -11,15 +11,16 @@ trim_trailing_whitespace = true
 [*.md]
 charset = utf-8
 end_of_line = lf
-trim_trailing_whitespace = true
 insert_final_newline = true
+trim_trailing_whitespace = true
 
 [{configure.ac,Makefile.am,makefile}]
+charset = utf-8
 indent_style = tab
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.{ts,js,json,yml}]
+[*.{js,json,yml}]
 charset = utf-8
 end_of_line = lf
 indent_size = 2
@@ -28,10 +29,22 @@ insert_final_newline = true
 max_line_length = 80
 trim_trailing_whitespace = true
 
-[*.css]
+[*.{properties}]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{css,html,svg}]
 charset = utf-8
 end_of_line = lf
 indent_size = 2
 indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
+
+[*.vcxproj]
+charset = utf-8
+end_of_line = crlf
+indent_size = 2
+indent_style = space
