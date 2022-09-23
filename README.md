@@ -12,7 +12,8 @@ This is a C library (see `src/libtromino`) implementing a divide-and-conquer O(n
 algorithm, and a collection of apps, to solve the tromino puzzle,
 over-engineered for the joy of learning by doing.
 
-A tromino puzzle consists of a checkered $2^n \times 2^n : n \in \mathbb{N} \land n > 0$ (chess-like) board, where
+A tromino puzzle consists of a checkered
+$2^n \times 2^n : n \in \mathbb{N} \land n > 0$ (chess-like) board, where
 exactly one of the board's squares is marked. The goal is to tile the entire
 board, except for the marked square, with L-shaped tiles. A tile is a right
 tromino, in the shape of an L formed by three board squares. Each tile has four
@@ -145,14 +146,16 @@ The web app can be built using the Emscripten SDK Docker image:
 
 ```shell
 docker pull emscripten/emsdk
-docker run --rm --volume=$(pwd):/src --workdir=/src/emscripten emscripten/emsdk emmake make
+docker run --rm --volume=$(pwd):/src --workdir=/src/emscripten \
+emscripten/emsdk emmake make
 ```
 
 To run the web app:
 
 ```shell
 docker pull nginx
-docker run --detach --rm --publish=8080:80 --volume=$(pwd)/dist/web:/usr/share/nginx/html:ro --name tromino-puzzle nginx
+docker run --detach --rm --publish=8080:80 \
+--volume=$(pwd)/dist/web:/usr/share/nginx/html:ro --name tromino-puzzle nginx
 ```
 
 ## License
