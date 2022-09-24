@@ -37,7 +37,8 @@ jobs:
             ${{ github.workspace }}\vcpkg
           key: >-
             ${{ runner.os }}-vcpkg-archives-cache-${{ hashFiles(
-              'vcpkg\CHANGELOG.md'
+              'vcpkg/ports/boost-test/vcpkg.json',
+              'vcpkg/ports/sdl2/vcpkg.json'
             ) }}
 
       - name: Install Boost.Test vcpkg package
