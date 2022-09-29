@@ -8,8 +8,8 @@ TARGET_LITRO ::= litro-wasm.js
 TARGET_TRMN ::= trmn-wasm.js
 
 CPPFLAGS ::= -DNDEBUG
-CFLAGS ::= -std=c17 -flto -Wall -Werror -O3
-CXXFLAGS ::= -std=c++17 -flto -fno-rtti -fno-exceptions -Wall -Werror -O3
+CFLAGS ::= -std=c17 -O3 -flto -Wall -Werror -Wno-closure
+CXXFLAGS ::= -std=c++17 -O3 -flto -fno-rtti -fno-exceptions -Wall -Werror -Wno-closure
 LDFLAGS ::=
 
 SRC_DIR ::= ../src
