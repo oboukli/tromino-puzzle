@@ -64,6 +64,7 @@ $(TARGET_LITRO): $(OBJ_DIR)/libtromino/tromino.o $(OBJ_DIR)/wasm/litro/litro.o
 		-s ENVIRONMENT=web \
 		-s ERROR_ON_UNDEFINED_SYMBOLS=1 \
 		-s EXIT_RUNTIME=0 \
+		-s EXPORT_NAME="createLitroMod" \
 		-s EXPORTED_FUNCTIONS='["_solve"]' \
 		-s EXPORTED_RUNTIME_METHODS='["addFunction", "removeFunction"]' \
 		-s FILESYSTEM=0 \
@@ -72,7 +73,7 @@ $(TARGET_LITRO): $(OBJ_DIR)/libtromino/tromino.o $(OBJ_DIR)/wasm/litro/litro.o
 		-s LLD_REPORT_UNDEFINED=1 \
 		-s MINIFY_HTML=1 \
 		-s MINIMAL_RUNTIME=0 \
-		-s MODULARIZE=1 -s 'EXPORT_NAME="createLitroMod"' \
+		-s MODULARIZE=1 \
 		-s SAFE_HEAP_LOG=0 \
 		-s SAFE_HEAP=0 \
 		-s STACK_OVERFLOW_CHECK=0 \
@@ -88,6 +89,8 @@ $(TARGET_TRMN): $(OBJ_DIR)/libtromino/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/tr
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) \
 		--closure 1 \
 		--no-entry \
+		-l GL \
+		-s EXPORT_NAME="createTrmnMod" \
 		-s ALLOW_TABLE_GROWTH=1 \
 		-s ALLOW_UNIMPLEMENTED_SYSCALLS=1 \
 		-s ASSERTIONS=0 \
@@ -103,7 +106,7 @@ $(TARGET_TRMN): $(OBJ_DIR)/libtromino/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/tr
 		-s LLD_REPORT_UNDEFINED=1 \
 		-s MINIFY_HTML=1 \
 		-s MINIMAL_RUNTIME=0 \
-		-s MODULARIZE=1 -s 'EXPORT_NAME="createTrmnMod"' \
+		-s MODULARIZE=1 \
 		-s SAFE_HEAP_LOG=0 \
 		-s SAFE_HEAP=0 \
 		-s STACK_OVERFLOW_CHECK=0 \
@@ -112,7 +115,6 @@ $(TARGET_TRMN): $(OBJ_DIR)/libtromino/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/tr
 		-s USE_CLOSURE_COMPILER=1 \
 		-s USE_SDL=2 \
 		-s WASM=1 \
-		-lGL \
 		-o $(OUT_DIR)/$(TRMN_DIR_NAME)/$@ $^
 
 $(OBJ_DIR)/libtromino/tromino.o: $(SRC_DIR)/libtromino/tromino.c
@@ -124,7 +126,7 @@ $(OBJ_DIR)/libtromino/tromino.o: $(SRC_DIR)/libtromino/tromino.c
 $(OBJ_DIR)/wasm/litro/litro.o: $(SRC_DIR)/wasm/litro/litro.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CPPFLAGS) $(CFLAGS) \
-		-I$(SRC_DIR)/libtromino \
+		-I $(SRC_DIR)/libtromino \
 		-c $< \
 		-o $@
 
@@ -132,8 +134,8 @@ $(OBJ_DIR)/wasm/trmn/trmn.o: $(SRC_DIR)/wasm/trmn/trmn.cpp
 	@mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) \
 		-s USE_SDL=2 \
-		-I$(SRC_DIR)/libtromino \
-		-I$(SRC_DIR)/gfx2d \
+		-I $(SRC_DIR)/libtromino \
+		-I $(SRC_DIR)/gfx2d \
 		-c $< \
 		-o $@
 
@@ -141,7 +143,7 @@ $(OBJ_DIR)/gfx2d/%.o: $(SRC_DIR)/gfx2d/%.cpp
 	@mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) \
 		-s USE_SDL=2 \
-		-I$(SRC_DIR)/libtromino \
+		-I $(SRC_DIR)/libtromino \
 		-c $< \
 		-o $@
 
