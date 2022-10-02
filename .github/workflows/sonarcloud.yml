@@ -7,6 +7,9 @@ on:
     - cron: 10 22 * * 5
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build
