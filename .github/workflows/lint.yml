@@ -2,9 +2,13 @@ name: Lint
 
 on:
   pull_request:
+    branches:
+      - main
     paths:
       - "**.md"
   push:
+    branches:
+      - main
     paths:
       - "**.md"
   workflow_dispatch:

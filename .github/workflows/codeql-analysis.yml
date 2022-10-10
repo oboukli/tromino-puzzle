@@ -2,7 +2,11 @@ name: CodeQL analysis
 
 on:
   pull_request:
+    branches:
+      - main
   push:
+    branches:
+      - main
   schedule:
     - cron: 10 22 * * 5
   workflow_dispatch:
