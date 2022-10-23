@@ -31,4 +31,5 @@ jobs:
       - name: Report DevSkim scan results to GitHub
         uses: github/codeql-action/upload-sarif@v2
         with:
+          ignore-globs: "**/.git/**"
           sarif_file: devskim-results.sarif
