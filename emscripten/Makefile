@@ -56,13 +56,13 @@ $(TARGET_LITRO): $(OBJ_DIR)/libtromino/tromino.o $(OBJ_DIR)/wasm/litro/litro.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) \
 		--closure 1 \
 		--no-entry \
-		-s ALLOW_TABLE_GROWTH=1 \
-		-s ALLOW_UNIMPLEMENTED_SYSCALLS=1 \
+		-s ALLOW_TABLE_GROWTH \
+		-s ALLOW_UNIMPLEMENTED_SYSCALLS \
 		-s ASSERTIONS=0 \
-		-s DISABLE_EXCEPTION_CATCHING=1 \
+		-s DISABLE_EXCEPTION_CATCHING \
 		-s DYNAMIC_EXECUTION=0 \
 		-s ENVIRONMENT=web \
-		-s ERROR_ON_UNDEFINED_SYMBOLS=1 \
+		-s ERROR_ON_UNDEFINED_SYMBOLS \
 		-s EXIT_RUNTIME=0 \
 		-s EXPORT_NAME="createLitroMod" \
 		-s EXPORTED_FUNCTIONS='["_solve"]' \
@@ -70,18 +70,18 @@ $(TARGET_LITRO): $(OBJ_DIR)/libtromino/tromino.o $(OBJ_DIR)/wasm/litro/litro.o
 		-s FILESYSTEM=0 \
 		-s INITIAL_MEMORY=64KB \
 		-s INVOKE_RUN=0 \
-		-s LLD_REPORT_UNDEFINED=1 \
-		-s MINIFY_HTML=1 \
+		-s LLD_REPORT_UNDEFINED \
+		-s MINIFY_HTML \
 		-s MINIMAL_RUNTIME=0 \
-		-s MODULARIZE=1 \
+		-s MODULARIZE \
 		-s SAFE_HEAP_LOG=0 \
 		-s SAFE_HEAP=0 \
 		-s STACK_OVERFLOW_CHECK=0 \
-		-s STRICT_JS=1 \
-		-s STRICT=1 \
+		-s STRICT \
+		-s STRICT_JS \
 		-s TOTAL_STACK=32KB \
-		-s USE_CLOSURE_COMPILER=1 \
-		-s WASM=1 \
+		-s USE_CLOSURE_COMPILER \
+		-s WASM \
 		-o $(OUT_DIR)/$(LITRO_DIR_NAME)/$@ $^
 
 $(TARGET_TRMN): $(OBJ_DIR)/libtromino/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/trmn/trmn.o
@@ -90,31 +90,31 @@ $(TARGET_TRMN): $(OBJ_DIR)/libtromino/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/tr
 		--closure 1 \
 		--no-entry \
 		-l GL \
-		-s EXPORT_NAME="createTrmnMod" \
-		-s ALLOW_TABLE_GROWTH=1 \
-		-s ALLOW_UNIMPLEMENTED_SYSCALLS=1 \
+		-s ALLOW_TABLE_GROWTH \
+		-s ALLOW_UNIMPLEMENTED_SYSCALLS \
 		-s ASSERTIONS=0 \
-		-s ASYNCIFY=1 \
-		-s DISABLE_EXCEPTION_CATCHING=1 \
+		-s ASYNCIFY \
+		-s DISABLE_EXCEPTION_CATCHING \
 		-s DYNAMIC_EXECUTION=0 \
 		-s ENVIRONMENT=web \
-		-s ERROR_ON_UNDEFINED_SYMBOLS=1 \
+		-s ERROR_ON_UNDEFINED_SYMBOLS \
 		-s EXIT_RUNTIME=0 \
-		-s EXPORTED_FUNCTIONS='["_playTromino"]' \
+		-s EXPORT_NAME="createTrmnMod" \
+		-s EXPORTED_FUNCTIONS=_playTromino \
 		-s FILESYSTEM=0 \
 		-s INITIAL_MEMORY=32MB \
-		-s LLD_REPORT_UNDEFINED=1 \
-		-s MINIFY_HTML=1 \
+		-s LLD_REPORT_UNDEFINED \
+		-s MINIFY_HTML \
 		-s MINIMAL_RUNTIME=0 \
-		-s MODULARIZE=1 \
+		-s MODULARIZE \
 		-s SAFE_HEAP_LOG=0 \
 		-s SAFE_HEAP=0 \
 		-s STACK_OVERFLOW_CHECK=0 \
-		-s STRICT_JS=1 \
-		-s STRICT=1 \
-		-s USE_CLOSURE_COMPILER=1 \
+		-s STRICT \
+		-s STRICT_JS \
+		-s USE_CLOSURE_COMPILER \
 		-s USE_SDL=2 \
-		-s WASM=1 \
+		-s WASM \
 		-o $(OUT_DIR)/$(TRMN_DIR_NAME)/$@ $^
 
 $(OBJ_DIR)/libtromino/tromino.o: $(SRC_DIR)/libtromino/tromino.c
