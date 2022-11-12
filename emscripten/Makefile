@@ -77,9 +77,9 @@ $(TARGET_LITRO): $(OBJ_DIR)/libtromino/tromino.o $(OBJ_DIR)/wasm/litro/litro.o
 		-s SAFE_HEAP_LOG=0 \
 		-s SAFE_HEAP=0 \
 		-s STACK_OVERFLOW_CHECK=0 \
+		-s STACK_SIZE=32KB \
 		-s STRICT \
 		-s STRICT_JS \
-		-s TOTAL_STACK=32KB \
 		-s USE_CLOSURE_COMPILER \
 		-s WASM \
 		-o $(OUT_DIR)/$(LITRO_DIR_NAME)/$@ $^
