@@ -37,7 +37,7 @@ struct board_t {
 struct graph_state_t {
     std::ostream& os;
     board_t& board;
-#ifdef _WINDOWS
+#ifdef WIN32 // TODO:
     const HANDLE hOutput;
 #endif // _WINDOWS
 };
