@@ -36,6 +36,7 @@ jobs:
           --quiet
           autoconf-archive
           gcovr
+          lcov
           libboost-test-dev
           libsdl2-dev
 
