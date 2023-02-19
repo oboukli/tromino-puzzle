@@ -49,6 +49,9 @@ jobs:
       - name: Install boost-test
         run: sudo ./vcpkg/vcpkg install boost-test
 
+      - name: Install pkg-config
+        run: brew install pkg-config
+
       - name: Install SDL2
         run: |-
           sudo ./vcpkg/vcpkg install sdl2 --triplet x64-osx-dynamic
