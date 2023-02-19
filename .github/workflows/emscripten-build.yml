@@ -35,7 +35,7 @@ jobs:
 
       - name: Install Emscripten SDK
         env:
-          EMSDK_VERSION: 3.1.30
+          EMSDK_VERSION: 3.1.31
         run: |-
           ./emsdk install ${EMSDK_VERSION}
           ./emsdk activate ${EMSDK_VERSION}
