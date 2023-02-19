@@ -64,6 +64,7 @@ $(TARGET_LITRO): $(OBJ_DIR)/libtromino/tromino.o $(OBJ_DIR)/wasm/litro/litro.o
 		-s ENVIRONMENT=web \
 		-s ERROR_ON_UNDEFINED_SYMBOLS \
 		-s EXIT_RUNTIME=0 \
+		-s EXPORT_ES6 \
 		-s EXPORT_NAME="createLitroMod" \
 		-s EXPORTED_FUNCTIONS='["_solve"]' \
 		-s EXPORTED_RUNTIME_METHODS='["addFunction", "removeFunction"]' \
@@ -79,7 +80,6 @@ $(TARGET_LITRO): $(OBJ_DIR)/libtromino/tromino.o $(OBJ_DIR)/wasm/litro/litro.o
 		-s STACK_OVERFLOW_CHECK=0 \
 		-s STACK_SIZE=32KB \
 		-s STRICT \
-		-s STRICT_JS \
 		-s USE_CLOSURE_COMPILER \
 		-s WASM \
 		-o $(OUT_DIR)/$(LITRO_DIR_NAME)/$@ $^
@@ -99,6 +99,7 @@ $(TARGET_TRMN): $(OBJ_DIR)/libtromino/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/tr
 		-s ENVIRONMENT=web \
 		-s ERROR_ON_UNDEFINED_SYMBOLS \
 		-s EXIT_RUNTIME=0 \
+		-s EXPORT_ES6 \
 		-s EXPORT_NAME="createTrmnMod" \
 		-s EXPORTED_FUNCTIONS=_playTromino \
 		-s FILESYSTEM=0 \
@@ -111,7 +112,6 @@ $(TARGET_TRMN): $(OBJ_DIR)/libtromino/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/tr
 		-s SAFE_HEAP=0 \
 		-s STACK_OVERFLOW_CHECK=0 \
 		-s STRICT \
-		-s STRICT_JS \
 		-s USE_CLOSURE_COMPILER \
 		-s USE_SDL=2 \
 		-s WASM \
