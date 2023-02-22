@@ -99,7 +99,7 @@ jobs:
 
       - name: Compute SHA512 of artifacts
         run: |-
-          ls -Al | grep -v '^d'
+          ls -Al
           shasum --algorithm 512 --binary UnitTests
           shasum --algorithm 512 --binary libSDL2-2.0.dylib
           shasum --algorithm 512 --binary libtromino-validation.a

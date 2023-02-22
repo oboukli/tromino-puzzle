@@ -65,9 +65,9 @@ jobs:
 
       - name: Compute SHA512 of artifacts
         run: |-
-          ls -Al ./src/ | grep -v '^d'
-          ls -Al ./src/.libs/ | grep -v '^d'
-          ls -Al ./test/ | grep -v '^d'
+          ls -Al ./src/
+          ls -Al ./src/.libs/
+          ls -Al ./test/
           sha512sum --binary ./src/.libs/libtromino.a
           sha512sum --binary ./src/.libs/libtromino-gfx2d.a
           sha512sum --binary ./src/.libs/libtromino-validation.a
