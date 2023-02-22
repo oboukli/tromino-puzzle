@@ -64,7 +64,6 @@ $(TARGET_LITRO): $(OBJ_DIR)/libtromino/tromino.o $(OBJ_DIR)/wasm/litro/litro.o
 		-s ENVIRONMENT=web \
 		-s ERROR_ON_UNDEFINED_SYMBOLS \
 		-s EXIT_RUNTIME=0 \
-		-s EXPORT_ES6 \
 		-s EXPORT_NAME="createLitroMod" \
 		-s EXPORTED_FUNCTIONS='["_solve"]' \
 		-s EXPORTED_RUNTIME_METHODS='["addFunction", "removeFunction"]' \
@@ -99,7 +98,6 @@ $(TARGET_TRMN): $(OBJ_DIR)/libtromino/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/tr
 		-s ENVIRONMENT=web \
 		-s ERROR_ON_UNDEFINED_SYMBOLS \
 		-s EXIT_RUNTIME=0 \
-		-s EXPORT_ES6 \
 		-s EXPORT_NAME="createTrmnMod" \
 		-s EXPORTED_FUNCTIONS=_playTromino \
 		-s FILESYSTEM=0 \
