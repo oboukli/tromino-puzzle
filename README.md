@@ -5,6 +5,7 @@
 [![CodeQL](https://github.com/oboukli/tromino-puzzle/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/oboukli/tromino-puzzle/actions/workflows/codeql-analysis.yml?query=branch%3Amain)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=oboukli_tromino-puzzle&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=oboukli_tromino-puzzle)
+[![GitHub Super-Linter](https://github.com/oboukli/tromino-puzzle/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
 This is a C (C11) library (see `src/core`) implementing a divide-and-conquer
 algorithm, and a collection of apps (written in C11, C++17, C++20, and
