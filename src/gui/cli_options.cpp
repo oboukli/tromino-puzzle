@@ -1,4 +1,4 @@
-// Copyright (c) 2021-2022 Omar Boukli-Hacene. All rights reserved.
+// Copyright (c) Omar Boukli-Hacene. All rights reserved.
 // Distributed under an MIT-style license that can be
 // found in the LICENSE file.
 
@@ -18,7 +18,7 @@ void print_usage(std::ostream& os) noexcept {
         "Options:\n"
         "  -f    Force large puzzle (unstable)\n"
         "\n"
-        "Copyright (c) 2021-2022 Omar Boukli-Hacene. All rights reserved.\n"
+        "Copyright (c) 2021-2023 Omar Boukli-Hacene. All rights reserved.\n"
         << std::endl;
     // clang-format on
 }

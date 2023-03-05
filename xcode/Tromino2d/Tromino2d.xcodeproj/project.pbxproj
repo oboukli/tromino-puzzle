@@ -256,7 +256,7 @@
 					../../src/validation,
 				);
 				INFOPLIST_KEY_CFBundleDisplayName = "Tromino Puzzle";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Omar Boukli-Hacene";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2023 Omar Boukli-Hacene. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -328,7 +328,7 @@
 					../../src/validation,
 				);
 				INFOPLIST_KEY_CFBundleDisplayName = "Tromino Puzzle";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Omar Boukli-Hacene";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2023 Omar Boukli-Hacene. All rights reserved.";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(BUILD_DIR)/libSDL2",
@@ -351,7 +351,7 @@
 				GCC_C_LANGUAGE_STANDARD = c17;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2022 Omar Boukli-Hacene. All rights reserved.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2023 Omar Boukli-Hacene. All rights reserved.";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -367,7 +367,7 @@
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2022 Omar Boukli-Hacene. All rights reserved.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2023 Omar Boukli-Hacene. All rights reserved.";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -228,7 +228,7 @@
 					../../src/libtromino,
 					../../src/validation,
 				);
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2022 Omar Boukli-Hacene. All rights reserved.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2023 Omar Boukli-Hacene. All rights reserved.";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -291,7 +291,7 @@
 					../../src/libtromino,
 					../../src/validation,
 				);
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2022 Omar Boukli-Hacene. All rights reserved.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2023 Omar Boukli-Hacene. All rights reserved.";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
