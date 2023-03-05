@@ -1,4 +1,4 @@
-dnl Copyright (c) 2021-2022 Omar Boukli-Hacene. All rights reserved.
+dnl Copyright (c) Omar Boukli-Hacene. All rights reserved.
 dnl Distributed under an MIT-style license that can be
 dnl found in the LICENSE file.
 dnl
@@ -8,11 +8,11 @@ AC_PREREQ([2.69])
 
 m4_define(_TRMNPZZL_VERSION_MAJOR, 0)
 m4_define(_TRMNPZZL_VERSION_MINOR, 12)
-m4_define(_TRMNPZZL_VERSION_PATCH, 7)
-m4_define(_TRMNPZZL_VERSION_BUILD, 1)
+m4_define(_TRMNPZZL_VERSION_PATCH, 8)
+m4_define(_TRMNPZZL_VERSION_BUILD, 0)
 m4_define(_TRMNPZZL_VERSION_RC, 0)
 m4_define(_TRMNPZZL_VERSION_IS_RELEASE, true)
-m4_define(_COPYRIGHT_YEAR, 2022)
+m4_define(_COPYRIGHT_YEAR, 2023)
 
 AC_INIT([trmnpzzl],[m4_join(., _TRMNPZZL_VERSION_MAJOR, _TRMNPZZL_VERSION_MINOR, _TRMNPZZL_VERSION_PATCH, _TRMNPZZL_VERSION_BUILD)m4_if(_TRMNPZZL_VERSION_RC, 0, , rc_TRMNPZZL_VERSION_RC)],[https://github.com/oboukli/tromino-puzzle/issues],[trmnpzzl],[https://omar.fun/tromino-puzzle])
 AM_INIT_AUTOMAKE([foreign subdir-objects -Wall -Werror])

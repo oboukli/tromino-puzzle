@@ -161,7 +161,7 @@ docker run --detach --rm --publish=8080:80 \
 ## License
 
 This software is released under an [MIT-style license](LICENSE).
-Copyright © 2021-2022 Omar Boukli-Hacene.
+Copyright © 2021-2023 Omar Boukli-Hacene.
 
 SPDX license identifier: MIT.
 
