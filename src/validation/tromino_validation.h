@@ -23,8 +23,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 /* SPDX-License-Identifier: MIT */
 
-#ifndef TROMINO_VALIDATION_H
-#define TROMINO_VALIDATION_H
+#ifndef VALIDATION_TROMINO_VALIDATION_H
+#define VALIDATION_TROMINO_VALIDATION_H
 
 #include <stdbool.h>
 
@@ -45,4 +45,4 @@ bool trmn_is_valid_config(const int order, const int x, const int y);
 }
 #endif /* __cplusplus */
 
-#endif /* TROMINO_VALIDATION_H */
+#endif /* VALIDATION_TROMINO_VALIDATION_H */
