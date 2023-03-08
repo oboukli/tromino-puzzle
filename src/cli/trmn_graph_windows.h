@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef TRMN_GRAPH_WINDOWS_H
-#define TRMN_GRAPH_WINDOWS_H
+#ifndef CLI_TRMN_GRAPH_WINDOWS_H
+#define CLI_TRMN_GRAPH_WINDOWS_H
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
@@ -46,4 +46,4 @@ void use_wch(board_t& tromino_board, std::ostream& os) noexcept;
 
 } // namespace tromino::cli::windows
 
-#endif // TRMN_GRAPH_WINDOWS_H
+#endif // CLI_TRMN_GRAPH_WINDOWS_H

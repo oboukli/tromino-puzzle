@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef TRMN_GRAPH_H
-#define TRMN_GRAPH_H
+#ifndef CLI_TRMN_GRAPH_H
+#define CLI_TRMN_GRAPH_H
 
 #ifdef _WINDOWS
 #define WIN32_LEAN_AND_MEAN
@@ -88,4 +88,4 @@ inline std::array<char, SPRITE_SIZE> get_sprite(
 
 } // namespace tromino::cli
 
-#endif // TRMN_GRAPH_H
+#endif // CLI_TRMN_GRAPH_H

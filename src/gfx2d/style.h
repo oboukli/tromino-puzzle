@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef STYLE_H
-#define STYLE_H
+#ifndef GFX2D_STYLE_H
+#define GFX2D_STYLE_H
 
 #include <SDL2/SDL.h>
 
@@ -21,4 +21,4 @@ struct Style {
 
 } // namespace tromino::gfx2d
 
-#endif // STYLE_H
+#endif // GFX2D_STYLE_H

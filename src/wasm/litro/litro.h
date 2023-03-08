@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef LITRO_H
-#define LITRO_H
+#ifndef WASM_LITRO_LITRO_H
+#define WASM_LITRO_LITRO_H
 
 #include <emscripten.h>
 
@@ -16,4 +16,4 @@ EMSCRIPTEN_KEEPALIVE void solve(
     const int order, const int mark_x, const int mark_y,
     add_tromino_extern_callback add_tromino_cb);
 
-#endif // LITRO_H
+#endif // WASM_LITRO_LITRO_H

@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef WINDOW_H
-#define WINDOW_H
+#ifndef GFX2D_WINDOW_H
+#define GFX2D_WINDOW_H
 
 #include <SDL2/SDL.h>
 
@@ -28,4 +28,4 @@ private:
 
 } // namespace tromino::gfx2d
 
-#endif // WINDOW_H
+#endif // GFX2D_WINDOW_H
