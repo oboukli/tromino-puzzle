@@ -72,7 +72,7 @@ void render_frame() noexcept {
 
 void start(const tromino::gfx2d::Board& board, const int width) noexcept {
     using namespace tromino::gfx2d;
-    constexpr int SWAP_INTERVAL = 4;
+    constexpr const int SWAP_INTERVAL = 4;
 
     if (isInitialized) {
         terminate();
