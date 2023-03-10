@@ -49,7 +49,7 @@ inline std::size_t calc_index(const T x, const T y, const T o) noexcept {
         + static_cast<std::size_t>(x);
 }
 
-constexpr std::size_t SPRITE_SIZE{4};
+constexpr const std::size_t SPRITE_SIZE{4};
 
 template <
     char neutral, char empty, char mark, char horizontal, char vertical,

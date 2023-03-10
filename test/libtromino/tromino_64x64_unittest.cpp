@@ -17,7 +17,7 @@
 namespace {
 
 // clang-format off
-constexpr std::array<ShimStep, std::size_t{((64 * 64) - 1) / 3}>
+constexpr const std::array<ShimStep, std::size_t{((64 * 64) - 1) / 3}>
     g_expected_for_order_64_and_mark_61_37{{
         {60, 36, 1, 1},
         {62, 38, -1, -1},
@@ -1393,9 +1393,9 @@ BOOST_AUTO_TEST_SUITE(tromino_64x64_test_suite)
 
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs64AndMarkIs61_37_ThenSolution) {
-    constexpr int order{64};
-    constexpr int mark_x{61};
-    constexpr int mark_y{37};
+    constexpr const int order{64};
+    constexpr const int mark_x{61};
+    constexpr const int mark_y{37};
 
     std::vector<ShimStep> actual;
     actual.reserve(std::size_t{1365});

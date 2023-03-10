@@ -20,11 +20,11 @@ BOOST_AUTO_TEST_SUITE(tromino_2x2_test_suite)
 // X |
 // - +
 BOOST_AUTO_TEST_CASE(GivenK2_WhenTopLeft_ThenSolutionIsK) {
-    constexpr int order{2};
-    constexpr int mark_x{0};
-    constexpr int mark_y{0};
+    constexpr const int order{2};
+    constexpr const int mark_x{0};
+    constexpr const int mark_y{0};
 
-    constexpr std::array<ShimStep, std::size_t{1}> expected{{{0, 0, -1, -1}}};
+    constexpr const std::array<ShimStep, std::size_t{1}> expected{{{0, 0, -1, -1}}};
     std::vector<ShimStep> actual;
 
     ::trmn_solve_puzzle(order, mark_x, mark_y, shim_add_tromino, &actual);
@@ -38,11 +38,11 @@ BOOST_AUTO_TEST_CASE(GivenK2_WhenTopLeft_ThenSolutionIsK) {
 // | X
 // + -
 BOOST_AUTO_TEST_CASE(GivenL2_WhenTopRight_ThenSolutionIsL) {
-    constexpr int order{2};
-    constexpr int mark_x{1};
-    constexpr int mark_y{0};
+    constexpr const int order{2};
+    constexpr const int mark_x{1};
+    constexpr const int mark_y{0};
 
-    constexpr std::array<ShimStep, std::size_t{1}> expected{{{0, 0, 1, -1}}};
+    constexpr const std::array<ShimStep, std::size_t{1}> expected{{{0, 0, 1, -1}}};
     std::vector<ShimStep> actual;
 
     ::trmn_solve_puzzle(order, mark_x, mark_y, shim_add_tromino, &actual);
@@ -56,11 +56,11 @@ BOOST_AUTO_TEST_CASE(GivenL2_WhenTopRight_ThenSolutionIsL) {
 // - +
 // X |
 BOOST_AUTO_TEST_CASE(GivenM2_WhenBottomLeft_ThenSolutionIsM) {
-    constexpr int order{2};
-    constexpr int mark_x{0};
-    constexpr int mark_y{1};
+    constexpr const int order{2};
+    constexpr const int mark_x{0};
+    constexpr const int mark_y{1};
 
-    constexpr std::array<ShimStep, std::size_t{1}> expected{{{0, 0, -1, 1}}};
+    constexpr const std::array<ShimStep, std::size_t{1}> expected{{{0, 0, -1, 1}}};
     std::vector<ShimStep> actual;
 
     ::trmn_solve_puzzle(order, mark_x, mark_y, shim_add_tromino, &actual);
@@ -74,11 +74,11 @@ BOOST_AUTO_TEST_CASE(GivenM2_WhenBottomLeft_ThenSolutionIsM) {
 // + -
 // | X
 BOOST_AUTO_TEST_CASE(GivenN2_WhenBottomRight_ThenSolutionIsN) {
-    constexpr int order{2};
-    constexpr int mark_x{1};
-    constexpr int mark_y{1};
+    constexpr const int order{2};
+    constexpr const int mark_x{1};
+    constexpr const int mark_y{1};
 
-    constexpr std::array<ShimStep, std::size_t{1}> expected{{{0, 0, 1, 1}}};
+    constexpr const std::array<ShimStep, std::size_t{1}> expected{{{0, 0, 1, 1}}};
     std::vector<ShimStep> actual;
 
     ::trmn_solve_puzzle(order, mark_x, mark_y, shim_add_tromino, &actual);

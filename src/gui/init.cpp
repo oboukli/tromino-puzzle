@@ -64,8 +64,8 @@ inline void start_game_loop(
     using namespace tromino::gfx2d;
     using namespace std::chrono_literals;
 
-    constexpr auto WAIT_TIME = 4ms;
-    constexpr int FRAME_DELAY = 68;
+    constexpr const auto WAIT_TIME = 4ms;
+    constexpr const int FRAME_DELAY = 68;
 
     const auto window{std::make_unique<tromino::gfx2d::Window>(title, width)};
     assert(window->GetSdlWindow() != nullptr);

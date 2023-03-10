@@ -19,39 +19,39 @@
 
 #include "trmn_graph.h"
 
-constexpr auto BEL = "\a";
-constexpr auto ESC = "\x1b";
-constexpr auto CSI = "\x1b[";
+constexpr const auto BEL = "\a";
+constexpr const auto ESC = "\x1b";
+constexpr const auto CSI = "\x1b[";
 
-constexpr auto BOARD_BACKGROUND_COLOR = "23";
+constexpr const auto BOARD_BACKGROUND_COLOR = "23";
 
-constexpr auto MARK_BACKGROUND_COLOR = "199";
-constexpr auto MARK_FOREGROUND_COLOR = "216";
+constexpr const auto MARK_BACKGROUND_COLOR = "199";
+constexpr const auto MARK_FOREGROUND_COLOR = "216";
 
-constexpr auto TROMINO_BACKGROUND_COLOR = "18";
-constexpr auto TROMINO_FOREGROUND_COLOR = "226";
+constexpr const auto TROMINO_BACKGROUND_COLOR = "18";
+constexpr const auto TROMINO_FOREGROUND_COLOR = "226";
 
 namespace tromino::cli::vt {
 
-constexpr char neutral = 'N';
-constexpr char empty = ' ';
+constexpr const char neutral = 'N';
+constexpr const char empty = ' ';
 
-constexpr char mark = 'X';
+constexpr const char mark = 'X';
 
 #ifdef TROMINO_USE_ASCII
-constexpr char horizontal = '-';
-constexpr char vertical = '|';
-constexpr char top_left = '+';
-constexpr char top_right = '+';
-constexpr char bottom_left = '+';
-constexpr char bottom_right = '+';
+constexpr const char horizontal = '-';
+constexpr const char vertical = '|';
+constexpr const char top_left = '+';
+constexpr const char top_right = '+';
+constexpr const char bottom_left = '+';
+constexpr const char bottom_right = '+';
 #else
-constexpr char horizontal = '\x71';
-constexpr char vertical = '\x78';
-constexpr char top_left = '\x6c';
-constexpr char top_right = '\x6b';
-constexpr char bottom_left = '\x6d';
-constexpr char bottom_right = '\x6a';
+constexpr const char horizontal = '\x71';
+constexpr const char vertical = '\x78';
+constexpr const char top_left = '\x6c';
+constexpr const char top_right = '\x6b';
+constexpr const char bottom_left = '\x6d';
+constexpr const char bottom_right = '\x6a';
 #endif // TROMINO_USE_ASCII
 
 void draw_board(const board_t& board, std::ostream& os) noexcept;
