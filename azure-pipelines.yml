@@ -126,7 +126,7 @@ jobs:
       - task: DockerInstaller@0
         displayName: Install Docker
         inputs:
-          dockerVersion: 20.10.22
+          dockerVersion: 23.0.1
           releaseType: stable
 
       - script: >-
