@@ -70,7 +70,6 @@ $(TARGET_LITRO): $(OBJ_DIR)/libtromino/tromino.o $(OBJ_DIR)/wasm/litro/litro.o
 		-s FILESYSTEM=0 \
 		-s INITIAL_MEMORY=64KB \
 		-s INVOKE_RUN=0 \
-		-s LLD_REPORT_UNDEFINED \
 		-s MINIFY_HTML \
 		-s MINIMAL_RUNTIME=0 \
 		-s MODULARIZE \
@@ -102,7 +101,6 @@ $(TARGET_TRMN): $(OBJ_DIR)/libtromino/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/tr
 		-s EXPORTED_FUNCTIONS=_playTromino \
 		-s FILESYSTEM=0 \
 		-s INITIAL_MEMORY=32MB \
-		-s LLD_REPORT_UNDEFINED \
 		-s MINIFY_HTML \
 		-s MINIMAL_RUNTIME=0 \
 		-s MODULARIZE \
