@@ -27,8 +27,8 @@ AC_SUBST([LIBTROMINO_AGE], [1])
 AM_PROG_AR
 
 if test "x$enable_code_coverage" = xyes; then
-    CFLAGS=""
-    CXXFLAGS=""
+	CFLAGS=""
+	CXXFLAGS=""
 fi
 
 AC_PROG_CC
