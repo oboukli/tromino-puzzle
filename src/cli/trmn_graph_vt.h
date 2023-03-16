@@ -19,6 +19,8 @@
 
 #include "trmn_graph.h"
 
+namespace tromino::cli::vt {
+
 constexpr const auto BEL = "\a";
 constexpr const auto ESC = "\x1b";
 constexpr const auto CSI = "\x1b[";
@@ -30,8 +32,6 @@ constexpr const auto MARK_FOREGROUND_COLOR = "216";
 
 constexpr const auto TROMINO_BACKGROUND_COLOR = "18";
 constexpr const auto TROMINO_FOREGROUND_COLOR = "226";
-
-namespace tromino::cli::vt {
 
 constexpr const char neutral = 'N';
 constexpr const char empty = ' ';
