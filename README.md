@@ -131,6 +131,11 @@ The SDL2 library is required to build the desktop app.
 sudo apt install libsdl2-dev
 ```
 
+### Headless app
+
+For an experimental headless tromino2d app, define `TROMINO_2D_HEADLESS` before
+building the tromino2d app.
+
 ## Web app
 
 The web app makes use of WebAssembly and requires Emscripten to build.

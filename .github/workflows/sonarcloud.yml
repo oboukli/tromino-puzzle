@@ -39,6 +39,7 @@ jobs:
           lcov
           libboost-test-dev
           libsdl2-dev
+          xvfb
 
       - name: Check out repository
         uses: actions/checkout@v3
@@ -100,7 +101,7 @@ jobs:
         run: >-
           ./autogen.sh
 
-          ./configure --enable-code-coverage
+          ./configure --enable-code-coverage CPPFLAGS=-DTROMINO_2D_HEADLESS
 
           build-wrapper-linux-x86-64
           --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }}
@@ -120,6 +121,14 @@ jobs:
 
       - name: Run tromino2d 5 0 0
         run: ./src/tromino2d 5 0 0 2> /dev/null || true
+
+      - name: Start Xvfb
+        run: Xvfb :99 -screen 0 1024x768x24 &
+
+      - name: Run tromino2d 8 2 5
+        env:
+          DISPLAY: :99
+        run: ./src/tromino2d 8 2 5
 
       - name: Run gcovr
         run: >-
