@@ -33,25 +33,25 @@ constexpr const auto MARK_FOREGROUND_COLOR = "216";
 constexpr const auto TROMINO_BACKGROUND_COLOR = "18";
 constexpr const auto TROMINO_FOREGROUND_COLOR = "226";
 
-constexpr const char neutral = 'N';
-constexpr const char empty = ' ';
+constexpr const char NEUTRAL = 'N';
+constexpr const char EMPTY = ' ';
 
-constexpr const char mark = 'X';
+constexpr const char MARK = 'X';
 
 #ifdef TROMINO_USE_ASCII
-constexpr const char horizontal = '-';
-constexpr const char vertical = '|';
-constexpr const char top_left = '+';
-constexpr const char top_right = '+';
-constexpr const char bottom_left = '+';
-constexpr const char bottom_right = '+';
+constexpr const char HORIZONTAL = '-';
+constexpr const char VERTICAL = '|';
+constexpr const char TOP_LEFT = '+';
+constexpr const char TOP_RIGHT = '+';
+constexpr const char BOTTOM_LEFT = '+';
+constexpr const char BOTTOM_RIGHT = '+';
 #else
-constexpr const char horizontal = '\x71';
-constexpr const char vertical = '\x78';
-constexpr const char top_left = '\x6c';
-constexpr const char top_right = '\x6b';
-constexpr const char bottom_left = '\x6d';
-constexpr const char bottom_right = '\x6a';
+constexpr const char HORIZONTAL = '\x71';
+constexpr const char VERTICAL = '\x78';
+constexpr const char TOP_LEFT = '\x6c';
+constexpr const char TOP_RIGHT = '\x6b';
+constexpr const char BOTTOM_LEFT = '\x6d';
+constexpr const char BOTTOM_RIGHT = '\x6a';
 #endif // TROMINO_USE_ASCII
 
 void draw_board(const board_t& board, std::ostream& os) noexcept;
@@ -61,10 +61,10 @@ void add_tromino(
     void* const graph_state) noexcept;
 
 inline void init_board(const board_t& board) noexcept {
-    std::fill_n(board.board_matrix.get(), board.size, empty);
+    std::fill_n(board.board_matrix.get(), board.size, EMPTY);
 
     board.board_matrix[calc_index(board.mark_x, board.mark_y, board.order)]
-        = mark;
+        = MARK;
 }
 
 void use_vt(board_t& tromino_board, std::ostream& os) noexcept;
