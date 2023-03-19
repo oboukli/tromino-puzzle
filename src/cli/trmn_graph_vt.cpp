@@ -44,19 +44,19 @@ void add_tromino(
     char* const board_matrix = board.board_matrix.get();
     const int order = board.order;
     const auto sprite = get_sprite<
-        neutral, empty, mark, horizontal, vertical, top_left, top_right,
-        bottom_left, bottom_right>(flip_x, flip_y);
+        NEUTRAL, EMPTY, MARK, HORIZONTAL, VERTICAL, TOP_LEFT, TOP_RIGHT,
+        BOTTOM_LEFT, BOTTOM_RIGHT>(flip_x, flip_y);
 
     char px;
     for (int i = 0; i < 2; ++i) {
         for (int j = 0; j < 2; ++j) {
             px = sprite[calc_index(j, i, 2)];
-            if (px == neutral) {
+            if (px == NEUTRAL) {
                 continue;
             }
 
             assert(
-                (board_matrix[calc_index(pos_x + j, pos_y + i, order)] == empty)
+                (board_matrix[calc_index(pos_x + j, pos_y + i, order)] == EMPTY)
                 && "Error: Invalid placement.");
 
             board_matrix[calc_index(pos_x + j, pos_y + i, order)] = px;
@@ -151,7 +151,7 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept {
         CSI + "38;5;"s + MARK_FOREGROUND_COLOR + "m"s;
     // clang-format on
 
-    draw_at(tromino_board.mark_x + 1, tromino_board.mark_y + 1, mark, os);
+    draw_at(tromino_board.mark_x + 1, tromino_board.mark_y + 1, MARK, os);
 
     // clang-format off
     os <<
