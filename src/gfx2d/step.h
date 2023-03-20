@@ -18,10 +18,10 @@ struct Step final {
     const int fy;
 
     constexpr Step(int px, int py, int fx, int fy) noexcept :
-        px(px),
-        py(py),
-        fx(fx),
-        fy(fy) {
+        px{px},
+        py{py},
+        fx{fx},
+        fy{fy} {
     }
 
     Step(Step&& other) noexcept = default;
