@@ -11,8 +11,9 @@ namespace tromino::gfx2d {
 #ifdef __EMSCRIPTEN__
 constexpr const auto WINDOW_FLAGS{0};
 #else
-constexpr const auto WINDOW_FLAGS = ::SDL_WindowFlags::SDL_WINDOW_ALLOW_HIGHDPI
-    | ::SDL_WindowFlags::SDL_WINDOW_SHOWN;
+constexpr const auto WINDOW_FLAGS{
+    ::SDL_WindowFlags::SDL_WINDOW_ALLOW_HIGHDPI
+    | ::SDL_WindowFlags::SDL_WINDOW_SHOWN};
 #endif // __EMSCRIPTEN__
 
 Window::Window(const std::string& title, const int width) noexcept :

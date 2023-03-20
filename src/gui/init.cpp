@@ -64,8 +64,8 @@ inline void start_game_loop(
     using namespace tromino::gfx2d;
     using namespace std::chrono_literals;
 
-    constexpr const auto WAIT_TIME = 4ms;
-    constexpr const int FRAME_DELAY = 68;
+    constexpr const auto WAIT_TIME{4ms};
+    constexpr const int FRAME_DELAY{68};
 
     const auto window{std::make_unique<tromino::gfx2d::Window>(title, width)};
     assert(window->GetSdlWindow() != nullptr);
@@ -83,7 +83,7 @@ inline void start_game_loop(
 
     viewModel->SetBoard(board, style);
 
-    bool is_main_loop_running = true;
+    bool is_main_loop_running{true};
     while (is_main_loop_running) {
         poll_sdl_events(is_main_loop_running);
 
@@ -117,7 +117,7 @@ int init(
     const tromino::gfx2d::Board& board, const int width,
     const std::string& title) noexcept {
     const auto board_order = static_cast<std::size_t>(board.order);
-    const std::size_t num_steps = ((board_order * board_order) - 1) / 3;
+    const std::size_t num_steps{((board_order * board_order) - 1) / 3};
 
     SharedState shared_state;
     shared_state.steps.reserve(num_steps);
@@ -126,7 +126,7 @@ int init(
         solver<SharedState>, board.order, board.mark_x, board.mark_y,
         add_tromino, &shared_state);
 
-    bool sdl2_success = false;
+    bool sdl2_success{false};
     if (::SDL_Init(SDL_INIT_VIDEO) == 0) {
         ::SDL_SetHint(SDL_HINT_RENDER_LOGICAL_SIZE_MODE, "overscan");
         ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");

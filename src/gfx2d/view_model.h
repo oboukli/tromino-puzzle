@@ -45,16 +45,16 @@ private:
         _solutionTexture{nullptr, &::SDL_DestroyTexture};
     std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)>
         _trominoTexture{nullptr, &::SDL_DestroyTexture};
-    static constexpr const int OUTLINE_LOGICAL_WIDTH = 1;
-    static constexpr const int SQUARE_LOGICAL_WIDTH = 8;
+    static constexpr const int OUTLINE_LOGICAL_WIDTH{1};
+    static constexpr const int SQUARE_LOGICAL_WIDTH{8};
 };
 
 [[nodiscard]] inline ::SDL_RendererFlip get_flip(
     const int flip_x, const int flip_y) noexcept {
     // clang-format off
-    int f = flip_x == 1
+    int f{flip_x == 1
         ? ::SDL_RendererFlip::SDL_FLIP_HORIZONTAL
-        : ::SDL_RendererFlip::SDL_FLIP_NONE;
+        : ::SDL_RendererFlip::SDL_FLIP_NONE};
     // clang-format on
 
     if (flip_y == 1) {

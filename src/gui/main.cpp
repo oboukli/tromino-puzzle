@@ -21,8 +21,8 @@ int main(const int argc, const char* const argv[]) noexcept {
 
     tromino::tromino2d::options options;
     std::string error;
-    if (bool is_error
-        = tromino::tromino2d::read_options(argc, argv, options, error);
+    if (bool is_error{
+            tromino::tromino2d::read_options(argc, argv, options, error)};
         is_error
         || !::trmn_is_valid_config(options.order, options.x, options.y)) {
         std::cerr << error << std::endl;
@@ -31,8 +31,8 @@ int main(const int argc, const char* const argv[]) noexcept {
         return EXIT_FAILURE;
     }
 
-    const auto order_internal = static_cast<std::size_t>(options.order);
-    const std::size_t size = order_internal * order_internal;
+    const auto order_internal{static_cast<std::size_t>(options.order)};
+    const std::size_t size{order_internal * order_internal};
     const tromino::gfx2d::Board board{
         .size = size,
         .order = options.order,
