@@ -13,11 +13,11 @@ namespace tromino::gfx2d {
 TrominoBoardViewModel::TrominoBoardViewModel(
     ::SDL_Window* const window) noexcept :
     _window(window) {
-    Uint32 render_flags{
+    const ::Uint32 render_flags{
         ::SDL_RendererFlags::SDL_RENDERER_ACCELERATED
         | ::SDL_RendererFlags::SDL_RENDERER_PRESENTVSYNC
         | ::SDL_RendererFlags::SDL_RENDERER_TARGETTEXTURE};
-    _renderer.reset(::SDL_CreateRenderer(_window, -1, render_flags));
+    _renderer.reset(::SDL_CreateRenderer(_window, RENDERING_DRIVER_IDX, render_flags));
 }
 
 void TrominoBoardViewModel::SetBoard(

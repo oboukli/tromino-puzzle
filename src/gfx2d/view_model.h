@@ -47,6 +47,7 @@ private:
         _trominoTexture{nullptr, &::SDL_DestroyTexture};
     static constexpr const int OUTLINE_LOGICAL_WIDTH{1};
     static constexpr const int SQUARE_LOGICAL_WIDTH{8};
+    static constexpr const int RENDERING_DRIVER_IDX{-1};
 };
 
 [[nodiscard]] inline ::SDL_RendererFlip get_flip(
