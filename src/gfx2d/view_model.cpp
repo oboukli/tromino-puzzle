@@ -17,7 +17,8 @@ TrominoBoardViewModel::TrominoBoardViewModel(
         ::SDL_RendererFlags::SDL_RENDERER_ACCELERATED
         | ::SDL_RendererFlags::SDL_RENDERER_PRESENTVSYNC
         | ::SDL_RendererFlags::SDL_RENDERER_TARGETTEXTURE};
-    _renderer.reset(::SDL_CreateRenderer(_window, RENDERING_DRIVER_IDX, render_flags));
+    _renderer.reset(
+        ::SDL_CreateRenderer(_window, RENDERING_DRIVER_IDX, render_flags));
 }
 
 void TrominoBoardViewModel::SetBoard(
