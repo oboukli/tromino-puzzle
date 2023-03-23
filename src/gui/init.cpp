@@ -101,7 +101,7 @@ inline void start_game_loop(
         viewModel->Render(shared_state.steps);
 
         ::SDL_Delay(FRAME_DELAY);
-        
+
 #ifdef TROMINO_2D_HEADLESS
         if (!viewModel->IsPlaying()) {
             ::SDL_Event event{::SDL_EventType::SDL_QUIT};
