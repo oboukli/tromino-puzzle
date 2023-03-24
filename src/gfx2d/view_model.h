@@ -9,6 +9,7 @@
 
 #include <SDL2/SDL.h>
 
+#include <cstddef>
 #include <memory>
 #include <vector>
 
