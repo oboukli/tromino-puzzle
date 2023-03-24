@@ -29,7 +29,7 @@ void TrominoBoardViewModel::SetBoard(
     _currentStepNum = 0;
     // clang-format off
     _numSteps
-        = ((static_cast<std::size_t>(order) * static_cast<std::size_t>(order)) - 1) / 3;
+        = ((static_cast<std::size_t>(order) * static_cast<std::size_t>(order)) - std::size_t{1}) / std::size_t{3};
     // clang-format on
 
     ::SDL_RenderSetLogicalSize(_renderer.get(), logicalWidth, logicalWidth);
