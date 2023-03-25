@@ -21,37 +21,37 @@
 
 namespace tromino::cli::vt {
 
-constexpr const auto BEL = "\a";
-constexpr const auto ESC = "\x1b";
-constexpr const auto CSI = "\x1b[";
+constexpr const auto BEL{"\a"};
+constexpr const auto ESC{"\x1b"};
+constexpr const auto CSI{"\x1b["};
 
-constexpr const auto BOARD_BACKGROUND_COLOR = "23";
+constexpr const auto BOARD_BACKGROUND_COLOR{"23"};
 
-constexpr const auto MARK_BACKGROUND_COLOR = "199";
-constexpr const auto MARK_FOREGROUND_COLOR = "216";
+constexpr const auto MARK_BACKGROUND_COLOR{"199"};
+constexpr const auto MARK_FOREGROUND_COLOR{"216"};
 
-constexpr const auto TROMINO_BACKGROUND_COLOR = "18";
-constexpr const auto TROMINO_FOREGROUND_COLOR = "226";
+constexpr const auto TROMINO_BACKGROUND_COLOR{"18"};
+constexpr const auto TROMINO_FOREGROUND_COLOR{"226"};
 
-constexpr const char NEUTRAL = 'N';
-constexpr const char EMPTY = ' ';
+constexpr const char NEUTRAL{'N'};
+constexpr const char EMPTY{' '};
 
-constexpr const char MARK = 'X';
+constexpr const char MARK{'X'};
 
 #ifdef TROMINO_USE_ASCII
-constexpr const char HORIZONTAL = '-';
-constexpr const char VERTICAL = '|';
-constexpr const char TOP_LEFT = '+';
-constexpr const char TOP_RIGHT = '+';
-constexpr const char BOTTOM_LEFT = '+';
-constexpr const char BOTTOM_RIGHT = '+';
+constexpr const char HORIZONTAL{'-'};
+constexpr const char VERTICAL{'|'};
+constexpr const char TOP_LEFT{'+'};
+constexpr const char TOP_RIGHT{'+'};
+constexpr const char BOTTOM_LEFT{'+'};
+constexpr const char BOTTOM_RIGHT{'+'};
 #else
-constexpr const char HORIZONTAL = '\x71';
-constexpr const char VERTICAL = '\x78';
-constexpr const char TOP_LEFT = '\x6c';
-constexpr const char TOP_RIGHT = '\x6b';
-constexpr const char BOTTOM_LEFT = '\x6d';
-constexpr const char BOTTOM_RIGHT = '\x6a';
+constexpr const char HORIZONTAL{'\x71'};
+constexpr const char VERTICAL{'\x78'};
+constexpr const char TOP_LEFT{'\x6c'};
+constexpr const char TOP_RIGHT{'\x6b'};
+constexpr const char BOTTOM_LEFT{'\x6d'};
+constexpr const char BOTTOM_RIGHT{'\x6a'};
 #endif // TROMINO_USE_ASCII
 
 void draw_board(const board_t& board, std::ostream& os) noexcept;
