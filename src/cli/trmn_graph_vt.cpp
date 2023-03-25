@@ -24,7 +24,7 @@ inline void draw_at(
 } // namespace
 
 void draw_board(const board_t& board, std::ostream& os) noexcept {
-    const int order = board.order;
+    const int order{board.order};
     for (int i = 0; i < order; ++i) { // Rows
         os << CSI << 1 + i << ";" << 1 << "H";
         for (int j = 0; j < order; ++j) { // Columns
@@ -39,15 +39,15 @@ void add_tromino(
     constexpr const std::chrono::milliseconds DELAY_AFTER(68);
 
     const graph_state_t* const graph_state = static_cast<graph_state_t*>(state);
-    std::ostream& os = graph_state->os;
-    const board_t& board = graph_state->board;
-    char* const board_matrix = board.board_matrix.get();
-    const int order = board.order;
-    const auto sprite = get_sprite<
+    std::ostream& os{graph_state->os};
+    const board_t& board{graph_state->board};
+    char* const board_matrix{board.board_matrix.get()};
+    const int order{board.order};
+    const auto sprite{get_sprite<
         NEUTRAL, EMPTY, MARK, HORIZONTAL, VERTICAL, TOP_LEFT, TOP_RIGHT,
-        BOTTOM_LEFT, BOTTOM_RIGHT>(flip_x, flip_y);
+        BOTTOM_LEFT, BOTTOM_RIGHT>(flip_x, flip_y)};
 
-    char px;
+    char px{};
     for (int i = 0; i < 2; ++i) {
         for (int j = 0; j < 2; ++j) {
             px = sprite[calc_index(j, i, 2)];
@@ -81,7 +81,7 @@ void add_tromino(
 
 void use_vt(board_t& tromino_board, std::ostream& os) noexcept {
 #ifdef _WINDOWS
-    const HANDLE hStdout = ::GetStdHandle(STD_OUTPUT_HANDLE);
+    const HANDLE hStdout{::GetStdHandle(STD_OUTPUT_HANDLE)};
 
     DWORD dwConsoleOriginalMode{0};
     DWORD dwConsoleModeRequiredFlags{
