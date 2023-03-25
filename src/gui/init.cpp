@@ -116,8 +116,9 @@ inline void start_game_loop(
 int init(
     const tromino::gfx2d::Board& board, const int width,
     const std::string& title) noexcept {
-    const auto board_order = static_cast<std::size_t>(board.order);
-    const std::size_t num_steps{((board_order * board_order) - 1) / 3};
+    const auto board_order{static_cast<std::size_t>(board.order)};
+    const std::size_t num_steps{
+        ((board_order * board_order) - std::size_t{1}) / std::size_t{3}};
 
     SharedState shared_state;
     shared_state.steps.reserve(num_steps);
