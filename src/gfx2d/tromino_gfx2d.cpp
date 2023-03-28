@@ -107,23 +107,34 @@ void DrawTrominoOutline(
     const ::SDL_Rect* pSegment{&segment};
     ::SDL_RenderFillRect(renderer, pSegment);
 
-    segment = SDL_Rect{
-        (squareWidth * 2) - thickness, thickness, thickness, squareWidth * 2};
+    segment.x = (squareWidth * 2) - thickness;
+    segment.y = thickness;
+    segment.w = thickness;
+    segment.h = squareWidth * 2;
     ::SDL_RenderFillRect(renderer, pSegment);
 
-    segment = SDL_Rect{
-        0, (squareWidth * 2) - thickness, (squareWidth * 2) - thickness,
-        thickness};
+    segment.x = 0;
+    segment.y = (squareWidth * 2) - thickness;
+    segment.w = (squareWidth * 2) - thickness;
+    segment.h = thickness;
     ::SDL_RenderFillRect(renderer, pSegment);
 
-    segment = SDL_Rect{0, squareWidth, thickness, squareWidth - thickness};
+    segment.x = 0;
+    segment.y = squareWidth;
+    segment.w = thickness;
+    segment.h = squareWidth - thickness;
     ::SDL_RenderFillRect(renderer, pSegment);
 
-    segment = SDL_Rect{thickness, squareWidth, squareWidth, thickness};
+    segment.x = thickness;
+    segment.y = squareWidth;
+    segment.w = squareWidth;
+    segment.h = thickness;
     ::SDL_RenderFillRect(renderer, pSegment);
 
-    segment
-        = SDL_Rect{squareWidth, thickness, thickness, squareWidth - thickness};
+    segment.x = squareWidth;
+    segment.y = thickness;
+    segment.w = thickness;
+    segment.h = squareWidth - thickness;
     ::SDL_RenderFillRect(renderer, pSegment);
 }
 
