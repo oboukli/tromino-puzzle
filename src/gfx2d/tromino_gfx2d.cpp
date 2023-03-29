@@ -104,38 +104,37 @@ void DrawTrominoOutline(
     ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
     ::SDL_Rect segment{squareWidth, 0, squareWidth, thickness};
-    const ::SDL_Rect* pSegment{&segment};
-    ::SDL_RenderFillRect(renderer, pSegment);
+    ::SDL_RenderFillRect(renderer, &segment);
 
     segment.x = (squareWidth * 2) - thickness;
     segment.y = thickness;
     segment.w = thickness;
     segment.h = squareWidth * 2;
-    ::SDL_RenderFillRect(renderer, pSegment);
+    ::SDL_RenderFillRect(renderer, &segment);
 
     segment.x = 0;
     segment.y = (squareWidth * 2) - thickness;
     segment.w = (squareWidth * 2) - thickness;
     segment.h = thickness;
-    ::SDL_RenderFillRect(renderer, pSegment);
+    ::SDL_RenderFillRect(renderer, &segment);
 
     segment.x = 0;
     segment.y = squareWidth;
     segment.w = thickness;
     segment.h = squareWidth - thickness;
-    ::SDL_RenderFillRect(renderer, pSegment);
+    ::SDL_RenderFillRect(renderer, &segment);
 
     segment.x = thickness;
     segment.y = squareWidth;
     segment.w = squareWidth;
     segment.h = thickness;
-    ::SDL_RenderFillRect(renderer, pSegment);
+    ::SDL_RenderFillRect(renderer, &segment);
 
     segment.x = squareWidth;
     segment.y = thickness;
     segment.w = thickness;
     segment.h = squareWidth - thickness;
-    ::SDL_RenderFillRect(renderer, pSegment);
+    ::SDL_RenderFillRect(renderer, &segment);
 }
 
 } // namespace tromino::gfx2d
