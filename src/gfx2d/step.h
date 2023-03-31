@@ -7,8 +7,6 @@
 #ifndef GFX2D_STEP_H
 #define GFX2D_STEP_H
 
-#include "tromino.h"
-
 namespace tromino::gfx2d {
 
 struct Step final {

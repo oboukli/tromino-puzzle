@@ -1,4 +1,4 @@
-name: GNU Autotools build on Ubuntu
+name: Build on Ubuntu via CMake
 
 on:
   pull_request:
@@ -29,18 +29,15 @@ jobs:
           sudo apt-get install
           --assume-yes
           --quiet
-          autoconf-archive
+          cmake
           libboost-test-dev
           libsdl2-dev
 
-      - name: Run autogen.sh
-        run: ./autogen.sh
-
-      - name: Configure build
+      - name: Configure build with CMake
         run: |-
           mkdir build
           cd build
-          ../configure
+          cmake ..
 
       - name: Make
         run: make --jobs=$((($(nproc) * 15) / 10))

@@ -9,8 +9,6 @@
 
 #include <cstddef>
 
-#include "tromino.h"
-
 namespace tromino::gfx2d {
 
 struct Board {
