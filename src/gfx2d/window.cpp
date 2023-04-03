@@ -17,11 +17,11 @@ constexpr const auto WINDOW_FLAGS{
 #endif // __EMSCRIPTEN__
 
 Window::Window(const std::string& title, const int width) noexcept :
-    _window(
+    _window{
         ::SDL_CreateWindow(
             title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
             width, width, WINDOW_FLAGS),
-        &::SDL_DestroyWindow) {
+        &::SDL_DestroyWindow} {
 }
 
 Window::~Window() noexcept = default;
