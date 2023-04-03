@@ -37,7 +37,7 @@ public:
 private:
     std::size_t _numSteps{0};
     std::size_t _currentStepNum{0};
-    SDL_Window* const _window;
+    SDL_Window* const _window{};
     std::unique_ptr<::SDL_Renderer, decltype(&::SDL_DestroyRenderer)> _renderer{
         nullptr, &::SDL_DestroyRenderer};
     std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)>
