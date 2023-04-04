@@ -22,6 +22,8 @@ namespace tromino::gfx2d {
 
 class TrominoBoardViewModel final {
 public:
+    TrominoBoardViewModel() noexcept = delete;
+
     explicit TrominoBoardViewModel(::SDL_Window* const window) noexcept;
 
     ~TrominoBoardViewModel() noexcept = default;

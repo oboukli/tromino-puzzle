@@ -16,6 +16,8 @@ namespace tromino::gfx2d {
 
 class Window final {
 public:
+    Window() noexcept = delete;
+
     explicit Window(const std::string& title, const int width) noexcept;
 
     ~Window() noexcept;
