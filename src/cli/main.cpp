@@ -17,8 +17,8 @@ int main(const int argc, const char* const argv[]) noexcept {
     tromino::cli::options options;
 
     std::string error;
-    if (const bool is_error
-        = tromino::cli::read_options(argc, argv, options, error);
+    if (const bool is_error{
+            tromino::cli::read_options(argc, argv, options, error)};
         is_error
         || !::trmn_is_valid_config(options.order, options.x, options.y)) {
         std::cerr << error << std::endl;
