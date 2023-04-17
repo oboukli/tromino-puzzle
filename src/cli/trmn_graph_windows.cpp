@@ -34,7 +34,7 @@ inline void draw_at(
 
 void ensure_success(const BOOL is_success, const std::string& msg) noexcept {
     if (!is_success) {
-        const auto error = ::GetLastError();
+        const auto error{::GetLastError()};
         // clang-format off
         std::cerr
             << "Windows API error: " << error
@@ -49,7 +49,7 @@ void ensure_success(const BOOL is_success, const std::string& msg) noexcept {
 } // namespace
 
 void draw_board(const board_t& board) noexcept {
-    const int order = board.order;
+    const int order{board.order};
     for (int i = 0; i < order; ++i) { // Rows
         for (int j = 0; j < order; ++j) { // Columns
             std::cout << board.board_matrix[calc_index(j, i, order)];
@@ -62,17 +62,17 @@ void draw_board(const board_t& board) noexcept {
 void add_tromino(
     const int pos_x, const int pos_y, const int flip_x, const int flip_y,
     void* const state) noexcept {
-    constexpr const std::chrono::milliseconds DELAY_AFTER(68);
+    constexpr const std::chrono::milliseconds DELAY_AFTER{68};
 
-    const graph_state_t* graph_state = static_cast<graph_state_t*>(state);
-    const board_t& board = graph_state->board;
-    char* const board_matrix = board.board_matrix.get();
-    const int order = board.order;
-    const auto sprite = get_sprite<
+    const graph_state_t* graph_state{static_cast<graph_state_t*>(state)};
+    const board_t& board{graph_state->board};
+    char* const board_matrix{board.board_matrix.get()};
+    const int order{board.order};
+    const auto sprite{get_sprite<
         neutral, empty, mark, horizontal, vertical, top_left, top_right,
-        bottom_left, bottom_right>(flip_x, flip_y);
+        bottom_left, bottom_right>(flip_x, flip_y)};
 
-    char px;
+    char px{};
     for (int i = 0; i < 2; ++i) {
         for (int j = 0; j < 2; ++j) {
             px = sprite[calc_index(j, i, 2)];
@@ -122,7 +122,7 @@ void use_wch(board_t& tromino_board, std::ostream& os) noexcept {
         hConsoleOutput,
         FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
     // clang-format off
-    const COORD coordMark = {
+    const COORD coordMark{
         .X = static_cast<SHORT>(tromino_board.mark_x),
         .Y = static_cast<SHORT>(tromino_board.mark_y)
     };

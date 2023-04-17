@@ -18,16 +18,16 @@
 
 namespace tromino::cli::windows {
 
-constexpr const char neutral = 'N';
-constexpr const char empty = '\xB0';
+constexpr const char neutral{'N'};
+constexpr const char empty{'\xB0'};
 
-constexpr const char mark = '\xFE';
-constexpr const char horizontal = '\xCD';
-constexpr const char vertical = '\xBA';
-constexpr const char top_left = '\xC9';
-constexpr const char top_right = '\xBB';
-constexpr const char bottom_left = '\xC8';
-constexpr const char bottom_right = '\xBC';
+constexpr const char mark{'\xFE'};
+constexpr const char horizontal{'\xCD'};
+constexpr const char vertical{'\xBA'};
+constexpr const char top_left{'\xC9'};
+constexpr const char top_right{'\xBB'};
+constexpr const char bottom_left{'\xC8'};
+constexpr const char bottom_right{'\xBC'};
 
 void draw_board(const board_t& board) noexcept;
 
