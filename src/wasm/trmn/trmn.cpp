@@ -82,7 +82,8 @@ void start(const tromino::gfx2d::Board& board, const int width) noexcept {
     init(width);
 
     const std::size_t order_internal{static_cast<std::size_t>(board.order)};
-    const std::size_t numSteps{((order_internal * order_internal) - std::size_t{1}) / std::size_t{3}};
+    const std::size_t numSteps{
+        ((order_internal * order_internal) - std::size_t{1}) / std::size_t{3}};
     steps->reserve(numSteps);
 
     ::trmn_solve_puzzle(

@@ -53,8 +53,8 @@ private:
     static constexpr const int RENDERING_DRIVER_IDX{-1};
 };
 
-[[nodiscard]] inline ::SDL_RendererFlip get_flip(
-    const int flip_x, const int flip_y) noexcept {
+[[nodiscard]] inline ::SDL_RendererFlip
+get_flip(const int flip_x, const int flip_y) noexcept {
     // clang-format off
     int f{flip_x == 1
         ? ::SDL_RendererFlip::SDL_FLIP_HORIZONTAL

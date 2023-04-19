@@ -20,8 +20,8 @@ inline void draw_at(const int x, const int y, const char c) noexcept {
     std::cout << c;
 }
 
-inline void draw_at(
-    const int x, const int y, const char c, const HANDLE hOutput) noexcept {
+inline void
+draw_at(const int x, const int y, const char c, const HANDLE hOutput) noexcept {
     const COORD coord{
         .X{static_cast<SHORT>(x)},
         .Y{static_cast<SHORT>(y)},
