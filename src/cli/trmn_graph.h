@@ -54,8 +54,8 @@ constexpr const std::size_t SPRITE_SIZE{4};
 template <
     char neutral, char empty, char mark, char horizontal, char vertical,
     char top_left, char top_right, char bottom_left, char bottom_right>
-inline std::array<char, SPRITE_SIZE> get_sprite(
-    const int flip_x, const int flip_y) noexcept {
+inline std::array<char, SPRITE_SIZE>
+get_sprite(const int flip_x, const int flip_y) noexcept {
     assert(flip_x == -1 || flip_x == 1);
     assert(flip_y == -1 || flip_y == 1);
 

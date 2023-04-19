@@ -10,12 +10,10 @@
 namespace tromino::cli {
 
 #ifdef _WINDOWS
-// clang-format off
 enum class emulation_mode_type {
     vt100 = 0,
     wch = 1
 };
-// clang-format on
 #endif // _WINDOWS
 
 struct options {

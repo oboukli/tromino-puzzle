@@ -11,8 +11,8 @@
 
 namespace tromino::gfx2d {
 
-[[nodiscard]] ::SDL_Texture* CreateTexture(
-    ::SDL_Renderer* const renderer, const int width) noexcept;
+[[nodiscard]] ::SDL_Texture*
+CreateTexture(::SDL_Renderer* const renderer, const int width) noexcept;
 
 [[nodiscard]] ::SDL_Texture* CreateTrominoTexture(
     ::SDL_Renderer* const renderer, const int squareWidth,

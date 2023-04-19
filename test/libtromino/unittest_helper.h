@@ -19,10 +19,7 @@ struct ShimStep {
     const int flip_y;
 
     constexpr ShimStep(int pos_x, int pos_y, int flip_x, int flip_y) noexcept :
-        pos_x{pos_x},
-        pos_y{pos_y},
-        flip_x{flip_x},
-        flip_y{flip_y} {
+        pos_x{pos_x}, pos_y{pos_y}, flip_x{flip_x}, flip_y{flip_y} {
     }
 
     constexpr ShimStep(ShimStep&& other) noexcept :

@@ -16,8 +16,8 @@ namespace tromino::cli::vt {
 
 namespace {
 
-inline void draw_at(
-    const int x, const int y, const char c, std::ostream& os) noexcept {
+inline void
+draw_at(const int x, const int y, const char c, std::ostream& os) noexcept {
     os << CSI << y << ";" << x << "H" << c;
 }
 
