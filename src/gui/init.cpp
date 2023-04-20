@@ -31,7 +31,7 @@ namespace tromino::tromino2d {
 namespace {
 
 struct SharedState {
-    std::mutex mut;
+    mutable std::mutex mut;
     std::condition_variable lock_cond;
     std::vector<tromino::gfx2d::Step> steps;
 };
