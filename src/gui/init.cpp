@@ -28,10 +28,19 @@ namespace tromino::tromino2d {
 
 namespace {
 
+extern "C" void solve_puzzle_cb(
+    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
+    void* const state) noexcept;
+
 template <typename T>
 using add_tromino_func = void (*)(
     const int pos_x, const int pos_y, const int flip_x, const int flip_y,
     T* const state) noexcept;
+
+template <typename T> struct SolverState final {
+    T* state;
+    add_tromino_func<T> callback;
+};
 
 struct SharedState {
     mutable std::mutex mut;
@@ -114,13 +123,23 @@ void add_tromino(
     shared_state->lock_cond.notify_one();
 }
 
-template <typename T>
+extern "C" void solve_puzzle_cb(
+    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
+    void* const state) noexcept {
+    SolverState<SharedState>* const solver_state{
+        static_cast<SolverState<SharedState>*>(state)};
+
+    solver_state->callback(pos_x, pos_y, flip_x, flip_y, solver_state->state);
+}
+
 void solver(
     const int order, const int mark_x, const int mark_y,
-    const add_tromino_func<T> add_tromino, T* const state) noexcept {
-    ::trmn_solve_puzzle(
-        order, mark_x, mark_y,
-        reinterpret_cast<trmn_add_tromino_func>(add_tromino), state);
+    const add_tromino_func<SharedState> add_tromino_func,
+    SharedState* const state) noexcept {
+    SolverState<SharedState> solver_state{
+        .state = state, .callback = add_tromino_func};
+
+    ::trmn_solve_puzzle(order, mark_x, mark_y, solve_puzzle_cb, &solver_state);
 }
 
 } // namespace
@@ -136,8 +155,8 @@ int init(
     shared_state.steps.reserve(num_steps);
 
     std::thread solver_thread(
-        solver<SharedState>, board.order, board.mark_x, board.mark_y,
-        add_tromino, &shared_state);
+        solver, board.order, board.mark_x, board.mark_y, add_tromino,
+        &shared_state);
 
     bool sdl2_success{false};
     if (::SDL_Init(SDL_INIT_VIDEO) == 0) {
