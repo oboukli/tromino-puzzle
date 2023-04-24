@@ -24,29 +24,20 @@
 #include "view_model.h"
 #include "window.h"
 
-#include "solver.h"
-
 namespace tromino::tromino2d {
 
 namespace {
+
+template <typename T>
+using add_tromino_func = void (*)(
+    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
+    T* const state) noexcept;
 
 struct SharedState {
     mutable std::mutex mut;
     std::condition_variable lock_cond;
     std::vector<tromino::gfx2d::Step> steps;
 };
-
-void add_tromino(
-    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
-    SharedState* const shared_state) noexcept {
-    using namespace tromino::gfx2d;
-
-    {
-        std::lock_guard lk(shared_state->mut);
-        shared_state->steps.emplace_back(pos_x, pos_y, flip_x, flip_y);
-    }
-    shared_state->lock_cond.notify_one();
-}
 
 void poll_sdl_events(bool& is_main_loop_running) noexcept {
     ::SDL_Event event;
@@ -109,6 +100,27 @@ inline void start_game_loop(
         }
 #endif
     }
+}
+
+void add_tromino(
+    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
+    SharedState* const shared_state) noexcept {
+    using namespace tromino::gfx2d;
+
+    {
+        std::lock_guard lk(shared_state->mut);
+        shared_state->steps.emplace_back(pos_x, pos_y, flip_x, flip_y);
+    }
+    shared_state->lock_cond.notify_one();
+}
+
+template <typename T>
+void solver(
+    const int order, const int mark_x, const int mark_y,
+    const add_tromino_func<T> add_tromino, T* const state) noexcept {
+    ::trmn_solve_puzzle(
+        order, mark_x, mark_y,
+        reinterpret_cast<trmn_add_tromino_func>(add_tromino), state);
 }
 
 } // namespace
