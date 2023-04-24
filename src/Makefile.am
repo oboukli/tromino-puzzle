@@ -81,8 +81,7 @@ tromino2d_SOURCES = \
 	gui/init.cpp \
 	gui/init.h \
 	gui/main.cpp \
-	gui/params.h \
-	gui/solver.h
+	gui/params.h
 tromino2d_CPPFLAGS = \
 	-I/usr/include/SDL2 \
 	-I$(top_srcdir)/src/libtromino \

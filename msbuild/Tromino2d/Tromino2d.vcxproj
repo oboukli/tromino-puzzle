@@ -90,7 +90,6 @@
     <ClInclude Include="..\..\src\gui\cli_options.h" />
     <ClInclude Include="..\..\src\gui\init.h" />
     <ClInclude Include="..\..\src\gui\params.h" />
-    <ClInclude Include="..\..\src\gui\solver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\gui\cli_options.cpp" />

@@ -36,7 +36,6 @@
 		75002AC627A684E900CBB593 /* cli_options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cli_options.h; sourceTree = "<group>"; };
 		7503E7C426C892630018B1F2 /* tromino2d */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tromino2d; sourceTree = BUILT_PRODUCTS_DIR; };
 		752A62C4276FE49F0076CB0C /* init.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = init.cpp; sourceTree = "<group>"; };
-		752A62C5276FE49F0076CB0C /* solver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = solver.h; sourceTree = "<group>"; };
 		752A62C6276FE49F0076CB0C /* init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = init.h; sourceTree = "<group>"; };
 		7530DEC5280212E800812ABF /* libSDL2-2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.dylib"; path = "$(BUILD_DIR)/libSDL2/libSDL2-2.0.dylib"; sourceTree = "<group>"; };
 		755F9D242811CB67004C54E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -99,7 +98,6 @@
 				75002AC627A684E900CBB593 /* cli_options.h */,
 				752A62C4276FE49F0076CB0C /* init.cpp */,
 				752A62C6276FE49F0076CB0C /* init.h */,
-				752A62C5276FE49F0076CB0C /* solver.h */,
 				75ACD98A26DAF724003E33CA /* main.cpp */,
 				75E2E8B927FCAC0800B0525E /* params.h */,
 			);
