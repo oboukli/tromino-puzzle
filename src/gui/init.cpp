@@ -61,7 +61,6 @@ void poll_sdl_events(bool& is_main_loop_running) noexcept {
 inline void start_game_loop(
     const tromino::gfx2d::Board& board, SharedState& shared_state,
     const int width, const std::string& title) noexcept {
-    using namespace tromino::gfx2d;
     using namespace std::chrono_literals;
 
     constexpr const auto WAIT_TIME{4ms};
@@ -114,8 +113,6 @@ inline void start_game_loop(
 void add_tromino(
     const int pos_x, const int pos_y, const int flip_x, const int flip_y,
     SharedState* const shared_state) noexcept {
-    using namespace tromino::gfx2d;
-
     {
         std::lock_guard lk(shared_state->mut);
         shared_state->steps.emplace_back(pos_x, pos_y, flip_x, flip_y);
