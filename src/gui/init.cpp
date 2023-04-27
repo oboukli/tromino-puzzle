@@ -87,7 +87,7 @@ inline void start_game_loop(
         poll_sdl_events(is_main_loop_running);
 
         if (viewModel->IsPlaying()) {
-            std::unique_lock lk(shared_state.mut);
+            std::unique_lock lk{shared_state.mut};
             if (shared_state.lock_cond.wait_for(lk, WAIT_TIME, [&shared_state] {
                     return !shared_state.steps.empty();
                 })) {
