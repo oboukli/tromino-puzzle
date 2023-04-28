@@ -11,6 +11,8 @@
 
 #include "tromino_validation.h"
 
+#include "board.h"
+
 #include "cli_models.h"
 #include "cli_options.h"
 #include "init.h"
