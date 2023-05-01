@@ -13,10 +13,10 @@
 #include "tromino.h"
 
 struct ShimStep {
-    const int pos_x;
-    const int pos_y;
-    const int flip_x;
-    const int flip_y;
+    int pos_x;
+    int pos_y;
+    int flip_x;
+    int flip_y;
 
     constexpr ShimStep(int pos_x, int pos_y, int flip_x, int flip_y) noexcept :
         pos_x{pos_x}, pos_y{pos_y}, flip_x{flip_x}, flip_y{flip_y} {

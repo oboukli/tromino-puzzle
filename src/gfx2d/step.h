@@ -12,10 +12,10 @@
 namespace tromino::gfx2d {
 
 struct Step final {
-    const int px;
-    const int py;
-    const int fx;
-    const int fy;
+    int px;
+    int py;
+    int fx;
+    int fy;
 
     constexpr Step(int px, int py, int fx, int fy) noexcept :
         px{px}, py{py}, fx{fx}, fy{fy} {
