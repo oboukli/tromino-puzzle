@@ -33,13 +33,13 @@ extern "C" void solve_puzzle_cb(
     void* const state) noexcept;
 
 template <typename T>
-using add_tromino_func = void (*)(
+using tromino_cb_t = void (*)(
     const int pos_x, const int pos_y, const int flip_x, const int flip_y,
     T* const state) noexcept;
 
 template <typename T> struct SolverState final {
     T* state;
-    add_tromino_func<T> callback;
+    tromino_cb_t<T> callback;
 };
 
 struct SharedState {
@@ -131,10 +131,10 @@ extern "C" void solve_puzzle_cb(
 
 void solver(
     const int order, const int mark_x, const int mark_y,
-    const add_tromino_func<SharedState> add_tromino_func,
+    const tromino_cb_t<SharedState> tromino_cb,
     SharedState* const state) noexcept {
     SolverState<SharedState> solver_state{
-        .state = state, .callback = add_tromino_func};
+        .state = state, .callback = tromino_cb};
 
     ::trmn_solve_puzzle(order, mark_x, mark_y, solve_puzzle_cb, &solver_state);
 }
