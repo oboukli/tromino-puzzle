@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE(
     }};
     // clang-format on
 
-    std::vector<ShimStep> actual;
+    std::vector<ShimStep> actual{};
 
     ::trmn_solve_puzzle(order, mark_x, mark_y, shim_add_tromino, &actual);
 
@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE(
     }};
     // clang-format on
 
-    std::vector<ShimStep> actual;
+    std::vector<ShimStep> actual{};
 
     ::trmn_solve_puzzle(order, mark_x, mark_y, shim_add_tromino, &actual);
 
@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE(
     }};
     // clang-format on
 
-    std::vector<ShimStep> actual;
+    std::vector<ShimStep> actual{};
 
     ::trmn_solve_puzzle(order, mark_x, mark_y, shim_add_tromino, &actual);
 
@@ -112,7 +112,7 @@ BOOST_AUTO_TEST_CASE(
     }};
     // clang-format on
 
-    std::vector<ShimStep> actual;
+    std::vector<ShimStep> actual{};
 
     ::trmn_solve_puzzle(order, mark_x, mark_y, shim_add_tromino, &actual);
 
@@ -142,7 +142,7 @@ BOOST_AUTO_TEST_CASE(
     }};
     // clang-format on
 
-    std::vector<ShimStep> actual;
+    std::vector<ShimStep> actual{};
 
     ::trmn_solve_puzzle(order, mark_x, mark_y, shim_add_tromino, &actual);
 

@@ -38,19 +38,18 @@ using tromino_cb_t = void (*)(
     T* const state) noexcept;
 
 template <typename T> struct SolverState final {
-    T* state;
-    tromino_cb_t<T> callback;
+    T* state{};
+    tromino_cb_t<T> callback{};
 };
 
 struct SharedState {
-    mutable std::mutex mut;
-    std::condition_variable lock_cond;
-    std::vector<tromino::gfx2d::Step> steps;
+    mutable std::mutex mut{};
+    std::condition_variable lock_cond{};
+    std::vector<tromino::gfx2d::Step> steps{};
 };
 
 void poll_sdl_events(bool& is_main_loop_running) noexcept {
-    ::SDL_Event event;
-
+    ::SDL_Event event{};
     while (::SDL_PollEvent(&event)) {
         if (event.type == ::SDL_EventType::SDL_QUIT) {
             is_main_loop_running = false;
@@ -148,7 +147,7 @@ int init(
     const std::size_t num_steps{
         ((board_order * board_order) - std::size_t{1}) / std::size_t{3}};
 
-    SharedState shared_state;
+    SharedState shared_state{};
     shared_state.steps.reserve(num_steps);
 
     std::thread solver_thread(

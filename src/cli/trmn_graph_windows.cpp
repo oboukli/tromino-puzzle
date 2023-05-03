@@ -111,7 +111,7 @@ void use_wch(board_t& tromino_board, std::ostream& os) noexcept {
     };
     init_board(tromino_board);
 
-    CONSOLE_SCREEN_BUFFER_INFO originalConsoleScreenBufferInfo;
+    CONSOLE_SCREEN_BUFFER_INFO originalConsoleScreenBufferInfo{};
     ::GetConsoleScreenBufferInfo(
         ::GetStdHandle(STD_OUTPUT_HANDLE), &originalConsoleScreenBufferInfo);
 

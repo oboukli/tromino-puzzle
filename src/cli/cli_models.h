@@ -17,12 +17,12 @@ enum class emulation_mode_type {
 #endif // _WINDOWS
 
 struct options {
-    int order;
-    int x;
-    int y;
+    int order{};
+    int x{};
+    int y{};
 #ifdef _WINDOWS
-    emulation_mode_type emulation_mode;
-    bool use_wch;
+    emulation_mode_type emulation_mode{};
+    bool use_wch{};
 #endif // _WINDOWS
 };
 

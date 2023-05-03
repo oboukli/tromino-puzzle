@@ -1397,7 +1397,7 @@ BOOST_AUTO_TEST_CASE(
     constexpr const int mark_x{61};
     constexpr const int mark_y{37};
 
-    std::vector<ShimStep> actual;
+    std::vector<ShimStep> actual{};
     actual.reserve(std::size_t{1365});
 
     ::trmn_solve_puzzle(order, mark_x, mark_y, shim_add_tromino, &actual);
