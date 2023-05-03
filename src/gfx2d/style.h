@@ -12,11 +12,11 @@
 namespace tromino::gfx2d {
 
 struct Style {
-    ::SDL_Color wke1_color;
-    ::SDL_Color bke8_color;
-    ::SDL_Color mark_color;
-    ::SDL_Color tromino_color;
-    ::SDL_Color tromino_outline_color;
+    ::SDL_Color wke1_color{};
+    ::SDL_Color bke8_color{};
+    ::SDL_Color mark_color{};
+    ::SDL_Color tromino_color{};
+    ::SDL_Color tromino_outline_color{};
 };
 
 } // namespace tromino::gfx2d

@@ -10,10 +10,10 @@
 namespace tromino::tromino2d {
 
 struct options {
-    int order;
-    int x;
-    int y;
-    bool force;
+    int order{};
+    int x{};
+    int y{};
+    bool force{};
 };
 
 } // namespace tromino::tromino2d

@@ -21,8 +21,8 @@
 int main(const int argc, const char* const argv[]) noexcept {
     using namespace std::string_literals;
 
-    tromino::tromino2d::options options;
-    std::string error;
+    tromino::tromino2d::options options{};
+    std::string error{};
     if (bool is_error{
             tromino::tromino2d::read_options(argc, argv, options, error)};
         is_error

@@ -14,10 +14,10 @@
 namespace tromino::gfx2d {
 
 struct Board {
-    std::size_t size;
-    int order;
-    int mark_x;
-    int mark_y;
+    std::size_t size{};
+    int order{};
+    int mark_x{};
+    int mark_y{};
 };
 
 } // namespace tromino::gfx2d

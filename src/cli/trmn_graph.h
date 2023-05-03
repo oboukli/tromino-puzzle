@@ -28,17 +28,17 @@ namespace tromino::cli {
 
 struct board_t {
     std::unique_ptr<char[]> board_matrix;
-    std::size_t size;
-    int order;
-    int mark_x;
-    int mark_y;
+    std::size_t size{};
+    int order{};
+    int mark_x{};
+    int mark_y{};
 };
 
 struct graph_state_t {
     std::ostream& os;
     board_t& board;
 #ifdef _WINDOWS
-    const HANDLE hOutput;
+    HANDLE hOutput{};
 #endif // _WINDOWS
 };
 
