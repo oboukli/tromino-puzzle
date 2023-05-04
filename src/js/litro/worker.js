@@ -110,11 +110,7 @@ self.addEventListener(
     }
     (async (e) => {
       await handleCommandAsync(e.data.cmd, e.data.payload);
-    })(event)
-      .then(() => {})
-      .catch((reason) => {
-        console.error(reason);
-      });
+    })(event).catch(console.error);
   },
   false
 );

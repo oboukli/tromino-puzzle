@@ -121,13 +121,15 @@ const ltrGfx = (function () {
    */
   function drawMark(board) {
     const context = board.context;
-    const x = board.mark.x;
-    const y = board.mark.y;
     const blockWidth = board.blockWidth;
-    const color = board.options.markColor;
 
-    context.fillStyle = color;
-    context.fillRect(x * blockWidth, y * blockWidth, blockWidth, blockWidth);
+    context.fillStyle = board.options.markColor;
+    context.fillRect(
+      board.mark.x * blockWidth,
+      board.mark.y * blockWidth,
+      blockWidth,
+      blockWidth
+    );
   }
 
   /**
