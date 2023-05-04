@@ -47,11 +47,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         editor.addEventListener("solve", (e) => {
           trmn.play(e.detail.order, e.detail.markX, e.detail.markY);
         });
-      })()
-        .then(() => {})
-        .catch((reason) => {
-          console.error(reason);
-        });
+      })().catch(console.error);
     },
     { capture: false, once: true, passive: true }
   );
