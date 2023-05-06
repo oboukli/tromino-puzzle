@@ -104,12 +104,17 @@ emModulePromise = initEmscriptenModuleAsync();
 
 self.addEventListener(
   "message",
-  async (e) => {
-    if (e.origin !== "" || e.source !== null) {
+  (event) => {
+    if (event.origin !== "" || event.source !== null) {
       return;
     }
-
-    await handleCommandAsync(e.data.cmd, e.data.payload);
+    (async (e) => {
+      await handleCommandAsync(e.data.cmd, e.data.payload);
+    })(event)
+      .then(() => {})
+      .catch((reason) => {
+        console.error(reason);
+      });
   },
   false
 );
