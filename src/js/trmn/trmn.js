@@ -35,11 +35,10 @@ const trmn = (function (createTrmnMod) {
    * @returns {Promise}
    */
   async function initAsync() {
-    /** @type {HTMLElement} */
-    const canvasElement = document.getElementById("canvas");
-
     module = await createTrmnMod(/* optional default settings */);
-    module.canvas = (() => canvasElement)();
+    module.canvas = /** @type {HTMLCanvasElement} */ (
+      document.getElementById("canvas")
+    );
   }
 
   /**
