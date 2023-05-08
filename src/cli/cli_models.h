@@ -12,7 +12,7 @@ namespace tromino::cli {
 #ifdef _WINDOWS
 enum class emulation_mode_type {
     vt100 = 0,
-    wch = 1
+    wch = 1,
 };
 #endif // _WINDOWS
 
