@@ -34,7 +34,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       (async () => {
         const editor = editorFactory.create();
 
-        await Promise.all([litro.initAsync(), trmn.initAsync()]);
+        litro.init();
+        await trmn.initAsync();
 
         editor.addEventListener("change", (e) => {
           litro.change(e.detail.order, e.detail.markX, e.detail.markY);

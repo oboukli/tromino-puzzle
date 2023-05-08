@@ -180,9 +180,9 @@ const litro = (function (window, document, ltrGfx) {
   }
 
   /**
-   * @returns {Promise}
+   * @returns {void}
    */
-  async function initAsync() {
+  function init() {
     /** @type {HTMLCanvasElement} */
     const litroCanvasElement = document.getElementById("litroCanvas");
 
@@ -192,7 +192,7 @@ const litro = (function (window, document, ltrGfx) {
   }
 
   return {
-    initAsync,
+    init,
     play,
     change,
   };
