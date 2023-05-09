@@ -27,12 +27,19 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 "use strict";
 
+/**
+ * @typedef {object} TrmnModule
+ * @property {function(number, number, number, number): void} _playTromino
+ * @property {HTMLCanvasElement} canvas
+ */
+
 // eslint-disable-next-line no-unused-vars
 const trmn = (function (createTrmnMod) {
+  /** @type {TrmnModule} */
   let module;
 
   /**
-   * @returns {Promise}
+   * @returns {Promise<void>}
    */
   async function initAsync() {
     module = await createTrmnMod(/* optional default settings */);
@@ -55,5 +62,5 @@ const trmn = (function (createTrmnMod) {
     initAsync,
     play,
   };
-  // @ts-ignore
+  // @ts-expect-error
 })(/* global createTrmnMod */ createTrmnMod);
