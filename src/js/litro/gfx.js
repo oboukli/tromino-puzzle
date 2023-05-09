@@ -25,6 +25,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // @ts-check
 
+/* exported ltrGfx */
+
 "use strict";
 
 /**
@@ -53,7 +55,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * @property {number} blockWidth
  */
 
-// eslint-disable-next-line no-unused-vars
 const ltrGfx = (function () {
   /**
    * @param {CanvasRenderingContext2D} context

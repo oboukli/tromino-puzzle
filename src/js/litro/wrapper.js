@@ -25,9 +25,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // @ts-check
 
-"use strict";
-
 /* exported solveTromino */
+
+"use strict";
 
 /**
  * @typedef {object} EmModule

@@ -25,9 +25,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // @ts-check
 
-"use strict";
+/* exported litro */
 
 /// <reference path="gfx.js" />
+
+"use strict";
 
 // eslint-disable-next-line no-unused-vars
 const litro = (function (window, document, ltrGfx) {
