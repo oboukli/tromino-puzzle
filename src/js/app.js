@@ -25,6 +25,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // @ts-check
 
+/// <reference path="editor.js" />
+/// <reference path="litro/litro.js" />
+/// <reference path="trmn/trmn.js" />
+
 "use strict";
 
 (async function (window, editorFactory, litro, trmn) {

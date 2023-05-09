@@ -25,12 +25,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // @ts-check
 
+/* exported editorFactory */
+
 "use strict";
 
 /**
  * @param {Document} document
  */
-// eslint-disable-next-line no-unused-vars
 const editorFactory = (function (document) {
   const editor = new EventTarget();
   let order = 32;
