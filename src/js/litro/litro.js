@@ -27,6 +27,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 "use strict";
 
+/// <reference path="gfx.js" />
+
 // eslint-disable-next-line no-unused-vars
 const litro = (function (window, document, ltrGfx) {
   /**
@@ -46,9 +48,11 @@ const litro = (function (window, document, ltrGfx) {
   /** @type {number} */
   let animationFrameRequestId;
 
+  /** @type {Options} */
   let options;
+  /** @type {Board} */
   let boardModel;
-  /** @type {Tromino[]} */
+  /** @type {Array<Tromino>} */
   let trominos;
 
   /** @type {number} */
@@ -145,7 +149,9 @@ const litro = (function (window, document, ltrGfx) {
     if (Array.isArray(trominos) && trominos.length > 0) {
       if (elapsed > stepIdx * delayBase) {
         stepIdx += 1;
-        let { x, y, flipX, flipY } = trominos.shift();
+        const { x, y, flipX, flipY } = /** @type {Tromino} */ (
+          trominos.shift()
+        );
         ltrGfx.drawTromino(boardModel, x, y, flipX, flipY);
       }
     }
@@ -183,10 +189,16 @@ const litro = (function (window, document, ltrGfx) {
    * @returns {void}
    */
   function init() {
-    /** @type {HTMLCanvasElement} */
-    const litroCanvasElement = document.getElementById("litroCanvas");
+    const litroCanvasElement = /** @type {HTMLCanvasElement} */ (
+      document.getElementById("litroCanvas")
+    );
 
-    context = litroCanvasElement.getContext("2d");
+    const ctx = litroCanvasElement.getContext("2d");
+    if (ctx === null) {
+      throw new Error("Cannot get 2D context.");
+    }
+    context = ctx;
+
     initSolver();
     initOptions();
   }

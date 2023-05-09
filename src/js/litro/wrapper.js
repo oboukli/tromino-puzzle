@@ -30,23 +30,31 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 /* exported solveTromino */
 
 /**
- * @param {object} emModule
+ * @typedef {object} EmModule
+ * @property {function(number, number, number, number): void} _solve
+ * @property {function(function, string): number} addFunction
+ * @property {function(number): void} removeFunction
+ */
+
+/**
+ * @callback TrominoStepCallback
+ * @param {number} x
+ * @param {number} y
+ * @param {number} flipX
+ * @param {number} flipY
+ * @returns {void}
+ */
+
+/**
+ * @param {EmModule} emModule
  * @param {number} order
  * @param {number} markX
  * @param {number} markY
- * @param {function} cb
+ * @param {TrominoStepCallback} cb
  * @returns {void}
  */
 function solveTromino(emModule, order, markX, markY, cb) {
-  let funcPtr = emModule.addFunction(function (
-    /** @type {number} */ positionX,
-    /** @type {number} */ positionY,
-    /** @type {number} */ flipX,
-    /** @type {number} */ flipY
-  ) {
-    cb(positionX, positionY, flipX, flipY);
-  },
-  "viiii");
+  const funcPtr = emModule.addFunction(cb, "viiii");
 
   emModule._solve(order, markX, markY, funcPtr);
 
