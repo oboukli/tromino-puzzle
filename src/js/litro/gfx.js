@@ -27,34 +27,34 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 "use strict";
 
+/**
+ * @typedef {object} Options
+ * @property {string} altColor
+ * @property {string} baseColor
+ * @property {string} markColor
+ * @property {string} trominoColor
+ * @property {string} trominoOutlineColor
+ */
+
+/**
+ * @typedef {object} Mark
+ * @property {number} x
+ * @property {number} y
+ */
+
+/**
+ * @typedef {object} Board
+ * @property {CanvasRenderingContext2D} context
+ * @property {CanvasRenderingContext2D} trominoContext
+ * @property {Options} options
+ * @property {number} order
+ * @property {Mark} mark
+ * @property {number} numTrominos
+ * @property {number} blockWidth
+ */
+
 // eslint-disable-next-line no-unused-vars
 const ltrGfx = (function () {
-  /**
-   * @typedef {object} Mark
-   * @property {number} x
-   * @property {number} y
-   */
-
-  /**
-   * @typedef {object} Options
-   * @property {string} altColor
-   * @property {string} baseColor
-   * @property {string} markColor
-   * @property {string} trominoColor
-   * @property {string} trominoOutlineColor
-   */
-
-  /**
-   * @typedef {object} Board
-   * @property {CanvasRenderingContext2D} context
-   * @property {CanvasRenderingContext2D} trominoContext
-   * @property {Options} options
-   * @property {number} order
-   * @property {Mark} mark
-   * @property {number} numTrominos
-   * @property {number} blockWidth
-   */
-
   /**
    * @param {CanvasRenderingContext2D} context
    * @param {number} order
@@ -70,6 +70,10 @@ const ltrGfx = (function () {
     trominoCanvas.width = wl;
     trominoCanvas.height = wl;
     const trominoContext = trominoCanvas.getContext("2d");
+
+    if (trominoContext === null) {
+      throw new Error("Cannot get 2D context.");
+    }
 
     initSprite(trominoContext, blockWidth, blockWidth * 0.125, options);
 
@@ -116,7 +120,7 @@ const ltrGfx = (function () {
   }
 
   /**
-   * @param {object} board
+   * @param {Board} board
    * @returns {void}
    */
   function drawMark(board) {

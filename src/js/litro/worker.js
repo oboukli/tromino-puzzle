@@ -25,6 +25,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // @ts-check
 
+"use strict";
+
+/// <reference path="wrapper.js" />
+
 /**
  * @typedef {object} TrominoPuzzle
  * @property {number} order
@@ -32,17 +36,19 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * @property {number} markY
  */
 
-"use strict";
-
 let _isSolverReady = false;
+
+/** @type {EmModule} */
 let _emModule;
+/** @type {PromiseLike<object>} */
 let instancePromise;
+/** @type {Promise<EmModule>} */
 let emModulePromise;
 
 importScripts("litro-wasm.js", "wrapper.js");
 
 /**
- * @returns {Promise}
+ * @returns {PromiseLike<object>}
  */
 function initWasmAsync() {
   return WebAssembly.instantiateStreaming(fetch("litro-wasm.wasm"), {
@@ -53,16 +59,16 @@ function initWasmAsync() {
 }
 
 /**
- * @returns {Promise<object>}
+ * @returns {Promise<EmModule>}
  */
-async function initEmscriptenModuleAsync() {
+function initEmscriptenModuleAsync() {
   /* global createLitroMod */
   return createLitroMod(/* optional default settings */);
 }
 
 /**
  * @param {TrominoPuzzle} tromino
- * @returns {Promise}
+ * @returns {Promise<void>}
  */
 async function handleSolveAsync({ order, markX, markY }) {
   if (!_isSolverReady) {
@@ -72,26 +78,15 @@ async function handleSolveAsync({ order, markX, markY }) {
   }
 
   /* global solveTromino */
-  solveTromino(
-    _emModule,
-    order,
-    markX,
-    markY,
-    (
-      /** @type {number} */ x,
-      /** @type {number} */ y,
-      /** @type {number} */ flipX,
-      /** @type {number} */ flipY
-    ) => {
-      self.postMessage({ x, y, flipX, flipY });
-    }
-  );
+  solveTromino(_emModule, order, markX, markY, (x, y, flipX, flipY) => {
+    self.postMessage({ x, y, flipX, flipY });
+  });
 }
 
 /**
  * @param {"solve"} cmd
  * @param {TrominoPuzzle} payload
- * @returns {Promise}
+ * @returns {Promise<void>}
  */
 async function handleCommandAsync(cmd, payload) {
   if (cmd === "solve") {
