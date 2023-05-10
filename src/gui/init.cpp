@@ -117,6 +117,7 @@ void add_tromino(
         shared_state->steps.emplace_back(pos_x, pos_y, flip_x, flip_y);
     }
     shared_state->lock_cond.notify_one();
+    std::this_thread::yield();
 }
 
 extern "C" void solve_puzzle_cb(
