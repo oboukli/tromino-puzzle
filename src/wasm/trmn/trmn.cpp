@@ -22,9 +22,9 @@
 
 namespace {
 
-std::unique_ptr<tromino::gfx2d::Window> window{nullptr};
-std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel{nullptr};
-std::unique_ptr<std::vector<tromino::gfx2d::Step>> steps{nullptr};
+std::unique_ptr<tromino::gfx2d::Window> window{};
+std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel{};
+std::unique_ptr<std::vector<tromino::gfx2d::Step>> steps{};
 bool isInitialized{false};
 
 void add_tromino(
