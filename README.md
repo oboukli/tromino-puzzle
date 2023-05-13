@@ -163,6 +163,50 @@ docker run --detach --rm --publish=8080:80 \
 --volume=$(pwd)/dist/web:/usr/share/nginx/html:ro --name tromino-puzzle nginx
 ```
 
+## Technical showcases
+
+The following is a partial list of standards, practices, software,
+and ideas leveraged by this project:
+
+- C (C89)
+- C++ (standard C++17)
+- C++ STL
+- No C++ inheritance
+- No C++ exceptions
+- No C++ RTTI
+- `const` and `constexpr` where applicable--except members
+- SDL2
+- VT-100
+- Windows API
+- Boost Test
+- vcpkg
+- Clang Format
+- Emscripten
+- JavaScript (vanilla. ECMAScript 2015+)
+- Web Workers
+- TypeScript JSDoc type annotations
+- ESLint
+- Prettier
+- Conventional Commits
+- Xcode
+- MSBuild
+- GNU Make
+- GNU Autotools
+- Azure Pipelines
+- GitHub Actions
+- Docker
+- Code test coverage
+- CodeQL
+- DevSkim
+- EditorConfig
+- Markdown
+- Markdownlint
+- SonarScanner
+- Strongly-typed approach
+- HTML5
+- CSS
+- SVG
+
 ## License
 
 This software is released under an [MIT-style license](LICENSE).
