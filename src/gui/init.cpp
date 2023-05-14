@@ -44,7 +44,7 @@ template <typename T> struct SolverState final {
 
 struct SharedState {
     mutable std::mutex mut{};
-    std::condition_variable lock_cond{};
+    mutable std::condition_variable lock_cond{};
     std::vector<tromino::gfx2d::Step> steps{};
 };
 
