@@ -29,7 +29,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 static void solve_tromino(
     const int order, const int px, const int py, const int fx, const int fy,
-    const trmn_add_tromino_func add_tromino, void* const state) {
+    const trmn_add_tromino_func_t add_tromino, void* const state) {
     if (order == 2) {
         add_tromino(px, py, fx, fy, state);
         return;
@@ -54,7 +54,7 @@ static void solve_tromino(
 
 static void solve_board(
     const int order, const int px, const int py, const int fx, const int fy,
-    const int mx, const int my, const trmn_add_tromino_func add_tromino,
+    const int mx, const int my, const trmn_add_tromino_func_t add_tromino,
     void* const state) {
     if (order > 2) {
         const int n = order >> 1;
@@ -76,7 +76,7 @@ static void solve_board(
 
 void trmn_solve_puzzle(
     const int order, const int mx, const int my,
-    const trmn_add_tromino_func add_tromino, void* const state) {
+    const trmn_add_tromino_func_t add_tromino, void* const state) {
     assert(add_tromino);
 
     const int o = order >> 1;
