@@ -186,6 +186,7 @@ and ideas leveraged by this project:
 - Web Workers
 - TypeScript JSDoc type annotations
 - ESLint
+- HTMLHint
 - Prettier
 - Conventional Commits
 - Xcode
