@@ -33,9 +33,9 @@ to the puzzle.
 The realization of the recursive solution was such a beautiful epiphany to the
 developer.
 
-## Command line app
+## Command-line app
 
-The command line app is supported on Linux, macOS, and Windows. See the
+The command-line app is supported on Linux, macOS, and Windows. See the
 [_Desktop app_](#desktop-app) section for build instruction.
 
 ### Virtual terminal mode
@@ -115,7 +115,7 @@ make install
 ### Building for Windows with MSBuild
 
 For Windows, MSBuild files are provided which can be built with
-Visual Studio 2022, or from the command line:
+Visual Studio 2022, or from the command-line:
 
 ```powershell
 msbuild -maxCpuCount -property:Configuration=release -property:Platform=x64 msbuild\TrominoPuzzle.sln
