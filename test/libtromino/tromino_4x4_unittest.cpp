@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(
 
     BOOST_CHECK_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.begin(), actual.end(), expected.begin(), expected.end());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
 }
 
 BOOST_AUTO_TEST_CASE(
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(
 
     BOOST_CHECK_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.begin(), actual.end(), expected.begin(), expected.end());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
 }
 
 BOOST_AUTO_TEST_CASE(
@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE(
 
     BOOST_CHECK_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.begin(), actual.end(), expected.begin(), expected.end());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
 }
 
 BOOST_AUTO_TEST_CASE(
@@ -118,7 +118,7 @@ BOOST_AUTO_TEST_CASE(
 
     BOOST_CHECK_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.begin(), actual.end(), expected.begin(), expected.end());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
 }
 
 //
@@ -148,7 +148,7 @@ BOOST_AUTO_TEST_CASE(
 
     BOOST_CHECK_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.begin(), actual.end(), expected.begin(), expected.end());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
 }
 
 BOOST_AUTO_TEST_SUITE_END()
