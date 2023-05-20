@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE(GivenK2_WhenTopLeft_ThenSolutionIsK) {
 
     BOOST_CHECK_EQUAL(actual.size(), std::size_t{1});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.begin(), actual.end(), expected.begin(), expected.end());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
 }
 
 //
@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE(GivenL2_WhenTopRight_ThenSolutionIsL) {
 
     BOOST_CHECK_EQUAL(actual.size(), std::size_t{1});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.begin(), actual.end(), expected.begin(), expected.end());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
 }
 
 //
@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE(GivenM2_WhenBottomLeft_ThenSolutionIsM) {
 
     BOOST_CHECK_EQUAL(actual.size(), std::size_t{1});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.begin(), actual.end(), expected.begin(), expected.end());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
 }
 
 //
@@ -89,7 +89,7 @@ BOOST_AUTO_TEST_CASE(GivenN2_WhenBottomRight_ThenSolutionIsN) {
 
     BOOST_CHECK_EQUAL(actual.size(), std::size_t{1});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.begin(), actual.end(), expected.begin(), expected.end());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
 }
 
 BOOST_AUTO_TEST_SUITE_END()

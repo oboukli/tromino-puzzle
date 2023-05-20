@@ -1404,9 +1404,9 @@ BOOST_AUTO_TEST_CASE(
 
     BOOST_CHECK_EQUAL(actual.size(), std::size_t{1365});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.begin(), actual.end(),
-        g_expected_for_order_64_and_mark_61_37.begin(),
-        g_expected_for_order_64_and_mark_61_37.end());
+        actual.cbegin(), actual.cend(),
+        g_expected_for_order_64_and_mark_61_37.cbegin(),
+        g_expected_for_order_64_and_mark_61_37.cend());
 }
 
 BOOST_AUTO_TEST_SUITE_END()
