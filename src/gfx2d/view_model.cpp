@@ -76,12 +76,12 @@ void TrominoBoardViewModel::Render(
     ::SDL_Rect trominoDest{
         0, 0, SQUARE_LOGICAL_WIDTH * 2, SQUARE_LOGICAL_WIDTH * 2};
 
-    auto targetIdx{steps.begin()};
+    auto targetIdx{steps.cbegin()};
     std::advance(targetIdx, _currentStepNum);
 
-    assert(steps.begin() <= targetIdx && targetIdx <= steps.end());
+    assert(steps.cbegin() <= targetIdx && targetIdx <= steps.cend());
 
-    for (auto it{steps.begin()}; it != targetIdx; ++it) {
+    for (auto it{steps.cbegin()}; it != targetIdx; ++it) {
         Step const& s{*it};
         trominoDest.x = s.px * SQUARE_LOGICAL_WIDTH;
         trominoDest.y = s.py * SQUARE_LOGICAL_WIDTH;
