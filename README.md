@@ -198,6 +198,7 @@ and ideas leveraged by this project:
 - Code test coverage
 - CodeQL
 - DevSkim
+- OpenSSF Scorecard
 - EditorConfig
 - Markdown
 - Markdownlint
