@@ -33,13 +33,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 extern "C" {
 #endif /* __cplusplus */
 
-bool trmn_is_valid_order(const int order);
+bool trmn_is_valid_order(int const order);
 
-bool trmn_is_valid_coordinate(const int c, const int order);
+bool trmn_is_valid_coordinate(int const c, int const order);
 
-bool trmn_is_order_overflow_safe(const int order);
+bool trmn_is_order_overflow_safe(int const order);
 
-bool trmn_is_valid_config(const int order, const int x, const int y);
+bool trmn_is_valid_config(int const order, int const x, int const y);
 
 #ifdef __cplusplus
 }

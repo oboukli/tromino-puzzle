@@ -18,7 +18,7 @@
 #include "init.h"
 #include "params.h"
 
-int main(const int argc, const char* const argv[]) noexcept {
+int main(int const argc, char const* const argv[]) noexcept {
     using namespace std::string_literals;
 
     tromino::tromino2d::options options{};
@@ -33,7 +33,7 @@ int main(const int argc, const char* const argv[]) noexcept {
         return EXIT_FAILURE;
     }
 
-    const auto order_internal{static_cast<std::size_t>(options.order)};
+    auto const order_internal{static_cast<std::size_t>(options.order)};
     const std::size_t size{order_internal * order_internal};
     const tromino::gfx2d::Board board{
         .size = size,

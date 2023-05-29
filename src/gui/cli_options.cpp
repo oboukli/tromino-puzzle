@@ -24,7 +24,7 @@ void print_usage(std::ostream& os) noexcept {
 }
 
 bool read_options(
-    const int argc, const char* const argv[], options& options,
+    int const argc, char const* const argv[], options& options,
     std::string& error) noexcept {
     using namespace std::string_literals;
     using namespace tromino::tromino2d::params;

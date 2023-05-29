@@ -28,11 +28,11 @@ public:
 
     ~TrominoBoardViewModel() noexcept = default;
 
-    void SetBoard(const Board& board, const Style& style) noexcept;
+    void SetBoard(Board const& board, Style const& style) noexcept;
 
     void StepForward() noexcept;
 
-    void Render(const std::vector<Step>& steps) const noexcept;
+    void Render(std::vector<Step> const& steps) const noexcept;
 
     [[nodiscard]] bool IsPlaying() const noexcept;
 
@@ -48,13 +48,13 @@ private:
         _solutionTexture{nullptr, &::SDL_DestroyTexture};
     std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)>
         _trominoTexture{nullptr, &::SDL_DestroyTexture};
-    static constexpr const int OUTLINE_LOGICAL_WIDTH{1};
-    static constexpr const int SQUARE_LOGICAL_WIDTH{8};
-    static constexpr const int RENDERING_DRIVER_IDX{-1};
+    static constexpr int const OUTLINE_LOGICAL_WIDTH{1};
+    static constexpr int const SQUARE_LOGICAL_WIDTH{8};
+    static constexpr int const RENDERING_DRIVER_IDX{-1};
 };
 
 [[nodiscard]] inline ::SDL_RendererFlip
-get_flip(const int flip_x, const int flip_y) noexcept {
+get_flip(int const flip_x, int const flip_y) noexcept {
     // clang-format off
     int f{flip_x == 1
         ? ::SDL_RendererFlip::SDL_FLIP_HORIZONTAL

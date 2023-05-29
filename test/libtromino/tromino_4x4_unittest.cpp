@@ -23,9 +23,9 @@ BOOST_AUTO_TEST_SUITE(tromino_4x4_test_suite)
 // + - - +
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs0_0_ThenSolution) {
-    constexpr const int order{4};
-    constexpr const int mark_x{0};
-    constexpr const int mark_y{0};
+    constexpr int const order{4};
+    constexpr int const mark_x{0};
+    constexpr int const mark_y{0};
 
     // clang-format off
     constexpr const std::array<ShimStep, std::size_t{5}> expected{{
@@ -48,9 +48,9 @@ BOOST_AUTO_TEST_CASE(
 
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs0_7_ThenSolution) {
-    constexpr const int order{4};
-    constexpr const int mark_x{0};
-    constexpr const int mark_y{7};
+    constexpr int const order{4};
+    constexpr int const mark_x{0};
+    constexpr int const mark_y{7};
 
     // clang-format off
     constexpr const std::array<ShimStep, std::size_t{5}> expected{{
@@ -73,9 +73,9 @@ BOOST_AUTO_TEST_CASE(
 
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs7_0_ThenSolution) {
-    constexpr const int order{4};
-    constexpr const int mark_x{7};
-    constexpr const int mark_y{0};
+    constexpr int const order{4};
+    constexpr int const mark_x{7};
+    constexpr int const mark_y{0};
 
     // clang-format off
     constexpr const std::array<ShimStep, std::size_t{5}> expected{{
@@ -98,9 +98,9 @@ BOOST_AUTO_TEST_CASE(
 
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs7_7_ThenSolution) {
-    constexpr const int order{4};
-    constexpr const int mark_x{7};
-    constexpr const int mark_y{7};
+    constexpr int const order{4};
+    constexpr int const mark_x{7};
+    constexpr int const mark_y{7};
 
     // clang-format off
     constexpr const std::array<ShimStep, std::size_t{5}> expected{{
@@ -128,9 +128,9 @@ BOOST_AUTO_TEST_CASE(
 // + - + -
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs3_2_ThenSolution) {
-    constexpr const int order{4};
-    constexpr const int mark_x{3};
-    constexpr const int mark_y{2};
+    constexpr int const order{4};
+    constexpr int const mark_x{3};
+    constexpr int const mark_y{2};
 
     // clang-format off
     constexpr const std::array<ShimStep, std::size_t{5}> expected{{

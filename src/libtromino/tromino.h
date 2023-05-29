@@ -31,11 +31,11 @@ extern "C" {
 #endif /* __cplusplus */
 
 typedef void (*trmn_add_tromino_func_t)(
-    const int px, const int py, const int fx, const int fy, void* const state);
+    int const px, int const py, int const fx, int const fy, void* const state);
 
 void trmn_solve_puzzle(
-    const int order, const int mx, const int my,
-    const trmn_add_tromino_func_t add_tromino, void* const state);
+    int const order, int const mx, int const my,
+    trmn_add_tromino_func_t const add_tromino, void* const state);
 
 #ifdef __cplusplus
 }

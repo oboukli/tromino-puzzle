@@ -29,12 +29,12 @@ namespace tromino::tromino2d {
 namespace {
 
 extern "C" void solve_puzzle_cb(
-    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
+    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
     void* const state) noexcept;
 
 template <typename T>
 using tromino_cb_t = void (*)(
-    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
+    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
     T* const state) noexcept;
 
 template <typename T> struct SolverState final {
@@ -58,17 +58,17 @@ void poll_sdl_events(bool& is_main_loop_running) noexcept {
 }
 
 inline void start_game_loop(
-    const tromino::gfx2d::Board& board, SharedState& shared_state,
-    const int width, const std::string& title) noexcept {
+    tromino::gfx2d::Board const& board, SharedState& shared_state,
+    int const width, std::string const& title) noexcept {
     using namespace std::chrono_literals;
 
-    constexpr const auto WAIT_TIME{4ms};
-    constexpr const int FRAME_DELAY{68};
+    constexpr auto const WAIT_TIME{4ms};
+    constexpr int const FRAME_DELAY{68};
 
-    const auto window{std::make_unique<tromino::gfx2d::Window>(title, width)};
+    auto const window{std::make_unique<tromino::gfx2d::Window>(title, width)};
     assert(window->GetSdlWindow() != nullptr);
 
-    const auto viewModel{
+    auto const viewModel{
         std::make_unique<tromino::gfx2d::TrominoBoardViewModel>(
             window->GetSdlWindow())};
 
@@ -110,7 +110,7 @@ inline void start_game_loop(
 }
 
 void add_tromino(
-    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
+    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
     SharedState* const shared_state) noexcept {
     {
         std::lock_guard lk(shared_state->mut);
@@ -121,7 +121,7 @@ void add_tromino(
 }
 
 extern "C" void solve_puzzle_cb(
-    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
+    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
     void* const state) noexcept {
     SolverState<SharedState>* const solver_state{
         static_cast<SolverState<SharedState>*>(state)};
@@ -130,8 +130,8 @@ extern "C" void solve_puzzle_cb(
 }
 
 void solver(
-    const int order, const int mark_x, const int mark_y,
-    const tromino_cb_t<SharedState> tromino_cb,
+    int const order, int const mark_x, int const mark_y,
+    tromino_cb_t<SharedState> const tromino_cb,
     SharedState* const state) noexcept {
     SolverState<SharedState> solver_state{
         .state = state, .callback = tromino_cb};
@@ -142,9 +142,9 @@ void solver(
 } // namespace
 
 int init(
-    const tromino::gfx2d::Board& board, const int width,
-    const std::string& title) noexcept {
-    const auto board_order{static_cast<std::size_t>(board.order)};
+    tromino::gfx2d::Board const& board, int const width,
+    std::string const& title) noexcept {
+    auto const board_order{static_cast<std::size_t>(board.order)};
     const std::size_t num_steps{
         ((board_order * board_order) - std::size_t{1}) / std::size_t{3}};
 
