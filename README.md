@@ -182,7 +182,7 @@ and ideas leveraged by this project:
 - vcpkg
 - Clang Format
 - Emscripten
-- JavaScript (vanilla. ECMAScript 2015+)
+- JavaScript (ECMAScript 2016+ - vanilla)
 - Web Workers
 - TypeScript JSDoc type annotations
 - ESLint
@@ -194,6 +194,7 @@ and ideas leveraged by this project:
 - GNU Autotools
 - Azure Pipelines
 - GitHub Actions
+- GitHub Pages
 - Docker
 - Code test coverage
 - CodeQL
