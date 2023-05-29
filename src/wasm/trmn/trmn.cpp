@@ -28,16 +28,16 @@ std::unique_ptr<std::vector<tromino::gfx2d::Step>> steps{};
 bool isInitialized{false};
 
 void add_tromino(
-    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
+    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
     void* const state) noexcept {
     using namespace tromino::gfx2d;
 
-    const auto steps{static_cast<std::vector<tromino::gfx2d::Step>*>(state)};
+    auto const steps{static_cast<std::vector<tromino::gfx2d::Step>*>(state)};
 
     steps->emplace_back(pos_x, pos_y, flip_x, flip_y);
 }
 
-void init(const int width) noexcept {
+void init(int const width) noexcept {
     steps = std::make_unique<std::vector<tromino::gfx2d::Step>>();
 
     ::SDL_Init(SDL_INIT_VIDEO);
@@ -71,9 +71,9 @@ void render_frame() noexcept {
     viewModel->Render(*steps);
 }
 
-void start(const tromino::gfx2d::Board& board, const int width) noexcept {
+void start(tromino::gfx2d::Board const& board, int const width) noexcept {
     using namespace tromino::gfx2d;
-    constexpr const int SWAP_INTERVAL{4};
+    constexpr int const SWAP_INTERVAL{4};
 
     if (isInitialized) {
         terminate();
@@ -104,8 +104,8 @@ void start(const tromino::gfx2d::Board& board, const int width) noexcept {
 } // namespace
 
 EMSCRIPTEN_KEEPALIVE extern "C" void playTromino(
-    const int order, const int markX, const int markY,
-    const int width) noexcept {
+    int const order, int const markX, int const markY,
+    int const width) noexcept {
     const std::size_t order_internal{static_cast<std::size_t>(order)};
     const std::size_t size{order_internal * order_internal};
 

@@ -17,14 +17,14 @@ namespace tromino::cli::vt {
 namespace {
 
 inline void
-draw_at(const int x, const int y, const char c, std::ostream& os) noexcept {
+draw_at(int const x, int const y, char const c, std::ostream& os) noexcept {
     os << CSI << y << ";" << x << "H" << c;
 }
 
 } // namespace
 
-void draw_board(const board_t& board, std::ostream& os) noexcept {
-    const int order{board.order};
+void draw_board(board_t const& board, std::ostream& os) noexcept {
+    int const order{board.order};
     for (int i = 0; i < order; ++i) { // Rows
         os << CSI << 1 + i << ";" << 1 << "H";
         for (int j = 0; j < order; ++j) { // Columns
@@ -34,16 +34,16 @@ void draw_board(const board_t& board, std::ostream& os) noexcept {
 }
 
 void add_tromino(
-    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
+    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
     void* const state) noexcept {
     constexpr const std::chrono::milliseconds DELAY_AFTER{68};
 
-    const graph_state_t* const graph_state{static_cast<graph_state_t*>(state)};
+    graph_state_t const* const graph_state{static_cast<graph_state_t*>(state)};
     std::ostream& os{graph_state->os};
-    const board_t& board{graph_state->board};
+    board_t const& board{graph_state->board};
     char* const board_matrix{board.board_matrix.get()};
-    const int order{board.order};
-    const auto sprite{get_sprite<
+    int const order{board.order};
+    auto const sprite{get_sprite<
         NEUTRAL, EMPTY, MARK, HORIZONTAL, VERTICAL, TOP_LEFT, TOP_RIGHT,
         BOTTOM_LEFT, BOTTOM_RIGHT>(flip_x, flip_y)};
 

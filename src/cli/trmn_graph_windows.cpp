@@ -16,12 +16,12 @@ namespace tromino::cli::windows {
 
 namespace {
 
-inline void draw_at(const int x, const int y, const char c) noexcept {
+inline void draw_at(int const x, int const y, char const c) noexcept {
     std::cout << c;
 }
 
 inline void
-draw_at(const int x, const int y, const char c, const HANDLE hOutput) noexcept {
+draw_at(int const x, int const y, char const c, const HANDLE hOutput) noexcept {
     const COORD coord{
         .X{static_cast<SHORT>(x)},
         .Y{static_cast<SHORT>(y)},
@@ -32,9 +32,9 @@ draw_at(const int x, const int y, const char c, const HANDLE hOutput) noexcept {
     draw_at(x, y, c);
 }
 
-void ensure_success(const BOOL is_success, const std::string& msg) noexcept {
+void ensure_success(const BOOL is_success, std::string const& msg) noexcept {
     if (!is_success) {
-        const auto error{::GetLastError()};
+        auto const error{::GetLastError()};
         // clang-format off
         std::cerr
             << "Windows API error: " << error
@@ -48,8 +48,8 @@ void ensure_success(const BOOL is_success, const std::string& msg) noexcept {
 
 } // namespace
 
-void draw_board(const board_t& board) noexcept {
-    const int order{board.order};
+void draw_board(board_t const& board) noexcept {
+    int const order{board.order};
     for (int i = 0; i < order; ++i) { // Rows
         for (int j = 0; j < order; ++j) { // Columns
             std::cout << board.board_matrix[calc_index(j, i, order)];
@@ -60,15 +60,15 @@ void draw_board(const board_t& board) noexcept {
 }
 
 void add_tromino(
-    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
+    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
     void* const state) noexcept {
     constexpr const std::chrono::milliseconds DELAY_AFTER{68};
 
-    const graph_state_t* graph_state{static_cast<graph_state_t*>(state)};
-    const board_t& board{graph_state->board};
+    graph_state_t const* graph_state{static_cast<graph_state_t*>(state)};
+    board_t const& board{graph_state->board};
     char* const board_matrix{board.board_matrix.get()};
-    const int order{board.order};
-    const auto sprite{get_sprite<
+    int const order{board.order};
+    auto const sprite{get_sprite<
         neutral, empty, mark, horizontal, vertical, top_left, top_right,
         bottom_left, bottom_right>(flip_x, flip_y)};
 

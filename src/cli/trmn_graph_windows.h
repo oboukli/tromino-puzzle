@@ -18,24 +18,24 @@
 
 namespace tromino::cli::windows {
 
-constexpr const char neutral{'N'};
-constexpr const char empty{'\xB0'};
+constexpr char const neutral{'N'};
+constexpr char const empty{'\xB0'};
 
-constexpr const char mark{'\xFE'};
-constexpr const char horizontal{'\xCD'};
-constexpr const char vertical{'\xBA'};
-constexpr const char top_left{'\xC9'};
-constexpr const char top_right{'\xBB'};
-constexpr const char bottom_left{'\xC8'};
-constexpr const char bottom_right{'\xBC'};
+constexpr char const mark{'\xFE'};
+constexpr char const horizontal{'\xCD'};
+constexpr char const vertical{'\xBA'};
+constexpr char const top_left{'\xC9'};
+constexpr char const top_right{'\xBB'};
+constexpr char const bottom_left{'\xC8'};
+constexpr char const bottom_right{'\xBC'};
 
-void draw_board(const board_t& board) noexcept;
+void draw_board(board_t const& board) noexcept;
 
 void add_tromino(
-    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
+    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
     void* const graph_state) noexcept;
 
-inline void init_board(const board_t& board) noexcept {
+inline void init_board(board_t const& board) noexcept {
     std::fill_n(board.board_matrix.get(), board.size, empty);
 
     board.board_matrix[calc_index(board.mark_x, board.mark_y, board.order)]

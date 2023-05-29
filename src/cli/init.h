@@ -11,11 +11,11 @@
 
 namespace tromino::cli::app {
 
-void init(const int size, const int x, const int y) noexcept;
+void init(int const size, int const x, int const y) noexcept;
 
 #ifdef _WINDOWS
 void init(
-    const int size, const int x, const int y,
+    int const size, int const x, int const y,
     const emulation_mode_type emulation_mode) noexcept;
 #endif // _WINDOWS
 

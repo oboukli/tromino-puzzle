@@ -29,17 +29,17 @@ struct ShimStep {
         flip_y{other.flip_y} {
     }
 
-    ShimStep(const ShimStep& other) = delete;
+    ShimStep(ShimStep const& other) = delete;
 
-    ShimStep& operator=(const ShimStep& other) = delete;
+    ShimStep& operator=(ShimStep const& other) = delete;
 
-    bool operator!=(const ShimStep& rhs) const noexcept {
+    bool operator!=(ShimStep const& rhs) const noexcept {
         return rhs.pos_x != this->pos_x || rhs.pos_y != this->pos_y
             || rhs.flip_x != this->flip_x || rhs.flip_y != this->flip_y;
     }
 
-    friend std::ostream& operator<<(
-        std::ostream& os, const ShimStep& s) noexcept {
+    friend std::ostream&
+    operator<<(std::ostream& os, ShimStep const& s) noexcept {
         // clang-format off
         return os
             << "Tromino position: (" << s.pos_x << ", " << s.pos_y
@@ -49,9 +49,9 @@ struct ShimStep {
 };
 
 void shim_add_tromino(
-    const int pos_x, const int pos_y, const int flip_x, const int flip_y,
+    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
     void* const state) noexcept;
 
-void print_shim_step_vector(const std::vector<ShimStep>& steps) noexcept;
+void print_shim_step_vector(std::vector<ShimStep> const& steps) noexcept;
 
 #endif // TEST_LIBTROMINO_UNITTEST_HELPER_H

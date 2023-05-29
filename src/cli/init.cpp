@@ -18,8 +18,8 @@
 
 namespace tromino::cli::app {
 
-void init(const int order, const int x, const int y) noexcept {
-    const auto order_internal{static_cast<std::size_t>(order)};
+void init(int const order, int const x, int const y) noexcept {
+    auto const order_internal{static_cast<std::size_t>(order)};
     const std::size_t size{order_internal * order_internal};
 
     board_t tromino_board{
@@ -34,9 +34,9 @@ void init(const int order, const int x, const int y) noexcept {
 
 #ifdef _WINDOWS
 void init(
-    const int order, const int x, const int y,
+    int const order, int const x, int const y,
     const emulation_mode_type emulation_mode) noexcept {
-    const auto order_internal{static_cast<std::size_t>(order)};
+    auto const order_internal{static_cast<std::size_t>(order)};
     const std::size_t size{order_internal * order_internal};
 
     board_t tromino_board{
