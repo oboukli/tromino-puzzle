@@ -37,17 +37,19 @@ public:
     [[nodiscard]] bool IsPlaying() const noexcept;
 
 private:
+    using renderer_ptr
+        = std::unique_ptr<::SDL_Renderer, decltype(&::SDL_DestroyRenderer)>;
+    using texture_ptr
+        = std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)>;
+
     std::size_t _numSteps{0};
     std::size_t _currentStepNum{0};
-    SDL_Window* const _window{};
-    std::unique_ptr<::SDL_Renderer, decltype(&::SDL_DestroyRenderer)> _renderer{
-        nullptr, &::SDL_DestroyRenderer};
-    std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)>
-        _viewTexture{nullptr, &::SDL_DestroyTexture};
-    std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)>
-        _solutionTexture{nullptr, &::SDL_DestroyTexture};
-    std::unique_ptr<::SDL_Texture, decltype(&::SDL_DestroyTexture)>
-        _trominoTexture{nullptr, &::SDL_DestroyTexture};
+    ::SDL_Window* const _window{};
+    renderer_ptr _renderer{nullptr, &::SDL_DestroyRenderer};
+    texture_ptr _viewTexture{nullptr, &::SDL_DestroyTexture};
+    texture_ptr _solutionTexture{nullptr, &::SDL_DestroyTexture};
+    texture_ptr _trominoTexture{nullptr, &::SDL_DestroyTexture};
+
     static constexpr int const OUTLINE_LOGICAL_WIDTH{1};
     static constexpr int const SQUARE_LOGICAL_WIDTH{8};
     static constexpr int const RENDERING_DRIVER_IDX{-1};
