@@ -90,8 +90,10 @@ async function handleSolveAsync({ order, markX, markY }) {
  */
 async function handleCommandAsync(cmd, payload) {
   if (cmd === "solve") {
-    handleSolveAsync(payload);
+    await handleSolveAsync(payload);
   }
+
+  return Promise.resolve();
 }
 
 instancePromise = initWasmAsync();
