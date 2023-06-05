@@ -75,6 +75,8 @@ include_HEADERS += \
 lib_LTLIBRARIES += libtromino-gfx2d.la
 
 tromino2d_SOURCES = \
+	gui/callback.cpp \
+	gui/callback.h \
 	gui/cli_models.h \
 	gui/cli_options.cpp \
 	gui/cli_options.h \

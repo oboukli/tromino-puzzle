@@ -19,6 +19,7 @@
 #include <vector>
 
 #include "board.h"
+#include "callback.h"
 #include "step.h"
 #include "tromino_gfx2d.h"
 #include "view_model.h"
@@ -27,20 +28,6 @@
 namespace tromino::tromino2d {
 
 namespace {
-
-extern "C" void solve_puzzle_cb(
-    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
-    void* const state) noexcept;
-
-template <typename T>
-using tromino_cb_t = void (*)(
-    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
-    T* const state) noexcept;
-
-template <typename T> struct SolverState final {
-    T* state{};
-    tromino_cb_t<T> callback{};
-};
 
 struct SharedState {
     std::mutex mutable mut{};
@@ -118,15 +105,6 @@ void add_tromino(
     }
     shared_state->lock_cond.notify_one();
     std::this_thread::yield();
-}
-
-extern "C" void solve_puzzle_cb(
-    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
-    void* const state) noexcept {
-    SolverState<SharedState>* const solver_state{
-        static_cast<SolverState<SharedState>*>(state)};
-
-    solver_state->callback(pos_x, pos_y, flip_x, flip_y, solver_state->state);
 }
 
 void solver(
