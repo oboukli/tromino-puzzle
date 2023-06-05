@@ -15,6 +15,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\gui\callback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\gui\cli_models.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -29,6 +32,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\gui\callback.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\gui\cli_options.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

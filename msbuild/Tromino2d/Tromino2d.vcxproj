@@ -86,12 +86,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\gui\callback.h" />
     <ClInclude Include="..\..\src\gui\cli_models.h" />
     <ClInclude Include="..\..\src\gui\cli_options.h" />
     <ClInclude Include="..\..\src\gui\init.h" />
     <ClInclude Include="..\..\src\gui\params.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\gui\callback.cpp" />
     <ClCompile Include="..\..\src\gui\cli_options.cpp" />
     <ClCompile Include="..\..\src\gui\init.cpp" />
     <ClCompile Include="..\..\src\gui\main.cpp" />
