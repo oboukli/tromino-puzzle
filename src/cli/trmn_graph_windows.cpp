@@ -4,7 +4,7 @@
 
 // SPDX-License-Identifier: MIT
 
-#include "trmn_graph_windows.h"
+#include "trmn_graph_windows.hpp"
 
 #include <array>
 #include <cassert>

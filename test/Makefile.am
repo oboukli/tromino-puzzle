@@ -19,7 +19,7 @@ libtromino_test_SOURCES = \
 	libtromino/tromino_4x4_unittest.cpp \
 	libtromino/tromino_64x64_unittest.cpp \
 	libtromino/unittest_helper.cpp \
-	libtromino/unittest_helper.h \
+	libtromino/unittest_helper.hpp \
 	validation/tromino_validation_unittest.cpp
 
 libtromino_test_CPPFLAGS = \

@@ -12,7 +12,7 @@
 
 #include "tromino.h"
 
-#include "unittest_helper.h"
+#include "unittest_helper.hpp"
 
 namespace {
 

@@ -4,16 +4,16 @@
 
 // SPDX-License-Identifier: MIT
 
-#include "init.h"
+#include "init.hpp"
 
 #include <cstddef>
 #include <memory>
 
-#include "trmn_graph.h"
-#include "trmn_graph_vt.h"
+#include "trmn_graph.hpp"
+#include "trmn_graph_vt.hpp"
 
 #ifdef _WINDOWS
-#include "trmn_graph_windows.h"
+#include "trmn_graph_windows.hpp"
 #endif // _WINDOWS
 
 namespace tromino::cli::app {

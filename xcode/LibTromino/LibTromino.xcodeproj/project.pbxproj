@@ -12,7 +12,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7503E76826C88C490018B1F2 /* tromino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tromino.h; sourceTree = "<group>"; };
+		7503E76826C88C490018B1F2 /* tromino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.hpp; path = tromino.h; sourceTree = "<group>"; };
 		7503E76A26C88C490018B1F2 /* tromino.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tromino.c; sourceTree = "<group>"; };
 		755F9D1F2811C878004C54E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		7594DBEE26C482A500CF433E /* libtromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtromino.a; sourceTree = BUILT_PRODUCTS_DIR; };

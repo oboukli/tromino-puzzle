@@ -4,7 +4,7 @@
 
 // SPDX-License-Identifier: MIT
 
-#include "window.h"
+#include "window.hpp"
 
 namespace tromino::gfx2d {
 

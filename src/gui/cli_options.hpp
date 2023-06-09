@@ -4,15 +4,15 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef CLI_OPTIONS_H
-#define CLI_OPTIONS_H
+#ifndef GUI_CLI_OPTIONS_HPP
+#define GUI_CLI_OPTIONS_HPP
 
-#include "cli_models.h"
+#include "cli_models.hpp"
 
 #include <iostream>
 #include <string>
 
-namespace tromino::cli {
+namespace tromino::tromino2d {
 
 void print_usage(std::ostream& os) noexcept;
 
@@ -20,6 +20,6 @@ bool read_options(
     int const argc, char const* const argv[], options& options,
     std::string& error) noexcept;
 
-} // namespace tromino::cli
+} // namespace tromino::tromino2d
 
-#endif // CLI_OPTIONS_H
+#endif // GUI_CLI_OPTIONS_HPP

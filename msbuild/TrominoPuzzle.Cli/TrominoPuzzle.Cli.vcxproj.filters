@@ -32,22 +32,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\cli\cli_models.h">
+    <ClInclude Include="..\..\src\cli\cli_models.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\cli\cli_options.h">
+    <ClInclude Include="..\..\src\cli\cli_options.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\cli\init.h">
+    <ClInclude Include="..\..\src\cli\init.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\cli\trmn_graph.h">
+    <ClInclude Include="..\..\src\cli\trmn_graph.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\cli\trmn_graph_windows.h">
+    <ClInclude Include="..\..\src\cli\trmn_graph_windows.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\cli\trmn_graph_vt.h">
+    <ClInclude Include="..\..\src\cli\trmn_graph_vt.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -28,20 +28,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		75002AB527A5D71A00CBB593 /* cli_models.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cli_models.h; sourceTree = "<group>"; };
-		75002AB727A5EB8C00CBB593 /* cli_options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cli_options.h; sourceTree = "<group>"; };
+		75002AB527A5D71A00CBB593 /* cli_models.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.hpp; path = cli_models.hpp; sourceTree = "<group>"; };
+		75002AB727A5EB8C00CBB593 /* cli_options.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.hpp; path = cli_options.hpp; sourceTree = "<group>"; };
 		75002AB827A5EB8C00CBB593 /* cli_options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cli_options.cpp; sourceTree = "<group>"; };
-		7503E76F26C88C910018B1F2 /* trmn_graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trmn_graph.h; sourceTree = "<group>"; };
+		7503E76F26C88C910018B1F2 /* trmn_graph.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.hpp; path = trmn_graph.hpp; sourceTree = "<group>"; };
 		7503E77026C88C910018B1F2 /* trmn_graph_vt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trmn_graph_vt.cpp; sourceTree = "<group>"; };
 		7503E77226C88C910018B1F2 /* init.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = init.cpp; sourceTree = "<group>"; };
-		7503E77426C88C910018B1F2 /* init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = init.h; sourceTree = "<group>"; };
+		7503E77426C88C910018B1F2 /* init.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.hpp; path = init.hpp; sourceTree = "<group>"; };
 		7503E77826C88C910018B1F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		7503E77926C88C910018B1F2 /* trmn_graph_vt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trmn_graph_vt.h; sourceTree = "<group>"; };
+		7503E77926C88C910018B1F2 /* trmn_graph_vt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.hpp; path = trmn_graph_vt.hpp; sourceTree = "<group>"; };
 		755F9D232811CB3B004C54E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		758EF489284E50FA0069A198 /* libtromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libtromino.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		758EF48B284E50FA0069A198 /* libtromino-validation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libtromino-validation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7594DBDB26C4822400CF433E /* tromino */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tromino; sourceTree = BUILT_PRODUCTS_DIR; };
-		75E2E8BC27FCB7CF00B0525E /* params.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = params.h; sourceTree = "<group>"; };
+		75E2E8BC27FCB7CF00B0525E /* params.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.hpp; path = params.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,16 +60,16 @@
 		7503E76E26C88C910018B1F2 /* cli */ = {
 			isa = PBXGroup;
 			children = (
-				75E2E8BC27FCB7CF00B0525E /* params.h */,
+				75E2E8BC27FCB7CF00B0525E /* params.hpp */,
 				75002AB827A5EB8C00CBB593 /* cli_options.cpp */,
-				75002AB727A5EB8C00CBB593 /* cli_options.h */,
-				7503E76F26C88C910018B1F2 /* trmn_graph.h */,
+				75002AB727A5EB8C00CBB593 /* cli_options.hpp */,
+				7503E76F26C88C910018B1F2 /* trmn_graph.hpp */,
 				7503E77026C88C910018B1F2 /* trmn_graph_vt.cpp */,
 				7503E77226C88C910018B1F2 /* init.cpp */,
-				7503E77426C88C910018B1F2 /* init.h */,
+				7503E77426C88C910018B1F2 /* init.hpp */,
 				7503E77826C88C910018B1F2 /* main.cpp */,
-				7503E77926C88C910018B1F2 /* trmn_graph_vt.h */,
-				75002AB527A5D71A00CBB593 /* cli_models.h */,
+				7503E77926C88C910018B1F2 /* trmn_graph_vt.hpp */,
+				75002AB527A5D71A00CBB593 /* cli_models.hpp */,
 			);
 			name = cli;
 			path = ../../src/cli;

@@ -9,9 +9,9 @@
 
 #include "tromino_validation.h"
 
-#include "cli_models.h"
-#include "cli_options.h"
-#include "init.h"
+#include "cli_models.hpp"
+#include "cli_options.hpp"
+#include "init.hpp"
 
 int main(int const argc, char const* const argv[]) noexcept {
     tromino::cli::options options;

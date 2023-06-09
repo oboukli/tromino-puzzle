@@ -12,7 +12,7 @@
 
 #include "tromino.h"
 
-#include "unittest_helper.h"
+#include "unittest_helper.hpp"
 
 BOOST_AUTO_TEST_SUITE(tromino_2x2_test_suite)
 
