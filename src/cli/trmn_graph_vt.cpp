@@ -81,7 +81,7 @@ void add_tromino(
 
 void use_vt(board_t& tromino_board, std::ostream& os) noexcept {
 #ifdef _WINDOWS
-    const HANDLE hStdout{::GetStdHandle(STD_OUTPUT_HANDLE)};
+    HANDLE const hStdout{::GetStdHandle(STD_OUTPUT_HANDLE)};
 
     DWORD dwConsoleOriginalMode{};
     DWORD dwConsoleModeRequiredFlags{

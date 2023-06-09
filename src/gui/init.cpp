@@ -59,7 +59,7 @@ inline void start_game_loop(
         std::make_unique<tromino::gfx2d::TrominoBoardViewModel>(
             window->GetSdlWindow())};
 
-    tromino::gfx2d::Style style{
+    tromino::gfx2d::Style const style{
         .wke1_color{0x4e, 0x7d, 0xa6, SDL_ALPHA_OPAQUE},
         .bke8_color{0x01, 0x23, 0x40, SDL_ALPHA_OPAQUE},
         .mark_color{0x8c, 0x1b, 0x1b, SDL_ALPHA_OPAQUE},
@@ -100,7 +100,7 @@ void add_tromino(
     int const pos_x, int const pos_y, int const flip_x, int const flip_y,
     SharedState* const shared_state) noexcept {
     {
-        std::lock_guard lk(shared_state->mut);
+        std::lock_guard const lk(shared_state->mut);
         shared_state->steps.emplace_back(pos_x, pos_y, flip_x, flip_y);
     }
     shared_state->lock_cond.notify_one();
@@ -123,7 +123,7 @@ int init(
     tromino::gfx2d::Board const& board, int const width,
     std::string const& title) noexcept {
     auto const board_order{static_cast<std::size_t>(board.order)};
-    const std::size_t num_steps{
+    std::size_t const num_steps{
         ((board_order * board_order) - std::size_t{1}) / std::size_t{3}};
 
     SharedState shared_state{};

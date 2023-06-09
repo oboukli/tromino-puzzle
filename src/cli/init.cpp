@@ -20,7 +20,7 @@ namespace tromino::cli::app {
 
 void init(int const order, int const x, int const y) noexcept {
     auto const order_internal{static_cast<std::size_t>(order)};
-    const std::size_t size{order_internal * order_internal};
+    std::size_t const size{order_internal * order_internal};
 
     board_t tromino_board{
         .board_matrix = std::make_unique<char[]>(size),
@@ -35,9 +35,9 @@ void init(int const order, int const x, int const y) noexcept {
 #ifdef _WINDOWS
 void init(
     int const order, int const x, int const y,
-    const emulation_mode_type emulation_mode) noexcept {
+    emulation_mode_type const emulation_mode) noexcept {
     auto const order_internal{static_cast<std::size_t>(order)};
-    const std::size_t size{order_internal * order_internal};
+    std::size_t const size{order_internal * order_internal};
 
     board_t tromino_board{
         .board_matrix = std::make_unique<char[]>(size),

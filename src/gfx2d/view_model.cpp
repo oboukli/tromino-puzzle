@@ -13,7 +13,7 @@ namespace tromino::gfx2d {
 TrominoBoardViewModel::TrominoBoardViewModel(
     ::SDL_Window* const window) noexcept :
     _window(window) {
-    const ::Uint32 render_flags{
+    ::Uint32 const render_flags{
         ::SDL_RendererFlags::SDL_RENDERER_ACCELERATED
         | ::SDL_RendererFlags::SDL_RENDERER_PRESENTVSYNC
         | ::SDL_RendererFlags::SDL_RENDERER_TARGETTEXTURE};
@@ -49,7 +49,7 @@ void TrominoBoardViewModel::SetBoard(
         style.mark_color);
 
     _solutionTexture.reset(CreateTexture(_renderer.get(), logicalWidth));
-    ::SDL_Color color = {0, 0, 0, SDL_ALPHA_TRANSPARENT};
+    ::SDL_Color const color{0, 0, 0, SDL_ALPHA_TRANSPARENT};
     InitSolutionTexture(_renderer.get(), _solutionTexture.get(), color);
 
     if (_trominoTexture == nullptr) {

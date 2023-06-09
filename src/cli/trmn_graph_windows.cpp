@@ -22,7 +22,7 @@ inline void draw_at(int const x, int const y, char const c) noexcept {
 
 inline void
 draw_at(int const x, int const y, char const c, const HANDLE hOutput) noexcept {
-    const COORD coord{
+    COORD const coord{
         .X{static_cast<SHORT>(x)},
         .Y{static_cast<SHORT>(y)},
     };
@@ -90,7 +90,7 @@ void add_tromino(
         }
     }
 
-    const COORD coord{
+    COORD const coord{
         .X = static_cast<SHORT>(order) - 1,
         .Y = static_cast<SHORT>(order) - 1,
     };
@@ -103,7 +103,7 @@ void add_tromino(
 void use_wch(board_t& tromino_board, std::ostream& os) noexcept {
     ::SetConsoleTitle(TEXT("Tromino Puzzle"));
 
-    const HANDLE hConsoleOutput = ::GetStdHandle(STD_OUTPUT_HANDLE);
+    HANDLE const hConsoleOutput = ::GetStdHandle(STD_OUTPUT_HANDLE);
     graph_state_t graph_state{
         .os = os,
         .board = tromino_board,
@@ -122,7 +122,7 @@ void use_wch(board_t& tromino_board, std::ostream& os) noexcept {
         hConsoleOutput,
         FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
     // clang-format off
-    const COORD coordMark{
+    COORD const coordMark{
         .X = static_cast<SHORT>(tromino_board.mark_x),
         .Y = static_cast<SHORT>(tromino_board.mark_y)
     };

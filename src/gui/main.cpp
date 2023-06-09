@@ -34,8 +34,8 @@ int main(int const argc, char const* const argv[]) noexcept {
     }
 
     auto const order_internal{static_cast<std::size_t>(options.order)};
-    const std::size_t size{order_internal * order_internal};
-    const tromino::gfx2d::Board board{
+    std::size_t const size{order_internal * order_internal};
+    tromino::gfx2d::Board const board{
         .size = size,
         .order = options.order,
         .mark_x = options.x,
