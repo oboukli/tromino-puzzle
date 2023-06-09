@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef GFX2D_TROMINO_GFX2D_H
-#define GFX2D_TROMINO_GFX2D_H
+#ifndef GFX2D_TROMINO_GFX2D_HPP
+#define GFX2D_TROMINO_GFX2D_HPP
 
 #include <SDL2/SDL.h>
 
@@ -38,4 +38,4 @@ void DrawTrominoOutline(
 
 } // namespace tromino::gfx2d
 
-#endif // GFX2D_TROMINO_GFX2D_H
+#endif // GFX2D_TROMINO_GFX2D_HPP

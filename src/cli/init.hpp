@@ -4,10 +4,10 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef CLI_INIT_H
-#define CLI_INIT_H
+#ifndef CLI_INIT_HPP
+#define CLI_INIT_HPP
 
-#include "cli_models.h"
+#include "cli_models.hpp"
 
 namespace tromino::cli::app {
 
@@ -21,4 +21,4 @@ void init(
 
 } // namespace tromino::cli::app
 
-#endif // CLI_INIT_H
+#endif // CLI_INIT_HPP

@@ -4,7 +4,7 @@
 
 // SPDX-License-Identifier: MIT
 
-#include "init.h"
+#include "init.hpp"
 
 #include <SDL2/SDL.h>
 
@@ -18,12 +18,12 @@
 #include <thread>
 #include <vector>
 
-#include "board.h"
-#include "callback.h"
-#include "step.h"
-#include "tromino_gfx2d.h"
-#include "view_model.h"
-#include "window.h"
+#include "board.hpp"
+#include "callback.hpp"
+#include "step.hpp"
+#include "tromino_gfx2d.hpp"
+#include "view_model.hpp"
+#include "window.hpp"
 
 namespace tromino::tromino2d {
 

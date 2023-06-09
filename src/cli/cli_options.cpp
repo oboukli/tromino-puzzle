@@ -4,11 +4,11 @@
 
 // SPDX-License-Identifier: MIT
 
-#include "cli_options.h"
+#include "cli_options.hpp"
 
 #include <iostream>
 
-#include "params.h"
+#include "params.hpp"
 
 namespace tromino::cli {
 

@@ -15,19 +15,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\gui\callback.h">
+    <ClInclude Include="..\..\src\gui\callback.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\gui\cli_models.h">
+    <ClInclude Include="..\..\src\gui\cli_models.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\gui\cli_options.h">
+    <ClInclude Include="..\..\src\gui\cli_options.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\gui\init.h">
+    <ClInclude Include="..\..\src\gui\init.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\gui\params.h">
+    <ClInclude Include="..\..\src\gui\params.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

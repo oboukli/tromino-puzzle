@@ -4,7 +4,7 @@
 
 // SPDX-License-Identifier: MIT
 
-#include "view_model.h"
+#include "view_model.hpp"
 
 #include <cassert>
 

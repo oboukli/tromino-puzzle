@@ -36,7 +36,7 @@
 		7503E7D126C894EC0018B1F2 /* tromino_2x2_unittest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tromino_2x2_unittest.cpp; sourceTree = "<group>"; };
 		7525762C26F7634500BB3EB3 /* tromino_4x4_unittest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tromino_4x4_unittest.cpp; sourceTree = "<group>"; };
 		7525762F26F76BB400BB3EB3 /* unittest_helper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = unittest_helper.cpp; sourceTree = "<group>"; };
-		7525763026F76BB400BB3EB3 /* unittest_helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = unittest_helper.h; sourceTree = "<group>"; };
+		7525763026F76BB400BB3EB3 /* unittest_helper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.hpp; path = unittest_helper.hpp; sourceTree = "<group>"; };
 		7525763426F77D4700BB3EB3 /* tromino_64x64_unittest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tromino_64x64_unittest.cpp; sourceTree = "<group>"; };
 		755F9D212811CA4B004C54E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		758EF493284E53120069A198 /* libtromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libtromino.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,7 +91,7 @@
 				7503E7D126C894EC0018B1F2 /* tromino_2x2_unittest.cpp */,
 				7525762C26F7634500BB3EB3 /* tromino_4x4_unittest.cpp */,
 				7525762F26F76BB400BB3EB3 /* unittest_helper.cpp */,
-				7525763026F76BB400BB3EB3 /* unittest_helper.h */,
+				7525763026F76BB400BB3EB3 /* unittest_helper.hpp */,
 				7525763426F77D4700BB3EB3 /* tromino_64x64_unittest.cpp */,
 			);
 			name = libtromino;

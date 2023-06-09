@@ -32,7 +32,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\test\libtromino\unittest_helper.h">
+    <ClInclude Include="..\..\test\libtromino\unittest_helper.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

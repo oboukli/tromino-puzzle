@@ -4,7 +4,7 @@
 
 // SPDX-License-Identifier: MIT
 
-#include "callback.h"
+#include "callback.hpp"
 
 struct SharedState;
 

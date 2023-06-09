@@ -7,28 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7503E7DB26C896C90018B1F2 /* tromino_gfx2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 7503E7D926C896C90018B1F2 /* tromino_gfx2d.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7503E7DB26C896C90018B1F2 /* tromino_gfx2d.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7503E7D926C896C90018B1F2 /* tromino_gfx2d.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		7503E7DC26C896C90018B1F2 /* tromino_gfx2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E7DA26C896C90018B1F2 /* tromino_gfx2d.cpp */; };
 		750984C326E44E83005B6E82 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750984C126E44E83005B6E82 /* window.cpp */; };
-		750984C426E44E83005B6E82 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984C226E44E83005B6E82 /* window.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		750984C426E44E83005B6E82 /* window.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 750984C226E44E83005B6E82 /* window.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		750984C726E45054005B6E82 /* view_model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750984C526E45054005B6E82 /* view_model.cpp */; };
-		750984C826E45054005B6E82 /* view_model.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984C626E45054005B6E82 /* view_model.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		750984CC26E45076005B6E82 /* style.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984CA26E45076005B6E82 /* style.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		750984D026E455FE005B6E82 /* board.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984CE26E455FE005B6E82 /* board.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		750984D426E55220005B6E82 /* step.h in Headers */ = {isa = PBXBuildFile; fileRef = 750984D226E55220005B6E82 /* step.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		750984C826E45054005B6E82 /* view_model.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 750984C626E45054005B6E82 /* view_model.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		750984CC26E45076005B6E82 /* style.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 750984CA26E45076005B6E82 /* style.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		750984D026E455FE005B6E82 /* board.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 750984CE26E455FE005B6E82 /* board.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		750984D426E55220005B6E82 /* step.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 750984D226E55220005B6E82 /* step.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7503E7B426C891FF0018B1F2 /* libtromino2d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtromino2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		7503E7D926C896C90018B1F2 /* tromino_gfx2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tromino_gfx2d.h; sourceTree = "<group>"; };
+		7503E7D926C896C90018B1F2 /* tromino_gfx2d.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.hpp; path = tromino_gfx2d.hpp; sourceTree = "<group>"; };
 		7503E7DA26C896C90018B1F2 /* tromino_gfx2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tromino_gfx2d.cpp; sourceTree = "<group>"; };
 		750984C126E44E83005B6E82 /* window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
-		750984C226E44E83005B6E82 /* window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
+		750984C226E44E83005B6E82 /* window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.hpp; path = window.hpp; sourceTree = "<group>"; };
 		750984C526E45054005B6E82 /* view_model.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = view_model.cpp; sourceTree = "<group>"; };
-		750984C626E45054005B6E82 /* view_model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = view_model.h; sourceTree = "<group>"; };
-		750984CA26E45076005B6E82 /* style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = style.h; sourceTree = "<group>"; };
-		750984CE26E455FE005B6E82 /* board.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = board.h; sourceTree = "<group>"; };
-		750984D226E55220005B6E82 /* step.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = step.h; sourceTree = "<group>"; };
+		750984C626E45054005B6E82 /* view_model.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.hpp; path = view_model.hpp; sourceTree = "<group>"; };
+		750984CA26E45076005B6E82 /* style.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.hpp; path = style.hpp; sourceTree = "<group>"; };
+		750984CE26E455FE005B6E82 /* board.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.hpp; path = board.hpp; sourceTree = "<group>"; };
+		750984D226E55220005B6E82 /* step.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.hpp; path = step.hpp; sourceTree = "<group>"; };
 		755F9D222811CAF8004C54E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,15 +64,15 @@
 		7503E7D826C896C90018B1F2 /* gfx2d */ = {
 			isa = PBXGroup;
 			children = (
-				750984CE26E455FE005B6E82 /* board.h */,
-				750984D226E55220005B6E82 /* step.h */,
-				750984CA26E45076005B6E82 /* style.h */,
+				750984CE26E455FE005B6E82 /* board.hpp */,
+				750984D226E55220005B6E82 /* step.hpp */,
+				750984CA26E45076005B6E82 /* style.hpp */,
 				7503E7DA26C896C90018B1F2 /* tromino_gfx2d.cpp */,
-				7503E7D926C896C90018B1F2 /* tromino_gfx2d.h */,
+				7503E7D926C896C90018B1F2 /* tromino_gfx2d.hpp */,
 				750984C526E45054005B6E82 /* view_model.cpp */,
-				750984C626E45054005B6E82 /* view_model.h */,
+				750984C626E45054005B6E82 /* view_model.hpp */,
 				750984C126E44E83005B6E82 /* window.cpp */,
-				750984C226E44E83005B6E82 /* window.h */,
+				750984C226E44E83005B6E82 /* window.hpp */,
 			);
 			name = gfx2d;
 			path = ../../src/gfx2d;
@@ -92,12 +92,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				750984D026E455FE005B6E82 /* board.h in Headers */,
-				750984D426E55220005B6E82 /* step.h in Headers */,
-				750984CC26E45076005B6E82 /* style.h in Headers */,
-				7503E7DB26C896C90018B1F2 /* tromino_gfx2d.h in Headers */,
-				750984C826E45054005B6E82 /* view_model.h in Headers */,
-				750984C426E44E83005B6E82 /* window.h in Headers */,
+				750984D026E455FE005B6E82 /* board.hpp in Headers */,
+				750984D426E55220005B6E82 /* step.hpp in Headers */,
+				750984CC26E45076005B6E82 /* style.hpp in Headers */,
+				7503E7DB26C896C90018B1F2 /* tromino_gfx2d.hpp in Headers */,
+				750984C826E45054005B6E82 /* view_model.hpp in Headers */,
+				750984C426E44E83005B6E82 /* window.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

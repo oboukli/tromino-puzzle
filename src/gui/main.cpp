@@ -11,12 +11,12 @@
 
 #include "tromino_validation.h"
 
-#include "board.h"
+#include "board.hpp"
 
-#include "cli_models.h"
-#include "cli_options.h"
-#include "init.h"
-#include "params.h"
+#include "cli_models.hpp"
+#include "cli_options.hpp"
+#include "init.hpp"
+#include "params.hpp"
 
 int main(int const argc, char const* const argv[]) noexcept {
     using namespace std::string_literals;

@@ -4,7 +4,7 @@
 
 // SPDX-License-Identifier: MIT
 
-#include "unittest_helper.h"
+#include "unittest_helper.hpp"
 
 void shim_add_tromino(
     int const pos_x, int const pos_y, int const flip_x, int const flip_y,

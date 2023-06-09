@@ -4,19 +4,18 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef GUI_INIT_H
-#define GUI_INIT_H
-
-#include <string>
-
-#include "board.h"
+#ifndef GUI_CLI_MODELS_HPP
+#define GUI_CLI_MODELS_HPP
 
 namespace tromino::tromino2d {
 
-int init(
-    tromino::gfx2d::Board const& board, int const width,
-    std::string const& title) noexcept;
+struct options {
+    int order{};
+    int x{};
+    int y{};
+    bool force{};
+};
 
 } // namespace tromino::tromino2d
 
-#endif // GUI_INIT_H
+#endif // GUI_CLI_MODELS_HPP

@@ -15,22 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\gfx2d\board.h">
+    <ClInclude Include="..\..\src\gfx2d\board.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\gfx2d\step.h">
+    <ClInclude Include="..\..\src\gfx2d\step.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\gfx2d\style.h">
+    <ClInclude Include="..\..\src\gfx2d\style.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\gfx2d\tromino_gfx2d.h">
+    <ClInclude Include="..\..\src\gfx2d\tromino_gfx2d.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\gfx2d\view_model.h">
+    <ClInclude Include="..\..\src\gfx2d\view_model.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\gfx2d\window.h">
+    <ClInclude Include="..\..\src\gfx2d\window.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

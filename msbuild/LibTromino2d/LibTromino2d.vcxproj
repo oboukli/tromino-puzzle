@@ -90,12 +90,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\gfx2d\board.h" />
-    <ClInclude Include="..\..\src\gfx2d\step.h" />
-    <ClInclude Include="..\..\src\gfx2d\style.h" />
-    <ClInclude Include="..\..\src\gfx2d\tromino_gfx2d.h" />
-    <ClInclude Include="..\..\src\gfx2d\view_model.h" />
-    <ClInclude Include="..\..\src\gfx2d\window.h" />
+    <ClInclude Include="..\..\src\gfx2d\board.hpp" />
+    <ClInclude Include="..\..\src\gfx2d\step.hpp" />
+    <ClInclude Include="..\..\src\gfx2d\style.hpp" />
+    <ClInclude Include="..\..\src\gfx2d\tromino_gfx2d.hpp" />
+    <ClInclude Include="..\..\src\gfx2d\view_model.hpp" />
+    <ClInclude Include="..\..\src\gfx2d\window.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\gfx2d\tromino_gfx2d.cpp" />
