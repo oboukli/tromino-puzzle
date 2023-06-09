@@ -16,7 +16,7 @@ void init(int const size, int const x, int const y) noexcept;
 #ifdef _WINDOWS
 void init(
     int const size, int const x, int const y,
-    const emulation_mode_type emulation_mode) noexcept;
+    emulation_mode_type const emulation_mode) noexcept;
 #endif // _WINDOWS
 
 } // namespace tromino::cli::app

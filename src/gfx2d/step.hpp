@@ -17,7 +17,8 @@ struct Step final {
     int fx;
     int fy;
 
-    constexpr Step(int px, int py, int fx, int fy) noexcept :
+    constexpr Step(
+        int const px, int const py, int const fx, int const fy) noexcept :
         px{px}, py{py}, fx{fx}, fy{fy} {
     }
 
@@ -25,9 +26,9 @@ struct Step final {
 
     Step& operator=(Step&& other) noexcept = delete;
 
-    Step(Step& other) noexcept = delete;
+    Step(Step const& other) noexcept = delete;
 
-    Step& operator=(Step& other) noexcept = delete;
+    Step& operator=(Step const& other) noexcept = delete;
 
     ~Step() noexcept = default;
 };

@@ -79,7 +79,7 @@ void DrawMark(
     int const y, ::SDL_Color const& color) noexcept {
     ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
-    const ::SDL_Rect square{
+    ::SDL_Rect const square{
         x * squareWidth, y * squareWidth, squareWidth, squareWidth};
 
     ::SDL_RenderFillRect(renderer, &square);
