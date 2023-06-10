@@ -22,15 +22,15 @@ struct Step final {
         px{px}, py{py}, fx{fx}, fy{fy} {
     }
 
+    Step(Step const& other) noexcept = delete;
+
     Step(Step&& other) noexcept = default;
 
-    Step& operator=(Step&& other) noexcept = delete;
-
-    Step(Step const& other) noexcept = delete;
+    ~Step() noexcept = default;
 
     Step& operator=(Step const& other) noexcept = delete;
 
-    ~Step() noexcept = default;
+    Step& operator=(Step&& other) noexcept = delete;
 };
 
 } // namespace tromino::gfx2d

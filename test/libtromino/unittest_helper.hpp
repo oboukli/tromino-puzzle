@@ -12,15 +12,19 @@
 
 #include "tromino.h"
 
-struct ShimStep {
+struct ShimStep final {
     int pos_x;
     int pos_y;
     int flip_x;
     int flip_y;
 
-    constexpr ShimStep(int pos_x, int pos_y, int flip_x, int flip_y) noexcept :
+    ShimStep() = delete;
+
+    constexpr ShimStep(int const pos_x, int const pos_y, int const flip_x, int const flip_y) noexcept :
         pos_x{pos_x}, pos_y{pos_y}, flip_x{flip_x}, flip_y{flip_y} {
     }
+
+    ShimStep(ShimStep const& other) = delete;
 
     constexpr ShimStep(ShimStep&& other) noexcept :
         pos_x{other.pos_x},
@@ -29,9 +33,11 @@ struct ShimStep {
         flip_y{other.flip_y} {
     }
 
-    ShimStep(ShimStep const& other) = delete;
+    ~ShimStep() = default;
 
     ShimStep& operator=(ShimStep const& other) = delete;
+
+    ShimStep& operator=(ShimStep&& other) noexcept = delete;
 
     bool operator!=(ShimStep const& rhs) const noexcept {
         return rhs.pos_x != this->pos_x || rhs.pos_y != this->pos_y
