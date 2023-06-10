@@ -45,7 +45,7 @@ struct graph_state_t {
 template <typename T>
 inline std::size_t calc_index(const T x, const T y, const T o) noexcept {
     assert(::trmn_is_valid_config(o, x, y));
-    return static_cast<std::size_t>(y) * static_cast<std::size_t>(o)
+    return (static_cast<std::size_t>(y) * static_cast<std::size_t>(o))
         + static_cast<std::size_t>(x);
 }
 

@@ -23,7 +23,7 @@ namespace tromino::cli::vt {
 
 constexpr auto const BEL{"\a"};
 constexpr auto const ESC{"\x1b"};
-constexpr auto const CSI{"\x1b["};
+constexpr auto const CSI{"\x1b" "["};
 
 constexpr auto const BOARD_BACKGROUND_COLOR{"23"};
 

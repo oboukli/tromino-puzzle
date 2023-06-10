@@ -20,7 +20,7 @@ int main(int const argc, char const* const argv[]) noexcept {
     if (bool const is_error{
             tromino::cli::read_options(argc, argv, options, error)};
         is_error
-        || !::trmn_is_valid_config(options.order, options.x, options.y)) {
+        || (!::trmn_is_valid_config(options.order, options.x, options.y))) {
         std::cerr << error << std::endl;
         tromino::cli::print_usage(std::cout);
 
