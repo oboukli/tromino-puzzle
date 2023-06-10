@@ -114,7 +114,9 @@ void solver(
     SolverState<SharedState> solver_state{
         .state = state, .callback = tromino_cb};
 
-    ::trmn_solve_puzzle(order, mark_x, mark_y, solve_puzzle_cb, &solver_state);
+    ::trmn_solve_puzzle(
+        order, mark_x, mark_y, ::solve_puzzle_cb,
+        static_cast<void*>(&solver_state));
 }
 
 } // namespace
