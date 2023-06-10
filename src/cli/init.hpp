@@ -11,7 +11,7 @@
 
 namespace tromino::cli::app {
 
-void init(int const size, int const x, int const y) noexcept;
+void init(int const order, int const x, int const y) noexcept;
 
 #ifdef _WINDOWS
 void init(
