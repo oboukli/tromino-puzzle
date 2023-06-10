@@ -19,8 +19,6 @@
 #include "params.hpp"
 
 int main(int const argc, char const* const argv[]) noexcept {
-    using namespace std::string_literals;
-
     tromino::tromino2d::options options{};
     std::string error{};
     if (bool is_error{
@@ -41,6 +39,7 @@ int main(int const argc, char const* const argv[]) noexcept {
         .mark_x = options.x,
         .mark_y = options.y};
 
+    using namespace std::string_literals;
     return tromino::tromino2d::init(
         board, tromino::tromino2d::params::CANVAS_WIDTH, "Tromino Puzzle"s);
 }

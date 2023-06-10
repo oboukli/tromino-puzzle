@@ -37,7 +37,6 @@ bool read_options(
     using namespace tromino::cli::params;
 
     if (argc < REQUIRED_ARG_COUNT) {
-        using namespace std::string_literals;
         error = "Incorrect argument count."s;
 
         return true;
