@@ -51,17 +51,18 @@ void add_tromino(
     for (int i = 0; i < 2; ++i) {
         for (int j = 0; j < 2; ++j) {
             px = sprite[calc_index(j, i, 2)];
-            if (px == NEUTRAL) {
-                continue;
+            if (px != NEUTRAL) {
+                // clang-format off
+                assert(
+                    (board_matrix[calc_index(pos_x + j, pos_y + i, order)]
+                        == EMPTY)
+                    && "Error: Invalid placement.");
+                // clang-format on
+
+                board_matrix[calc_index(pos_x + j, pos_y + i, order)] = px;
+
+                draw_at(1 + pos_x + j, 1 + pos_y + i, px, os);
             }
-
-            assert(
-                (board_matrix[calc_index(pos_x + j, pos_y + i, order)] == EMPTY)
-                && "Error: Invalid placement.");
-
-            board_matrix[calc_index(pos_x + j, pos_y + i, order)] = px;
-
-            draw_at(1 + pos_x + j, 1 + pos_y + i, px, os);
         }
     }
 
