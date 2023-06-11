@@ -38,10 +38,10 @@ bool read_options(
     options.order = std::stoi(argv[ORDER_ARG_IDX]);
     options.x = std::stoi(argv[MARKX_ARG_IDX]);
     options.y = std::stoi(argv[MARKY_ARG_IDX]);
-    options.force = argc > REQUIRED_ARG_COUNT
-        && std::string(argv[FORCE_ARG_IDX]) == "-f"s;
+    options.force = (argc > REQUIRED_ARG_COUNT)
+        && (std::string(argv[FORCE_ARG_IDX]) == "-f"s);
 
-    if (options.order > MAX_SUPPORTED_ORDER && !options.force) {
+    if ((options.order > MAX_SUPPORTED_ORDER) && !options.force) {
         error
             = "Order is too large that it might crash the app. Use the -f option to force the puzzle."s;
 

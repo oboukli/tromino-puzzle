@@ -24,7 +24,7 @@ int main(int const argc, char const* const argv[]) noexcept {
     if (bool is_error{
             tromino::tromino2d::read_options(argc, argv, options, error)};
         is_error
-        || !::trmn_is_valid_config(options.order, options.x, options.y)) {
+        || (!::trmn_is_valid_config(options.order, options.x, options.y))) {
         std::cerr << error << std::endl;
         tromino::tromino2d::print_usage(std::cout);
 
