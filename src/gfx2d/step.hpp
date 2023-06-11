@@ -11,7 +11,8 @@
 
 namespace tromino::gfx2d {
 
-struct Step final {
+class Step final {
+public:
     int px;
     int py;
     int fx;

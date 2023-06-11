@@ -12,7 +12,8 @@
 
 #include "tromino.h"
 
-struct ShimStep final {
+class ShimStep final {
+public:
     int pos_x;
     int pos_y;
     int flip_x;
