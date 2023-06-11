@@ -20,7 +20,7 @@ CreateTexture(::SDL_Renderer* const renderer, int const width) noexcept;
 
 void InitCheckeredBoard(
     ::SDL_Renderer* const renderer, ::SDL_Texture* const texture,
-    int const width, int const order, ::SDL_Color const& wke1Color,
+    int const squareWidth, int const order, ::SDL_Color const& wke1Color,
     ::SDL_Color const& bke8Color) noexcept;
 
 void InitSolutionTexture(
