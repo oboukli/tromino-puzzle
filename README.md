@@ -209,6 +209,7 @@ and ideas leveraged by this project:
 - HTML5
 - CSS
 - SVG
+- XcodeWarnings
 
 ## License
 
