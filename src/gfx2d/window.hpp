@@ -14,7 +14,7 @@
 
 namespace tromino::gfx2d {
 
-class Window final {
+class [[nodiscard]] Window final {
 public:
     Window() noexcept = delete;
 
