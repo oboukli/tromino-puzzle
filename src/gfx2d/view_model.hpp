@@ -20,7 +20,7 @@
 
 namespace tromino::gfx2d {
 
-class TrominoBoardViewModel final {
+class [[nodiscard]] TrominoBoardViewModel final {
 public:
     TrominoBoardViewModel() noexcept = delete;
 
