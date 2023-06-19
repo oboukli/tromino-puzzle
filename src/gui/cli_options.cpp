@@ -41,7 +41,7 @@ bool read_options(
     options.force = (argc > REQUIRED_ARG_COUNT)
         && (std::string(argv[FORCE_ARG_IDX]) == "-f"s);
 
-    if ((options.order > MAX_SUPPORTED_ORDER) && !options.force) {
+    if ((options.order > MAX_SUPPORTED_ORDER) && (!options.force)) {
         error
             = "Order is too large that it might crash the app. Use the -f option to force the puzzle."s;
 
