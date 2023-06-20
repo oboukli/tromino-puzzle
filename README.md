@@ -8,9 +8,9 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/oboukli/tromino-puzzle/badge)](https://www.codefactor.io/repository/github/oboukli/tromino-puzzle)
 [![Codacy](https://app.codacy.com/project/badge/Grade/8395b4fbd3b34c72907b0e65fe0b5f35)](https://www.codacy.com/gh/oboukli/tromino-puzzle/dashboard)
 
-This is a C library (see `src/libtromino`) implementing a divide-and-conquer O(n)
-algorithm, and a collection of apps, to solve the tromino puzzle,
-over-engineered for the joy of learning by doing.
+This is a C99 library (see `src/libtromino`) implementing a divide-and-conquer O(n)
+algorithm, and a collection of apps (written in C17, C++17, C++20, and ECMAScript)
+to solve the tromino puzzle, over-engineered for the joy of learning by doing.
 
 A tromino puzzle consists of a checkered
 $2^n \times 2^n : n \in \mathbb{N} \land n > 0$ (chess-like) board, where
@@ -168,11 +168,11 @@ docker run --detach --rm --publish=8080:80 \
 The following is a partial list of standards, practices, software,
 and ideas leveraged by this project:
 
-- C (C89)
-- C++ (standard C++17)
+- C (C99 and C17)
+- C++ (standard C++17 and C++20)
 - C++ STL
 - No C++ inheritance
-- No C++ exceptions
+- No C++ exceptions (experimental)
 - No C++ RTTI
 - `const` and `constexpr` where applicable--except members
 - SDL2
@@ -220,4 +220,4 @@ SPDX license identifier: MIT.
 
 ---
 
-Made for the joy of it 🐳
+Written for the joy of it 🐳
