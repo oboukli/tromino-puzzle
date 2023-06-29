@@ -65,7 +65,10 @@ void InitCheckeredBoard(
 
     for (int i = 0; i < order; ++i) {
         for (int j = 0; j < order; ++j) {
-            if ((j & 1) != (i & 1)) {
+            // clang-format off
+            if (((static_cast<unsigned int>(j) ^ static_cast<unsigned int>(i))
+                & 1u) == 1) {
+                // clang-format on
                 square.x = j * squareWidth;
                 square.y = i * squareWidth;
                 ::SDL_RenderFillRect(renderer, &square);
