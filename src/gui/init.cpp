@@ -60,11 +60,20 @@ inline void start_game_loop(
             window->GetSdlWindow())};
 
     tromino::gfx2d::Style const style{
-        .wke1_color{0x4e, 0x7d, 0xa6, SDL_ALPHA_OPAQUE},
-        .bke8_color{0x01, 0x23, 0x40, SDL_ALPHA_OPAQUE},
-        .mark_color{0x8c, 0x1b, 0x1b, SDL_ALPHA_OPAQUE},
-        .tromino_color{0xd9, 0x93, 0x3d, 0x80},
-        .tromino_outline_color{0xd9, 0x36, 0x36, SDL_ALPHA_OPAQUE}};
+        .wke1_color{
+            ::Uint32{0x4e}, ::Uint32{0x7d}, ::Uint32{0xa6},
+            ::Uint32{SDL_ALPHA_OPAQUE}},
+        .bke8_color{
+            ::Uint32{0x01}, ::Uint32{0x23}, ::Uint32{0x40},
+            ::Uint32{SDL_ALPHA_OPAQUE}},
+        .mark_color{
+            ::Uint32{0x8c}, ::Uint32{0x1b}, ::Uint32{0x1b},
+            ::Uint32{SDL_ALPHA_OPAQUE}},
+        .tromino_color{
+            ::Uint32{0xd9}, ::Uint32{0x93}, ::Uint32{0x3d}, ::Uint32{0x80}},
+        .tromino_outline_color{
+            ::Uint32{0xd9}, ::Uint32{0x36}, ::Uint32{0x36},
+            ::Uint32{SDL_ALPHA_OPAQUE}}};
 
     viewModel->SetBoard(board, style);
 
