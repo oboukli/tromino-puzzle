@@ -30,7 +30,9 @@ CreateTexture(::SDL_Renderer* const renderer, int const width) noexcept {
 
     ::SDL_SetRenderTarget(renderer, texture);
 
-    ::SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_TRANSPARENT);
+    ::SDL_SetRenderDrawColor(
+        renderer, ::Uint8{0}, ::Uint8{0}, ::Uint8{0},
+        ::Uint8{SDL_ALPHA_TRANSPARENT});
     ::SDL_RenderClear(renderer);
 
     ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
@@ -67,7 +69,7 @@ void InitCheckeredBoard(
         for (int j = 0; j < order; ++j) {
             // clang-format off
             if (((static_cast<unsigned int>(j) ^ static_cast<unsigned int>(i))
-                & 1u) == 1) {
+                & 1u) == 1u) {
                 // clang-format on
                 square.x = j * squareWidth;
                 square.y = i * squareWidth;

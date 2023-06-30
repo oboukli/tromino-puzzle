@@ -92,8 +92,8 @@ void add_tromino(
     }
 
     COORD const coord{
-        .X = static_cast<SHORT>(order) - 1,
-        .Y = static_cast<SHORT>(order) - 1,
+        .X = static_cast<SHORT>(order) - short{1},
+        .Y = static_cast<SHORT>(order) - short{1},
     };
     ::SetConsoleCursorPosition(graph_state->hOutput, coord);
 

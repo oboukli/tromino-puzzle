@@ -26,7 +26,7 @@ void TrominoBoardViewModel::SetBoard(
     int const order{board.order};
     int const logicalWidth{SQUARE_LOGICAL_WIDTH * order};
 
-    _currentStepNum = 0;
+    _currentStepNum = std::size_t{0};
     // clang-format off
     _numSteps
         = ((static_cast<std::size_t>(order) * static_cast<std::size_t>(order))
@@ -36,7 +36,9 @@ void TrominoBoardViewModel::SetBoard(
     ::SDL_RenderSetLogicalSize(_renderer.get(), logicalWidth, logicalWidth);
     ::SDL_RenderSetIntegerScale(_renderer.get(), ::SDL_bool::SDL_FALSE);
 
-    ::SDL_SetRenderDrawColor(_renderer.get(), 0, 0, 0, SDL_ALPHA_TRANSPARENT);
+    ::SDL_SetRenderDrawColor(
+        _renderer.get(), ::Uint8{0}, ::Uint8{0}, ::Uint8{0},
+        ::Uint8{SDL_ALPHA_TRANSPARENT});
     ::SDL_RenderClear(_renderer.get());
 
     _viewTexture.reset(CreateTexture(_renderer.get(), logicalWidth));
@@ -50,7 +52,8 @@ void TrominoBoardViewModel::SetBoard(
         style.mark_color);
 
     _solutionTexture.reset(CreateTexture(_renderer.get(), logicalWidth));
-    ::SDL_Color const color{0, 0, 0, SDL_ALPHA_TRANSPARENT};
+    ::SDL_Color const color{
+        ::Uint8{0}, ::Uint8{0}, ::Uint8{0}, ::Uint8{SDL_ALPHA_TRANSPARENT}};
     InitSolutionTexture(_renderer.get(), _solutionTexture.get(), color);
 
     if (_trominoTexture == nullptr) {
@@ -87,7 +90,7 @@ void TrominoBoardViewModel::Render(
         trominoDest.x = s.px * SQUARE_LOGICAL_WIDTH;
         trominoDest.y = s.py * SQUARE_LOGICAL_WIDTH;
         ::SDL_RenderCopyEx(
-            _renderer.get(), _trominoTexture.get(), nullptr, &trominoDest, 0,
+            _renderer.get(), _trominoTexture.get(), nullptr, &trominoDest, .0,
             nullptr, get_flip(s.fx, s.fy));
     }
 

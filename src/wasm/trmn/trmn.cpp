@@ -90,11 +90,20 @@ void start(tromino::gfx2d::Board const& board, int const width) noexcept {
         board.order, board.mark_x, board.mark_y, add_tromino, steps.get());
 
     tromino::gfx2d::Style const style{
-        .wke1_color{0x4e, 0x7d, 0xa6, SDL_ALPHA_OPAQUE},
-        .bke8_color{0x01, 0x23, 0x40, SDL_ALPHA_OPAQUE},
-        .mark_color{0x8c, 0x1b, 0x1b, SDL_ALPHA_OPAQUE},
-        .tromino_color{0xd9, 0x93, 0x3d, 0x80},
-        .tromino_outline_color{0xd9, 0x36, 0x36, SDL_ALPHA_OPAQUE}};
+        .wke1_color{
+            ::Uint8{0x4e}, ::Uint8{0x7d}, ::Uint8{0xa6},
+            ::Uint8{SDL_ALPHA_OPAQUE}},
+        .bke8_color{
+            ::Uint8{0x01}, ::Uint8{0x23}, ::Uint8{0x40},
+            ::Uint8{SDL_ALPHA_OPAQUE}},
+        .mark_color{
+            ::Uint8{0x8c}, ::Uint8{0x1b}, ::Uint8{0x1b},
+            ::Uint8{SDL_ALPHA_OPAQUE}},
+        .tromino_color{
+            ::Uint8{0xd9}, ::Uint8{0x93}, ::Uint8{0x3d}, ::Uint8{0x80}},
+        .tromino_outline_color{
+            ::Uint8{0xd9}, ::Uint8{0x36}, ::Uint8{0x36},
+            ::Uint8{SDL_ALPHA_OPAQUE}}};
     viewModel->SetBoard(board, style);
 
     ::emscripten_set_main_loop(render_frame, -1, 0);
