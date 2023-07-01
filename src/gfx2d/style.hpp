@@ -11,6 +11,7 @@
 
 namespace tromino::gfx2d {
 
+/// Model after an 8 * 8 chess board.
 struct Style {
     ::SDL_Color wke1_color{};
     ::SDL_Color bke8_color{};
