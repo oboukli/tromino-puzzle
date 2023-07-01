@@ -109,7 +109,7 @@ void add_tromino(
     int const pos_x, int const pos_y, int const flip_x, int const flip_y,
     SharedState* const shared_state) noexcept {
     {
-        std::lock_guard const lk(shared_state->mut);
+        std::lock_guard const lk{shared_state->mut};
         shared_state->steps.emplace_back(pos_x, pos_y, flip_x, flip_y);
     }
     shared_state->lock_cond.notify_one();
