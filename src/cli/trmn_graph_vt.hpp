@@ -21,17 +21,18 @@
 
 namespace tromino::cli::vt {
 
-constexpr char const * const BEL{"\a"};
-constexpr char const * const ESC{"\x1b"};
-constexpr char const * const CSI{"\x1b" "["};
+constexpr char const* const BEL{"\a"};
+constexpr char const* const ESC{"\x1b"};
+constexpr char const* const CSI{"\x1b"
+                                "["};
 
-constexpr char const * const BOARD_BACKGROUND_COLOR{"23"};
+constexpr char const* const BOARD_BACKGROUND_COLOR{"23"};
 
-constexpr char const * const MARK_BACKGROUND_COLOR{"199"};
-constexpr char const * const MARK_FOREGROUND_COLOR{"216"};
+constexpr char const* const MARK_BACKGROUND_COLOR{"199"};
+constexpr char const* const MARK_FOREGROUND_COLOR{"216"};
 
-constexpr char const * const TROMINO_BACKGROUND_COLOR{"18"};
-constexpr char const * const TROMINO_FOREGROUND_COLOR{"226"};
+constexpr char const* const TROMINO_BACKGROUND_COLOR{"18"};
+constexpr char const* const TROMINO_FOREGROUND_COLOR{"226"};
 
 constexpr char const NEUTRAL{'N'};
 constexpr char const EMPTY{' '};
