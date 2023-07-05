@@ -37,8 +37,8 @@ jobs:
         env:
           EMSDK_VERSION: 3.1.42
         run: |-
-          ./emsdk install ${EMSDK_VERSION}
-          ./emsdk activate ${EMSDK_VERSION}
+          ./emsdk install "${EMSDK_VERSION}"
+          ./emsdk activate "${EMSDK_VERSION}"
         working-directory: emsdk
 
       - name: Check out main repository
@@ -53,7 +53,7 @@ jobs:
         working-directory: tromino-puzzle/emscripten
 
       - name: Archive files
-        run: tar --create --file=dist.tar *
+        run: tar --create --file=dist.tar ./*
         working-directory: tromino-puzzle/dist/web
 
       - name: Archive web app artifacts
@@ -76,7 +76,7 @@ jobs:
           ref: gh-pages
 
       - name: Remove current files
-        run: rm -rf *
+        run: rm -rf ./*
 
       - name: Download build artifact
         uses: actions/download-artifact@v3
