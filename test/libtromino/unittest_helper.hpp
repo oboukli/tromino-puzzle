@@ -21,7 +21,9 @@ public:
 
     ShimStep() = delete;
 
-    constexpr ShimStep(int const pos_x, int const pos_y, int const flip_x, int const flip_y) noexcept :
+    constexpr ShimStep(
+        int const pos_x, int const pos_y, int const flip_x,
+        int const flip_y) noexcept :
         pos_x{pos_x}, pos_y{pos_y}, flip_x{flip_x}, flip_y{flip_y} {
     }
 
