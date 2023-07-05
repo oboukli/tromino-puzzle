@@ -116,6 +116,9 @@ jobs:
       - name: Run tromino 2 0 1
         run: ./src/tromino 2 0 1
 
+      - name: Run tromino 2 0 1
+        run: ./src/tromino 2 0 1
+
       - name: Run tromino 8 3 5
         run: ./src/tromino 8 3 5
 
@@ -133,6 +136,11 @@ jobs:
 
       - name: Start Xvfb
         run: Xvfb :99 -screen 0 1024x768x24 &
+
+      - name: Run tromino2d 2 0 0 -f
+        env:
+          DISPLAY: :99
+        run: ./src/tromino2d 2 0 0 -f
 
       - name: Run tromino2d 8 2 5
         env:
