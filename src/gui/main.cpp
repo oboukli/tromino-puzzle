@@ -19,6 +19,7 @@
 #include "params.hpp"
 
 int main(int const argc, char const* const argv[]) noexcept {
+    int exit_status{EXIT_FAILURE};
     tromino::tromino2d::options options{};
     std::string error{};
     if (bool is_error{
@@ -28,18 +29,20 @@ int main(int const argc, char const* const argv[]) noexcept {
         std::cerr << error << std::endl;
         tromino::tromino2d::print_usage(std::cout);
 
-        return EXIT_FAILURE;
+        exit_status = EXIT_FAILURE;
+    } else {
+        auto const order_internal{static_cast<std::size_t>(options.order)};
+        std::size_t const size{order_internal * order_internal};
+        tromino::gfx2d::Board const board{
+            .size = size,
+            .order = options.order,
+            .mark_x = options.x,
+            .mark_y = options.y};
+
+        using namespace std::string_literals;
+        exit_status = tromino::tromino2d::init(
+            board, tromino::tromino2d::params::CANVAS_WIDTH, "Tromino Puzzle"s);
     }
 
-    auto const order_internal{static_cast<std::size_t>(options.order)};
-    std::size_t const size{order_internal * order_internal};
-    tromino::gfx2d::Board const board{
-        .size = size,
-        .order = options.order,
-        .mark_x = options.x,
-        .mark_y = options.y};
-
-    using namespace std::string_literals;
-    return tromino::tromino2d::init(
-        board, tromino::tromino2d::params::CANVAS_WIDTH, "Tromino Puzzle"s);
+    return exit_status;
 }

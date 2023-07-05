@@ -59,31 +59,47 @@ get_sprite(int const flip_x, int const flip_y) noexcept {
     assert(flip_x == -1 || flip_x == 1);
     assert(flip_y == -1 || flip_y == 1);
 
+    std::array<char, SPRITE_SIZE> sprite{};
+
     if (flip_x == -1) {
         if (flip_y == -1) {
             // -1, -1
             // X |
             // - +
-            return {neutral, vertical, horizontal, bottom_right};
+            sprite[0] = neutral;
+            sprite[1] = vertical;
+            sprite[2] = horizontal;
+            sprite[3] = bottom_right;
+        } else {
+            // -1, 1
+            // - +
+            // X |
+            sprite[0] = horizontal;
+            sprite[1] = top_right;
+            sprite[2] = neutral;
+            sprite[3] = vertical;
         }
-
-        // -1, 1
-        // - +
-        // X |
-        return {horizontal, top_right, neutral, vertical};
+    } else {
+        if (flip_y == -1) {
+            // 1, -1
+            // | X
+            // + -
+            sprite[0] = vertical;
+            sprite[1] = neutral;
+            sprite[2] = bottom_left;
+            sprite[3] = horizontal;
+        } else {
+            // 1, 1
+            // + -
+            // | X
+            sprite[0] = top_left;
+            sprite[1] = horizontal;
+            sprite[2] = vertical;
+            sprite[3] = neutral;
+        }
     }
 
-    if (flip_y == -1) {
-        // 1, -1
-        // | X
-        // + -
-        return {vertical, neutral, bottom_left, horizontal};
-    }
-
-    // 1, 1
-    // + -
-    // | X
-    return {top_left, horizontal, vertical, neutral};
+    return sprite;
 }
 
 } // namespace tromino::cli
