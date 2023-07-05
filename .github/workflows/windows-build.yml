@@ -75,4 +75,4 @@ jobs:
           -property:Platform=${{ env.BUILD_PLATFORM }}
           -validate
           -warnAsError
-          ${{ env.SOLUTION_FILE_PATH }}
+          "${{ env.SOLUTION_FILE_PATH }}"

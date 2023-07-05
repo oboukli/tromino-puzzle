@@ -63,21 +63,21 @@ jobs:
         env:
           SONAR_SCANNER_DOWNLOAD_URL: https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ env.SONAR_SCANNER_VERSION }}-linux.zip
         run: >-
-          mkdir --parents $HOME/.sonar
+          mkdir --parents "$HOME/.sonar"
 
           curl
           --silent
           --show-error
           --location
-          --output $HOME/.sonar/sonar-scanner.zip
-          ${{ env.SONAR_SCANNER_DOWNLOAD_URL }}
+          --output "$HOME/.sonar/sonar-scanner.zip"
+          "${{ env.SONAR_SCANNER_DOWNLOAD_URL }}"
 
           unzip
-          -o $HOME/.sonar/sonar-scanner.zip
-          -d $HOME/.sonar/
+          -o "$HOME/.sonar/sonar-scanner.zip"
+          -d "$HOME/.sonar/"
 
           echo "$HOME/.sonar/sonar-scanner-${{ env.SONAR_SCANNER_VERSION }}-linux/bin"
-          >> $GITHUB_PATH
+          >> "$GITHUB_PATH"
 
       - name: Download and set up build-wrapper
         env:
@@ -87,15 +87,15 @@ jobs:
           --silent
           --show-error
           --location
-          --output $HOME/.sonar/build-wrapper-linux-x86.zip
-          ${{ env.BUILD_WRAPPER_DOWNLOAD_URL }}
+          --output "$HOME/.sonar/build-wrapper-linux-x86.zip"
+          "${{ env.BUILD_WRAPPER_DOWNLOAD_URL }}"
 
           unzip
-          -o $HOME/.sonar/build-wrapper-linux-x86.zip
-          -d $HOME/.sonar/
+          -o "$HOME/.sonar/build-wrapper-linux-x86.zip"
+          -d "$HOME/.sonar/"
 
           echo "$HOME/.sonar/build-wrapper-linux-x86"
-          >> $GITHUB_PATH
+          >> "$GITHUB_PATH"
 
       - name: Run build-wrapper
         run: >-
@@ -104,7 +104,7 @@ jobs:
           ./configure --enable-code-coverage CPPFLAGS=-DTROMINO_2D_HEADLESS
 
           build-wrapper-linux-x86-64
-          --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }}
+          --out-dir "${{ env.BUILD_WRAPPER_OUT_DIR }}"
           make clean all check
 
       - name: Run tromino
@@ -154,7 +154,7 @@ jobs:
           --exclude=/usr/include
           --keep
           --root .
-          --sonarqube ${{ env.COVERAGE_REPORTS_PATH }}
+          --sonarqube "${{ env.COVERAGE_REPORTS_PATH }}"
 
       - name: Run sonar-scanner
         env:
