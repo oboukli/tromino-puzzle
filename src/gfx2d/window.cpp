@@ -9,9 +9,9 @@
 namespace tromino::gfx2d {
 
 #ifdef __EMSCRIPTEN__
-constexpr auto const WINDOW_FLAGS{0};
+constexpr ::Uint32 const WINDOW_FLAGS{0};
 #else
-constexpr auto const WINDOW_FLAGS{
+constexpr ::Uint32 const WINDOW_FLAGS{
     ::SDL_WindowFlags::SDL_WINDOW_ALLOW_HIGHDPI
     | ::SDL_WindowFlags::SDL_WINDOW_SHOWN};
 #endif // __EMSCRIPTEN__
