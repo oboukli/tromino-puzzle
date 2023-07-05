@@ -36,27 +36,30 @@ bool read_options(
     using namespace std::string_literals;
     using namespace tromino::cli::params;
 
+    bool has_error{true};
+
     if (argc < REQUIRED_ARG_COUNT) {
         error = "Incorrect argument count."s;
-
-        return true;
-    }
-
+    } else {
 #ifdef _WINDOWS
-    options.use_wch = argc > REQUIRED_ARG_COUNT
-        && std::string(argv[USE_WCH_ARG_IDX]) == "--use-wch"s;
+        options.use_wch = argc > REQUIRED_ARG_COUNT
+            && std::string(argv[USE_WCH_ARG_IDX]) == "--use-wch"s;
 
-    // clang-format off
-    options.emulation_mode =
-        options.use_wch ? emulation_mode_type::wch: emulation_mode_type::vt100;
-    // clang-format on
+        // clang-format off
+        options.emulation_mode = options.use_wch
+            ? emulation_mode_type::wch
+            : emulation_mode_type::vt100;
+        // clang-format on
 #endif // _WINDOWS
 
-    options.order = std::stoi(argv[ORDER_ARG_IDX]);
-    options.x = std::stoi(argv[MARKX_ARG_IDX]);
-    options.y = std::stoi(argv[MARKY_ARG_IDX]);
+        options.order = std::stoi(argv[ORDER_ARG_IDX]);
+        options.x = std::stoi(argv[MARKX_ARG_IDX]);
+        options.y = std::stoi(argv[MARKY_ARG_IDX]);
 
-    return false;
+        has_error = false;
+    }
+
+    return has_error;
 }
 
 } // namespace tromino::cli
