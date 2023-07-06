@@ -30,8 +30,6 @@ bool isInitialized{false};
 void add_tromino(
     int const pos_x, int const pos_y, int const flip_x, int const flip_y,
     void* const state) noexcept {
-    using namespace tromino::gfx2d;
-
     auto const steps{static_cast<std::vector<tromino::gfx2d::Step>*>(state)};
 
     steps->emplace_back(pos_x, pos_y, flip_x, flip_y);
@@ -72,7 +70,6 @@ void render_frame() noexcept {
 }
 
 void start(tromino::gfx2d::Board const& board, int const width) noexcept {
-    using namespace tromino::gfx2d;
     constexpr int const SWAP_INTERVAL{4};
 
     if (isInitialized) {
