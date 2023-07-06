@@ -5,6 +5,7 @@
 // SPDX-License-Identifier: MIT
 
 #include "trmn_graph_vt.hpp"
+#include "wrapper.hpp"
 
 #include <array>
 #include <cassert>
@@ -35,10 +36,9 @@ void draw_board(board_t const& board, std::ostream& os) noexcept {
 
 void add_tromino(
     int const pos_x, int const pos_y, int const flip_x, int const flip_y,
-    void* const state) noexcept {
+    graph_state_t* const graph_state) noexcept {
     constexpr const std::chrono::milliseconds DELAY_AFTER{68};
 
-    graph_state_t const* const graph_state{static_cast<graph_state_t*>(state)};
     std::ostream& os{graph_state->os};
     board_t const& board{graph_state->board};
     char* const board_matrix{board.board_matrix.get()};
@@ -172,9 +172,11 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept {
 
     graph_state_t graph_state{.os = os, .board = tromino_board};
 
+    SolverState<graph_state_t> solver_state{
+        .state = &graph_state, .callback = add_tromino};
     ::trmn_solve_puzzle(
         tromino_board.order, tromino_board.mark_x, tromino_board.mark_y,
-        add_tromino, &graph_state);
+        ::solve_puzzle_cb, static_cast<void*>(&solver_state));
 
     std::cin.get();
 
