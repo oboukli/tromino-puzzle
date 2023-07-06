@@ -16,21 +16,10 @@
 		75F8E2702A5614C70092CF73 /* wrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75F8E26F2A560B5A0092CF73 /* wrapper.cpp */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		7594DBD926C4822400CF433E /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		75002AB727A5EB8C00CBB593 /* cli_options.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.hpp; path = cli_options.hpp; sourceTree = "<group>"; };
 		75002AB827A5EB8C00CBB593 /* cli_options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cli_options.cpp; sourceTree = "<group>"; };
+		75003E312A5777910035069F /* cli_models.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = cli_models.hpp; sourceTree = "<group>"; };
 		7503E76F26C88C910018B1F2 /* trmn_graph.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.hpp; path = trmn_graph.hpp; sourceTree = "<group>"; };
 		7503E77026C88C910018B1F2 /* trmn_graph_vt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trmn_graph_vt.cpp; sourceTree = "<group>"; };
 		7503E77226C88C910018B1F2 /* init.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = init.cpp; sourceTree = "<group>"; };
@@ -62,15 +51,16 @@
 		7503E76E26C88C910018B1F2 /* cli */ = {
 			isa = PBXGroup;
 			children = (
-				75E2E8BC27FCB7CF00B0525E /* params.hpp */,
+				75003E312A5777910035069F /* cli_models.hpp */,
 				75002AB827A5EB8C00CBB593 /* cli_options.cpp */,
 				75002AB727A5EB8C00CBB593 /* cli_options.hpp */,
-				7503E76F26C88C910018B1F2 /* trmn_graph.hpp */,
-				7503E77026C88C910018B1F2 /* trmn_graph_vt.cpp */,
 				7503E77226C88C910018B1F2 /* init.cpp */,
 				7503E77426C88C910018B1F2 /* init.hpp */,
 				7503E77826C88C910018B1F2 /* main.cpp */,
+				75E2E8BC27FCB7CF00B0525E /* params.hpp */,
+				7503E77026C88C910018B1F2 /* trmn_graph_vt.cpp */,
 				7503E77926C88C910018B1F2 /* trmn_graph_vt.hpp */,
+				7503E76F26C88C910018B1F2 /* trmn_graph.hpp */,
 				75F8E26F2A560B5A0092CF73 /* wrapper.cpp */,
 				75F8E26E2A560B5A0092CF73 /* wrapper.hpp */,
 			);
@@ -90,8 +80,8 @@
 		7594DBD226C4822400CF433E = {
 			isa = PBXGroup;
 			children = (
-				755F9D232811CB3B004C54E0 /* Config.xcconfig */,
 				7503E76E26C88C910018B1F2 /* cli */,
+				755F9D232811CB3B004C54E0 /* Config.xcconfig */,
 				7503E7DD26C8977E0018B1F2 /* Frameworks */,
 				7594DBDC26C4822400CF433E /* Products */,
 			);
@@ -114,7 +104,6 @@
 			buildPhases = (
 				7594DBD726C4822400CF433E /* Sources */,
 				7594DBD826C4822400CF433E /* Frameworks */,
-				7594DBD926C4822400CF433E /* CopyFiles */,
 			);
 			buildRules = (
 			);
