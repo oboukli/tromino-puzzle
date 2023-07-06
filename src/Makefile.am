@@ -39,7 +39,9 @@ tromino_SOURCES = \
 	cli/params.hpp \
 	cli/trmn_graph_vt.cpp \
 	cli/trmn_graph_vt.hpp \
-	cli/trmn_graph.hpp
+	cli/trmn_graph.hpp \
+	cli/wrapper.cpp \
+	cli/wrapper.hpp
 tromino_CPPFLAGS = \
 	-I$(top_srcdir)/src/libtromino \
 	-I$(top_srcdir)/src/validation

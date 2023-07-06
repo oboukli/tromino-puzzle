@@ -110,6 +110,7 @@
     <ClCompile Include="..\..\src\cli\main.cpp" />
     <ClCompile Include="..\..\src\cli\trmn_graph_vt.cpp" />
     <ClCompile Include="..\..\src\cli\trmn_graph_windows.cpp" />
+    <ClCompile Include="..\..\src\cli\wrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\cli\cli_models.hpp" />
@@ -118,6 +119,7 @@
     <ClInclude Include="..\..\src\cli\trmn_graph.hpp" />
     <ClInclude Include="..\..\src\cli\trmn_graph_vt.hpp" />
     <ClInclude Include="..\..\src\cli\trmn_graph_windows.hpp" />
+    <ClInclude Include="..\..\src\cli\wrapper.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
