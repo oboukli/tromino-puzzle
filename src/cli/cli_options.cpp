@@ -33,17 +33,16 @@ void print_usage(std::ostream& os) noexcept {
 bool read_options(
     int const argc, char const* const argv[], options& options,
     std::string& error) noexcept {
-    using namespace std::string_literals;
-    using namespace tromino::cli::params;
+    using std::string_literals::operator""s;
 
     bool has_error{true};
 
-    if (argc < REQUIRED_ARG_COUNT) {
+    if (argc < params::REQUIRED_ARG_COUNT) {
         error = "Incorrect argument count."s;
     } else {
 #ifdef _WINDOWS
-        options.use_wch = argc > REQUIRED_ARG_COUNT
-            && std::string(argv[USE_WCH_ARG_IDX]) == "--use-wch"s;
+        options.use_wch = argc > params::REQUIRED_ARG_COUNT
+            && std::string(argv[params::USE_WCH_ARG_IDX]) == "--use-wch"s;
 
         // clang-format off
         options.emulation_mode = options.use_wch
@@ -52,9 +51,9 @@ bool read_options(
         // clang-format on
 #endif // _WINDOWS
 
-        options.order = std::stoi(argv[ORDER_ARG_IDX]);
-        options.x = std::stoi(argv[MARKX_ARG_IDX]);
-        options.y = std::stoi(argv[MARKY_ARG_IDX]);
+        options.order = std::stoi(argv[params::ORDER_ARG_IDX]);
+        options.x = std::stoi(argv[params::MARKX_ARG_IDX]);
+        options.y = std::stoi(argv[params::MARKY_ARG_IDX]);
 
         has_error = false;
     }

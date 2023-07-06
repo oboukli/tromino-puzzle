@@ -47,7 +47,7 @@ void poll_sdl_events(bool& is_main_loop_running) noexcept {
 inline void start_game_loop(
     tromino::gfx2d::Board const& board, SharedState& shared_state,
     int const width, std::string const& title) noexcept {
-    using namespace std::chrono_literals;
+    using std::literals::chrono_literals::operator""ms;
 
     constexpr auto const WAIT_TIME{4ms};
     constexpr int const FRAME_DELAY{68};

@@ -100,7 +100,7 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept {
 
     init_board(tromino_board);
 
-    using namespace std::string_literals;
+    using std::string_literals::operator""s;
     // clang-format off
     os << ""s +
         // Set icon and window title

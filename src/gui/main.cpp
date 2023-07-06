@@ -39,7 +39,7 @@ int main(int const argc, char const* const argv[]) noexcept {
             .mark_x = options.x,
             .mark_y = options.y};
 
-        using namespace std::string_literals;
+        using std::string_literals::operator""s;
         exit_status = tromino::tromino2d::init(
             board, tromino::tromino2d::params::CANVAS_WIDTH, "Tromino Puzzle"s);
     }
