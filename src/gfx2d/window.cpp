@@ -24,8 +24,6 @@ Window::Window(std::string const& title, int const width) noexcept :
         &::SDL_DestroyWindow} {
 }
 
-Window::~Window() noexcept = default;
-
 [[nodiscard]] ::SDL_Window* Window::GetSdlWindow() const noexcept {
     return _window.get();
 }

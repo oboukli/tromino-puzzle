@@ -27,7 +27,16 @@ public:
 
     explicit TrominoBoardViewModel(::SDL_Window* const window) noexcept;
 
+    TrominoBoardViewModel(TrominoBoardViewModel const&) noexcept = delete;
+
+    TrominoBoardViewModel(TrominoBoardViewModel&&) noexcept = delete;
+
     ~TrominoBoardViewModel() noexcept = default;
+
+    TrominoBoardViewModel& operator=(TrominoBoardViewModel const&) noexcept
+        = delete;
+
+    TrominoBoardViewModel& operator=(TrominoBoardViewModel&&) noexcept = delete;
 
     void SetBoard(Board const& board, Style const& style) noexcept;
 
