@@ -20,7 +20,15 @@ public:
 
     explicit Window(std::string const& title, int const width) noexcept;
 
-    ~Window() noexcept;
+    Window(Window const&) noexcept = delete;
+
+    Window(Window&&) noexcept = delete;
+
+    ~Window() noexcept = default;
+
+    Window& operator=(Window const&) noexcept = delete;
+
+    Window& operator=(Window&&) noexcept = delete;
 
     [[nodiscard]] ::SDL_Window* GetSdlWindow() const noexcept;
 
