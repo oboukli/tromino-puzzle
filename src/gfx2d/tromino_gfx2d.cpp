@@ -65,8 +65,8 @@ void InitCheckeredBoard(
         renderer, bke8Color.r, bke8Color.g, bke8Color.b, bke8Color.a);
     ::SDL_Rect square{0, 0, squareWidth, squareWidth};
 
-    for (int i = 0; i < order; ++i) {
-        for (int j = 0; j < order; ++j) {
+    for (int i{0}; i < order; ++i) {
+        for (int j{0}; j < order; ++j) {
             // clang-format off
             if (((static_cast<unsigned int>(j) ^ static_cast<unsigned int>(i))
                 & 1u) == 1u) {
