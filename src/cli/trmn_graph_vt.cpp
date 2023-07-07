@@ -26,9 +26,9 @@ draw_at(int const x, int const y, char const c, std::ostream& os) noexcept {
 
 void draw_board(board_t const& board, std::ostream& os) noexcept {
     int const order{board.order};
-    for (int i = 0; i < order; ++i) { // Rows
+    for (int i{0}; i < order; ++i) { // Rows
         os << CSI << 1 + i << ";" << 1 << "H";
-        for (int j = 0; j < order; ++j) { // Columns
+        for (int j{0}; j < order; ++j) { // Columns
             os << board.board_matrix[calc_index(j, i, order)];
         }
     }
@@ -48,8 +48,8 @@ void add_tromino(
         BOTTOM_LEFT, BOTTOM_RIGHT>(flip_x, flip_y)};
 
     char px{};
-    for (int i = 0; i < 2; ++i) {
-        for (int j = 0; j < 2; ++j) {
+    for (int i{0}; i < 2; ++i) {
+        for (int j{0}; j < 2; ++j) {
             px = sprite[calc_index(j, i, 2)];
             if (px != NEUTRAL) {
                 // clang-format off

@@ -50,8 +50,8 @@ void ensure_success(const BOOL is_success, std::string const& msg) noexcept {
 
 void draw_board(board_t const& board) noexcept {
     int const order{board.order};
-    for (int i = 0; i < order; ++i) { // Rows
-        for (int j = 0; j < order; ++j) { // Columns
+    for (int i{0}; i < order; ++i) { // Rows
+        for (int j{0}; j < order; ++j) { // Columns
             std::cout << board.board_matrix[calc_index(j, i, order)];
         }
 
@@ -73,8 +73,8 @@ void add_tromino(
         bottom_left, bottom_right>(flip_x, flip_y)};
 
     char px{};
-    for (int i = 0; i < 2; ++i) {
-        for (int j = 0; j < 2; ++j) {
+    for (int i{0}; i < 2; ++i) {
+        for (int j{0}; j < 2; ++j) {
             px = sprite[calc_index(j, i, 2)];
             if (px != neutral) {
                 // clang-format off
