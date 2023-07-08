@@ -25,12 +25,15 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: false
 
       - name: Check out vcpkg
         uses: actions/checkout@v3
         with:
           repository: microsoft/vcpkg
           path: ${{ github.workspace }}\vcpkg
+          persist-credentials: false
 
       - name: Bootstrap vcpkg
         run: .\vcpkg\bootstrap-vcpkg.bat -disableMetrics
