@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: false
 
       - name: Update dependency list
         run: sudo apt-get update

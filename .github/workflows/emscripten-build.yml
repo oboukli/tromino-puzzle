@@ -20,6 +20,7 @@ jobs:
         with:
           repository: emscripten-core/emsdk
           path: emsdk
+          persist-credentials: false
 
       - name: Emscripten SDK cache
         id: emscripten-sdk-cache
@@ -45,6 +46,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: tromino-puzzle
+          persist-credentials: false
 
       - name: Make
         run: |-
@@ -74,6 +76,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: gh-pages
+          persist-credentials: false
 
       - name: Remove current files
         run: rm -rf ./*
