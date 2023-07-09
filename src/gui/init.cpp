@@ -49,8 +49,8 @@ inline void start_game_loop(
     int const width, std::string const& title) noexcept {
     using std::literals::chrono_literals::operator""ms;
 
-    constexpr auto const WAIT_TIME{4ms};
-    constexpr int const FRAME_DELAY{68};
+    static constexpr auto const WAIT_TIME{4ms};
+    static constexpr int const FRAME_DELAY{68};
 
     auto const window{std::make_unique<tromino::gfx2d::Window>(title, width)};
     assert(window->GetSdlWindow() != nullptr);

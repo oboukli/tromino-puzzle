@@ -70,7 +70,7 @@ void render_frame() noexcept {
 }
 
 void start(tromino::gfx2d::Board const& board, int const width) noexcept {
-    constexpr int const SWAP_INTERVAL{4};
+    static constexpr int const SWAP_INTERVAL{4};
 
     if (isInitialized) {
         terminate();

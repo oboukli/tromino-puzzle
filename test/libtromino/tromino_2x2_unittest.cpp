@@ -20,11 +20,11 @@ BOOST_AUTO_TEST_SUITE(tromino_2x2_test_suite)
 // X |
 // - +
 BOOST_AUTO_TEST_CASE(GivenK2_WhenTopLeft_ThenSolutionIsK) {
-    constexpr int const order{2};
-    constexpr int const mark_x{0};
-    constexpr int const mark_y{0};
+    static constexpr int const order{2};
+    static constexpr int const mark_x{0};
+    static constexpr int const mark_y{0};
 
-    constexpr const std::array<ShimStep, std::size_t{1}> expected{
+    static constexpr std::array<ShimStep, std::size_t{1}> const expected{
         {{0, 0, -1, -1}}};
     std::vector<ShimStep> actual{};
 
@@ -39,11 +39,11 @@ BOOST_AUTO_TEST_CASE(GivenK2_WhenTopLeft_ThenSolutionIsK) {
 // | X
 // + -
 BOOST_AUTO_TEST_CASE(GivenL2_WhenTopRight_ThenSolutionIsL) {
-    constexpr int const order{2};
-    constexpr int const mark_x{1};
-    constexpr int const mark_y{0};
+    static constexpr int const order{2};
+    static constexpr int const mark_x{1};
+    static constexpr int const mark_y{0};
 
-    constexpr const std::array<ShimStep, std::size_t{1}> expected{
+    static constexpr std::array<ShimStep, std::size_t{1}> const expected{
         {{0, 0, 1, -1}}};
     std::vector<ShimStep> actual{};
 
@@ -58,11 +58,11 @@ BOOST_AUTO_TEST_CASE(GivenL2_WhenTopRight_ThenSolutionIsL) {
 // - +
 // X |
 BOOST_AUTO_TEST_CASE(GivenM2_WhenBottomLeft_ThenSolutionIsM) {
-    constexpr int const order{2};
-    constexpr int const mark_x{0};
-    constexpr int const mark_y{1};
+    static constexpr int const order{2};
+    static constexpr int const mark_x{0};
+    static constexpr int const mark_y{1};
 
-    constexpr const std::array<ShimStep, std::size_t{1}> expected{
+    static constexpr std::array<ShimStep, std::size_t{1}> const expected{
         {{0, 0, -1, 1}}};
     std::vector<ShimStep> actual{};
 
@@ -77,11 +77,11 @@ BOOST_AUTO_TEST_CASE(GivenM2_WhenBottomLeft_ThenSolutionIsM) {
 // + -
 // | X
 BOOST_AUTO_TEST_CASE(GivenN2_WhenBottomRight_ThenSolutionIsN) {
-    constexpr int const order{2};
-    constexpr int const mark_x{1};
-    constexpr int const mark_y{1};
+    static constexpr int const order{2};
+    static constexpr int const mark_x{1};
+    static constexpr int const mark_y{1};
 
-    constexpr const std::array<ShimStep, std::size_t{1}> expected{
+    static constexpr std::array<ShimStep, std::size_t{1}> const expected{
         {{0, 0, 1, 1}}};
     std::vector<ShimStep> actual{};
 
