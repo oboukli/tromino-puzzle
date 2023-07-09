@@ -37,7 +37,7 @@ void draw_board(board_t const& board, std::ostream& os) noexcept {
 void add_tromino(
     int const pos_x, int const pos_y, int const flip_x, int const flip_y,
     graph_state_t* const graph_state) noexcept {
-    constexpr const std::chrono::milliseconds DELAY_AFTER{68};
+    static constexpr std::chrono::milliseconds const DELAY_AFTER{68};
 
     std::ostream& os{graph_state->os};
     board_t const& board{graph_state->board};

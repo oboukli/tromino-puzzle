@@ -62,7 +62,7 @@ void draw_board(board_t const& board) noexcept {
 void add_tromino(
     int const pos_x, int const pos_y, int const flip_x, int const flip_y,
     void* const state) noexcept {
-    constexpr const std::chrono::milliseconds DELAY_AFTER{68};
+    static constexpr std::chrono::milliseconds const DELAY_AFTER{68};
 
     graph_state_t const* graph_state{static_cast<graph_state_t*>(state)};
     board_t const& board{graph_state->board};

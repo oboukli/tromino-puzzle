@@ -1393,9 +1393,9 @@ BOOST_AUTO_TEST_SUITE(tromino_64x64_test_suite)
 
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs64AndMarkIs61_37_ThenSolution) {
-    constexpr int const order{64};
-    constexpr int const mark_x{61};
-    constexpr int const mark_y{37};
+    static constexpr int const order{64};
+    static constexpr int const mark_x{61};
+    static constexpr int const mark_y{37};
 
     std::vector<ShimStep> actual{};
     actual.reserve(std::size_t{1365});
