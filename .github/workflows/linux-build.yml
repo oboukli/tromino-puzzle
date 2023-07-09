@@ -17,6 +17,9 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
+    env:
+      BUILD_PATH: ${{ github.workspace }}/build
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -40,22 +43,35 @@ jobs:
 
       - name: Configure build
         run: |-
-          mkdir build
-          cd build
+          mkdir '${{ env.BUILD_PATH }}'
+          cd '${{ env.BUILD_PATH }}'
           ../configure
 
       - name: Make
         run: make --jobs=$((($(nproc) * 15) / 10))
-        working-directory: build
+        working-directory: ${{ env.BUILD_PATH }}
 
       - name: Test
         run: make check
-        working-directory: build
+        working-directory: ${{ env.BUILD_PATH }}
 
       - name: Package
         run: make dist
-        working-directory: build
+        working-directory: ${{ env.BUILD_PATH }}
 
       - name: Test package
         run: make distcheck
-        working-directory: build
+        working-directory: ${{ env.BUILD_PATH }}
+
+      - name: Compute SHA256 of artifacts
+        run: |-
+          ls -Al ./src/ | grep -v '^d'
+          ls -Al ./src/.libs/ | grep -v '^d'
+          ls -Al ./test/ | grep -v '^d'
+          sha256sum --binary ./src/.libs/libtromino.a
+          sha256sum --binary ./src/.libs/libtromino-gfx2d.a
+          sha256sum --binary ./src/.libs/libtromino-validation.a
+          sha256sum --binary ./src/tromino
+          sha256sum --binary ./src/tromino2d
+          sha256sum --binary ./test/libtromino_test
+        working-directory: ${{ env.BUILD_PATH }}

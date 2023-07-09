@@ -14,6 +14,9 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
+    env:
+      BUILD_PATH: ${{ github.workspace }}/tromino-puzzle/dist/web
+
     steps:
       - name: Check out Emscripten repository
         uses: actions/checkout@v3
@@ -56,14 +59,25 @@ jobs:
 
       - name: Archive files
         run: tar --create --file=dist.tar ./*
-        working-directory: tromino-puzzle/dist/web
+        working-directory: ${{ env.BUILD_PATH }}
 
       - name: Archive web app artifacts
         uses: actions/upload-artifact@v3
         continue-on-error: false
         with:
           name: tromino-puzzle-web-dist
-          path: tromino-puzzle/dist/web/dist.tar
+          path: ${{ env.BUILD_PATH }}/dist.tar
+
+      - name: Compute SHA256 of artifacts
+        run: |-
+          ls -Al ./scripts/litro/ | grep -v '^d'
+          ls -Al ./scripts/trmn/ | grep -v '^d'
+          sha256sum --binary ./dist.tar
+          sha256sum --binary ./scripts/litro/litro-wasm.js
+          sha256sum --binary ./scripts/litro/litro-wasm.wasm
+          sha256sum --binary ./scripts/trmn/trmn-wasm.js
+          sha256sum --binary ./scripts/trmn/trmn-wasm.wasm
+        working-directory: ${{ env.BUILD_PATH }}
 
   deploy-gh-pages:
     name: Deploy to GitHub Pages
@@ -85,6 +99,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: tromino-puzzle-web-dist
+
+      - name: Compute checksum of downloaded artifact
+        run: sha256sum --binary ./dist.tar
 
       - name: Unarchive files
         run: |-
