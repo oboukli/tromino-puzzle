@@ -96,3 +96,15 @@ jobs:
       - name: Run unit tests
         run: ./UnitTests
         working-directory: ${{ env.BUILD_PATH }}
+
+      - name: Compute SHA256 of artifacts
+        run: |-
+          ls -Al | grep -v '^d'
+          shasum --algorithm 256 --binary UnitTests
+          shasum --algorithm 256 --binary libSDL2-2.0.dylib
+          shasum --algorithm 256 --binary libtromino-validation.a
+          shasum --algorithm 256 --binary libtromino.a
+          shasum --algorithm 256 --binary libtromino2d.a
+          shasum --algorithm 256 --binary tromino
+          shasum --algorithm 256 --binary tromino2d
+        working-directory: ${{ env.BUILD_PATH }}
