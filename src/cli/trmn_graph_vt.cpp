@@ -67,7 +67,7 @@ void add_tromino(
     }
 
 #ifdef _WINDOWS
-    DWORD dwMode{};
+    ::DWORD dwMode{};
     ::GetConsoleMode(graph_state->hOutput, &dwMode);
     dwMode |= ENABLE_PROCESSED_OUTPUT | ENABLE_VIRTUAL_TERMINAL_PROCESSING;
     ::SetConsoleMode(graph_state->hOutput, dwMode);
@@ -82,12 +82,12 @@ void add_tromino(
 
 void use_vt(board_t& tromino_board, std::ostream& os) noexcept {
 #ifdef _WINDOWS
-    HANDLE const hStdout{::GetStdHandle(STD_OUTPUT_HANDLE)};
+    ::HANDLE const hStdout{::GetStdHandle(STD_OUTPUT_HANDLE)};
 
-    DWORD dwConsoleOriginalMode{};
-    DWORD dwConsoleModeRequiredFlags{
+    ::DWORD dwConsoleOriginalMode{};
+    ::DWORD dwConsoleModeRequiredFlags{
         ENABLE_PROCESSED_OUTPUT | ENABLE_VIRTUAL_TERMINAL_PROCESSING};
-    DWORD dwConsoleModifiedMode;
+    ::DWORD dwConsoleModifiedMode;
     ::GetConsoleMode(hStdout, &dwConsoleOriginalMode);
 
     if ((dwConsoleOriginalMode & dwConsoleModeRequiredFlags)

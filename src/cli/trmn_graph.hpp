@@ -38,7 +38,7 @@ struct graph_state_t {
     std::ostream& os;
     board_t& board;
 #ifdef _WINDOWS
-    HANDLE hOutput{};
+    ::HANDLE hOutput{};
 #endif // _WINDOWS
 };
 
