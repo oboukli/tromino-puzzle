@@ -20,11 +20,11 @@ inline void draw_at(int const x, int const y, char const c) noexcept {
     std::cout << c;
 }
 
-inline void
-draw_at(int const x, int const y, char const c, const HANDLE hOutput) noexcept {
-    COORD const coord{
-        .X{static_cast<SHORT>(x)},
-        .Y{static_cast<SHORT>(y)},
+inline void draw_at(
+    int const x, int const y, char const c, const ::HANDLE hOutput) noexcept {
+    ::COORD const coord{
+        .X{static_cast<::SHORT>(x)},
+        .Y{static_cast<::SHORT>(y)},
     };
 
     ::SetConsoleCursorPosition(hOutput, coord);
@@ -32,7 +32,7 @@ draw_at(int const x, int const y, char const c, const HANDLE hOutput) noexcept {
     draw_at(x, y, c);
 }
 
-void ensure_success(const BOOL is_success, std::string const& msg) noexcept {
+void ensure_success(const ::BOOL is_success, std::string const& msg) noexcept {
     if (!is_success) {
         auto const error{::GetLastError()};
         // clang-format off
@@ -91,9 +91,9 @@ void add_tromino(
         }
     }
 
-    COORD const coord{
-        .X = static_cast<SHORT>(order) - short{1},
-        .Y = static_cast<SHORT>(order) - short{1},
+    ::COORD const coord{
+        .X = static_cast<::SHORT>(order) - short{1},
+        .Y = static_cast<::SHORT>(order) - short{1},
     };
     ::SetConsoleCursorPosition(graph_state->hOutput, coord);
 
@@ -104,7 +104,7 @@ void add_tromino(
 void use_wch(board_t& tromino_board, std::ostream& os) noexcept {
     ::SetConsoleTitle(TEXT("Tromino Puzzle"));
 
-    HANDLE const hConsoleOutput = ::GetStdHandle(STD_OUTPUT_HANDLE);
+    ::HANDLE const hConsoleOutput = ::GetStdHandle(STD_OUTPUT_HANDLE);
     graph_state_t graph_state{
         .os = os,
         .board = tromino_board,
@@ -112,7 +112,7 @@ void use_wch(board_t& tromino_board, std::ostream& os) noexcept {
     };
     init_board(tromino_board);
 
-    CONSOLE_SCREEN_BUFFER_INFO originalConsoleScreenBufferInfo{};
+    ::CONSOLE_SCREEN_BUFFER_INFO originalConsoleScreenBufferInfo{};
     ::GetConsoleScreenBufferInfo(
         ::GetStdHandle(STD_OUTPUT_HANDLE), &originalConsoleScreenBufferInfo);
 
@@ -123,9 +123,9 @@ void use_wch(board_t& tromino_board, std::ostream& os) noexcept {
         hConsoleOutput,
         FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
     // clang-format off
-    COORD const coordMark{
-        .X = static_cast<SHORT>(tromino_board.mark_x),
-        .Y = static_cast<SHORT>(tromino_board.mark_y)
+    ::COORD const coordMark{
+        .X = static_cast<::SHORT>(tromino_board.mark_x),
+        .Y = static_cast<::SHORT>(tromino_board.mark_y)
     };
     // clang-format on
     ::SetConsoleCursorPosition(hConsoleOutput, coordMark);
