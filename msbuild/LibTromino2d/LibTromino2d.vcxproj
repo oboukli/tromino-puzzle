@@ -63,7 +63,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\libtromino;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\include\gfx2d;$(SolutionDir)\..\include\tromino_core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -82,7 +82,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\libtromino;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\include\gfx2d;$(SolutionDir)\..\include\tromino_core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -93,12 +93,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\gfx2d\board.hpp" />
-    <ClInclude Include="..\..\src\gfx2d\step.hpp" />
-    <ClInclude Include="..\..\src\gfx2d\style.hpp" />
-    <ClInclude Include="..\..\src\gfx2d\tromino_gfx2d.hpp" />
-    <ClInclude Include="..\..\src\gfx2d\view_model.hpp" />
-    <ClInclude Include="..\..\src\gfx2d\window.hpp" />
+    <ClInclude Include="..\..\include\gfx2d\board.hpp" />
+    <ClInclude Include="..\..\include\gfx2d\step.hpp" />
+    <ClInclude Include="..\..\include\gfx2d\style.hpp" />
+    <ClInclude Include="..\..\include\gfx2d\tromino_gfx2d.hpp" />
+    <ClInclude Include="..\..\include\gfx2d\view_model.hpp" />
+    <ClInclude Include="..\..\include\gfx2d\window.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\gfx2d\tromino_gfx2d.cpp" />
