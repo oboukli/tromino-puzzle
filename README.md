@@ -6,8 +6,8 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=oboukli_tromino-puzzle&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=oboukli_tromino-puzzle)
 
-This is a C99 library (see `src/libtromino`) implementing a divide-and-conquer O(n)
-algorithm, and a collection of apps (written in C17, C++17, C++20, and ECMAScript)
+This is a C99 library (see `src/libtromino`) implementing a divide-and-conquer
+algorithm, and a collection of apps (written in C17, C++17, and ECMAScript)
 to solve the tromino puzzle, over-engineered for the joy of learning by doing.
 
 A tromino puzzle consists of a checkered
@@ -167,7 +167,7 @@ The following is a partial list of standards, practices, software,
 and ideas leveraged by this project:
 
 - C (C99 and C17)
-- C++ (standard C++17 and C++20)
+- C++ (standard C++17)
 - C++ STL
 - No C++ inheritance
 - No C++ exceptions (experimental)
