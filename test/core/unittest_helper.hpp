@@ -10,8 +10,6 @@
 #include <iostream>
 #include <vector>
 
-#include "tromino.h"
-
 class ShimStep final {
 public:
     int pos_x;

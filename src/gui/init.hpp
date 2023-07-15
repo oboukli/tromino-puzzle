@@ -9,7 +9,7 @@
 
 #include <string>
 
-#include "board.hpp"
+#include <tromino/gfx2d/board.hpp>
 
 namespace tromino::tromino2d {
 

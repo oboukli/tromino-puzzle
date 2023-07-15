@@ -7,7 +7,7 @@
 #include <iostream>
 #include <string>
 
-#include "tromino_validation.h"
+#include <tromino/validation/validation.h>
 
 #include "cli_models.hpp"
 #include "cli_options.hpp"

@@ -4,7 +4,7 @@
 
 // SPDX-License-Identifier: MIT
 
-#include "tromino_gfx2d.hpp"
+#include "gfx2d.hpp"
 
 #include <cassert>
 

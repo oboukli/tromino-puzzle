@@ -15,7 +15,7 @@
 #include <algorithm>
 #include <iostream>
 
-#include "tromino.h"
+#include <tromino/validation/validation.h>
 
 #include "trmn_graph.hpp"
 

@@ -8,7 +8,7 @@ found in the LICENSE file.
 
 #include "litro.h"
 
-#include "tromino.h"
+#include <tromino/core/tromino.h>
 
 static void add_tromino(
     int const pos_x, int const pos_y, int const flip_x, int const flip_y,

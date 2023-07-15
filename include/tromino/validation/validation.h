@@ -23,22 +23,26 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 /* SPDX-License-Identifier: MIT */
 
-#ifndef LIBTROMINO_TROMINO_H
-#define LIBTROMINO_TROMINO_H
+#ifndef TROMINO_VALIDATION_VALIDATION_H
+#define TROMINO_VALIDATION_VALIDATION_H
+
+#include <stdbool.h>
 
 #ifdef __cplusplus
+
 extern "C" {
 #endif /* __cplusplus */
 
-typedef void (*trmn_add_tromino_func_t)(
-    int const px, int const py, int const fx, int const fy, void* const state);
+bool trmn_is_valid_order(int const order);
 
-void trmn_solve_puzzle(
-    int const order, int const mx, int const my,
-    trmn_add_tromino_func_t const add_tromino, void* const state);
+bool trmn_is_valid_coordinate(int const c, int const order);
+
+bool trmn_is_order_overflow_safe(int const order);
+
+bool trmn_is_valid_config(int const order, int const x, int const y);
 
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
 
-#endif /* LIBTROMINO_TROMINO_H */
+#endif /* TROMINO_VALIDATION_VALIDATION_H */

@@ -7,11 +7,6 @@
 TARGET_LITRO ::= litro-wasm.js
 TARGET_TRMN ::= trmn-wasm.js
 
-CPPFLAGS ::= -DNDEBUG
-CFLAGS ::= -std=c17 -g0 -O3 -flto -Wall -Werror
-CXXFLAGS ::= -std=c++17 -g0 -O3 -flto -fno-rtti -fno-exceptions -Wall -Werror
-LDFLAGS ::=
-
 SRC_DIR ::= ../src
 INC_DIR ::= ../include
 OBJ_DIR ::= ../obj/web
@@ -24,7 +19,7 @@ TRMN_DIR_NAME ::= trmn
 GFX2D_DIR ::= $(SRC_DIR)/gfx2d
 
 GFX2D_SRCS ::= \
-	tromino_gfx2d.cpp \
+	gfx2d.cpp \
 	view_model.cpp \
 	window.cpp
 
@@ -41,6 +36,11 @@ else
 	RM ::= rm -f
 endif
 
+CPPFLAGS ::= -DNDEBUG -I$(INC_DIR)
+CFLAGS ::= -std=c17 -g0 -O3 -flto -Wall -Werror
+CXXFLAGS ::= -std=c++17 -g0 -O3 -flto -fno-rtti -fno-exceptions -Wall -Werror
+LDFLAGS ::=
+
 .PHONY: all clean litro trmn webapp
 
 all: webapp trmn litro
@@ -52,7 +52,7 @@ trmn: $(TARGET_TRMN)
 litro: $(TARGET_LITRO)
 	@echo "Target \"litro\" successfully built."
 
-$(TARGET_LITRO): $(OBJ_DIR)/tromino_core/tromino.o $(OBJ_DIR)/wasm/litro/litro.o
+$(TARGET_LITRO): $(OBJ_DIR)/core/tromino.o $(OBJ_DIR)/wasm/litro/litro.o
 	$(MKDIR) $(OUT_DIR)/$(LITRO_DIR_NAME)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) \
 		--closure 1 \
@@ -83,11 +83,9 @@ $(TARGET_LITRO): $(OBJ_DIR)/tromino_core/tromino.o $(OBJ_DIR)/wasm/litro/litro.o
 		-s WASM \
 		-o $(OUT_DIR)/$(LITRO_DIR_NAME)/$@ $^
 
-$(TARGET_TRMN): $(OBJ_DIR)/tromino_core/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/trmn/trmn.o
+$(TARGET_TRMN): $(OBJ_DIR)/core/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/trmn/trmn.o
 	$(MKDIR) $(OUT_DIR)/$(TRMN_DIR_NAME)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) \
-		-I $(INC_DIR)/tromino_core \
-		-I $(INC_DIR)/gfx2d \
 		--closure 1 \
 		--no-entry \
 		-l GL \
@@ -116,17 +114,16 @@ $(TARGET_TRMN): $(OBJ_DIR)/tromino_core/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/
 		-s WASM \
 		-o $(OUT_DIR)/$(TRMN_DIR_NAME)/$@ $^
 
-$(OBJ_DIR)/tromino_core/tromino.o: $(SRC_DIR)/tromino_core/tromino.c
+$(OBJ_DIR)/core/tromino.o: $(SRC_DIR)/core/tromino.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CPPFLAGS) $(CFLAGS) \
-		-I $(INC_DIR)/tromino_core \
+		-I $(INC_DIR)/tromino/core \
 		-c $< \
 		-o $@
 
 $(OBJ_DIR)/wasm/litro/litro.o: $(SRC_DIR)/wasm/litro/litro.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CPPFLAGS) $(CFLAGS) \
-		-I $(INC_DIR)/tromino_core \
 		-c $< \
 		-o $@
 
@@ -134,17 +131,14 @@ $(OBJ_DIR)/wasm/trmn/trmn.o: $(SRC_DIR)/wasm/trmn/trmn.cpp
 	@mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) \
 		-s USE_SDL=2 \
-		-I $(INC_DIR)/tromino_core \
-		-I $(INC_DIR)/gfx2d \
 		-c $< \
 		-o $@
 
 $(OBJ_DIR)/gfx2d/%.o: $(SRC_DIR)/gfx2d/%.cpp
 	@mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) \
+		-I $(INC_DIR)/tromino/gfx2d \
 		-s USE_SDL=2 \
-		-I $(INC_DIR)/tromino_core \
-		-I $(INC_DIR)/gfx2d \
 		-c $< \
 		-o $@
 
@@ -156,10 +150,10 @@ webapp:
 
 clean:
 	$(RM) \
+		$(OBJ_DIR)/core/*.o \
 		$(OBJ_DIR)/gfx2d/*.o \
-		$(OBJ_DIR)/tromino_core/*.o \
-		$(OBJ_DIR)/wasm/trmn/*.o \
 		$(OBJ_DIR)/wasm/litro/*.o \
+		$(OBJ_DIR)/wasm/trmn/*.o \
 		$(OUT_DIR)/$(LITRO_DIR_NAME)/gfx.js \
 		$(OUT_DIR)/$(LITRO_DIR_NAME)/litro-wasm.js \
 		$(OUT_DIR)/$(LITRO_DIR_NAME)/litro-wasm.wasm \

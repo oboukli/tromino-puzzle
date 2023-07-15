@@ -14,18 +14,17 @@ endif
 check_PROGRAMS = libtromino_test
 
 libtromino_test_SOURCES = \
-	tromino_core/testmain_libtromino.cpp \
-	tromino_core/tromino_2x2_unittest.cpp \
-	tromino_core/tromino_4x4_unittest.cpp \
-	tromino_core/tromino_64x64_unittest.cpp \
-	tromino_core/unittest_helper.cpp \
-	tromino_core/unittest_helper.hpp \
-	tromino_validation/tromino_validation_unittest.cpp
+	core/tromino_2x2_unittest.cpp \
+	core/tromino_4x4_unittest.cpp \
+	core/tromino_64x64_unittest.cpp \
+	core/unittest_helper.cpp \
+	core/unittest_helper.hpp \
+	main.cpp \
+	validation/validation_unittest.cpp
 
 libtromino_test_CPPFLAGS = \
 	$(BOOST_CPPFLAGS) \
-	-I$(top_srcdir)/include/tromino_core \
-	-I$(top_srcdir)/include/tromino_validation
+	-I$(top_srcdir)/include
 
 libtromino_test_LDFLAGS = \
 	$(BOOST_LDFLAGS) \
