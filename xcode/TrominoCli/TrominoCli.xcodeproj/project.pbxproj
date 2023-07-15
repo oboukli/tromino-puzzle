@@ -11,8 +11,8 @@
 		7503E77A26C88C910018B1F2 /* trmn_graph_vt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E77026C88C910018B1F2 /* trmn_graph_vt.cpp */; };
 		7503E77B26C88C910018B1F2 /* init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E77226C88C910018B1F2 /* init.cpp */; };
 		7503E77E26C88C920018B1F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7503E77826C88C910018B1F2 /* main.cpp */; };
+		75376BA32A636F7400872DB9 /* libtromino-validation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75376BA22A636F7400872DB9 /* libtromino-validation.a */; };
 		758EF48F284E519C0069A198 /* libtromino.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 758EF489284E50FA0069A198 /* libtromino.a */; };
-		758EF49B284E54FA0069A198 /* libtromino-validation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 758EF48B284E50FA0069A198 /* libtromino-validation.a */; };
 		75F8E2702A5614C70092CF73 /* wrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75F8E26F2A560B5A0092CF73 /* wrapper.cpp */; };
 /* End PBXBuildFile section */
 
@@ -26,9 +26,9 @@
 		7503E77426C88C910018B1F2 /* init.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.hpp; path = init.hpp; sourceTree = "<group>"; };
 		7503E77826C88C910018B1F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7503E77926C88C910018B1F2 /* trmn_graph_vt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.hpp; path = trmn_graph_vt.hpp; sourceTree = "<group>"; };
+		75376BA22A636F7400872DB9 /* libtromino-validation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libtromino-validation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		755F9D232811CB3B004C54E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		758EF489284E50FA0069A198 /* libtromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libtromino.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		758EF48B284E50FA0069A198 /* libtromino-validation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libtromino-validation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7594DBDB26C4822400CF433E /* tromino */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tromino; sourceTree = BUILT_PRODUCTS_DIR; };
 		75E2E8BC27FCB7CF00B0525E /* params.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.hpp; path = params.hpp; sourceTree = "<group>"; };
 		75F8E26E2A560B5A0092CF73 /* wrapper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wrapper.hpp; sourceTree = "<group>"; };
@@ -41,7 +41,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				758EF48F284E519C0069A198 /* libtromino.a in Frameworks */,
-				758EF49B284E54FA0069A198 /* libtromino-validation.a in Frameworks */,
+				75376BA32A636F7400872DB9 /* libtromino-validation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,8 +71,8 @@
 		7503E7DD26C8977E0018B1F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				75376BA22A636F7400872DB9 /* libtromino-validation.a */,
 				758EF489284E50FA0069A198 /* libtromino.a */,
-				758EF48B284E50FA0069A198 /* libtromino-validation.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -217,10 +217,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../include/tromino_core,
-					../../include/tromino_validation,
-				);
+				HEADER_SEARCH_PATHS = ../../include;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2023 Omar Boukli-Hacene. All rights reserved.";
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -281,10 +278,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../include/tromino_core,
-					../../include/tromino_validation,
-				);
+				HEADER_SEARCH_PATHS = ../../include;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021-2023 Omar Boukli-Hacene. All rights reserved.";
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;

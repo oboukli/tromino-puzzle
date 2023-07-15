@@ -15,24 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\test\libtromino\testmain_libtromino.cpp">
+    <ClCompile Include="..\..\test\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\libtromino\tromino_2x2_unittest.cpp">
+    <ClCompile Include="..\..\test\core\tromino_2x2_unittest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\libtromino\tromino_4x4_unittest.cpp">
+    <ClCompile Include="..\..\test\core\tromino_4x4_unittest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\libtromino\tromino_64x64_unittest.cpp">
+    <ClCompile Include="..\..\test\core\tromino_64x64_unittest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\libtromino\unittest_helper.cpp">
+    <ClCompile Include="..\..\test\core\unittest_helper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\test\libtromino\unittest_helper.hpp">
+    <ClInclude Include="..\..\test\core\unittest_helper.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

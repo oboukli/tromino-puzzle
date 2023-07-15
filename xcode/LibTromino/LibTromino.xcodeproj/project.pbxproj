@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		75700B072A61C3B50034CFC2 /* tromino.h in Headers */ = {isa = PBXBuildFile; fileRef = 75700AF82A61C1F80034CFC2 /* tromino.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75700B082A61C3CA0034CFC2 /* tromino.c in Sources */ = {isa = PBXBuildFile; fileRef = 75700AF72A61BD420034CFC2 /* tromino.c */; };
+		75376B952A636A2100872DB9 /* tromino.c in Sources */ = {isa = PBXBuildFile; fileRef = 75376B942A636A2100872DB9 /* tromino.c */; };
+		75376B972A636A4900872DB9 /* tromino.h in Headers */ = {isa = PBXBuildFile; fileRef = 75376B962A636A4900872DB9 /* tromino.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		75376B942A636A2100872DB9 /* tromino.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tromino.c; sourceTree = "<group>"; };
+		75376B962A636A4900872DB9 /* tromino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tromino.h; path = ../../include/tromino/core/tromino.h; sourceTree = "<group>"; };
 		755F9D1F2811C878004C54E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		75700AF72A61BD420034CFC2 /* tromino.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = tromino.c; sourceTree = "<group>"; };
-		75700AF82A61C1F80034CFC2 /* tromino.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = tromino.h; path = ../../include/tromino_core/tromino.h; sourceTree = "<group>"; };
 		7594DBEE26C482A500CF433E /* libtromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtromino.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -29,22 +29,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		75700AF62A61BD420034CFC2 /* tromino_core */ = {
+		75376B932A636A2100872DB9 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				75700AF72A61BD420034CFC2 /* tromino.c */,
-				75700AF82A61C1F80034CFC2 /* tromino.h */,
+				75376B962A636A4900872DB9 /* tromino.h */,
+				75376B942A636A2100872DB9 /* tromino.c */,
 			);
-			name = tromino_core;
-			path = ../../src/tromino_core;
+			name = core;
+			path = ../../src/core;
 			sourceTree = "<group>";
 		};
 		7594DBE526C482A500CF433E = {
 			isa = PBXGroup;
 			children = (
+				75376B932A636A2100872DB9 /* core */,
 				755F9D1F2811C878004C54E0 /* Config.xcconfig */,
 				7594DBEF26C482A500CF433E /* Products */,
-				75700AF62A61BD420034CFC2 /* tromino_core */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,7 +63,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75700B072A61C3B50034CFC2 /* tromino.h in Headers */,
+				75376B972A636A4900872DB9 /* tromino.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,7 +124,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75700B082A61C3CA0034CFC2 /* tromino.c in Sources */,
+				75376B952A636A2100872DB9 /* tromino.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

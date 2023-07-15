@@ -18,10 +18,10 @@
 #include <iostream>
 #include <memory>
 
-#include "tromino.h"
+#include <tromino/core/tromino.h>
 
 #ifndef NDEBUG
-#include "tromino_validation.h"
+#include <tromino/validation/validation.h>
 #endif // !NDEBUG
 
 namespace tromino::cli {

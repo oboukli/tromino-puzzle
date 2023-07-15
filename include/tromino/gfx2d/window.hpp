@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef GFX2D_WINDOW_HPP
-#define GFX2D_WINDOW_HPP
+#ifndef TROMINO_GFX2D_WINDOW_HPP
+#define TROMINO_GFX2D_WINDOW_HPP
 
 #include <SDL2/SDL.h>
 
@@ -38,4 +38,4 @@ private:
 
 } // namespace tromino::gfx2d
 
-#endif // GFX2D_WINDOW_HPP
+#endif // TROMINO_GFX2D_WINDOW_HPP

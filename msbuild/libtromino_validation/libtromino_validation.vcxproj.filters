@@ -11,12 +11,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\tromino_validation\tromino_validation.h">
+    <ClInclude Include="..\..\include\tromino\validation\validation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\tromino_validation\tromino_validation.c">
+    <ClCompile Include="..\..\src\validation\validation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

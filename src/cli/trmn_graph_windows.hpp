@@ -12,7 +12,7 @@
 
 #include <algorithm>
 
-#include "tromino.h"
+#include <tromino/core/tromino.h>
 
 #include "trmn_graph.hpp"
 

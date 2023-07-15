@@ -9,9 +9,9 @@
 #include <iostream>
 #include <string>
 
-#include "tromino_validation.h"
+#include <tromino/gfx2d/board.hpp>
 
-#include "board.hpp"
+#include <tromino/validation/validation.h>
 
 #include "cli_models.hpp"
 #include "cli_options.hpp"

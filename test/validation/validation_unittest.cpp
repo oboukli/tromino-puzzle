@@ -6,7 +6,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "tromino_validation.h"
+#include <tromino/validation/validation.h>
 
 #include <climits>
 #include <cmath>

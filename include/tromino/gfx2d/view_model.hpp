@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef GFX2D_VIEW_MODEL_HPP
-#define GFX2D_VIEW_MODEL_HPP
+#ifndef TROMINO_GFX2D_VIEW_MODEL_HPP
+#define TROMINO_GFX2D_VIEW_MODEL_HPP
 
 #include <SDL2/SDL.h>
 
@@ -17,7 +17,7 @@
 #include "board.hpp"
 #include "step.hpp"
 #include "style.hpp"
-#include "tromino_gfx2d.hpp"
+#include "gfx2d.hpp"
 
 namespace tromino::gfx2d {
 
@@ -82,4 +82,4 @@ get_flip(int const flip_x, int const flip_y) noexcept {
 
 } // namespace tromino::gfx2d
 
-#endif // GFX2D_VIEW_MODEL_HPP
+#endif // TROMINO_GFX2D_VIEW_MODEL_HPP
