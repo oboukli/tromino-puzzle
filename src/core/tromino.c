@@ -65,8 +65,8 @@ static void solve_board(
         int const o = n >> 1;
         int const x = mx - _px;
         int const y = my - _py;
-        int const _fx = (int)(x >= o) - (int)(x < o);
-        int const _fy = (int)(y >= o) - (int)(y < o);
+        int const _fx = (x >= o) - (x < o);
+        int const _fy = (y >= o) - (y < o);
 
         solve_board(n, _px, _py, _fx, _fy, mx, my, add_tromino, state);
     }
@@ -82,6 +82,6 @@ void trmn_solve_puzzle(
     int const o = order >> 1;
 
     solve_board(
-        order, 0, 0, (int)(mx >= o) - (int)(mx < o),
-        (int)(my >= o) - (int)(my < o), mx, my, add_tromino, state);
+        order, 0, 0, (mx >= o) - (mx < o),
+        (my >= o) - (my < o), mx, my, add_tromino, state);
 }
