@@ -15,9 +15,9 @@
 #include <vector>
 
 #include "board.hpp"
+#include "gfx2d.hpp"
 #include "step.hpp"
 #include "style.hpp"
-#include "gfx2d.hpp"
 
 namespace tromino::gfx2d {
 
