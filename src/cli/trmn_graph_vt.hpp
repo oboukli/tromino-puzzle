@@ -7,10 +7,10 @@
 #ifndef CLI_TRMN_GRAPH_VT_HPP
 #define CLI_TRMN_GRAPH_VT_HPP
 
-#ifdef _WINDOWS
+#ifdef _WIN64
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
-#endif // _WINDOWS
+#endif // _WIN64
 
 #include <algorithm>
 #include <iostream>

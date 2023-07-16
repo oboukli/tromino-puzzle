@@ -13,11 +13,11 @@ namespace tromino::cli::app {
 
 void init(int const order, int const x, int const y) noexcept;
 
-#ifdef _WINDOWS
+#ifdef _WIN64
 void init(
     int const order, int const x, int const y,
     emulation_mode_type const emulation_mode) noexcept;
-#endif // _WINDOWS
+#endif // _WIN64
 
 } // namespace tromino::cli::app
 
