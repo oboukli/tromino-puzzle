@@ -82,6 +82,6 @@ void trmn_solve_puzzle(
     int const o = order >> 1;
 
     solve_board(
-        order, 0, 0, (mx >= o) - (mx < o),
-        (my >= o) - (my < o), mx, my, add_tromino, state);
+        order, 0, 0, (mx >= o) - (mx < o), (my >= o) - (my < o), mx, my,
+        add_tromino, state);
 }
