@@ -15,9 +15,9 @@ constexpr int const ORDER_ARG_IDX{1};
 constexpr int const MARKX_ARG_IDX{2};
 constexpr int const MARKY_ARG_IDX{3};
 
-#ifdef _WINDOWS
+#ifdef _WIN64
 constexpr int const USE_WCH_ARG_IDX{4};
-#endif
+#endif // _WIN64
 
 } // namespace tromino::cli::params
 

@@ -12,9 +12,9 @@
 #include "trmn_graph.hpp"
 #include "trmn_graph_vt.hpp"
 
-#ifdef _WINDOWS
+#ifdef _WIN64
 #include "trmn_graph_windows.hpp"
-#endif // _WINDOWS
+#endif // _WIN64
 
 namespace tromino::cli::app {
 
@@ -32,7 +32,7 @@ void init(int const order, int const x, int const y) noexcept {
     tromino::cli::vt::use_vt(tromino_board, std::cout);
 }
 
-#ifdef _WINDOWS
+#ifdef _WIN64
 void init(
     int const order, int const x, int const y,
     emulation_mode_type const emulation_mode) noexcept {
@@ -53,6 +53,6 @@ void init(
 
     tromino::cli::vt::use_vt(tromino_board, std::cout);
 }
-#endif // _WINDOWS
+#endif // _WIN64
 
 } // namespace tromino::cli::app

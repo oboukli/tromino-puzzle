@@ -66,12 +66,12 @@ void add_tromino(
         }
     }
 
-#ifdef _WINDOWS
+#ifdef _WIN64
     ::DWORD dwMode{};
     ::GetConsoleMode(graph_state->hOutput, &dwMode);
     dwMode |= ENABLE_PROCESSED_OUTPUT | ENABLE_VIRTUAL_TERMINAL_PROCESSING;
     ::SetConsoleMode(graph_state->hOutput, dwMode);
-#endif // _WINDOWS
+#endif // _WIN64
 
     draw_at(order, order, '\0', os);
 
@@ -81,7 +81,7 @@ void add_tromino(
 }
 
 void use_vt(board_t& tromino_board, std::ostream& os) noexcept {
-#ifdef _WINDOWS
+#ifdef _WIN64
     ::HANDLE const hStdout{::GetStdHandle(STD_OUTPUT_HANDLE)};
 
     ::DWORD dwConsoleOriginalMode{};
@@ -96,7 +96,7 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept {
             = dwConsoleOriginalMode | dwConsoleModeRequiredFlags;
         ::SetConsoleMode(hStdout, dwConsoleModifiedMode);
     }
-#endif // _WINDOWS
+#endif // _WIN64
 
     init_board(tromino_board);
 
@@ -194,10 +194,10 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept {
 
     os << std::flush;
 
-#ifdef _WINDOWS
+#ifdef _WIN64
     assert(dwConsoleOriginalMode != 0);
     ::SetConsoleMode(hStdout, dwConsoleOriginalMode);
-#endif // _WINDOWS
+#endif // _WIN64
 }
 
 } // namespace tromino::cli::vt

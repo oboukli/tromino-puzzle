@@ -25,12 +25,12 @@ int main(int const argc, char const* const argv[]) noexcept {
         std::cerr << error << std::endl;
         tromino::cli::print_usage(std::cout);
     } else {
-#ifdef _WINDOWS
+#ifdef _WIN64
         tromino::cli::app::init(
             options.order, options.x, options.y, options.emulation_mode);
 #else
         tromino::cli::app::init(options.order, options.x, options.y);
-#endif // _WINDOWS
+#endif // _WIN64
 
         exit_status = EXIT_SUCCESS;
     }
