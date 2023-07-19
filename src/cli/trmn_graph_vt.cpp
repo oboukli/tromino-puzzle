@@ -85,15 +85,14 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept {
     ::HANDLE const hStdout{::GetStdHandle(STD_OUTPUT_HANDLE)};
 
     ::DWORD dwConsoleOriginalMode{};
-    ::DWORD dwConsoleModeRequiredFlags{
-        ENABLE_PROCESSED_OUTPUT | ENABLE_VIRTUAL_TERMINAL_PROCESSING};
-    ::DWORD dwConsoleModifiedMode;
     ::GetConsoleMode(hStdout, &dwConsoleOriginalMode);
 
+    ::DWORD dwConsoleModeRequiredFlags{
+        ENABLE_PROCESSED_OUTPUT | ENABLE_VIRTUAL_TERMINAL_PROCESSING};
     if ((dwConsoleOriginalMode & dwConsoleModeRequiredFlags)
         != dwConsoleModeRequiredFlags) {
-        dwConsoleModifiedMode
-            = dwConsoleOriginalMode | dwConsoleModeRequiredFlags;
+        ::DWORD dwConsoleModifiedMode{
+            dwConsoleOriginalMode | dwConsoleModeRequiredFlags};
         ::SetConsoleMode(hStdout, dwConsoleModifiedMode);
     }
 #endif // _WIN64
