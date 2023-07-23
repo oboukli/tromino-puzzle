@@ -81,15 +81,15 @@ jobs:
           -warnAsError
           "${{ env.SOLUTION_FILE_PATH }}"
 
-      - name: Compute SHA256 of artifacts
+      - name: Compute SHA512 of artifacts
         run: |-
           ls
-          Get-FileHash LibTromino.Test.exe -Algorithm SHA256
-          Get-FileHash tromino.exe -Algorithm SHA256
-          Get-FileHash tromino2d.exe -Algorithm SHA256
-          Get-FileHash libtromino_validation.lib -Algorithm SHA256
-          Get-FileHash libtromino.lib -Algorithm SHA256
-          Get-FileHash libtromino2d.lib -Algorithm SHA256
+          Get-FileHash LibTromino.Test.exe -Algorithm SHA512
+          Get-FileHash tromino.exe -Algorithm SHA512
+          Get-FileHash tromino2d.exe -Algorithm SHA512
+          Get-FileHash libtromino_validation.lib -Algorithm SHA512
+          Get-FileHash libtromino.lib -Algorithm SHA512
+          Get-FileHash libtromino2d.lib -Algorithm SHA512
         working-directory: ${{ github.workspace }}\msbuild\x64\Release\
 
       # LibTromino.Test.exe
