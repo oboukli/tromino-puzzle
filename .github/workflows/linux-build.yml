@@ -63,15 +63,15 @@ jobs:
         run: make distcheck
         working-directory: ${{ env.BUILD_PATH }}
 
-      - name: Compute SHA256 of artifacts
+      - name: Compute SHA512 of artifacts
         run: |-
           ls -Al ./src/ | grep -v '^d'
           ls -Al ./src/.libs/ | grep -v '^d'
           ls -Al ./test/ | grep -v '^d'
-          sha256sum --binary ./src/.libs/libtromino.a
-          sha256sum --binary ./src/.libs/libtromino-gfx2d.a
-          sha256sum --binary ./src/.libs/libtromino-validation.a
-          sha256sum --binary ./src/tromino
-          sha256sum --binary ./src/tromino2d
-          sha256sum --binary ./test/libtromino_test
+          sha512sum --binary ./src/.libs/libtromino.a
+          sha512sum --binary ./src/.libs/libtromino-gfx2d.a
+          sha512sum --binary ./src/.libs/libtromino-validation.a
+          sha512sum --binary ./src/tromino
+          sha512sum --binary ./src/tromino2d
+          sha512sum --binary ./test/libtromino_test
         working-directory: ${{ env.BUILD_PATH }}

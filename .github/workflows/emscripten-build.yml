@@ -68,15 +68,15 @@ jobs:
           name: tromino-puzzle-web-dist
           path: ${{ env.BUILD_PATH }}/dist.tar
 
-      - name: Compute SHA256 of artifacts
+      - name: Compute SHA512 of artifacts
         run: |-
           ls -Al ./scripts/litro/ | grep -v '^d'
           ls -Al ./scripts/trmn/ | grep -v '^d'
-          sha256sum --binary ./dist.tar
-          sha256sum --binary ./scripts/litro/litro-wasm.js
-          sha256sum --binary ./scripts/litro/litro-wasm.wasm
-          sha256sum --binary ./scripts/trmn/trmn-wasm.js
-          sha256sum --binary ./scripts/trmn/trmn-wasm.wasm
+          sha512sum --binary ./dist.tar
+          sha512sum --binary ./scripts/litro/litro-wasm.js
+          sha512sum --binary ./scripts/litro/litro-wasm.wasm
+          sha512sum --binary ./scripts/trmn/trmn-wasm.js
+          sha512sum --binary ./scripts/trmn/trmn-wasm.wasm
         working-directory: ${{ env.BUILD_PATH }}
 
   deploy-gh-pages:
@@ -101,7 +101,7 @@ jobs:
           name: tromino-puzzle-web-dist
 
       - name: Compute checksum of downloaded artifact
-        run: sha256sum --binary ./dist.tar
+        run: sha512sum --binary ./dist.tar
 
       - name: Unarchive files
         run: |-
