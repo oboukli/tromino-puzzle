@@ -1,3 +1,9 @@
+# Copyright (c) Omar Boukli-Hacene. All rights reserved.
+# Distributed under an MIT-style license that can be
+# found in the LICENSE file.
+
+# SPDX-License-Identifier: MIT
+
 name: Emscripten build for WebAssembly
 
 on:
@@ -8,6 +14,9 @@ on:
     branches:
       - main
   workflow_dispatch:
+
+permissions:
+  contents: none
 
 jobs:
   build:
@@ -57,16 +66,9 @@ jobs:
           emmake make --jobs=$((($(nproc) * 15) / 10))
         working-directory: tromino-puzzle/emscripten
 
-      - name: Archive files
+      - name: Archive build artifacts
         run: tar --create --file=dist.tar ./*
         working-directory: ${{ env.BUILD_PATH }}
-
-      - name: Archive web app artifacts
-        uses: actions/upload-artifact@v3
-        continue-on-error: false
-        with:
-          name: tromino-puzzle-web-dist
-          path: ${{ env.BUILD_PATH }}/dist.tar
 
       - name: Compute SHA512 of artifacts
         run: |-
@@ -78,6 +80,13 @@ jobs:
           sha512sum --binary ./scripts/trmn/trmn-wasm.js
           sha512sum --binary ./scripts/trmn/trmn-wasm.wasm
         working-directory: ${{ env.BUILD_PATH }}
+
+      - name: Store build artifacts archive
+        uses: actions/upload-artifact@v3
+        continue-on-error: false
+        with:
+          name: tromino-puzzle-web-dist
+          path: ${{ env.BUILD_PATH }}/dist.tar
 
   deploy-gh-pages:
     name: Deploy to GitHub Pages
@@ -93,9 +102,9 @@ jobs:
           persist-credentials: false
 
       - name: Remove current files
-        run: rm -rf ./*
+        run: git rm -r '*'
 
-      - name: Download build artifact
+      - name: Download build artifact archive
         uses: actions/download-artifact@v3
         with:
           name: tromino-puzzle-web-dist
@@ -106,21 +115,19 @@ jobs:
       - name: Unarchive files
         run: |-
           tar --extract --file=dist.tar
-          rm dist.tar
+          rm ./dist.tar
 
       - name: Display file structure
         run: ls -R
 
-      - name: Git status
-        run: git status
-
       - name: Publish web app to GitHub Pages
         run: |-
           echo "* -text" > .gitattributes
-          if [[ $(git diff --stat) != '' ]]; then
+          if git diff --exit-code ; then
             git config --global user.name 'Continuous Deployment Job'
             git config --global user.email 'oboukli@users.noreply.github.com'
             git add --all -- ":!.gitattributes"
+            git status
             git commit --amend --all --date=now --message='Automated deployment'
             git push --force
           else
