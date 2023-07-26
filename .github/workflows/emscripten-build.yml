@@ -25,11 +25,13 @@ jobs:
 
     env:
       BUILD_PATH: ${{ github.workspace }}/tromino-puzzle/dist/web
+      EMSDK_VERSION: 3.1.43
 
     steps:
       - name: Check out Emscripten repository
         uses: actions/checkout@v3
         with:
+          ref: ${{ env.EMSDK_VERSION }}
           repository: emscripten-core/emsdk
           path: emsdk
           persist-credentials: false
@@ -39,16 +41,15 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |-
+            emsdk/downloads
             emsdk/node
             emsdk/upstream
           key: >-
             emscripten-sdk-cache-${{ hashFiles(
-              'emsdk/upstream/emscripten/emscripten-revision.txt'
+              'emsdk/emsdk_manifest.json'
             ) }}
 
       - name: Install Emscripten SDK
-        env:
-          EMSDK_VERSION: 3.1.43
         run: |-
           ./emsdk install "${EMSDK_VERSION}"
           ./emsdk activate "${EMSDK_VERSION}"
@@ -93,13 +94,14 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
 
     steps:
       - name: Check out GitHub Pages branch
         uses: actions/checkout@v3
         with:
           ref: gh-pages
-          persist-credentials: false
 
       - name: Remove current files
         run: git rm -r '*'
