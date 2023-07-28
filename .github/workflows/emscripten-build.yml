@@ -25,7 +25,7 @@ jobs:
 
     env:
       BUILD_PATH: ${{ github.workspace }}/tromino-puzzle/dist/web
-      EMSDK_VERSION: 3.1.43
+      EMSDK_VERSION: 3.1.44
 
     steps:
       - name: Check out Emscripten repository
