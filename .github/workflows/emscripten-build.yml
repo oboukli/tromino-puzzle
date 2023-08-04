@@ -73,8 +73,8 @@ jobs:
 
       - name: Compute SHA512 of artifacts
         run: |-
-          ls -Al ./scripts/litro/ | grep -v '^d'
-          ls -Al ./scripts/trmn/ | grep -v '^d'
+          ls -Al ./scripts/litro/
+          ls -Al ./scripts/trmn/
           sha512sum --binary ./dist.tar
           sha512sum --binary ./scripts/litro/litro-wasm.js
           sha512sum --binary ./scripts/litro/litro-wasm.wasm
