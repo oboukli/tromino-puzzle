@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef TEST_LIBTROMINO_UNITTEST_HELPER_HPP
-#define TEST_LIBTROMINO_UNITTEST_HELPER_HPP
+#ifndef TEST_CORE_UNITTEST_HELPER_HPP
+#define TEST_CORE_UNITTEST_HELPER_HPP
 
 #include <iostream>
 #include <vector>
@@ -61,4 +61,4 @@ void shim_add_tromino(
 
 void print_shim_step_vector(std::vector<ShimStep> const& steps) noexcept;
 
-#endif // TEST_LIBTROMINO_UNITTEST_HELPER_HPP
+#endif // TEST_CORE_UNITTEST_HELPER_HPP
