@@ -10,6 +10,7 @@
 #include <SDL2/SDL.h>
 
 #include <memory>
+#include <optional>
 #include <string>
 
 namespace tromino::gfx2d {
@@ -18,7 +19,9 @@ class [[nodiscard]] Window final {
 public:
     Window() noexcept = delete;
 
-    explicit Window(std::string const& title, int const width) noexcept;
+    explicit Window(
+        std::optional<std::string const> const& title,
+        int const width) noexcept;
 
     Window(Window const&) noexcept = delete;
 

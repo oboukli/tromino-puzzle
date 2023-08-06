@@ -20,11 +20,12 @@ constexpr ::Uint32 const WINDOW_FLAGS{
 
 } // namespace
 
-Window::Window(std::string const& title, int const width) noexcept :
+Window::Window(
+    std::optional<std::string const> const& title, int const width) noexcept :
     _window{
         ::SDL_CreateWindow(
-            title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-            width, width, WINDOW_FLAGS),
+            title ? title.value().c_str() : nullptr, SDL_WINDOWPOS_CENTERED,
+            SDL_WINDOWPOS_CENTERED, width, width, WINDOW_FLAGS),
         &::SDL_DestroyWindow} {
 }
 

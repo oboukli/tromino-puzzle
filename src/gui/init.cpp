@@ -49,7 +49,7 @@ void poll_sdl_events(bool& is_main_loop_running) noexcept {
 
 inline void start_game_loop(
     tromino::gfx2d::Board const& board, SharedState& shared_state,
-    int const width, std::string const& title) noexcept {
+    int const width, std::optional<std::string const> const& title) noexcept {
     using std::literals::chrono_literals::operator""ms;
 
     static constexpr auto const WAIT_TIME{4ms};
@@ -135,7 +135,7 @@ void solver(
 
 int init(
     tromino::gfx2d::Board const& board, int const width,
-    std::string const& title) noexcept {
+    std::optional<std::string const> const& title) noexcept {
     auto const board_order{static_cast<std::size_t>(board.order)};
     std::size_t const num_steps{
         ((board_order * board_order) - std::size_t{1}) / std::size_t{3}};
