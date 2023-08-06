@@ -10,6 +10,7 @@
 
 #include <cstddef>
 #include <memory>
+#include <optional>
 #include <vector>
 
 #include <tromino/core/tromino.h>
@@ -44,7 +45,7 @@ void init(int const width) noexcept {
     ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
     ::SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
 
-    window = std::make_unique<tromino::gfx2d::Window>("", width);
+    window = std::make_unique<tromino::gfx2d::Window>(std::nullopt, width);
     viewModel = std::make_unique<tromino::gfx2d::TrominoBoardViewModel>(
         window->GetSdlWindow());
 
