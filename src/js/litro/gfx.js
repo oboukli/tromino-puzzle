@@ -103,15 +103,14 @@ const ltrGfx = (function () {
     context.fillStyle = options.baseColor;
     context.fillRect(0, 0, canvasSize, canvasSize);
 
+    const doubleBlockWidth = 2 * blockWidth;
     context.beginPath();
     for (let i = 0; i < order; ++i) {
-      for (let j = 0, col = order >> 1; j < col; ++j) {
-        context.rect(
-          2 * j * blockWidth + ((i & 1) === 1 ? 0 : blockWidth),
-          i * blockWidth,
-          blockWidth,
-          blockWidth
-        );
+      const y = i * blockWidth;
+      const offset = (i & 1) === 1 ? 0 : blockWidth;
+      const col = order >> 1;
+      for (let j = 0; j < col; ++j) {
+        context.rect(j * doubleBlockWidth + offset, y, blockWidth, blockWidth);
       }
     }
     context.closePath();
