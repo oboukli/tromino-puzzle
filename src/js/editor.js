@@ -34,9 +34,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 const editorFactory = (function (document) {
   const editor = new EventTarget();
-  let order = 32;
+  let order = 16;
   let markX = 11;
-  let markY = 17;
+  let markY = 5;
 
   /** @type {HTMLFormElement} */
   let puzzleEditorFormElement;
