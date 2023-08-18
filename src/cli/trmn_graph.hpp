@@ -43,13 +43,13 @@ struct graph_state_t {
 };
 
 template <typename T>
-inline std::size_t calc_index(const T x, const T y, const T o) noexcept {
+inline std::size_t calc_index(T const x, T const y, T const o) noexcept {
     assert(::trmn_is_valid_config(o, x, y));
     return (static_cast<std::size_t>(y) * static_cast<std::size_t>(o))
         + static_cast<std::size_t>(x);
 }
 
-constexpr const std::size_t SPRITE_SIZE{4};
+constexpr std::size_t const SPRITE_SIZE{4};
 
 template <
     char neutral, char empty, char mark, char horizontal, char vertical,
