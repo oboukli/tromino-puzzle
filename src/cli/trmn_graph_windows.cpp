@@ -21,7 +21,7 @@ inline void draw_at(int const x, int const y, char const c) noexcept {
 }
 
 inline void draw_at(
-    int const x, int const y, char const c, const ::HANDLE hOutput) noexcept {
+    int const x, int const y, char const c, ::HANDLE const hOutput) noexcept {
     ::COORD const coord{
         .X{static_cast<::SHORT>(x)},
         .Y{static_cast<::SHORT>(y)},
@@ -32,7 +32,7 @@ inline void draw_at(
     draw_at(x, y, c);
 }
 
-void ensure_success(const ::BOOL is_success, std::string const& msg) noexcept {
+void ensure_success(::BOOL const is_success, std::string const& msg) noexcept {
     if (!is_success) {
         auto const error{::GetLastError()};
         // clang-format off
