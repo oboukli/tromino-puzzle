@@ -143,9 +143,16 @@ int init(
     SharedState shared_state{};
     shared_state.steps.reserve(num_steps);
 
-    std::thread solver_thread(
-        solver, board.order, board.mark_x, board.mark_y, add_tromino,
-        &shared_state);
+    // clang-format off
+    std::thread solver_thread{
+        solver,
+        board.order,
+        board.mark_x,
+        board.mark_y,
+        add_tromino,
+        &shared_state,
+    };
+    // clang-format on
 
     bool sdl2_success{false};
     if (::SDL_Init(SDL_INIT_VIDEO) == 0) {
