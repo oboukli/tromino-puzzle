@@ -37,18 +37,28 @@ void TrominoBoardViewModel::SetBoard(
     ::SDL_RenderSetIntegerScale(_renderer.get(), ::SDL_bool::SDL_FALSE);
 
     ::SDL_SetRenderDrawColor(
-        _renderer.get(), ::Uint8{0}, ::Uint8{0}, ::Uint8{0},
+        _renderer.get(),
+        ::Uint8{0},
+        ::Uint8{0},
+        ::Uint8{0},
         ::Uint8{SDL_ALPHA_TRANSPARENT});
     ::SDL_RenderClear(_renderer.get());
 
     _viewTexture.reset(CreateTexture(_renderer.get(), logicalWidth));
 
     InitCheckeredBoard(
-        _renderer.get(), _viewTexture.get(), SQUARE_LOGICAL_WIDTH, order,
-        style.wke1_color, style.bke8_color);
+        _renderer.get(),
+        _viewTexture.get(),
+        SQUARE_LOGICAL_WIDTH,
+        order,
+        style.wke1_color,
+        style.bke8_color);
 
     DrawMark(
-        _renderer.get(), SQUARE_LOGICAL_WIDTH, board.mark_x, board.mark_y,
+        _renderer.get(),
+        SQUARE_LOGICAL_WIDTH,
+        board.mark_x,
+        board.mark_y,
         style.mark_color);
 
     _solutionTexture.reset(CreateTexture(_renderer.get(), logicalWidth));
@@ -61,8 +71,11 @@ void TrominoBoardViewModel::SetBoard(
             _renderer.get(), SQUARE_LOGICAL_WIDTH, style.tromino_color));
 
         DrawTrominoOutline(
-            _renderer.get(), _trominoTexture.get(), SQUARE_LOGICAL_WIDTH,
-            OUTLINE_LOGICAL_WIDTH, style.tromino_outline_color);
+            _renderer.get(),
+            _trominoTexture.get(),
+            SQUARE_LOGICAL_WIDTH,
+            OUTLINE_LOGICAL_WIDTH,
+            style.tromino_outline_color);
     }
 }
 
@@ -90,8 +103,13 @@ void TrominoBoardViewModel::Render(
         trominoDest.x = s.px * SQUARE_LOGICAL_WIDTH;
         trominoDest.y = s.py * SQUARE_LOGICAL_WIDTH;
         ::SDL_RenderCopyEx(
-            _renderer.get(), _trominoTexture.get(), nullptr, &trominoDest, .0,
-            nullptr, get_flip(s.fx, s.fy));
+            _renderer.get(),
+            _trominoTexture.get(),
+            nullptr,
+            &trominoDest,
+            .0,
+            nullptr,
+            get_flip(s.fx, s.fy));
     }
 
     ::SDL_SetRenderTarget(_renderer.get(), _viewTexture.get());

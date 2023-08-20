@@ -44,8 +44,15 @@ void add_tromino(
     char* const board_matrix{board.board_matrix.get()};
     int const order{board.order};
     auto const sprite{get_sprite<
-        NEUTRAL, EMPTY, MARK, HORIZONTAL, VERTICAL, TOP_LEFT, TOP_RIGHT,
-        BOTTOM_LEFT, BOTTOM_RIGHT>(flip_x, flip_y)};
+        NEUTRAL,
+        EMPTY,
+        MARK,
+        HORIZONTAL,
+        VERTICAL,
+        TOP_LEFT,
+        TOP_RIGHT,
+        BOTTOM_LEFT,
+        BOTTOM_RIGHT>(flip_x, flip_y)};
 
     char px{};
     for (int i{0}; i < 2; ++i) {
@@ -174,8 +181,11 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept {
     SolverState<graph_state_t> solver_state{
         .state = &graph_state, .callback = add_tromino};
     ::trmn_solve_puzzle(
-        tromino_board.order, tromino_board.mark_x, tromino_board.mark_y,
-        ::solve_puzzle_cb, static_cast<void*>(&solver_state));
+        tromino_board.order,
+        tromino_board.mark_x,
+        tromino_board.mark_y,
+        ::solve_puzzle_cb,
+        static_cast<void*>(&solver_state));
 
     std::cin.get();
 
