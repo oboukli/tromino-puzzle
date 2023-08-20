@@ -27,7 +27,6 @@ BOOST_AUTO_TEST_CASE(
     static constexpr int const mark_x{0};
     static constexpr int const mark_y{0};
 
-    // clang-format off
     static constexpr std::array<ShimStep, std::size_t{5}> const expected{{
         {0, 0, -1, -1},
         {2, 2, -1, -1},
@@ -35,7 +34,6 @@ BOOST_AUTO_TEST_CASE(
         {0, 2, 1, -1},
         {1, 1, -1, -1},
     }};
-    // clang-format on
 
     std::vector<ShimStep> actual{};
 
@@ -52,7 +50,6 @@ BOOST_AUTO_TEST_CASE(
     static constexpr int const mark_x{0};
     static constexpr int const mark_y{7};
 
-    // clang-format off
     static constexpr std::array<ShimStep, std::size_t{5}> const expected{{
         {0, 2, -1, 1},
         {2, 0, -1, 1},
@@ -60,7 +57,6 @@ BOOST_AUTO_TEST_CASE(
         {0, 0, 1, 1},
         {1, 1, -1, 1},
     }};
-    // clang-format on
 
     std::vector<ShimStep> actual{};
 
@@ -77,7 +73,6 @@ BOOST_AUTO_TEST_CASE(
     static constexpr int const mark_x{7};
     static constexpr int const mark_y{0};
 
-    // clang-format off
     static constexpr std::array<ShimStep, std::size_t{5}> const expected{{
         {2, 0, 1, -1},
         {0, 2, 1, -1},
@@ -85,7 +80,6 @@ BOOST_AUTO_TEST_CASE(
         {2, 2, -1, -1},
         {1, 1, 1, -1},
     }};
-    // clang-format on
 
     std::vector<ShimStep> actual{};
 
@@ -102,7 +96,6 @@ BOOST_AUTO_TEST_CASE(
     static constexpr int const mark_x{7};
     static constexpr int const mark_y{7};
 
-    // clang-format off
     static constexpr std::array<ShimStep, std::size_t{5}> const expected{{
         {2, 2, 1, 1},
         {0, 0, 1, 1},
@@ -110,7 +103,6 @@ BOOST_AUTO_TEST_CASE(
         {2, 0, -1, 1},
         {1, 1, 1, 1},
     }};
-    // clang-format on
 
     std::vector<ShimStep> actual{};
 
@@ -132,7 +124,6 @@ BOOST_AUTO_TEST_CASE(
     static constexpr int const mark_x{3};
     static constexpr int const mark_y{2};
 
-    // clang-format off
     static constexpr std::array<ShimStep, std::size_t{5}> const expected{{
         {2, 2, 1, -1},
         {0, 0, 1, 1},
@@ -140,7 +131,6 @@ BOOST_AUTO_TEST_CASE(
         {2, 0, -1, 1},
         {1, 1, 1, 1},
     }};
-    // clang-format on
 
     std::vector<ShimStep> actual{};
 

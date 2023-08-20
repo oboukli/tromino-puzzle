@@ -52,7 +52,7 @@ AlwaysBreakBeforeMultilineStrings: false
 AlwaysBreakTemplateDeclarations: MultiLine
 AttributeMacros:
   - __capability
-BinPackArguments: true
+BinPackArguments: false
 BinPackParameters: true
 BitFieldColonSpacing: Both
 BraceWrapping:
@@ -81,7 +81,7 @@ BreakBeforeBinaryOperators: All
 BreakBeforeConceptDeclarations: Always
 BreakBeforeBraces: Attach
 BreakBeforeInlineASMColon: OnlyMultiline
-BreakBeforeTernaryOperators: false
+BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: AfterColon
 BreakInheritanceList: BeforeColon
 BreakStringLiterals: true
@@ -130,7 +130,7 @@ IndentWidth: 4
 IndentWrappedFunctionNames: false
 InsertBraces: false
 InsertNewlineAtEOF: true
-InsertTrailingCommas: None
+InsertTrailingCommas: Wrapped
 IntegerLiteralSeparator:
   Binary: 0
   BinaryMinDigits: 0

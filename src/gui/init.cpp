@@ -64,18 +64,26 @@ inline void start_game_loop(
 
     tromino::gfx2d::Style const style{
         .wke1_color{
-            ::Uint32{0x4e}, ::Uint32{0x7d}, ::Uint32{0xa6},
+            ::Uint32{0x4e},
+            ::Uint32{0x7d},
+            ::Uint32{0xa6},
             ::Uint32{SDL_ALPHA_OPAQUE}},
         .bke8_color{
-            ::Uint32{0x01}, ::Uint32{0x23}, ::Uint32{0x40},
+            ::Uint32{0x01},
+            ::Uint32{0x23},
+            ::Uint32{0x40},
             ::Uint32{SDL_ALPHA_OPAQUE}},
         .mark_color{
-            ::Uint32{0x8c}, ::Uint32{0x1b}, ::Uint32{0x1b},
+            ::Uint32{0x8c},
+            ::Uint32{0x1b},
+            ::Uint32{0x1b},
             ::Uint32{SDL_ALPHA_OPAQUE}},
         .tromino_color{
             ::Uint32{0xd9}, ::Uint32{0x93}, ::Uint32{0x3d}, ::Uint32{0x80}},
         .tromino_outline_color{
-            ::Uint32{0xd9}, ::Uint32{0x36}, ::Uint32{0x36},
+            ::Uint32{0xd9},
+            ::Uint32{0x36},
+            ::Uint32{0x36},
             ::Uint32{SDL_ALPHA_OPAQUE}}};
 
     viewModel->SetBoard(board, style);
@@ -127,7 +135,10 @@ void solver(
         .state = state, .callback = tromino_cb};
 
     ::trmn_solve_puzzle(
-        order, mark_x, mark_y, ::solve_puzzle_cb,
+        order,
+        mark_x,
+        mark_y,
+        ::solve_puzzle_cb,
         static_cast<void*>(&solver_state));
 }
 
@@ -143,7 +154,6 @@ int init(
     SharedState shared_state{};
     shared_state.steps.reserve(num_steps);
 
-    // clang-format off
     std::thread solver_thread{
         solver,
         board.order,
@@ -152,7 +162,6 @@ int init(
         add_tromino,
         &shared_state,
     };
-    // clang-format on
 
     bool sdl2_success{false};
     if (::SDL_Init(SDL_INIT_VIDEO) == 0) {

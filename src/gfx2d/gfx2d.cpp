@@ -13,8 +13,11 @@ namespace tromino::gfx2d {
 [[nodiscard]] ::SDL_Texture*
 CreateTexture(::SDL_Renderer* const renderer, int const width) noexcept {
     ::SDL_Texture* const texture{::SDL_CreateTexture(
-        renderer, ::SDL_PixelFormatEnum::SDL_PIXELFORMAT_RGBA8888,
-        ::SDL_TextureAccess::SDL_TEXTUREACCESS_TARGET, width, width)};
+        renderer,
+        ::SDL_PixelFormatEnum::SDL_PIXELFORMAT_RGBA8888,
+        ::SDL_TextureAccess::SDL_TEXTUREACCESS_TARGET,
+        width,
+        width)};
 
     assert(texture);
 
@@ -31,7 +34,10 @@ CreateTexture(::SDL_Renderer* const renderer, int const width) noexcept {
     ::SDL_SetRenderTarget(renderer, texture);
 
     ::SDL_SetRenderDrawColor(
-        renderer, ::Uint8{0}, ::Uint8{0}, ::Uint8{0},
+        renderer,
+        ::Uint8{0},
+        ::Uint8{0},
+        ::Uint8{0},
         ::Uint8{SDL_ALPHA_TRANSPARENT});
     ::SDL_RenderClear(renderer);
 

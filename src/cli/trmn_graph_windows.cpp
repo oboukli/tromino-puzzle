@@ -69,8 +69,15 @@ void add_tromino(
     char* const board_matrix{board.board_matrix.get()};
     int const order{board.order};
     auto const sprite{get_sprite<
-        neutral, empty, mark, horizontal, vertical, top_left, top_right,
-        bottom_left, bottom_right>(flip_x, flip_y)};
+        neutral,
+        empty,
+        mark,
+        horizontal,
+        vertical,
+        top_left,
+        top_right,
+        bottom_left,
+        bottom_right>(flip_x, flip_y)};
 
     char px{};
     for (int i{0}; i < 2; ++i) {
@@ -122,12 +129,9 @@ void use_wch(board_t& tromino_board, std::ostream& os) noexcept {
     ::SetConsoleTextAttribute(
         hConsoleOutput,
         FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-    // clang-format off
     ::COORD const coordMark{
         .X = static_cast<::SHORT>(tromino_board.mark_x),
-        .Y = static_cast<::SHORT>(tromino_board.mark_y)
-    };
-    // clang-format on
+        .Y = static_cast<::SHORT>(tromino_board.mark_y)};
     ::SetConsoleCursorPosition(hConsoleOutput, coordMark);
     std::cout << mark;
 
@@ -137,8 +141,11 @@ void use_wch(board_t& tromino_board, std::ostream& os) noexcept {
             | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
 
     ::trmn_solve_puzzle(
-        tromino_board.order, tromino_board.mark_x, tromino_board.mark_y,
-        add_tromino, &graph_state);
+        tromino_board.order,
+        tromino_board.mark_x,
+        tromino_board.mark_y,
+        add_tromino,
+        &graph_state);
 
     ::SetConsoleTextAttribute(
         hConsoleOutput, originalConsoleScreenBufferInfo.wAttributes);
