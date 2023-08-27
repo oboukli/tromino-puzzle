@@ -1396,11 +1396,13 @@ BOOST_AUTO_TEST_CASE(
     static constexpr int const order{64};
     static constexpr int const mark_x{61};
     static constexpr int const mark_y{37};
+    int const stop_flag{0};
 
     std::vector<ShimStep> actual{};
     actual.reserve(std::size_t{1365});
 
-    ::trmn_solve_puzzle(order, mark_x, mark_y, shim_add_tromino, &actual);
+    ::trmn_solve_puzzle(
+        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag);
 
     BOOST_CHECK_EQUAL(actual.size(), std::size_t{1365});
     BOOST_CHECK_EQUAL_COLLECTIONS(

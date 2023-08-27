@@ -27,6 +27,7 @@ std::unique_ptr<tromino::gfx2d::Window> window{};
 std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel{};
 std::unique_ptr<std::vector<tromino::gfx2d::Step>> steps{};
 bool isInitialized{false};
+int solver_stop_flag{0};
 
 void add_tromino(
     int const pos_x, int const pos_y, int const flip_x, int const flip_y,
@@ -53,6 +54,8 @@ void init(int const width) noexcept {
 }
 
 void terminate() noexcept {
+    solver_stop_flag = 1;
+
     ::emscripten_cancel_main_loop();
 
     viewModel.reset();
@@ -84,8 +87,15 @@ void start(tromino::gfx2d::Board const& board, int const width) noexcept {
         ((order_internal * order_internal) - std::size_t{1}) / std::size_t{3}};
     steps->reserve(numSteps);
 
+    solver_stop_flag = 0;
+
     ::trmn_solve_puzzle(
-        board.order, board.mark_x, board.mark_y, add_tromino, steps.get());
+        board.order,
+        board.mark_x,
+        board.mark_y,
+        add_tromino,
+        steps.get(),
+        &solver_stop_flag);
 
     tromino::gfx2d::Style const style{
         .wke1_color{

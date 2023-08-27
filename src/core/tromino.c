@@ -29,54 +29,77 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 static void solve_tromino(
     int const order, int const px, int const py, int const fx, int const fy,
-    trmn_add_tromino_func_t const add_tromino, void* const state) {
-    if (order == 2) {
-        add_tromino(px, py, fx, fy, state);
-        return;
-    }
+    trmn_add_tromino_func_t const add_tromino, void* const state,
+    int const* const stop_flag) {
+    if (*stop_flag == 0) {
+        if (order == 2) {
+            add_tromino(px, py, fx, fy, state);
+            return;
+        }
 
-    int const n = order >> 1;
-
-    int const _px = px + (n * ((fx + 1) >> 1));
-    int const _py = py + (n * ((fy + 1) >> 1));
-
-    solve_tromino(
-        n, _px - (fx * n), _py - (fy * n), fx, fy, add_tromino, state);
-
-    solve_tromino(n, _px - (fx * n), _py, fx, fy * -1, add_tromino, state);
-
-    solve_tromino(n, _px, _py - (fy * n), fx * -1, fy, add_tromino, state);
-
-    int const o = n >> 1;
-    solve_tromino(
-        n, _px - (fx * o), _py - (fy * o), fx, fy, add_tromino, state);
-}
-
-static void solve_board(
-    int const order, int const px, int const py, int const fx, int const fy,
-    int const mx, int const my, trmn_add_tromino_func_t const add_tromino,
-    void* const state) {
-    if (order > 2) {
         int const n = order >> 1;
 
         int const _px = px + (n * ((fx + 1) >> 1));
         int const _py = py + (n * ((fy + 1) >> 1));
 
+        solve_tromino(
+            n,
+            _px - (fx * n),
+            _py - (fy * n),
+            fx,
+            fy,
+            add_tromino,
+            state,
+            stop_flag);
+
+        solve_tromino(
+            n, _px - (fx * n), _py, fx, fy * -1, add_tromino, state, stop_flag);
+
+        solve_tromino(
+            n, _px, _py - (fy * n), fx * -1, fy, add_tromino, state, stop_flag);
+
         int const o = n >> 1;
-        int const x = mx - _px;
-        int const y = my - _py;
-        int const _fx = (x >= o) - (x < o);
-        int const _fy = (y >= o) - (y < o);
-
-        solve_board(n, _px, _py, _fx, _fy, mx, my, add_tromino, state);
+        solve_tromino(
+            n,
+            _px - (fx * o),
+            _py - (fy * o),
+            fx,
+            fy,
+            add_tromino,
+            state,
+            stop_flag);
     }
+}
 
-    solve_tromino(order, px, py, fx, fy, add_tromino, state);
+static void solve_board(
+    int const order, int const px, int const py, int const fx, int const fy,
+    int const mx, int const my, trmn_add_tromino_func_t const add_tromino,
+    void* const state, int const* const stop_flag) {
+    if (*stop_flag == 0) {
+        if (order > 2) {
+            int const n = order >> 1;
+
+            int const _px = px + (n * ((fx + 1) >> 1));
+            int const _py = py + (n * ((fy + 1) >> 1));
+
+            int const o = n >> 1;
+            int const x = mx - _px;
+            int const y = my - _py;
+            int const _fx = (x >= o) - (x < o);
+            int const _fy = (y >= o) - (y < o);
+
+            solve_board(
+                n, _px, _py, _fx, _fy, mx, my, add_tromino, state, stop_flag);
+        }
+
+        solve_tromino(order, px, py, fx, fy, add_tromino, state, stop_flag);
+    }
 }
 
 void trmn_solve_puzzle(
     int const order, int const mx, int const my,
-    trmn_add_tromino_func_t const add_tromino, void* const state) {
+    trmn_add_tromino_func_t const add_tromino, void* const state,
+    int const* const stop_flag) {
     assert(add_tromino);
 
     int const o = order >> 1;
@@ -90,5 +113,6 @@ void trmn_solve_puzzle(
         mx,
         my,
         add_tromino,
-        state);
+        state,
+        stop_flag);
 }

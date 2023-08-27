@@ -17,6 +17,7 @@ libtromino_test_SOURCES = \
 	core/tromino_2x2_unittest.cpp \
 	core/tromino_4x4_unittest.cpp \
 	core/tromino_64x64_unittest.cpp \
+	core/tromino_stop_flag.cpp \
 	core/unittest_helper.cpp \
 	core/unittest_helper.hpp \
 	main.cpp \

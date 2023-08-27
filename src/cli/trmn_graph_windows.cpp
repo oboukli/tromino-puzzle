@@ -140,12 +140,15 @@ void use_wch(board_t& tromino_board, std::ostream& os) noexcept {
         FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
             | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
 
+    int const stop_flag{0};
+
     ::trmn_solve_puzzle(
         tromino_board.order,
         tromino_board.mark_x,
         tromino_board.mark_y,
         add_tromino,
-        &graph_state);
+        &graph_state,
+        &stop_flag);
 
     ::SetConsoleTextAttribute(
         hConsoleOutput, originalConsoleScreenBufferInfo.wAttributes);
