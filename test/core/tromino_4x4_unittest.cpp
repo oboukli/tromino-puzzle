@@ -26,6 +26,7 @@ BOOST_AUTO_TEST_CASE(
     static constexpr int const order{4};
     static constexpr int const mark_x{0};
     static constexpr int const mark_y{0};
+    int const stop_flag{0};
 
     static constexpr std::array<ShimStep, std::size_t{5}> const expected{{
         {0, 0, -1, -1},
@@ -37,7 +38,8 @@ BOOST_AUTO_TEST_CASE(
 
     std::vector<ShimStep> actual{};
 
-    ::trmn_solve_puzzle(order, mark_x, mark_y, shim_add_tromino, &actual);
+    ::trmn_solve_puzzle(
+        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag);
 
     BOOST_CHECK_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
@@ -49,6 +51,7 @@ BOOST_AUTO_TEST_CASE(
     static constexpr int const order{4};
     static constexpr int const mark_x{0};
     static constexpr int const mark_y{7};
+    int const stop_flag{0};
 
     static constexpr std::array<ShimStep, std::size_t{5}> const expected{{
         {0, 2, -1, 1},
@@ -60,7 +63,8 @@ BOOST_AUTO_TEST_CASE(
 
     std::vector<ShimStep> actual{};
 
-    ::trmn_solve_puzzle(order, mark_x, mark_y, shim_add_tromino, &actual);
+    ::trmn_solve_puzzle(
+        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag);
 
     BOOST_CHECK_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
@@ -72,6 +76,7 @@ BOOST_AUTO_TEST_CASE(
     static constexpr int const order{4};
     static constexpr int const mark_x{7};
     static constexpr int const mark_y{0};
+    int const stop_flag{0};
 
     static constexpr std::array<ShimStep, std::size_t{5}> const expected{{
         {2, 0, 1, -1},
@@ -83,7 +88,8 @@ BOOST_AUTO_TEST_CASE(
 
     std::vector<ShimStep> actual{};
 
-    ::trmn_solve_puzzle(order, mark_x, mark_y, shim_add_tromino, &actual);
+    ::trmn_solve_puzzle(
+        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag);
 
     BOOST_CHECK_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
@@ -95,6 +101,7 @@ BOOST_AUTO_TEST_CASE(
     static constexpr int const order{4};
     static constexpr int const mark_x{7};
     static constexpr int const mark_y{7};
+    int const stop_flag{0};
 
     static constexpr std::array<ShimStep, std::size_t{5}> const expected{{
         {2, 2, 1, 1},
@@ -106,7 +113,8 @@ BOOST_AUTO_TEST_CASE(
 
     std::vector<ShimStep> actual{};
 
-    ::trmn_solve_puzzle(order, mark_x, mark_y, shim_add_tromino, &actual);
+    ::trmn_solve_puzzle(
+        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag);
 
     BOOST_CHECK_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
@@ -123,6 +131,7 @@ BOOST_AUTO_TEST_CASE(
     static constexpr int const order{4};
     static constexpr int const mark_x{3};
     static constexpr int const mark_y{2};
+    int const stop_flag{0};
 
     static constexpr std::array<ShimStep, std::size_t{5}> const expected{{
         {2, 2, 1, -1},
@@ -134,7 +143,8 @@ BOOST_AUTO_TEST_CASE(
 
     std::vector<ShimStep> actual{};
 
-    ::trmn_solve_puzzle(order, mark_x, mark_y, shim_add_tromino, &actual);
+    ::trmn_solve_puzzle(
+        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag);
 
     BOOST_CHECK_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(

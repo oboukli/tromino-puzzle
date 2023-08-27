@@ -15,6 +15,7 @@
     <ClCompile Include="..\..\test\core\tromino_2x2_unittest.cpp" />
     <ClCompile Include="..\..\test\core\tromino_4x4_unittest.cpp" />
     <ClCompile Include="..\..\test\core\tromino_64x64_unittest.cpp" />
+    <ClCompile Include="..\..\test\core\tromino_stop_flag.cpp" />
     <ClCompile Include="..\..\test\core\unittest_helper.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -74,7 +75,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
@@ -91,7 +92,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>

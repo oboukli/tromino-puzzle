@@ -35,7 +35,8 @@ typedef void (*trmn_add_tromino_func_t)(
 
 void trmn_solve_puzzle(
     int const order, int const mx, int const my,
-    trmn_add_tromino_func_t const add_tromino, void* const state);
+    trmn_add_tromino_func_t const add_tromino, void* const state,
+    int const* const stop_flag);
 
 #ifdef __cplusplus
 }

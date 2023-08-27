@@ -112,8 +112,8 @@ void add_tromino(
 
 void solver(
     int const order, int const mark_x, int const mark_y,
-    tromino_cb_t<SharedState> const tromino_cb,
-    SharedState* const state) noexcept {
+    tromino_cb_t<SharedState> const tromino_cb, SharedState* const state,
+    int const* const stop_flag) noexcept {
     SolverState<SharedState> solver_state{
         .state = state, .callback = tromino_cb};
 
@@ -122,7 +122,8 @@ void solver(
         mark_x,
         mark_y,
         ::solve_puzzle_cb,
-        static_cast<void*>(&solver_state));
+        static_cast<void*>(&solver_state),
+        stop_flag);
 }
 
 } // namespace
@@ -137,6 +138,8 @@ int init(
     SharedState shared_state{};
     shared_state.reserve(num_steps);
 
+    int solver_stop_flag{0};
+
     std::thread solver_thread{
         solver,
         board.order,
@@ -144,6 +147,7 @@ int init(
         board.mark_y,
         add_tromino,
         &shared_state,
+        &solver_stop_flag,
     };
 
     bool sdl2_success{false};
@@ -156,8 +160,8 @@ int init(
 
         sdl2_success = true;
     }
+    solver_stop_flag = 1;
     ::SDL_Quit();
-
     solver_thread.join();
 
     return sdl2_success ? EXIT_SUCCESS : EXIT_FAILURE;

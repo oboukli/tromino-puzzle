@@ -19,5 +19,7 @@ static void add_tromino(
 EMSCRIPTEN_KEEPALIVE void solve(
     int const order, int const mark_x, int const mark_y,
     add_tromino_extern_callback add_tromino_cb) {
-    trmn_solve_puzzle(order, mark_x, mark_y, add_tromino, add_tromino_cb);
+    static int const stop_flag = 0;
+    trmn_solve_puzzle(
+        order, mark_x, mark_y, add_tromino, add_tromino_cb, &stop_flag);
 }
