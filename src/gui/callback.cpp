@@ -6,7 +6,7 @@
 
 #include "callback.hpp"
 
-struct SharedState;
+class SharedState;
 
 extern "C" void solve_puzzle_cb(
     int const pos_x, int const pos_y, int const flip_x, int const flip_y,

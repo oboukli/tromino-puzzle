@@ -10,11 +10,9 @@
 
 #include <cassert>
 #include <chrono>
-#include <condition_variable>
 #include <cstddef>
 #include <cstdlib>
 #include <memory>
-#include <mutex>
 #include <thread>
 #include <vector>
 
@@ -32,11 +30,7 @@ namespace tromino::tromino2d {
 
 namespace {
 
-struct SharedState {
-    std::mutex mutable mut{};
-    std::condition_variable mutable lock_cond{};
-    std::vector<tromino::gfx2d::Step> steps{};
-};
+using SharedState = std::vector<tromino::gfx2d::Step>;
 
 void poll_sdl_events(bool& is_main_loop_running) noexcept {
     ::SDL_Event event{};
@@ -52,7 +46,6 @@ inline void start_game_loop(
     int const width, std::optional<std::string const> const& title) noexcept {
     using std::literals::chrono_literals::operator""ms;
 
-    static constexpr auto const WAIT_TIME{4ms};
     static constexpr int const FRAME_DELAY{68};
 
     auto const window{std::make_unique<tromino::gfx2d::Window>(title, width)};
@@ -93,17 +86,10 @@ inline void start_game_loop(
         poll_sdl_events(is_main_loop_running);
 
         if (viewModel->IsPlaying()) {
-            std::unique_lock lk{shared_state.mut};
-            if (shared_state.lock_cond.wait_for(lk, WAIT_TIME, [&shared_state] {
-                    return !shared_state.steps.empty();
-                })) {
-                viewModel->StepForward();
-            }
-
-            lk.unlock();
+            viewModel->StepForward();
         }
 
-        viewModel->Render(shared_state.steps);
+        viewModel->Render(shared_state);
 
         ::SDL_Delay(FRAME_DELAY);
 
@@ -119,11 +105,8 @@ inline void start_game_loop(
 void add_tromino(
     int const pos_x, int const pos_y, int const flip_x, int const flip_y,
     SharedState* const shared_state) noexcept {
-    {
-        std::lock_guard const lk{shared_state->mut};
-        shared_state->steps.emplace_back(pos_x, pos_y, flip_x, flip_y);
-    }
-    shared_state->lock_cond.notify_one();
+    shared_state->emplace_back(pos_x, pos_y, flip_x, flip_y);
+
     std::this_thread::yield();
 }
 
@@ -152,7 +135,7 @@ int init(
         ((board_order * board_order) - std::size_t{1}) / std::size_t{3}};
 
     SharedState shared_state{};
-    shared_state.steps.reserve(num_steps);
+    shared_state.reserve(num_steps);
 
     std::thread solver_thread{
         solver,

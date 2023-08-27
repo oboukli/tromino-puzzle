@@ -88,18 +88,16 @@ void TrominoBoardViewModel::StepForward() noexcept {
 }
 
 void TrominoBoardViewModel::Render(
-    std::vector<tromino::gfx2d::Step> const& steps) const noexcept {
+    std::vector<Step> const& steps) const noexcept {
     ::SDL_SetRenderTarget(_renderer.get(), _solutionTexture.get());
     ::SDL_Rect trominoDest{
         0, 0, SQUARE_LOGICAL_WIDTH * 2, SQUARE_LOGICAL_WIDTH * 2};
 
-    auto targetIdx{steps.cbegin()};
-    std::advance(targetIdx, _currentStepNum);
-
-    assert(steps.cbegin() <= targetIdx && targetIdx <= steps.cend());
-
-    for (auto it{steps.cbegin()}; it != targetIdx; ++it) {
-        Step const& s{*it};
+    std::size_t const num_ready{steps.size()};
+    std::size_t const count{
+        num_ready < _currentStepNum ? num_ready : _currentStepNum};
+    for (std::size_t i{0}; i < count; ++i) {
+        Step const& s{steps[i]};
         trominoDest.x = s.px * SQUARE_LOGICAL_WIDTH;
         trominoDest.y = s.py * SQUARE_LOGICAL_WIDTH;
         ::SDL_RenderCopyEx(
