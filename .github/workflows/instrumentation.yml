@@ -1,0 +1,83 @@
+name: Instrumentation
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    env:
+      BUILD_PATH: ${{ github.workspace }}/build
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: Update dependency list
+        run: sudo apt-get update
+
+      - name: Install dependencies
+        run: >-
+          sudo apt-get install
+          --assume-yes
+          --quiet
+          autoconf-archive
+          libboost-test-dev
+          libsdl2-dev
+          valgrind
+
+      - name: Create build directory
+        run: |-
+          mkdir '${{ env.BUILD_PATH }}'
+          cd '${{ env.BUILD_PATH }}'
+
+      - name: Run autogen.sh
+        run: ./autogen.sh
+
+      - name: Configure build
+        run: >-
+          ../configure
+          CPPFLAGS='-DTROMINO_2D_HEADLESS -DDEBUG'
+          CFLAGS='-g -O0'
+          CXXFLAGS='-g -O0'
+          --prefix='/dbg'
+        working-directory: ${{ env.BUILD_PATH }}
+
+      - name: Make
+        run: make --jobs=$((($(nproc) * 15) / 10))
+        working-directory: ${{ env.BUILD_PATH }}
+
+      - name: Instrument tromino with Valgrind Memcheck
+        run: >-
+          /usr/bin/valgrind
+          --tool=memcheck
+          --leak-check=full
+          --show-leak-kinds=all
+          ./tromino 8 3 7
+        working-directory: ${{ env.BUILD_PATH }}/src
+
+      - name: Start Xvfb
+        run: Xvfb :99 -screen 0 1024x768x24 &
+
+      - name: Instrument tromino2d with Valgrind Memcheck
+        env:
+          DISPLAY: :99
+        run: >-
+          /usr/bin/valgrind
+          --tool=memcheck
+          --leak-check=full
+          --show-leak-kinds=all
+          ./tromino2d 8 3 7
+        working-directory: ${{ env.BUILD_PATH }}/src
