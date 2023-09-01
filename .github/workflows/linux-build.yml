@@ -43,14 +43,15 @@ jobs:
           libboost-test-dev
           libsdl2-dev
 
+      - name: Create build directory
+        run: mkdir '${{ env.BUILD_PATH }}'
+
       - name: Run autogen.sh
         run: ./autogen.sh
 
       - name: Configure build
-        run: |-
-          mkdir '${{ env.BUILD_PATH }}'
-          cd '${{ env.BUILD_PATH }}'
-          ../configure
+        run: ../configure
+        working-directory: ${{ env.BUILD_PATH }}
 
       - name: Make
         run: make --jobs=$((($(nproc) * 15) / 10))
@@ -68,15 +69,26 @@ jobs:
         run: make distcheck
         working-directory: ${{ env.BUILD_PATH }}
 
+      - name: Install
+        run: sudo make install
+        working-directory: ${{ env.BUILD_PATH }}
+
+      - name: Run smoke test
+        run: tromino 2 0 0
+
       - name: Compute SHA512 of artifacts
+        env:
+          PACKAGE_VERSION: 0.12.8.0
         run: |-
-          ls -Al ./src/ | grep -v '^d'
-          ls -Al ./src/.libs/ | grep -v '^d'
-          ls -Al ./test/ | grep -v '^d'
-          sha512sum --binary ./src/.libs/libtromino.a
-          sha512sum --binary ./src/.libs/libtromino-gfx2d.a
-          sha512sum --binary ./src/.libs/libtromino-validation.a
-          sha512sum --binary ./src/tromino
-          sha512sum --binary ./src/tromino2d
-          sha512sum --binary ./test/libtromino_test
+          ls -Al './' | grep -v '^d'
+          ls -Al './src/' | grep -v '^d'
+          ls -Al './src/.libs/' | grep -v '^d'
+          ls -Al './test/' | grep -v '^d'
+          sha512sum --binary './src/.libs/libtromino.a'
+          sha512sum --binary './src/.libs/libtromino-gfx2d.a'
+          sha512sum --binary './src/.libs/libtromino-validation.a'
+          sha512sum --binary './src/tromino'
+          sha512sum --binary './src/tromino2d'
+          sha512sum --binary './test/libtromino_test'
+          sha512sum --binary './trmnpzzl-${{ env.PACKAGE_VERSION }}.tar.gz'
         working-directory: ${{ env.BUILD_PATH }}
