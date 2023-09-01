@@ -36,4 +36,4 @@ jobs:
           persist-credentials: false
 
       - name: Run markdownlint
-        run: markdownlint .
+        run: markdownlint '.'

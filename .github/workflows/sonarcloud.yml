@@ -70,7 +70,7 @@ jobs:
           --show-error
           --location
           --output "$HOME/.sonar/sonar-scanner.zip"
-          "${{ env.SONAR_SCANNER_DOWNLOAD_URL }}"
+          '${{ env.SONAR_SCANNER_DOWNLOAD_URL }}'
 
           unzip
           -o "$HOME/.sonar/sonar-scanner.zip"
@@ -88,7 +88,7 @@ jobs:
           --show-error
           --location
           --output "$HOME/.sonar/build-wrapper-linux-x86.zip"
-          "${{ env.BUILD_WRAPPER_DOWNLOAD_URL }}"
+          '${{ env.BUILD_WRAPPER_DOWNLOAD_URL }}'
 
           unzip
           -o "$HOME/.sonar/build-wrapper-linux-x86.zip"
@@ -97,14 +97,19 @@ jobs:
           echo "$HOME/.sonar/build-wrapper-linux-x86"
           >> "$GITHUB_PATH"
 
+      - name: Run autogen.sh
+        run: ./autogen.sh
+
+      - name: Configure build
+        run: >-
+          ./configure
+          --enable-code-coverage
+          CPPFLAGS='-DTROMINO_2D_HEADLESS'
+
       - name: Run build-wrapper
         run: >-
-          ./autogen.sh
-
-          ./configure --enable-code-coverage CPPFLAGS=-DTROMINO_2D_HEADLESS
-
           build-wrapper-linux-x86-64
-          --out-dir "${{ env.BUILD_WRAPPER_OUT_DIR }}"
+          --out-dir '${{ env.BUILD_WRAPPER_OUT_DIR }}'
           make clean all check
 
       - name: Run tromino
@@ -150,11 +155,11 @@ jobs:
       - name: Run gcovr
         run: >-
           gcovr
-          --exclude=./test
-          --exclude=/usr/include
+          --exclude='./test'
+          --exclude='/usr/include'
           --keep
-          --root .
-          --sonarqube "${{ env.COVERAGE_REPORTS_PATH }}"
+          --root '.'
+          --sonarqube '${{ env.COVERAGE_REPORTS_PATH }}'
 
       - name: Run sonar-scanner
         env:
@@ -162,6 +167,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: >-
           sonar-scanner
-          --define sonar.host.url="${{ env.SONAR_SERVER_URL }}"
-          --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
-          --define sonar.coverageReportPaths="${{ env.COVERAGE_REPORTS_PATH }}"
+          --define sonar.host.url='${{ env.SONAR_SERVER_URL }}'
+          --define sonar.cfamily.build-wrapper-output='${{ env.BUILD_WRAPPER_OUT_DIR }}'
+          --define sonar.coverageReportPaths='${{ env.COVERAGE_REPORTS_PATH }}'

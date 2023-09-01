@@ -59,11 +59,14 @@ jobs:
           libboost-test-dev
           libsdl2-dev
 
+      - name: Run autogen.sh
+        run: ./autogen.sh
+
+      - name: Configure build
+        run: ./configure
+
       - name: Build
-        run: |-
-          ./autogen.sh
-          ./configure
-          make --jobs=$((($(nproc) * 15) / 10))
+        run: make --jobs=$((($(nproc) * 15) / 10))
 
       - name: Perform CodeQL analysis
         uses: github/codeql-action/analyze@v2

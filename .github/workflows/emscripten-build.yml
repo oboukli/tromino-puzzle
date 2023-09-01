@@ -50,8 +50,8 @@ jobs:
 
       - name: Install Emscripten SDK
         run: |-
-          ./emsdk install "${EMSDK_VERSION}"
-          ./emsdk activate "${EMSDK_VERSION}"
+          ./emsdk install '${{ env.EMSDK_VERSION }}'
+          ./emsdk activate '${{ env.EMSDK_VERSION }}'
         working-directory: emsdk
 
       - name: Check out main repository
@@ -72,13 +72,13 @@ jobs:
 
       - name: Compute SHA512 of artifacts
         run: |-
-          ls -Al ./scripts/litro/ | grep -v '^d'
-          ls -Al ./scripts/trmn/ | grep -v '^d'
-          sha512sum --binary ./dist.tar
-          sha512sum --binary ./scripts/litro/litro-wasm.js
-          sha512sum --binary ./scripts/litro/litro-wasm.wasm
-          sha512sum --binary ./scripts/trmn/trmn-wasm.js
-          sha512sum --binary ./scripts/trmn/trmn-wasm.wasm
+          ls -Al './scripts/litro/' | grep -v '^d'
+          ls -Al './scripts/trmn/' | grep -v '^d'
+          sha512sum --binary './dist.tar'
+          sha512sum --binary './scripts/litro/litro-wasm.js'
+          sha512sum --binary './scripts/litro/litro-wasm.wasm'
+          sha512sum --binary './scripts/trmn/trmn-wasm.js'
+          sha512sum --binary './scripts/trmn/trmn-wasm.wasm'
         working-directory: ${{ env.BUILD_PATH }}
 
       - name: Store build artifacts archive
@@ -111,23 +111,23 @@ jobs:
           name: tromino-puzzle-web-dist
 
       - name: Compute checksum of downloaded artifact
-        run: sha512sum --binary ./dist.tar
+        run: sha512sum --binary './dist.tar'
 
       - name: Unarchive files
         run: |-
           tar --extract --file=dist.tar
-          rm ./dist.tar
+          rm './dist.tar'
 
       - name: Display file structure
         run: ls -R
 
       - name: Publish web app to GitHub Pages
         run: |-
-          echo "* -text" > .gitattributes
+          echo '* -text' > .gitattributes
           if git diff --exit-code ; then
             git config --global user.name 'Continuous Deployment Job'
             git config --global user.email 'oboukli@users.noreply.github.com'
-            git add --all -- ":!.gitattributes"
+            git add --all -- ':!.gitattributes'
             git status
             git commit --amend --all --date=now --message='Automated deployment'
             git push --force
