@@ -7,8 +7,9 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=oboukli_tromino-puzzle&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=oboukli_tromino-puzzle)
 
 This is a C99 library (see `src/core`) implementing a divide-and-conquer
-algorithm, and a collection of apps (written in C17, C++17, and ECMAScript)
-to solve the tromino puzzle, over-engineered for the joy of learning by doing.
+algorithm, and a collection of apps (written in C17, C++17, C++20, and
+ECMAScript) to solve the tromino puzzle, over-engineered for the joy
+of learning by doing.
 
 A tromino puzzle consists of a checkered
 $2^n \times 2^n : n \in \mathbb{N} \land n > 0$ (chess-like) board, where
@@ -207,6 +208,7 @@ and ideas leveraged by this project:
 - HTML5
 - CSS
 - SVG
+- Valgrind Memcheck
 - XcodeWarnings
 
 ## License
