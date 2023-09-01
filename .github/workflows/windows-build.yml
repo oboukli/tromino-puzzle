@@ -15,8 +15,7 @@ on:
       - main
   workflow_dispatch:
 
-permissions:
-  contents: read
+permissions: {}
 
 env:
   SOLUTION_FILE_PATH: msbuild\TrominoPuzzle.sln

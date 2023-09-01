@@ -17,7 +17,7 @@ on:
   schedule:
     - cron: 33 1 * * 6
 
-permissions: read-all
+permissions: {}
 
 jobs:
   analyze:

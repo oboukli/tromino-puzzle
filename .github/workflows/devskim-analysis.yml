@@ -17,6 +17,8 @@ on:
     - cron: 10 22 * * 3
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   lint:
     name: DevSkim
