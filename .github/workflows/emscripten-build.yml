@@ -15,8 +15,7 @@ on:
       - main
   workflow_dispatch:
 
-permissions:
-  contents: none
+permissions: {}
 
 jobs:
   build:
