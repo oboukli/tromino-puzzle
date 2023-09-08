@@ -10,19 +10,41 @@ set(CMAKE_C_STANDARD 90)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(
+  CMAKE_TOOLCHAIN_FILE "${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+  CACHE STRING "Vcpkg toolchain file"
+)
+
 project(
   Tromino
-  LANGUAGES C
+  LANGUAGES C CXX
 )
 
 add_library(
-  libtromino
+  tromino
   SHARED
   "include/tromino/core/tromino.h"
   "src/core/tromino.c"
 )
 target_include_directories(
-  libtromino
+  tromino
   PUBLIC
   "${CMAKE_SOURCE_DIR}/include/tromino/core"
+)
+
+find_package(nameof CONFIG REQUIRED)
+find_package(nanobench CONFIG REQUIRED)
+add_executable(
+  benchmark
+  "benchmark/core/tromino_bechmark.cpp"
+)
+target_link_libraries(
+  benchmark
+  PRIVATE nameof::nameof
+  PRIVATE nanobench::nanobench
+  PRIVATE tromino
 )
