@@ -17,7 +17,9 @@ namespace tromino::cli {
 void print_usage(std::ostream& os) noexcept;
 
 bool read_options(
-    int const argc, char const* const argv[], options& options,
+    int const argc,
+    char const* const argv[],
+    options& options,
     std::string& error) noexcept;
 
 } // namespace tromino::cli

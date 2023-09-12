@@ -19,7 +19,8 @@ BOOST_AUTO_TEST_SUITE(tromino_2x2_test_suite)
 //
 // X |
 // - +
-BOOST_AUTO_TEST_CASE(GivenK2_WhenTopLeft_ThenSolutionIsK) {
+BOOST_AUTO_TEST_CASE(GivenK2_WhenTopLeft_ThenSolutionIsK)
+{
     static constexpr int const order{2};
     static constexpr int const mark_x{0};
     static constexpr int const mark_y{0};
@@ -40,7 +41,8 @@ BOOST_AUTO_TEST_CASE(GivenK2_WhenTopLeft_ThenSolutionIsK) {
 //
 // | X
 // + -
-BOOST_AUTO_TEST_CASE(GivenL2_WhenTopRight_ThenSolutionIsL) {
+BOOST_AUTO_TEST_CASE(GivenL2_WhenTopRight_ThenSolutionIsL)
+{
     static constexpr int const order{2};
     static constexpr int const mark_x{1};
     static constexpr int const mark_y{0};
@@ -61,7 +63,8 @@ BOOST_AUTO_TEST_CASE(GivenL2_WhenTopRight_ThenSolutionIsL) {
 //
 // - +
 // X |
-BOOST_AUTO_TEST_CASE(GivenM2_WhenBottomLeft_ThenSolutionIsM) {
+BOOST_AUTO_TEST_CASE(GivenM2_WhenBottomLeft_ThenSolutionIsM)
+{
     static constexpr int const order{2};
     static constexpr int const mark_x{0};
     static constexpr int const mark_y{1};
@@ -82,7 +85,8 @@ BOOST_AUTO_TEST_CASE(GivenM2_WhenBottomLeft_ThenSolutionIsM) {
 //
 // + -
 // | X
-BOOST_AUTO_TEST_CASE(GivenN2_WhenBottomRight_ThenSolutionIsN) {
+BOOST_AUTO_TEST_CASE(GivenN2_WhenBottomRight_ThenSolutionIsN)
+{
     static constexpr int const order{2};
     static constexpr int const mark_x{1};
     static constexpr int const mark_y{1};

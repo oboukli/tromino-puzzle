@@ -12,7 +12,8 @@ namespace tromino::gfx2d {
 
 TrominoBoardViewModel::TrominoBoardViewModel(
     ::SDL_Window* const window) noexcept :
-    _window(window) {
+    _window(window)
+{
     ::Uint32 const render_flags{
         ::SDL_RendererFlags::SDL_RENDERER_ACCELERATED
         | ::SDL_RendererFlags::SDL_RENDERER_PRESENTVSYNC
@@ -22,7 +23,8 @@ TrominoBoardViewModel::TrominoBoardViewModel(
 }
 
 void TrominoBoardViewModel::SetBoard(
-    Board const& board, Style const& style) noexcept {
+    Board const& board, Style const& style) noexcept
+{
     int const order{board.order};
     int const logicalWidth{SQUARE_LOGICAL_WIDTH * order};
 
@@ -66,7 +68,8 @@ void TrominoBoardViewModel::SetBoard(
         ::Uint8{0}, ::Uint8{0}, ::Uint8{0}, ::Uint8{SDL_ALPHA_TRANSPARENT}};
     InitSolutionTexture(_renderer.get(), _solutionTexture.get(), color);
 
-    if (_trominoTexture == nullptr) {
+    if (_trominoTexture == nullptr)
+    {
         _trominoTexture.reset(CreateTrominoTexture(
             _renderer.get(), SQUARE_LOGICAL_WIDTH, style.tromino_color));
 
@@ -79,16 +82,19 @@ void TrominoBoardViewModel::SetBoard(
     }
 }
 
-void TrominoBoardViewModel::StepForward() noexcept {
+void TrominoBoardViewModel::StepForward() noexcept
+{
     assert(_currentStepNum <= _numSteps);
 
-    if (_currentStepNum < _numSteps) {
+    if (_currentStepNum < _numSteps)
+    {
         ++_currentStepNum;
     }
 }
 
 void TrominoBoardViewModel::Render(
-    std::vector<Step> const& steps) const noexcept {
+    std::vector<Step> const& steps) const noexcept
+{
     ::SDL_SetRenderTarget(_renderer.get(), _solutionTexture.get());
     ::SDL_Rect trominoDest{
         0, 0, SQUARE_LOGICAL_WIDTH * 2, SQUARE_LOGICAL_WIDTH * 2};
@@ -96,7 +102,8 @@ void TrominoBoardViewModel::Render(
     std::size_t const num_ready{steps.size()};
     std::size_t const count{
         num_ready < _currentStepNum ? num_ready : _currentStepNum};
-    for (std::size_t i{0}; i < count; ++i) {
+    for (std::size_t i{0}; i < count; ++i)
+    {
         Step const& s{steps[i]};
         trominoDest.x = s.px * SQUARE_LOGICAL_WIDTH;
         trominoDest.y = s.py * SQUARE_LOGICAL_WIDTH;
@@ -119,7 +126,8 @@ void TrominoBoardViewModel::Render(
     ::SDL_RenderPresent(_renderer.get());
 }
 
-[[nodiscard]] bool TrominoBoardViewModel::IsPlaying() const noexcept {
+[[nodiscard]] bool TrominoBoardViewModel::IsPlaying() const noexcept
+{
     return _currentStepNum != _numSteps;
 }
 

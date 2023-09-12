@@ -15,7 +15,8 @@
 namespace tromino::tromino2d {
 
 int init(
-    tromino::gfx2d::Board const& board, int const width,
+    tromino::gfx2d::Board const& board,
+    int const width,
     std::optional<std::string const> const& title) noexcept;
 
 } // namespace tromino::tromino2d

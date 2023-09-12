@@ -18,7 +18,8 @@ public:
 
     constexpr Step(
         int const px, int const py, int const fx, int const fy) noexcept :
-        px{px}, py{py}, fx{fx}, fy{fy} {
+        px{px}, py{py}, fx{fx}, fy{fy}
+    {
     }
 
     Step(Step const& other) noexcept = delete;

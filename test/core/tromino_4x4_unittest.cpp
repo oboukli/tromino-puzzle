@@ -22,7 +22,8 @@ BOOST_AUTO_TEST_SUITE(tromino_4x4_test_suite)
 // | - + |
 // + - - +
 BOOST_AUTO_TEST_CASE(
-    Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs0_0_ThenSolution) {
+    Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs0_0_ThenSolution)
+{
     static constexpr int const order{4};
     static constexpr int const mark_x{0};
     static constexpr int const mark_y{0};
@@ -47,7 +48,8 @@ BOOST_AUTO_TEST_CASE(
 }
 
 BOOST_AUTO_TEST_CASE(
-    Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs0_7_ThenSolution) {
+    Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs0_7_ThenSolution)
+{
     static constexpr int const order{4};
     static constexpr int const mark_x{0};
     static constexpr int const mark_y{7};
@@ -72,7 +74,8 @@ BOOST_AUTO_TEST_CASE(
 }
 
 BOOST_AUTO_TEST_CASE(
-    Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs7_0_ThenSolution) {
+    Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs7_0_ThenSolution)
+{
     static constexpr int const order{4};
     static constexpr int const mark_x{7};
     static constexpr int const mark_y{0};
@@ -97,7 +100,8 @@ BOOST_AUTO_TEST_CASE(
 }
 
 BOOST_AUTO_TEST_CASE(
-    Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs7_7_ThenSolution) {
+    Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs7_7_ThenSolution)
+{
     static constexpr int const order{4};
     static constexpr int const mark_x{7};
     static constexpr int const mark_y{7};
@@ -127,7 +131,8 @@ BOOST_AUTO_TEST_CASE(
 // | | | X
 // + - + -
 BOOST_AUTO_TEST_CASE(
-    Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs3_2_ThenSolution) {
+    Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs3_2_ThenSolution)
+{
     static constexpr int const order{4};
     static constexpr int const mark_x{3};
     static constexpr int const mark_y{2};

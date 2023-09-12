@@ -7,13 +7,18 @@
 #include "unittest_helper.hpp"
 
 void shim_add_tromino(
-    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
-    void* const state) noexcept {
+    int const pos_x,
+    int const pos_y,
+    int const flip_x,
+    int const flip_y,
+    void* const state) noexcept
+{
     static_cast<std::vector<ShimStep>*>(state)->emplace_back(
         pos_x, pos_y, flip_x, flip_y);
 }
 
-void print_shim_step_vector(std::vector<ShimStep> const& steps) noexcept {
+void print_shim_step_vector(std::vector<ShimStep> const& steps) noexcept
+{
     // clang-format off
     for (const auto& s : steps) {
         std::cout

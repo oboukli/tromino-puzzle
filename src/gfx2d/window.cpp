@@ -24,12 +24,18 @@ Window::Window(
     std::optional<std::string const> const& title, int const width) noexcept :
     _window{
         ::SDL_CreateWindow(
-            title ? title.value().c_str() : nullptr, SDL_WINDOWPOS_CENTERED,
-            SDL_WINDOWPOS_CENTERED, width, width, WINDOW_FLAGS),
-        &::SDL_DestroyWindow} {
+            title ? title.value().c_str() : nullptr,
+            SDL_WINDOWPOS_CENTERED,
+            SDL_WINDOWPOS_CENTERED,
+            width,
+            width,
+            WINDOW_FLAGS),
+        &::SDL_DestroyWindow}
+{
 }
 
-[[nodiscard]] ::SDL_Window* Window::GetSdlWindow() const noexcept {
+[[nodiscard]] ::SDL_Window* Window::GetSdlWindow() const noexcept
+{
     return _window.get();
 }
 

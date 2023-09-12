@@ -32,10 +32,14 @@ constexpr char const bottom_right{'\xBC'};
 void draw_board(board_t const& board) noexcept;
 
 void add_tromino(
-    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
+    int const pos_x,
+    int const pos_y,
+    int const flip_x,
+    int const flip_y,
     void* const state) noexcept;
 
-inline void init_board(board_t const& board) noexcept {
+inline void init_board(board_t const& board) noexcept
+{
     std::fill_n(board.board_matrix.get(), board.size, empty);
 
     board.board_matrix[calc_index(board.mark_x, board.mark_y, board.order)]

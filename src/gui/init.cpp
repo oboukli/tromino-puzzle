@@ -32,18 +32,24 @@ namespace {
 
 using SharedState = std::vector<tromino::gfx2d::Step>;
 
-void poll_sdl_events(bool& is_main_loop_running) noexcept {
+void poll_sdl_events(bool& is_main_loop_running) noexcept
+{
     ::SDL_Event event{};
-    while (::SDL_PollEvent(&event) == 1) {
-        if (event.type == ::SDL_EventType::SDL_QUIT) {
+    while (::SDL_PollEvent(&event) == 1)
+    {
+        if (event.type == ::SDL_EventType::SDL_QUIT)
+        {
             is_main_loop_running = false;
         }
     }
 }
 
 inline void start_game_loop(
-    tromino::gfx2d::Board const& board, SharedState const& shared_state,
-    int const width, std::optional<std::string const> const& title) noexcept {
+    tromino::gfx2d::Board const& board,
+    SharedState const& shared_state,
+    int const width,
+    std::optional<std::string const> const& title) noexcept
+{
     using std::literals::chrono_literals::operator""ms;
 
     static constexpr int const FRAME_DELAY{68};
@@ -82,10 +88,12 @@ inline void start_game_loop(
     viewModel->SetBoard(board, style);
 
     bool is_main_loop_running{true};
-    while (is_main_loop_running) {
+    while (is_main_loop_running)
+    {
         poll_sdl_events(is_main_loop_running);
 
-        if (viewModel->IsPlaying()) {
+        if (viewModel->IsPlaying())
+        {
             viewModel->StepForward();
         }
 
@@ -94,7 +102,8 @@ inline void start_game_loop(
         ::SDL_Delay(FRAME_DELAY);
 
 #ifdef TROMINO_2D_HEADLESS
-        if (!viewModel->IsPlaying()) {
+        if (!viewModel->IsPlaying())
+        {
             ::SDL_Event event{::SDL_EventType::SDL_QUIT};
             ::SDL_PushEvent(&event);
         }
@@ -103,17 +112,25 @@ inline void start_game_loop(
 }
 
 void add_tromino(
-    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
-    SharedState* const shared_state) noexcept {
+    int const pos_x,
+    int const pos_y,
+    int const flip_x,
+    int const flip_y,
+    SharedState* const shared_state) noexcept
+{
     shared_state->emplace_back(pos_x, pos_y, flip_x, flip_y);
 
     std::this_thread::yield();
 }
 
 void solver(
-    int const order, int const mark_x, int const mark_y,
-    tromino_cb_t<SharedState> const tromino_cb, SharedState* const state,
-    int const* const stop_flag) noexcept {
+    int const order,
+    int const mark_x,
+    int const mark_y,
+    tromino_cb_t<SharedState> const tromino_cb,
+    SharedState* const state,
+    int const* const stop_flag) noexcept
+{
     SolverState<SharedState> solver_state{
         .state = state, .callback = tromino_cb};
 
@@ -129,8 +146,10 @@ void solver(
 } // namespace
 
 int init(
-    tromino::gfx2d::Board const& board, int const width,
-    std::optional<std::string const> const& title) noexcept {
+    tromino::gfx2d::Board const& board,
+    int const width,
+    std::optional<std::string const> const& title) noexcept
+{
     auto const board_order{static_cast<std::size_t>(board.order)};
     std::size_t const num_steps{
         ((board_order * board_order) - std::size_t{1}) / std::size_t{3}};
@@ -151,7 +170,8 @@ int init(
     };
 
     bool sdl2_success{false};
-    if (::SDL_Init(SDL_INIT_VIDEO) == 0) {
+    if (::SDL_Init(SDL_INIT_VIDEO) == 0)
+    {
         ::SDL_SetHint(SDL_HINT_RENDER_LOGICAL_SIZE_MODE, "overscan");
         ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
         ::SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");

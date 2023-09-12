@@ -18,19 +18,23 @@
 #include "init.hpp"
 #include "params.hpp"
 
-int main(int const argc, char const* const argv[]) noexcept {
+int main(int const argc, char const* const argv[]) noexcept
+{
     int exit_status{EXIT_FAILURE};
     tromino::tromino2d::options options{};
     std::string error{};
     if (bool is_error{
             tromino::tromino2d::read_options(argc, argv, options, error)};
         is_error
-        || (!::trmn_is_valid_config(options.order, options.x, options.y))) {
+        || (!::trmn_is_valid_config(options.order, options.x, options.y)))
+    {
         std::cerr << error << std::endl;
         tromino::tromino2d::print_usage(std::cout);
 
         exit_status = EXIT_FAILURE;
-    } else {
+    }
+    else
+    {
         auto const order_internal{static_cast<std::size_t>(options.order)};
         std::size_t const size{order_internal * order_internal};
         tromino::gfx2d::Board const board{
