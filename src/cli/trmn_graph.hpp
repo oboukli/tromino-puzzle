@@ -43,7 +43,8 @@ struct graph_state_t {
 };
 
 template <typename T>
-inline std::size_t calc_index(T const x, T const y, T const o) noexcept {
+inline std::size_t calc_index(T const x, T const y, T const o) noexcept
+{
     assert(::trmn_is_valid_config(o, x, y));
     return (static_cast<std::size_t>(y) * static_cast<std::size_t>(o))
         + static_cast<std::size_t>(x);
@@ -52,17 +53,27 @@ inline std::size_t calc_index(T const x, T const y, T const o) noexcept {
 constexpr std::size_t const SPRITE_SIZE{4};
 
 template <
-    char neutral, char empty, char mark, char horizontal, char vertical,
-    char top_left, char top_right, char bottom_left, char bottom_right>
+    char neutral,
+    char empty,
+    char mark,
+    char horizontal,
+    char vertical,
+    char top_left,
+    char top_right,
+    char bottom_left,
+    char bottom_right>
 [[nodiscard]] inline std::array<char, SPRITE_SIZE>
-get_sprite(int const flip_x, int const flip_y) noexcept {
+get_sprite(int const flip_x, int const flip_y) noexcept
+{
     assert(flip_x == -1 || flip_x == 1);
     assert(flip_y == -1 || flip_y == 1);
 
     std::array<char, SPRITE_SIZE> sprite{};
 
-    if (flip_x == -1) {
-        if (flip_y == -1) {
+    if (flip_x == -1)
+    {
+        if (flip_y == -1)
+        {
             // -1, -1
             // X |
             // - +
@@ -70,7 +81,9 @@ get_sprite(int const flip_x, int const flip_y) noexcept {
             sprite[1] = vertical;
             sprite[2] = horizontal;
             sprite[3] = bottom_right;
-        } else {
+        }
+        else
+        {
             // -1, 1
             // - +
             // X |
@@ -79,8 +92,11 @@ get_sprite(int const flip_x, int const flip_y) noexcept {
             sprite[2] = neutral;
             sprite[3] = vertical;
         }
-    } else {
-        if (flip_y == -1) {
+    }
+    else
+    {
+        if (flip_y == -1)
+        {
             // 1, -1
             // | X
             // + -
@@ -88,7 +104,9 @@ get_sprite(int const flip_x, int const flip_y) noexcept {
             sprite[1] = neutral;
             sprite[2] = bottom_left;
             sprite[3] = horizontal;
-        } else {
+        }
+        else
+        {
             // 1, 1
             // + -
             // | X

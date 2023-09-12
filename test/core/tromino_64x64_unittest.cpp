@@ -1392,7 +1392,8 @@ constexpr std::array<ShimStep, std::size_t{((64 * 64) - 1) / 3}> const
 BOOST_AUTO_TEST_SUITE(tromino_64x64_test_suite)
 
 BOOST_AUTO_TEST_CASE(
-    Given_trmn_solve_puzzle_WhenOrderIs64AndMarkIs61_37_ThenSolution) {
+    Given_trmn_solve_puzzle_WhenOrderIs64AndMarkIs61_37_ThenSolution)
+{
     static constexpr int const order{64};
     static constexpr int const mark_x{61};
     static constexpr int const mark_y{37};

@@ -28,11 +28,19 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <assert.h>
 
 static void solve_tromino(
-    int const order, int const px, int const py, int const fx, int const fy,
-    trmn_add_tromino_func_t const add_tromino, void* const state,
-    int const* const stop_flag) {
-    if (*stop_flag == 0) {
-        if (order == 2) {
+    int const order,
+    int const px,
+    int const py,
+    int const fx,
+    int const fy,
+    trmn_add_tromino_func_t const add_tromino,
+    void* const state,
+    int const* const stop_flag)
+{
+    if (*stop_flag == 0)
+    {
+        if (order == 2)
+        {
             add_tromino(px, py, fx, fy, state);
             return;
         }
@@ -72,11 +80,21 @@ static void solve_tromino(
 }
 
 static void solve_board(
-    int const order, int const px, int const py, int const fx, int const fy,
-    int const mx, int const my, trmn_add_tromino_func_t const add_tromino,
-    void* const state, int const* const stop_flag) {
-    if (*stop_flag == 0) {
-        if (order > 2) {
+    int const order,
+    int const px,
+    int const py,
+    int const fx,
+    int const fy,
+    int const mx,
+    int const my,
+    trmn_add_tromino_func_t const add_tromino,
+    void* const state,
+    int const* const stop_flag)
+{
+    if (*stop_flag == 0)
+    {
+        if (order > 2)
+        {
             int const n = order >> 1;
 
             int const _px = px + (n * ((fx + 1) >> 1));
@@ -97,9 +115,13 @@ static void solve_board(
 }
 
 void trmn_solve_puzzle(
-    int const order, int const mx, int const my,
-    trmn_add_tromino_func_t const add_tromino, void* const state,
-    int const* const stop_flag) {
+    int const order,
+    int const mx,
+    int const my,
+    trmn_add_tromino_func_t const add_tromino,
+    void* const state,
+    int const* const stop_flag)
+{
     assert(add_tromino);
 
     int const o = order >> 1;

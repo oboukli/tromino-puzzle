@@ -30,14 +30,19 @@ bool isInitialized{false};
 int solver_stop_flag{0};
 
 void add_tromino(
-    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
-    void* const state) noexcept {
+    int const pos_x,
+    int const pos_y,
+    int const flip_x,
+    int const flip_y,
+    void* const state) noexcept
+{
     auto const steps{static_cast<std::vector<tromino::gfx2d::Step>*>(state)};
 
     steps->emplace_back(pos_x, pos_y, flip_x, flip_y);
 }
 
-void init(int const width) noexcept {
+void init(int const width) noexcept
+{
     steps = std::make_unique<std::vector<tromino::gfx2d::Step>>();
 
     ::SDL_Init(SDL_INIT_VIDEO);
@@ -53,7 +58,8 @@ void init(int const width) noexcept {
     isInitialized = true;
 }
 
-void terminate() noexcept {
+void terminate() noexcept
+{
     solver_stop_flag = 1;
 
     ::emscripten_cancel_main_loop();
@@ -68,15 +74,18 @@ void terminate() noexcept {
     isInitialized = false;
 }
 
-void render_frame() noexcept {
+void render_frame() noexcept
+{
     viewModel->StepForward();
     viewModel->Render(*steps);
 }
 
-void start(tromino::gfx2d::Board const& board, int const width) noexcept {
+void start(tromino::gfx2d::Board const& board, int const width) noexcept
+{
     static constexpr int const SWAP_INTERVAL{4};
 
-    if (isInitialized) {
+    if (isInitialized)
+    {
         terminate();
     }
 
@@ -129,8 +138,8 @@ void start(tromino::gfx2d::Board const& board, int const width) noexcept {
 } // namespace
 
 EMSCRIPTEN_KEEPALIVE extern "C" void playTromino(
-    int const order, int const markX, int const markY,
-    int const width) noexcept {
+    int const order, int const markX, int const markY, int const width) noexcept
+{
     std::size_t const order_internal{static_cast<std::size_t>(order)};
     std::size_t const size{order_internal * order_internal};
 

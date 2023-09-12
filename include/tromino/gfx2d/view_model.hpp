@@ -66,14 +66,16 @@ private:
 };
 
 [[nodiscard]] inline ::SDL_RendererFlip
-get_flip(int const flip_x, int const flip_y) noexcept {
+get_flip(int const flip_x, int const flip_y) noexcept
+{
     // clang-format off
     std::uint32_t f{flip_x == 1
         ? static_cast<std::uint32_t>(::SDL_RendererFlip::SDL_FLIP_HORIZONTAL)
         : static_cast<std::uint32_t>(::SDL_RendererFlip::SDL_FLIP_NONE)};
     // clang-format on
 
-    if (flip_y == 1) {
+    if (flip_y == 1)
+    {
         f |= static_cast<std::uint32_t>(::SDL_RendererFlip::SDL_FLIP_VERTICAL);
     }
 

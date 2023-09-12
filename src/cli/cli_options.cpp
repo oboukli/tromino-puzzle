@@ -12,7 +12,8 @@
 
 namespace tromino::cli {
 
-void print_usage(std::ostream& os) noexcept {
+void print_usage(std::ostream& os) noexcept
+{
     // clang-format off
     os <<
         "Usage: tromino <order> <x> <y>"
@@ -31,15 +32,21 @@ void print_usage(std::ostream& os) noexcept {
 }
 
 bool read_options(
-    int const argc, char const* const argv[], options& options,
-    std::string& error) noexcept {
+    int const argc,
+    char const* const argv[],
+    options& options,
+    std::string& error) noexcept
+{
     using std::string_literals::operator""s;
 
     bool has_error{true};
 
-    if (argc < params::REQUIRED_ARG_COUNT) {
+    if (argc < params::REQUIRED_ARG_COUNT)
+    {
         error = "Incorrect argument count."s;
-    } else {
+    }
+    else
+    {
 #ifdef _WIN64
         options.use_wch = argc > params::REQUIRED_ARG_COUNT
             && std::string(argv[params::USE_WCH_ARG_IDX]) == "--use-wch"s;

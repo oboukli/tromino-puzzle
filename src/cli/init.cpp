@@ -18,7 +18,8 @@
 
 namespace tromino::cli::app {
 
-void init(int const order, int const x, int const y) noexcept {
+void init(int const order, int const x, int const y) noexcept
+{
     auto const order_internal{static_cast<std::size_t>(order)};
     std::size_t const size{order_internal * order_internal};
 
@@ -34,8 +35,11 @@ void init(int const order, int const x, int const y) noexcept {
 
 #ifdef _WIN64
 void init(
-    int const order, int const x, int const y,
-    emulation_mode_type const emulation_mode) noexcept {
+    int const order,
+    int const x,
+    int const y,
+    emulation_mode_type const emulation_mode) noexcept
+{
     auto const order_internal{static_cast<std::size_t>(order)};
     std::size_t const size{order_internal * order_internal};
 
@@ -46,7 +50,8 @@ void init(
         .mark_x = x,
         .mark_y = y};
 
-    if (emulation_mode == emulation_mode_type::wch) {
+    if (emulation_mode == emulation_mode_type::wch)
+    {
         tromino::cli::windows::use_wch(tromino_board, std::cout);
         return;
     }

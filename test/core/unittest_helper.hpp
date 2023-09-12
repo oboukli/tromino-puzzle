@@ -20,9 +20,12 @@ public:
     ShimStep() = delete;
 
     constexpr ShimStep(
-        int const pos_x, int const pos_y, int const flip_x,
+        int const pos_x,
+        int const pos_y,
+        int const flip_x,
         int const flip_y) noexcept :
-        pos_x{pos_x}, pos_y{pos_y}, flip_x{flip_x}, flip_y{flip_y} {
+        pos_x{pos_x}, pos_y{pos_y}, flip_x{flip_x}, flip_y{flip_y}
+    {
     }
 
     ShimStep(ShimStep const& other) = delete;
@@ -31,7 +34,8 @@ public:
         pos_x{other.pos_x},
         pos_y{other.pos_y},
         flip_x{other.flip_x},
-        flip_y{other.flip_y} {
+        flip_y{other.flip_y}
+    {
     }
 
     ~ShimStep() = default;
@@ -40,13 +44,15 @@ public:
 
     ShimStep& operator=(ShimStep&& other) noexcept = delete;
 
-    bool operator!=(ShimStep const& rhs) const noexcept {
+    bool operator!=(ShimStep const& rhs) const noexcept
+    {
         return rhs.pos_x != this->pos_x || rhs.pos_y != this->pos_y
             || rhs.flip_x != this->flip_x || rhs.flip_y != this->flip_y;
     }
 
     friend std::ostream&
-    operator<<(std::ostream& os, ShimStep const& s) noexcept {
+    operator<<(std::ostream& os, ShimStep const& s) noexcept
+    {
         // clang-format off
         return os
             << "Tromino position: (" << s.pos_x << ", " << s.pos_y
@@ -56,7 +62,10 @@ public:
 };
 
 void shim_add_tromino(
-    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
+    int const pos_x,
+    int const pos_y,
+    int const flip_x,
+    int const flip_y,
     void* const state) noexcept;
 
 void print_shim_step_vector(std::vector<ShimStep> const& steps) noexcept;

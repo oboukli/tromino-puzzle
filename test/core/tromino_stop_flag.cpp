@@ -22,10 +22,15 @@ struct ShimState {
 };
 
 void shim_stopping_add_tromino(
-    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
-    void* const state) noexcept {
+    int const pos_x,
+    int const pos_y,
+    int const flip_x,
+    int const flip_y,
+    void* const state) noexcept
+{
     ShimState* shim_state{static_cast<ShimState*>(state)};
-    if (shim_state->shim_steps->size() == std::size_t{15}) {
+    if (shim_state->shim_steps->size() == std::size_t{15})
+    {
         *shim_state->stop_flag = 1;
     }
     shim_state->shim_steps->emplace_back(pos_x, pos_y, flip_x, flip_y);
@@ -36,7 +41,8 @@ void shim_stopping_add_tromino(
 BOOST_AUTO_TEST_SUITE(tromino_stop_test_suite)
 
 BOOST_AUTO_TEST_CASE(
-    Given_trmn_solve_puzzle_WhenStopFlagIsSetBeforeComputation_ThenDoNotCompute) {
+    Given_trmn_solve_puzzle_WhenStopFlagIsSetBeforeComputation_ThenDoNotCompute)
+{
     static constexpr int const order{64};
     static constexpr int const mark_x{61};
     static constexpr int const mark_y{37};
@@ -58,7 +64,8 @@ BOOST_AUTO_TEST_CASE(
 }
 
 BOOST_AUTO_TEST_CASE(
-    Given_trmn_solve_puzzle_WhenStopFlagIsSetDuringComputation_ThenStop) {
+    Given_trmn_solve_puzzle_WhenStopFlagIsSetDuringComputation_ThenStop)
+{
     static constexpr int const order{64};
     static constexpr int const mark_x{61};
     static constexpr int const mark_y{37};

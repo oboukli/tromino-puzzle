@@ -28,11 +28,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <limits.h>
 #include <stddef.h>
 
-bool trmn_is_valid_order(int const order) {
+bool trmn_is_valid_order(int const order)
+{
     return (order > 1) && (order < 32769) && ((order & (order - 1)) == 0);
 }
 
-bool trmn_is_valid_coordinate(int const c, int const order) {
+bool trmn_is_valid_coordinate(int const c, int const order)
+{
     return c >= 0 && c < order;
 }
 
@@ -42,7 +44,8 @@ bool trmn_is_valid_coordinate(int const c, int const order) {
     apply_to = function)
 #endif // __clang__
 
-bool trmn_is_order_overflow_safe(int const order) {
+bool trmn_is_order_overflow_safe(int const order)
+{
     size_t volatile o = ((size_t)order * (size_t)order);
 
     return order > 0 && o <= INT_MAX;
@@ -52,7 +55,8 @@ bool trmn_is_order_overflow_safe(int const order) {
 #pragma clang attribute pop
 #endif // __clang__
 
-bool trmn_is_valid_config(int const order, int const x, int const y) {
+bool trmn_is_valid_config(int const order, int const x, int const y)
+{
     return trmn_is_order_overflow_safe(order) && trmn_is_valid_order(order)
         && trmn_is_valid_coordinate(x, order)
         && trmn_is_valid_coordinate(y, order);

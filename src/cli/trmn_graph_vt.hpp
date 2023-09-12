@@ -23,8 +23,9 @@ namespace tromino::cli::vt {
 
 constexpr char const* const BEL{"\a"};
 constexpr char const* const ESC{"\x1b"};
-constexpr char const* const CSI{"\x1b"
-                                "["};
+constexpr char const* const CSI{
+    "\x1b"
+    "["};
 
 constexpr char const* const BOARD_BACKGROUND_COLOR{"23"};
 
@@ -58,10 +59,14 @@ constexpr char const BOTTOM_RIGHT{'\x6a'};
 void draw_board(board_t const& board, std::ostream& os) noexcept;
 
 void add_tromino(
-    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
+    int const pos_x,
+    int const pos_y,
+    int const flip_x,
+    int const flip_y,
     graph_state_t* const graph_state) noexcept;
 
-inline void init_board(board_t const& board) noexcept {
+inline void init_board(board_t const& board) noexcept
+{
     std::fill_n(board.board_matrix.get(), board.size, EMPTY);
 
     board.board_matrix[calc_index(board.mark_x, board.mark_y, board.order)]

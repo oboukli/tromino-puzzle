@@ -18,25 +18,33 @@ namespace tromino::cli::vt {
 namespace {
 
 inline void
-draw_at(int const x, int const y, char const c, std::ostream& os) noexcept {
+draw_at(int const x, int const y, char const c, std::ostream& os) noexcept
+{
     os << CSI << y << ";" << x << "H" << c;
 }
 
 } // namespace
 
-void draw_board(board_t const& board, std::ostream& os) noexcept {
+void draw_board(board_t const& board, std::ostream& os) noexcept
+{
     int const order{board.order};
-    for (int i{0}; i < order; ++i) { // Rows
+    for (int i{0}; i < order; ++i)
+    {
         os << CSI << 1 + i << ";" << 1 << "H";
-        for (int j{0}; j < order; ++j) { // Columns
+        for (int j{0}; j < order; ++j)
+        {
             os << board.board_matrix[calc_index(j, i, order)];
         }
     }
 }
 
 void add_tromino(
-    int const pos_x, int const pos_y, int const flip_x, int const flip_y,
-    graph_state_t* const graph_state) noexcept {
+    int const pos_x,
+    int const pos_y,
+    int const flip_x,
+    int const flip_y,
+    graph_state_t* const graph_state) noexcept
+{
     static constexpr std::chrono::milliseconds const DELAY_AFTER{68};
 
     std::ostream& os{graph_state->os};
@@ -55,10 +63,13 @@ void add_tromino(
         BOTTOM_RIGHT>(flip_x, flip_y)};
 
     char px{};
-    for (int i{0}; i < 2; ++i) {
-        for (int j{0}; j < 2; ++j) {
+    for (int i{0}; i < 2; ++i)
+    {
+        for (int j{0}; j < 2; ++j)
+        {
             px = sprite[calc_index(j, i, 2)];
-            if (px != NEUTRAL) {
+            if (px != NEUTRAL)
+            {
                 // clang-format off
                 assert(
                     (board_matrix[calc_index(pos_x + j, pos_y + i, order)]
@@ -87,7 +98,8 @@ void add_tromino(
     std::this_thread::sleep_for(DELAY_AFTER);
 }
 
-void use_vt(board_t& tromino_board, std::ostream& os) noexcept {
+void use_vt(board_t& tromino_board, std::ostream& os) noexcept
+{
 #ifdef _WIN64
     ::HANDLE const hStdout{::GetStdHandle(STD_OUTPUT_HANDLE)};
 
@@ -97,7 +109,8 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept {
     ::DWORD dwConsoleModeRequiredFlags{
         ENABLE_PROCESSED_OUTPUT | ENABLE_VIRTUAL_TERMINAL_PROCESSING};
     if ((dwConsoleOriginalMode & dwConsoleModeRequiredFlags)
-        != dwConsoleModeRequiredFlags) {
+        != dwConsoleModeRequiredFlags)
+    {
         ::DWORD dwConsoleModifiedMode{
             dwConsoleOriginalMode | dwConsoleModeRequiredFlags};
         ::SetConsoleMode(hStdout, dwConsoleModifiedMode);
