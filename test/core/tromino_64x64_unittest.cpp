@@ -16,9 +16,9 @@
 
 namespace {
 
-// clang-format off
 constexpr std::array<ShimStep, std::size_t{((64 * 64) - 1) / 3}> const
     g_expected_for_order_64_and_mark_61_37{{
+        // clang-format off
         {60, 36, 1, 1},
         {62, 38, -1, -1},
         {62, 36, -1, 1},
@@ -1384,8 +1384,8 @@ constexpr std::array<ShimStep, std::size_t{((64 * 64) - 1) / 3}> const
         {30, 32, 1, -1},
         {32, 30, -1, 1},
         {31, 31, 1, 1},
+        // clang-format on
     }};
-// clang-format on
 
 } // namespace
 

@@ -19,19 +19,15 @@ void shim_add_tromino(
 
 void print_shim_step_vector(std::vector<ShimStep> const& steps) noexcept
 {
-    // clang-format off
-    for (const auto& s : steps) {
+    for (auto const& s : steps)
+    {
+        // clang-format off
         std::cout
             << "{"
-            << s.pos_x
+            << s.pos_x << ", " << s.pos_y
             << ", "
-            << s.pos_y
-            << ", "
-            << s.flip_x
-            << ", "
-            << s.flip_y
-            << "},"
-            << std::endl;
+            << s.flip_x << ", " << s.flip_y
+            << "},\n";
+        // clang-format on
     }
-    // clang-format on
 }
