@@ -21,6 +21,8 @@
 
 namespace tromino::cli::vt {
 
+constexpr char const* const TITLE{"Tromino Puzzle"};
+
 constexpr char const* const BEL{"\a"};
 constexpr char const* const ESC{"\x1b"};
 constexpr char const* const CSI{

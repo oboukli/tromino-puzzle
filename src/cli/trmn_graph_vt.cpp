@@ -119,73 +119,75 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept
 
     init_board(tromino_board);
 
-    using std::string_literals::operator""s;
     // clang-format off
-    os << ""s +
+    os
         // Set icon and window title
-        ESC + "]0;"s + "Tromino Puzzle"s + BEL +
+        << ESC << "]0;" << TITLE << BEL
 
         // Advanced video option (AVO)
-        CSI + "?1;2c"s +
+        << CSI << "?1;2c"
 
         // Column mode: 120 * 132 Col
-        CSI + "?3h"s +
+        << CSI << "?3h"
 
         // Enter the alternate buffer
-        CSI + "?1049h"s +
+        << CSI << "?1049h"
 
         // Mode 320 * 200 color (256-color graphics)
-        CSI + "=19h"s +
+        << CSI << "=19h"
 
         // Make cursor invisible
-        CSI + "?25l"s +
+        << CSI << "?25l"
 
         // Disable line wrapping
-        CSI + "=7l"s +
+        << CSI << "=7l"
 
         // Relative origin mode
-        CSI + "?6h"s +
+        << CSI << "?6h"
 
         // Resize the window
-        CSI + "8;132;132t"s +
+        << CSI << "8;132;132t"
 
         // Clears the entire screen
-        CSI + "2J"s +
+        << CSI << "2J"
 
         // Set board background color
-        CSI + "48;5;"s +
-        BOARD_BACKGROUND_COLOR + "m"s;
+        << CSI << "48;5;" << BOARD_BACKGROUND_COLOR << "m";
     // clang-format on
 
     draw_board(tromino_board, os);
 
     // clang-format off
-    os <<
+    os
         // Set bold mode
-        CSI + "1m"s +
+        << CSI << "1m"
 
         // Set mark background color
-        CSI + "48;5;"s + MARK_BACKGROUND_COLOR + "m"s +
+        << CSI << "48;5;" << MARK_BACKGROUND_COLOR << "m"
 
         // Set mark foreground color
-        CSI + "38;5;"s + MARK_FOREGROUND_COLOR + "m"s;
+        << CSI << "38;5;" << MARK_FOREGROUND_COLOR << "m"
+
+        ;
     // clang-format on
 
     draw_at(tromino_board.mark_x + 1, tromino_board.mark_y + 1, MARK, os);
 
     // clang-format off
-    os <<
+    os
         // Set tromino background color
-        CSI + "48;5;"s + TROMINO_BACKGROUND_COLOR + "m"s +
+        << CSI << "48;5;" << TROMINO_BACKGROUND_COLOR << "m"
 
         // Set tromino foreground color
-        CSI + "38;5;"s + TROMINO_FOREGROUND_COLOR + "m"s;
-    // clang-format on
+        << CSI << "38;5;" << TROMINO_FOREGROUND_COLOR << "m"
 
 #ifndef TROMINO_USE_ASCII
-    // Use VT100 Special graphics characters
-    os << ESC + "(0"s;
-#endif // !TROMINO_USE_ASCII
+        // Use VT100 Special graphics characters
+        << ESC << "(0"
+#endif // not TROMINO_USE_ASCII
+
+        ;
+    // clang-format on
 
     os << std::flush;
 
@@ -205,15 +207,17 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept
     std::cin.get();
 
     // clang-format off
-    os <<
+    os
         // Switch back VT100 Special graphics characters
-        ESC + "0)"s +
+        << ESC << "0)"
 
         // Reset to initial state (RIS)
-        ESC + "c"s +
+        << ESC << "c"
 
         // Exit the alternate buffer
-        CSI + "?1049l"s;
+        << CSI << "?1049l"
+
+    ;
     // clang-format on
 
     os << std::flush;
