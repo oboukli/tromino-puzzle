@@ -26,9 +26,12 @@ jobs:
       BUILD_PATH: ${{ github.workspace }}/tromino-puzzle/dist/web
       EMSDK_VERSION: 3.1.45
 
+    outputs:
+      dist-checksum: ${{ steps.dist-checksum.outputs.dist_checksum }}
+
     steps:
       - name: Check out Emscripten repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac
         with:
           ref: ${{ env.EMSDK_VERSION }}
           repository: emscripten-core/emsdk
@@ -37,7 +40,7 @@ jobs:
 
       - name: Emscripten SDK cache
         id: emscripten-sdk-cache
-        uses: actions/cache@v3
+        uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84
         with:
           path: |-
             emsdk/downloads
@@ -55,7 +58,7 @@ jobs:
         working-directory: emsdk
 
       - name: Check out main repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac
         with:
           path: tromino-puzzle
           persist-credentials: false
@@ -66,30 +69,37 @@ jobs:
           emmake make --jobs=$((($(nproc) * 15) / 10))
         working-directory: tromino-puzzle/emscripten
 
-      - name: Archive build artifacts
+      - name: Create distribution archive
         run: tar --create --file=dist.tar ./*
         working-directory: ${{ env.BUILD_PATH }}
 
-      - name: Compute SHA512 of artifacts
+      - name: Compute SHA512 of distribution archive
+        id: dist-checksum
+        run: >-
+          echo "dist_checksum=$(sha512sum --binary './dist.tar')"
+          >> $GITHUB_OUTPUT
+        working-directory: ${{ env.BUILD_PATH }}
+
+      - name: Compute SHA512 of build artifacts
         run: |-
           ls -Al './scripts/litro/' | grep -v '^d'
           ls -Al './scripts/trmn/' | grep -v '^d'
-          sha512sum --binary './dist.tar'
           sha512sum --binary './scripts/litro/litro-wasm.js'
           sha512sum --binary './scripts/litro/litro-wasm.wasm'
           sha512sum --binary './scripts/trmn/trmn-wasm.js'
           sha512sum --binary './scripts/trmn/trmn-wasm.wasm'
         working-directory: ${{ env.BUILD_PATH }}
 
-      - name: Store build artifacts archive
-        uses: actions/upload-artifact@v3
+      - name: Store distribution archive
+        uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32
         continue-on-error: false
         with:
+          if-no-files-found: error
           name: tromino-puzzle-web-dist
           path: ${{ env.BUILD_PATH }}/dist.tar
 
   deploy-gh-pages:
-    name: Deploy to GitHub Pages
+    name: Publish
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
@@ -98,22 +108,24 @@ jobs:
 
     steps:
       - name: Check out GitHub Pages branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac
         with:
           ref: gh-pages
 
       - name: Remove current files
         run: git rm -r '*'
 
-      - name: Download build artifact archive
-        uses: actions/download-artifact@v3
+      - name: Download distribution archive
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a
         with:
           name: tromino-puzzle-web-dist
 
-      - name: Compute checksum of downloaded artifact
-        run: sha512sum --binary './dist.tar'
+      - name: Verify checksum of distribution archive
+        run: >-
+          echo '${{ needs.build.outputs.dist-checksum }}'
+          | sha512sum --check
 
-      - name: Unarchive files
+      - name: Extract distribution archive
         run: |-
           tar --extract --file=dist.tar
           rm './dist.tar'
@@ -121,16 +133,28 @@ jobs:
       - name: Display file structure
         run: ls -R
 
-      - name: Publish web app to GitHub Pages
+      - name: Configure Git committer information
         run: |-
-          echo '* -text' > .gitattributes
-          if git diff --exit-code ; then
-            git config --global user.name 'Continuous Deployment Job'
-            git config --global user.email 'oboukli@users.noreply.github.com'
-            git add --all -- ':!.gitattributes'
-            git status
+          git config --global user.name 'Continuous Deployment Job'
+          git config --global user.email 'oboukli@users.noreply.github.com'
+
+      - name: Avoid mutating text files by Git
+        run: echo '* -text' > '.gitattributes'
+
+      - name: Bypass Jekyll on GitHub Pages
+        run: touch .nojekyll
+
+      - name: Update Git index
+        run: git add --all -- ':!.gitattributes'
+
+      - name: Git status
+        run: git status
+
+      - name: Push to GitHub Pages branch
+        run: |-
+          if git diff HEAD --exit-code --stat ; then
+            echo 'No changes found. Push skipped.'
+          else
             git commit --amend --all --date=now --message='Automated deployment'
             git push --force
-          else
-            echo 'No web app changes found. Publish step skipped.'
           fi

@@ -45,6 +45,7 @@
     "msbuild",
     "nodiscard",
     "noext",
+    "nojekyll",
     "nproc",
     "oboukli",
     "OpenSSF",
