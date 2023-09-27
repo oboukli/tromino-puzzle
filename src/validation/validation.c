@@ -42,7 +42,7 @@ bool trmn_is_valid_coordinate(int const c, int const order)
 #pragma clang attribute push( \
     __attribute__((no_sanitize("unsigned-integer-overflow"))), \
     apply_to = function)
-#endif // __clang__
+#endif /* __clang__ */
 
 bool trmn_is_order_overflow_safe(int const order)
 {
@@ -53,7 +53,7 @@ bool trmn_is_order_overflow_safe(int const order)
 
 #if __clang__
 #pragma clang attribute pop
-#endif // __clang__
+#endif /* __clang__ */
 
 bool trmn_is_valid_config(int const order, int const x, int const y)
 {
