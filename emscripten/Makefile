@@ -36,9 +36,28 @@ else
 	RM ::= rm -f
 endif
 
-CPPFLAGS ::= -DNDEBUG -I$(INC_DIR)
-CFLAGS ::= -std=c99 -g0 -O3 -flto -Wall -Werror
-CXXFLAGS ::= -std=c++17 -g0 -O3 -flto -fno-rtti -fno-exceptions -Wall -Werror
+CPPFLAGS ::= \
+	-DNDEBUG \
+	-I$(INC_DIR) \
+
+CFLAGS ::= \
+	-flto \
+	-g0 \
+	-O3 \
+	-std=c99 \
+	-Wall \
+	-Werror \
+
+CXXFLAGS ::= \
+	-flto \
+	-fno-exceptions \
+	-fno-rtti \
+	-g0 \
+	-O3 \
+	-std=c++17 \
+	-Wall \
+	-Werror \
+
 LDFLAGS ::=
 
 .PHONY: all clean litro trmn webapp
