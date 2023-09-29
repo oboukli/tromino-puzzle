@@ -36,9 +36,9 @@ void add_tromino(
     int const flip_y,
     void* const state) noexcept
 {
-    auto const steps{static_cast<std::vector<tromino::gfx2d::Step>*>(state)};
+    auto const steps_{static_cast<std::vector<tromino::gfx2d::Step>*>(state)};
 
-    steps->emplace_back(pos_x, pos_y, flip_x, flip_y);
+    steps_->emplace_back(pos_x, pos_y, flip_x, flip_y);
 }
 
 void init(int const width) noexcept
