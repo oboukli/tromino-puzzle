@@ -37,7 +37,7 @@ else
 endif
 
 CPPFLAGS ::= -DNDEBUG -I$(INC_DIR)
-CFLAGS ::= -std=c17 -g0 -O3 -flto -Wall -Werror
+CFLAGS ::= -std=c99 -g0 -O3 -flto -Wall -Werror
 CXXFLAGS ::= -std=c++17 -g0 -O3 -flto -fno-rtti -fno-exceptions -Wall -Werror
 LDFLAGS ::=
 
