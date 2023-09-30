@@ -65,6 +65,9 @@ jobs:
           sudo ./vcpkg/vcpkg install sdl2 --triplet x64-osx-dynamic
           sudo ./vcpkg/vcpkg install sdl2 --triplet arm64-osx-dynamic
 
+      - name: Make build script executable
+        run: chmod +x xcode/Tromino2d/scripts/uni.sh
+
       - name: Build trominocli
         run: >-
           xcodebuild
@@ -106,7 +109,7 @@ jobs:
         run: |-
           ls -Al | grep -v '^d'
           shasum --algorithm 512 --binary UnitTests
-          shasum --algorithm 512 --binary libSDL2-2.0.dylib
+          shasum --algorithm 512 --binary libSDL2-2.0.0.dylib
           shasum --algorithm 512 --binary libtromino-validation.a
           shasum --algorithm 512 --binary libtromino.a
           shasum --algorithm 512 --binary libtromino2d.a

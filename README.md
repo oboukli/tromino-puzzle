@@ -76,6 +76,12 @@ git clone https://github.com/microsoft/vcpkg
 ./vcpkg/vcpkg install sdl2 --triplet arm64-osx-dynamic
 ```
 
+In addition, the build script must be made executable:
+
+```shell
+chmod +x xcode/Tromino2d/scripts/uni.sh
+```
+
 Boost Test is required for building the the unit tests:
 
 ```shell
