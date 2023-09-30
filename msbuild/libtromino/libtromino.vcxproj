@@ -16,6 +16,7 @@
     <ProjectGuid>{67c72ae0-f810-4766-bc5d-aede7210943c}</ProjectGuid>
     <RootNamespace>libtromino</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <DisableLanguageExtensions>true</DisableLanguageExtensions>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">

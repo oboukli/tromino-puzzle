@@ -19,6 +19,7 @@
     <ProjectGuid>{3c67f85a-fb1f-4244-822b-2887dc62dce5}</ProjectGuid>
     <RootNamespace>TrominoPuzzleCli</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <DisableLanguageExtensions>true</DisableLanguageExtensions>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">

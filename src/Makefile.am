@@ -5,7 +5,8 @@
 # SPDX-License-Identifier: MIT
 
 AM_CPPFLAGS =
-AM_CFLAGS =
+AM_CFLAGS = \
+	-std=c99
 AM_CXXFLAGS =
 AM_LDFLAGS = \
 	-Wl,--fatal-warnings \

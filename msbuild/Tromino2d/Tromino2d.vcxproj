@@ -19,6 +19,7 @@
     <ProjectGuid>{63d50462-2a96-4526-80d7-a678cb63690a}</ProjectGuid>
     <RootNamespace>Tromino2d</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <DisableLanguageExtensions>true</DisableLanguageExtensions>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
