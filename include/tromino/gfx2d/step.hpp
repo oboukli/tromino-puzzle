@@ -17,9 +17,11 @@ public:
     int fy;
 
     constexpr Step(
-        int const posx, int const posy, int const flpx, int const flpy) noexcept
-        :
-        px{posx}, py{posy}, fx{flpx}, fy{flpy}
+        int const pos_x,
+        int const pos_y,
+        int const flp_x,
+        int const flp_y) noexcept :
+        px{pos_x}, py{pos_y}, fx{flp_x}, fy{flp_y}
     {
     }
 
