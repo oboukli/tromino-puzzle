@@ -77,8 +77,6 @@ jobs:
         run: tromino 2 0 0
 
       - name: Compute SHA512 of artifacts
-        env:
-          PACKAGE_VERSION: 0.12.8.0
         run: |-
           ls -Al './' | grep -v '^d'
           ls -Al './src/' | grep -v '^d'
@@ -90,5 +88,6 @@ jobs:
           sha512sum --binary './src/tromino'
           sha512sum --binary './src/tromino2d'
           sha512sum --binary './test/libtromino_test'
-          sha512sum --binary './trmnpzzl-${{ env.PACKAGE_VERSION }}.tar.gz'
+          find . -type f -name 'trmnpzzl-*.tar.gz' \
+          -exec sha512sum --binary {} \; -quit
         working-directory: ${{ env.BUILD_PATH }}
