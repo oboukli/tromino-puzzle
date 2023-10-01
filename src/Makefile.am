@@ -46,10 +46,13 @@ AM_CXXFLAGS = \
 	-Wunused \
 	-Wuseless-cast
 AM_LDFLAGS = \
-	-Wl,--fatal-warnings \
 	-no-undefined \
 	-version-info $(LIBTROMINO_CURRENT):$(LIBTROMINO_REVISION):$(LIBTROMINO_AGE) \
-	-Wl,--warn-common
+	-Wl,--fatal-warnings \
+	-Wl,--no-undefined \
+	-Wl,--warn-alternate-em \
+	-Wl,--warn-common \
+	-Wl,--warn-unresolved-symbols
 
 if CODE_COVERAGE_ENABLED
 AM_CPPFLAGS += $(CODE_COVERAGE_CPPFLAGS)
