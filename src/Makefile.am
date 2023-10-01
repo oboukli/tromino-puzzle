@@ -6,8 +6,45 @@
 
 AM_CPPFLAGS =
 AM_CFLAGS = \
-	-std=c99
-AM_CXXFLAGS =
+	-std=c99 \
+	-Wall \
+	-Wcast-align \
+	-Wconversion \
+	-Wdouble-promotion \
+	-Wduplicated-branches \
+	-Wduplicated-cond \
+	-Werror \
+	-Wformat=2 \
+	-Wimplicit-fallthrough \
+	-Wlogical-op \
+	-Wmisleading-indentation \
+	-Wnull-dereference \
+	-Wpedantic \
+	-Wshadow \
+	-Wsign-conversion \
+	-Wunused
+AM_CXXFLAGS = \
+	-Wall \
+	-Wcast-align \
+	-Wconversion \
+	-Wdouble-promotion \
+	-Wduplicated-branches \
+	-Wduplicated-cond \
+	-Weffc++ \
+	-Werror \
+	-Wformat=2 \
+	-Wimplicit-fallthrough \
+	-Wlogical-op \
+	-Wmisleading-indentation \
+	-Wnon-virtual-dtor \
+	-Wnull-dereference \
+	-Wold-style-cast \
+	-Woverloaded-virtual \
+	-Wpedantic \
+	-Wshadow \
+	-Wsign-conversion \
+	-Wunused \
+	-Wuseless-cast
 AM_LDFLAGS = \
 	-Wl,--fatal-warnings \
 	-no-undefined \
@@ -33,6 +70,7 @@ lib_LTLIBRARIES += libtromino.la
 
 libtromino_validation_la_SOURCES = validation/validation.c
 libtromino_validation_la_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
 	-I$(top_srcdir)/include/tromino/validation
 include_HEADERS += $(top_srcdir)/include/tromino/validation/validation.h
 lib_LTLIBRARIES += libtromino-validation.la
@@ -51,6 +89,7 @@ tromino_SOURCES = \
 	cli/wrapper.cpp \
 	cli/wrapper.hpp
 tromino_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
 	-I$(top_srcdir)/include
 tromino_CXXFLAGS = \
 	$(AM_CXXFLAGS) \
@@ -65,6 +104,7 @@ libtromino_gfx2d_la_SOURCES = \
 	gfx2d/view_model.cpp \
 	gfx2d/window.cpp
 libtromino_gfx2d_la_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
 	-I/usr/include/SDL2 \
 	-I$(top_srcdir)/include \
 	-I$(top_srcdir)/include/tromino/gfx2d
@@ -91,6 +131,7 @@ tromino2d_SOURCES = \
 	gui/main.cpp \
 	gui/params.hpp
 tromino2d_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
 	-I/usr/include/SDL2 \
 	-I$(top_srcdir)/include
 tromino2d_CXXFLAGS = \
