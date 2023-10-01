@@ -46,7 +46,20 @@ CFLAGS ::= \
 	-O3 \
 	-std=c99 \
 	-Wall \
+	-Wcast-align \
+	-Wconversion \
+	-Wdouble-promotion \
 	-Werror \
+	-Wextra \
+	-Wformat=2 \
+	-Wimplicit-fallthrough \
+	-Wmisleading-indentation \
+	-Wnon-virtual-dtor \
+	-Wnull-dereference \
+	-Wold-style-cast \
+	-Woverloaded-virtual \
+	-Wpedantic \
+	-Wshadow \
 
 CXXFLAGS ::= \
 	-flto \
@@ -56,7 +69,22 @@ CXXFLAGS ::= \
 	-O3 \
 	-std=c++20 \
 	-Wall \
+	-Wcast-align \
+	-Wconversion \
+	-Wdouble-promotion \
 	-Werror \
+	-Wextra \
+	-Wformat=2 \
+	-Wimplicit-fallthrough \
+	-Wmisleading-indentation \
+	-Wnon-virtual-dtor \
+	-Wnull-dereference \
+	-Wold-style-cast \
+	-Woverloaded-virtual \
+	-Wpedantic \
+	-Wshadow \
+	-Wsign-conversion \
+	-Wunused \
 
 LDFLAGS ::=
 
@@ -79,6 +107,7 @@ $(TARGET_LITRO): $(OBJ_DIR)/core/tromino.o $(OBJ_DIR)/wasm/litro/litro.o
 		-s ALLOW_TABLE_GROWTH \
 		-s ALLOW_UNIMPLEMENTED_SYSCALLS \
 		-s ASSERTIONS=0 \
+		-s CHECK_NULL_WRITES=0 \
 		-s DISABLE_EXCEPTION_CATCHING \
 		-s DYNAMIC_EXECUTION=0 \
 		-s ENVIRONMENT=web \
@@ -112,6 +141,7 @@ $(TARGET_TRMN): $(OBJ_DIR)/core/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/trmn/trm
 		-s ALLOW_UNIMPLEMENTED_SYSCALLS \
 		-s ASSERTIONS=0 \
 		-s ASYNCIFY \
+		-s CHECK_NULL_WRITES=0 \
 		-s DISABLE_EXCEPTION_CATCHING \
 		-s DYNAMIC_EXECUTION=0 \
 		-s ENVIRONMENT=web \
