@@ -54,7 +54,7 @@ CXXFLAGS ::= \
 	-fno-rtti \
 	-g0 \
 	-O3 \
-	-std=c++17 \
+	-std=c++20 \
 	-Wall \
 	-Werror \
 

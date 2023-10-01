@@ -174,7 +174,7 @@ The following is a partial list of standards, practices, software,
 and ideas leveraged by this project:
 
 - C (standard C99)
-- C++ (standard C++17)
+- C++ (standard C++17 and C++20)
 - C++ STL
 - No C++ inheritance
 - No C++ exceptions (experimental)

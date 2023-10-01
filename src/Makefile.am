@@ -52,6 +52,9 @@ tromino_SOURCES = \
 	cli/wrapper.hpp
 tromino_CPPFLAGS = \
 	-I$(top_srcdir)/include
+tromino_CXXFLAGS = \
+	$(AM_CXXFLAGS) \
+	-std=c++20
 tromino_LDADD = \
 	libtromino.la \
 	libtromino-validation.la
@@ -90,6 +93,9 @@ tromino2d_SOURCES = \
 tromino2d_CPPFLAGS = \
 	-I/usr/include/SDL2 \
 	-I$(top_srcdir)/include
+tromino2d_CXXFLAGS = \
+	$(AM_CXXFLAGS) \
+	-std=c++20
 tromino2d_LDFLAGS = \
 	$(AM_LDFLAGS) \
 	-lpthread \
