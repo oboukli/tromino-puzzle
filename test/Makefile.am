@@ -6,10 +6,35 @@
 
 AM_CPPFLAGS =
 AM_CFLAGS = \
-	-std=c99
+	-std=c99 \
+	-Wpedantic \
+	-Werror
 AM_CXXFLAGS = \
-	-std=c++20
-AM_LDFLAGS =
+	-Wall \
+	-Wcast-align \
+	-Wconversion \
+	-Wdouble-promotion \
+	-Wduplicated-branches \
+	-Wduplicated-cond \
+	-Weffc++ \
+	-Werror \
+	-Wformat=2 \
+	-Wimplicit-fallthrough \
+	-Wlogical-op \
+	-Wmisleading-indentation \
+	-Wnon-virtual-dtor \
+	-Wnull-dereference \
+	-Wold-style-cast \
+	-Woverloaded-virtual \
+	-Wpedantic \
+	-Wshadow \
+	-Wsign-conversion \
+	-Wunused \
+	-Wuseless-cast
+AM_LDFLAGS = \
+	-Wl,--fatal-warnings \
+	-no-undefined \
+	-Wl,--warn-common
 
 if CODE_COVERAGE_ENABLED
 AM_CPPFLAGS += $(CODE_COVERAGE_CPPFLAGS)
@@ -30,11 +55,17 @@ libtromino_test_SOURCES = \
 	main.cpp \
 	validation/validation_unittest.cpp
 
+libtromino_test_CXXFLAGS = \
+	$(AM_CXXFLAGS) \
+	-std=c++20
+
 libtromino_test_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
 	$(BOOST_CPPFLAGS) \
 	-I$(top_srcdir)/include
 
 libtromino_test_LDFLAGS = \
+	$(AM_LDFLAGS) \
 	$(BOOST_LDFLAGS) \
 	$(BOOST_UNIT_TEST_FRAMEWORK_LDFLAGS)
 
