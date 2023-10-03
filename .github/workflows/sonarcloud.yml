@@ -113,31 +113,31 @@ jobs:
           make clean all check
 
       - name: Run tromino
-        run: ./src/tromino 2> /dev/null || true
+        run: ./tromino 2> /dev/null || true
 
       - name: Run tromino 5 0 0
-        run: ./src/tromino 5 0 0 2> /dev/null || true
+        run: ./tromino 5 0 0 2> /dev/null || true
 
       - name: Run tromino 2 0 7
-        run: ./src/tromino 2 0 7 2> /dev/null || true
+        run: ./tromino 2 0 7 2> /dev/null || true
 
       - name: Run tromino 2 0 1
-        run: ./src/tromino 2 0 1
+        run: ./tromino 2 0 1
 
       - name: Run tromino 8 3 5
-        run: ./src/tromino 8 3 5
+        run: ./tromino 8 3 5
 
       - name: Run tromino2d
-        run: ./src/tromino2d 2> /dev/null || true
+        run: ./tromino2d 2> /dev/null || true
 
       - name: Run tromino2d 5 0 0
-        run: ./src/tromino2d 5 0 0 2> /dev/null || true
+        run: ./tromino2d 5 0 0 2> /dev/null || true
 
       - name: Run tromino2d 8192 0 0
-        run: ./src/tromino2d 8192 0 0 2> /dev/null || true
+        run: ./tromino2d 8192 0 0 2> /dev/null || true
 
       - name: Run tromino2d 1024 0 0 -f
-        run: ./src/tromino2d 1024 0 0 -f 2> /dev/null || true
+        run: ./tromino2d 1024 0 0 -f 2> /dev/null || true
 
       - name: Start Xvfb
         run: Xvfb :99 -screen 0 1024x768x24 &
@@ -145,12 +145,12 @@ jobs:
       - name: Run tromino2d 2 0 0 -f
         env:
           DISPLAY: :99
-        run: ./src/tromino2d 2 0 0 -f
+        run: ./tromino2d 2 0 0 -f
 
       - name: Run tromino2d 8 2 5
         env:
           DISPLAY: :99
-        run: ./src/tromino2d 8 2 5
+        run: ./tromino2d 8 2 5
 
       - name: Run gcovr
         run: >-
