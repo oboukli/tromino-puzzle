@@ -79,15 +79,12 @@ jobs:
       - name: Compute SHA512 of artifacts
         run: |-
           ls -Al './' | grep -v '^d'
-          ls -Al './src/' | grep -v '^d'
-          ls -Al './src/.libs/' | grep -v '^d'
-          ls -Al './test/' | grep -v '^d'
-          sha512sum --binary './src/.libs/libtromino.a'
-          sha512sum --binary './src/.libs/libtromino-gfx2d.a'
-          sha512sum --binary './src/.libs/libtromino-validation.a'
-          sha512sum --binary './src/tromino'
-          sha512sum --binary './src/tromino2d'
-          sha512sum --binary './test/libtromino_test'
+          sha512sum --binary 'libtromino-gfx2d.la'
+          sha512sum --binary 'libtromino-validation.la'
+          sha512sum --binary 'libtromino.la'
+          sha512sum --binary 'libtromino_test'
+          sha512sum --binary 'tromino'
+          sha512sum --binary 'tromino2d'
           find . -type f -name 'trmnpzzl-*.tar.gz' \
           -exec sha512sum --binary {} \; -quit
         working-directory: ${{ env.BUILD_PATH }}

@@ -42,7 +42,7 @@ AX_CXX_COMPILE_STDCXX([17], [noext], [mandatory])
 AC_PROG_SED
 
 LT_INIT(disable-shared)
-AC_CONFIG_FILES([Makefile src/Makefile test/Makefile])
+AC_CONFIG_FILES([Makefile])
 
 AX_BOOST_BASE([1.71.0], [], [AC_MSG_ERROR([Boost is not available])])
 AX_BOOST_UNIT_TEST_FRAMEWORK

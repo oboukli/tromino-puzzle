@@ -72,7 +72,7 @@ jobs:
           --leak-check=full
           --show-leak-kinds=all
           ./tromino 8 3 7
-        working-directory: ${{ env.BUILD_PATH }}/src
+        working-directory: ${{ env.BUILD_PATH }}
 
       - name: Start Xvfb
         run: Xvfb :99 -screen 0 1024x768x24 &
@@ -86,4 +86,4 @@ jobs:
           --leak-check=full
           --show-leak-kinds=all
           ./tromino2d 8 3 7
-        working-directory: ${{ env.BUILD_PATH }}/src
+        working-directory: ${{ env.BUILD_PATH }}
