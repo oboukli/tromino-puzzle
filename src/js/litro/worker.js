@@ -40,23 +40,11 @@ let _isSolverReady = false;
 
 /** @type {EmModule} */
 let _emModule;
-/** @type {PromiseLike<object>} */
-let instancePromise;
+
 /** @type {Promise<EmModule>} */
 let emModulePromise;
 
 importScripts("litro-wasm.js", "wrapper.js");
-
-/**
- * @returns {PromiseLike<object>}
- */
-function initWasmAsync() {
-  return WebAssembly.instantiateStreaming(fetch("litro-wasm.wasm"), {
-    env: {
-      memory: new WebAssembly.Memory({ initial: 1, maximum: 1 }),
-    },
-  });
-}
 
 /**
  * @returns {Promise<EmModule>}
@@ -72,8 +60,7 @@ function initEmscriptenModuleAsync() {
  */
 async function handleSolveAsync({ order, markX, markY }) {
   if (!_isSolverReady) {
-    const [, emModule] = await Promise.all([instancePromise, emModulePromise]);
-    _emModule = emModule;
+    _emModule = await emModulePromise;
     _isSolverReady = true;
   }
 
@@ -96,7 +83,6 @@ async function handleCommandAsync(cmd, payload) {
   return Promise.resolve();
 }
 
-instancePromise = initWasmAsync();
 emModulePromise = initEmscriptenModuleAsync();
 
 self.addEventListener(
