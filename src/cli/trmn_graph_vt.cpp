@@ -7,23 +7,74 @@
 #include "trmn_graph_vt.hpp"
 #include "wrapper.hpp"
 
+#include <algorithm>
 #include <array>
 #include <cassert>
 #include <chrono>
-#include <cstddef>
+#include <iostream>
+#include <string_view>
 #include <thread>
+
+#ifdef _WIN64
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+#endif // _WIN64
 
 namespace tromino::cli::vt {
 
 namespace {
+
+constexpr std::string_view const TITLE{"Tromino Puzzle"};
+
+constexpr std::string_view const BEL{"\a"};
+constexpr std::string_view const ESC{"\x1b"};
+constexpr std::string_view const CSI{
+    "\x1b"
+    "["};
+
+constexpr std::string_view const BOARD_BACKGROUND_COLOR{"23"};
+
+constexpr std::string_view const MARK_BACKGROUND_COLOR{"199"};
+constexpr std::string_view const MARK_FOREGROUND_COLOR{"216"};
+
+constexpr std::string_view const TROMINO_BACKGROUND_COLOR{"18"};
+constexpr std::string_view const TROMINO_FOREGROUND_COLOR{"226"};
+
+constexpr char const EMPTY{' '};
+constexpr char const MARK{'X'};
+constexpr char const NEUTRAL{'N'};
+
+#ifdef TROMINO_USE_ASCII
+constexpr char const HORIZONTAL{'-'};
+constexpr char const VERTICAL{'|'};
+constexpr char const TOP_LEFT{'+'};
+constexpr char const TOP_RIGHT{'+'};
+constexpr char const BOTTOM_LEFT{'+'};
+constexpr char const BOTTOM_RIGHT{'+'};
+#else
+constexpr char const HORIZONTAL{'\x71'};
+constexpr char const VERTICAL{'\x78'};
+constexpr char const TOP_LEFT{'\x6c'};
+constexpr char const TOP_RIGHT{'\x6b'};
+constexpr char const BOTTOM_LEFT{'\x6d'};
+constexpr char const BOTTOM_RIGHT{'\x6a'};
+#endif // TROMINO_USE_ASCII
+
+void draw_board(board_t const& board, std::ostream& os) noexcept;
+
+inline void init_board(board_t const& board) noexcept
+{
+    std::fill_n(board.board_matrix.get(), board.size, EMPTY);
+
+    board.board_matrix[calc_index(board.mark_x, board.mark_y, board.order)]
+        = MARK;
+}
 
 inline void
 draw_at(int const x, int const y, char const c, std::ostream& os) noexcept
 {
     os << CSI << y << ";" << x << "H" << c;
 }
-
-} // namespace
 
 void draw_board(board_t const& board, std::ostream& os) noexcept
 {
@@ -37,6 +88,8 @@ void draw_board(board_t const& board, std::ostream& os) noexcept
         }
     }
 }
+
+} // namespace
 
 void add_tromino(
     int const pos_x,
