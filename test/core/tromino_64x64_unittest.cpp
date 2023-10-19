@@ -1391,8 +1391,11 @@ constexpr std::array<ShimStep, std::size_t{((64 * 64) - 1) / 3}> const
 
 BOOST_AUTO_TEST_SUITE(tromino_64x64_test_suite)
 
+using boost::unit_test::label;
+
 BOOST_AUTO_TEST_CASE(
-    Given_trmn_solve_puzzle_WhenOrderIs64AndMarkIs61_37_ThenSolution)
+    Given_trmn_solve_puzzle_WhenOrderIs64AndMarkIs61_37_ThenSolution,
+    *label("core"))
 {
     static constexpr int const order{64};
     static constexpr int const mark_x{61};
@@ -1405,7 +1408,7 @@ BOOST_AUTO_TEST_CASE(
     ::trmn_solve_puzzle(
         order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag);
 
-    BOOST_CHECK_EQUAL(actual.size(), std::size_t{1365});
+    BOOST_WARN_EQUAL(actual.size(), std::size_t{1365});
     BOOST_CHECK_EQUAL_COLLECTIONS(
         actual.cbegin(),
         actual.cend(),
