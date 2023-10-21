@@ -7,9 +7,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libtromino", "libtromino\li
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libtromino_validation", "libtromino_validation\libtromino_validation.vcxproj", "{7F327585-53DE-4F6B-919B-1244189B2D40}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TrominoPuzzle.Cli", "TrominoPuzzle.Cli\TrominoPuzzle.Cli.vcxproj", "{3C67F85A-FB1F-4244-822B-2887DC62DCE5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TrominoCli", "TrominoCli\TrominoCli.vcxproj", "{3C67F85A-FB1F-4244-822B-2887DC62DCE5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibTromino.Test", "LibTromino.Test\LibTromino.Test.vcxproj", "{A6E987AD-EED6-46D7-B521-6EDEA4C50F97}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTestsHost", "UnitTestsHost\UnitTestsHost.vcxproj", "{A6E987AD-EED6-46D7-B521-6EDEA4C50F97}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tromino2d", "Tromino2d\Tromino2d.vcxproj", "{63D50462-2A96-4526-80D7-A678CB63690A}"
 EndProject

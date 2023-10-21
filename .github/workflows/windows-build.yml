@@ -57,7 +57,7 @@ jobs:
             ) }}
 
       - name: Install Boost.Test vcpkg package
-        run: vcpkg install boost-test --triplet x64-windows
+        run: vcpkg install boost-test --triplet x64-windows-static
         working-directory: vcpkg
 
       - name: Install SDL2 vcpkg package
@@ -89,7 +89,7 @@ jobs:
       - name: Compute SHA512 of artifacts
         run: |-
           ls
-          Get-FileHash LibTromino.Test.exe -Algorithm SHA512
+          Get-FileHash UnitTestsHost.exe -Algorithm SHA512
           Get-FileHash tromino.exe -Algorithm SHA512
           Get-FileHash tromino2d.exe -Algorithm SHA512
           Get-FileHash libtromino_validation.lib -Algorithm SHA512
@@ -97,11 +97,11 @@ jobs:
           Get-FileHash libtromino2d.lib -Algorithm SHA512
         working-directory: ${{ github.workspace }}\msbuild\x64\Release\
 
-      # LibTromino.Test.exe
+      # UnitTestsHost.exe
 
       - name: Run unit tests
         run: |-
-          .\LibTromino.Test.exe
+          .\UnitTestsHost.exe
         shell: cmd
         working-directory: ${{ github.workspace }}\msbuild\x64\Release\
 
