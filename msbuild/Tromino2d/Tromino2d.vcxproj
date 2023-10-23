@@ -71,7 +71,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;SDL2.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;SDL2d.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\vcpkg\installed\x64-windows\debug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -124,7 +124,7 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <Content Include="$(SolutionDir)..\vcpkg\installed\x64-windows\debug\bin\SDL2.dll" >
+    <Content Include="$(SolutionDir)..\vcpkg\installed\x64-windows\debug\bin\SDL2d.dll" >
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

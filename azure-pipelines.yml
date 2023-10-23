@@ -79,7 +79,7 @@ jobs:
         displayName: Integrate vcpkg
         workingDirectory: $(primaryRepository)
 
-      - script: vcpkg\vcpkg install --triplet x64-windows boost-test
+      - script: vcpkg\vcpkg install --triplet x64-windows-static boost-test
         displayName: Install Boost.Test vcpkg package
         workingDirectory: $(primaryRepository)
 
