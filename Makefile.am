@@ -112,7 +112,6 @@ libtromino_gfx2d_la_SOURCES = \
 	src/gfx2d/window.cpp
 libtromino_gfx2d_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
-	-I/usr/include/SDL2 \
 	-I$(top_srcdir)/include/tromino/gfx2d
 libtromino_gfx2d_la_LDFLAGS = \
 	$(AM_LDFLAGS) \
@@ -138,7 +137,6 @@ tromino2d_SOURCES = \
 	src/gui/params.hpp
 tromino2d_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
-	-I/usr/include/SDL2 \
 	-I$(top_srcdir)/include
 tromino2d_CXXFLAGS = \
 	$(AM_CXXFLAGS) \
