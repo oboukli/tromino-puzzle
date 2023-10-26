@@ -276,7 +276,6 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept
     os << std::flush;
 
 #ifdef _WIN64
-    assert(dwConsoleOriginalMode != 0);
     ::SetConsoleMode(hStdout, dwConsoleOriginalMode);
 #endif // _WIN64
 }
