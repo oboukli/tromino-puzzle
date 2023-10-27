@@ -52,6 +52,7 @@ jobs:
             ${{ github.workspace }}\vcpkg
           key: >-
             ${{ runner.os }}-vcpkg-archives-cache-${{ hashFiles(
+              'ci/cache-key-salt/windows.txt',
               'vcpkg/ports/boost-test/vcpkg.json',
               'vcpkg/ports/sdl2/vcpkg.json'
             ) }}

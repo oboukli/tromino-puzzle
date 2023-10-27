@@ -64,6 +64,7 @@ jobs:
           key: >-
             "vcpkg"
             | "$(Agent.OS)"
+            | $(primaryRepository)\ci\cache-key-salt\windows.txt
             | $(primaryRepository)\vcpkg\ports\boost-test\vcpkg.json
             | $(primaryRepository)\vcpkg\ports\sdl2\vcpkg.json
           path: $(binariesDir)

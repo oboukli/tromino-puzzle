@@ -48,6 +48,7 @@ jobs:
             emsdk/upstream
           key: >-
             emscripten-sdk-cache-${{ hashFiles(
+              'ci/cache-key-salt/emscripten.txt',
               'emsdk/emsdk_manifest.json'
             ) }}
 
