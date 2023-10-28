@@ -60,6 +60,13 @@ constexpr char const BOTTOM_LEFT{'\x6d'};
 constexpr char const BOTTOM_RIGHT{'\x6a'};
 #endif // TROMINO_USE_ASCII
 
+void add_tromino(
+    int const pos_x,
+    int const pos_y,
+    int const flip_x,
+    int const flip_y,
+    graph_state_t* const graph_state) noexcept;
+
 void draw_board(board_t const& board, std::ostream& os) noexcept;
 
 inline void init_board(board_t const& board) noexcept
@@ -88,8 +95,6 @@ void draw_board(board_t const& board, std::ostream& os) noexcept
         }
     }
 }
-
-} // namespace
 
 void add_tromino(
     int const pos_x,
@@ -150,6 +155,8 @@ void add_tromino(
 
     std::this_thread::sleep_for(DELAY_AFTER);
 }
+
+} // namespace
 
 void use_vt(board_t& tromino_board, std::ostream& os) noexcept
 {

@@ -13,13 +13,6 @@
 
 namespace tromino::cli::vt {
 
-void add_tromino(
-    int const pos_x,
-    int const pos_y,
-    int const flip_x,
-    int const flip_y,
-    graph_state_t* const graph_state) noexcept;
-
 void use_vt(board_t& tromino_board, std::ostream& os) noexcept;
 
 } // namespace tromino::cli::vt
