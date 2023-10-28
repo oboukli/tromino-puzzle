@@ -80,7 +80,7 @@ inline void init_board(board_t const& board) noexcept
 inline void
 draw_at(int const x, int const y, char const c, std::ostream& os) noexcept
 {
-    os << CSI << y << ";" << x << "H" << c;
+    os << CSI << y << ';' << x << 'H' << c;
 }
 
 void draw_board(board_t const& board, std::ostream& os) noexcept
@@ -88,7 +88,7 @@ void draw_board(board_t const& board, std::ostream& os) noexcept
     int const order{board.order};
     for (int i{0}; i < order; ++i)
     {
-        os << CSI << 1 + i << ";" << 1 << "H";
+        os << CSI << 1 + i << ';' << 1 << 'H';
         for (int j{0}; j < order; ++j)
         {
             os << board.board_matrix[calc_index(j, i, order)];
@@ -212,7 +212,7 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept
         << CSI << "2J"
 
         // Set board background color
-        << CSI << "48;5;" << BOARD_BACKGROUND_COLOR << "m";
+        << CSI << "48;5;" << BOARD_BACKGROUND_COLOR << 'm';
     // clang-format on
 
     draw_board(tromino_board, os);
@@ -223,10 +223,10 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept
         << CSI << "1m"
 
         // Set mark background color
-        << CSI << "48;5;" << MARK_BACKGROUND_COLOR << "m"
+        << CSI << "48;5;" << MARK_BACKGROUND_COLOR << 'm'
 
         // Set mark foreground color
-        << CSI << "38;5;" << MARK_FOREGROUND_COLOR << "m"
+        << CSI << "38;5;" << MARK_FOREGROUND_COLOR << 'm'
 
         ;
     // clang-format on
@@ -236,10 +236,10 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept
     // clang-format off
     os
         // Set tromino background color
-        << CSI << "48;5;" << TROMINO_BACKGROUND_COLOR << "m"
+        << CSI << "48;5;" << TROMINO_BACKGROUND_COLOR << 'm'
 
         // Set tromino foreground color
-        << CSI << "38;5;" << TROMINO_FOREGROUND_COLOR << "m"
+        << CSI << "38;5;" << TROMINO_FOREGROUND_COLOR << 'm'
 
 #ifndef TROMINO_USE_ASCII
         // Use VT100 Special graphics characters
@@ -272,7 +272,7 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept
         << ESC << "0)"
 
         // Reset to initial state (RIS)
-        << ESC << "c"
+        << ESC << 'c'
 
         // Exit the alternate buffer
         << CSI << "?1049l"

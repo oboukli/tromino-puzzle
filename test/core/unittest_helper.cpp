@@ -23,7 +23,7 @@ void print_shim_step_vector(std::vector<ShimStep> const& steps) noexcept
     {
         // clang-format off
         std::cout
-            << "{"
+            << '{'
             << s.pos_x << ", " << s.pos_y
             << ", "
             << s.flip_x << ", " << s.flip_y

@@ -53,7 +53,7 @@ public:
         // clang-format off
         return os
             << "Tromino position: (" << s.pos_x << ", " << s.pos_y
-            << "). Flip: (" << s.flip_x << ", " << s.flip_y << ")";
+            << "). Flip: (" << s.flip_x << ", " << s.flip_y << ')';
         // clang-format on
     }
 };
