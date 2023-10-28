@@ -151,7 +151,7 @@ void add_tromino(
 
     draw_at(order, order, '\0', os);
 
-    os << std::flush;
+    os.flush();
 
     std::this_thread::sleep_for(DELAY_AFTER);
 }
@@ -249,7 +249,7 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept
         ;
     // clang-format on
 
-    os << std::flush;
+    os.flush();
 
     graph_state_t graph_state{.os = os, .board = tromino_board};
 
@@ -280,7 +280,7 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept
     ;
     // clang-format on
 
-    os << std::flush;
+    os.flush();
 
 #ifdef _WIN64
     ::SetConsoleMode(hStdout, dwConsoleOriginalMode);
