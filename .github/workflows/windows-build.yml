@@ -60,15 +60,15 @@ jobs:
             ) }}
 
       - name: Install Boost.Test vcpkg package
-        run: vcpkg install boost-test --triplet x64-windows-static
+        run: .\vcpkg install --triplet x64-windows-static boost-test
         working-directory: vcpkg
 
       - name: Install SDL2 vcpkg package
-        run: vcpkg install sdl2 --triplet x64-windows
+        run: .\vcpkg install --triplet x64-windows sdl2
         working-directory: vcpkg
 
       - name: Integrate vcpkg
-        run: vcpkg integrate install
+        run: .\vcpkg integrate install
         working-directory: vcpkg
 
       - name: Set up MSBuild
