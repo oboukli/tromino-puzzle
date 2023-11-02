@@ -6,15 +6,50 @@
 
 #include "trmn_graph_windows.hpp"
 
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+
+#include <algorithm>
 #include <array>
 #include <cassert>
 #include <chrono>
-#include <iostream>
 #include <thread>
+
+#include "tromino/core/tromino.h"
 
 namespace tromino::cli::windows {
 
 namespace {
+
+constexpr char const neutral{'N'};
+constexpr char const empty{'\xB0'};
+
+constexpr char const mark{'\xFE'};
+constexpr char const horizontal{'\xCD'};
+constexpr char const vertical{'\xBA'};
+constexpr char const top_left{'\xC9'};
+constexpr char const top_right{'\xBB'};
+constexpr char const bottom_left{'\xC8'};
+constexpr char const bottom_right{'\xBC'};
+
+void add_tromino(
+    int const pos_x,
+    int const pos_y,
+    int const flip_x,
+    int const flip_y,
+    void* const state) noexcept;
+
+void ensure_success(::BOOL const is_success, std::string const& msg) noexcept;
+
+void draw_board(board_t const& board) noexcept;
+
+inline void init_board(board_t const& board) noexcept
+{
+    std::fill_n(board.board_matrix.get(), board.size, empty);
+
+    board.board_matrix[calc_index(board.mark_x, board.mark_y, board.order)]
+        = mark;
+}
 
 inline void draw_at(int const x, int const y, char const c) noexcept
 {
@@ -49,8 +84,6 @@ void ensure_success(::BOOL const is_success, std::string const& msg) noexcept
         ::ExitProcess(EXIT_FAILURE);
     }
 }
-
-} // namespace
 
 void draw_board(board_t const& board) noexcept
 {
@@ -121,6 +154,8 @@ void add_tromino(
     std::cout << std::endl;
     std::this_thread::sleep_for(DELAY_AFTER);
 }
+
+} // namespace
 
 void use_wch(board_t& tromino_board, std::ostream& os) noexcept
 {
