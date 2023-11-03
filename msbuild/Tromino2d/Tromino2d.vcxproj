@@ -64,7 +64,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;$(Tromino2dDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\include;$(SolutionDir)..\include\tromino\gfx2d;$(SolutionDir)..\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\include;$(SolutionDir)..\include\tromino\gui;$(SolutionDir)..\include\tromino\gfx2d;$(SolutionDir)..\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -83,7 +83,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;$(Tromino2dDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\include;$(SolutionDir)..\include\tromino\gfx2d;$(SolutionDir)..\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\include;$(SolutionDir)..\include\tromino\gui;$(SolutionDir)..\include\tromino\gfx2d;$(SolutionDir)..\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -97,11 +97,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\gui\callback.hpp" />
-    <ClInclude Include="..\..\src\gui\cli_models.hpp" />
-    <ClInclude Include="..\..\src\gui\cli_options.hpp" />
-    <ClInclude Include="..\..\src\gui\init.hpp" />
-    <ClInclude Include="..\..\src\gui\params.hpp" />
+    <ClInclude Include="..\..\include\tromino\gui\callback.hpp" />
+    <ClInclude Include="..\..\include\tromino\gui\cli_models.hpp" />
+    <ClInclude Include="..\..\include\tromino\gui\cli_options.hpp" />
+    <ClInclude Include="..\..\include\tromino\gui\init.hpp" />
+    <ClInclude Include="..\..\include\tromino\gui\params.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\gui\callback.cpp" />

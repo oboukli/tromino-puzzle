@@ -15,19 +15,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\gui\callback.hpp">
+    <ClInclude Include="..\..\include\tromino\gui\callback.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\gui\cli_models.hpp">
+    <ClInclude Include="..\..\include\tromino\gui\cli_models.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\gui\cli_options.hpp">
+    <ClInclude Include="..\..\include\tromino\gui\cli_options.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\gui\init.hpp">
+    <ClInclude Include="..\..\include\tromino\gui\init.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\gui\params.hpp">
+    <ClInclude Include="..\..\include\tromino\gui\params.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
