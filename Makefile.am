@@ -65,59 +65,67 @@ AM_LDFLAGS += $(CODE_COVERAGE_LIBS)
 endif
 
 bin_PROGRAMS =
-include_HEADERS =
 lib_LTLIBRARIES =
 
-libtromino_la_SOURCES = src/core/tromino.c
+coreincludedir = tromino/core
+libtromino_la_SOURCES = \
+	src/core/tromino.c
 libtromino_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
 	-I$(top_srcdir)/include/tromino/core
-include_HEADERS += include/tromino/core/tromino.h
+coreinclude_HEADERS = \
+	include/tromino/core/tromino.h
 lib_LTLIBRARIES += libtromino.la
 
-libtromino_validation_la_SOURCES = src/validation/validation.c
+validationincludedir = tromino/validation
+libtromino_validation_la_SOURCES = \
+	src/validation/validation.c
 libtromino_validation_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
 	-I$(top_srcdir)/include/tromino/validation
-include_HEADERS += include/tromino/validation/validation.h
+validationinclude_HEADERS = \
+	include/tromino/validation/validation.h
 lib_LTLIBRARIES += libtromino-validation.la
 
+cliincludedir = tromino/cli
 tromino_SOURCES = \
-	src/cli/cli_models.hpp \
 	src/cli/cli_options.cpp \
-	src/cli/cli_options.hpp \
 	src/cli/init.cpp \
-	src/cli/init.hpp \
 	src/cli/main.cpp \
-	src/cli/params.hpp \
 	src/cli/trmn_graph_vt.cpp \
-	src/cli/trmn_graph_vt.hpp \
-	src/cli/trmn_graph.hpp \
-	src/cli/wrapper.cpp \
-	src/cli/wrapper.hpp
+	src/cli/wrapper.cpp
 tromino_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
-	-I$(top_srcdir)/include
+	-I$(top_srcdir)/include \
+	-I$(top_srcdir)/include/tromino/cli
 tromino_CXXFLAGS = \
 	$(AM_CXXFLAGS) \
 	-std=c++20
 tromino_LDADD = \
 	$(top_builddir)/libtromino.la \
 	$(top_builddir)/libtromino-validation.la
+cliinclude_HEADERS = \
+	include/tromino/cli/cli_models.hpp \
+	include/tromino/cli/cli_options.hpp \
+	include/tromino/cli/init.hpp \
+	include/tromino/cli/params.hpp \
+	include/tromino/cli/trmn_graph_vt.hpp \
+	include/tromino/cli/trmn_graph.hpp \
+	include/tromino/cli/wrapper.hpp
 bin_PROGRAMS += tromino
 
+gfx2dincludedir = tromino/gfx2d
 libtromino_gfx2d_la_SOURCES = \
 	src/gfx2d/gfx2d.cpp \
 	src/gfx2d/view_model.cpp \
 	src/gfx2d/window.cpp
 libtromino_gfx2d_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
-	-I/usr/include/SDL2 \
 	-I$(top_srcdir)/include/tromino/gfx2d
 libtromino_gfx2d_la_LDFLAGS = \
 	$(AM_LDFLAGS) \
 	-lSDL2
-include_HEADERS += \
+gfx2dinclude_HEADERS = \
 	include/tromino/gfx2d/board.hpp \
 	include/tromino/gfx2d/gfx2d.hpp \
 	include/tromino/gfx2d/step.hpp \
@@ -126,20 +134,16 @@ include_HEADERS += \
 	include/tromino/gfx2d/window.hpp
 lib_LTLIBRARIES += libtromino-gfx2d.la
 
+guiincludedir = tromino/gui
 tromino2d_SOURCES = \
 	src/gui/callback.cpp \
-	src/gui/callback.hpp \
-	src/gui/cli_models.hpp \
 	src/gui/cli_options.cpp \
-	src/gui/cli_options.hpp \
 	src/gui/init.cpp \
-	src/gui/init.hpp \
-	src/gui/main.cpp \
-	src/gui/params.hpp
+	src/gui/main.cpp
 tromino2d_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
-	-I/usr/include/SDL2 \
-	-I$(top_srcdir)/include
+	-I$(top_srcdir)/include \
+	-I$(top_srcdir)/include/tromino/gui
 tromino2d_CXXFLAGS = \
 	$(AM_CXXFLAGS) \
 	-std=c++20
@@ -151,6 +155,12 @@ tromino2d_LDADD = \
 	$(top_builddir)/libtromino.la \
 	$(top_builddir)/libtromino-gfx2d.la \
 	$(top_builddir)/libtromino-validation.la
+guiinclude_HEADERS = \
+	include/tromino/gui/callback.hpp \
+	include/tromino/gui/cli_models.hpp \
+	include/tromino/gui/cli_options.hpp \
+	include/tromino/gui/init.hpp \
+	include/tromino/gui/params.hpp
 bin_PROGRAMS += tromino2d
 
 check_PROGRAMS = libtromino_test

@@ -17,21 +17,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		75002AB727A5EB8C00CBB593 /* cli_options.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.hpp; path = cli_options.hpp; sourceTree = "<group>"; };
 		75002AB827A5EB8C00CBB593 /* cli_options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cli_options.cpp; sourceTree = "<group>"; };
-		75003E312A5777910035069F /* cli_models.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = cli_models.hpp; sourceTree = "<group>"; };
-		7503E76F26C88C910018B1F2 /* trmn_graph.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.hpp; path = trmn_graph.hpp; sourceTree = "<group>"; };
 		7503E77026C88C910018B1F2 /* trmn_graph_vt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trmn_graph_vt.cpp; sourceTree = "<group>"; };
 		7503E77226C88C910018B1F2 /* init.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = init.cpp; sourceTree = "<group>"; };
-		7503E77426C88C910018B1F2 /* init.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.hpp; path = init.hpp; sourceTree = "<group>"; };
 		7503E77826C88C910018B1F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		7503E77926C88C910018B1F2 /* trmn_graph_vt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.hpp; path = trmn_graph_vt.hpp; sourceTree = "<group>"; };
+		75298C202AF04FF00072728C /* cli_options.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = cli_options.hpp; path = ../../include/tromino/cli/cli_options.hpp; sourceTree = "<group>"; };
+		75298C212AF04FF00072728C /* init.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = init.hpp; path = ../../include/tromino/cli/init.hpp; sourceTree = "<group>"; };
+		75298C222AF04FF00072728C /* trmn_graph_vt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = trmn_graph_vt.hpp; path = ../../include/tromino/cli/trmn_graph_vt.hpp; sourceTree = "<group>"; };
+		75298C232AF04FF00072728C /* cli_models.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = cli_models.hpp; path = ../../include/tromino/cli/cli_models.hpp; sourceTree = "<group>"; };
+		75298C242AF04FF00072728C /* trmn_graph_windows.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = trmn_graph_windows.hpp; path = ../../include/tromino/cli/trmn_graph_windows.hpp; sourceTree = "<group>"; };
+		75298C252AF04FF00072728C /* trmn_graph.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = trmn_graph.hpp; path = ../../include/tromino/cli/trmn_graph.hpp; sourceTree = "<group>"; };
+		75298C262AF04FF00072728C /* wrapper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = wrapper.hpp; path = ../../include/tromino/cli/wrapper.hpp; sourceTree = "<group>"; };
+		75298C272AF04FF00072728C /* params.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = params.hpp; path = ../../include/tromino/cli/params.hpp; sourceTree = "<group>"; };
 		75376BA22A636F7400872DB9 /* libtromino-validation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libtromino-validation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		755F9D232811CB3B004C54E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		758EF489284E50FA0069A198 /* libtromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libtromino.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7594DBDB26C4822400CF433E /* tromino */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tromino; sourceTree = BUILT_PRODUCTS_DIR; };
-		75E2E8BC27FCB7CF00B0525E /* params.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.hpp; path = params.hpp; sourceTree = "<group>"; };
-		75F8E26E2A560B5A0092CF73 /* wrapper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wrapper.hpp; sourceTree = "<group>"; };
 		75F8E26F2A560B5A0092CF73 /* wrapper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wrapper.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,18 +52,19 @@
 		7503E76E26C88C910018B1F2 /* cli */ = {
 			isa = PBXGroup;
 			children = (
-				75003E312A5777910035069F /* cli_models.hpp */,
+				75298C232AF04FF00072728C /* cli_models.hpp */,
+				75298C202AF04FF00072728C /* cli_options.hpp */,
+				75298C212AF04FF00072728C /* init.hpp */,
+				75298C272AF04FF00072728C /* params.hpp */,
+				75298C222AF04FF00072728C /* trmn_graph_vt.hpp */,
+				75298C242AF04FF00072728C /* trmn_graph_windows.hpp */,
+				75298C252AF04FF00072728C /* trmn_graph.hpp */,
+				75298C262AF04FF00072728C /* wrapper.hpp */,
 				75002AB827A5EB8C00CBB593 /* cli_options.cpp */,
-				75002AB727A5EB8C00CBB593 /* cli_options.hpp */,
 				7503E77226C88C910018B1F2 /* init.cpp */,
-				7503E77426C88C910018B1F2 /* init.hpp */,
 				7503E77826C88C910018B1F2 /* main.cpp */,
-				75E2E8BC27FCB7CF00B0525E /* params.hpp */,
 				7503E77026C88C910018B1F2 /* trmn_graph_vt.cpp */,
-				7503E77926C88C910018B1F2 /* trmn_graph_vt.hpp */,
-				7503E76F26C88C910018B1F2 /* trmn_graph.hpp */,
 				75F8E26F2A560B5A0092CF73 /* wrapper.cpp */,
-				75F8E26E2A560B5A0092CF73 /* wrapper.hpp */,
 			);
 			name = cli;
 			path = ../../src/cli;

@@ -172,13 +172,19 @@ $(OBJ_DIR)/core/tromino.o: $(SRC_DIR)/core/tromino.c
 
 $(OBJ_DIR)/wasm/litro/litro.o: $(SRC_DIR)/wasm/litro/litro.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CPPFLAGS) $(CFLAGS) \
+	$(CC) \
+		$(CPPFLAGS) \
+		-I $(INC_DIR)/tromino/wasm/litro \
+		$(CFLAGS) \
 		-c $< \
 		-o $@
 
 $(OBJ_DIR)/wasm/trmn/trmn.o: $(SRC_DIR)/wasm/trmn/trmn.cpp
 	@mkdir -p $(dir $@)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) \
+	$(CXX) \
+		$(CPPFLAGS) \
+		-I $(INC_DIR)/tromino/wasm/trmn \
+		$(CXXFLAGS) \
 		-s USE_SDL=2 \
 		-c $< \
 		-o $@
