@@ -145,7 +145,7 @@ jobs:
     pool:
       vmImage: ubuntu-latest
     variables:
-      emsdkVersion: 3.1.47
+      emsdkVersion: 3.1.49
       numMakeJobs: 3
     steps:
       - task: DockerInstaller@0
