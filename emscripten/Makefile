@@ -7,6 +7,9 @@
 TARGET_LITRO ::= litro-wasm.js
 TARGET_TRMN ::= trmn-wasm.js
 
+CC=/home/runner/work/tromino-puzzle/tromino-puzzle/emsdk/emcc
+CXX=/home/runner/work/tromino-puzzle/tromino-puzzle/emsdk/em++
+
 SRC_DIR ::= ../src
 INC_DIR ::= ../include
 OBJ_DIR ::= ../obj/web
