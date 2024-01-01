@@ -26,7 +26,7 @@ void print_usage(std::ostream& os) noexcept
 #else
         "\n\n"
 #endif // _WIN64
-        "Copyright (c) 2021-2023 Omar Boukli-Hacene. All rights reserved.\n"
+        "Copyright (c) 2021-2024 Omar Boukli-Hacene. All rights reserved.\n"
         << std::endl;
     // clang-format on
 }
