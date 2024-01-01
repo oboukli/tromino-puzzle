@@ -220,7 +220,7 @@ and ideas leveraged by this project:
 ## License
 
 This software is released under an [MIT-style license](LICENSE).
-Copyright © 2021-2023 Omar Boukli-Hacene.
+Copyright © 2021-2024 Omar Boukli-Hacene.
 
 SPDX license identifier: MIT.
 
