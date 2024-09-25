@@ -134,8 +134,9 @@ $(TARGET_LITRO): $(OBJ_DIR)/core/tromino.o $(OBJ_DIR)/wasm/litro/litro.o
 $(TARGET_TRMN): $(OBJ_DIR)/core/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/trmn/trmn.o
 	$(MKDIR) $(OUT_DIR)/$(TRMN_DIR_NAME)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) \
-		--closure 1 \
 		--no-entry \
+		-l html5 \
+		-l EGL \
 		-l GL \
 		-s ALLOW_TABLE_GROWTH \
 		-s ALLOW_UNIMPLEMENTED_SYSCALLS \
