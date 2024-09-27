@@ -86,7 +86,6 @@ jobs:
           -workspace TrominoPuzzle.xcworkspace
           -scheme Tromino2d
           -configuration Release
-          -destination 'platform=macOS,arch=x86_64'
           CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }}
           build
         working-directory: xcode
@@ -97,7 +96,6 @@ jobs:
           -workspace TrominoPuzzle.xcworkspace
           -scheme UnitTests
           -configuration Debug
-          -destination 'platform=macOS,arch=x86_64'
           CONFIGURATION_BUILD_DIR=${{ env.BUILD_PATH }}
           build
         working-directory: xcode

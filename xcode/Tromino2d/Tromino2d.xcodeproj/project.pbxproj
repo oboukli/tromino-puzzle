@@ -206,7 +206,6 @@
 			baseConfigurationReference = 755F9D242811CB67004C54E0 /* Config.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
@@ -274,7 +273,12 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
-				SYSTEM_HEADER_SEARCH_PATHS = "../../vcpkg/installed/x64-osx-dynamic/include";
+				"SYSTEM_HEADER_SEARCH_PATHS[arch=arm64]" = (
+					"../../vcpkg/installed/arm64-osx-dynamic/include",
+				);
+				"SYSTEM_HEADER_SEARCH_PATHS[arch=x86_64]" = (
+					"../../vcpkg/installed/x64-osx-dynamic/include",
+				);
 			};
 			name = Debug;
 		};
@@ -282,7 +286,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 755F9D242811CB67004C54E0 /* Config.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
@@ -341,7 +344,12 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
-				SYSTEM_HEADER_SEARCH_PATHS = "../../vcpkg/installed/x64-osx-dynamic/include";
+				"SYSTEM_HEADER_SEARCH_PATHS[arch=arm64]" = (
+					"../../vcpkg/installed/arm64-osx-dynamic/include",
+				);
+				"SYSTEM_HEADER_SEARCH_PATHS[arch=x86_64]" = (
+					"../../vcpkg/installed/x64-osx-dynamic/include",
+				);
 			};
 			name = Release;
 		};
