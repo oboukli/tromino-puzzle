@@ -20,7 +20,7 @@ jobs:
   - job: macOS
     displayName: Build for macOS
     pool:
-      vmImage: macOS-latest
+      vmImage: macOS-14
     variables:
       configuration: Release
       scheme: TrominoCli
@@ -33,7 +33,7 @@ jobs:
           xcWorkspacePath: xcode/TrominoPuzzle.xcworkspace
           scheme: $(scheme)
           configuration: $(configuration)
-          xcodeVersion: 13
+          xcodeVersion: 16
           destinationPlatformOption: macOS
           packageApp: false
 
