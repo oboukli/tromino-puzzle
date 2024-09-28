@@ -31,7 +31,7 @@ jobs:
         run: sudo npm install --global markdownlint-cli
 
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 

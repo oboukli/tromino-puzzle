@@ -47,7 +47,7 @@ jobs:
 
       - name: Apply vcpkg cache
         id: vcpkg-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |-
             %VCPKG_DEFAULT_BINARY_CACHE%
@@ -72,7 +72,7 @@ jobs:
         working-directory: vcpkg
 
       - name: Set up MSBuild
-        uses: microsoft/setup-msbuild@v1
+        uses: microsoft/setup-msbuild@v2
         with:
           msbuild-architecture: ${{ env.BUILD_PLATFORM }}
 
