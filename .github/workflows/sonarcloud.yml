@@ -56,9 +56,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: sonarscanner_cache
-          key: ${{ runner.os }}-sonar-${{ hashFiles(
-            'ci/cache-key-salt/sonarscanner.txt'
-          ) }}
+          key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Download and set up sonar-scanner
