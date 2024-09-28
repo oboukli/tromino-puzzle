@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - name: Check out Emscripten repository
-        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac
+        uses: actions/checkout@v4
         with:
           ref: ${{ env.EMSDK_VERSION }}
           repository: emscripten-core/emsdk
@@ -40,7 +40,7 @@ jobs:
 
       - name: Emscripten SDK cache
         id: emscripten-sdk-cache
-        uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84
+        uses: actions/cache@v4
         with:
           path: |-
             emsdk/downloads
@@ -59,7 +59,7 @@ jobs:
         working-directory: emsdk
 
       - name: Check out main repository
-        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac
+        uses: actions/checkout@v4
         with:
           path: tromino-puzzle
           persist-credentials: false
@@ -92,7 +92,7 @@ jobs:
         working-directory: ${{ env.BUILD_PATH }}
 
       - name: Store distribution archive
-        uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32
+        uses: actions/upload-artifact@v4
         continue-on-error: false
         with:
           if-no-files-found: error
@@ -109,7 +109,7 @@ jobs:
 
     steps:
       - name: Check out GitHub Pages branch
-        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac
+        uses: actions/checkout@v4
         with:
           ref: gh-pages
 
@@ -117,7 +117,7 @@ jobs:
         run: git rm -r '*'
 
       - name: Download distribution archive
-        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a
+        uses: actions/download-artifact@v4
         with:
           name: tromino-puzzle-web-dist
 
