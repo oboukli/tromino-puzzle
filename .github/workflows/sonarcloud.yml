@@ -13,8 +13,6 @@ on:
   push:
     branches:
       - main
-  schedule:
-    - cron: 10 22 * * 5
   workflow_dispatch:
 
 permissions: {}
@@ -25,8 +23,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SONAR_SCANNER_VERSION: 5.0.1.3006
-      SONAR_SERVER_URL: https://sonarcloud.io
+      SONAR_HOST_URL: https://sonarcloud.io
       BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory
       COVERAGE_REPORTS_PATH: ${{ github.workspace }}/coverage.xml
 
@@ -47,55 +44,15 @@ jobs:
           xvfb
 
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v3
-        with:
-          path: sonarscanner_cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-
-      - name: Download and set up sonar-scanner
+      - name: Install sonar-scanner and build-wrapper
+        uses: sonarsource/sonarqube-github-c-cpp@v2
         env:
-          SONAR_SCANNER_DOWNLOAD_URL: https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ env.SONAR_SCANNER_VERSION }}-linux.zip
-        run: >-
-          mkdir --parents "$HOME/.sonar"
-
-          curl
-          --silent
-          --show-error
-          --location
-          --output "$HOME/.sonar/sonar-scanner.zip"
-          '${{ env.SONAR_SCANNER_DOWNLOAD_URL }}'
-
-          unzip
-          -o "$HOME/.sonar/sonar-scanner.zip"
-          -d "$HOME/.sonar/"
-
-          echo "$HOME/.sonar/sonar-scanner-${{ env.SONAR_SCANNER_VERSION }}-linux/bin"
-          >> "$GITHUB_PATH"
-
-      - name: Download and set up build-wrapper
-        env:
-          BUILD_WRAPPER_DOWNLOAD_URL: ${{ env.SONAR_SERVER_URL }}/static/cpp/build-wrapper-linux-x86.zip
-        run: >-
-          curl
-          --silent
-          --show-error
-          --location
-          --output "$HOME/.sonar/build-wrapper-linux-x86.zip"
-          '${{ env.BUILD_WRAPPER_DOWNLOAD_URL }}'
-
-          unzip
-          -o "$HOME/.sonar/build-wrapper-linux-x86.zip"
-          -d "$HOME/.sonar/"
-
-          echo "$HOME/.sonar/build-wrapper-linux-x86"
-          >> "$GITHUB_PATH"
+          SONAR_HOST_URL: ${{ env.SONAR_HOST_URL }}
 
       - name: Run autogen.sh
         run: ./autogen.sh
@@ -167,6 +124,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: >-
           sonar-scanner
-          --define sonar.host.url='${{ env.SONAR_SERVER_URL }}'
-          --define sonar.cfamily.build-wrapper-output='${{ env.BUILD_WRAPPER_OUT_DIR }}'
+          --define sonar.host.url='${{ env.SONAR_HOST_URL }}'
+          --define sonar.cfamily.compile-commands='${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json'
           --define sonar.coverageReportPaths='${{ env.COVERAGE_REPORTS_PATH }}'
