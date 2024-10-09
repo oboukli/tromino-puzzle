@@ -264,7 +264,7 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept
         static_cast<void*>(&solver_state),
         &stop_flag);
 
-    std::cin.get();
+    std::cin.get(); // TODO:
 
     // clang-format off
     os

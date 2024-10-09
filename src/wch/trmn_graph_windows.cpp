@@ -51,9 +51,10 @@ inline void init_board(board_t const& board) noexcept
         = mark;
 }
 
-inline void draw_at(int const x, int const y, char const c) noexcept
+inline void draw_at(
+    const int x, const int y, const char c, std::ostream& os) noexcept
 {
-    std::cout << c;
+    os << c;
 }
 
 inline void
@@ -66,7 +67,13 @@ draw_at(int const x, int const y, char const c, ::HANDLE const hOutput) noexcept
 
     ::SetConsoleCursorPosition(hOutput, coord);
 
-    draw_at(x, y, c);
+    // https://docs.microsoft.com/en-us/windows/console/writeconsoleoutput
+    // ::WriteConsoleOutput
+
+    // https://docs.microsoft.com/en-us/windows/console/writeconsole
+    // ::WriteConsole
+
+    draw_at(x, y, c); // TODO:
 }
 
 void ensure_success(::BOOL const is_success, std::string const& msg) noexcept
@@ -75,7 +82,7 @@ void ensure_success(::BOOL const is_success, std::string const& msg) noexcept
     {
         auto const error{::GetLastError()};
         // clang-format off
-        std::cerr
+        std::cerr // TODO:
             << "Windows API error: " << error
             << "Message: " << msg
             << std::endl;
@@ -85,17 +92,19 @@ void ensure_success(::BOOL const is_success, std::string const& msg) noexcept
     }
 }
 
-void draw_board(board_t const& board) noexcept
+} // namespace
+
+void draw_board(board_t const& board, std::ostream os) noexcept
 {
     int const order{board.order};
     for (int i{0}; i < order; ++i)
     {
         for (int j{0}; j < order; ++j)
         {
-            std::cout << board.board_matrix[calc_index(j, i, order)];
+            os << board.board_matrix[calc_index(j, i, order)];
         }
 
-        std::cout << std::endl;
+        os << std::endl; // TODO:
     }
 }
 
@@ -151,7 +160,7 @@ void add_tromino(
     };
     ::SetConsoleCursorPosition(graph_state->hOutput, coord);
 
-    std::cout << std::endl;
+    os << std::endl;
     std::this_thread::sleep_for(DELAY_AFTER);
 }
 
@@ -183,7 +192,7 @@ void use_wch(board_t& tromino_board, std::ostream& os) noexcept
         .X = static_cast<::SHORT>(tromino_board.mark_x),
         .Y = static_cast<::SHORT>(tromino_board.mark_y)};
     ::SetConsoleCursorPosition(hConsoleOutput, coordMark);
-    std::cout << mark;
+    os << mark;
 
     ::SetConsoleTextAttribute(
         hConsoleOutput,

@@ -9,21 +9,10 @@
 
 namespace tromino::cli {
 
-#ifdef _WIN64
-enum class emulation_mode_type {
-    vt100 = 0,
-    wch = 1,
-};
-#endif // _WIN64
-
 struct options {
     int order{};
     int x{};
     int y{};
-#ifdef _WIN64
-    emulation_mode_type emulation_mode{};
-    bool use_wch{};
-#endif // _WIN64
 };
 
 } // namespace tromino::cli

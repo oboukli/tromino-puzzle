@@ -7,11 +7,6 @@
 #ifndef CLI_TRMN_GRAPH_HPP
 #define CLI_TRMN_GRAPH_HPP
 
-#ifdef _WIN64
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-#endif // _WIN64
-
 #include <array>
 #include <cassert>
 #include <cstddef>
@@ -37,9 +32,6 @@ struct board_t {
 struct graph_state_t {
     std::ostream& os;
     board_t& board;
-#ifdef _WIN64
-    ::HANDLE hOutput{};
-#endif // _WIN64
 };
 
 template <typename T>

@@ -29,12 +29,7 @@ int main(int const argc, char const* const argv[]) noexcept
     }
     else
     {
-#ifdef _WIN64
-        tromino::cli::app::init(
-            options.order, options.x, options.y, options.emulation_mode);
-#else
         tromino::cli::app::init(options.order, options.x, options.y);
-#endif // _WIN64
 
         exit_status = EXIT_SUCCESS;
     }

@@ -16,16 +16,8 @@ void print_usage(std::ostream& os) noexcept
 {
     // clang-format off
     os <<
-        "Usage: tromino <order> <x> <y>"
-#ifdef _WIN64
-        " [options]\n"
+        "Usage: tromino <order> <x> <y>\n"
         "\n"
-        "Options:\n"
-        "  --use-wch    Use legacy Windows Console Host instead of VT-100 emulation\n"
-        "\n"
-#else
-        "\n\n"
-#endif // _WIN64
         "Copyright (c) 2021-2024 Omar Boukli-Hacene. All rights reserved.\n"
         << std::endl;
     // clang-format on

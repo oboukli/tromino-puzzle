@@ -24,9 +24,6 @@
     <ClCompile Include="..\..\src\cli\init.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\cli\trmn_graph_windows.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\cli\trmn_graph_vt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
