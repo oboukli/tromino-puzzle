@@ -8,13 +8,8 @@
 #define GUI_CALLBACK_HPP
 
 template <typename T>
-using tromino_cb_t = void (*)(
-    int const pos_x,
-    int const pos_y,
-    int const flip_x,
-    int const flip_y,
-    T* const state
-) noexcept;
+using tromino_cb_t
+    = void (*)(int pos_x, int pos_y, int flip_x, int flip_y, T* state) noexcept;
 
 template <typename T>
 struct SolverState final {
@@ -23,11 +18,7 @@ struct SolverState final {
 };
 
 extern "C" void solve_puzzle_cb(
-    int const pos_x,
-    int const pos_y,
-    int const flip_x,
-    int const flip_y,
-    void* const state
+    int pos_x, int pos_y, int flip_x, int flip_y, void* state
 ) noexcept;
 
 #endif // GUI_CALLBACK_HPP

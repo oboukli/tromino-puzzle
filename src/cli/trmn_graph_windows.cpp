@@ -32,15 +32,10 @@ constexpr char const top_right{'\xBB'};
 constexpr char const bottom_left{'\xC8'};
 constexpr char const bottom_right{'\xBC'};
 
-void add_tromino(
-    int const pos_x,
-    int const pos_y,
-    int const flip_x,
-    int const flip_y,
-    void* const state
-) noexcept;
+void
+add_tromino(int pos_x, int pos_y, int flip_x, int flip_y, void* state) noexcept;
 
-void ensure_success(::BOOL const is_success, std::string const& msg) noexcept;
+void ensure_success(::BOOL is_success, std::string const& msg) noexcept;
 
 void draw_board(board_t const& board) noexcept;
 

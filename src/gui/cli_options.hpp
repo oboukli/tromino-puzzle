@@ -17,10 +17,7 @@ namespace tromino::tromino2d {
 void print_usage(std::ostream& os) noexcept;
 
 bool read_options(
-    int const argc,
-    char const* const argv[],
-    options& options,
-    std::string& error
+    int argc, char const* const argv[], options& options, std::string& error
 ) noexcept;
 
 } // namespace tromino::tromino2d
