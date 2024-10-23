@@ -12,13 +12,13 @@ found in the LICENSE file.
 #include <emscripten.h>
 
 typedef void (*add_tromino_extern_callback)(
-    int const pos_x, int const pos_y, int const flip_x, int const flip_y
+    int pos_x, int pos_y, int flip_x, int flip_y
 );
 
 EMSCRIPTEN_KEEPALIVE void solve(
-    int const order,
-    int const mark_x,
-    int const mark_y,
+    int order,
+    int mark_x,
+    int mark_y,
     add_tromino_extern_callback add_tromino_cb
 );
 

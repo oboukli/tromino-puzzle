@@ -62,11 +62,7 @@ public:
 };
 
 void shim_add_tromino(
-    int const pos_x,
-    int const pos_y,
-    int const flip_x,
-    int const flip_y,
-    void* const state
+    int pos_x, int pos_y, int flip_x, int flip_y, void* state
 ) noexcept;
 
 void print_shim_step_vector(std::vector<ShimStep> const& steps) noexcept;

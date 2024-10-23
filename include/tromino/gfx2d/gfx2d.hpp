@@ -12,42 +12,38 @@
 namespace tromino::gfx2d {
 
 [[nodiscard]] ::SDL_Texture*
-CreateTexture(::SDL_Renderer* const renderer, int const width) noexcept;
+CreateTexture(::SDL_Renderer* renderer, int width) noexcept;
 
 [[nodiscard]] ::SDL_Texture* CreateTrominoTexture(
-    ::SDL_Renderer* const renderer,
-    int const squareWidth,
-    ::SDL_Color const& color
+    ::SDL_Renderer* renderer, int squareWidth, ::SDL_Color const& color
 ) noexcept;
 
 void InitCheckeredBoard(
-    ::SDL_Renderer* const renderer,
-    ::SDL_Texture* const texture,
-    int const squareWidth,
-    int const order,
+    ::SDL_Renderer* renderer,
+    ::SDL_Texture* texture,
+    int squareWidth,
+    int order,
     ::SDL_Color const& wke1Color,
     ::SDL_Color const& bke8Color
 ) noexcept;
 
 void InitSolutionTexture(
-    ::SDL_Renderer* renderer,
-    ::SDL_Texture* const texture,
-    ::SDL_Color const& color
+    ::SDL_Renderer* renderer, ::SDL_Texture* texture, ::SDL_Color const& color
 ) noexcept;
 
 void DrawMark(
-    ::SDL_Renderer* const renderer,
-    int const squareWidth,
-    int const x,
-    int const y,
+    ::SDL_Renderer* renderer,
+    int squareWidth,
+    int x,
+    int y,
     ::SDL_Color const& color
 ) noexcept;
 
 void DrawTrominoOutline(
-    ::SDL_Renderer* const renderer,
-    ::SDL_Texture* const texture,
-    int const squareWidth,
-    int const thickness,
+    ::SDL_Renderer* renderer,
+    ::SDL_Texture* texture,
+    int squareWidth,
+    int thickness,
     ::SDL_Color const& color
 ) noexcept;
 

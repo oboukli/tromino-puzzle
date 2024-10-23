@@ -62,11 +62,7 @@ constexpr char const BOTTOM_RIGHT{'\x6a'};
 #endif // TROMINO_USE_ASCII
 
 void add_tromino(
-    int const pos_x,
-    int const pos_y,
-    int const flip_x,
-    int const flip_y,
-    graph_state_t* const graph_state
+    int pos_x, int pos_y, int flip_x, int flip_y, graph_state_t* graph_state
 ) noexcept;
 
 void draw_board(board_t const& board, std::ostream& os) noexcept;
