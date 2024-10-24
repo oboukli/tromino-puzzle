@@ -25,7 +25,7 @@ class [[nodiscard]] TrominoBoardViewModel final {
 public:
     TrominoBoardViewModel() noexcept = delete;
 
-    explicit TrominoBoardViewModel(::SDL_Window* const window) noexcept;
+    explicit TrominoBoardViewModel(::SDL_Window* window) noexcept;
 
     TrominoBoardViewModel(TrominoBoardViewModel const&) noexcept = delete;
 
@@ -54,7 +54,7 @@ private:
 
     std::size_t _numSteps{0};
     std::size_t _currentStepNum{0};
-    ::SDL_Window* const _window{};
+    ::SDL_Window* _window{};
     renderer_ptr _renderer{nullptr, &::SDL_DestroyRenderer};
     texture_ptr _viewTexture{nullptr, &::SDL_DestroyTexture};
     texture_ptr _solutionTexture{nullptr, &::SDL_DestroyTexture};
@@ -66,7 +66,7 @@ private:
 };
 
 [[nodiscard]] inline ::SDL_RendererFlip
-get_flip(int const flip_x, int const flip_y) noexcept
+get_flip(int flip_x, int flip_y) noexcept
 {
     // clang-format off
     std::uint32_t f{flip_x == 1
