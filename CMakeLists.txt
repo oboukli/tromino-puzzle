@@ -40,7 +40,7 @@ find_package(nameof CONFIG REQUIRED)
 find_package(nanobench CONFIG REQUIRED)
 add_executable(
   benchmark
-  "benchmark/core/tromino_bechmark.cpp"
+  "benchmark/core/tromino_benchmark.cpp"
 )
 target_link_libraries(
   benchmark
