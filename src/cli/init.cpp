@@ -28,7 +28,8 @@ void init(int const order, int const x, int const y) noexcept
         .size = size,
         .order = order,
         .mark_x = x,
-        .mark_y = y};
+        .mark_y = y
+    };
 
     tromino::cli::vt::use_vt(tromino_board, std::cout);
 }
@@ -38,7 +39,8 @@ void init(
     int const order,
     int const x,
     int const y,
-    emulation_mode_type const emulation_mode) noexcept
+    emulation_mode_type const emulation_mode
+) noexcept
 {
     auto const order_internal{static_cast<std::size_t>(order)};
     std::size_t const size{order_internal * order_internal};
@@ -48,7 +50,8 @@ void init(
         .size = size,
         .order = order,
         .mark_x = x,
-        .mark_y = y};
+        .mark_y = y
+    };
 
     if (emulation_mode == emulation_mode_type::wch)
     {

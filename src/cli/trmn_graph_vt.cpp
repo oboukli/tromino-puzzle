@@ -30,7 +30,8 @@ constexpr std::string_view const BEL{"\a"};
 constexpr std::string_view const ESC{"\x1b"};
 constexpr std::string_view const CSI{
     "\x1b"
-    "["};
+    "["
+};
 
 constexpr std::string_view const BOARD_BACKGROUND_COLOR{"23"};
 
@@ -65,7 +66,8 @@ void add_tromino(
     int const pos_y,
     int const flip_x,
     int const flip_y,
-    graph_state_t* const graph_state) noexcept;
+    graph_state_t* const graph_state
+) noexcept;
 
 void draw_board(board_t const& board, std::ostream& os) noexcept;
 
@@ -101,7 +103,8 @@ void add_tromino(
     int const pos_y,
     int const flip_x,
     int const flip_y,
-    graph_state_t* const graph_state) noexcept
+    graph_state_t* const graph_state
+) noexcept
 {
     static constexpr std::chrono::milliseconds const DELAY_AFTER{68};
 
@@ -167,12 +170,14 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept
     ::GetConsoleMode(hStdout, &dwConsoleOriginalMode);
 
     ::DWORD dwConsoleModeRequiredFlags{
-        ENABLE_PROCESSED_OUTPUT | ENABLE_VIRTUAL_TERMINAL_PROCESSING};
+        ENABLE_PROCESSED_OUTPUT | ENABLE_VIRTUAL_TERMINAL_PROCESSING
+    };
     if ((dwConsoleOriginalMode & dwConsoleModeRequiredFlags)
         != dwConsoleModeRequiredFlags)
     {
         ::DWORD dwConsoleModifiedMode{
-            dwConsoleOriginalMode | dwConsoleModeRequiredFlags};
+            dwConsoleOriginalMode | dwConsoleModeRequiredFlags
+        };
         ::SetConsoleMode(hStdout, dwConsoleModifiedMode);
     }
 #endif // _WIN64
@@ -254,7 +259,8 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept
     graph_state_t graph_state{.os = os, .board = tromino_board};
 
     SolverState<graph_state_t> solver_state{
-        .state = &graph_state, .callback = add_tromino};
+        .state = &graph_state, .callback = add_tromino
+    };
     int const stop_flag{0};
     ::trmn_solve_puzzle(
         tromino_board.order,
@@ -262,7 +268,8 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept
         tromino_board.mark_y,
         ::solve_puzzle_cb,
         static_cast<void*>(&solver_state),
-        &stop_flag);
+        &stop_flag
+    );
 
     std::cin.get();
 

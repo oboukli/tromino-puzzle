@@ -11,7 +11,8 @@
 #include <tromino.h>
 
 void dummy_callback(
-    int const px, int const py, int const fx, int const fy, void* const state)
+    int const px, int const py, int const fx, int const fy, void* const state
+)
 {
 }
 
@@ -22,7 +23,8 @@ int main()
         []() {
             int const stop_flag{0};
             trmn_solve_puzzle(16, 1, 7, dummy_callback, nullptr, &stop_flag);
-        })
+        }
+    )
 
         ;
 }

@@ -11,19 +11,22 @@
 namespace tromino::gfx2d {
 
 TrominoBoardViewModel::TrominoBoardViewModel(
-    ::SDL_Window* const window) noexcept :
+    ::SDL_Window* const window
+) noexcept :
     _window(window)
 {
     ::Uint32 const render_flags{
         ::SDL_RendererFlags::SDL_RENDERER_ACCELERATED
         | ::SDL_RendererFlags::SDL_RENDERER_PRESENTVSYNC
-        | ::SDL_RendererFlags::SDL_RENDERER_TARGETTEXTURE};
+        | ::SDL_RendererFlags::SDL_RENDERER_TARGETTEXTURE
+    };
     _renderer.reset(
-        ::SDL_CreateRenderer(_window, RENDERING_DRIVER_IDX, render_flags));
+        ::SDL_CreateRenderer(_window, RENDERING_DRIVER_IDX, render_flags)
+    );
 }
 
-void TrominoBoardViewModel::SetBoard(
-    Board const& board, Style const& style) noexcept
+void
+TrominoBoardViewModel::SetBoard(Board const& board, Style const& style) noexcept
 {
     int const order{board.order};
     int const logicalWidth{SQUARE_LOGICAL_WIDTH * order};
@@ -43,7 +46,8 @@ void TrominoBoardViewModel::SetBoard(
         ::Uint8{0},
         ::Uint8{0},
         ::Uint8{0},
-        ::Uint8{SDL_ALPHA_TRANSPARENT});
+        ::Uint8{SDL_ALPHA_TRANSPARENT}
+    );
     ::SDL_RenderClear(_renderer.get());
 
     _viewTexture.reset(CreateTexture(_renderer.get(), logicalWidth));
@@ -54,31 +58,36 @@ void TrominoBoardViewModel::SetBoard(
         SQUARE_LOGICAL_WIDTH,
         order,
         style.wke1_color,
-        style.bke8_color);
+        style.bke8_color
+    );
 
     DrawMark(
         _renderer.get(),
         SQUARE_LOGICAL_WIDTH,
         board.mark_x,
         board.mark_y,
-        style.mark_color);
+        style.mark_color
+    );
 
     _solutionTexture.reset(CreateTexture(_renderer.get(), logicalWidth));
     ::SDL_Color const color{
-        ::Uint8{0}, ::Uint8{0}, ::Uint8{0}, ::Uint8{SDL_ALPHA_TRANSPARENT}};
+        ::Uint8{0}, ::Uint8{0}, ::Uint8{0}, ::Uint8{SDL_ALPHA_TRANSPARENT}
+    };
     InitSolutionTexture(_renderer.get(), _solutionTexture.get(), color);
 
     if (_trominoTexture == nullptr)
     {
         _trominoTexture.reset(CreateTrominoTexture(
-            _renderer.get(), SQUARE_LOGICAL_WIDTH, style.tromino_color));
+            _renderer.get(), SQUARE_LOGICAL_WIDTH, style.tromino_color
+        ));
 
         DrawTrominoOutline(
             _renderer.get(),
             _trominoTexture.get(),
             SQUARE_LOGICAL_WIDTH,
             OUTLINE_LOGICAL_WIDTH,
-            style.tromino_outline_color);
+            style.tromino_outline_color
+        );
     }
 }
 
@@ -92,16 +101,18 @@ void TrominoBoardViewModel::StepForward() noexcept
     }
 }
 
-void TrominoBoardViewModel::Render(
-    std::vector<Step> const& steps) const noexcept
+void
+TrominoBoardViewModel::Render(std::vector<Step> const& steps) const noexcept
 {
     ::SDL_SetRenderTarget(_renderer.get(), _solutionTexture.get());
     ::SDL_Rect trominoDest{
-        0, 0, SQUARE_LOGICAL_WIDTH * 2, SQUARE_LOGICAL_WIDTH * 2};
+        0, 0, SQUARE_LOGICAL_WIDTH * 2, SQUARE_LOGICAL_WIDTH * 2
+    };
 
     std::size_t const num_ready{steps.size()};
     std::size_t const count{
-        num_ready < _currentStepNum ? num_ready : _currentStepNum};
+        num_ready < _currentStepNum ? num_ready : _currentStepNum
+    };
     for (std::size_t i{0}; i < count; ++i)
     {
         Step const& s{steps[i]};
@@ -114,7 +125,8 @@ void TrominoBoardViewModel::Render(
             &trominoDest,
             .0,
             nullptr,
-            get_flip(s.fx, s.fy));
+            get_flip(s.fx, s.fy)
+        );
     }
 
     ::SDL_SetRenderTarget(_renderer.get(), _viewTexture.get());

@@ -35,7 +35,8 @@ static void solve_tromino(
     int const fy,
     trmn_add_tromino_func_t const add_tromino,
     void* const state,
-    int const* const stop_flag)
+    int const* const stop_flag
+)
 {
     if (*stop_flag == 0)
     {
@@ -58,13 +59,16 @@ static void solve_tromino(
             fy,
             add_tromino,
             state,
-            stop_flag);
+            stop_flag
+        );
 
         solve_tromino(
-            n, _px - (fx * n), _py, fx, fy * -1, add_tromino, state, stop_flag);
+            n, _px - (fx * n), _py, fx, fy * -1, add_tromino, state, stop_flag
+        );
 
         solve_tromino(
-            n, _px, _py - (fy * n), fx * -1, fy, add_tromino, state, stop_flag);
+            n, _px, _py - (fy * n), fx * -1, fy, add_tromino, state, stop_flag
+        );
 
         int const o = n >> 1;
         solve_tromino(
@@ -75,7 +79,8 @@ static void solve_tromino(
             fy,
             add_tromino,
             state,
-            stop_flag);
+            stop_flag
+        );
     }
 }
 
@@ -89,7 +94,8 @@ static void solve_board(
     int const my,
     trmn_add_tromino_func_t const add_tromino,
     void* const state,
-    int const* const stop_flag)
+    int const* const stop_flag
+)
 {
     if (*stop_flag == 0)
     {
@@ -107,7 +113,8 @@ static void solve_board(
             int const _fy = (y >= o) - (y < o);
 
             solve_board(
-                n, _px, _py, _fx, _fy, mx, my, add_tromino, state, stop_flag);
+                n, _px, _py, _fx, _fy, mx, my, add_tromino, state, stop_flag
+            );
         }
 
         solve_tromino(order, px, py, fx, fy, add_tromino, state, stop_flag);
@@ -120,7 +127,8 @@ void trmn_solve_puzzle(
     int const my,
     trmn_add_tromino_func_t const add_tromino,
     void* const state,
-    int const* const stop_flag)
+    int const* const stop_flag
+)
 {
     assert(add_tromino);
 
@@ -136,5 +144,6 @@ void trmn_solve_puzzle(
         my,
         add_tromino,
         state,
-        stop_flag);
+        stop_flag
+    );
 }

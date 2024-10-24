@@ -18,7 +18,8 @@ void init(
     int const order,
     int const x,
     int const y,
-    emulation_mode_type const emulation_mode) noexcept;
+    emulation_mode_type const emulation_mode
+) noexcept;
 #endif // _WIN64
 
 } // namespace tromino::cli::app

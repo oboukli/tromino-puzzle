@@ -48,7 +48,8 @@ inline void start_game_loop(
     tromino::gfx2d::Board const& board,
     SharedState const& shared_state,
     int const width,
-    std::optional<std::string const> const& title) noexcept
+    std::optional<std::string const> const& title
+) noexcept
 {
     using std::literals::chrono_literals::operator""ms;
 
@@ -59,31 +60,39 @@ inline void start_game_loop(
 
     auto const viewModel{
         std::make_unique<tromino::gfx2d::TrominoBoardViewModel>(
-            window->GetSdlWindow())};
+            window->GetSdlWindow()
+        )
+    };
 
     tromino::gfx2d::Style const style{
         .wke1_color{
             ::Uint32{0x4e},
             ::Uint32{0x7d},
             ::Uint32{0xa6},
-            ::Uint32{SDL_ALPHA_OPAQUE}},
+            ::Uint32{SDL_ALPHA_OPAQUE}
+        },
         .bke8_color{
             ::Uint32{0x01},
             ::Uint32{0x23},
             ::Uint32{0x40},
-            ::Uint32{SDL_ALPHA_OPAQUE}},
+            ::Uint32{SDL_ALPHA_OPAQUE}
+        },
         .mark_color{
             ::Uint32{0x8c},
             ::Uint32{0x1b},
             ::Uint32{0x1b},
-            ::Uint32{SDL_ALPHA_OPAQUE}},
+            ::Uint32{SDL_ALPHA_OPAQUE}
+        },
         .tromino_color{
-            ::Uint32{0xd9}, ::Uint32{0x93}, ::Uint32{0x3d}, ::Uint32{0x80}},
+            ::Uint32{0xd9}, ::Uint32{0x93}, ::Uint32{0x3d}, ::Uint32{0x80}
+        },
         .tromino_outline_color{
             ::Uint32{0xd9},
             ::Uint32{0x36},
             ::Uint32{0x36},
-            ::Uint32{SDL_ALPHA_OPAQUE}}};
+            ::Uint32{SDL_ALPHA_OPAQUE}
+        }
+    };
 
     viewModel->SetBoard(board, style);
 
@@ -116,7 +125,8 @@ void add_tromino(
     int const pos_y,
     int const flip_x,
     int const flip_y,
-    SharedState* const shared_state) noexcept
+    SharedState* const shared_state
+) noexcept
 {
     shared_state->emplace_back(pos_x, pos_y, flip_x, flip_y);
 
@@ -129,10 +139,12 @@ void solver(
     int const mark_y,
     tromino_cb_t<SharedState> const tromino_cb,
     SharedState* const state,
-    int const* const stop_flag) noexcept
+    int const* const stop_flag
+) noexcept
 {
     SolverState<SharedState> solver_state{
-        .state = state, .callback = tromino_cb};
+        .state = state, .callback = tromino_cb
+    };
 
     ::trmn_solve_puzzle(
         order,
@@ -140,7 +152,8 @@ void solver(
         mark_y,
         ::solve_puzzle_cb,
         static_cast<void*>(&solver_state),
-        stop_flag);
+        stop_flag
+    );
 }
 
 } // namespace
@@ -148,11 +161,13 @@ void solver(
 int init(
     tromino::gfx2d::Board const& board,
     int const width,
-    std::optional<std::string const> const& title) noexcept
+    std::optional<std::string const> const& title
+) noexcept
 {
     auto const board_order{static_cast<std::size_t>(board.order)};
     std::size_t const num_steps{
-        ((board_order * board_order) - std::size_t{1}) / std::size_t{3}};
+        ((board_order * board_order) - std::size_t{1}) / std::size_t{3}
+    };
 
     SharedState shared_state{};
     shared_state.reserve(num_steps);

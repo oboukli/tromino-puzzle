@@ -19,7 +19,8 @@ static void add_tromino(
     int const pos_y,
     int const flip_x,
     int const flip_y,
-    void* const state)
+    void* const state
+)
 {
     ((struct State*)state)->callback(pos_x, pos_y, flip_x, flip_y);
 }
@@ -28,7 +29,8 @@ EMSCRIPTEN_KEEPALIVE void solve(
     int const order,
     int const mark_x,
     int const mark_y,
-    add_tromino_extern_callback add_tromino_cb)
+    add_tromino_extern_callback add_tromino_cb
+)
 {
     static int const stop_flag = 0;
     struct State state = {.callback = add_tromino_cb};

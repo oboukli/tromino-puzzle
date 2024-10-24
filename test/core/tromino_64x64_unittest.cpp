@@ -16,9 +16,12 @@
 
 namespace {
 
-constexpr std::array<ShimStep, std::size_t{((64 * 64) - 1) / 3}> const
-    g_expected_for_order_64_and_mark_61_37{{
-        // clang-format off
+constexpr std::array<
+    ShimStep,
+    std::size_t{
+        ((64 * 64) - 1) / 3
+    }> const g_expected_for_order_64_and_mark_61_37{{
+    // clang-format off
         {60, 36, 1, 1},
         {62, 38, -1, -1},
         {62, 36, -1, 1},
@@ -1384,8 +1387,8 @@ constexpr std::array<ShimStep, std::size_t{((64 * 64) - 1) / 3}> const
         {30, 32, 1, -1},
         {32, 30, -1, 1},
         {31, 31, 1, 1},
-        // clang-format on
-    }};
+    // clang-format on
+}};
 
 } // namespace
 
@@ -1395,7 +1398,8 @@ using boost::unit_test::label;
 
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs64AndMarkIs61_37_ThenSolution,
-    *label("core"))
+    *label("core")
+)
 {
     static constexpr int const order{64};
     static constexpr int const mark_x{61};
@@ -1406,14 +1410,16 @@ BOOST_AUTO_TEST_CASE(
     actual.reserve(std::size_t{1365});
 
     ::trmn_solve_puzzle(
-        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag);
+        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag
+    );
 
     BOOST_WARN_EQUAL(actual.size(), std::size_t{1365});
     BOOST_CHECK_EQUAL_COLLECTIONS(
         actual.cbegin(),
         actual.cend(),
         g_expected_for_order_64_and_mark_61_37.cbegin(),
-        g_expected_for_order_64_and_mark_61_37.cend());
+        g_expected_for_order_64_and_mark_61_37.cend()
+    );
 }
 
 BOOST_AUTO_TEST_SUITE_END()

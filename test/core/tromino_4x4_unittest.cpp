@@ -25,7 +25,8 @@ using boost::unit_test::label;
 // + - - +
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs0_0_ThenSolution,
-    *label("core"))
+    *label("core")
+)
 {
     static constexpr int const order{4};
     static constexpr int const mark_x{0};
@@ -43,16 +44,19 @@ BOOST_AUTO_TEST_CASE(
     std::vector<ShimStep> actual{};
 
     ::trmn_solve_puzzle(
-        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag);
+        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag
+    );
 
     BOOST_WARN_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend()
+    );
 }
 
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs0_7_ThenSolution,
-    *label("core"))
+    *label("core")
+)
 {
     static constexpr int const order{4};
     static constexpr int const mark_x{0};
@@ -70,16 +74,19 @@ BOOST_AUTO_TEST_CASE(
     std::vector<ShimStep> actual{};
 
     ::trmn_solve_puzzle(
-        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag);
+        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag
+    );
 
     BOOST_WARN_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend()
+    );
 }
 
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs7_0_ThenSolution,
-    *label("core"))
+    *label("core")
+)
 {
     static constexpr int const order{4};
     static constexpr int const mark_x{7};
@@ -97,16 +104,19 @@ BOOST_AUTO_TEST_CASE(
     std::vector<ShimStep> actual{};
 
     ::trmn_solve_puzzle(
-        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag);
+        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag
+    );
 
     BOOST_WARN_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend()
+    );
 }
 
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs7_7_ThenSolution,
-    *label("core"))
+    *label("core")
+)
 {
     static constexpr int const order{4};
     static constexpr int const mark_x{7};
@@ -124,11 +134,13 @@ BOOST_AUTO_TEST_CASE(
     std::vector<ShimStep> actual{};
 
     ::trmn_solve_puzzle(
-        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag);
+        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag
+    );
 
     BOOST_WARN_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend()
+    );
 }
 
 //
@@ -138,7 +150,8 @@ BOOST_AUTO_TEST_CASE(
 // + - + -
 BOOST_AUTO_TEST_CASE(
     Given_trmn_solve_puzzle_WhenOrderIs4AndMarkIs3_2_ThenSolution,
-    *label("core"))
+    *label("core")
+)
 {
     static constexpr int const order{4};
     static constexpr int const mark_x{3};
@@ -156,11 +169,13 @@ BOOST_AUTO_TEST_CASE(
     std::vector<ShimStep> actual{};
 
     ::trmn_solve_puzzle(
-        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag);
+        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag
+    );
 
     BOOST_WARN_EQUAL(actual.size(), std::size_t{5});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend()
+    );
 }
 
 BOOST_AUTO_TEST_SUITE_END()

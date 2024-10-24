@@ -41,7 +41,8 @@ bool trmn_is_valid_coordinate(int const c, int const order)
 #if __clang__
 #pragma clang attribute push( \
     __attribute__((no_sanitize("unsigned-integer-overflow"))), \
-    apply_to = function)
+    apply_to = function \
+)
 #endif /* __clang__ */
 
 bool trmn_is_order_overflow_safe(int const order)
@@ -57,7 +58,8 @@ bool trmn_is_order_overflow_safe(int const order)
 
 bool trmn_is_valid_config(int const order, int const x, int const y)
 {
-    return trmn_is_order_overflow_safe(order) && trmn_is_valid_order(order)
+    return trmn_is_order_overflow_safe(order)
+        && trmn_is_valid_order(order)
         && trmn_is_valid_coordinate(x, order)
         && trmn_is_valid_coordinate(y, order);
 }
