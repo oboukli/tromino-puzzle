@@ -13,7 +13,8 @@ using tromino_cb_t = void (*)(
     int const pos_y,
     int const flip_x,
     int const flip_y,
-    T* const state) noexcept;
+    T* const state
+) noexcept;
 
 template <typename T>
 struct SolverState final {
@@ -26,6 +27,7 @@ extern "C" void solve_puzzle_cb(
     int const pos_y,
     int const flip_x,
     int const flip_y,
-    void* const state) noexcept;
+    void* const state
+) noexcept;
 
 #endif // GUI_CALLBACK_HPP

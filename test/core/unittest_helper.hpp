@@ -20,7 +20,8 @@ public:
     ShimStep() = delete;
 
     constexpr ShimStep(
-        int const px, int const py, int const fx, int const fy) noexcept :
+        int const px, int const py, int const fx, int const fy
+    ) noexcept :
         pos_x{px}, pos_y{py}, flip_x{fx}, flip_y{fy}
     {
     }
@@ -43,8 +44,10 @@ public:
 
     bool operator!=(ShimStep const& rhs) const noexcept
     {
-        return rhs.pos_x != this->pos_x || rhs.pos_y != this->pos_y
-            || rhs.flip_x != this->flip_x || rhs.flip_y != this->flip_y;
+        return rhs.pos_x != this->pos_x
+            || rhs.pos_y != this->pos_y
+            || rhs.flip_x != this->flip_x
+            || rhs.flip_y != this->flip_y;
     }
 
     friend std::ostream&
@@ -63,7 +66,8 @@ void shim_add_tromino(
     int const pos_y,
     int const flip_x,
     int const flip_y,
-    void* const state) noexcept;
+    void* const state
+) noexcept;
 
 void print_shim_step_vector(std::vector<ShimStep> const& steps) noexcept;
 

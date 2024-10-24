@@ -24,7 +24,8 @@ int main(int const argc, char const* const argv[]) noexcept
     tromino::tromino2d::options options{};
     std::string error{};
     if (bool is_error{
-            tromino::tromino2d::read_options(argc, argv, options, error)};
+            tromino::tromino2d::read_options(argc, argv, options, error)
+        };
         is_error
         || (!::trmn_is_valid_config(options.order, options.x, options.y)))
     {
@@ -41,11 +42,13 @@ int main(int const argc, char const* const argv[]) noexcept
             .size = size,
             .order = options.order,
             .mark_x = options.x,
-            .mark_y = options.y};
+            .mark_y = options.y
+        };
 
         using std::string_literals::operator""s;
         exit_status = tromino::tromino2d::init(
-            board, tromino::tromino2d::params::CANVAS_WIDTH, "Tromino Puzzle"s);
+            board, tromino::tromino2d::params::CANVAS_WIDTH, "Tromino Puzzle"s
+        );
     }
 
     return exit_status;

@@ -20,7 +20,8 @@ bool read_options(
     int const argc,
     char const* const argv[],
     options& options,
-    std::string& error) noexcept;
+    std::string& error
+) noexcept;
 
 } // namespace tromino::cli
 

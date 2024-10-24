@@ -15,13 +15,15 @@ constexpr ::Uint32 const WINDOW_FLAGS{0};
 #else
 constexpr ::Uint32 const WINDOW_FLAGS{
     ::SDL_WindowFlags::SDL_WINDOW_ALLOW_HIGHDPI
-    | ::SDL_WindowFlags::SDL_WINDOW_SHOWN};
+    | ::SDL_WindowFlags::SDL_WINDOW_SHOWN
+};
 #endif // __EMSCRIPTEN__
 
 } // namespace
 
 Window::Window(
-    std::optional<std::string const> const& title, int const width) noexcept :
+    std::optional<std::string const> const& title, int const width
+) noexcept :
     _window{
         ::SDL_CreateWindow(
             title ? title.value().c_str() : nullptr,
@@ -29,8 +31,10 @@ Window::Window(
             SDL_WINDOWPOS_CENTERED,
             width,
             width,
-            WINDOW_FLAGS),
-        &::SDL_DestroyWindow}
+            WINDOW_FLAGS
+        ),
+        &::SDL_DestroyWindow
+    }
 {
 }
 

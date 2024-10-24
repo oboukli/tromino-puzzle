@@ -10,9 +10,7 @@
 #include <emscripten.h>
 
 EMSCRIPTEN_KEEPALIVE extern "C" void playTromino(
-    int const order,
-    int const markX,
-    int const markY,
-    int const width) noexcept;
+    int const order, int const markX, int const markY, int const width
+) noexcept;
 
 #endif // WASM_TRMN_TRMN_HPP

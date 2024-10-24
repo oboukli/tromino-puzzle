@@ -37,7 +37,8 @@ void add_tromino(
     int const pos_y,
     int const flip_x,
     int const flip_y,
-    void* const state) noexcept;
+    void* const state
+) noexcept;
 
 void ensure_success(::BOOL const is_success, std::string const& msg) noexcept;
 
@@ -104,7 +105,8 @@ void add_tromino(
     int const pos_y,
     int const flip_x,
     int const flip_y,
-    void* const state) noexcept
+    void* const state
+) noexcept
 {
     static constexpr std::chrono::milliseconds const DELAY_AFTER{68};
 
@@ -171,24 +173,30 @@ void use_wch(board_t& tromino_board, std::ostream& os) noexcept
 
     ::CONSOLE_SCREEN_BUFFER_INFO originalConsoleScreenBufferInfo{};
     ::GetConsoleScreenBufferInfo(
-        ::GetStdHandle(STD_OUTPUT_HANDLE), &originalConsoleScreenBufferInfo);
+        ::GetStdHandle(STD_OUTPUT_HANDLE), &originalConsoleScreenBufferInfo
+    );
 
     ::SetConsoleTextAttribute(hConsoleOutput, FOREGROUND_BLUE);
     draw_board(tromino_board);
 
     ::SetConsoleTextAttribute(
-        hConsoleOutput,
-        FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+        hConsoleOutput, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
+    );
     ::COORD const coordMark{
         .X = static_cast<::SHORT>(tromino_board.mark_x),
-        .Y = static_cast<::SHORT>(tromino_board.mark_y)};
+        .Y = static_cast<::SHORT>(tromino_board.mark_y)
+    };
     ::SetConsoleCursorPosition(hConsoleOutput, coordMark);
     std::cout << mark;
 
     ::SetConsoleTextAttribute(
         hConsoleOutput,
-        FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
-            | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
+        FOREGROUND_RED
+            | FOREGROUND_GREEN
+            | FOREGROUND_INTENSITY
+            | BACKGROUND_BLUE
+            | BACKGROUND_INTENSITY
+    );
 
     int const stop_flag{0};
 
@@ -198,10 +206,12 @@ void use_wch(board_t& tromino_board, std::ostream& os) noexcept
         tromino_board.mark_y,
         add_tromino,
         &graph_state,
-        &stop_flag);
+        &stop_flag
+    );
 
     ::SetConsoleTextAttribute(
-        hConsoleOutput, originalConsoleScreenBufferInfo.wAttributes);
+        hConsoleOutput, originalConsoleScreenBufferInfo.wAttributes
+    );
 }
 
 } // namespace tromino::cli::windows

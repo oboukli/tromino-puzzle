@@ -31,7 +31,8 @@ extern "C" {
 #endif /* __cplusplus */
 
 typedef void (*trmn_add_tromino_func_t)(
-    int const px, int const py, int const fx, int const fy, void* const state);
+    int const px, int const py, int const fx, int const fy, void* const state
+);
 
 void trmn_solve_puzzle(
     int const order,
@@ -39,7 +40,8 @@ void trmn_solve_puzzle(
     int const my,
     trmn_add_tromino_func_t const add_tromino,
     void* const state,
-    int const* const stop_flag);
+    int const* const stop_flag
+);
 
 #ifdef __cplusplus
 }

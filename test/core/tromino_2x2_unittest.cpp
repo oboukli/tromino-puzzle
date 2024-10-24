@@ -29,15 +29,18 @@ BOOST_AUTO_TEST_CASE(GivenK2_WhenTopLeft_ThenSolutionIsK, *label("core"))
     int const stop_flag{0};
 
     static constexpr std::array<ShimStep, std::size_t{1}> const expected{
-        {{0, 0, -1, -1}}};
+        {{0, 0, -1, -1}}
+    };
     std::vector<ShimStep> actual{};
 
     ::trmn_solve_puzzle(
-        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag);
+        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag
+    );
 
     BOOST_WARN_EQUAL(actual.size(), std::size_t{1});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend()
+    );
 }
 
 //
@@ -51,15 +54,18 @@ BOOST_AUTO_TEST_CASE(GivenL2_WhenTopRight_ThenSolutionIsL, *label("core"))
     int const stop_flag{0};
 
     static constexpr std::array<ShimStep, std::size_t{1}> const expected{
-        {{0, 0, 1, -1}}};
+        {{0, 0, 1, -1}}
+    };
     std::vector<ShimStep> actual{};
 
     ::trmn_solve_puzzle(
-        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag);
+        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag
+    );
 
     BOOST_WARN_EQUAL(actual.size(), std::size_t{1});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend()
+    );
 }
 
 //
@@ -73,15 +79,18 @@ BOOST_AUTO_TEST_CASE(GivenM2_WhenBottomLeft_ThenSolutionIsM, *label("core"))
     int const stop_flag{0};
 
     static constexpr std::array<ShimStep, std::size_t{1}> const expected{
-        {{0, 0, -1, 1}}};
+        {{0, 0, -1, 1}}
+    };
     std::vector<ShimStep> actual{};
 
     ::trmn_solve_puzzle(
-        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag);
+        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag
+    );
 
     BOOST_WARN_EQUAL(actual.size(), std::size_t{1});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend()
+    );
 }
 
 //
@@ -95,15 +104,18 @@ BOOST_AUTO_TEST_CASE(GivenN2_WhenBottomRight_ThenSolutionIsN, *label("core"))
     int const stop_flag{0};
 
     static constexpr std::array<ShimStep, std::size_t{1}> const expected{
-        {{0, 0, 1, 1}}};
+        {{0, 0, 1, 1}}
+    };
     std::vector<ShimStep> actual{};
 
     ::trmn_solve_puzzle(
-        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag);
+        order, mark_x, mark_y, shim_add_tromino, &actual, &stop_flag
+    );
 
     BOOST_WARN_EQUAL(actual.size(), std::size_t{1});
     BOOST_CHECK_EQUAL_COLLECTIONS(
-        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend());
+        actual.cbegin(), actual.cend(), expected.cbegin(), expected.cend()
+    );
 }
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -11,10 +11,12 @@ void shim_add_tromino(
     int const pos_y,
     int const flip_x,
     int const flip_y,
-    void* const state) noexcept
+    void* const state
+) noexcept
 {
     static_cast<std::vector<ShimStep>*>(state)->emplace_back(
-        pos_x, pos_y, flip_x, flip_y);
+        pos_x, pos_y, flip_x, flip_y
+    );
 }
 
 void print_shim_step_vector(std::vector<ShimStep> const& steps) noexcept

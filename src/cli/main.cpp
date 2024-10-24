@@ -20,7 +20,8 @@ int main(int const argc, char const* const argv[]) noexcept
 
     std::string error;
     if (bool const is_error{
-            tromino::cli::read_options(argc, argv, options, error)};
+            tromino::cli::read_options(argc, argv, options, error)
+        };
         is_error
         || (!::trmn_is_valid_config(options.order, options.x, options.y)))
     {
@@ -31,7 +32,8 @@ int main(int const argc, char const* const argv[]) noexcept
     {
 #ifdef _WIN64
         tromino::cli::app::init(
-            options.order, options.x, options.y, options.emulation_mode);
+            options.order, options.x, options.y, options.emulation_mode
+        );
 #else
         tromino::cli::app::init(options.order, options.x, options.y);
 #endif // _WIN64
