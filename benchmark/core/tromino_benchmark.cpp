@@ -4,27 +4,38 @@
 
 // SPDX-License-Identifier: MIT
 
+#include <cstdlib>
+
 #include <nameof.hpp>
 
 #include <nanobench.h>
 
-#include <tromino.h>
+#include <tromino/core/tromino.h>
 
-void dummy_callback(
+auto dummy_callback(
     int const px, int const py, int const fx, int const fy, void* const state
-)
+) noexcept -> void
 {
 }
 
-int main()
+auto main() noexcept -> int
 {
-    ankerl::nanobench::Bench().run(
-        NAMEOF(trmn_solve_puzzle).c_str(),
-        []() {
-            int const stop_flag{0};
-            trmn_solve_puzzle(16, 1, 7, dummy_callback, nullptr, &stop_flag);
-        }
-    )
+    ankerl::nanobench::Bench()
+
+        .title("Tromino")
+        .relative(true)
+
+        .run(
+            NAMEOF(trmn_solve_puzzle).c_str(),
+            []() noexcept {
+                int const stop_flag{0};
+                trmn_solve_puzzle(
+                    16, 1, 7, dummy_callback, nullptr, &stop_flag
+                );
+            }
+        )
 
         ;
+
+    return EXIT_SUCCESS;
 }
