@@ -10,6 +10,7 @@
 #include "cli_models.hpp"
 
 #include <iostream>
+#include <span>
 #include <string>
 
 namespace tromino::tromino2d {
@@ -17,8 +18,9 @@ namespace tromino::tromino2d {
 void print_usage(std::ostream& os) noexcept;
 
 bool read_options(
-    int argc, char const* const argv[], options& options, std::string& error
-) noexcept;
+    std::span<char const* const> args,
+    options& options,
+    std::string& error) noexcept;
 
 } // namespace tromino::tromino2d
 
