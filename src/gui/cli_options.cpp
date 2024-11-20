@@ -6,6 +6,8 @@
 
 #include "cli_options.hpp"
 
+#include <span>
+
 #include "params.hpp"
 
 namespace tromino::tromino2d {
@@ -25,8 +27,7 @@ void print_usage(std::ostream& os) noexcept
 }
 
 bool read_options(
-    int const argc,
-    char const* const* const argv,
+    std::span<char const* const> const args,
     options& options,
     std::string& error
 ) noexcept
@@ -34,7 +35,7 @@ bool read_options(
     using std::string_literals::operator""s;
 
     bool has_error{true};
-    if (argc < params::REQUIRED_ARG_COUNT)
+    if (args.size() < params::REQUIRED_ARG_COUNT)
     {
         error = "Incorrect argument count."s;
 
@@ -42,11 +43,11 @@ bool read_options(
     }
     else
     {
-        options.order = std::stoi(argv[params::ORDER_ARG_IDX]);
-        options.x = std::stoi(argv[params::MARKX_ARG_IDX]);
-        options.y = std::stoi(argv[params::MARKY_ARG_IDX]);
-        options.force = (argc > params::REQUIRED_ARG_COUNT)
-            && (std::string(argv[params::FORCE_ARG_IDX]) == "-f"s);
+        options.order = std::stoi(args[params::ORDER_ARG_IDX]);
+        options.x = std::stoi(args[params::MARKX_ARG_IDX]);
+        options.y = std::stoi(args[params::MARKY_ARG_IDX]);
+        options.force = (args.size() > params::REQUIRED_ARG_COUNT)
+            && (std::string(args[params::FORCE_ARG_IDX]) == "-f"s);
 
         if ((options.order > params::MAX_SUPPORTED_ORDER) && (!options.force))
         {
