@@ -1,0 +1,146 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "generic",
+      "displayName": "Generic",
+      "description": "Target with Ninja and vcpkg",
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_COMPILE_WARNING_AS_ERROR": true,
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+        "CMAKE_CONFIGURATION_TYPES": "Release;RelWithDebInfo;Debug",
+        "CMAKE_TOOLCHAIN_FILE": {
+          "value": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
+          "type": "FILEPATH"
+        }
+      }
+    },
+    {
+      "name": "windows-x64",
+      "description": "Target Windows",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_COMPILE_WARNING_AS_ERROR": true,
+        "CMAKE_TOOLCHAIN_FILE": {
+          "value": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
+          "type": "FILEPATH"
+        },
+        "CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS": true
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "environment": {
+        "CFLAGS": "/permissive- /source-charset:utf-8 /W4 /Zc:__cplusplus",
+        "CXXFLAGS": "/permissive- /source-charset:utf-8 /W4 /Zc:__cplusplus /Zc:enumTypes /Zc:preprocessor"
+      }
+    },
+    {
+      "name": "xcode",
+      "displayName": "Xcode configuration",
+      "description": "Target Darwin with Xcode.",
+      "generator": "Xcode",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": {
+          "value": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
+          "type": "FILEPATH"
+        },
+        "CMAKE_XCODE_XCCONFIG": {
+          "value": "${sourceDir}/vendor/XcodeWarnings/XcodeWarnings.xcconfig",
+          "type": "FILEPATH"
+        }
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      },
+      "environment": {
+        "CXXFLAGS": "-D_LIBCPP_ABI_FIX_CITYHASH_IMPLEMENTATION"
+      }
+    },
+    {
+      "name": "strict-gcc",
+      "displayName": "Strict GCC options",
+      "description": "Builds with GCC and enables most, if not all, GCC warnings",
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_COMPILE_WARNING_AS_ERROR": true,
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+        "CMAKE_CONFIGURATION_TYPES": "Release;RelWithDebInfo;Debug",
+        "CMAKE_TOOLCHAIN_FILE": {
+          "value": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
+          "type": "FILEPATH"
+        }
+      },
+      "environment": {
+        "CFLAGS": "-Wall -Wextra -pedantic",
+        "CXXFLAGS": "-Wall -pedantic -Wcast-align=strict -Wcast-qual -Wchanges-meaning -Wconversion -Wconversion-null -Wctor-dtor-privacy -Wdangling-pointer -Wdangling-reference -Wdate-time -Wdelete-incomplete -Wdelete-non-virtual-dtor -Wdeprecated-copy -Wdeprecated-copy-dtor -Wdeprecated-enum-enum-conversion -Wdeprecated-enum-float-conversion -Wdisabled-optimization -Wdouble-promotion -Wduplicated-branches -Wduplicated-cond -Wexceptions -Wextra -Wformat=2 -Wimplicit-fallthrough=5 -Winaccessible-base -Winherited-variadic-ctor -Winit-list-lifetime -Winit-self -Winterference-size -Winvalid-constexpr -Winvalid-imported-macros -Winvalid-offsetof -Winvalid-pch -Winvalid-utf8 -Wlogical-op -Wmisleading-indentation -Wmismatched-new-delete -Wmismatched-tags -Wmissing-declarations -Wmissing-noreturn -Wmissing-requires -Wmissing-template-keyword -Wmultichar -Wmultiple-inheritance -Wnarrowing -Wnoexcept -Wnoexcept-type -Wnon-template-friend -Wnon-virtual-dtor -Wnull-dereference -Wold-style-cast -Wopenacc-parallelism -Woverlength-strings -Woverloaded-virtual -Wpacked -Wpacked-bitfield-compat -Wrange-loop-construct -Wredundant-decls -Wredundant-move -Wredundant-tags -Wregister -Wreorder -Wself-move -Wshadow -Wshift-negative-value -Wsign-conversion -Wsign-promo -Wsized-deallocation -Wstack-protector -Wstrict-null-sentinel -Wstrict-overflow -Wunused -Wunused-macros -Wuseless-cast -Wvariadic-macros -Wvector-operation-performance -Wvexing-parse -Wvirtual-inheritance -Wvirtual-move-assign -Wvla -Wvolatile -Wwrite-strings -Wzero-as-null-pointer-constant"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "generic-debug",
+      "displayName": "Generic debug",
+      "description": "Generic debug build",
+      "configurePreset": "generic",
+      "configuration": "Debug"
+    },
+    {
+      "name": "generic-release",
+      "displayName": "Generic release",
+      "description": "Generic release build",
+      "configurePreset": "generic",
+      "configuration": "Release"
+    },
+    {
+      "name": "windows-x64-debug",
+      "displayName": "Windows x64 debug",
+      "description": "Windows x64 debug build",
+      "configurePreset": "windows-x64",
+      "configuration": "Debug"
+    },
+    {
+      "name": "windows-x64-release",
+      "displayName": "Windows x64 release",
+      "description": "Windows x64 release build",
+      "configurePreset": "windows-x64",
+      "configuration": "Release"
+    },
+    {
+      "name": "xcode",
+      "displayName": "Xcode build",
+      "description": "Xcode build",
+      "configurePreset": "xcode"
+    },
+    {
+      "name": "strict-gcc-debug",
+      "displayName": "GCC debug",
+      "description": "strict-gcc debug build",
+      "configurePreset": "strict-gcc",
+      "configuration": "Debug"
+    },
+    {
+      "name": "strict-gcc-release",
+      "displayName": "GCC release",
+      "description": "strict-gcc release build",
+      "configurePreset": "strict-gcc",
+      "configuration": "Release"
+    }
+  ]
+}
