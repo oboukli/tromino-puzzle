@@ -1,0 +1,8 @@
+{
+  "dependencies": [
+    "boost-test",
+    "nameof",
+    "nanobench",
+    "sdl2"
+  ]
+}
