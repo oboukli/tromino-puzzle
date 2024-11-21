@@ -7,6 +7,8 @@
 #ifndef GUI_PARAMS_HPP
 #define GUI_PARAMS_HPP
 
+#include <cstddef>
+
 namespace tromino::tromino2d::params {
 
 constexpr int const CANVAS_WIDTH{512};
@@ -23,10 +25,10 @@ constexpr int const MAX_SUPPORTED_ORDER{64};
 constexpr int const MAX_SUPPORTED_ORDER{32};
 #endif
 
-constexpr int const ORDER_ARG_IDX{1};
-constexpr int const MARKX_ARG_IDX{2};
-constexpr int const MARKY_ARG_IDX{3};
-constexpr int const FORCE_ARG_IDX{4};
+constexpr std::size_t const ORDER_ARG_IDX{1U};
+constexpr std::size_t const MARKX_ARG_IDX{2U};
+constexpr std::size_t const MARKY_ARG_IDX{3U};
+constexpr std::size_t const FORCE_ARG_IDX{4U};
 
 } // namespace tromino::tromino2d::params
 
