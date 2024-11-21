@@ -5,8 +5,7 @@
 // SPDX-License-Identifier: MIT
 
 #include "callback.hpp"
-
-class SharedState;
+#include "shared_state.hpp"
 
 extern "C" void solve_puzzle_cb(
     int const pos_x,
@@ -16,6 +15,8 @@ extern "C" void solve_puzzle_cb(
     void* const state
 ) noexcept
 {
+    using tromino::tromino2d::SharedState;
+
     SolverState<SharedState>* const solver_state{
         static_cast<SolverState<SharedState>*>(state)
     };

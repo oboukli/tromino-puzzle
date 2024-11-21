@@ -25,12 +25,11 @@
 #include <tromino/gfx2d/window.hpp>
 
 #include "callback.hpp"
+#include "shared_state.hpp"
 
 namespace tromino::tromino2d {
 
 namespace {
-
-using SharedState = std::vector<tromino::gfx2d::Step>;
 
 void poll_sdl_events(bool& is_main_loop_running) noexcept
 {
