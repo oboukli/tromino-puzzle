@@ -50,8 +50,6 @@ inline void start_game_loop(
     std::optional<std::string const> const& title
 ) noexcept
 {
-    using std::literals::chrono_literals::operator""ms;
-
     static constexpr int const FRAME_DELAY{68};
 
     auto const window{std::make_unique<tromino::gfx2d::Window>(title, width)};
