@@ -33,10 +33,10 @@ namespace {
 
 void poll_sdl_events(bool& is_main_loop_running) noexcept
 {
-    ::SDL_Event event{};
-    while (::SDL_PollEvent(&event) == 1)
+    ::SDL_Event event{} /*[[indeterminate]]*/;
+    while (::SDL_PollEvent(&event) == 1) [[unlikely]]
     {
-        if (event.type == ::SDL_EventType::SDL_QUIT)
+        if (event.type == ::SDL_EventType::SDL_QUIT) [[unlikely]]
         {
             is_main_loop_running = false;
         }
