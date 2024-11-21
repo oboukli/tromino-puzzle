@@ -27,9 +27,10 @@ auto main(int const argc, char const* const* const argv) noexcept -> int
     if (bool is_error{tromino::tromino2d::read_options(
             std::span<char const* const>(argv, static_cast<std::size_t>(argc)),
             options,
-            error)};
+            error
+        )};
         is_error
-        || (!::trmn_is_valid_config(options.order, options.x, options.y)))
+        or (not::trmn_is_valid_config(options.order, options.x, options.y)))
     {
         std::cerr << error << std::endl;
         tromino::tromino2d::print_usage(std::cout);
