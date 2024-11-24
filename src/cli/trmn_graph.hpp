@@ -21,7 +21,7 @@
 #include <tromino/core/tromino.h>
 
 #ifndef NDEBUG
-#include <tromino/validation/validation.h>
+#include "tromino/validation/validation.h"
 #endif // !NDEBUG
 
 namespace tromino::cli {

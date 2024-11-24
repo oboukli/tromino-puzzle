@@ -10,9 +10,9 @@
 #include <span>
 #include <string>
 
-#include <tromino/gfx2d/board.hpp>
+#include "tromino/gfx2d/board.hpp"
 
-#include <tromino/validation/validation.h>
+#include "tromino/validation/validation.h"
 
 #include "cli_models.hpp"
 #include "cli_options.hpp"
