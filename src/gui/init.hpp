@@ -10,7 +10,7 @@
 #include <optional>
 #include <string>
 
-#include <tromino/gfx2d/board.hpp>
+#include "tromino/gfx2d/board.hpp"
 
 namespace tromino::tromino2d {
 

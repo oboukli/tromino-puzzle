@@ -13,13 +13,13 @@
 #include <optional>
 #include <vector>
 
-#include <tromino/core/tromino.h>
+#include "tromino/core/tromino.h"
 
-#include <tromino/gfx2d/board.hpp>
-#include <tromino/gfx2d/gfx2d.hpp>
-#include <tromino/gfx2d/step.hpp>
-#include <tromino/gfx2d/view_model.hpp>
-#include <tromino/gfx2d/window.hpp>
+#include "tromino/gfx2d/board.hpp"
+#include "tromino/gfx2d/gfx2d.hpp"
+#include "tromino/gfx2d/step.hpp"
+#include "tromino/gfx2d/view_model.hpp"
+#include "tromino/gfx2d/window.hpp"
 
 namespace {
 
