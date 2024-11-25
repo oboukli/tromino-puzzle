@@ -8,6 +8,8 @@ found in the LICENSE file.
 
 #include "litro.h"
 
+#include <emscripten.h>
+
 #include <tromino/core/tromino.h>
 
 struct State {

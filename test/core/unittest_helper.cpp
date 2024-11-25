@@ -6,6 +6,9 @@
 
 #include "unittest_helper.hpp"
 
+#include <iostream>
+#include <vector>
+
 void shim_add_tromino(
     int const pos_x,
     int const pos_y,

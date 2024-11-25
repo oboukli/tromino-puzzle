@@ -10,9 +10,9 @@
 #include <Windows.h>
 
 #include <algorithm>
-#include <array>
 #include <cassert>
 #include <chrono>
+#include <cstdlib>
 #include <thread>
 
 #include "tromino/core/tromino.h"

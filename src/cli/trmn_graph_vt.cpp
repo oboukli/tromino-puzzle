@@ -5,7 +5,11 @@
 // SPDX-License-Identifier: MIT
 
 #include "trmn_graph_vt.hpp"
-#include "wrapper.hpp"
+
+#ifdef _WIN64
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+#endif // _WIN64
 
 #include <algorithm>
 #include <array>
@@ -15,10 +19,9 @@
 #include <string_view>
 #include <thread>
 
-#ifdef _WIN64
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-#endif // _WIN64
+#include <tromino/core/tromino.h>
+
+#include "wrapper.hpp"
 
 namespace tromino::cli::vt {
 

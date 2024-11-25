@@ -6,6 +6,8 @@
 
 #include "gfx2d.hpp"
 
+#include <SDL2/SDL.h>
+
 #include <cassert>
 
 namespace tromino::gfx2d {
