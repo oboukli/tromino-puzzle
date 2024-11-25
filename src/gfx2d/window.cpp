@@ -6,6 +6,8 @@
 
 #include "window.hpp"
 
+#include <SDL2/SDL.h>
+
 namespace tromino::gfx2d {
 
 namespace {

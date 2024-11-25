@@ -18,8 +18,6 @@
 #include <iostream>
 #include <memory>
 
-#include <tromino/core/tromino.h>
-
 #ifndef NDEBUG
 #include "tromino/validation/validation.h"
 #endif // !NDEBUG
@@ -46,6 +44,7 @@ template <typename T>
 inline std::size_t calc_index(T const x, T const y, T const o) noexcept
 {
     assert(::trmn_is_valid_config(o, x, y));
+
     return (static_cast<std::size_t>(y) * static_cast<std::size_t>(o))
         + static_cast<std::size_t>(x);
 }
