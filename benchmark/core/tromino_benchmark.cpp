@@ -10,7 +10,7 @@
 
 #include <nanobench.h>
 
-#include <tromino/core/tromino.h>
+#include "tromino/core/tromino.h"
 
 auto dummy_callback(
     int const px, int const py, int const fx, int const fy, void* const state

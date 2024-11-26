@@ -10,7 +10,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "tromino/core/tromino.h"
+#include <tromino/core/tromino.h>
 
 #include "unittest_helper.hpp"
 

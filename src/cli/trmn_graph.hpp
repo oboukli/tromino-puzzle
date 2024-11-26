@@ -19,7 +19,7 @@
 #include <memory>
 
 #ifndef NDEBUG
-#include "tromino/validation/validation.h"
+#include <tromino/validation/validation.h>
 #endif // !NDEBUG
 
 namespace tromino::cli {
