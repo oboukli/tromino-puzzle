@@ -15,7 +15,7 @@
 #include <cstdlib>
 #include <thread>
 
-#include "tromino/core/tromino.h"
+#include <tromino/core/tromino.h>
 
 namespace tromino::cli::windows {
 
