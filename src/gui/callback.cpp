@@ -5,6 +5,7 @@
 // SPDX-License-Identifier: MIT
 
 #include "callback.hpp"
+
 #include "shared_state.hpp"
 
 extern "C" void solve_puzzle_cb(
