@@ -6,7 +6,7 @@
 
 #include "wrapper.hpp"
 
-struct graph_state_t;
+#include "trmn_graph.hpp"
 
 extern "C" void solve_puzzle_cb(
     int const pos_x,
@@ -16,8 +16,8 @@ extern "C" void solve_puzzle_cb(
     void* const state
 ) noexcept
 {
-    SolverState<graph_state_t>* const solver_state{
-        static_cast<SolverState<graph_state_t>*>(state)
+    auto* const solver_state{
+        static_cast<SolverState<tromino::cli::graph_state_t>*>(state)
     };
 
     solver_state->callback(pos_x, pos_y, flip_x, flip_y, solver_state->state);
