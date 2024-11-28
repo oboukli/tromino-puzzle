@@ -32,12 +32,11 @@ constexpr char const top_right{'\xBB'};
 constexpr char const bottom_left{'\xC8'};
 constexpr char const bottom_right{'\xBC'};
 
-void
-add_tromino(int pos_x, int pos_y, int flip_x, int flip_y, void* state) noexcept;
+void add_tromino(int pos_x, int pos_y, int flip_x, int flip_y, void* state);
 
-void ensure_success(::BOOL is_success, std::string const& msg) noexcept;
+void ensure_success(::BOOL is_success, std::string const& msg);
 
-void draw_board(board_t const& board) noexcept;
+void draw_board(board_t const& board);
 
 inline void init_board(board_t const& board) noexcept
 {
@@ -47,13 +46,13 @@ inline void init_board(board_t const& board) noexcept
         = mark;
 }
 
-inline void draw_at(int const x, int const y, char const c) noexcept
+inline void draw_at(int const x, int const y, char const c)
 {
     std::cout << c;
 }
 
 inline void
-draw_at(int const x, int const y, char const c, ::HANDLE const hOutput) noexcept
+draw_at(int const x, int const y, char const c, ::HANDLE const hOutput)
 {
     ::COORD const coord{
         .X{static_cast<::SHORT>(x)},
@@ -65,7 +64,7 @@ draw_at(int const x, int const y, char const c, ::HANDLE const hOutput) noexcept
     draw_at(x, y, c);
 }
 
-void ensure_success(::BOOL const is_success, std::string const& msg) noexcept
+void ensure_success(::BOOL const is_success, std::string const& msg)
 {
     if (!is_success)
     {
@@ -81,7 +80,7 @@ void ensure_success(::BOOL const is_success, std::string const& msg) noexcept
     }
 }
 
-void draw_board(board_t const& board) noexcept
+void draw_board(board_t const& board)
 {
     int const order{board.order};
     for (int i{0}; i < order; ++i)
@@ -101,7 +100,7 @@ void add_tromino(
     int const flip_x,
     int const flip_y,
     void* const state
-) noexcept
+)
 {
     static constexpr std::chrono::milliseconds const DELAY_AFTER{68};
 
@@ -154,7 +153,7 @@ void add_tromino(
 
 } // namespace
 
-void use_wch(board_t& tromino_board, std::ostream& os) noexcept
+void use_wch(board_t& tromino_board, std::ostream& os)
 {
     ::SetConsoleTitle(TEXT("Tromino Puzzle"));
 

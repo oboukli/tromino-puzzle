@@ -18,7 +18,7 @@
 #include "init.hpp"
 #include "params.hpp"
 
-auto main(int const argc, char const* const* const argv) noexcept -> int
+auto main(int const argc, char const* const* const argv) -> int
 {
     int exit_status{EXIT_FAILURE};
     tromino::tromino2d::options options{};

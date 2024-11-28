@@ -22,7 +22,7 @@ void shim_add_tromino(
     );
 }
 
-void print_shim_step_vector(std::vector<ShimStep> const& steps) noexcept
+void print_shim_step_vector(std::vector<ShimStep> const& steps)
 {
     for (auto const& s : steps)
     {

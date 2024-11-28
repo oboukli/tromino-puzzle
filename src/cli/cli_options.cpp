@@ -12,7 +12,7 @@
 
 namespace tromino::cli {
 
-void print_usage(std::ostream& os) noexcept
+void print_usage(std::ostream& os)
 {
     // clang-format off
     os <<
@@ -36,7 +36,7 @@ bool read_options(
     char const* const* const argv,
     options& options,
     std::string& error
-) noexcept
+)
 {
     using std::string_literals::operator""s;
 

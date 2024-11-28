@@ -23,15 +23,15 @@ public:
     {
     }
 
-    Step(Step const& other) noexcept = delete;
+    Step(Step const& other) = delete;
 
     Step(Step&& other) noexcept = default;
 
     ~Step() noexcept = default;
 
-    Step& operator=(Step const& other) noexcept = delete;
+    Step& operator=(Step const& other) = delete;
 
-    Step& operator=(Step&& other) noexcept = delete;
+    Step& operator=(Step&& other) = delete;
 };
 
 } // namespace tromino::gfx2d

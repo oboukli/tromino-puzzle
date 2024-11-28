@@ -13,7 +13,7 @@
 
 namespace tromino::cli::vt {
 
-void use_vt(board_t& tromino_board, std::ostream& os) noexcept;
+void use_vt(board_t& tromino_board, std::ostream& os);
 
 } // namespace tromino::cli::vt
 

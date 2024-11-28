@@ -41,7 +41,7 @@ void add_tromino(
     steps_->emplace_back(pos_x, pos_y, flip_x, flip_y);
 }
 
-void init(int const width) noexcept
+void init(int const width)
 {
     steps = std::make_unique<std::vector<tromino::gfx2d::Step>>();
 
@@ -81,7 +81,7 @@ void render_frame() noexcept
     viewModel->Render(*steps);
 }
 
-void start(tromino::gfx2d::Board const& board, int const width) noexcept
+void start(tromino::gfx2d::Board const& board, int const width)
 {
     static constexpr int const SWAP_INTERVAL{4};
 
@@ -146,9 +146,8 @@ void start(tromino::gfx2d::Board const& board, int const width) noexcept
 
 } // namespace
 
-EMSCRIPTEN_KEEPALIVE extern "C" void playTromino(
-    int const order, int const markX, int const markY, int const width
-) noexcept
+EMSCRIPTEN_KEEPALIVE extern "C" void
+playTromino(int const order, int const markX, int const markY, int const width)
 {
     std::size_t const order_internal{static_cast<std::size_t>(order)};
     std::size_t const size{order_internal * order_internal};

@@ -23,20 +23,19 @@ namespace tromino::gfx2d {
 
 class [[nodiscard]] TrominoBoardViewModel final {
 public:
-    TrominoBoardViewModel() noexcept = delete;
+    TrominoBoardViewModel() = delete;
 
     explicit TrominoBoardViewModel(::SDL_Window* window) noexcept;
 
-    TrominoBoardViewModel(TrominoBoardViewModel const&) noexcept = delete;
+    TrominoBoardViewModel(TrominoBoardViewModel const&) = delete;
 
-    TrominoBoardViewModel(TrominoBoardViewModel&&) noexcept = delete;
+    TrominoBoardViewModel(TrominoBoardViewModel&&) = delete;
 
     ~TrominoBoardViewModel() noexcept = default;
 
-    TrominoBoardViewModel& operator=(TrominoBoardViewModel const&) noexcept
-        = delete;
+    TrominoBoardViewModel& operator=(TrominoBoardViewModel const&) = delete;
 
-    TrominoBoardViewModel& operator=(TrominoBoardViewModel&&) noexcept = delete;
+    TrominoBoardViewModel& operator=(TrominoBoardViewModel&&) = delete;
 
     void SetBoard(Board const& board, Style const& style) noexcept;
 

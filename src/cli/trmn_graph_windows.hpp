@@ -17,7 +17,7 @@
 
 namespace tromino::cli::windows {
 
-void use_wch(board_t& tromino_board, std::ostream& os) noexcept;
+void use_wch(board_t& tromino_board, std::ostream& os);
 
 } // namespace tromino::cli::windows
 

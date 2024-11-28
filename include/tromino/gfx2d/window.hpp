@@ -17,21 +17,19 @@ namespace tromino::gfx2d {
 
 class [[nodiscard]] Window final {
 public:
-    Window() noexcept = delete;
-
     explicit Window(
         std::optional<std::string const> const& title, int width
     ) noexcept;
 
-    Window(Window const&) noexcept = delete;
+    Window(Window const&) = delete;
 
-    Window(Window&&) noexcept = delete;
+    Window(Window&&) = delete;
 
     ~Window() noexcept = default;
 
-    Window& operator=(Window const&) noexcept = delete;
+    Window& operator=(Window const&) = delete;
 
-    Window& operator=(Window&&) noexcept = delete;
+    Window& operator=(Window&&) = delete;
 
     [[nodiscard]] ::SDL_Window* GetSdlWindow() const noexcept;
 

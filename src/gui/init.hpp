@@ -18,7 +18,7 @@ int init(
     tromino::gfx2d::Board const& board,
     int width,
     std::optional<std::string const> const& title
-) noexcept;
+);
 
 } // namespace tromino::tromino2d
 

@@ -40,7 +40,7 @@ public:
 
     ShimStep& operator=(ShimStep const& other) = delete;
 
-    ShimStep& operator=(ShimStep&& other) noexcept = delete;
+    ShimStep& operator=(ShimStep&& other) = delete;
 
     bool operator!=(ShimStep const& rhs) const noexcept
     {
@@ -50,8 +50,7 @@ public:
             || rhs.flip_y != this->flip_y;
     }
 
-    friend std::ostream&
-    operator<<(std::ostream& os, ShimStep const& s) noexcept
+    friend std::ostream& operator<<(std::ostream& os, ShimStep const& s)
     {
         // clang-format off
         return os
@@ -65,6 +64,6 @@ void shim_add_tromino(
     int pos_x, int pos_y, int flip_x, int flip_y, void* state
 ) noexcept;
 
-void print_shim_step_vector(std::vector<ShimStep> const& steps) noexcept;
+void print_shim_step_vector(std::vector<ShimStep> const& steps);
 
 #endif // TEST_CORE_UNITTEST_HELPER_HPP_
