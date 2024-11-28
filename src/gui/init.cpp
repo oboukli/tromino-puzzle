@@ -46,7 +46,7 @@ inline void start_game_loop(
     SharedState const& shared_state,
     int const width,
     std::optional<std::string const> const& title
-) noexcept
+)
 {
     static constexpr int const FRAME_DELAY{68};
 
@@ -157,7 +157,7 @@ int init(
     tromino::gfx2d::Board const& board,
     int const width,
     std::optional<std::string const> const& title
-) noexcept
+)
 {
     auto const board_order{static_cast<std::size_t>(board.order)};
     std::size_t const num_steps{

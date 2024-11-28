@@ -14,11 +14,11 @@
 
 namespace tromino::cli {
 
-void print_usage(std::ostream& os) noexcept;
+void print_usage(std::ostream& os);
 
 bool read_options(
     int argc, char const* const* argv, options& options, std::string& error
-) noexcept;
+);
 
 } // namespace tromino::cli
 

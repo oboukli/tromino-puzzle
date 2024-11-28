@@ -66,9 +66,9 @@ constexpr char const BOTTOM_RIGHT{'\x6a'};
 
 void add_tromino(
     int pos_x, int pos_y, int flip_x, int flip_y, graph_state_t* graph_state
-) noexcept;
+);
 
-void draw_board(board_t const& board, std::ostream& os) noexcept;
+void draw_board(board_t const& board, std::ostream& os);
 
 inline void init_board(board_t const& board) noexcept
 {
@@ -78,13 +78,12 @@ inline void init_board(board_t const& board) noexcept
         = MARK;
 }
 
-inline void
-draw_at(int const x, int const y, char const c, std::ostream& os) noexcept
+inline void draw_at(int const x, int const y, char const c, std::ostream& os)
 {
     os << CSI << y << ';' << x << 'H' << c;
 }
 
-void draw_board(board_t const& board, std::ostream& os) noexcept
+void draw_board(board_t const& board, std::ostream& os)
 {
     int const order{board.order};
     for (int i{0}; i < order; ++i)
@@ -103,7 +102,7 @@ void add_tromino(
     int const flip_x,
     int const flip_y,
     graph_state_t* const graph_state
-) noexcept
+)
 {
     static constexpr std::chrono::milliseconds const DELAY_AFTER{68};
 
@@ -160,7 +159,7 @@ void add_tromino(
 
 } // namespace
 
-void use_vt(board_t& tromino_board, std::ostream& os) noexcept
+void use_vt(board_t& tromino_board, std::ostream& os)
 {
 #ifdef _WIN64
     ::HANDLE const hStdout{::GetStdHandle(STD_OUTPUT_HANDLE)};

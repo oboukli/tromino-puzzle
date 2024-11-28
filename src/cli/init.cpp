@@ -18,7 +18,7 @@
 
 namespace tromino::cli::app {
 
-void init(int const order, int const x, int const y) noexcept
+void init(int const order, int const x, int const y)
 {
     auto const order_internal{static_cast<std::size_t>(order)};
     std::size_t const size{order_internal * order_internal};
@@ -40,7 +40,7 @@ void init(
     int const x,
     int const y,
     emulation_mode_type const emulation_mode
-) noexcept
+)
 {
     auto const order_internal{static_cast<std::size_t>(order)};
     std::size_t const size{order_internal * order_internal};

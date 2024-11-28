@@ -11,10 +11,10 @@
 
 namespace tromino::cli::app {
 
-void init(int order, int x, int y) noexcept;
+void init(int order, int x, int y);
 
 #ifdef _WIN64
-void init(int order, int x, int y, emulation_mode_type emulation_mode) noexcept;
+void init(int order, int x, int y, emulation_mode_type emulation_mode);
 #endif // _WIN64
 
 } // namespace tromino::cli::app

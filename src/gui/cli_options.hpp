@@ -15,11 +15,11 @@
 
 namespace tromino::tromino2d {
 
-void print_usage(std::ostream& os) noexcept;
+void print_usage(std::ostream& os);
 
 bool read_options(
     std::span<char const* const> args, options& options, std::string& error
-) noexcept;
+);
 
 } // namespace tromino::tromino2d
 

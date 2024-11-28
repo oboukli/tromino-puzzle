@@ -18,7 +18,7 @@ auto dummy_callback(
 {
 }
 
-auto main() noexcept -> int
+auto main() -> int
 {
     ankerl::nanobench::Bench()
 

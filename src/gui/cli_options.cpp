@@ -12,7 +12,7 @@
 
 namespace tromino::tromino2d {
 
-void print_usage(std::ostream& os) noexcept
+void print_usage(std::ostream& os)
 {
     // clang-format off
     os <<
@@ -30,7 +30,7 @@ bool read_options(
     std::span<char const* const> const args,
     options& options,
     std::string& error
-) noexcept
+)
 {
     using std::string_literals::operator""s;
 

@@ -9,7 +9,7 @@
 
 template <typename T>
 using tromino_cb_t
-    = void (*)(int pos_x, int pos_y, int flip_x, int flip_y, T* state) noexcept;
+    = void (*)(int pos_x, int pos_y, int flip_x, int flip_y, T* state);
 
 template <typename T>
 struct SolverState final {
