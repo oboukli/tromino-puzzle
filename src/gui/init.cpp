@@ -41,7 +41,7 @@ void poll_sdl_events(bool& is_main_loop_running) noexcept
     }
 }
 
-inline void start_game_loop(
+void start_game_loop(
     tromino::gfx2d::Board const& board,
     SharedState const& shared_state,
     int const width,

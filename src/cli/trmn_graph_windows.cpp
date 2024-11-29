@@ -38,7 +38,7 @@ void ensure_success(::BOOL is_success, std::string const& msg);
 
 void draw_board(board_t const& board);
 
-inline void init_board(board_t const& board) noexcept
+void init_board(board_t const& board) noexcept
 {
     std::fill_n(board.board_matrix.get(), board.size, empty);
 
@@ -46,13 +46,12 @@ inline void init_board(board_t const& board) noexcept
         = mark;
 }
 
-inline void draw_at(int const x, int const y, char const c)
+void draw_at(int const x, int const y, char const c)
 {
     std::cout << c;
 }
 
-inline void
-draw_at(int const x, int const y, char const c, ::HANDLE const hOutput)
+void draw_at(int const x, int const y, char const c, ::HANDLE const hOutput)
 {
     ::COORD const coord{
         .X{static_cast<::SHORT>(x)},

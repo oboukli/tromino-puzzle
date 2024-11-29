@@ -70,7 +70,7 @@ void add_tromino(
 
 void draw_board(board_t const& board, std::ostream& os);
 
-inline void init_board(board_t const& board) noexcept
+void init_board(board_t const& board) noexcept
 {
     std::fill_n(board.board_matrix.get(), board.size, EMPTY);
 
@@ -78,7 +78,7 @@ inline void init_board(board_t const& board) noexcept
         = MARK;
 }
 
-inline void draw_at(int const x, int const y, char const c, std::ostream& os)
+void draw_at(int const x, int const y, char const c, std::ostream& os)
 {
     os << CSI << y << ';' << x << 'H' << c;
 }
