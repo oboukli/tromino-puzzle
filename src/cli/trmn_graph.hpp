@@ -40,8 +40,8 @@ struct graph_state_t {
 #endif // _WIN64
 };
 
-template <typename T>
-inline std::size_t calc_index(T const x, T const y, T const o) noexcept
+constexpr std::size_t
+calc_index(auto const x, auto const y, auto const o) noexcept
 {
     assert(::trmn_is_valid_config(o, x, y));
 
@@ -61,7 +61,7 @@ template <
     char top_right,
     char bottom_left,
     char bottom_right>
-[[nodiscard]] inline std::array<char, SPRITE_SIZE>
+[[nodiscard]] constexpr std::array<char, SPRITE_SIZE>
 get_sprite(int const flip_x, int const flip_y) noexcept
 {
     assert(flip_x == -1 || flip_x == 1);
