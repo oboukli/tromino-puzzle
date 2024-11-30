@@ -12,7 +12,6 @@
 #endif // _WIN64
 
 #include <algorithm>
-#include <array>
 #include <cassert>
 #include <chrono>
 #include <iostream>

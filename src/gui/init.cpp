@@ -14,12 +14,12 @@
 #include <SDL2/SDL_timer.h>
 
 #include <cassert>
-#include <chrono>
 #include <cstddef>
 #include <cstdlib>
 #include <memory>
+#include <optional>
+#include <string>
 #include <thread>
-#include <vector>
 
 #include <tromino/core/tromino.h>
 

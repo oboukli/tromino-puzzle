@@ -6,7 +6,8 @@
 
 #include "cli_options.hpp"
 
-#include <iostream>
+#include <ostream>
+#include <string>
 
 #include "params.hpp"
 

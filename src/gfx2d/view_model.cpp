@@ -13,6 +13,8 @@
 #include <SDL2/SDL_video.h>
 
 #include <cassert>
+#include <cstddef>
+#include <vector>
 
 namespace tromino::gfx2d {
 
