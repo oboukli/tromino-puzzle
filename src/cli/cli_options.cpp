@@ -9,6 +9,7 @@
 #include <ostream>
 #include <string>
 
+#include "cli_models.hpp"
 #include "params.hpp"
 
 namespace tromino::cli {

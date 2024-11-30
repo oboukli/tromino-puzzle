@@ -10,6 +10,7 @@
 #include <span>
 #include <string>
 
+#include "cli_models.hpp"
 #include "params.hpp"
 
 namespace tromino::tromino2d {

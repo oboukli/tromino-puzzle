@@ -20,6 +20,7 @@
 
 #include <tromino/core/tromino.h>
 
+#include "trmn_graph.hpp"
 #include "wrapper.hpp"
 
 namespace tromino::cli::vt {
