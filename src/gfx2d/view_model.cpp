@@ -6,7 +6,11 @@
 
 #include "view_model.hpp"
 
-#include <SDL2/SDL.h>
+#include <SDL2/SDL_pixels.h>
+#include <SDL2/SDL_rect.h>
+#include <SDL2/SDL_render.h>
+#include <SDL2/SDL_stdinc.h>
+#include <SDL2/SDL_video.h>
 
 #include <cassert>
 
