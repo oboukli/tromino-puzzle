@@ -7,7 +7,9 @@
 #ifndef CLI_INIT_HPP_
 #define CLI_INIT_HPP_
 
+#ifdef _WIN64
 #include "cli_models.hpp"
+#endif // _WIN64
 
 namespace tromino::cli::app {
 
