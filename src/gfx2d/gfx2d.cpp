@@ -6,7 +6,11 @@
 
 #include "gfx2d.hpp"
 
-#include <SDL2/SDL.h>
+#include <SDL2/SDL_blendmode.h>
+#include <SDL2/SDL_pixels.h>
+#include <SDL2/SDL_rect.h>
+#include <SDL2/SDL_render.h>
+#include <SDL2/SDL_stdinc.h>
 
 #include <cassert>
 
