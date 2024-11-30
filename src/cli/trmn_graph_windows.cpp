@@ -13,6 +13,8 @@
 #include <cassert>
 #include <chrono>
 #include <cstdlib>
+#include <iostream>
+#include <string>
 #include <thread>
 
 #include <tromino/core/tromino.h>

@@ -9,6 +9,9 @@
 #include <SDL2/SDL_stdinc.h>
 #include <SDL2/SDL_video.h>
 
+#include <optional>
+#include <string>
+
 namespace tromino::gfx2d {
 
 namespace {

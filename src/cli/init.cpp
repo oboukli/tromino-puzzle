@@ -7,6 +7,7 @@
 #include "init.hpp"
 
 #include <cstddef>
+#include <iostream>
 #include <memory>
 
 #include "trmn_graph.hpp"
