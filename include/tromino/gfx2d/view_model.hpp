@@ -64,8 +64,8 @@ private:
     static constexpr int const RENDERING_DRIVER_IDX{-1};
 };
 
-[[nodiscard]] inline ::SDL_RendererFlip
-get_flip(int flip_x, int flip_y) noexcept
+[[nodiscard]] constexpr ::SDL_RendererFlip
+get_flip(int const flip_x, int const flip_y) noexcept
 {
     // clang-format off
     std::uint32_t f{flip_x == 1

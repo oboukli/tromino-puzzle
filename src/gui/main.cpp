@@ -23,7 +23,7 @@ auto main(int const argc, char const* const* const argv) -> int
     int exit_status{EXIT_FAILURE};
     tromino::tromino2d::options options{};
     std::string error{};
-    if (bool is_error{tromino::tromino2d::read_options(
+    if (bool const is_error{tromino::tromino2d::read_options(
             std::span<char const* const>(argv, static_cast<std::size_t>(argc)),
             options,
             error
