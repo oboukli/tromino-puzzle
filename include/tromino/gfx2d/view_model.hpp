@@ -7,7 +7,8 @@
 #ifndef TROMINO_GFX2D_VIEW_MODEL_HPP_
 #define TROMINO_GFX2D_VIEW_MODEL_HPP_
 
-#include <SDL2/SDL.h>
+#include <SDL2/SDL_render.h>
+#include <SDL2/SDL_video.h>
 
 #include <cstddef>
 #include <cstdint>
