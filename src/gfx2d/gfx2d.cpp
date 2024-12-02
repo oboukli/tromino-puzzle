@@ -97,7 +97,7 @@ void InitCheckeredBoard(
             int const y{i * squareWidth};
             // clang-format off
             if (((static_cast<unsigned int>(j) ^ static_cast<unsigned int>(i))
-                & 1u) == 1u)
+                & 1U) == 1U)
             // clang-format on
             {
                 square.x = j * squareWidth;
