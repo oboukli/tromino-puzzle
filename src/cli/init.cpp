@@ -25,6 +25,7 @@ void init(int const order, int const x, int const y)
     std::size_t const size{order_internal * order_internal};
 
     board_t tromino_board{
+        // NOLINTNEXTLINE(cppcoreguidelines-avoid-c-arrays,hicpp-avoid-c-arrays,modernize-avoid-c-arrays)
         .board_matrix = std::make_unique<char[]>(size),
         .size = size,
         .order = order,
