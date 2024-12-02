@@ -7,7 +7,7 @@
 #ifndef TROMINO_GFX2D_WINDOW_HPP_
 #define TROMINO_GFX2D_WINDOW_HPP_
 
-#include <SDL2/SDL.h>
+#include <SDL2/SDL_video.h>
 
 #include <memory>
 #include <optional>

@@ -7,7 +7,7 @@
 #ifndef TROMINO_GFX2D_STYLE_HPP_
 #define TROMINO_GFX2D_STYLE_HPP_
 
-#include <SDL2/SDL.h>
+#include <SDL2/SDL_pixels.h>
 
 namespace tromino::gfx2d {
 
