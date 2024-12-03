@@ -78,6 +78,7 @@ get_flip(int const flip_x, int const flip_y) noexcept
         f |= static_cast<std::uint32_t>(::SDL_RendererFlip::SDL_FLIP_VERTICAL);
     }
 
+    // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
     return static_cast<::SDL_RendererFlip>(f);
 }
 
