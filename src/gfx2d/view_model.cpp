@@ -28,10 +28,10 @@ TrominoBoardViewModel::TrominoBoardViewModel(
 ) noexcept :
     _window(window)
 {
-    ::Uint32 const render_flags{
-        ::SDL_RendererFlags::SDL_RENDERER_ACCELERATED
-        | ::SDL_RendererFlags::SDL_RENDERER_PRESENTVSYNC
-        | ::SDL_RendererFlags::SDL_RENDERER_TARGETTEXTURE
+    static constexpr ::Uint32 const render_flags{
+        static_cast<::Uint32>(::SDL_RendererFlags::SDL_RENDERER_ACCELERATED)
+        | static_cast<::Uint32>(::SDL_RendererFlags::SDL_RENDERER_PRESENTVSYNC)
+        | static_cast<::Uint32>(::SDL_RendererFlags::SDL_RENDERER_TARGETTEXTURE)
     };
     _renderer.reset(
         ::SDL_CreateRenderer(_window, RENDERING_DRIVER_IDX, render_flags)
