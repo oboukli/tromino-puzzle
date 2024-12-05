@@ -12,6 +12,7 @@
 #include <SDL2/SDL_stdinc.h>
 #include <SDL2/SDL_video.h>
 
+#include <algorithm>
 #include <cassert>
 #include <cstddef>
 #include <vector>
@@ -122,10 +123,7 @@ TrominoBoardViewModel::Render(std::vector<Step> const& steps) const noexcept
         0, 0, SQUARE_LOGICAL_WIDTH * 2, SQUARE_LOGICAL_WIDTH * 2
     };
 
-    std::size_t const num_ready{steps.size()};
-    std::size_t const count{
-        num_ready < _currentStepNum ? num_ready : _currentStepNum
-    };
+    std::size_t const count{std::min(steps.size(), _currentStepNum)};
     for (std::size_t i{0}; i < count; ++i)
     {
         Step const& s{steps[i]};
