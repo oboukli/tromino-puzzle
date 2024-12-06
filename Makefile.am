@@ -134,7 +134,7 @@ tromino2d_SOURCES = \
 	src/gui/init.hpp \
 	src/gui/main.cpp \
 	src/gui/params.hpp \
-	src/gui/shared_state.hpp
+	src/gui/solver_state.hpp
 tromino2d_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
 	-I$(top_srcdir)/include

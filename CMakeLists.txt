@@ -262,6 +262,7 @@ target_sources(
     "${CMAKE_SOURCE_DIR}/src/gui/cli_options.hpp"
     "${CMAKE_SOURCE_DIR}/src/gui/init.hpp"
     "${CMAKE_SOURCE_DIR}/src/gui/params.hpp"
+    "${CMAKE_SOURCE_DIR}/src/gui/solver_state.hpp"
 )
 target_sources(
   tromino2d

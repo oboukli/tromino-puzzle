@@ -30,6 +30,9 @@
     <ClInclude Include="..\..\src\gui\params.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\gui\solver_state.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\gui\callback.cpp">

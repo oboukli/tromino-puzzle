@@ -6,9 +6,9 @@
 
 #include "callback.hpp"
 
-#include "shared_state.hpp"
+#include "solver_state.hpp"
 
-extern "C" void solve_puzzle_cb(
+extern "C" void tromino_solve_puzzle_cb(
     int const pos_x,
     int const pos_y,
     int const flip_x,
@@ -16,11 +16,13 @@ extern "C" void solve_puzzle_cb(
     void* const state
 ) noexcept
 {
-    using tromino::tromino2d::SharedState;
+    using tromino::tromino2d::SolverState;
 
-    SolverState<SharedState>* const solver_state{
-        static_cast<SolverState<SharedState>*>(state)
+    solver_state_wrapper_t<SolverState>* const solver_state_wrapper{
+        static_cast<solver_state_wrapper_t<SolverState>*>(state)
     };
 
-    solver_state->callback(pos_x, pos_y, flip_x, flip_y, solver_state->state);
+    solver_state_wrapper->callback(
+        pos_x, pos_y, flip_x, flip_y, solver_state_wrapper->state
+    );
 }

@@ -29,7 +29,7 @@
 #include <tromino/gfx2d/window.hpp>
 
 #include "callback.hpp"
-#include "shared_state.hpp"
+#include "solver_state.hpp"
 
 namespace tromino::tromino2d {
 
@@ -49,7 +49,7 @@ void poll_sdl_events(bool& is_main_loop_running) noexcept
 
 void start_game_loop(
     tromino::gfx2d::Board const& board,
-    SharedState const& shared_state,
+    SolverState const& solver_state,
     int const width,
     std::optional<std::string const> const& title
 )
@@ -107,7 +107,7 @@ void start_game_loop(
             viewModel->StepForward();
         }
 
-        viewModel->Render(shared_state);
+        viewModel->Render(solver_state);
 
         ::SDL_Delay(FRAME_DELAY);
 
@@ -121,38 +121,38 @@ void start_game_loop(
     }
 }
 
-void add_tromino(
+void update_solver_state(
     int const pos_x,
     int const pos_y,
     int const flip_x,
     int const flip_y,
-    SharedState* const shared_state
+    SolverState* const solver_state
 ) noexcept
 {
-    shared_state->emplace_back(pos_x, pos_y, flip_x, flip_y);
+    solver_state->emplace_back(pos_x, pos_y, flip_x, flip_y);
 
     std::this_thread::yield();
 }
 
-void solver(
+void solver_thread_callable(
     int const order,
     int const mark_x,
     int const mark_y,
-    tromino_cb_t<SharedState> const tromino_cb,
-    SharedState* const state,
+    tromino_callback_t<SolverState> const tromino_callback,
+    SolverState* const state,
     int const* const stop_flag
 ) noexcept
 {
-    SolverState<SharedState> solver_state{
-        .state = state, .callback = tromino_cb
+    solver_state_wrapper_t<SolverState> solver_state_wrapper{
+        .state = state, .callback = tromino_callback
     };
 
     ::trmn_solve_puzzle(
         order,
         mark_x,
         mark_y,
-        ::solve_puzzle_cb,
-        static_cast<void*>(&solver_state),
+        &::tromino_solve_puzzle_cb,
+        static_cast<void*>(&solver_state_wrapper),
         stop_flag
     );
 }
@@ -170,18 +170,18 @@ int init(
         ((board_order * board_order) - std::size_t{1}) / std::size_t{3}
     };
 
-    SharedState shared_state{};
-    shared_state.reserve(num_steps);
+    SolverState solver_state{};
+    solver_state.reserve(num_steps);
 
     int solver_stop_flag{0};
 
     std::thread solver_thread{
-        solver,
+        solver_thread_callable,
         board.order,
         board.mark_x,
         board.mark_y,
-        add_tromino,
-        &shared_state,
+        &update_solver_state,
+        &solver_state,
         &solver_stop_flag,
     };
 
@@ -192,7 +192,7 @@ int init(
         ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
         ::SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
 
-        start_game_loop(board, shared_state, width, title);
+        start_game_loop(board, solver_state, width, title);
 
         sdl2_success = true;
     }
