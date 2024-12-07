@@ -20,6 +20,7 @@
 #include <optional>
 #include <string>
 #include <thread>
+#include <type_traits>
 
 #include <tromino/core/tromino.h>
 
@@ -146,6 +147,9 @@ void solver_thread_callable(
     solver_state_wrapper_t<SolverState> solver_state_wrapper{
         .state = state, .callback = tromino_callback
     };
+
+    static_assert(alignof(decltype(&solver_state_wrapper)) == alignof(void*));
+    static_assert(std::is_standard_layout_v<decltype(solver_state_wrapper)>);
 
     ::trmn_solve_puzzle(
         order,

@@ -6,6 +6,8 @@
 
 #include "callback.hpp"
 
+#include <type_traits>
+
 #include "solver_state.hpp"
 
 extern "C" void tromino_solve_puzzle_cb(
@@ -16,11 +18,12 @@ extern "C" void tromino_solve_puzzle_cb(
     void* const state
 ) noexcept
 {
-    using tromino::tromino2d::SolverState;
+    using T = solver_state_wrapper_t<tromino::tromino2d::SolverState>;
 
-    solver_state_wrapper_t<SolverState>* const solver_state_wrapper{
-        static_cast<solver_state_wrapper_t<SolverState>*>(state)
-    };
+    static_assert(alignof(T*) == alignof(void*));
+    static_assert(std::is_standard_layout_v<T>);
+
+    T* const solver_state_wrapper{static_cast<T*>(state)};
 
     solver_state_wrapper->callback(
         pos_x, pos_y, flip_x, flip_y, solver_state_wrapper->state
