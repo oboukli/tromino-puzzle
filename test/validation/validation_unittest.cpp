@@ -8,8 +8,7 @@
 
 #include <tromino/validation/validation.h>
 
-#include <climits>
-#include <cmath>
+#include <limits>
 
 using boost::unit_test::label;
 
@@ -220,7 +219,8 @@ BOOST_AUTO_TEST_CASE(
     Given_trmn_is_valid_config_WhenUnsafeOrder_ThenFalse, *label("validation")
 )
 {
-    bool const is_valid = ::trmn_is_valid_config(INT_MAX, 0, 0);
+    bool const is_valid
+        = ::trmn_is_valid_config(std::numeric_limits<int>::max(), 0, 0);
 
     BOOST_TEST(is_valid == false);
 }
