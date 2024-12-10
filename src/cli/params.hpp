@@ -19,6 +19,8 @@ constexpr std::size_t const MARKY_ARG_IDX{3U};
 
 #ifdef _WIN64
 constexpr std::size_t const USE_WCH_ARG_IDX{4U};
+
+constexpr std::size_t const USE_WCH_OPTION_STR_SIZE{9U};
 #endif // _WIN64
 
 } // namespace tromino::cli::params
