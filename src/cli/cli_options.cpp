@@ -6,13 +6,38 @@
 
 #include "cli_options.hpp"
 
+#include <algorithm>
+#include <charconv>
+#include <cstdlib>
+#include <limits>
 #include <ostream>
 #include <string>
+
+#ifdef _WIN64
+#include <cstring>
+#endif // _WIN64
 
 #include "cli_models.hpp"
 #include "params.hpp"
 
 namespace tromino::cli {
+
+namespace {
+
+int parse_int(char const* const first)
+{
+    int const offset{*first == '-' ? 1 : 0};
+    char const* const last{std::find(
+        first, first + (std::numeric_limits<int>::digits10 + offset), '\0'
+    )};
+
+    int val{0};
+    std::from_chars(first, last, val);
+
+    return val;
+}
+
+} // namespace
 
 void print_usage(std::ostream& os)
 {
@@ -51,8 +76,13 @@ bool read_options(
     else
     {
 #ifdef _WIN64
-        options.use_wch = argc > params::REQUIRED_ARG_COUNT
-            && std::string(argv[params::USE_WCH_ARG_IDX]) == "--use-wch"s;
+        options.use_wch = (argc > params::REQUIRED_ARG_COUNT)
+            && (std::strncmp(
+                    "--use-wch",
+                    argv[params::USE_WCH_ARG_IDX],
+                    params::USE_WCH_OPTION_STR_SIZE
+                )
+                == 0);
 
         // clang-format off
         options.emulation_mode = options.use_wch
@@ -61,9 +91,9 @@ bool read_options(
         // clang-format on
 #endif // _WIN64
 
-        options.order = std::stoi(argv[params::ORDER_ARG_IDX]);
-        options.x = std::stoi(argv[params::MARKX_ARG_IDX]);
-        options.y = std::stoi(argv[params::MARKY_ARG_IDX]);
+        options.order = parse_int(argv[params::ORDER_ARG_IDX]);
+        options.x = parse_int(argv[params::MARKX_ARG_IDX]);
+        options.y = parse_int(argv[params::MARKY_ARG_IDX]);
 
         has_error = false;
     }
