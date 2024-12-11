@@ -6,7 +6,6 @@
 
 #include "cli_options.hpp"
 
-#include <algorithm>
 #include <charconv>
 #include <cstdlib>
 #include <cstring>
@@ -22,15 +21,13 @@ namespace tromino::tromino2d {
 
 namespace {
 
-int parse_int(char const* const first)
+/*constexpr*/ int parse_positive_int(char const* const first) noexcept
 {
-    int const offset{*first == '-' ? 1 : 0};
-    char const* const last{std::find(
-        first, first + (std::numeric_limits<int>::digits10 + offset), '\0'
-    )};
-
     int val{0};
-    std::from_chars(first, last, val);
+    if ((first != nullptr) && (*first != '-'))
+    {
+        std::from_chars(first, first + std::numeric_limits<int>::digits10, val);
+    }
 
     return val;
 }
@@ -68,15 +65,15 @@ bool read_options(
     }
     else
     {
-        options.order = parse_int(args[params::ORDER_ARG_IDX]);
-        options.x = parse_int(args[params::MARKX_ARG_IDX]);
-        options.y = parse_int(args[params::MARKY_ARG_IDX]);
+        options.order = parse_positive_int(args[params::ORDER_ARG_IDX]);
+        options.x = parse_positive_int(args[params::MARKX_ARG_IDX]);
+        options.y = parse_positive_int(args[params::MARKY_ARG_IDX]);
 
         options.force = (args.size() > params::REQUIRED_ARG_COUNT)
             && (std::strncmp(
-                    "-f",
+                    params::FORCE_OPTION,
                     args[params::FORCE_ARG_IDX],
-                    params::FORCE_OPTION_STR_SIZE
+                    sizeof params::FORCE_OPTION
                 )
                 == 0);
 

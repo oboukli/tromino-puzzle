@@ -30,7 +30,7 @@ constexpr std::size_t const MARKX_ARG_IDX{2U};
 constexpr std::size_t const MARKY_ARG_IDX{3U};
 constexpr std::size_t const FORCE_ARG_IDX{4U};
 
-constexpr std::size_t const FORCE_OPTION_STR_SIZE{2U};
+constexpr char const FORCE_OPTION[]{"-f"};
 
 } // namespace tromino::tromino2d::params
 

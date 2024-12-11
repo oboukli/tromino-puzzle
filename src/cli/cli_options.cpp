@@ -6,7 +6,6 @@
 
 #include "cli_options.hpp"
 
-#include <algorithm>
 #include <charconv>
 #include <cstdlib>
 #include <limits>
@@ -24,15 +23,13 @@ namespace tromino::cli {
 
 namespace {
 
-int parse_int(char const* const first)
+/*constexpr*/ int parse_positive_int(char const* const first) noexcept
 {
-    int const offset{*first == '-' ? 1 : 0};
-    char const* const last{std::find(
-        first, first + (std::numeric_limits<int>::digits10 + offset), '\0'
-    )};
-
     int val{0};
-    std::from_chars(first, last, val);
+    if ((first != nullptr) && (*first != '-'))
+    {
+        std::from_chars(first, first + std::numeric_limits<int>::digits10, val);
+    }
 
     return val;
 }
@@ -78,9 +75,9 @@ bool read_options(
 #ifdef _WIN64
         options.use_wch = (argc > params::REQUIRED_ARG_COUNT)
             && (std::strncmp(
-                    "--use-wch",
+                    params::USE_WCH_OPTION,
                     argv[params::USE_WCH_ARG_IDX],
-                    params::USE_WCH_OPTION_STR_SIZE
+                    sizeof *params::USE_WCH_OPTION
                 )
                 == 0);
 
@@ -91,9 +88,9 @@ bool read_options(
         // clang-format on
 #endif // _WIN64
 
-        options.order = parse_int(argv[params::ORDER_ARG_IDX]);
-        options.x = parse_int(argv[params::MARKX_ARG_IDX]);
-        options.y = parse_int(argv[params::MARKY_ARG_IDX]);
+        options.order = parse_positive_int(argv[params::ORDER_ARG_IDX]);
+        options.x = parse_positive_int(argv[params::MARKX_ARG_IDX]);
+        options.y = parse_positive_int(argv[params::MARKY_ARG_IDX]);
 
         has_error = false;
     }
