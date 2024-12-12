@@ -6,7 +6,13 @@
 
 #include "trmn.hpp"
 
+#include <emscripten.h>
+
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_events.h>
+#include <SDL2/SDL_hints.h>
+#include <SDL2/SDL_pixels.h>
+#include <SDL2/SDL_stdinc.h>
 
 #include <cstddef>
 #include <memory>
@@ -20,25 +26,14 @@
 #include <tromino/gfx2d/view_model.hpp>
 #include <tromino/gfx2d/window.hpp>
 
+#include "callback.hpp"
+
 namespace {
 
 std::unique_ptr<tromino::gfx2d::Window> window{};
 std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel{};
 std::unique_ptr<std::vector<tromino::gfx2d::Step>> steps{};
 bool isInitialized{false};
-
-void add_tromino(
-    int const pos_x,
-    int const pos_y,
-    int const flip_x,
-    int const flip_y,
-    void* const state
-) noexcept
-{
-    auto const steps_{static_cast<std::vector<tromino::gfx2d::Step>*>(state)};
-
-    steps_->emplace_back(pos_x, pos_y, flip_x, flip_y);
-}
 
 void init(int const width)
 {

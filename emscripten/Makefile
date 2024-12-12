@@ -23,7 +23,13 @@ GFX2D_SRCS ::= \
 	view_model.cpp \
 	window.cpp
 
+TRMN_SRCS ::= \
+	callback.cpp \
+	trmn.cpp
+
 GFX2D_OBJS ::= $(GFX2D_SRCS:%.cpp=$(OBJ_DIR)/gfx2d/%.o)
+
+TRMN_OBJS ::= $(TRMN_SRCS:%.cpp=$(OBJ_DIR)/wasm/trmn/%.o)
 
 ifeq ($(OS),Windows_NT)
 	MKDIR ::= mkdir
@@ -131,7 +137,7 @@ $(TARGET_LITRO): $(OBJ_DIR)/core/tromino.o $(OBJ_DIR)/wasm/litro/litro.o
 		-s WASM \
 		-o $(OUT_DIR)/$(LITRO_DIR_NAME)/$@ $^
 
-$(TARGET_TRMN): $(OBJ_DIR)/core/tromino.o $(GFX2D_OBJS) $(OBJ_DIR)/wasm/trmn/trmn.o
+$(TARGET_TRMN): $(OBJ_DIR)/core/tromino.o $(GFX2D_OBJS) $(TRMN_OBJS)
 	$(MKDIR) $(OUT_DIR)/$(TRMN_DIR_NAME)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) \
 		--closure 0 \
@@ -178,7 +184,7 @@ $(OBJ_DIR)/wasm/litro/litro.o: $(SRC_DIR)/wasm/litro/litro.c
 		-c $< \
 		-o $@
 
-$(OBJ_DIR)/wasm/trmn/trmn.o: $(SRC_DIR)/wasm/trmn/trmn.cpp
+$(OBJ_DIR)/wasm/trmn/%.o: $(SRC_DIR)/wasm/trmn/%.cpp
 	@mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) \
 		-s USE_SDL=2 \
