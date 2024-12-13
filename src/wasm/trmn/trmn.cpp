@@ -9,7 +9,6 @@
 #include <emscripten.h>
 
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_events.h>
 #include <SDL2/SDL_hints.h>
 #include <SDL2/SDL_pixels.h>
 #include <SDL2/SDL_stdinc.h>
