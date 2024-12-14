@@ -7,12 +7,7 @@
 #ifndef WASM_TRMN_CALLBACK_HPP_
 #define WASM_TRMN_CALLBACK_HPP_
 
-extern "C" void add_tromino(
-    int const pos_x,
-    int const pos_y,
-    int const flip_x,
-    int const flip_y,
-    void* const state
-) noexcept;
+extern "C" void
+add_tromino(int pos_x, int pos_y, int flip_x, int flip_y, void* state) noexcept;
 
 #endif // WASM_TRMN_CALLBACK_HPP_
