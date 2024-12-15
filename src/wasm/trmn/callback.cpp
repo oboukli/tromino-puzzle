@@ -18,7 +18,7 @@ extern "C" void add_tromino(
     void* const state
 ) noexcept
 {
-    auto const steps_{static_cast<std::vector<tromino::gfx2d::Step>*>(state)};
+    auto* const steps_{static_cast<std::vector<tromino::gfx2d::Step>*>(state)};
 
     steps_->emplace_back(pos_x, pos_y, flip_x, flip_y);
 }
