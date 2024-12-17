@@ -129,6 +129,28 @@ source_group(
   FILES ${tromino_validation_sources}
 )
 
+add_library(
+  tromino_wrapper
+  INTERFACE
+)
+target_sources(
+  tromino_wrapper
+  PUBLIC
+    FILE_SET HEADERS
+    FILES
+      "${CMAKE_SOURCE_DIR}/include/tromino/wrapper/callback.hpp"
+)
+get_target_property(
+  tromino_wrapper_headers
+  tromino_wrapper
+  HEADER_SET
+)
+source_group(
+  TREE "${CMAKE_SOURCE_DIR}/include/tromino/wrapper/"
+  PREFIX "Header files"
+  FILES ${tromino_wrapper_headers}
+)
+
 if(BUILD_TROMINO2D)
 find_package(SDL2 CONFIG REQUIRED)
 add_library(
@@ -246,6 +268,7 @@ target_link_libraries(
   tromino
   PRIVATE tromino_core
   PRIVATE tromino_validation
+  PRIVATE tromino_wrapper
 )
 
 if(BUILD_TROMINO2D)
@@ -302,6 +325,7 @@ target_link_libraries(
   tromino2d
   PRIVATE tromino_core
   PRIVATE tromino_validation
+  PRIVATE tromino_wrapper
   PRIVATE tromino_gfx2d
 )
 endif()

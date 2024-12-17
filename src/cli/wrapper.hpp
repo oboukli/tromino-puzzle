@@ -7,16 +7,6 @@
 #ifndef CLI_WRAPPER_HPP_
 #define CLI_WRAPPER_HPP_
 
-template <typename T>
-using tromino_cb_t
-    = void (*)(int pos_x, int pos_y, int flip_x, int flip_y, T* state);
-
-template <typename T>
-struct SolverState final {
-    T* state{};
-    tromino_cb_t<T> callback{};
-};
-
 extern "C" void solve_puzzle_cb(
     int pos_x, int pos_y, int flip_x, int flip_y, void* state
 ) noexcept;
