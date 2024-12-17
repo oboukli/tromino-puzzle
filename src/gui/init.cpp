@@ -24,6 +24,8 @@
 
 #include <tromino/core/tromino.h>
 
+#include <tromino/wrapper/callback.hpp>
+
 #include <tromino/gfx2d/board.hpp>
 #include <tromino/gfx2d/style.hpp>
 #include <tromino/gfx2d/view_model.hpp>

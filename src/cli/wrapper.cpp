@@ -6,6 +6,8 @@
 
 #include "wrapper.hpp"
 
+#include <tromino/wrapper/callback.hpp>
+
 #include "trmn_graph.hpp"
 
 extern "C" void solve_puzzle_cb(
@@ -16,9 +18,12 @@ extern "C" void solve_puzzle_cb(
     void* const state
 ) noexcept
 {
-    auto* const solver_state{
-        static_cast<SolverState<tromino::cli::graph_state_t>*>(state)
-    };
+    using T = solver_state_wrapper_t<tromino::cli::graph_state_t>;
+
+    static_assert(alignof(T*) == alignof(void*));
+    static_assert(std::is_standard_layout_v<T>);
+
+    T* const solver_state{static_cast<T*>(state)};
 
     solver_state->callback(pos_x, pos_y, flip_x, flip_y, solver_state->state);
 }

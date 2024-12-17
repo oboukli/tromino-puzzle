@@ -19,6 +19,7 @@
 #include <thread>
 
 #include <tromino/core/tromino.h>
+#include <tromino/wrapper/callback.hpp>
 
 #include "trmn_graph.hpp"
 #include "wrapper.hpp"
@@ -66,7 +67,7 @@ constexpr char const BOTTOM_RIGHT{'\x6a'};
 
 void add_tromino(
     int pos_x, int pos_y, int flip_x, int flip_y, graph_state_t* graph_state
-);
+) noexcept;
 
 void draw_board(board_t const& board, std::ostream& os);
 
@@ -102,7 +103,7 @@ void add_tromino(
     int const flip_x,
     int const flip_y,
     graph_state_t* const graph_state
-)
+) noexcept
 {
     static constexpr std::chrono::milliseconds const DELAY_AFTER{68};
 
@@ -256,7 +257,7 @@ void use_vt(board_t& tromino_board, std::ostream& os)
 
     graph_state_t graph_state{.os = os, .board = tromino_board};
 
-    SolverState<graph_state_t> solver_state{
+    solver_state_wrapper_t<graph_state_t> solver_state{
         .state = &graph_state, .callback = add_tromino
     };
 

@@ -1,0 +1,84 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXFileReference section */
+		75287FB32D43EB4600855B4C /* callback.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = callback.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		75287FA52D43E99300855B4C = {
+			isa = PBXGroup;
+			children = (
+				75287FB42D43EB4600855B4C /* wrapper */,
+			);
+			sourceTree = "<group>";
+		};
+		75287FB42D43EB4600855B4C /* wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				75287FB32D43EB4600855B4C /* callback.hpp */,
+			);
+			name = wrapper;
+			path = ../../include/tromino/wrapper;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		75287FA62D43E99300855B4C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1620;
+			};
+			buildConfigurationList = 75287FA92D43E99300855B4C /* Build configuration list for PBXProject "LibTrominoWrapper" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 75287FA52D43E99300855B4C;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		75287FAA2D43E99300855B4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		75287FAB2D43E99300855B4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		75287FA92D43E99300855B4C /* Build configuration list for PBXProject "LibTrominoWrapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75287FAA2D43E99300855B4C /* Debug */,
+				75287FAB2D43E99300855B4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 75287FA62D43E99300855B4C /* Project object */;
+}

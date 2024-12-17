@@ -82,6 +82,12 @@ libtromino_validation_la_CPPFLAGS = \
 include_HEADERS += include/tromino/validation/validation.h
 lib_LTLIBRARIES += libtromino-validation.la
 
+libtromino_wrapper_la_SOURCES =
+libtromino_wrapper_la_CPPFLAGS = \
+	$(AM_CPPFLAGS)
+include_HEADERS += include/tromino/wrapper/callback.hpp
+lib_LTLIBRARIES += libtromino-wrapper.la
+
 tromino_SOURCES = \
 	src/cli/cli_models.hpp \
 	src/cli/cli_options.cpp \

@@ -11,6 +11,9 @@
       location = "group:UnitTests/UnitTests.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:LibTrominoWrapper/LibTrominoWrapper.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:LibTromino2d/LibTromino2d.xcodeproj">
    </FileRef>
    <FileRef
