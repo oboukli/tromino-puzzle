@@ -58,11 +58,11 @@ jobs:
         run: .\vcpkg\bootstrap-vcpkg.bat -disableMetrics
 
       - name: Install Boost.Test vcpkg package
-        run: .\vcpkg install --triplet x64-windows-static boost-test
+        run: .\vcpkg install --triplet x64-windows-static boost-test --classic
         working-directory: vcpkg
 
       - name: Install SDL2 vcpkg package
-        run: .\vcpkg install --triplet x64-windows sdl2
+        run: .\vcpkg install --triplet x64-windows sdl2 --classic
         working-directory: vcpkg
 
       - name: Integrate vcpkg

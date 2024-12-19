@@ -61,12 +61,12 @@ jobs:
         run: ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
 
       - name: Install boost-test
-        run: ./vcpkg/vcpkg install boost-test
+        run: ./vcpkg/vcpkg install boost-test --classic
 
       - name: Install SDL2
         run: |-
-          ./vcpkg/vcpkg install --triplet x64-osx-dynamic sdl2
-          ./vcpkg/vcpkg install --triplet arm64-osx-dynamic sdl2
+          ./vcpkg/vcpkg install --triplet x64-osx-dynamic sdl2 --classic
+          ./vcpkg/vcpkg install --triplet arm64-osx-dynamic sdl2 --classic
 
       - name: Make build script executable
         run: chmod +x xcode/Tromino2d/scripts/uni.sh
