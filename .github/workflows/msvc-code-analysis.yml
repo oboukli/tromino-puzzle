@@ -57,8 +57,8 @@ jobs:
 
       - name: Install Vcpkg packages
         run: |-
-          vcpkg install nameof --triplet x64-windows
-          vcpkg install nanobench --triplet x64-windows
+          vcpkg install nameof --triplet x64-windows --classic
+          vcpkg install nanobench --triplet x64-windows --classic
         working-directory: vcpkg
 
       - name: Configure CMake

@@ -85,11 +85,11 @@ jobs:
         displayName: Integrate vcpkg
         workingDirectory: $(primaryRepository)
 
-      - script: vcpkg\vcpkg install --triplet x64-windows-static boost-test
+      - script: vcpkg\vcpkg install --triplet x64-windows-static boost-test --classic
         displayName: Install Boost.Test vcpkg package
         workingDirectory: $(primaryRepository)
 
-      - script: vcpkg\vcpkg install --triplet x64-windows sdl2
+      - script: vcpkg\vcpkg install --triplet x64-windows sdl2 --classic
         displayName: Install SDL2 vcpkg package
         workingDirectory: $(primaryRepository)
 
