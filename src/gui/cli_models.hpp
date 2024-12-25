@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef GUI_CLI_MODELS_HPP
-#define GUI_CLI_MODELS_HPP
+#ifndef GUI_CLI_MODELS_HPP_
+#define GUI_CLI_MODELS_HPP_
 
 namespace tromino::tromino2d {
 
@@ -18,4 +18,4 @@ struct options {
 
 } // namespace tromino::tromino2d
 
-#endif // GUI_CLI_MODELS_HPP
+#endif // GUI_CLI_MODELS_HPP_

@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef CLI_TRMN_GRAPH_VT_HPP
-#define CLI_TRMN_GRAPH_VT_HPP
+#ifndef CLI_TRMN_GRAPH_VT_HPP_
+#define CLI_TRMN_GRAPH_VT_HPP_
 
 #include <iostream>
 
@@ -17,4 +17,4 @@ void use_vt(board_t& tromino_board, std::ostream& os) noexcept;
 
 } // namespace tromino::cli::vt
 
-#endif // CLI_TRMN_GRAPH_VT_HPP
+#endif // CLI_TRMN_GRAPH_VT_HPP_

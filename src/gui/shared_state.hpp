@@ -1,5 +1,5 @@
-#ifndef GUI_SHARED_STATE_HPP
-#define GUI_SHARED_STATE_HPP
+#ifndef GUI_SHARED_STATE_HPP_
+#define GUI_SHARED_STATE_HPP_
 
 #include <vector>
 
@@ -11,4 +11,4 @@ using SharedState = std::vector<tromino::gfx2d::Step>;
 
 } // namespace tromino::tromino2d
 
-#endif // GUI_SHARED_STATE_HPP
+#endif // GUI_SHARED_STATE_HPP_

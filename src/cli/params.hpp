@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef CLI_PARAMS_HPP
-#define CLI_PARAMS_HPP
+#ifndef CLI_PARAMS_HPP_
+#define CLI_PARAMS_HPP_
 
 #include <cstddef>
 
@@ -23,4 +23,4 @@ constexpr std::size_t const USE_WCH_ARG_IDX{4U};
 
 } // namespace tromino::cli::params
 
-#endif // CLI_PARAMS_HPP
+#endif // CLI_PARAMS_HPP_

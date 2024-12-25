@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef GUI_CLI_OPTIONS_HPP
-#define GUI_CLI_OPTIONS_HPP
+#ifndef GUI_CLI_OPTIONS_HPP_
+#define GUI_CLI_OPTIONS_HPP_
 
 #include "cli_models.hpp"
 
@@ -23,4 +23,4 @@ bool read_options(
 
 } // namespace tromino::tromino2d
 
-#endif // GUI_CLI_OPTIONS_HPP
+#endif // GUI_CLI_OPTIONS_HPP_

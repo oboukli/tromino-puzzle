@@ -6,8 +6,8 @@ found in the LICENSE file.
 
 /* SPDX-License-Identifier: MIT */
 
-#ifndef WASM_LITRO_LITRO_H
-#define WASM_LITRO_LITRO_H
+#ifndef WASM_LITRO_LITRO_H_
+#define WASM_LITRO_LITRO_H_
 
 #include <emscripten.h>
 
@@ -22,4 +22,4 @@ EMSCRIPTEN_KEEPALIVE void solve(
     add_tromino_extern_callback add_tromino_cb
 );
 
-#endif /* WASM_LITRO_LITRO_H */
+#endif /* WASM_LITRO_LITRO_H_ */

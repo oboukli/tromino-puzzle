@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef CLI_TRMN_GRAPH_WINDOWS_HPP
-#define CLI_TRMN_GRAPH_WINDOWS_HPP
+#ifndef CLI_TRMN_GRAPH_WINDOWS_HPP_
+#define CLI_TRMN_GRAPH_WINDOWS_HPP_
 
 #ifndef _WIN64
 #error "Included Windows-only header"
@@ -21,4 +21,4 @@ void use_wch(board_t& tromino_board, std::ostream& os) noexcept;
 
 } // namespace tromino::cli::windows
 
-#endif // CLI_TRMN_GRAPH_WINDOWS_HPP
+#endif // CLI_TRMN_GRAPH_WINDOWS_HPP_

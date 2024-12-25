@@ -4,12 +4,12 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef WASM_TRMN_TRMN_HPP
-#define WASM_TRMN_TRMN_HPP
+#ifndef WASM_TRMN_TRMN_HPP_
+#define WASM_TRMN_TRMN_HPP_
 
 #include <emscripten.h>
 
 EMSCRIPTEN_KEEPALIVE extern "C" void
 playTromino(int order, int markX, int markY, int width) noexcept;
 
-#endif // WASM_TRMN_TRMN_HPP
+#endif // WASM_TRMN_TRMN_HPP_

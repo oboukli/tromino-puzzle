@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef GUI_INIT_HPP
-#define GUI_INIT_HPP
+#ifndef GUI_INIT_HPP_
+#define GUI_INIT_HPP_
 
 #include <optional>
 #include <string>
@@ -22,4 +22,4 @@ int init(
 
 } // namespace tromino::tromino2d
 
-#endif // GUI_INIT_HPP
+#endif // GUI_INIT_HPP_

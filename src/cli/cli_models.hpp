@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef CLI_MODELS_HPP
-#define CLI_MODELS_HPP
+#ifndef CLI_CLI_MODELS_HPP_
+#define CLI_CLI_MODELS_HPP_
 
 namespace tromino::cli {
 
@@ -28,4 +28,4 @@ struct options {
 
 } // namespace tromino::cli
 
-#endif // CLI_MODELS_HPP
+#endif // CLI_CLI_MODELS_HPP_
