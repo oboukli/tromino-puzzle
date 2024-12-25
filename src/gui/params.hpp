@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef GUI_PARAMS_HPP
-#define GUI_PARAMS_HPP
+#ifndef GUI_PARAMS_HPP_
+#define GUI_PARAMS_HPP_
 
 #include <cstddef>
 
@@ -32,4 +32,4 @@ constexpr std::size_t const FORCE_ARG_IDX{4U};
 
 } // namespace tromino::tromino2d::params
 
-#endif // GUI_PARAMS_HPP
+#endif // GUI_PARAMS_HPP_

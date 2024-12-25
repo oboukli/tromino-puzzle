@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef TROMINO_GFX2D_STEP_HPP
-#define TROMINO_GFX2D_STEP_HPP
+#ifndef TROMINO_GFX2D_STEP_HPP_
+#define TROMINO_GFX2D_STEP_HPP_
 
 namespace tromino::gfx2d {
 
@@ -36,4 +36,4 @@ public:
 
 } // namespace tromino::gfx2d
 
-#endif // TROMINO_GFX2D_STEP_HPP
+#endif // TROMINO_GFX2D_STEP_HPP_

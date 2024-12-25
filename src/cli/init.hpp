@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef CLI_INIT_HPP
-#define CLI_INIT_HPP
+#ifndef CLI_INIT_HPP_
+#define CLI_INIT_HPP_
 
 #include "cli_models.hpp"
 
@@ -19,4 +19,4 @@ void init(int order, int x, int y, emulation_mode_type emulation_mode) noexcept;
 
 } // namespace tromino::cli::app
 
-#endif // CLI_INIT_HPP
+#endif // CLI_INIT_HPP_

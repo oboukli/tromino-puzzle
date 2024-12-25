@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef CLI_OPTIONS_HPP
-#define CLI_OPTIONS_HPP
+#ifndef CLI_CLI_OPTIONS_HPP_
+#define CLI_CLI_OPTIONS_HPP_
 
 #include "cli_models.hpp"
 
@@ -22,4 +22,4 @@ bool read_options(
 
 } // namespace tromino::cli
 
-#endif // CLI_OPTIONS_HPP
+#endif // CLI_CLI_OPTIONS_HPP_

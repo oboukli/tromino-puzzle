@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef GUI_CALLBACK_HPP
-#define GUI_CALLBACK_HPP
+#ifndef GUI_CALLBACK_HPP_
+#define GUI_CALLBACK_HPP_
 
 template <typename T>
 using tromino_cb_t
@@ -22,4 +22,4 @@ extern "C" void solve_puzzle_cb(
     int pos_x, int pos_y, int flip_x, int flip_y, void* state
 ) noexcept;
 
-#endif // GUI_CALLBACK_HPP
+#endif // GUI_CALLBACK_HPP_

@@ -23,8 +23,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 /* SPDX-License-Identifier: MIT */
 
-#ifndef TROMINO_CORE_TROMINO_H
-#define TROMINO_CORE_TROMINO_H
+#ifndef TROMINO_CORE_TROMINO_H_
+#define TROMINO_CORE_TROMINO_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -47,4 +47,4 @@ void trmn_solve_puzzle(
 }
 #endif /* __cplusplus */
 
-#endif /* TROMINO_CORE_TROMINO_H */
+#endif /* TROMINO_CORE_TROMINO_H_ */

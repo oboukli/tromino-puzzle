@@ -4,8 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
-#ifndef TROMINO_GFX2D_STYLE_HPP
-#define TROMINO_GFX2D_STYLE_HPP
+#ifndef TROMINO_GFX2D_STYLE_HPP_
+#define TROMINO_GFX2D_STYLE_HPP_
 
 #include <SDL2/SDL.h>
 
@@ -22,4 +22,4 @@ struct Style {
 
 } // namespace tromino::gfx2d
 
-#endif // TROMINO_GFX2D_STYLE_HPP
+#endif // TROMINO_GFX2D_STYLE_HPP_
