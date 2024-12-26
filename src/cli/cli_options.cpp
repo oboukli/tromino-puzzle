@@ -33,7 +33,7 @@ void print_usage(std::ostream& os) noexcept
 
 bool read_options(
     int const argc,
-    char const* const argv[],
+    char const* const* const argv,
     options& options,
     std::string& error
 ) noexcept

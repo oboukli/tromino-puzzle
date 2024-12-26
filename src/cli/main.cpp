@@ -13,7 +13,7 @@
 #include "cli_options.hpp"
 #include "init.hpp"
 
-int main(int const argc, char const* const argv[]) noexcept
+int main(int const argc, char const* const* const argv) noexcept
 {
     int exit_status{EXIT_FAILURE};
     tromino::cli::options options{};

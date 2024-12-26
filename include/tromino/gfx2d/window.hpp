@@ -20,7 +20,7 @@ public:
     Window() noexcept = delete;
 
     explicit Window(
-        std::optional<std::string const> const& title, int const width
+        std::optional<std::string const> const& title, int width
     ) noexcept;
 
     Window(Window const&) noexcept = delete;
