@@ -99,6 +99,9 @@ jobs:
       - name: Run tromino2d 8192 0 0
         run: ./tromino2d 8192 0 0 2> /dev/null || true
 
+      - name: Run tromino2d 64 0 0 -f
+        run: timeout 1s ./tromino2d 64 0 0 -f 2> /dev/null || true
+
       - name: Start Xvfb
         run: Xvfb :99 -screen 0 1024x768x24 &
 
