@@ -19,12 +19,15 @@ resources:
 jobs:
   - job: macOS
     displayName: Build for macOS
+
     pool:
-      vmImage: macOS-14
+      vmImage: macOS-15
+
     variables:
       configuration: Release
       scheme: TrominoCli
       sdk: macosx
+
     steps:
       - task: Xcode@5
         displayName: Build TrominoCli
@@ -39,8 +42,10 @@ jobs:
 
   - job: Windows
     displayName: Build for Windows
+
     pool:
-      vmImage: windows-latest
+      vmImage: windows-2022
+
     variables:
       - name: primaryRepository
         value: tromino-puzzle
@@ -48,6 +53,7 @@ jobs:
         value: $(Agent.TempDirectory)\vcpkg_artifacts
       - name: VCPKG_BINARY_SOURCES
         value: clear;files,$(binariesDir),readwrite
+
     steps:
       - checkout: self
         displayName: Check out primary repository
@@ -98,8 +104,14 @@ jobs:
 
   - job: Linux
     displayName: Build for GNU/Linux
+
     pool:
-      vmImage: ubuntu-latest
+      vmImage: ubuntu-24.04
+
+    variables:
+      CC: /usr/bin/gcc-14
+      CXX: /usr/bin/g++-14
+
     steps:
       - script: sudo apt-get update
         displayName: Update dependency list
@@ -109,6 +121,8 @@ jobs:
           --assume-yes
           --quiet
           autoconf-archive
+          g++-14
+          gcc-14
           libboost-test-dev
           libsdl2-dev
         displayName: Install dependencies
@@ -141,16 +155,19 @@ jobs:
 
   - job: WebAssembly
     displayName: Build for WebAssembly
+
     pool:
-      vmImage: ubuntu-latest
+      vmImage: ubuntu-24.04
+
     variables:
       emsdkVersion: 3.1.68
       numMakeJobs: 3
+
     steps:
       - task: DockerInstaller@0
         displayName: Install Docker
         inputs:
-          dockerVersion: 27.3.1
+          dockerVersion: 27.4.1
           releaseType: stable
 
       - script: >-
