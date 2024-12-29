@@ -2,19 +2,19 @@
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "features": {
     "tromino2d": {
-      "description": "client game executable",
+      "description": "Tromino2D library and executable",
       "dependencies": [
         "sdl2"
       ]
     },
     "test-driver": {
-      "description": "development tests",
+      "description": "Development test driver",
       "dependencies": [
         "boost-test"
       ]
     },
     "benchmark-driver": {
-      "description": "multiplayer server executable",
+      "description": "Development benchmark driver",
       "dependencies": [
         "nameof",
         "nanobench"

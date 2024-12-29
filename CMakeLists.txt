@@ -14,6 +14,22 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+option(BUILD_TROMINO2D "Build Tromino2D library and executable" ON)
+option(BUILD_TEST_DRIVER "Build development test driver" ON)
+option(BUILD_BENCHMARK_DRIVER "Build development benchmark driver" ON)
+
+if(BUILD_TROMINO2D)
+  list(APPEND VCPKG_MANIFEST_FEATURES "tromino2d")
+endif()
+
+if(BUILD_TEST_DRIVER)
+  list(APPEND VCPKG_MANIFEST_FEATURES "test-driver")
+endif()
+
+if(BUILD_BENCHMARK_DRIVER)
+  list(APPEND VCPKG_MANIFEST_FEATURES "benchmark-driver")
+endif()
+
 project(
   Tromino
   LANGUAGES C CXX
@@ -113,6 +129,7 @@ source_group(
   FILES ${tromino_validation_sources}
 )
 
+if(BUILD_TROMINO2D)
 find_package(SDL2 CONFIG REQUIRED)
 add_library(
   tromino_gfx2d
@@ -164,6 +181,7 @@ target_link_libraries(
   PUBLIC
     $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static>
 )
+endif()
 
 add_executable(
   tromino
@@ -230,6 +248,7 @@ target_link_libraries(
   PRIVATE tromino_validation
 )
 
+if(BUILD_TROMINO2D)
 add_executable(
   tromino2d
 )
@@ -284,7 +303,9 @@ target_link_libraries(
   PRIVATE tromino_validation
   PRIVATE tromino_gfx2d
 )
+endif()
 
+if(BUILD_TEST_DRIVER)
 enable_testing()
 find_package(Boost CONFIG REQUIRED COMPONENTS unit_test_framework)
 
@@ -318,7 +339,11 @@ target_link_libraries(
   PRIVATE tromino_core
   PRIVATE tromino_validation
 )
+endif()
 
+if(BUILD_BENCHMARK_DRIVER)
+find_package(nameof CONFIG REQUIRED)
+find_package(nanobench CONFIG REQUIRED)
 add_executable(
   benchmark_driver
 )
@@ -327,8 +352,6 @@ target_sources(
   PRIVATE
     "${CMAKE_SOURCE_DIR}/benchmark/core/tromino_benchmark.cpp"
 )
-find_package(nameof CONFIG REQUIRED)
-find_package(nanobench CONFIG REQUIRED)
 target_link_libraries(
   benchmark_driver
   PRIVATE nameof::nameof
@@ -338,3 +361,4 @@ target_link_libraries(
   benchmark_driver
   PRIVATE tromino_core
 )
+endif()
