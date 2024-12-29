@@ -57,3 +57,4 @@ emscripten_cache/
 # vcpkg
 
 vcpkg/
+vcpkg_installed/
