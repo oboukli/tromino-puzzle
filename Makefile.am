@@ -99,8 +99,7 @@ tromino_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
 	-I$(top_srcdir)/include
 tromino_CXXFLAGS = \
-	$(AM_CXXFLAGS) \
-	-std=c++20
+	$(AM_CXXFLAGS)
 tromino_LDADD = \
 	$(top_builddir)/libtromino.la \
 	$(top_builddir)/libtromino-validation.la
@@ -140,8 +139,7 @@ tromino2d_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
 	-I$(top_srcdir)/include
 tromino2d_CXXFLAGS = \
-	$(AM_CXXFLAGS) \
-	-std=c++20
+	$(AM_CXXFLAGS)
 tromino2d_LDFLAGS = \
 	$(AM_LDFLAGS) \
 	-lpthread \
@@ -165,8 +163,7 @@ libtromino_test_SOURCES = \
 	test/validation/validation_unittest.cpp
 
 libtromino_test_CXXFLAGS = \
-	$(AM_CXXFLAGS) \
-	-std=c++20
+	$(AM_CXXFLAGS)
 
 libtromino_test_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
