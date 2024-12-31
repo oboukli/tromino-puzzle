@@ -20,10 +20,12 @@ permissions: {}
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     env:
       BUILD_PATH: ${{ github.workspace }}/build
+      CC: /usr/bin/gcc-14
+      CXX: /usr/bin/g++-14
 
     steps:
       - name: Check out repository
@@ -40,6 +42,8 @@ jobs:
           --assume-yes
           --quiet
           autoconf-archive
+          g++-14
+          gcc-14
           libboost-test-dev
           libsdl2-dev
 
