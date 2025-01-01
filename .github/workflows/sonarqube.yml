@@ -4,7 +4,7 @@
 
 # SPDX-License-Identifier: MIT
 
-name: SonarCloud scan
+name: SonarQube Cloud scan
 
 on:
   pull_request:
@@ -20,12 +20,16 @@ permissions: {}
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
 
     env:
       SONAR_HOST_URL: https://sonarcloud.io
       BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory
+      CC: /usr/bin/gcc-14
+      CXX: /usr/bin/g++-14
       COVERAGE_REPORTS_PATH: ${{ github.workspace }}/coverage.xml
+      GCOV: gcov-14
 
     steps:
       - name: Update dependency list
@@ -37,6 +41,8 @@ jobs:
           --assume-yes
           --quiet
           autoconf-archive
+          g++-14
+          gcc-14
           gcovr
           lcov
           libboost-test-dev
@@ -93,9 +99,6 @@ jobs:
       - name: Run tromino2d 8192 0 0
         run: ./tromino2d 8192 0 0 2> /dev/null || true
 
-      - name: Run tromino2d 1024 0 0 -f
-        run: ./tromino2d 1024 0 0 -f 2> /dev/null || true
-
       - name: Start Xvfb
         run: Xvfb :99 -screen 0 1024x768x24 &
 
@@ -112,8 +115,9 @@ jobs:
       - name: Run gcovr
         run: >-
           gcovr
-          --exclude='./test'
-          --exclude='/usr/include'
+          --exclude './test'
+          --exclude '/usr/include'
+          --gcov-executable '${{ env.GCOV }}'
           --keep
           --root '.'
           --sonarqube '${{ env.COVERAGE_REPORTS_PATH }}'
