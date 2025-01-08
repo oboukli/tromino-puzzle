@@ -142,10 +142,11 @@ $(TARGET_TRMN): $(OBJ_DIR)/core/tromino.o $(GFX2D_OBJS) $(TRMN_OBJS)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) \
 		--closure 0 \
 		--no-entry \
+		--use-port=sdl2 \
 		-l html5 \
 		-l EGL \
 		-l GL \
-		-s ALLOW_TABLE_GROWTH \
+		-s ALLOW_TABLE_GROWTH=0 \
 		-s ALLOW_UNIMPLEMENTED_SYSCALLS \
 		-s ASSERTIONS=0 \
 		-s ASYNCIFY \
@@ -167,7 +168,6 @@ $(TARGET_TRMN): $(OBJ_DIR)/core/tromino.o $(GFX2D_OBJS) $(TRMN_OBJS)
 		-s STACK_OVERFLOW_CHECK=0 \
 		-s STRICT \
 		-s USE_CLOSURE_COMPILER \
-		-s USE_SDL=2 \
 		-s WASM \
 		-o $(OUT_DIR)/$(TRMN_DIR_NAME)/$@ $^
 
@@ -187,15 +187,15 @@ $(OBJ_DIR)/wasm/litro/litro.o: $(SRC_DIR)/wasm/litro/litro.c
 $(OBJ_DIR)/wasm/trmn/%.o: $(SRC_DIR)/wasm/trmn/%.cpp
 	@mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) \
-		-s USE_SDL=2 \
+		--use-port=sdl2 \
 		-c $< \
 		-o $@
 
 $(OBJ_DIR)/gfx2d/%.o: $(SRC_DIR)/gfx2d/%.cpp
 	@mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) \
+		--use-port=sdl2 \
 		-I $(INC_DIR)/tromino/gfx2d \
-		-s USE_SDL=2 \
 		-c $< \
 		-o $@
 
