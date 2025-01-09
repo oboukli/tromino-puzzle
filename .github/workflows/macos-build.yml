@@ -52,7 +52,7 @@ jobs:
 
       - name: Set default Xcode release
         env:
-          XCODE_RELEASE: "16.0"
+          XCODE_RELEASE: "16.2"
         run: >-
           sudo xcode-select
           -switch '/Applications/Xcode_${{ env.XCODE_RELEASE }}.app'
