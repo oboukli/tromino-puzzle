@@ -26,6 +26,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "tromino.h"
 
 #include <assert.h>
+#include <stdatomic.h>
+
+_Thread_local atomic_bool is_active_ = 0;
 
 static void solve_tromino(
     int const order,
@@ -34,11 +37,10 @@ static void solve_tromino(
     int const fx,
     int const fy,
     trmn_add_tromino_func_t const add_tromino,
-    void* const state,
-    int const* const stop_flag
+    void* const state
 )
 {
-    if (*stop_flag == 0)
+    if (atomic_load_explicit(&is_active_, memory_order_relaxed))
     {
         if (order == 2)
         {
@@ -52,34 +54,16 @@ static void solve_tromino(
         int const _py = py + (n * ((fy + 1) >> 1));
 
         solve_tromino(
-            n,
-            _px - (fx * n),
-            _py - (fy * n),
-            fx,
-            fy,
-            add_tromino,
-            state,
-            stop_flag
+            n, _px - (fx * n), _py - (fy * n), fx, fy, add_tromino, state
         );
 
-        solve_tromino(
-            n, _px - (fx * n), _py, fx, fy * -1, add_tromino, state, stop_flag
-        );
+        solve_tromino(n, _px - (fx * n), _py, fx, fy * -1, add_tromino, state);
 
-        solve_tromino(
-            n, _px, _py - (fy * n), fx * -1, fy, add_tromino, state, stop_flag
-        );
+        solve_tromino(n, _px, _py - (fy * n), fx * -1, fy, add_tromino, state);
 
         int const o = n >> 1;
         solve_tromino(
-            n,
-            _px - (fx * o),
-            _py - (fy * o),
-            fx,
-            fy,
-            add_tromino,
-            state,
-            stop_flag
+            n, _px - (fx * o), _py - (fy * o), fx, fy, add_tromino, state
         );
     }
 }
@@ -93,32 +77,26 @@ static void solve_board(
     int const mx,
     int const my,
     trmn_add_tromino_func_t const add_tromino,
-    void* const state,
-    int const* const stop_flag
+    void* const state
 )
 {
-    if (*stop_flag == 0)
+    if (order > 2)
     {
-        if (order > 2)
-        {
-            int const n = order >> 1;
+        int const n = order >> 1;
 
-            int const _px = px + (n * ((fx + 1) >> 1));
-            int const _py = py + (n * ((fy + 1) >> 1));
+        int const _px = px + (n * ((fx + 1) >> 1));
+        int const _py = py + (n * ((fy + 1) >> 1));
 
-            int const o = n >> 1;
-            int const x = mx - _px;
-            int const y = my - _py;
-            int const _fx = (x >= o) - (x < o);
-            int const _fy = (y >= o) - (y < o);
+        int const o = n >> 1;
+        int const x = mx - _px;
+        int const y = my - _py;
+        int const _fx = (x >= o) - (x < o);
+        int const _fy = (y >= o) - (y < o);
 
-            solve_board(
-                n, _px, _py, _fx, _fy, mx, my, add_tromino, state, stop_flag
-            );
-        }
-
-        solve_tromino(order, px, py, fx, fy, add_tromino, state, stop_flag);
+        solve_board(n, _px, _py, _fx, _fy, mx, my, add_tromino, state);
     }
+
+    solve_tromino(order, px, py, fx, fy, add_tromino, state);
 }
 
 void trmn_solve_puzzle(
@@ -126,10 +104,11 @@ void trmn_solve_puzzle(
     int const mx,
     int const my,
     trmn_add_tromino_func_t const add_tromino,
-    void* const state,
-    int const* const stop_flag
+    void* const state
 )
 {
+    atomic_store(&is_active_, 1);
+
     assert(add_tromino);
 
     int const o = order >> 1;
@@ -143,7 +122,11 @@ void trmn_solve_puzzle(
         mx,
         my,
         add_tromino,
-        state,
-        stop_flag
+        state
     );
+}
+
+void trmn_request_stop(void)
+{
+    atomic_store_explicit(&is_active_, 0, memory_order_relaxed);
 }

@@ -26,7 +26,6 @@ std::unique_ptr<tromino::gfx2d::Window> window{};
 std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel{};
 std::unique_ptr<std::vector<tromino::gfx2d::Step>> steps{};
 bool isInitialized{false};
-int solver_stop_flag{0};
 
 void add_tromino(
     int const pos_x,
@@ -61,7 +60,7 @@ void init(int const width)
 
 void terminate() noexcept
 {
-    solver_stop_flag = 1;
+    ::trmn_request_stop();
 
     ::emscripten_cancel_main_loop();
 
@@ -98,15 +97,8 @@ void start(tromino::gfx2d::Board const& board, int const width)
     };
     steps->reserve(numSteps);
 
-    solver_stop_flag = 0;
-
     ::trmn_solve_puzzle(
-        board.order,
-        board.mark_x,
-        board.mark_y,
-        add_tromino,
-        steps.get(),
-        &solver_stop_flag
+        board.order, board.mark_x, board.mark_y, add_tromino, steps.get()
     );
 
     tromino::gfx2d::Style const style{

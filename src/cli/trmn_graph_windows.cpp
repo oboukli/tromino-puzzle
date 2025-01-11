@@ -195,15 +195,12 @@ void use_wch(board_t& tromino_board, std::ostream& os)
             | BACKGROUND_INTENSITY
     );
 
-    int const stop_flag{0};
-
     ::trmn_solve_puzzle(
         tromino_board.order,
         tromino_board.mark_x,
         tromino_board.mark_y,
         add_tromino,
-        &graph_state,
-        &stop_flag
+        &graph_state
     );
 
     ::SetConsoleTextAttribute(

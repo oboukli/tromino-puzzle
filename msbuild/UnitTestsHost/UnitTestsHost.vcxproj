@@ -15,7 +15,7 @@
     <ClCompile Include="..\..\test\core\tromino_2x2_unittest.cpp" />
     <ClCompile Include="..\..\test\core\tromino_4x4_unittest.cpp" />
     <ClCompile Include="..\..\test\core\tromino_64x64_unittest.cpp" />
-    <ClCompile Include="..\..\test\core\tromino_stop_flag.cpp" />
+    <ClCompile Include="..\..\test\core\tromino_stop.cpp" />
     <ClCompile Include="..\..\test\core\unittest_helper.cpp" />
   </ItemGroup>
   <ItemGroup>

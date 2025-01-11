@@ -44,7 +44,7 @@ CFLAGS ::= \
 	-flto \
 	-g0 \
 	-O3 \
-	-std=c99 \
+	-std=c11 \
 	-Wall \
 	-Wcast-align \
 	-Wconversion \

@@ -27,7 +27,7 @@
     <ClCompile Include="..\..\test\core\tromino_64x64_unittest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\core\tromino_stop_flag.cpp">
+    <ClCompile Include="..\..\test\core\tromino_stop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\test\core\unittest_helper.cpp">
