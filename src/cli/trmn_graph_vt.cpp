@@ -259,14 +259,13 @@ void use_vt(board_t& tromino_board, std::ostream& os)
     SolverState<graph_state_t> solver_state{
         .state = &graph_state, .callback = add_tromino
     };
-    int const stop_flag{0};
+
     ::trmn_solve_puzzle(
         tromino_board.order,
         tromino_board.mark_x,
         tromino_board.mark_y,
         ::solve_puzzle_cb,
-        static_cast<void*>(&solver_state),
-        &stop_flag
+        static_cast<void*>(&solver_state)
     );
 
     std::cin.get();

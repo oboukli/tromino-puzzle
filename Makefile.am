@@ -9,7 +9,7 @@ dist_doc_DATA = README.md
 
 AM_CPPFLAGS =
 AM_CFLAGS = \
-	-std=c99 \
+	-std=c11 \
 	-Wall \
 	-Wcast-align \
 	-Wconversion \
@@ -156,7 +156,7 @@ libtromino_test_SOURCES = \
 	test/core/tromino_2x2_unittest.cpp \
 	test/core/tromino_4x4_unittest.cpp \
 	test/core/tromino_64x64_unittest.cpp \
-	test/core/tromino_stop_flag.cpp \
+	test/core/tromino_stop.cpp \
 	test/core/unittest_helper.cpp \
 	test/core/unittest_helper.hpp \
 	test/main.cpp \

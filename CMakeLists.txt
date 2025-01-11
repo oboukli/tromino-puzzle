@@ -6,7 +6,7 @@
 
 cmake_minimum_required(VERSION 3.29)
 
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
 
@@ -326,7 +326,7 @@ target_sources(
     "${CMAKE_SOURCE_DIR}/test/core/tromino_2x2_unittest.cpp"
     "${CMAKE_SOURCE_DIR}/test/core/tromino_4x4_unittest.cpp"
     "${CMAKE_SOURCE_DIR}/test/core/tromino_64x64_unittest.cpp"
-    "${CMAKE_SOURCE_DIR}/test/core/tromino_stop_flag.cpp"
+    "${CMAKE_SOURCE_DIR}/test/core/tromino_stop.cpp"
     "${CMAKE_SOURCE_DIR}/test/core/unittest_helper.cpp"
     "${CMAKE_SOURCE_DIR}/test/main.cpp"
     "${CMAKE_SOURCE_DIR}/test/validation/validation_unittest.cpp"

@@ -140,8 +140,7 @@ void solver_thread_callable(
     int const mark_x,
     int const mark_y,
     tromino_callback_t<SolverState> const tromino_callback,
-    SolverState* const state,
-    int const* const stop_flag
+    SolverState* const state
 ) noexcept
 {
     solver_state_wrapper_t<SolverState> solver_state_wrapper{
@@ -156,8 +155,7 @@ void solver_thread_callable(
         mark_x,
         mark_y,
         &::tromino_solve_puzzle_cb,
-        static_cast<void*>(&solver_state_wrapper),
-        stop_flag
+        static_cast<void*>(&solver_state_wrapper)
     );
 }
 
@@ -177,8 +175,6 @@ int init(
     SolverState solver_state{};
     solver_state.reserve(num_steps);
 
-    int solver_stop_flag{0};
-
     std::thread solver_thread{
         solver_thread_callable,
         board.order,
@@ -186,7 +182,6 @@ int init(
         board.mark_y,
         &update_solver_state,
         &solver_state,
-        &solver_stop_flag,
     };
 
     bool sdl2_success{false};
@@ -200,7 +195,9 @@ int init(
 
         sdl2_success = true;
     }
-    solver_stop_flag = 1;
+
+    ::trmn_request_stop();
+
     ::SDL_Quit();
     solver_thread.join();
 

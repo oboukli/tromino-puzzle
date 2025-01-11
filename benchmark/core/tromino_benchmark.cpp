@@ -28,10 +28,7 @@ auto main() -> int
         .run(
             NAMEOF(trmn_solve_puzzle).c_str(),
             []() noexcept {
-                int const stop_flag{0};
-                trmn_solve_puzzle(
-                    16, 1, 7, dummy_callback, nullptr, &stop_flag
-                );
+                trmn_solve_puzzle(16, 1, 7, dummy_callback, nullptr);
             }
         )
 

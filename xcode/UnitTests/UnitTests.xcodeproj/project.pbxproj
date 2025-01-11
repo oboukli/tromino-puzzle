@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		756358522A9BCC0F001775E2 /* tromino_stop_flag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756358512A9BCC0F001775E2 /* tromino_stop_flag.cpp */; };
+		756358522A9BCC0F001775E2 /* tromino_stop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 756358512A9BCC0F001775E2 /* tromino_stop.cpp */; };
 		758EF494284E53120069A198 /* libtromino.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 758EF493284E53120069A198 /* libtromino.a */; };
 		758EF496284E53120069A198 /* libtromino-validation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 758EF495284E53120069A198 /* libtromino-validation.a */; };
 		75D21CD12A63D0A100E96F5B /* validation_unittest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75D21CD02A63D0A100E96F5B /* validation_unittest.cpp */; };
@@ -21,7 +21,7 @@
 /* Begin PBXFileReference section */
 		7503E7A126C891260018B1F2 /* UnitTests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTests; sourceTree = BUILT_PRODUCTS_DIR; };
 		755F9D212811CA4B004C54E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		756358512A9BCC0F001775E2 /* tromino_stop_flag.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tromino_stop_flag.cpp; sourceTree = "<group>"; };
+		756358512A9BCC0F001775E2 /* tromino_stop.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tromino_stop.cpp; sourceTree = "<group>"; };
 		758EF493284E53120069A198 /* libtromino.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libtromino.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		758EF495284E53120069A198 /* libtromino-validation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libtromino-validation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75D21CD02A63D0A100E96F5B /* validation_unittest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = validation_unittest.cpp; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 				75D21CD72A63D0BB00E96F5B /* tromino_2x2_unittest.cpp */,
 				75D21CD62A63D0BB00E96F5B /* tromino_4x4_unittest.cpp */,
 				75D21CD42A63D0BB00E96F5B /* tromino_64x64_unittest.cpp */,
-				756358512A9BCC0F001775E2 /* tromino_stop_flag.cpp */,
+				756358512A9BCC0F001775E2 /* tromino_stop.cpp */,
 				75D21CD32A63D0BB00E96F5B /* unittest_helper.cpp */,
 				75D21CD82A63D0BB00E96F5B /* unittest_helper.hpp */,
 			);
@@ -159,7 +159,7 @@
 				75D21CDA2A63D0BB00E96F5B /* tromino_64x64_unittest.cpp in Sources */,
 				75D21CDF2A63D29A00E96F5B /* main.cpp in Sources */,
 				75D21CDD2A63D0BB00E96F5B /* tromino_2x2_unittest.cpp in Sources */,
-				756358522A9BCC0F001775E2 /* tromino_stop_flag.cpp in Sources */,
+				756358522A9BCC0F001775E2 /* tromino_stop.cpp in Sources */,
 				75D21CDC2A63D0BB00E96F5B /* tromino_4x4_unittest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,7 +205,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
@@ -276,7 +276,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_NO_COMMON_BLOCKS = YES;

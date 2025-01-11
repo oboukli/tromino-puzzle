@@ -34,8 +34,7 @@ EMSCRIPTEN_KEEPALIVE void solve(
     add_tromino_extern_callback add_tromino_cb
 )
 {
-    static int const stop_flag = 0;
     struct State state = {.callback = add_tromino_cb};
 
-    trmn_solve_puzzle(order, mark_x, mark_y, add_tromino, &state, &stop_flag);
+    trmn_solve_puzzle(order, mark_x, mark_y, add_tromino, &state);
 }
