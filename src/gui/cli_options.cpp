@@ -24,7 +24,7 @@ void print_usage(std::ostream& os)
         "Options:\n"
         "  -f    Force large puzzle (unstable)\n"
         "\n"
-        "Copyright (c) 2021-2024 Omar Boukli-Hacene. All rights reserved.\n"
+        "Copyright (c) 2021-2025 Omar Boukli-Hacene. All rights reserved.\n"
         << std::endl;
     // clang-format on
 }
