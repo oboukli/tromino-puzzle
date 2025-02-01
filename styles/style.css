@@ -1,0 +1,100 @@
+:root {
+  font-family: sans-serif;
+  color: #d9933d;
+  background-color: #222;
+}
+
+footer {
+  text-align: center;
+  font-size: smaller;
+}
+
+canvas {
+  border: 1px solid #333;
+}
+
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.editor-container * {
+  box-sizing: border-box;
+}
+
+.columns {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.column {
+  flex: 50%;
+}
+
+.flex-outer {
+  list-style-type: none;
+  padding: 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.flex-outer li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.flex-outer > li:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.flex-outer li label,
+.flex-outer li p {
+  padding: 8px;
+}
+
+.flex-outer > li > label,
+.flex-outer li p {
+  flex: 1 0 120px;
+  max-width: 220px;
+}
+
+.flex-outer > li > label + *,
+.flex-inner {
+  flex: 1 0 220px;
+}
+
+.flex-outer li p {
+  margin: 0;
+}
+
+.flex-outer li input:not([type="checkbox"]),
+.flex-outer li textarea {
+  padding: 8px 16px;
+  border: none;
+  background: #333;
+  color: #d9933d;
+  font-size: medium;
+}
+
+.flex-outer li input[type="range"] {
+  padding: 0;
+}
+
+.flex-outer li button {
+  margin-left: auto;
+  padding: 8px 16px;
+  border: none;
+  background: #333;
+  color: #d9933d;
+  border-radius: 2px;
+  font-size: medium;
+}
+
+.flex-outer li .indicator {
+  width: 2em;
+  text-align: center;
+}
