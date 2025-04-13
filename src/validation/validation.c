@@ -30,7 +30,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 bool trmn_is_valid_order(int const order)
 {
-    return (order > 1) && (order < 32769) && ((order & (order - 1)) == 0);
+    return (order > 1)
+        && (order < 32769)
+        && (((unsigned int)order & ((unsigned int)order - 1U)) == 0U);
 }
 
 bool trmn_is_valid_coordinate(int const c, int const order)
