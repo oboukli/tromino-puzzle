@@ -44,22 +44,22 @@ target_sources(
   PUBLIC
     FILE_SET HEADERS
     FILES
-      "${CMAKE_SOURCE_DIR}/include/tromino/core/tromino.h"
+      "${CMAKE_CURRENT_SOURCE_DIR}/include/tromino/core/tromino.h"
 )
 target_sources(
   tromino_core
   PRIVATE
-    "${CMAKE_SOURCE_DIR}/src/core/tromino.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/core/tromino.c"
 )
 target_include_directories(
   tromino_core
   PRIVATE
-    "${CMAKE_SOURCE_DIR}/include/tromino/core/"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/tromino/core/"
 )
 target_include_directories(
   tromino_core
   PUBLIC
-    "${CMAKE_SOURCE_DIR}/include/"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/"
 )
 get_target_property(
   tromino_core_headers
@@ -67,7 +67,7 @@ get_target_property(
   HEADER_SET
 )
 source_group(
-  TREE "${CMAKE_SOURCE_DIR}/include/tromino/core/"
+  TREE "${CMAKE_CURRENT_SOURCE_DIR}/include/tromino/core/"
   PREFIX "Header files"
   FILES ${tromino_core_headers}
 )
@@ -77,7 +77,7 @@ get_target_property(
   SOURCES
 )
 source_group(
-  TREE "${CMAKE_SOURCE_DIR}/src/core/"
+  TREE "${CMAKE_CURRENT_SOURCE_DIR}/src/core/"
   PREFIX "Source files"
   FILES ${tromino_core_sources}
 )
@@ -91,22 +91,22 @@ target_sources(
   PUBLIC
     FILE_SET HEADERS
     FILES
-      "${CMAKE_SOURCE_DIR}/include/tromino/validation/validation.h"
+      "${CMAKE_CURRENT_SOURCE_DIR}/include/tromino/validation/validation.h"
 )
 target_sources(
   tromino_validation
   PRIVATE
-    "${CMAKE_SOURCE_DIR}/src/validation/validation.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/validation/validation.c"
 )
 target_include_directories(
   tromino_validation
   PRIVATE
-    "${CMAKE_SOURCE_DIR}/include/tromino/validation/"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/tromino/validation/"
 )
 target_include_directories(
   tromino_validation
   PUBLIC
-    "${CMAKE_SOURCE_DIR}/include/"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/"
 )
 get_target_property(
   tromino_validation_headers
@@ -114,7 +114,7 @@ get_target_property(
   HEADER_SET
 )
 source_group(
-  TREE "${CMAKE_SOURCE_DIR}/include/tromino/validation/"
+  TREE "${CMAKE_CURRENT_SOURCE_DIR}/include/tromino/validation/"
   PREFIX "Header files"
   FILES ${tromino_validation_headers}
 )
@@ -124,7 +124,7 @@ get_target_property(
   SOURCES
 )
 source_group(
-  TREE "${CMAKE_SOURCE_DIR}/src/validation/"
+  TREE "${CMAKE_CURRENT_SOURCE_DIR}/src/validation/"
   PREFIX "Source files"
   FILES ${tromino_validation_sources}
 )
@@ -138,7 +138,7 @@ target_sources(
   PUBLIC
     FILE_SET HEADERS
     FILES
-      "${CMAKE_SOURCE_DIR}/include/tromino/wrapper/callback.hpp"
+      "${CMAKE_CURRENT_SOURCE_DIR}/include/tromino/wrapper/callback.hpp"
 )
 get_target_property(
   tromino_wrapper_headers
@@ -146,7 +146,7 @@ get_target_property(
   HEADER_SET
 )
 source_group(
-  TREE "${CMAKE_SOURCE_DIR}/include/tromino/wrapper/"
+  TREE "${CMAKE_CURRENT_SOURCE_DIR}/include/tromino/wrapper/"
   PREFIX "Header files"
   FILES ${tromino_wrapper_headers}
 )
@@ -160,41 +160,41 @@ add_library(
 target_include_directories(
   tromino_gfx2d
   PRIVATE
-    "${CMAKE_SOURCE_DIR}/include/tromino/gfx2d/"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/tromino/gfx2d/"
 )
 target_include_directories(
   tromino_gfx2d
   PUBLIC
-    "${CMAKE_SOURCE_DIR}/include/"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/"
 )
 target_sources(
   tromino_gfx2d
   PRIVATE
   FILE_SET HEADERS
   FILES
-    "${CMAKE_SOURCE_DIR}/include/tromino/gfx2d/board.hpp"
-    "${CMAKE_SOURCE_DIR}/include/tromino/gfx2d/gfx2d.hpp"
-    "${CMAKE_SOURCE_DIR}/include/tromino/gfx2d/step.hpp"
-    "${CMAKE_SOURCE_DIR}/include/tromino/gfx2d/style.hpp"
-    "${CMAKE_SOURCE_DIR}/include/tromino/gfx2d/view_model.hpp"
-    "${CMAKE_SOURCE_DIR}/include/tromino/gfx2d/window.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/tromino/gfx2d/board.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/tromino/gfx2d/gfx2d.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/tromino/gfx2d/step.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/tromino/gfx2d/style.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/tromino/gfx2d/view_model.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/tromino/gfx2d/window.hpp"
 )
 target_sources(
   tromino_gfx2d
   PRIVATE
-    "${CMAKE_SOURCE_DIR}/src/gfx2d/gfx2d.cpp"
-    "${CMAKE_SOURCE_DIR}/src/gfx2d/view_model.cpp"
-    "${CMAKE_SOURCE_DIR}/src/gfx2d/window.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/gfx2d/gfx2d.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/gfx2d/view_model.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/gfx2d/window.cpp"
 )
 get_target_property(tromino_gfx2d_headers tromino_gfx2d HEADER_SET)
 source_group(
-  TREE "${CMAKE_SOURCE_DIR}/include/tromino/gfx2d/"
+  TREE "${CMAKE_CURRENT_SOURCE_DIR}/include/tromino/gfx2d/"
   PREFIX "Header files"
   FILES ${tromino_gfx2d_headers}
 )
 get_target_property(tromino_gfx2d_sources tromino_gfx2d SOURCES)
 source_group(
-  TREE "${CMAKE_SOURCE_DIR}/src/gfx2d/"
+  TREE "${CMAKE_CURRENT_SOURCE_DIR}/src/gfx2d/"
   PREFIX "Source files"
   FILES ${tromino_gfx2d_sources}
 )
@@ -213,22 +213,22 @@ target_sources(
   PRIVATE
   FILE_SET HEADERS
   FILES
-    "${CMAKE_SOURCE_DIR}/src/cli/cli_models.hpp"
-    "${CMAKE_SOURCE_DIR}/src/cli/cli_options.hpp"
-    "${CMAKE_SOURCE_DIR}/src/cli/init.hpp"
-    "${CMAKE_SOURCE_DIR}/src/cli/params.hpp"
-    "${CMAKE_SOURCE_DIR}/src/cli/trmn_graph.hpp"
-    "${CMAKE_SOURCE_DIR}/src/cli/trmn_graph_vt.hpp"
-    "${CMAKE_SOURCE_DIR}/src/cli/wrapper.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/cli/cli_models.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/cli/cli_options.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/cli/init.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/cli/params.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/cli/trmn_graph.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/cli/trmn_graph_vt.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/cli/wrapper.hpp"
 )
 target_sources(
   tromino
   PRIVATE
-    "${CMAKE_SOURCE_DIR}/src/cli/cli_options.cpp"
-    "${CMAKE_SOURCE_DIR}/src/cli/init.cpp"
-    "${CMAKE_SOURCE_DIR}/src/cli/main.cpp"
-    "${CMAKE_SOURCE_DIR}/src/cli/trmn_graph_vt.cpp"
-    "${CMAKE_SOURCE_DIR}/src/cli/wrapper.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/cli/cli_options.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/cli/init.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/cli/main.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/cli/trmn_graph_vt.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/cli/wrapper.cpp"
 )
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
   target_sources(
@@ -236,12 +236,12 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     PRIVATE
     FILE_SET HEADERS
     FILES
-      "${CMAKE_SOURCE_DIR}/src/cli/trmn_graph_windows.hpp"
+      "${CMAKE_CURRENT_SOURCE_DIR}/src/cli/trmn_graph_windows.hpp"
   )
   target_sources(
     tromino
     PRIVATE
-      "${CMAKE_SOURCE_DIR}/src/cli/trmn_graph_windows.cpp"
+      "${CMAKE_CURRENT_SOURCE_DIR}/src/cli/trmn_graph_windows.cpp"
   )
 endif()
 get_target_property(
@@ -250,7 +250,7 @@ get_target_property(
   HEADER_SET
 )
 source_group(
-  TREE "${CMAKE_SOURCE_DIR}/src/cli/"
+  TREE "${CMAKE_CURRENT_SOURCE_DIR}/src/cli/"
   PREFIX "Header files"
   FILES ${tromino_headers}
 )
@@ -260,7 +260,7 @@ get_target_property(
   SOURCES
 )
 source_group(
-  TREE "${CMAKE_SOURCE_DIR}/src/cli/"
+  TREE "${CMAKE_CURRENT_SOURCE_DIR}/src/cli/"
   PREFIX "Source files"
   FILES ${tromino_sources}
 )
@@ -280,20 +280,20 @@ target_sources(
   PUBLIC
   FILE_SET HEADERS
   FILES
-    "${CMAKE_SOURCE_DIR}/src/gui/callback.hpp"
-    "${CMAKE_SOURCE_DIR}/src/gui/cli_models.hpp"
-    "${CMAKE_SOURCE_DIR}/src/gui/cli_options.hpp"
-    "${CMAKE_SOURCE_DIR}/src/gui/init.hpp"
-    "${CMAKE_SOURCE_DIR}/src/gui/params.hpp"
-    "${CMAKE_SOURCE_DIR}/src/gui/solver_state.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/gui/callback.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/gui/cli_models.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/gui/cli_options.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/gui/init.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/gui/params.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/gui/solver_state.hpp"
 )
 target_sources(
   tromino2d
   PRIVATE
-    "${CMAKE_SOURCE_DIR}/src/gui/callback.cpp"
-    "${CMAKE_SOURCE_DIR}/src/gui/cli_options.cpp"
-    "${CMAKE_SOURCE_DIR}/src/gui/init.cpp"
-    "${CMAKE_SOURCE_DIR}/src/gui/main.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/gui/callback.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/gui/cli_options.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/gui/init.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/gui/main.cpp"
 )
 get_target_property(
   tromino2d_headers
@@ -301,7 +301,7 @@ get_target_property(
   HEADER_SET
 )
 source_group(
-  TREE "${CMAKE_SOURCE_DIR}/src/gui/"
+  TREE "${CMAKE_CURRENT_SOURCE_DIR}/src/gui/"
   PREFIX "Header files"
   FILES ${tromino2d_headers}
 )
@@ -311,7 +311,7 @@ get_target_property(
   SOURCES
 )
 source_group(
-  TREE "${CMAKE_SOURCE_DIR}/src/gui/"
+  TREE "${CMAKE_CURRENT_SOURCE_DIR}/src/gui/"
   PREFIX "Source files"
   FILES ${tromino2d_sources}
 )
@@ -342,18 +342,18 @@ target_sources(
   PRIVATE
     FILE_SET HEADERS
     FILES
-    "${CMAKE_SOURCE_DIR}/test/core/unittest_helper.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/test/core/unittest_helper.hpp"
 )
 target_sources(
   test_driver
   PRIVATE
-    "${CMAKE_SOURCE_DIR}/test/core/tromino_2x2_unittest.cpp"
-    "${CMAKE_SOURCE_DIR}/test/core/tromino_4x4_unittest.cpp"
-    "${CMAKE_SOURCE_DIR}/test/core/tromino_64x64_unittest.cpp"
-    "${CMAKE_SOURCE_DIR}/test/core/tromino_stop.cpp"
-    "${CMAKE_SOURCE_DIR}/test/core/unittest_helper.cpp"
-    "${CMAKE_SOURCE_DIR}/test/main.cpp"
-    "${CMAKE_SOURCE_DIR}/test/validation/validation_unittest.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/test/core/tromino_2x2_unittest.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/test/core/tromino_4x4_unittest.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/test/core/tromino_64x64_unittest.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/test/core/tromino_stop.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/test/core/unittest_helper.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/test/main.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/test/validation/validation_unittest.cpp"
 )
 target_link_libraries(
   test_driver
@@ -375,7 +375,7 @@ add_executable(
 target_sources(
   benchmark_driver
   PRIVATE
-    "${CMAKE_SOURCE_DIR}/benchmark/core/tromino_benchmark.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/benchmark/core/tromino_benchmark.cpp"
 )
 target_link_libraries(
   benchmark_driver
