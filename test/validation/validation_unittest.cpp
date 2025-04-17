@@ -87,6 +87,16 @@ BOOST_AUTO_TEST_CASE(
     BOOST_TEST(is_valid == false);
 }
 
+BOOST_AUTO_TEST_CASE(
+    Given_trmn_is_valid_order_WhenOrderIsNotAPowerOfTwo_ThenFalse,
+    *label("validation")
+)
+{
+    bool const is_valid = ::trmn_is_valid_order(6);
+
+    BOOST_TEST(is_valid == false);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(trmn_is_valid_coordinate_test_suite)
