@@ -28,6 +28,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <limits.h>
 #include <stddef.h>
 
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ < 202311L
+#include <stdbool.h>
+#endif /* defined(__STDC_VERSION__) && __STDC_VERSION__ < 202311L */
+
 bool trmn_is_valid_order(int const order)
 {
     return (order > 1)
