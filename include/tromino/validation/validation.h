@@ -26,7 +26,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #ifndef TROMINO_VALIDATION_VALIDATION_H_
 #define TROMINO_VALIDATION_VALIDATION_H_
 
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ < 202311L
 #include <stdbool.h>
+#endif /* defined(__STDC_VERSION__) && __STDC_VERSION__ < 202311L */
 
 #ifdef __cplusplus
 
