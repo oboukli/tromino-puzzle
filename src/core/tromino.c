@@ -107,7 +107,7 @@ void trmn_solve_puzzle(
     void* const state
 )
 {
-    atomic_store(&is_active_, 1);
+    atomic_store_explicit(&is_active_, 1, memory_order_release);
 
     assert(add_tromino);
 
