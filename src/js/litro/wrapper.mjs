@@ -23,40 +23,36 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // SPDX-License-Identifier: MIT
 
-/// <reference path="editor.js" />
-/// <reference path="litro/litro.js" />
-/// <reference path="trmn/trmn.js" />
+/**
+ * @typedef {object} EmModule
+ * @property {function(number, number, number, number): void} _solve
+ * @property {function(function, string): number} addFunction
+ * @property {function(number): void} removeFunction
+ */
 
-"use strict";
+/**
+ * @callback TrominoStepCallback
+ * @param {number} x
+ * @param {number} y
+ * @param {number} flipX
+ * @param {number} flipY
+ * @returns {void}
+ */
 
-(async function (window, editorFactory, litro, trmn) {
-  window.addEventListener(
-    "DOMContentLoaded",
-    () => {
-      (async () => {
-        const editor = editorFactory.create();
+/**
+ * @param {EmModule} emModule
+ * @param {number} order
+ * @param {number} markX
+ * @param {number} markY
+ * @param {TrominoStepCallback} cb
+ * @returns {void}
+ */
+function solveTromino(emModule, order, markX, markY, cb) {
+  const funcPtr = emModule.addFunction(cb, "viiii");
 
-        litro.init();
-        await trmn.initAsync();
+  emModule._solve(order, markX, markY, funcPtr);
 
-        editor.addEventListener("change", (e) => {
-          litro.change(e.detail.order, e.detail.markX, e.detail.markY);
-        });
+  emModule.removeFunction(funcPtr);
+}
 
-        editor.addEventListener("solve", (e) => {
-          litro.play(e.detail.order, e.detail.markX, e.detail.markY);
-        });
-
-        editor.addEventListener("solve", (e) => {
-          trmn.play(e.detail.order, e.detail.markX, e.detail.markY);
-        });
-      })().catch(console.error);
-    },
-    { capture: false, once: true, passive: true }
-  );
-})(
-  window,
-  /* global editorFactory */ editorFactory,
-  /* global litro */ litro,
-  /* global trmn */ trmn
-);
+export { solveTromino };

@@ -23,44 +23,31 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // SPDX-License-Identifier: MIT
 
-/* exported trmn */
+import { createEditor } from "./editor.mjs";
+import * as litro from "./litro/litro.mjs";
+import * as trmn from "./trmn/trmn.mjs";
 
-"use strict";
+window.addEventListener(
+  "DOMContentLoaded",
+  () => {
+    (async () => {
+      const editor = createEditor();
 
-/**
- * @typedef {object} TrmnModule
- * @property {function(number, number, number, number): void} _playTromino
- * @property {HTMLCanvasElement} canvas
- */
+      litro.init();
+      await trmn.initAsync();
 
-// eslint-disable-next-line no-unused-vars
-const trmn = (function (createTrmnMod) {
-  /** @type {TrmnModule} */
-  let module;
+      editor.addEventListener("change", (e) => {
+        litro.change(e.detail.order, e.detail.markX, e.detail.markY);
+      });
 
-  /**
-   * @returns {Promise<void>}
-   */
-  async function initAsync() {
-    module = await createTrmnMod(/* optional default settings */);
-    module.canvas = /** @type {HTMLCanvasElement} */ (
-      document.getElementById("canvas")
-    );
-  }
+      editor.addEventListener("solve", (e) => {
+        litro.play(e.detail.order, e.detail.markX, e.detail.markY);
+      });
 
-  /**
-   * @param {number} order
-   * @param {number} markX
-   * @param {number} markY
-   * @returns {void}
-   */
-  function play(order, markX, markY) {
-    module._playTromino(order, markX, markY, module.canvas.width);
-  }
-
-  return {
-    initAsync,
-    play,
-  };
-  // @ts-expect-error
-})(/* global createTrmnMod */ createTrmnMod);
+      editor.addEventListener("solve", (e) => {
+        trmn.play(e.detail.order, e.detail.markX, e.detail.markY);
+      });
+    })().catch(console.error);
+  },
+  { capture: false, once: true, passive: true },
+);

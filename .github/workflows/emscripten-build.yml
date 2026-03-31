@@ -84,9 +84,9 @@ jobs:
         run: |-
           ls -Al './scripts/litro/' | grep -v '^d'
           ls -Al './scripts/trmn/' | grep -v '^d'
-          sha512sum --binary './scripts/litro/litro-wasm.js'
+          sha512sum --binary './scripts/litro/litro-wasm.mjs'
           sha512sum --binary './scripts/litro/litro-wasm.wasm'
-          sha512sum --binary './scripts/trmn/trmn-wasm.js'
+          sha512sum --binary './scripts/trmn/trmn-wasm.mjs'
           sha512sum --binary './scripts/trmn/trmn-wasm.wasm'
         working-directory: ${{ env.BUILD_PATH }}
 
