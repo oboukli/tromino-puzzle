@@ -23,38 +23,36 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // SPDX-License-Identifier: MIT
 
-/* exported solveTromino */
-
-"use strict";
+// @ts-ignore
+import createTrmnMod from "./trmn-wasm.mjs";
 
 /**
- * @typedef {object} EmModule
- * @property {function(number, number, number, number): void} _solve
- * @property {function(function, string): number} addFunction
- * @property {function(number): void} removeFunction
+ * @typedef {object} TrmnModule
+ * @property {function(number, number, number, number): void} _playTromino
+ * @property {HTMLCanvasElement} canvas
  */
 
-/**
- * @callback TrominoStepCallback
- * @param {number} x
- * @param {number} y
- * @param {number} flipX
- * @param {number} flipY
- * @returns {void}
- */
+/** @type {TrmnModule} */
+let module;
 
 /**
- * @param {EmModule} emModule
+ * @returns {Promise<void>}
+ */
+async function initAsync() {
+  module = await createTrmnMod(/* optional default settings */);
+  module.canvas = /** @type {HTMLCanvasElement} */ (
+    document.getElementById("canvas")
+  );
+}
+
+/**
  * @param {number} order
  * @param {number} markX
  * @param {number} markY
- * @param {TrominoStepCallback} cb
  * @returns {void}
  */
-function solveTromino(emModule, order, markX, markY, cb) {
-  const funcPtr = emModule.addFunction(cb, "viiii");
-
-  emModule._solve(order, markX, markY, funcPtr);
-
-  emModule.removeFunction(funcPtr);
+function play(order, markX, markY) {
+  module._playTromino(order, markX, markY, module.canvas.width);
 }
+
+export { initAsync, play };

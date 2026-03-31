@@ -23,9 +23,16 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // SPDX-License-Identifier: MIT
 
-"use strict";
+// @ts-ignore
+import createLitroMod from "./litro-wasm.mjs";
+import { solveTromino } from "./wrapper.mjs";
 
-/// <reference path="wrapper.js" />
+/**
+ * @typedef {object} EmModule
+ * @property {function(number, number, number, number): void} _solve
+ * @property {function(function, string): number} addFunction
+ * @property {function(number): void} removeFunction
+ */
 
 /**
  * @typedef {object} TrominoPuzzle
@@ -34,35 +41,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * @property {number} markY
  */
 
-let _isSolverReady = false;
-
 /** @type {EmModule} */
-let _emModule;
-
-/** @type {Promise<EmModule>} */
-let emModulePromise;
-
-importScripts("litro-wasm.js", "wrapper.js");
-
-/**
- * @returns {Promise<EmModule>}
- */
-function initEmscriptenModuleAsync() {
-  /* global createLitroMod */
-  return createLitroMod(/* optional default settings */);
-}
+const _emModule = await createLitroMod();
 
 /**
  * @param {TrominoPuzzle} tromino
- * @returns {Promise<void>}
+ * @returns {void}
  */
-async function handleSolveAsync({ order, markX, markY }) {
-  if (!_isSolverReady) {
-    _emModule = await emModulePromise;
-    _isSolverReady = true;
-  }
-
-  /* global solveTromino */
+function handleSolveAsync({ order, markX, markY }) {
   solveTromino(_emModule, order, markX, markY, (x, y, flipX, flipY) => {
     self.postMessage({ x, y, flipX, flipY });
   });
@@ -71,17 +57,13 @@ async function handleSolveAsync({ order, markX, markY }) {
 /**
  * @param {"solve"} cmd
  * @param {TrominoPuzzle} payload
- * @returns {Promise<void>}
+ * @returns {void}
  */
-async function handleCommandAsync(cmd, payload) {
+function handleCommandAsync(cmd, payload) {
   if (cmd === "solve") {
-    await handleSolveAsync(payload);
+    handleSolveAsync(payload);
   }
-
-  return Promise.resolve();
 }
-
-emModulePromise = initEmscriptenModuleAsync();
 
 self.addEventListener(
   "message",
@@ -89,9 +71,8 @@ self.addEventListener(
     if (event.origin !== "" || event.source !== null) {
       return;
     }
-    (async (e) => {
-      await handleCommandAsync(e.data.cmd, e.data.payload);
-    })(event).catch(console.error);
+
+    handleCommandAsync(event.data.cmd, event.data.payload);
   },
-  false
+  false,
 );

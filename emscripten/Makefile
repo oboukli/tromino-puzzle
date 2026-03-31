@@ -4,8 +4,8 @@
 
 # SPDX-License-Identifier: MIT
 
-TARGET_LITRO ::= litro-wasm.js
-TARGET_TRMN ::= trmn-wasm.js
+TARGET_LITRO ::= litro-wasm.mjs
+TARGET_TRMN ::= trmn-wasm.mjs
 
 SRC_DIR ::= ../src
 INC_DIR ::= ../include
@@ -211,16 +211,16 @@ clean:
 		$(OBJ_DIR)/gfx2d/*.o \
 		$(OBJ_DIR)/wasm/litro/*.o \
 		$(OBJ_DIR)/wasm/trmn/*.o \
-		$(OUT_DIR)/$(LITRO_DIR_NAME)/gfx.js \
-		$(OUT_DIR)/$(LITRO_DIR_NAME)/litro-wasm.js \
+		$(OUT_DIR)/$(LITRO_DIR_NAME)/gfx.mjs \
+		$(OUT_DIR)/$(LITRO_DIR_NAME)/litro-wasm.mjs \
 		$(OUT_DIR)/$(LITRO_DIR_NAME)/litro-wasm.wasm \
-		$(OUT_DIR)/$(LITRO_DIR_NAME)/litro.js \
-		$(OUT_DIR)/$(LITRO_DIR_NAME)/worker.js \
-		$(OUT_DIR)/$(LITRO_DIR_NAME)/wrapper.js \
-		$(OUT_DIR)/$(TRMN_DIR_NAME)/trmn-wasm.js \
+		$(OUT_DIR)/$(LITRO_DIR_NAME)/litro.mjs \
+		$(OUT_DIR)/$(LITRO_DIR_NAME)/worker.mjs \
+		$(OUT_DIR)/$(LITRO_DIR_NAME)/wrapper.mjs \
+		$(OUT_DIR)/$(TRMN_DIR_NAME)/trmn-wasm.mjs \
 		$(OUT_DIR)/$(TRMN_DIR_NAME)/trmn-wasm.wasm \
-		$(OUT_DIR)/$(TRMN_DIR_NAME)/trmn.js \
-		$(OUT_DIR)/app.js \
+		$(OUT_DIR)/$(TRMN_DIR_NAME)/trmn.mjs \
+		$(OUT_DIR)/app.mjs \
 		$(WEB_DIR)/images/tromino.svg \
 		$(WEB_DIR)/styles/style.css \
 		$(WEB_DIR)/index.html
