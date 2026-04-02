@@ -4,6 +4,8 @@
 
 // SPDX-License-Identifier: MIT
 
+#include <SDL2/SDL_main.h>
+
 #include <cstddef>
 #include <cstdlib>
 #include <iostream>
@@ -18,7 +20,7 @@
 #include "init.hpp"
 #include "params.hpp"
 
-auto main(int const argc, char const* const* const argv) -> int
+auto main(int const argc, char** const argv) -> int
 {
     int exit_status{EXIT_FAILURE};
     tromino::tromino2d::options options{};
