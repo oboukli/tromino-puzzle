@@ -4,7 +4,7 @@
 
 # SPDX-License-Identifier: MIT
 
-name: SonarQube Cloud scan
+name: SonarQube Scan
 
 on:
   pull_request:
@@ -24,12 +24,12 @@ jobs:
     timeout-minutes: 12
 
     env:
-      SONAR_HOST_URL: https://sonarcloud.io
       BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory
       CC: /usr/bin/gcc-14
       CXX: /usr/bin/g++-14
-      COVERAGE_REPORTS_PATH: ${{ github.workspace }}/coverage.xml
+      COVERAGE_REPORTS_PATH: "${{ github.workspace }}/coverage.xml"
       GCOV: gcov-14
+      SONAR_HOST_URL: https://sonarcloud.io
 
     steps:
       - name: Update dependency list
@@ -50,15 +50,13 @@ jobs:
           xvfb
 
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Install sonar-scanner and build-wrapper
-        uses: sonarsource/sonarqube-github-c-cpp@v2
-        env:
-          SONAR_HOST_URL: ${{ env.SONAR_HOST_URL }}
+      - name: Install SonarQube Build Wrapper
+        uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v7
 
       - name: Run autogen.sh
         run: ./autogen.sh
@@ -69,7 +67,7 @@ jobs:
           --enable-code-coverage
           CPPFLAGS='-DTROMINO_2D_HEADLESS'
 
-      - name: Run build-wrapper
+      - name: Run with SonarQube Build Wrapper
         run: >-
           build-wrapper-linux-x86-64
           --out-dir '${{ env.BUILD_WRAPPER_OUT_DIR }}'
@@ -118,19 +116,17 @@ jobs:
       - name: Run gcovr
         run: >-
           gcovr
-          --exclude './test'
+          --exclude 'test/'
           --exclude '/usr/include'
           --gcov-executable '${{ env.GCOV }}'
-          --keep
-          --root '.'
+          --root .
           --sonarqube '${{ env.COVERAGE_REPORTS_PATH }}'
 
-      - name: Run sonar-scanner
+      - name: Run SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v7
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: >-
-          sonar-scanner
-          --define sonar.host.url='${{ env.SONAR_HOST_URL }}'
-          --define sonar.cfamily.compile-commands='${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json'
-          --define sonar.coverageReportPaths='${{ env.COVERAGE_REPORTS_PATH }}'
+        with:
+          args: >-
+            --define sonar.cfamily.compile-commands=${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json
+            --define sonar.coverageReportPaths=${{ env.COVERAGE_REPORTS_PATH }}
