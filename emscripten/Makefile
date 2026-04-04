@@ -140,7 +140,7 @@ $(TARGET_LITRO): $(OBJ_DIR)/core/tromino.o $(OBJ_DIR)/wasm/litro/litro.o
 $(TARGET_TRMN): $(OBJ_DIR)/core/tromino.o $(GFX2D_OBJS) $(TRMN_OBJS)
 	$(MKDIR) $(OUT_DIR)/$(TRMN_DIR_NAME)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) \
-		--closure 0 \
+		--closure 1 \
 		--no-entry \
 		--use-port=sdl2 \
 		-l html5 \
