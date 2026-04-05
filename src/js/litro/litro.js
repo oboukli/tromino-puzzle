@@ -23,8 +23,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // SPDX-License-Identifier: MIT
 
-// @ts-check
-
 /* exported litro */
 
 /// <reference path="gfx.js" />
