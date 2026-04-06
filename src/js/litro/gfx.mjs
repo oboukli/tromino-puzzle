@@ -24,12 +24,16 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // SPDX-License-Identifier: MIT
 
 /**
- * @typedef {object} Options
- * @property {string} altColor
- * @property {string} baseColor
- * @property {string} markColor
- * @property {string} trominoColor
- * @property {string} trominoOutlineColor
+ * @typedef {string} Color
+ */
+
+/**
+ * @typedef {object} ColorOptions
+ * @property {Color} altColor
+ * @property {Color} baseColor
+ * @property {Color} markColor
+ * @property {Color} trominoColor
+ * @property {Color} trominoOutlineColor
  */
 
 /**
@@ -42,7 +46,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * @typedef {object} Board
  * @property {CanvasRenderingContext2D} context
  * @property {CanvasRenderingContext2D} trominoContext
- * @property {Options} options
+ * @property {ColorOptions} options
  * @property {number} order
  * @property {Mark} mark
  * @property {number} blockWidth
@@ -52,7 +56,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * @param {CanvasRenderingContext2D} context
  * @param {number} order
  * @param {Mark} mark
- * @param {Options} options
+ * @param {ColorOptions} options
  * @returns {Board}
  */
 function createBoard(context, order, mark, options) {
@@ -131,7 +135,7 @@ function drawMark(board) {
  * @param {CanvasRenderingContext2D} trominoContext
  * @param {number} blockWidth
  * @param {number} thickness
- * @param {Options} options
+ * @param {ColorOptions} options
  */
 function initSprite(trominoContext, blockWidth, thickness, options) {
   trominoContext.fillStyle = options.trominoColor;
