@@ -26,6 +26,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import * as ltrGfx from "./gfx.mjs";
 
 /**
+ * @typedef {import("./gfx.mjs").Board} Board
+ * @typedef {import("./gfx.mjs").ColorOptions} ColorOptions
+ */
+
+/**
  * @typedef {object} Tromino
  * @property {number} x
  * @property {number} y
@@ -33,26 +38,41 @@ import * as ltrGfx from "./gfx.mjs";
  * @property {number} flipY
  */
 
-const delayBase = 67;
+/** @type {number} */
+let prevTimestamp;
+let dt = 67;
+let accumulator = 0;
 
 /** @type {CanvasRenderingContext2D} */
 let context;
 /** @type {Worker} */
 let solverWebWorker;
-/** @type {number} */
+/** @type {number | null} */
 let animationFrameRequestId;
 
-/** @type {Options} */
-let options;
+/** @type {ColorOptions} */
+let colorOptions = {
+  altColor: "#000000",
+  baseColor: "#ffffff",
+  markColor: "#ff0000",
+  trominoColor: "#00ff00",
+  trominoOutlineColor: "#0000ff",
+};
 /** @type {Board} */
 let boardModel;
 /** @type {Array<Tromino>} */
 let trominos;
 
-/** @type {number} */
-let stepIdx;
-/** @type {number} */
-let start;
+let numPlacedTrominos = 0;
+let trominoIdx = 0;
+
+/**
+ * @param {number} order
+ * @returns {number}
+ */
+function calculateTrominoCount(order) {
+  return (order ** 2 - 1) * 0.3333333333333333;
+}
 
 /**
  * @param {MessageEvent} e
@@ -63,7 +83,8 @@ function handleSolverMessage(e) {
     return;
   }
 
-  trominos.push(e.data);
+  trominos[numPlacedTrominos] = e.data;
+  numPlacedTrominos += 1;
 }
 
 /**
@@ -87,14 +108,11 @@ function initSolver() {
 /**
  * @returns {void}
  */
-function initOptions() {
-  options = {
-    baseColor: "#4e7da6",
-    altColor: "#012340",
-    markColor: "#8c1b1b",
-    trominoColor: "#d9933d",
-    trominoOutlineColor: "#d93636",
-  };
+function cancelAnimation() {
+  if (animationFrameRequestId !== null) {
+    cancelAnimationFrame(animationFrameRequestId);
+    animationFrameRequestId = null;
+  }
 }
 
 /**
@@ -108,7 +126,7 @@ function drawNewPuzzle(order, markX, markY) {
     context,
     order,
     { x: markX, y: markY },
-    options,
+    colorOptions,
   );
   ltrGfx.drawBoard(boardModel);
   ltrGfx.drawMark(boardModel);
@@ -121,8 +139,7 @@ function drawNewPuzzle(order, markX, markY) {
  * @returns {void}
  */
 function change(order, markX, markY) {
-  cancelAnimationFrame(animationFrameRequestId);
-  animationFrameRequestId = 0;
+  cancelAnimation();
 
   initSolver();
 
@@ -130,7 +147,7 @@ function change(order, markX, markY) {
     context,
     order,
     { x: markX, y: markY },
-    options,
+    colorOptions,
   );
 
   drawNewPuzzle(order, markX, markY);
@@ -141,16 +158,23 @@ function change(order, markX, markY) {
  * @returns {void}
  */
 function step(timestamp) {
-  const elapsed = timestamp - start;
-  if (Array.isArray(trominos) && trominos.length > 0) {
-    if (elapsed > stepIdx * delayBase) {
-      stepIdx += 1;
-      const { x, y, flipX, flipY } = /** @type {Tromino} */ (trominos.shift());
+  const frameTime = timestamp - prevTimestamp;
+  prevTimestamp = timestamp;
+
+  accumulator += frameTime;
+
+  if (accumulator >= dt) {
+    accumulator -= dt;
+    if (numPlacedTrominos > trominoIdx) {
+      const { x, y, flipX, flipY } = /** @type {Tromino} */ (
+        trominos[trominoIdx]
+      );
+      trominoIdx += 1;
       ltrGfx.drawTromino(boardModel, x, y, flipX, flipY);
     }
   }
 
-  animationFrameRequestId = window.requestAnimationFrame(step);
+  animationFrameRequestId = requestAnimationFrame(step);
 }
 
 /**
@@ -160,41 +184,47 @@ function step(timestamp) {
  * @returns {void}
  */
 function play(order, markX, markY) {
-  if (animationFrameRequestId !== 0) {
-    cancelAnimationFrame(animationFrameRequestId);
-    animationFrameRequestId = 0;
-    drawNewPuzzle(order, markX, markY);
+  cancelAnimation();
+
+  drawNewPuzzle(order, markX, markY);
+
+  const numTrominos = calculateTrominoCount(order);
+  if (!Array.isArray(trominos) || numTrominos !== trominos.length) {
+    trominos = new Array(numTrominos);
   }
 
-  trominos = new Array();
-
-  stepIdx = 0;
-  start = performance.now();
+  numPlacedTrominos = 0;
+  trominoIdx = 0;
 
   solverWebWorker.postMessage({
     cmd: "solve",
     payload: { order, markX, markY },
   });
 
-  animationFrameRequestId = window.requestAnimationFrame(step);
+  prevTimestamp = performance.now();
+  animationFrameRequestId = requestAnimationFrame(step);
 }
 
 /**
+ * @param {ColorOptions?} options
  * @returns {void}
  */
-function init() {
+function init(options) {
+  if (options != null) {
+    colorOptions = options;
+  }
+
   const litroCanvasElement = /** @type {HTMLCanvasElement} */ (
     document.getElementById("litroCanvas")
   );
 
   const ctx = litroCanvasElement.getContext("2d");
   if (ctx === null) {
-    throw new Error("Cannot get 2D context.");
+    throw new Error("Could not get 2D context.");
   }
   context = ctx;
 
   initSolver();
-  initOptions();
 }
 
 export { init, play, change };

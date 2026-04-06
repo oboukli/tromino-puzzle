@@ -33,7 +33,14 @@ window.addEventListener(
     (async () => {
       const editor = createEditor();
 
-      litro.init();
+      litro.init({
+        altColor: "#012340",
+        baseColor: "#4e7da6",
+        markColor: "#8c1b1b",
+        trominoColor: "#d9933d",
+        trominoOutlineColor: "#d93636",
+      });
+
       await trmn.initAsync();
 
       editor.addEventListener("change", (e) => {
