@@ -10,13 +10,9 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - "**.md"
   push:
     branches:
       - main
-    paths:
-      - "**.md"
   workflow_dispatch:
 
 permissions: {}
@@ -37,3 +33,30 @@ jobs:
 
       - name: Run markdownlint
         run: markdownlint '.'
+
+  superlinter:
+    name: Super-Linter
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Run Super-Linter
+        uses: github/super-linter/slim@v7
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # HTML_FILE_NAME: ${{ github.workspace }}/.htmlhintrc
+          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_CLANG_FORMAT: false
+          VALIDATE_HTML: false
+          VALIDATE_JAVASCRIPT_STANDARD: false
+          VALIDATE_JSCPD: false
