@@ -23,6 +23,20 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // SPDX-License-Identifier: MIT
 
+/**
+ * @typedef {Object} EditorChangeEvent
+ * @property {number} order
+ * @property {number} markX
+ * @property {number} markY
+ */
+
+/**
+ * @typedef {Object} EditorSolveEvent
+ * @property {number} order
+ * @property {number} markX
+ * @property {number} markY
+ */
+
 const editor = new EventTarget();
 
 let order = 16;
@@ -54,19 +68,23 @@ function calcOrder(n) {
 
 /**
  * @param {number} max
+ * @returns {void}
  */
 function setInputValueBounds(max) {
   markXElement.max = max.toString();
   markYElement.max = max.toString();
 }
 
+/**
+ * @returns {void}
+ */
 function changePuzzle() {
   orderIndicatorElement.value = order.toString();
 
   setInputValueBounds(order - 1);
 
-  markX = Math.min(parseInt(markXElement.max, 10), markX);
-  markY = Math.min(parseInt(markYElement.max, 10), markY);
+  markX = Math.min(Number.parseInt(markXElement.max, 10), markX);
+  markY = Math.min(Number.parseInt(markYElement.max, 10), markY);
 
   markXElement.value = markX.toString();
   markYElement.value = markY.toString();
@@ -86,11 +104,17 @@ function changePuzzle() {
  * @returns {void}
  */
 function initElements() {
+  // @ts-ignore
   markXElement = document.getElementById("markX");
+  // @ts-ignore
   markYElement = document.getElementById("markY");
+  // @ts-ignore
   orderElement = document.getElementById("order");
+  // @ts-ignore
   orderIndicatorElement = document.getElementById("orderIndicator");
+  // @ts-ignore
   puzzleEditorFormElement = document.getElementById("puzzleEditorForm");
+  // @ts-ignore
   solveButtonElement = document.getElementById("solveButton");
 
   orderElement.min = "0";
@@ -113,7 +137,8 @@ function initElements() {
   orderElement.addEventListener(
     "input",
     (event) => {
-      order = calcOrder(parseInt(event.target.value, 10));
+      // @ts-ignore
+      order = calcOrder(Number.parseInt(event.target.value, 10));
     },
     { capture: false, passive: true },
   );
@@ -121,7 +146,8 @@ function initElements() {
   markXElement.addEventListener(
     "input",
     (event) => {
-      markX = parseInt(event.target.value, 10);
+      // @ts-ignore
+      markX = Number.parseInt(event.target.value, 10);
     },
     { capture: false, passive: true },
   );
@@ -129,7 +155,8 @@ function initElements() {
   markYElement.addEventListener(
     "input",
     (event) => {
-      markY = parseInt(event.target.value, 10);
+      // @ts-ignore
+      markY = Number.parseInt(event.target.value, 10);
     },
     { capture: false, passive: true },
   );

@@ -27,34 +27,41 @@ import { createEditor } from "./editor.mjs";
 import * as litro from "./litro/litro.mjs";
 import * as trmn from "./trmn/trmn.mjs";
 
-window.addEventListener(
-  "DOMContentLoaded",
-  () => {
-    (async () => {
-      const editor = createEditor();
+/**
+ * @typedef {import("./editor.mjs").EditorChangeEvent} EditorChangeEvent
+ */
 
-      litro.init({
-        altColor: "#012340",
-        baseColor: "#4e7da6",
-        markColor: "#8c1b1b",
-        trominoColor: "#d9933d",
-        trominoOutlineColor: "#d93636",
-      });
+/**
+ * @typedef {import("./editor.mjs").EditorSolveEvent} EditorSolveEvent
+ */
 
-      await trmn.initAsync();
+const editor = createEditor();
 
-      editor.addEventListener("change", (e) => {
-        litro.change(e.detail.order, e.detail.markX, e.detail.markY);
-      });
+litro.init({
+  altColor: "#012340",
+  baseColor: "#4e7da6",
+  markColor: "#8c1b1b",
+  trominoColor: "#d9933d",
+  trominoOutlineColor: "#d93636",
+});
 
-      editor.addEventListener("solve", (e) => {
-        litro.play(e.detail.order, e.detail.markX, e.detail.markY);
-      });
+try {
+  await trmn.initAsync();
+} catch (err) {
+  console.error(err);
+}
 
-      editor.addEventListener("solve", (e) => {
-        trmn.play(e.detail.order, e.detail.markX, e.detail.markY);
-      });
-    })().catch(console.error);
-  },
-  { capture: false, once: true, passive: true },
-);
+editor.addEventListener("change", (event) => {
+  const detail = /** @type {CustomEvent<EditorChangeEvent>} */ (event).detail;
+  litro.change(detail.order, detail.markX, detail.markY);
+});
+
+editor.addEventListener("solve", (event) => {
+  const detail = /** @type {CustomEvent<EditorSolveEvent>} */ (event).detail;
+  litro.play(detail.order, detail.markX, detail.markY);
+});
+
+editor.addEventListener("solve", (event) => {
+  const detail = /** @type {CustomEvent<EditorSolveEvent>} */ (event).detail;
+  trmn.play(detail.order, detail.markX, detail.markY);
+});
