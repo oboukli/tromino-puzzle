@@ -41,7 +41,7 @@
         "rhs": "Windows"
       },
       "environment": {
-        "CFLAGS": "/permissive- /source-charset:utf-8 /W4 /Zc:__cplusplus",
+        "CFLAGS": "/experimental:c11atomics /permissive- /source-charset:utf-8 /W4 /Zc:__cplusplus",
         "CXXFLAGS": "/permissive- /source-charset:utf-8 /W4 /Zc:__cplusplus /Zc:enumTypes /Zc:preprocessor"
       }
     },
