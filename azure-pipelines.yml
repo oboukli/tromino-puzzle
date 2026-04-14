@@ -44,7 +44,7 @@ jobs:
     displayName: Build for Windows
 
     pool:
-      vmImage: windows-2022
+      vmImage: windows-2025-vs2026
 
     variables:
       - name: primaryRepository

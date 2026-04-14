@@ -20,7 +20,7 @@ permissions: {}
 jobs:
   build:
     name: Build
-    runs-on: windows-latest
+    runs-on: windows-2025-vs2026
     env:
       SOLUTION_FILE_PATH: msbuild\TrominoPuzzle.sln
       RELEASE_BUILD_CONFIGURATION: Release
