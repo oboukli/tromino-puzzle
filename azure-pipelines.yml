@@ -160,14 +160,14 @@ jobs:
       vmImage: ubuntu-24.04
 
     variables:
-      emsdkVersion: 5.0.5
+      emsdkVersion: 5.0.6
       numMakeJobs: 3
 
     steps:
       - task: DockerInstaller@0
         displayName: Install Docker
         inputs:
-          dockerVersion: 27.4.1
+          dockerVersion: 29.4.1
           releaseType: stable
 
       - script: >-
