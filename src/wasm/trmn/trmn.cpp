@@ -16,6 +16,7 @@
 #include <cstddef>
 #include <memory>
 #include <optional>
+#include <utility>
 #include <vector>
 
 #include <tromino/core/tromino.h>
@@ -27,75 +28,113 @@
 
 #include "callback.hpp"
 
+extern "C" void render_frame_callback(void* arg) noexcept;
+
 namespace {
 
-std::unique_ptr<tromino::gfx2d::Window> window{};
-std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel{};
-std::unique_ptr<std::vector<tromino::gfx2d::Step>> steps{};
-bool isInitialized{false};
+struct trmn_context final {
+    static constexpr std::size_t const max_order{128};
 
-void init(int const width)
-{
-    steps = std::make_unique<std::vector<tromino::gfx2d::Step>>();
+    static constexpr double const dt{67.0};
 
-    ::SDL_Init(SDL_INIT_VIDEO);
-
-    ::SDL_SetHint(SDL_HINT_RENDER_LOGICAL_SIZE_MODE, "overscan");
-    ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
-    ::SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
-
-    window = std::make_unique<tromino::gfx2d::Window>(std::nullopt, width);
-    viewModel = std::make_unique<tromino::gfx2d::TrominoBoardViewModel>(
-        window->GetSdlWindow()
-    );
-
-    isInitialized = true;
-}
-
-void terminate() noexcept
-{
-    ::trmn_request_stop();
-
-    ::emscripten_cancel_main_loop();
-
-    viewModel.reset();
-    window.reset();
-
-    ::SDL_Quit();
-
-    steps.reset();
-
-    isInitialized = false;
-}
-
-void render_frame() noexcept
-{
-    viewModel->StepForward();
-    viewModel->Render(*steps);
-}
-
-void start(tromino::gfx2d::Board const& board, int const width)
-{
-    static constexpr int const SWAP_INTERVAL{4};
-
-    if (isInitialized)
+    trmn_context(
+        std::unique_ptr<tromino::gfx2d::Window>&& window_temp,
+        std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel>&& viewModel_temp
+    ) noexcept :
+        window{std::move(window_temp)}, viewModel{std::move(viewModel_temp)}
     {
-        terminate();
+        steps.reserve(trmn_context::max_order * trmn_context::max_order);
     }
 
-    init(width);
+    double frame_callback_timestamp;
 
-    std::size_t const order_internal{static_cast<std::size_t>(board.order)};
-    std::size_t const numSteps{
-        ((order_internal * order_internal) - std::size_t{1}) / std::size_t{3}
+    double prev_timestamp;
+
+    double accumulator{0.0};
+
+    std::unique_ptr<tromino::gfx2d::Window> window{};
+
+    std::unique_ptr<tromino::gfx2d::TrominoBoardViewModel> viewModel{};
+
+    std::vector<tromino::gfx2d::Step> steps{};
+};
+
+[[nodiscard]] std::unique_ptr<trmn_context> create_trmn_context(int const width)
+{
+    ::SDL_Init(SDL_INIT_VIDEO);
+
+    ::SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
+
+    auto window{std::make_unique<tromino::gfx2d::Window>(std::nullopt, width)};
+    auto viewModel{std::make_unique<tromino::gfx2d::TrominoBoardViewModel>(
+        window->GetSdlWindow()
+    )};
+
+    std::unique_ptr ctx{
+        std::make_unique<trmn_context>(std::move(window), std::move(viewModel))
     };
-    steps->reserve(numSteps);
 
+    return ctx;
+}
+
+void start(
+    trmn_context& ctx,
+    tromino::gfx2d::Board const& board,
+    tromino::gfx2d::Style const& style
+)
+{
     ::trmn_solve_puzzle(
-        board.order, board.mark_x, board.mark_y, add_tromino, steps.get()
+        board.order, board.mark_x, board.mark_y, add_tromino, &ctx.steps
     );
 
-    tromino::gfx2d::Style const style{
+    ctx.viewModel->SetBoard(board, style);
+
+    auto const now{::emscripten_get_now()};
+    ctx.prev_timestamp = now;
+    ctx.frame_callback_timestamp = now;
+
+    // Utilize requestAnimationFrame (HTML Standard)
+    ::emscripten_set_main_loop_arg(
+        render_frame_callback,
+        &ctx,
+        /*fps*/ 0,
+        /*simulate_infinite_loop*/ false
+    );
+}
+
+void stop(trmn_context& ctx) noexcept
+{
+    ::emscripten_cancel_main_loop();
+
+    ::trmn_request_stop();
+
+    ctx.steps.clear();
+}
+
+} // namespace
+
+extern "C" void render_frame_callback(void* const arg) noexcept
+{
+    trmn_context& ctx{*static_cast<trmn_context*>(arg)};
+    double const timestamp{ctx.frame_callback_timestamp};
+    double const frame_time{timestamp - ctx.prev_timestamp};
+
+    ctx.prev_timestamp = timestamp;
+    ctx.accumulator += frame_time;
+    if (ctx.accumulator >= trmn_context::dt)
+    {
+        ctx.accumulator -= trmn_context::dt;
+
+        ctx.viewModel->StepForward();
+        ctx.viewModel->Render(ctx.steps);
+    }
+    ctx.frame_callback_timestamp = ::emscripten_get_now();
+}
+
+EMSCRIPTEN_KEEPALIVE extern "C" void
+playTromino(int const order, int const markX, int const markY, int const width)
+{
+    static constexpr tromino::gfx2d::Style const style{
         .wke1_color{
             ::Uint8{0x4e},
             ::Uint8{0x7d},
@@ -124,23 +163,17 @@ void start(tromino::gfx2d::Board const& board, int const width)
             ::Uint8{SDL_ALPHA_OPAQUE}
         }
     };
-    viewModel->SetBoard(board, style);
 
-    ::emscripten_set_main_loop(render_frame, -1, 0);
-    ::emscripten_set_main_loop_timing(EM_TIMING_RAF, SWAP_INTERVAL);
-}
-
-} // namespace
-
-EMSCRIPTEN_KEEPALIVE extern "C" void
-playTromino(int const order, int const markX, int const markY, int const width)
-{
     std::size_t const order_internal{static_cast<std::size_t>(order)};
-    std::size_t const size{order_internal * order_internal};
-
     tromino::gfx2d::Board board{
-        .size = size, .order = order, .mark_x = markX, .mark_y = markY
+        .size = order_internal * order_internal,
+        .order = order,
+        .mark_x = markX,
+        .mark_y = markY
     };
 
-    start(board, width);
+    static std::unique_ptr<trmn_context> ctx{create_trmn_context(width)};
+
+    stop(*ctx);
+    start(*ctx, board, style);
 }
