@@ -38,9 +38,10 @@ import * as ltrGfx from "./gfx.mjs";
  * @property {number} flipY
  */
 
+const dt = 125;
+
 /** @type {number} */
 let prevTimestamp;
-let dt = 67;
 let accumulator = 0;
 
 /** @type {CanvasRenderingContext2D} */

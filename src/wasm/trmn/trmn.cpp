@@ -35,7 +35,7 @@ namespace {
 struct trmn_context final {
     static constexpr std::size_t const max_order{128};
 
-    static constexpr double const dt{67.0};
+    static constexpr double const dt{125.0};
 
     trmn_context(
         std::unique_ptr<tromino::gfx2d::Window>&& window_temp,
