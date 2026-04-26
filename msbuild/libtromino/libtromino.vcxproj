@@ -66,7 +66,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\include\tromino\core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc11</LanguageStandard_C>
       <AdditionalOptions>/experimental:c11atomics %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -87,7 +87,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)..\include\tromino\core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc11</LanguageStandard_C>
       <AdditionalOptions>/experimental:c11atomics %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>

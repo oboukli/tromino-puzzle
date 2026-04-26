@@ -55,6 +55,7 @@ jobs:
           sudo apt-get install
           --assume-yes
           --quiet
+          autoconf
           autoconf-archive
           libboost-test-dev
           libsdl2-dev
