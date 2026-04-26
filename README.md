@@ -7,7 +7,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=oboukli_tromino-puzzle&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=oboukli_tromino-puzzle)
 
 This is a C (C11) library (see `src/core`) implementing a divide-and-conquer
-algorithm, and a collection of apps (written in C11, C++17, C++20, and
+algorithm, and a collection of apps (written in C11, C++23, and
 ECMAScript) to solve the tromino puzzle, over-engineered for the joy
 of learning by doing.
 
@@ -174,7 +174,7 @@ The following is a partial list of standards, practices, software,
 and ideas leveraged by this project:
 
 - C (standard C11)
-- C++ (standard C++17 and C++20)
+- C++ (standard C++23)
 - C++ STL
 - No C++ inheritance
 - No C++ exceptions (experimental)

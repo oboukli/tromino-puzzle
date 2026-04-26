@@ -24,6 +24,8 @@ jobs:
 
     env:
       BUILD_PATH: ${{ github.workspace }}/build
+      CC: /usr/bin/gcc-14
+      CXX: /usr/bin/g++-14
 
     steps:
       - name: Check out repository
@@ -39,6 +41,7 @@ jobs:
           sudo apt-get install
           --assume-yes
           --quiet
+          autoconf
           autoconf-archive
           libboost-test-dev
           libsdl2-dev

@@ -73,7 +73,7 @@ CXXFLAGS ::= \
 	-fno-rtti \
 	-g0 \
 	-O3 \
-	-std=c++20 \
+	-std=c++23 \
 	-Wall \
 	-Wcast-align \
 	-Wconversion \

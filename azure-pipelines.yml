@@ -120,6 +120,7 @@ jobs:
           sudo apt-get install
           --assume-yes
           --quiet
+          autoconf
           autoconf-archive
           g++-14
           gcc-14
