@@ -12,8 +12,11 @@ namespace tromino::gfx2d {
 class Step final {
 public:
     int px;
+
     int py;
+
     int fx;
+
     int fy;
 
     constexpr Step(
@@ -25,9 +28,9 @@ public:
 
     Step(Step const& other) = delete;
 
-    Step(Step&& other) noexcept = default;
+    Step(Step&& other) = default;
 
-    ~Step() noexcept = default;
+    ~Step() = default;
 
     Step& operator=(Step const& other) = delete;
 

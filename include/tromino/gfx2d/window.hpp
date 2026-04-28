@@ -18,7 +18,7 @@ namespace tromino::gfx2d {
 class [[nodiscard]] Window final {
 public:
     explicit Window(
-        std::optional<std::string const> const& title, int width
+        std::optional<std::string> const& title, int width
     ) noexcept;
 
     Window(Window const&) = delete;
@@ -34,7 +34,7 @@ public:
     [[nodiscard]] ::SDL_Window* GetSdlWindow() const noexcept;
 
 private:
-    std::unique_ptr<::SDL_Window, decltype(&::SDL_DestroyWindow)> _window;
+    std::unique_ptr<::SDL_Window, decltype(&::SDL_DestroyWindow)> window_;
 };
 
 } // namespace tromino::gfx2d

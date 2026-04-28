@@ -55,7 +55,9 @@ CreateTexture(::SDL_Renderer* const renderer, int const width) noexcept
 
     ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
-    ::SDL_Rect rect{squareWidth, 0, squareWidth, squareWidth};
+    ::SDL_Rect rect{
+        .x = squareWidth, .y = 0, .w = squareWidth, .h = squareWidth
+    };
     ::SDL_RenderFillRect(renderer, &rect);
 
     rect.x = 0;
@@ -88,7 +90,8 @@ void InitCheckeredBoard(
     ::SDL_SetRenderDrawColor(
         renderer, bke8Color.r, bke8Color.g, bke8Color.b, bke8Color.a
     );
-    ::SDL_Rect square{0, 0, squareWidth, squareWidth};
+
+    ::SDL_Rect square{.x = 0, .y = 0, .w = squareWidth, .h = squareWidth};
 
     for (int i{0}; i < order; ++i)
     {
@@ -119,7 +122,10 @@ void DrawMark(
     ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
     ::SDL_Rect const square{
-        x * squareWidth, y * squareWidth, squareWidth, squareWidth
+        .x = x * squareWidth,
+        .y = y * squareWidth,
+        .w = squareWidth,
+        .h = squareWidth
     };
 
     ::SDL_RenderFillRect(renderer, &square);
@@ -150,7 +156,9 @@ void DrawTrominoOutline(
     ::SDL_SetRenderTarget(renderer, texture);
     ::SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
-    ::SDL_Rect segment{squareWidth, 0, squareWidth, thickness};
+    ::SDL_Rect segment{
+        .x = squareWidth, .y = 0, .w = squareWidth, .h = thickness
+    };
     ::SDL_RenderFillRect(renderer, &segment);
 
     segment.x = (squareWidth * 2) - thickness;

@@ -17,9 +17,9 @@ namespace tromino::gfx2d {
 namespace {
 
 #ifdef __EMSCRIPTEN__
-constexpr ::Uint32 const WINDOW_FLAGS{0};
+constexpr ::Uint32 const window_flags{0};
 #else
-constexpr ::Uint32 const WINDOW_FLAGS{
+constexpr ::Uint32 const window_flags{
     ::SDL_WindowFlags::SDL_WINDOW_ALLOW_HIGHDPI
     | ::SDL_WindowFlags::SDL_WINDOW_SHOWN
 };
@@ -28,16 +28,16 @@ constexpr ::Uint32 const WINDOW_FLAGS{
 } // namespace
 
 Window::Window(
-    std::optional<std::string const> const& title, int const width
+    std::optional<std::string> const& title, int const width
 ) noexcept :
-    _window{
+    window_{
         ::SDL_CreateWindow(
             title ? title.value().c_str() : nullptr,
             SDL_WINDOWPOS_CENTERED,
             SDL_WINDOWPOS_CENTERED,
             width,
             width,
-            WINDOW_FLAGS
+            window_flags
         ),
         &::SDL_DestroyWindow
     }
@@ -46,7 +46,7 @@ Window::Window(
 
 [[nodiscard]] ::SDL_Window* Window::GetSdlWindow() const noexcept
 {
-    return _window.get();
+    return window_.get();
 }
 
 } // namespace tromino::gfx2d
