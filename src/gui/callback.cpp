@@ -6,6 +6,8 @@
 
 #include "callback.hpp"
 
+#include <type_traits>
+
 #include <tromino/wrapper/callback.hpp>
 
 #include "solver_state.hpp"
