@@ -40,7 +40,7 @@ namespace {
 
 void poll_sdl_events(bool& is_main_loop_running) noexcept
 {
-    ::SDL_Event event{} /*[[indeterminate]]*/;
+    ::SDL_Event event /*[[indeterminate]]*/;
     while (::SDL_PollEvent(&event) == 1) [[unlikely]]
     {
         if (event.type == ::SDL_EventType::SDL_QUIT) [[unlikely]]
@@ -54,68 +54,71 @@ void start_game_loop(
     tromino::gfx2d::Board const& board,
     SolverState const& solver_state,
     int const width,
-    std::optional<std::string const> const& title
-)
+    std::optional<std::string> const& title
+) noexcept
 {
     static constexpr int const FRAME_DELAY{68};
+
+    static constexpr tromino::gfx2d::Style const style{
+        .wke1_color{
+            .r = ::Uint32{0x4e},
+            .g = ::Uint32{0x7d},
+            .b = ::Uint32{0xa6},
+            .a = ::Uint32{SDL_ALPHA_OPAQUE}
+        },
+        .bke8_color{
+            .r = ::Uint32{0x01},
+            .g = ::Uint32{0x23},
+            .b = ::Uint32{0x40},
+            .a = ::Uint32{SDL_ALPHA_OPAQUE}
+        },
+        .mark_color{
+            .r = ::Uint32{0x8c},
+            .g = ::Uint32{0x1b},
+            .b = ::Uint32{0x1b},
+            .a = ::Uint32{SDL_ALPHA_OPAQUE}
+        },
+        .tromino_color{
+            .r = ::Uint32{0xd9},
+            .g = ::Uint32{0x93},
+            .b = ::Uint32{0x3d},
+            .a = ::Uint32{0x80}
+        },
+        .tromino_outline_color{
+            .r = ::Uint32{0xd9},
+            .g = ::Uint32{0x36},
+            .b = ::Uint32{0x36},
+            .a = ::Uint32{SDL_ALPHA_OPAQUE}
+        }
+    };
 
     auto const window{std::make_unique<tromino::gfx2d::Window>(title, width)};
     assert(window->GetSdlWindow() != nullptr);
 
-    auto const viewModel{
+    auto const view_model{
         std::make_unique<tromino::gfx2d::TrominoBoardViewModel>(
             window->GetSdlWindow()
         )
     };
 
-    tromino::gfx2d::Style const style{
-        .wke1_color{
-            ::Uint32{0x4e},
-            ::Uint32{0x7d},
-            ::Uint32{0xa6},
-            ::Uint32{SDL_ALPHA_OPAQUE}
-        },
-        .bke8_color{
-            ::Uint32{0x01},
-            ::Uint32{0x23},
-            ::Uint32{0x40},
-            ::Uint32{SDL_ALPHA_OPAQUE}
-        },
-        .mark_color{
-            ::Uint32{0x8c},
-            ::Uint32{0x1b},
-            ::Uint32{0x1b},
-            ::Uint32{SDL_ALPHA_OPAQUE}
-        },
-        .tromino_color{
-            ::Uint32{0xd9}, ::Uint32{0x93}, ::Uint32{0x3d}, ::Uint32{0x80}
-        },
-        .tromino_outline_color{
-            ::Uint32{0xd9},
-            ::Uint32{0x36},
-            ::Uint32{0x36},
-            ::Uint32{SDL_ALPHA_OPAQUE}
-        }
-    };
-
-    viewModel->SetBoard(board, style);
+    view_model->SetBoard(board, style);
 
     bool is_main_loop_running{true};
-    while (is_main_loop_running)
+    while (is_main_loop_running) [[likely]]
     {
         poll_sdl_events(is_main_loop_running);
 
-        if (viewModel->IsPlaying())
+        if (view_model->IsPlaying())
         {
-            viewModel->StepForward();
+            view_model->StepForward();
         }
 
-        viewModel->Render(solver_state);
+        view_model->Render(solver_state);
 
         ::SDL_Delay(FRAME_DELAY);
 
 #ifdef TROMINO_2D_HEADLESS
-        if (!viewModel->IsPlaying())
+        if (not view_model->IsPlaying())
         {
             ::SDL_Event event{::SDL_EventType::SDL_QUIT};
             ::SDL_PushEvent(&event);
@@ -166,8 +169,8 @@ void solver_thread_callable(
 int init(
     tromino::gfx2d::Board const& board,
     int const width,
-    std::optional<std::string const> const& title
-)
+    std::optional<std::string> const& title
+) noexcept
 {
     auto const board_order{static_cast<std::size_t>(board.order)};
     std::size_t const num_steps{

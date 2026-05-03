@@ -17,9 +17,9 @@ constexpr std::size_t const REQUIRED_ARG_COUNT{4U};
 
 #ifdef __APPLE__
 constexpr int const MAX_SUPPORTED_ORDER{512};
-#elif __linux__
+#elifdef __linux__
 constexpr int const MAX_SUPPORTED_ORDER{32};
-#elif _WIN64
+#elifdef _WIN64
 constexpr int const MAX_SUPPORTED_ORDER{64};
 #else
 constexpr int const MAX_SUPPORTED_ORDER{32};
